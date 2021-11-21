@@ -1,0 +1,7 @@
+.DS_Store
+build/
+publishedbundles/
+*xcodeproj/manderim.*
+*xcshareddata*
+*xcuserdata*
+*xcworkspace*
