@@ -1,0 +1,6 @@
+[submodule "lib/NALib"]
+	path = lib/NALib
+	url = https://github.com/Manderby/NALib.git
+[submodule "lib/CML"]
+	path = lib/CML
+	url = https://github.com/Manderby/CML.git
