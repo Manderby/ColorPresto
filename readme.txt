@@ -6,6 +6,8 @@ color conversion library CML (Color Machine Library).
 
 The implementation is still under development.
 
+clone including all submodules:
+git clone --recurse-submodules URL
 
 
 Email: colormachine@manderc.com
