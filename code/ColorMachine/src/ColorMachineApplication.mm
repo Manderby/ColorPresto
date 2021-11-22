@@ -104,32 +104,28 @@ CMLSize bordercount;
 
 - (IBAction)showAbout:(id)sender{
   if(!aboutwindowcontroller){
-//    naLoadNib("AboutWindow");
-    [NSBundle loadNibNamed:[NSString stringWithUTF8String:"AboutWindow"] owner:NSApp];
+    naLoadNib("AboutWindow");
   }
   [aboutwindowcontroller showDialog];
 }
 
 - (IBAction)showScreenResolution:(id)sender{
   if(!screenresolutionwindowcontroller){
-//    naLoadNib("ScreenResolution");
-    [NSBundle loadNibNamed:[NSString stringWithUTF8String:"ScreenResolution"] owner:NSApp];
+    naLoadNib("ScreenResolution");
   }
   [screenresolutionwindowcontroller showDialog];
 }
 
 - (IBAction)showThreeDee:(id)sender{
   if(!threedeewindowcontroller){
-//    naLoadNib("ThreeDeeWindow");
-    [NSBundle loadNibNamed:[NSString stringWithUTF8String:"ThreeDeeWindow"] owner:NSApp];
+    naLoadNib("ThreeDeeWindow");
   }
   [threedeewindowcontroller showDialog];
 }
 
 - (IBAction)showMetamerics:(id)sender{
   if(!metamericswindowcontroller){
-//    naLoadNib("Metamerics");
-    [NSBundle loadNibNamed:[NSString stringWithUTF8String:"Metamerics"] owner:NSApp];
+    naLoadNib("Metamerics");
   }
   [metamericswindowcontroller showDialog];
 }
