@@ -3,9 +3,9 @@
 #import "ColorMachineApplication.h"
 
 // Prototypes:
-void convertYuvtoYcd(float* Ycd, const float* Yuv);
-void convertYcdtoadaptedYuv(float* Yuv, const float* testYcd, const float* srcwhitepointYcd, const float* dstwhitepointYcd);
-void convertYuvtoUVW(float* UVW, float* Yuv, const float* whitepointYuv);
+void convertYuvtoYcd(float* Ycd, const float* yuv);
+void convertYcdtoadaptedYuv(float* yuv, const float* testYcd, const float* srcwhitepointYcd, const float* dstwhitepointYcd);
+void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv);
 
 
 
@@ -653,19 +653,19 @@ const float fluorescentremissiondata[] = {
   0.001f, 0.001f, 0.001f, 0.001f, 0.001f};
 
 
-void convertYuvtoYcd(float* Ycd, const float* Yuv){
-    cmlSet3(Ycd, Yuv[0],
-                    (4.f - Yuv[1] - 10.f * Yuv[2]) / Yuv[2],
-                    (1.708f * Yuv[2] + 0.404f - 1.481f * Yuv[1]) / Yuv[2]);
+void convertYuvtoYcd(float* Ycd, const float* yuv){
+    cmlSet3(Ycd, yuv[0],
+                    (4.f - yuv[1] - 10.f * yuv[2]) / yuv[2],
+                    (1.708f * yuv[2] + 0.404f - 1.481f * yuv[1]) / yuv[2]);
 }
 
-void convertYcdtoadaptedYuv(float* Yuv, const float* Ycd, const float* srcwhitepointYcd, const float* dstwhitepointYcd){
+void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcwhitepointYcd, const float* dstwhitepointYcd){
   float cfactor = Ycd[1] * dstwhitepointYcd[1] / srcwhitepointYcd[1];
   float dfactor = Ycd[2] * dstwhitepointYcd[2] / srcwhitepointYcd[2];
   float divisor = (16.518f + 1.481f * cfactor - dfactor);
-  Yuv[0] = Ycd[0];
-  Yuv[1] = (10.872f + 0.404f * cfactor - 4.f * dfactor) / divisor;
-  Yuv[2] = 5.520f / divisor;
+  yuv[0] = Ycd[0];
+  yuv[1] = (10.872f + 0.404f * cfactor - 4.f * dfactor) / divisor;
+  yuv[2] = 5.520f / divisor;
 }
 
 // ISO 3664 states in forumal D.14 the computation 6X/(X+15Y+3Z). I'm
@@ -673,10 +673,10 @@ void convertYcdtoadaptedYuv(float* Yuv, const float* Ycd, const float* srcwhitep
 // CIE 1960 UCS. This also corresponds to the fact that UVW is based on UCS.
 // In CML, this is Yuv.
 // UVW is CIE 1964.
-void convertYuvtoUVW(float* UVW, float* Yuv, const float* whitepointYuv){
-  UVW[2] = 25.f * CMLCbrt(Yuv[0] * 100.f) - 17.f;
-  UVW[0] = 13.f * UVW[2] * (Yuv[1] - whitepointYuv[1]);
-  UVW[1] = 13.f * UVW[2] * (Yuv[2] - whitepointYuv[2]);
+void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
+  UVW[2] = 25.f * CMLCbrt(yuv[0] * 100.f) - 17.f;
+  UVW[0] = 13.f * UVW[2] * (yuv[1] - whitepointYuv[1]);
+  UVW[1] = 13.f * UVW[2] * (yuv[2] - whitepointYuv[2]);
 }
 
 

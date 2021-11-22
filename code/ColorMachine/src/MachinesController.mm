@@ -6,7 +6,7 @@
 
 - (id)init{
   cm = CMLcreateColorMachine();
-//  CMLsetRadiometricComputation(cm, CMLTRUE);
+//  CMLsetRadiometricComputation(cm, CML_TRUE);
   CMLsetMachineForColorClasses(cm);
 
   sm = NULL;
@@ -34,13 +34,13 @@
 //
 //    cm->lockRecomputation();
 //      cm->setWhitePointXYZ(profile.mediaWhitePoint);
-//      Vector3<float> Yxy;
-//      cm->XYZtoYxy(Yxy, profile.redMatrixColumn);
-//      cm->setRedPrimary(Yxy[1], Yxy[2]);
-//      cm->XYZtoYxy(Yxy, profile.greenMatrixColumn);
-//      cm->setGreenPrimary(Yxy[1], Yxy[2]);
-//      cm->XYZtoYxy(Yxy, profile.blueMatrixColumn);
-//      cm->setBluePrimary(Yxy[1], Yxy[2]);
+//      Vector3<float> yxy;
+//      cm->XYZtoYxy(yxy, profile.redMatrixColumn);
+//      cm->setRedPrimary(yxy[1], yxy[2]);
+//      cm->XYZtoYxy(yxy, profile.greenMatrixColumn);
+//      cm->setGreenPrimary(yxy[1], yxy[2]);
+//      cm->XYZtoYxy(yxy, profile.blueMatrixColumn);
+//      cm->setBluePrimary(yxy[1], yxy[2]);
 //    cm->releaseRecomputation();
     
   #endif

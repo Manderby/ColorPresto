@@ -39,20 +39,20 @@
 }
 
 - (IBAction)valueChangeXYZ:(NSControl*)sender {
-  XYZColor& XYZ = *(XYZColor*)[self color];
+  XYZColor& xyz = *(XYZColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldX){XYZ[0] = value;
-  }else if(sender == textfieldY){XYZ[1] = value;
-  }else if(sender == textfieldZ){XYZ[2] = value;}
+  if      (sender == textfieldX){xyz[0] = value;
+  }else if(sender == textfieldY){xyz[1] = value;
+  }else if(sender == textfieldZ){xyz[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
 - (void) update{
-  XYZColor& XYZ = *(XYZColor*)[self color];
-  XYZ = [(ColorMachineApplication*)NSApp getCurrentColor]->toXYZ();
-  [textfieldX setStringValue:[NSString stringWithFormat:@"%1.05f", XYZ[0]]];
-  [textfieldY setStringValue:[NSString stringWithFormat:@"%1.05f", XYZ[1]]];
-  [textfieldZ setStringValue:[NSString stringWithFormat:@"%1.05f", XYZ[2]]];
+  XYZColor& xyz = *(XYZColor*)[self color];
+  xyz = [(ColorMachineApplication*)NSApp getCurrentColor]->toXYZ();
+  [textfieldX setStringValue:[NSString stringWithFormat:@"%1.05f", xyz[0]]];
+  [textfieldY setStringValue:[NSString stringWithFormat:@"%1.05f", xyz[1]]];
+  [textfieldZ setStringValue:[NSString stringWithFormat:@"%1.05f", xyz[2]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderX setNeedsDisplay:YES];

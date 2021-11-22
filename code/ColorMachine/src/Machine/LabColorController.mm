@@ -53,33 +53,33 @@
 }
 
 - (IBAction)valueChangeLab:(NSControl*)sender {
-  LabColor& Lab = *(LabColor*)[self color];
+  LabColor& lab = *(LabColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldL){Lab[0] = value;
-  }else if(sender == textfielda){Lab[1] = value;
-  }else if(sender == textfieldb){Lab[2] = value;}
+  if      (sender == textfieldL){lab[0] = value;
+  }else if(sender == textfielda){lab[1] = value;
+  }else if(sender == textfieldb){lab[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
 - (IBAction)valueChangeLch:(NSControl*)sender {
-  LabColor& Lab = *(LabColor*)[self color];
-  LchColor Lch(Lab);
+  LabColor& lab = *(LabColor*)[self color];
+  LchColor lch(lab);
   float value = [sender floatValue];
-  if      (sender == textfieldc){Lch[1] = value;
-  }else if(sender == textfieldh){Lch[2] = value;}
-  Lab = Lch.toLab();
+  if      (sender == textfieldc){lch[1] = value;
+  }else if(sender == textfieldh){lch[2] = value;}
+  lab = lch.toLab();
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
 - (void) update{
-  LabColor& Lab = *(LabColor*)[self color];
-  Lab = [(ColorMachineApplication*)NSApp getCurrentColor]->toLab();
-  LchColor Lch(Lab);
-  [textfieldL setStringValue:[NSString stringWithFormat:@"%3.02f", Lab[0]]];
-  [textfielda setStringValue:[NSString stringWithFormat:@"%3.02f", Lab[1]]];
-  [textfieldb setStringValue:[NSString stringWithFormat:@"%3.02f", Lab[2]]];
-  [textfieldc setStringValue:[NSString stringWithFormat:@"%3.02f", Lch[1]]];
-  [textfieldh setStringValue:[NSString stringWithFormat:@"%3.02f", Lch[2]]];
+  LabColor& lab = *(LabColor*)[self color];
+  lab = [(ColorMachineApplication*)NSApp getCurrentColor]->toLab();
+  LchColor lch(lab);
+  [textfieldL setStringValue:[NSString stringWithFormat:@"%3.02f", lab[0]]];
+  [textfielda setStringValue:[NSString stringWithFormat:@"%3.02f", lab[1]]];
+  [textfieldb setStringValue:[NSString stringWithFormat:@"%3.02f", lab[2]]];
+  [textfieldc setStringValue:[NSString stringWithFormat:@"%3.02f", lch[1]]];
+  [textfieldh setStringValue:[NSString stringWithFormat:@"%3.02f", lch[2]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderL setNeedsDisplay:YES];

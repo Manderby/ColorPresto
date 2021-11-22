@@ -93,11 +93,11 @@
 }
 
 - (IBAction)valueChangeRGB:(NSControl*)sender {
-  RGBColor& RGB = *(RGBColor*)[self color];
+  RGBColor& rgb = *(RGBColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldR){RGB[0] = value;
-  }else if(sender == textfieldG){RGB[1] = value;
-  }else if(sender == textfieldB){RGB[2] = value;}
+  if      (sender == textfieldR){rgb[0] = value;
+  }else if(sender == textfieldG){rgb[1] = value;
+  }else if(sender == textfieldB){rgb[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
@@ -110,8 +110,8 @@
   rgbbuf2[0] = rgbbuf[0];
   rgbbuf2[1] = rgbbuf[1];
   rgbbuf2[2] = rgbbuf[2];
-  RGBColor& RGB = *(RGBColor*)[self color];
-  RGB.from8bitBuffer(rgbbuf2);
+  RGBColor& rgb = *(RGBColor*)[self color];
+  rgb.from8bitBuffer(rgbbuf2);
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
@@ -127,18 +127,18 @@
   rgbbuf2[0] = rgbbuf[0];
   rgbbuf2[1] = rgbbuf[1];
   rgbbuf2[2] = rgbbuf[2];
-  RGBColor& RGB = *(RGBColor*)[self color];
-  RGB.from8bitBuffer(rgbbuf2);
+  RGBColor& rgb = *(RGBColor*)[self color];
+  rgb.from8bitBuffer(rgbbuf2);
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
 - (void) update{
-  RGBColor& RGB = *(RGBColor*)[self color];
-  RGB = [(ColorMachineApplication*)NSApp getCurrentColor]->toRGB();
-  [textfieldR setStringValue:[NSString stringWithFormat:@"%1.05f", RGB[0]]];
-  [textfieldG setStringValue:[NSString stringWithFormat:@"%1.05f", RGB[1]]];
-  [textfieldB setStringValue:[NSString stringWithFormat:@"%1.05f", RGB[2]]];
-  RGBColor clamped = RGB;
+  RGBColor& rgb = *(RGBColor*)[self color];
+  rgb = [(ColorMachineApplication*)NSApp getCurrentColor]->toRGB();
+  [textfieldR setStringValue:[NSString stringWithFormat:@"%1.05f", rgb[0]]];
+  [textfieldG setStringValue:[NSString stringWithFormat:@"%1.05f", rgb[1]]];
+  [textfieldB setStringValue:[NSString stringWithFormat:@"%1.05f", rgb[2]]];
+  RGBColor clamped = rgb;
   clamped.clamp();
   Byte rgbbuf[3];
   clamped.to8bitBuffer(rgbbuf);

@@ -38,20 +38,20 @@
 }
 
 - (IBAction)valueChangeHSL:(NSControl*)sender {
-  HSLColor& HSL = *(HSLColor*)[self color];
+  HSLColor& hsl = *(HSLColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldH){HSL[0] = value;
-  }else if(sender == textfieldS){HSL[1] = value;
-  }else if(sender == textfieldL){HSL[2] = value;}
+  if      (sender == textfieldH){hsl[0] = value;
+  }else if(sender == textfieldS){hsl[1] = value;
+  }else if(sender == textfieldL){hsl[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
 - (void) update{
-  HSLColor& HSL = *(HSLColor*)[self color];
-  HSL = [(ColorMachineApplication*)NSApp getCurrentColor]->toHSL();
-  [textfieldH setStringValue:[NSString stringWithFormat:@"%3.03f", HSL[0]]];
-  [textfieldS setStringValue:[NSString stringWithFormat:@"%1.05f", HSL[1]]];
-  [textfieldL setStringValue:[NSString stringWithFormat:@"%1.05f", HSL[2]]];
+  HSLColor& hsl = *(HSLColor*)[self color];
+  hsl = [(ColorMachineApplication*)NSApp getCurrentColor]->toHSL();
+  [textfieldH setStringValue:[NSString stringWithFormat:@"%3.03f", hsl[0]]];
+  [textfieldS setStringValue:[NSString stringWithFormat:@"%1.05f", hsl[1]]];
+  [textfieldL setStringValue:[NSString stringWithFormat:@"%1.05f", hsl[2]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderH setNeedsDisplay:YES];

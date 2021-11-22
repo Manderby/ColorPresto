@@ -12,10 +12,10 @@
   [websitelink setAllowsEditingTextAttributes: YES];
   [websitelink setSelectable: YES];
 
-  NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString: @"http://manderim.ch"];
+  NSMutableAttributedString* attrString = [[NSMutableAttributedString alloc] initWithString: @"http://manderc.com"];
   NSRange range = NSMakeRange(0, [attrString length]);
 
-  NSURL* url = [NSURL URLWithString:@"http://manderim.ch"];
+  NSURL* url = [NSURL URLWithString:@"http://manderc.com"];
   [attrString beginEditing];
   [attrString addAttribute:NSLinkAttributeName value:[url absoluteString] range:range];
   [attrString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInt:NSUnderlineStyleSingle] range:range];
@@ -38,7 +38,7 @@
 - (IBAction)goToWebsite:(id)sender{
 //  [websitebutton setTransparent:NO];
 //  [[self window] performClose:sender];
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://manderim.ch"]];
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://manderc.com"]];
 }
 
 @end
