@@ -19,7 +19,7 @@ extern CMLColorType maskcolor;
 extern bool showmask;
 extern bool showgrid;
 extern float borderthickness;
-extern CMLSize bordercount;
+extern size_t bordercount;
 
 
 //#define COLOR_MACHINE_ITEM_HEIGHT_CHANGED @"ColorMachineItemHeightChanged"

@@ -112,7 +112,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
 - (id)init{
   colordata = NULL;
-//  rgb8bitdata = NULL;
+//  rgb8Bitdata = NULL;
   return [super init];
   colorbuffer = NULL;
   normedbuffer = NULL;
@@ -120,7 +120,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
 - (void)dealloc{
   delete [] colordata;
-//  delete [] rgb8bitdata;
+//  delete [] rgb8Bitdata;
   delete [] colorbuffer;
   delete [] normedbuffer;
   [super dealloc];
@@ -149,8 +149,8 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   CMLuint32 channelcount = CMLgetNumChannels(colortype);
   delete colordata;
   colordata = new float[width * height * channelcount];
-//  delete rgb8bitdata;
-//  rgb8bitdata = new Byte[width * height * 3];
+//  delete rgb8Bitdata;
+//  rgb8Bitdata = new Byte[width * height * 3];
 
   float* cptr;
 
@@ -219,7 +219,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
                                           drawmask:YES];
 
 //  float* normedrgbdata = new float[width * height * 3];
-//  [(ColorMachineApplication*)NSApp fillRGBuint8array:rgb8bitdata
+//  [(ColorMachineApplication*)NSApp fillRGBuint8array:rgb8Bitdata
 //                                         fromArray:colordata
 //                                     withColorType:colortype
 //                              normedInputConverter:normedinputconverter
@@ -227,7 +227,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 //                                          drawgrid:!singleline
 //                                          drawmask:YES];
 //
-//  CMLRGBfrom8bitInput(cm, normedrgbdata, rgb8bitdata, width * height);
+//  cmlRGBWithData8(cm, normedrgbdata, rgb8Bitdata, width * height);
 
 //  CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
 //  NSBitmapImageRep* imgrep = [[NSBitmapImageRep alloc]
@@ -247,12 +247,12 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 //
 //  CGContextDrawImage(context, NSRectToCGRect([self bounds]), cgimage);
 
-  Byte* rgb8bitdata = new Byte[width * height * 3];
+  Byte* rgb8Bitdata = new Byte[width * height * 3];
 //  CMLsetIntegerMappingType(cm, CML_INTEGER_MAPPING_FLOOR);
-  CMLRGBto8bitOutput(cm, rgb8bitdata, normedrgbdata, width * height);
+  cmlData8WithRGB(cm, rgb8Bitdata, normedrgbdata, width * height);
   CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
   NSBitmapImageRep* imgrep = [[NSBitmapImageRep alloc]
-    initWithBitmapDataPlanes:&rgb8bitdata
+    initWithBitmapDataPlanes:&rgb8Bitdata
     pixelsWide:width
     pixelsHigh:height
     bitsPerSample:8
@@ -267,7 +267,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   [imgrep release];
   
   CGContextDrawImage(context, NSRectToCGRect([self bounds]), cgimage);
-  delete [] rgb8bitdata;
+  delete [] rgb8Bitdata;
 
 
   delete [] normedrgbdata;

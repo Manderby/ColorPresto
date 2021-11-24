@@ -53,7 +53,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str);
   ColorController* colorcontroller;
   CMLColorType colortype;
   float* colordata;
-//  Byte* rgb8bitdata;
+//  Byte* rgb8Bitdata;
   CMLuint32 width;
   CMLuint32 height;
   float* colorbuffer;

@@ -32,7 +32,7 @@
   const float viewoffset = .05f;
   
   // Draw the background;
-  Byte* rgb8bitdata = new Byte[width * height * 3];
+  Byte* rgb8Bitdata = new Byte[width * height * 3];
   for(CMLuint32 x=0; x<width; x++){
     float lambda = imin + ((float)x / width) * (imax - imin);
     CMLVec3 xyz;
@@ -41,14 +41,14 @@
     CMLXYZtoRGB(sm, rgb, xyz, 1);
     CMLclampRGB(rgb, 1);
     cmlMul3(rgb, .4f);
-    CMLRGBto8bitOutput(sm, &(rgb8bitdata[x*3]), rgb, 1);
+    cmlData8WithRGB(sm, &(rgb8Bitdata[x*3]), rgb, 1);
   }
   for(CMLuint32 y=1; y<height; y++){
-    memcpy(&(rgb8bitdata[y * width * 3]), rgb8bitdata, width*3);
+    memcpy(&(rgb8Bitdata[y * width * 3]), rgb8Bitdata, width*3);
   }
   
   NSBitmapImageRep* imgrep = [[NSBitmapImageRep alloc]
-    initWithBitmapDataPlanes:&rgb8bitdata
+    initWithBitmapDataPlanes:&rgb8Bitdata
     pixelsWide:width
     pixelsHigh:height
     bitsPerSample:8
@@ -63,7 +63,7 @@
   [imgrep release];
   
   CGContextDrawImage(context, NSRectToCGRect([self bounds]), cgimage);
-  delete [] rgb8bitdata;
+  delete [] rgb8Bitdata;
 
 
   // Draw the Grid

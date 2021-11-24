@@ -15,7 +15,7 @@ CMLColorType maskcolor;
 bool showmask;
 bool showgrid;
 float borderthickness;
-CMLSize bordercount;
+size_t bordercount;
 
 
 
@@ -254,7 +254,7 @@ CMLSize bordercount;
   float* aXYZbuffer = new float[3 * count];
   CMLMat33 amatrix;
   cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smwhitepointYxy, cmwhitepointYxy);
-  for(CMLSize i=0; i<count; i++){
+  for(size_t i=0; i<count; i++){
     CMLconvertXYZtoChromaticAdaptedXYZ(&(aXYZbuffer[i*3]), &(XYZbuffer[i*3]), amatrix);
   }
   CMLXYZtoRGB(sm, texdata, aXYZbuffer, count);
@@ -309,7 +309,7 @@ CMLSize bordercount;
 //  }
   CMLclampRGB(texdata, count);
 //  CMLclampRGB(RGBbuffer, count);
-//  CMLRGBto8bitOutput(sm, texdata, RGBbuffer, count);
+//  cmlData8WithRGB(sm, texdata, RGBbuffer, count);
   
   delete [] XYZbuffer;
 //  delete [] RGBbuffer;
@@ -389,7 +389,7 @@ CMLSize bordercount;
     CMLgetFunctionDefinitionRange(spectrum, &defrange);
     // In case this is a continuous function, set the stepsize to the default.
     if(defrange.stepsize == 0.f){defrange.stepsize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
-    CMLSize samplecount = CMLgetSampleCount(defrange.minSampleCoord, defrange.maxSampleCoord, defrange.stepsize);
+    size_t samplecount = CMLgetSampleCount(defrange.minSampleCoord, defrange.maxSampleCoord, defrange.stepsize);
     if(samplecount == 1){
       float curcoord = defrange.minSampleCoord;
         CGFloat x = rect.origin.x + ((curcoord - CML_DEFAULT_INTEGRATION_MIN) / (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN)) * rect.size.width + .5f;
@@ -398,7 +398,7 @@ CMLSize bordercount;
       CGContextMoveToPoint(context, x, y1);
       CGContextAddLineToPoint(context, x, y2);
     }else{
-      for(CMLSize i=0; i<samplecount; i++){
+      for(size_t i=0; i<samplecount; i++){
         float curcoord = defrange.minSampleCoord + i * defrange.stepsize;
         CGFloat x = rect.origin.x + ((curcoord - CML_DEFAULT_INTEGRATION_MIN) / (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN)) * rect.size.width + .5f;
         CGFloat y = rect.origin.y + rect.size.height * (CMLeval(spectrum, curcoord) * divisor * VIEWRANGE + VIEWOFFSET);

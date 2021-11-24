@@ -91,7 +91,7 @@ typedef CMLBoundsFloat CMLChannelBoundsFloat[CML_MAX_NUMBER_OF_CHANNELS];
 //
 // To convert the resulting values to non-normed color-coordinates, simply
 // convert the whole array using the appropriate fromNormedInput-Converter.
-// In the example above, this would be CMLRGBfromNormedInput. Note that you
+// In the example above, this would be cmlRGBWithNormedInput. Note that you
 // need to provide the buffer for this conversion by yourself. The required
 // number of bytes can be computed like this:
 // numbytes = dim[0] * dim[1] * dim[2] * dim[3] * numchannels * sizeof(float);

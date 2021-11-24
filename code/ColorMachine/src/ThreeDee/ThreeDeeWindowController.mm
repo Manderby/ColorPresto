@@ -661,7 +661,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
     axis2s = new CMLVec4[surfacecount];
     float** normedcolorcoords = new float*[surfacecount];
     float** rgbfloatvalues = new float*[surfacecount];
-//    Byte** rgb8bitvalues = new Byte*[surfacecount];
+//    Byte** rgb8Bitvalues = new Byte*[surfacecount];
     float** colorcoords = new float*[surfacecount];
     float** systemcoords = new float*[surfacecount];
     float** normedsystemcoords = new float*[surfacecount];
@@ -1079,7 +1079,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
     glEnd();
     
 //    glEnableClientState(GL_COLOR_ARRAY);
-//    glColorPointer(3, GL_UNSIGNED_BYTE, 0, cloudrgb8bitvalues);
+//    glColorPointer(3, GL_UNSIGNED_BYTE, 0, cloudrgb8Bitvalues);
 //    glEnableClientState(GL_VERTEX_ARRAY);
 //    glVertexPointer(3, GL_FLOAT, 0, cloudnormedsystemcoords);
 //    glDrawArrays(GL_POINTS, 0, totalcloudcount);

@@ -164,7 +164,7 @@
 //      CMLDefinitionRange defrange = colorspec->getDefinitionRange();
 //      CGContextBeginPath(context);
 //      if(defrange.stepsize == 0.f){defrange.stepsize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
-//      CMLSize samplecount = CMLgetIntervalCount(defrange.minSampleCoord, defrange.maxSampleCoord, defrange.stepsize);
+//      size_t samplecount = CMLgetIntervalCount(defrange.minSampleCoord, defrange.maxSampleCoord, defrange.stepsize);
 //      if(samplecount == 1){
 //        float curcoord = defrange.minSampleCoord;
 //        CGFloat x = cellFrame.origin.x + ((curcoord - defrange.minSampleCoord) / (defrange.maxSampleCoord - defrange.minSampleCoord)) * COLOR_VIEW_WIDTH + .5f;
@@ -173,7 +173,7 @@
 //        CGContextMoveToPoint(context, x, y1);
 //        CGContextAddLineToPoint(context, x, y2);
 //      }else{
-//        for(CMLSize i=0; i<samplecount; i++){
+//        for(size_t i=0; i<samplecount; i++){
 //          float curcoord = defrange.minSampleCoord + i * defrange.stepsize;
 //          CGFloat x = cellFrame.origin.x + ((curcoord - defrange.minSampleCoord) / (defrange.maxSampleCoord - defrange.minSampleCoord)) * COLOR_VIEW_WIDTH + .5f;
 //          CGFloat y = cellFrame.origin.y + height * (1.f - (*colorspec)(curcoord) * divisor * viewrange + viewoffset);

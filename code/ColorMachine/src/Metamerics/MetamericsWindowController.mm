@@ -1036,7 +1036,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
     [deltaEmetamer14 setStringValue:[NSString stringWithFormat:@""]];
   }
 
-//  CMLByte metamerrefrgb8bitdata[14 * 3];
+//  CMLByte metamerrefrgb8Bitdata[14 * 3];
   float metamerrefrgbfloatdata[14 * 3];
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:metamerrefrgbfloatdata
                                          fromArray:metamerrefXYZ
@@ -1045,16 +1045,16 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
                                              count:14
                                           drawgrid:NO
                                           drawmask:NO];
-//  [(ColorMachineApplication*)NSApp fillRGBuint8array:metamerrefrgb8bitdata
+//  [(ColorMachineApplication*)NSApp fillRGBuint8array:metamerrefrgb8Bitdata
 //                                         fromArray:metamerrefXYZ
 //                                     withColorType:CML_COLOR_XYZ
 //                              normedInputConverter:CMLgetNormedInputConverter(CML_COLOR_XYZ)
 //                                             count:14
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  CMLRGBfrom8bitInput(cm, metamerrefrgbfloatdata, metamerrefrgb8bitdata, 14);
+//  cmlRGBWithData8(cm, metamerrefrgbfloatdata, metamerrefrgb8Bitdata, 14);
   
-//  CMLByte metamerillrgb8bitdata[14 * 3];
+//  CMLByte metamerillrgb8Bitdata[14 * 3];
   float metamerillrgbfloatdata[14 * 3];
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:metamerillrgbfloatdata
                                          fromArray:metamerillXYZ
@@ -1063,14 +1063,14 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
                                              count:14
                                           drawgrid:NO
                                           drawmask:NO];
-//  [(ColorMachineApplication*)NSApp fillRGBuint8array:metamerillrgb8bitdata
+//  [(ColorMachineApplication*)NSApp fillRGBuint8array:metamerillrgb8Bitdata
 //                                         fromArray:metamerillXYZ
 //                                     withColorType:CML_COLOR_XYZ
 //                              normedInputConverter:CMLgetNormedInputConverter(CML_COLOR_XYZ)
 //                                             count:14
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  CMLRGBfrom8bitInput(cm, metamerillrgbfloatdata, metamerillrgb8bitdata, 14);
+//  cmlRGBWithData8(cm, metamerillrgbfloatdata, metamerillrgb8Bitdata, 14);
 
   [deltaEcolorview1 setColors:&(metamerillrgbfloatdata[0*3]) :&(metamerrefrgbfloatdata[0*3])];
   [deltaEcolorview2 setColors:&(metamerillrgbfloatdata[1*3]) :&(metamerrefrgbfloatdata[1*3])];
@@ -1226,7 +1226,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
   cmlComputeChromaticAdaptationMatrix(adaptationmatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenwhitepoint, illYxy10);
 
   float standardadaptedxyzdata[5 * 3];
-//  CMLByte standardrgb8bitdata[5 * 3];
+//  CMLByte standardrgb8Bitdata[5 * 3];
   float standardrgbfloatdata[5 * 3];
   CMLconvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[0]), &(standardXYZ[0]), adaptationmatrix);
   CMLconvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[3]), &(standardXYZ[3]), adaptationmatrix);
@@ -1240,17 +1240,17 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
                                              count:5
                                           drawgrid:NO
                                           drawmask:NO];
-//  [(ColorMachineApplication*)NSApp fillRGBuint8array:standardrgb8bitdata
+//  [(ColorMachineApplication*)NSApp fillRGBuint8array:standardrgb8Bitdata
 //                                         fromArray:standardadaptedxyzdata
 //                                     withColorType:CML_COLOR_XYZ
 //                              normedInputConverter:CMLgetNormedInputConverter(CML_COLOR_XYZ)
 //                                             count:5
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  CMLRGBfrom8bitInput(cm, standardrgbfloatdata, standardrgb8bitdata, 5);
+//  cmlRGBWithData8(cm, standardrgbfloatdata, standardrgb8Bitdata, 5);
   
   float specimenaptedxyzdata[5 * 3];
-//  CMLByte specimenrgb8bitdata[5 * 3];
+//  CMLByte specimenrgb8Bitdata[5 * 3];
   float specimenrgbfloatdata[5 * 3];
   CMLconvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[0]), &(specimenXYZ[0]), adaptationmatrix);
   CMLconvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[3]), &(specimenXYZ[3]), adaptationmatrix);
@@ -1264,14 +1264,14 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
                                              count:5
                                           drawgrid:NO
                                           drawmask:NO];
-//  [(ColorMachineApplication*)NSApp fillRGBuint8array:specimenrgb8bitdata
+//  [(ColorMachineApplication*)NSApp fillRGBuint8array:specimenrgb8Bitdata
 //                                         fromArray:specimenaptedxyzdata
 //                                     withColorType:CML_COLOR_XYZ
 //                              normedInputConverter:CMLgetNormedInputConverter(CML_COLOR_XYZ)
 //                                             count:5
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  CMLRGBfrom8bitInput(cm, specimenrgbfloatdata, specimenrgb8bitdata, 5);
+//  cmlRGBWithData8(cm, specimenrgbfloatdata, specimenrgb8Bitdata, 5);
 
   [MIviscolorview1 setColors:&(standardrgbfloatdata[0*3]) :&(specimenrgbfloatdata[0*3])];
   [MIviscolorview2 setColors:&(standardrgbfloatdata[1*3]) :&(specimenrgbfloatdata[1*3])];
@@ -1417,7 +1417,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
   else{[MIUVgradelabel setStringValue:@"Grade E"];}
 
   float UVstandardadaptedxyzdata[3 * 3];
-//  CMLByte UVstandardrgb8bitdata[3 * 3];
+//  CMLByte UVstandardrgb8Bitdata[3 * 3];
   float UVstandardrgbfloatdata[3 * 3];
   CMLconvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[0]), &(UVstandardXYZ[0]), adaptationmatrix);
   CMLconvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[3]), &(UVstandardXYZ[3]), adaptationmatrix);
@@ -1429,17 +1429,17 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
                                              count:3
                                           drawgrid:NO
                                           drawmask:NO];
-//  [(ColorMachineApplication*)NSApp fillRGBuint8array:UVstandardrgb8bitdata
+//  [(ColorMachineApplication*)NSApp fillRGBuint8array:UVstandardrgb8Bitdata
 //                                         fromArray:UVstandardadaptedxyzdata
 //                                     withColorType:CML_COLOR_XYZ
 //                              normedInputConverter:CMLgetNormedInputConverter(CML_COLOR_XYZ)
 //                                             count:3
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  CMLRGBfrom8bitInput(cm, UVstandardrgbfloatdata, UVstandardrgb8bitdata, 3);
+//  cmlRGBWithData8(cm, UVstandardrgbfloatdata, UVstandardrgb8Bitdata, 3);
   
   float UVmetameradaptedxyzdata[3 * 3];
-//  CMLByte UVmetamerrgb8bitdata[3 * 3];
+//  CMLByte UVmetamerrgb8Bitdata[3 * 3];
   float UVmetamerrgbfloatdata[3 * 3];
   CMLconvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[0]), &(UVmetamerXYZ[0]), adaptationmatrix);
   CMLconvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[3]), &(UVmetamerXYZ[3]), adaptationmatrix);
@@ -1451,14 +1451,14 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
                                              count:3
                                           drawgrid:NO
                                           drawmask:NO];
-//  [(ColorMachineApplication*)NSApp fillRGBuint8array:UVmetamerrgb8bitdata
+//  [(ColorMachineApplication*)NSApp fillRGBuint8array:UVmetamerrgb8Bitdata
 //                                         fromArray:UVmetameradaptedxyzdata
 //                                     withColorType:CML_COLOR_XYZ
 //                              normedInputConverter:CMLgetNormedInputConverter(CML_COLOR_XYZ)
 //                                             count:3
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  CMLRGBfrom8bitInput(cm, UVmetamerrgbfloatdata, UVmetamerrgb8bitdata, 3);
+//  cmlRGBWithData8(cm, UVmetamerrgbfloatdata, UVmetamerrgb8Bitdata, 3);
 
   [MIUVcolorview1 setColors:&(UVstandardrgbfloatdata[0*3]) :&(UVmetamerrgbfloatdata[0*3])];
   [MIUVcolorview2 setColors:&(UVstandardrgbfloatdata[1*3]) :&(UVmetamerrgbfloatdata[1*3])];

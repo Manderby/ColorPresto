@@ -111,7 +111,7 @@
   rgbbuf2[1] = rgbbuf[1];
   rgbbuf2[2] = rgbbuf[2];
   RGBColor& rgb = *(RGBColor*)[self color];
-  rgb.from8bitBuffer(rgbbuf2);
+  rgb.from8BitBuffer(rgbbuf2);
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
@@ -128,7 +128,7 @@
   rgbbuf2[1] = rgbbuf[1];
   rgbbuf2[2] = rgbbuf[2];
   RGBColor& rgb = *(RGBColor*)[self color];
-  rgb.from8bitBuffer(rgbbuf2);
+  rgb.from8BitBuffer(rgbbuf2);
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
@@ -141,7 +141,7 @@
   RGBColor clamped = rgb;
   clamped.clamp();
   Byte rgbbuf[3];
-  clamped.to8bitBuffer(rgbbuf);
+  clamped.to8BitBuffer(rgbbuf);
   [textfieldweb setStringValue:[NSString stringWithFormat:@"%02x%02x%02x", (int)rgbbuf[0], (int)rgbbuf[1], (int)rgbbuf[2]]];
   [textfieldwebrgb setStringValue:[NSString stringWithFormat:@"%d, %d, %d", (int)rgbbuf[0], (int)rgbbuf[1], (int)rgbbuf[2]]];
 //  [self setNeedsDisplay:YES];
