@@ -49,9 +49,9 @@
     [self setTitle:string];
   }else{
     if(color){
-      CMLColorType colortype = color->getColorType();
-      const char* colorname = CMLgetColorTypeString(colortype);
-      switch(colortype){
+      CMLColorType colorType = color->getColorType();
+      const char* colorname = CMLgetColorTypeString(colorType);
+      switch(colorType){
       case CML_COLOR_GRAY:
         title = [NSString stringWithFormat:@"%s %1.04f", colorname, (*color)[0]];
         break;

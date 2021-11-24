@@ -8,30 +8,30 @@
 - (void)awakeFromNib{
   [self color] = new HSVColor;
   [sliderH initWithController:self
-                    colortype:CML_COLOR_HSV
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_HSV)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_HSV)
+                    colorType:CML_COLOR_HSV
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_HSV)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_HSV)
                      channelx:0
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [sliderS initWithController:self
-                    colortype:CML_COLOR_HSV
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_HSV)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_HSV)
+                    colorType:CML_COLOR_HSV
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_HSV)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_HSV)
                      channelx:1
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [sliderV initWithController:self
-                    colortype:CML_COLOR_HSV
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_HSV)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_HSV)
+                    colorType:CML_COLOR_HSV
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_HSV)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_HSV)
                      channelx:2
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [(ColorWell*)colordisplay initWithController:self
-                    colortype:CML_COLOR_HSV
-         normedinputconverter:CMLgetNormedCartesianInputConverter(CML_COLOR_HSV)
-        normedoutputconverter:CMLgetNormedCartesianOutputConverter(CML_COLOR_HSV)
+                    colorType:CML_COLOR_HSV
+         normedinputconverter:cmlGetNormedCartesianInputConverter(CML_COLOR_HSV)
+        normedoutputconverter:cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV)
                      channelx:0
                      channely:1
                  drawspectrum:NO];

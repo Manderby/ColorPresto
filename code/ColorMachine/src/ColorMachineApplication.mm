@@ -239,7 +239,7 @@ size_t bordercount;
   CMLColorMachine* sm = [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
   CMLVec3 cmwhitepointYxy;
   CMLVec3 smwhitepointYxy;
-  CMLColorConverter colortoXYZ = CMLgetColorConverter(CML_COLOR_XYZ, inputcolortype);
+  CMLColorConverter colortoXYZ = cmlGetColorConverter(CML_COLOR_XYZ, inputcolortype);
   float* colorbuffer = new float[numcolorchannels * count];
 //  float* RGBbuffer = new float[3 * count];
   float* XYZbuffer = new float[3 * count];
@@ -262,8 +262,8 @@ size_t bordercount;
 
 //  if((showmask && drawmask) || (showgrid && drawgridlines)){
 //    CMLuint32 nummaskchannels = CMLgetNumChannels(maskcolor);
-//    CMLColorConverter colortomask = CMLgetColorConverter(maskcolor, inputcolortype);
-//    CMLNormedConverter masktonormal = CMLgetNormedOutputConverter(maskcolor);
+//    CMLColorConverter colortomask = cmlGetColorConverter(maskcolor, inputcolortype);
+//    CMLNormedConverter masktonormal = cmlGetNormedOutputConverter(maskcolor);
 //    float* maskbuffer = new float[count];
 //    float* maskcolorarray = new float[nummaskchannels * count];
 //    float* normedcolor = new float[nummaskchannels * count];
@@ -307,8 +307,8 @@ size_t bordercount;
 //    delete [] maskcolorarray;
 //    delete [] maskbuffer;
 //  }
-  CMLclampRGB(texdata, count);
-//  CMLclampRGB(RGBbuffer, count);
+  cmlClampRGB(texdata, count);
+//  cmlClampRGB(RGBbuffer, count);
 //  cmlData8WithRGB(sm, texdata, RGBbuffer, count);
   
   delete [] XYZbuffer;
@@ -337,7 +337,7 @@ size_t bordercount;
   CMLconvertXYZtoChromaticAdaptedXYZ(aXYZbuffer, XYZbuffer, amatrix);
   CMLXYZtoRGB(sm, outdata, aXYZbuffer, 1);
 
-  CMLclampRGB(outdata, 1);
+  cmlClampRGB(outdata, 1);
 }
 
 #define VIEWRANGE .8f
@@ -371,11 +371,11 @@ size_t bordercount;
   }
 
   // Draw the foreground, if any.
-  CMLColorType colortype = color->getColorType();
-  if((colortype == CML_COLOR_SPECTRUM_ILLUMINATION) || (colortype == CML_COLOR_SPECTRUM_REMISSION)){
+  CMLColorType colorType = color->getColorType();
+  if((colorType == CML_COLOR_SPECTRUM_ILLUMINATION) || (colorType == CML_COLOR_SPECTRUM_REMISSION)){
     const CMLFunction* spectrum = ((SpectralColor*)color)->getSpectrum();
     float divisor = 1.f;
-    if(colortype == CML_COLOR_SPECTRUM_ILLUMINATION){
+    if(colorType == CML_COLOR_SPECTRUM_ILLUMINATION){
       float maxvalue = CMLgetFunctionMaxValue(spectrum);
       if(maxvalue == 0){
         divisor = 1.f;

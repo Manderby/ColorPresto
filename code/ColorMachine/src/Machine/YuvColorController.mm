@@ -9,44 +9,44 @@
 - (void)awakeFromNib{
   [self color] = new YupvpColor;
   [sliderY initWithController:self
-                    colortype:CML_COLOR_Yupvp
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_Yupvp)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_Yupvp)
+                    colorType:CML_COLOR_Yupvp
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Yupvp)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Yupvp)
                      channelx:0
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [sliderup initWithController:self
-                    colortype:CML_COLOR_Yupvp
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_Yupvp)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_Yupvp)
+                    colorType:CML_COLOR_Yupvp
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Yupvp)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Yupvp)
                      channelx:1
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [slidervp initWithController:self
-                    colortype:CML_COLOR_Yupvp
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_Yupvp)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_Yupvp)
+                    colorType:CML_COLOR_Yupvp
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Yupvp)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Yupvp)
                      channelx:2
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [slideru initWithController:self
-                    colortype:CML_COLOR_Yuv
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_Yuv)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_Yuv)
+                    colorType:CML_COLOR_Yuv
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Yuv)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Yuv)
                      channelx:1
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [sliderv initWithController:self
-                    colortype:CML_COLOR_Yuv
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_Yuv)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_Yuv)
+                    colorType:CML_COLOR_Yuv
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Yuv)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Yuv)
                      channelx:2
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [(ColorWell*)colordisplay initWithController:self
-                    colortype:CML_COLOR_Yupvp
-         normedinputconverter:CMLgetNormedCartesianInputConverter(CML_COLOR_Yupvp)
-        normedoutputconverter:CMLgetNormedCartesianOutputConverter(CML_COLOR_Yupvp)
+                    colorType:CML_COLOR_Yupvp
+         normedinputconverter:cmlGetNormedCartesianInputConverter(CML_COLOR_Yupvp)
+        normedoutputconverter:cmlGetNormedCartesianOutputConverter(CML_COLOR_Yupvp)
                      channelx:1
                      channely:2
                  drawspectrum:YES];

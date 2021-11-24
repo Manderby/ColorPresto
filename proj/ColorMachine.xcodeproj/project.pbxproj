@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		901817F7104AD42300DD1251 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901817F5104AD42300DD1251 /* OpenGL.framework */; };
+		902DE704274EE99E009300A0 /* CMLIntegerMapping.c in Sources */ = {isa = PBXBuildFile; fileRef = 902DE703274EE99E009300A0 /* CMLIntegerMapping.c */; };
 		90BF5129274AB29E001FDE2A /* ColorMachine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50C3274AB29D001FDE2A /* ColorMachine.xib */; };
 		90BF512A274AB29E001FDE2A /* Metamerics.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50C5274AB29D001FDE2A /* Metamerics.xib */; };
 		90BF512B274AB29E001FDE2A /* ThreeDeeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50C7274AB29D001FDE2A /* ThreeDeeWindow.xib */; };
@@ -360,6 +361,7 @@
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Color Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Color Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		901817F5104AD42300DD1251 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		902DE703274EE99E009300A0 /* CMLIntegerMapping.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMLIntegerMapping.c; sourceTree = "<group>"; };
 		90BF50C4274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ColorMachine.xib; sourceTree = "<group>"; };
 		90BF50C6274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Metamerics.xib; sourceTree = "<group>"; };
 		90BF50C8274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ThreeDeeWindow.xib; sourceTree = "<group>"; };
@@ -956,25 +958,25 @@
 		90BF516D274ABA94001FDE2A /* Conversions */ = {
 			isa = PBXGroup;
 			children = (
-				90BF516E274ABA94001FDE2A /* CMLInvert.c */,
-				90BF516F274ABA94001FDE2A /* CMLInputOutputConversions.c */,
+				90BF517D274ABA94001FDE2A /* CMLClamp.c */,
+				90BF5177274ABA94001FDE2A /* CMLCMYKConversions.c */,
+				90BF517E274ABA94001FDE2A /* CMLColorMachineConversions.c */,
+				90BF5179274ABA94001FDE2A /* CMLGrayConversions.c */,
 				90BF5170274ABA94001FDE2A /* CMLHSLConversions.c */,
+				90BF517C274ABA94001FDE2A /* CMLHSVConversions.c */,
+				90BF516F274ABA94001FDE2A /* CMLInputOutputConversions.c */,
+				90BF516E274ABA94001FDE2A /* CMLInvert.c */,
+				90BF517F274ABA94001FDE2A /* CMLLabConversions.c */,
+				90BF5174274ABA94001FDE2A /* CMLLchConversions.c */,
 				90BF5171274ABA94001FDE2A /* CMLLuvConversions.c */,
 				90BF5172274ABA94001FDE2A /* CMLNormedConversions.c */,
-				90BF5173274ABA94001FDE2A /* CMLXYZConversions.c */,
-				90BF5174274ABA94001FDE2A /* CMLLchConversions.c */,
-				90BF5175274ABA94001FDE2A /* CMLYxyConversions.c */,
-				90BF5176274ABA94001FDE2A /* CMLSpectralConversions.c */,
-				90BF5177274ABA94001FDE2A /* CMLCMYKConversions.c */,
-				90BF5178274ABA94001FDE2A /* CMLYCbCrConversions.c */,
-				90BF5179274ABA94001FDE2A /* CMLGrayConversions.c */,
-				90BF517A274ABA94001FDE2A /* CMLYuvConversions.c */,
 				90BF517B274ABA94001FDE2A /* CMLRGBConversions.c */,
-				90BF517C274ABA94001FDE2A /* CMLHSVConversions.c */,
-				90BF517D274ABA94001FDE2A /* CMLClamp.c */,
-				90BF517E274ABA94001FDE2A /* CMLColorMachineConversions.c */,
-				90BF517F274ABA94001FDE2A /* CMLLabConversions.c */,
+				90BF5176274ABA94001FDE2A /* CMLSpectralConversions.c */,
+				90BF5173274ABA94001FDE2A /* CMLXYZConversions.c */,
+				90BF5178274ABA94001FDE2A /* CMLYCbCrConversions.c */,
 				90BF5180274ABA94001FDE2A /* CMLYupvpConversions.c */,
+				90BF517A274ABA94001FDE2A /* CMLYuvConversions.c */,
+				90BF5175274ABA94001FDE2A /* CMLYxyConversions.c */,
 			);
 			path = Conversions;
 			sourceTree = "<group>";
@@ -982,18 +984,19 @@
 		90BF5181274ABA94001FDE2A /* StateMachine */ = {
 			isa = PBXGroup;
 			children = (
-				90BF5182274ABA94001FDE2A /* CMLCMYKColorspace.c */,
-				90BF5183274ABA94001FDE2A /* CMLColorMachineState.c */,
-				90BF5184274ABA94001FDE2A /* CMLObserver.c */,
-				90BF5185274ABA94001FDE2A /* CMLLabColorspace.c */,
-				90BF5186274ABA94001FDE2A /* CMLConverterMacros.h */,
-				90BF5187274ABA94001FDE2A /* CMLColorMachine.c */,
 				90BF5188274ABA94001FDE2A /* CMLChromaticAdaptation.c */,
-				90BF5189274ABA94001FDE2A /* CMLGrayColorspace.c */,
+				90BF5182274ABA94001FDE2A /* CMLCMYKColorspace.c */,
+				90BF5187274ABA94001FDE2A /* CMLColorMachine.c */,
+				90BF5183274ABA94001FDE2A /* CMLColorMachineState.c */,
 				90BF518A274ABA94001FDE2A /* CMLColorMachineState.h */,
-				90BF518B274ABA94001FDE2A /* CMLInternal.h */,
+				90BF5186274ABA94001FDE2A /* CMLConverterMacros.h */,
+				90BF5189274ABA94001FDE2A /* CMLGrayColorspace.c */,
 				90BF518C274ABA94001FDE2A /* CMLIllumination.c */,
+				902DE703274EE99E009300A0 /* CMLIntegerMapping.c */,
+				90BF518B274ABA94001FDE2A /* CMLInternal.h */,
+				90BF5185274ABA94001FDE2A /* CMLLabColorspace.c */,
 				90BF518D274ABA94001FDE2A /* CMLNormedConversions.h */,
+				90BF5184274ABA94001FDE2A /* CMLObserver.c */,
 				90BF518E274ABA94001FDE2A /* CMLRGBColorspace.c */,
 			);
 			path = StateMachine;
@@ -1788,6 +1791,7 @@
 				90BF5204274ABA95001FDE2A /* CMLLchColor.cpp in Sources */,
 				90BF51C9274ABA95001FDE2A /* CMLLchConversions.c in Sources */,
 				90BF51E3274ABA95001FDE2A /* CMLBaseAPI.c in Sources */,
+				902DE704274EE99E009300A0 /* CMLIntegerMapping.c in Sources */,
 				90BF51CA274ABA95001FDE2A /* CMLYxyConversions.c in Sources */,
 				90BF51EF274ABA95001FDE2A /* CMLIllumination.c in Sources */,
 				90BF51D7274ABA95001FDE2A /* CMLColorMachineState.c in Sources */,

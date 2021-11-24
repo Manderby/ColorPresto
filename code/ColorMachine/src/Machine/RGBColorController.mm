@@ -63,30 +63,30 @@
 - (void)awakeFromNib{
   [self color] = new RGBColor;
   [sliderR initWithController:self
-                    colortype:CML_COLOR_RGB
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_RGB)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_RGB)
+                    colorType:CML_COLOR_RGB
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_RGB)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_RGB)
                      channelx:0
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [sliderG initWithController:self
-                    colortype:CML_COLOR_RGB
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_RGB)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_RGB)
+                    colorType:CML_COLOR_RGB
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_RGB)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_RGB)
                      channelx:1
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [sliderB initWithController:self
-                    colortype:CML_COLOR_RGB
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_RGB)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_RGB)
+                    colorType:CML_COLOR_RGB
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_RGB)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_RGB)
                      channelx:2
                      channely:(CMLuint32)-1
                  drawspectrum:NO];
   [(ColorWell*)colordisplay initWithController:self
-                    colortype:CML_COLOR_RGB
-         normedinputconverter:CMLgetNormedCartesianInputConverter(CML_COLOR_RGB)
-        normedoutputconverter:CMLgetNormedCartesianOutputConverter(CML_COLOR_RGB)
+                    colorType:CML_COLOR_RGB
+         normedinputconverter:cmlGetNormedCartesianInputConverter(CML_COLOR_RGB)
+        normedoutputconverter:cmlGetNormedCartesianOutputConverter(CML_COLOR_RGB)
                      channelx:0
                      channely:2
                  drawspectrum:NO];

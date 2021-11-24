@@ -465,7 +465,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "X";
 //    labels[1] = "Y";
 //    labels[2] = "Z";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_XYZ);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
     break;
   case COORDSYSTEM_YXY:
     coordspace = CML_COLOR_Yxy;
@@ -474,7 +474,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "Y";
 //    labels[1] = "x";
 //    labels[2] = "y";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_Yxy);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
     break;
   case COORDSYSTEM_Yuv:
     coordspace = CML_COLOR_Yuv;
@@ -483,7 +483,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "Y";
 //    labels[1] = "u";
 //    labels[2] = "v";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_Yuv);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
     break;
   case COORDSYSTEM_YCBCR:
     coordspace = CML_COLOR_YCbCr;
@@ -492,7 +492,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "Y";
 //    labels[1] = "Cb";
 //    labels[2] = "Cr";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_YCbCr);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
     break;
   case COORDSYSTEM_LAB:
     coordspace = CML_COLOR_Lab;
@@ -501,7 +501,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "L";
 //    labels[1] = "a";
 //    labels[2] = "b";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_Lab);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Lab);
     break;
   case COORDSYSTEM_LCH_CARTESIAN:
     coordspace = CML_COLOR_Lch;
@@ -510,7 +510,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "L";
 //    labels[1] = "c";
 //    labels[2] = "h";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_Lch);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Lch);
     break;
   case COORDSYSTEM_LUV:
     coordspace = CML_COLOR_Luv;
@@ -519,7 +519,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "L";
 //    labels[1] = "u";
 //    labels[2] = "v";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_Luv);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Luv);
     break;
   case COORDSYSTEM_RGB:
     coordspace = CML_COLOR_RGB;
@@ -528,7 +528,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "R";
 //    labels[1] = "G";
 //    labels[2] = "B";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_RGB);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
     break;
   case COORDSYSTEM_HSV:
     coordspace = CML_COLOR_HSV;
@@ -537,7 +537,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "";
 //    labels[1] = "S";
 //    labels[2] = "V";
-    normedcoordconverter = CMLgetNormedCartesianOutputConverter(CML_COLOR_HSV);
+    normedcoordconverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV);
     break;
   case COORDSYSTEM_HSV_CARTESIAN:
     coordspace = CML_COLOR_HSV;
@@ -546,7 +546,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "H";
 //    labels[1] = "S";
 //    labels[2] = "V";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_HSV);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_HSV);
     break;
   case COORDSYSTEM_HSL:
     coordspace = CML_COLOR_HSL;
@@ -555,7 +555,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "";
 //    labels[1] = "S";
 //    labels[2] = "L";
-    normedcoordconverter = CMLgetNormedCartesianOutputConverter(CML_COLOR_HSL);
+    normedcoordconverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSL);
     break;
   case COORDSYSTEM_HSL_CARTESIAN:
     coordspace = CML_COLOR_HSL;
@@ -564,7 +564,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 //    labels[0] = "H";
 //    labels[1] = "S";
 //    labels[2] = "L";
-    normedcoordconverter = CMLgetNormedOutputConverter(CML_COLOR_HSL);
+    normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_HSL);
     break;
   default:
     return;
@@ -602,8 +602,8 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
   CMLgetMinBounds(min, coordspace);
   CMLgetMaxBounds(max, coordspace);
 
-  CMLColorConverter coordconverter = CMLgetColorConverter(coordspace, space3d);
-  CMLNormedConverter normedinputconverter = CMLgetNormedInputConverter(space3d);
+  CMLColorConverter coordconverter = cmlGetColorConverter(coordspace, space3d);
+  CMLNormedConverter normedinputconverter = cmlGetNormedInputConverter(space3d);
 
   glClearColor(backgroundRGB[0], backgroundRGB[1], backgroundRGB[2], 1);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -1107,7 +1107,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
     float imax = CML_DEFAULT_INTEGRATION_MAX;
     int32 intervals = (int32)((imax - imin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
     
-    CMLColorConverter xyzconverter = CMLgetColorConverter(coordspace, CML_COLOR_XYZ);
+    CMLColorConverter xyzconverter = cmlGetColorConverter(coordspace, CML_COLOR_XYZ);
 
     glBegin(GL_LINE_STRIP);
       float prevnormedhue = -CML_INFINITY;
@@ -1133,7 +1133,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
           }
           CMLXYZtoRGB(cm, curRGB, curXYZ, 1);
           cmlMul3(curRGB, .7f);
-          CMLclampRGB(curRGB, 1);
+          cmlClampRGB(curRGB, 1);
           cmlMul3(curRGB, .7f);
           glColor4f(curRGB[0], curRGB[1], curRGB[2], 1.f);
           glVertex3fv(curnormedcoords);

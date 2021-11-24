@@ -127,7 +127,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 }
 
 - (void)initWithController:(ColorController*)newcontroller
-                 colortype:(CMLColorType)newcolortype
+                 colorType:(CMLColorType)newcolortype
       normedinputconverter:(CMLNormedConverter)newnormedinputconverter
      normedoutputconverter:(CMLNormedConverter)newnormedoutputconverter
                   channelx:(CMLuint32)newchannelx
@@ -135,7 +135,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
               drawspectrum:(BOOL)newdrawspectrum{
 
   colorcontroller = newcontroller;
-  colortype = newcolortype;
+  colorType = newcolortype;
   normedinputconverter = newnormedinputconverter;
   normedoutputconverter = newnormedoutputconverter;
   channelx = newchannelx;
@@ -146,7 +146,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   float scalefactor = 1.f;
   width = (CMLuint32)round([self bounds].size.width * scalefactor);
   height = (CMLuint32)round([self bounds].size.height * scalefactor);
-  CMLuint32 channelcount = CMLgetNumChannels(colortype);
+  CMLuint32 channelcount = CMLgetNumChannels(colorType);
   delete colordata;
   colordata = new float[width * height * channelcount];
 //  delete rgb8Bitdata;
@@ -184,7 +184,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 }
 
 - (void)drawRect:(NSRect)rect{
-  CMLuint32 channelcount = CMLgetNumChannels(colortype);
+  CMLuint32 channelcount = CMLgetNumChannels(colorType);
 //  if(channelcount == 1){
 //    int t = 1234;
 //  }
@@ -192,7 +192,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
 
   Color* controllercolor = [colorcontroller getColor];
-  controllercolor->toBuffer(colorbuffer, colortype);
+  controllercolor->toBuffer(colorbuffer, colorType);
   normedoutputconverter(normedbuffer, colorbuffer, 1);
   
   float* cptr;
@@ -212,7 +212,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   float* normedrgbdata = new float[width * height * 3];
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:normedrgbdata
                                          fromArray:colordata
-                                     withColorType:colortype
+                                     withColorType:colorType
                               normedInputConverter:normedinputconverter
                                              count:width * height
                                           drawgrid:!singleline
@@ -221,7 +221,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 //  float* normedrgbdata = new float[width * height * 3];
 //  [(ColorMachineApplication*)NSApp fillRGBuint8array:rgb8Bitdata
 //                                         fromArray:colordata
-//                                     withColorType:colortype
+//                                     withColorType:colorType
 //                              normedInputConverter:normedinputconverter
 //                                             count:width * height
 //                                          drawgrid:!singleline
@@ -272,14 +272,14 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
   delete [] normedrgbdata;
 
-  if(!singleline && ((colortype == CML_COLOR_Yxy) || (colortype == CML_COLOR_Yupvp))){
+  if(!singleline && ((colorType == CML_COLOR_Yxy) || (colorType == CML_COLOR_Yupvp))){
 //  if(spectralcurve3d){
     float imin = CML_DEFAULT_INTEGRATION_MIN;
     float imax = CML_DEFAULT_INTEGRATION_MAX;
     int32 intervals = (int32)((imax - imin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
     
-    CMLColorConverter coordconverter = CMLgetColorConverter(colortype, CML_COLOR_XYZ);
-    CMLNormedConverter normedconverter = CMLgetNormedOutputConverter(colortype);
+    CMLColorConverter coordconverter = cmlGetColorConverter(colorType, CML_COLOR_XYZ);
+    CMLNormedConverter normedconverter = cmlGetNormedOutputConverter(colorType);
 
     bool firstpointfound = false;
     CMLVec3 prevcoords;
@@ -296,7 +296,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
         normedconverter(curnormedcoords, curcoords, 1);
         CMLXYZtoRGB(cm, curRGB, curXYZ, 1);
         cmlMul3(curRGB, .7f);
-        CMLclampRGB(curRGB, 1);
+        cmlClampRGB(curRGB, 1);
 //        curRGB *= .7f;
 //        glColor3fv(curRGB);
         if(!firstpointfound){
@@ -397,13 +397,13 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
   Color* controllercolor = [colorcontroller getColor];
 
-  controllercolor->toBuffer(colorbuffer, colortype);
+  controllercolor->toBuffer(colorbuffer, colorType);
   normedoutputconverter(normedbuffer, colorbuffer, 1);
   normedbuffer[channelx] = mousex;
   if(channely != (CMLuint32)-1){normedbuffer[channely] = mousey;}
   normedinputconverter(colorbuffer, normedbuffer, 1);
   
-  controllercolor->fromBuffer(colorbuffer, colortype);
+  controllercolor->fromBuffer(colorbuffer, colorType);
   controllercolor->clamp();
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }

@@ -83,9 +83,9 @@
   [textfieldGray setNextKeyView:textfieldGray];
   [self color] = new GrayColor(.5f);
   [sliderGray initWithController:self
-                    colortype:CML_COLOR_GRAY
-         normedinputconverter:CMLgetNormedInputConverter(CML_COLOR_GRAY)
-        normedoutputconverter:CMLgetNormedOutputConverter(CML_COLOR_GRAY)
+                    colorType:CML_COLOR_GRAY
+         normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_GRAY)
+        normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_GRAY)
                      channelx:0
                      channely:(CMLuint32)-1
                  drawspectrum:NO];

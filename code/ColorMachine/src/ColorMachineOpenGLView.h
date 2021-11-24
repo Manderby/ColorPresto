@@ -51,7 +51,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str);
 
 @interface ColorWell : NSView{
   ColorController* colorcontroller;
-  CMLColorType colortype;
+  CMLColorType colorType;
   float* colordata;
 //  Byte* rgb8Bitdata;
   CMLuint32 width;
@@ -67,7 +67,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str);
 - (id)init;
 - (void)dealloc;
 - (void)initWithController:(ColorController*)controller
-                 colortype:(CMLColorType)colortype
+                 colorType:(CMLColorType)colorType
       normedinputconverter:(CMLNormedConverter)normedinputconverter
      normedoutputconverter:(CMLNormedConverter)normedoutputconverter
                   channelx:(CMLuint32)channelx

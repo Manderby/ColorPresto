@@ -39,7 +39,7 @@
     CMLgetSpectralXYZColor(sm, xyz, lambda);
     CMLVec3 rgb;
     CMLXYZtoRGB(sm, rgb, xyz, 1);
-    CMLclampRGB(rgb, 1);
+    cmlClampRGB(rgb, 1);
     cmlMul3(rgb, .4f);
     cmlData8WithRGB(sm, &(rgb8Bitdata[x*3]), rgb, 1);
   }
