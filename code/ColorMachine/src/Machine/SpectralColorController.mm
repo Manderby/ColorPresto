@@ -41,7 +41,7 @@
     CMLXYZtoRGB(sm, rgb, xyz, 1);
     cmlClampRGB(rgb, 1);
     cmlMul3(rgb, .4f);
-    cmlData8WithRGB(sm, &(rgb8Bitdata[x*3]), rgb, 1);
+    cmlRGBToData8(sm, &(rgb8Bitdata[x*3]), rgb, 1);
   }
   for(CMLuint32 y=1; y<height; y++){
     memcpy(&(rgb8Bitdata[y * width * 3]), rgb8Bitdata, width*3);

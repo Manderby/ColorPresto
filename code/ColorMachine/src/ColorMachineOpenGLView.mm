@@ -227,7 +227,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 //                                          drawgrid:!singleline
 //                                          drawmask:YES];
 //
-//  cmlRGBWithData8(cm, normedrgbdata, rgb8Bitdata, width * height);
+//  cmlData8ToRGB(cm, normedrgbdata, rgb8Bitdata, width * height);
 
 //  CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
 //  NSBitmapImageRep* imgrep = [[NSBitmapImageRep alloc]
@@ -249,7 +249,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
   Byte* rgb8Bitdata = new Byte[width * height * 3];
 //  CMLsetIntegerMappingType(cm, CML_INTEGER_MAPPING_FLOOR);
-  cmlData8WithRGB(cm, rgb8Bitdata, normedrgbdata, width * height);
+  cmlRGBToData8(cm, rgb8Bitdata, normedrgbdata, width * height);
   CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
   NSBitmapImageRep* imgrep = [[NSBitmapImageRep alloc]
     initWithBitmapDataPlanes:&rgb8Bitdata

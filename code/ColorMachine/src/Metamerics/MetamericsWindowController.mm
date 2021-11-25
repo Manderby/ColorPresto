@@ -1052,7 +1052,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
 //                                             count:14
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  cmlRGBWithData8(cm, metamerrefrgbfloatdata, metamerrefrgb8Bitdata, 14);
+//  cmlData8ToRGB(cm, metamerrefrgbfloatdata, metamerrefrgb8Bitdata, 14);
   
 //  CMLByte metamerillrgb8Bitdata[14 * 3];
   float metamerillrgbfloatdata[14 * 3];
@@ -1070,7 +1070,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
 //                                             count:14
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  cmlRGBWithData8(cm, metamerillrgbfloatdata, metamerillrgb8Bitdata, 14);
+//  cmlData8ToRGB(cm, metamerillrgbfloatdata, metamerillrgb8Bitdata, 14);
 
   [deltaEcolorview1 setColors:&(metamerillrgbfloatdata[0*3]) :&(metamerrefrgbfloatdata[0*3])];
   [deltaEcolorview2 setColors:&(metamerillrgbfloatdata[1*3]) :&(metamerrefrgbfloatdata[1*3])];
@@ -1247,7 +1247,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
 //                                             count:5
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  cmlRGBWithData8(cm, standardrgbfloatdata, standardrgb8Bitdata, 5);
+//  cmlData8ToRGB(cm, standardrgbfloatdata, standardrgb8Bitdata, 5);
   
   float specimenaptedxyzdata[5 * 3];
 //  CMLByte specimenrgb8Bitdata[5 * 3];
@@ -1271,7 +1271,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
 //                                             count:5
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  cmlRGBWithData8(cm, specimenrgbfloatdata, specimenrgb8Bitdata, 5);
+//  cmlData8ToRGB(cm, specimenrgbfloatdata, specimenrgb8Bitdata, 5);
 
   [MIviscolorview1 setColors:&(standardrgbfloatdata[0*3]) :&(specimenrgbfloatdata[0*3])];
   [MIviscolorview2 setColors:&(standardrgbfloatdata[1*3]) :&(specimenrgbfloatdata[1*3])];
@@ -1436,7 +1436,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
 //                                             count:3
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  cmlRGBWithData8(cm, UVstandardrgbfloatdata, UVstandardrgb8Bitdata, 3);
+//  cmlData8ToRGB(cm, UVstandardrgbfloatdata, UVstandardrgb8Bitdata, 3);
   
   float UVmetameradaptedxyzdata[3 * 3];
 //  CMLByte UVmetamerrgb8Bitdata[3 * 3];
@@ -1458,7 +1458,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
 //                                             count:3
 //                                          drawgrid:NO
 //                                          drawmask:NO];
-//  cmlRGBWithData8(cm, UVmetamerrgbfloatdata, UVmetamerrgb8Bitdata, 3);
+//  cmlData8ToRGB(cm, UVmetamerrgbfloatdata, UVmetamerrgb8Bitdata, 3);
 
   [MIUVcolorview1 setColors:&(UVstandardrgbfloatdata[0*3]) :&(UVmetamerrgbfloatdata[0*3])];
   [MIUVcolorview2 setColors:&(UVstandardrgbfloatdata[1*3]) :&(UVmetamerrgbfloatdata[1*3])];

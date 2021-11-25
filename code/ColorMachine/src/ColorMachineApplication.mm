@@ -309,7 +309,7 @@ size_t bordercount;
 //  }
   cmlClampRGB(texdata, count);
 //  cmlClampRGB(RGBbuffer, count);
-//  cmlData8WithRGB(sm, texdata, RGBbuffer, count);
+//  cmlRGBToData8(sm, texdata, RGBbuffer, count);
   
   delete [] XYZbuffer;
 //  delete [] RGBbuffer;
