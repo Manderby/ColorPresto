@@ -1131,7 +1131,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
               prevnormedhue = curnormedcoords[hueindex];
             }
           }
-          CMLXYZtoRGB(cm, curRGB, curXYZ, 1);
+          cmlXYZToRGB(cm, curRGB, curXYZ, 1);
           cmlMul3(curRGB, .7f);
           cmlClampRGB(curRGB, 1);
           cmlMul3(curRGB, .7f);

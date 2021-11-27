@@ -257,7 +257,7 @@ size_t bordercount;
   for(size_t i=0; i<count; i++){
     CMLconvertXYZtoChromaticAdaptedXYZ(&(aXYZbuffer[i*3]), &(XYZbuffer[i*3]), amatrix);
   }
-  CMLXYZtoRGB(sm, texdata, aXYZbuffer, count);
+  cmlXYZToRGB(sm, texdata, aXYZbuffer, count);
   delete [] aXYZbuffer;
 
 //  if((showmask && drawmask) || (showgrid && drawgridlines)){
@@ -335,7 +335,7 @@ size_t bordercount;
   CMLMat33 amatrix;
   cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smwhitepointYxy, cmwhitepointYxy);
   CMLconvertXYZtoChromaticAdaptedXYZ(aXYZbuffer, XYZbuffer, amatrix);
-  CMLXYZtoRGB(sm, outdata, aXYZbuffer, 1);
+  cmlXYZToRGB(sm, outdata, aXYZbuffer, 1);
 
   cmlClampRGB(outdata, 1);
 }

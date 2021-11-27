@@ -294,7 +294,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
         CMLVec3 curnormedcoords;
         coordconverter(cm, curcoords, curXYZ, 1);
         normedconverter(curnormedcoords, curcoords, 1);
-        CMLXYZtoRGB(cm, curRGB, curXYZ, 1);
+        cmlXYZToRGB(cm, curRGB, curXYZ, 1);
         cmlMul3(curRGB, .7f);
         cmlClampRGB(curRGB, 1);
 //        curRGB *= .7f;
