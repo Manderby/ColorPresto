@@ -389,7 +389,7 @@ size_t bordercount;
     CMLgetFunctionDefinitionRange(spectrum, &defrange);
     // In case this is a continuous function, set the stepsize to the default.
     if(defrange.stepsize == 0.f){defrange.stepsize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
-    size_t samplecount = CMLgetSampleCount(defrange.minSampleCoord, defrange.maxSampleCoord, defrange.stepsize);
+    size_t samplecount = cmlGetSampleCount(defrange.minSampleCoord, defrange.maxSampleCoord, defrange.stepsize);
     if(samplecount == 1){
       float curcoord = defrange.minSampleCoord;
         CGFloat x = rect.origin.x + ((curcoord - CML_DEFAULT_INTEGRATION_MIN) / (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN)) * rect.size.width + .5f;

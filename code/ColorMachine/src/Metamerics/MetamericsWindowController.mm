@@ -674,7 +674,7 @@ void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcwhitep
 // In CML, this is Yuv.
 // UVW is CIE 1964.
 void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
-  UVW[2] = 25.f * CMLCbrt(yuv[0] * 100.f) - 17.f;
+  UVW[2] = 25.f * cmlCbrt(yuv[0] * 100.f) - 17.f;
   UVW[0] = 13.f * UVW[2] * (yuv[1] - whitepointYuv[1]);
   UVW[1] = 13.f * UVW[2] * (yuv[2] - whitepointYuv[2]);
 }
