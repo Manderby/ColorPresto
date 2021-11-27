@@ -201,7 +201,7 @@
     NSInteger selecteditem = [responseRGBselect indexOfSelectedItem] - 1;
     if(selecteditem < 0){return;}
     CMLResponseCurve* newresponse = cmlCreateResponseCurveWithPreset(NULL, (CMLResponseCurvePreset)selecteditem);
-//    CMLResponseCurve* newresponse = CMLcreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [textfieldoffsetRGB floatValue], [textfieldlinscaleRGB floatValue], [textfieldsplitRGB floatValue]);
+//    CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [textfieldoffsetRGB floatValue], [textfieldlinScaleRGB floatValue], [textfieldsplitRGB floatValue]);
     CMLsetResponseRGB(cm, newresponse);
     CMLdestroyResponseCurve(newresponse);
 //    CMLsetResponseRGB(cm, (CMLFunctionType)[sender indexOfSelectedItem], CMLgetResponseCurveParam0(responseR), CMLgetResponseCurveParam1(responseR), CMLgetResponseCurveParam2(responseR), CMLgetResponseCurveParam3(responseR));
@@ -214,7 +214,7 @@
 //  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
 //  CMLFunctionType curvetype = CMLgetResponseCurveFunctionType(responseR);
   if      ((sender == slidergammaRGB) || (sender == textfieldgammaRGB)){
-    CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [sender floatValue], [textfieldoffsetRGB floatValue], [textfieldlinscaleRGB floatValue], [textfieldsplitRGB floatValue]);
+    CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [sender floatValue], [textfieldoffsetRGB floatValue], [textfieldlinScaleRGB floatValue], [textfieldsplitRGB floatValue]);
     CMLsetResponseRGB(cm, newresponse);
     CMLdestroyResponseCurve(newresponse);
 //    CMLsetResponseRGB(cm, curvetype, [sender floatValue], CMLgetResponseCurveParam1(responseR), CMLgetResponseCurveParam2(responseR), CMLgetResponseCurveParam3(responseR));
@@ -227,7 +227,7 @@
 //  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
 //  CMLFunctionType curvetype = CMLgetResponseCurveFunctionType(responseR);
   if      ((sender == slideroffsetRGB) || (sender == textfieldoffsetRGB)){
-    CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [sender floatValue], [textfieldlinscaleRGB floatValue], [textfieldsplitRGB floatValue]);
+    CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [sender floatValue], [textfieldlinScaleRGB floatValue], [textfieldsplitRGB floatValue]);
     CMLsetResponseRGB(cm, newresponse);
     CMLdestroyResponseCurve(newresponse);
 //    CMLsetResponseRGB(cm, curvetype, CMLgetResponseCurveParam0(responseR), [sender floatValue], CMLgetResponseCurveParam2(responseR), CMLgetResponseCurveParam3(responseR));
@@ -235,11 +235,11 @@
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
-- (IBAction)rgblinscaleChange:(NSControl*)sender{
+- (IBAction)rgblinScaleChange:(NSControl*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
 //  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
 //  CMLFunctionType curvetype = CMLgetResponseCurveFunctionType(responseR);
-  if      ((sender == sliderlinscaleRGB) || (sender == textfieldlinscaleRGB)){
+  if      ((sender == sliderlinScaleRGB) || (sender == textfieldlinScaleRGB)){
     CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [textfieldoffsetRGB floatValue], [sender floatValue], [textfieldsplitRGB floatValue]);
     CMLsetResponseRGB(cm, newresponse);
     CMLdestroyResponseCurve(newresponse);
@@ -253,7 +253,7 @@
 //  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
 //  CMLFunctionType curvetype = CMLgetResponseCurveFunctionType(responseR);
   if      ((sender == slidersplitRGB) || (sender == textfieldsplitRGB)){
-    CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [textfieldoffsetRGB floatValue], [textfieldlinscaleRGB floatValue], [sender floatValue]);
+    CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [textfieldoffsetRGB floatValue], [textfieldlinScaleRGB floatValue], [sender floatValue]);
     CMLsetResponseRGB(cm, newresponse);
     CMLdestroyResponseCurve(newresponse);
 //    CMLsetResponseRGB(cm, curvetype, CMLgetResponseCurveParam0(responseR), CMLgetResponseCurveParam1(responseR), CMLgetResponseCurveParam2(responseR), [sender floatValue]);
@@ -444,8 +444,8 @@
   [slidergammaRGB setFloatValue:CMLgetResponseCurveParam0(responseR)];
   [textfieldoffsetRGB setStringValue:[NSString stringWithFormat:@"%1.05f", CMLgetResponseCurveParam1(responseR)]];
   [slideroffsetRGB setFloatValue:CMLgetResponseCurveParam1(responseR)];
-  [textfieldlinscaleRGB setStringValue:[NSString stringWithFormat:@"%2.04f", CMLgetResponseCurveParam2(responseR)]];
-  [sliderlinscaleRGB setFloatValue:CMLgetResponseCurveParam2(responseR)];
+  [textfieldlinScaleRGB setStringValue:[NSString stringWithFormat:@"%2.04f", CMLgetResponseCurveParam2(responseR)]];
+  [sliderlinScaleRGB setFloatValue:CMLgetResponseCurveParam2(responseR)];
   [textfieldsplitRGB setStringValue:[NSString stringWithFormat:@"%1.05f", CMLgetResponseCurveParam3(responseR)]];
   [slidersplitRGB setFloatValue:CMLgetResponseCurveParam3(responseR)];
 
@@ -490,8 +490,8 @@
     [slidergammaRGB setEnabled:true];
     [textfieldoffsetRGB setEnabled:true];
     [slideroffsetRGB setEnabled:true];
-    [textfieldlinscaleRGB setEnabled:true];
-    [sliderlinscaleRGB setEnabled:true];
+    [textfieldlinScaleRGB setEnabled:true];
+    [sliderlinScaleRGB setEnabled:true];
     [textfieldsplitRGB setEnabled:true];
     [slidersplitRGB setEnabled:true];
   }else{
@@ -499,8 +499,8 @@
     [slidergammaRGB setEnabled:false];
     [textfieldoffsetRGB setEnabled:false];
     [slideroffsetRGB setEnabled:false];
-    [textfieldlinscaleRGB setEnabled:false];
-    [sliderlinscaleRGB setEnabled:false];
+    [textfieldlinScaleRGB setEnabled:false];
+    [sliderlinScaleRGB setEnabled:false];
     [textfieldsplitRGB setEnabled:false];
     [slidersplitRGB setEnabled:false];
   }

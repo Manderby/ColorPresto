@@ -6,7 +6,7 @@
 #include <stdarg.h>
 #include <dispatch/dispatch.h>
 
-CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
+CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
                                  const CMLVec4UInt dimensions,
                                      const CMLVec4 origin,
                                      const CMLVec4 range0,
@@ -891,7 +891,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
 
     for(CMLuint32 s=0; s<surfacecount; s++){
       CMLuint32 totalcount = surfacesteps[s][0] * surfacesteps[s][1] * surfacesteps[s][2] * surfacesteps[s][3];
-      normedcolorcoords[s] = (float*)CMLcreateNormedGamutSlice(space3d, surfacesteps[s], origins[s], axis1s[s], axis2s[s], NULL, NULL);
+      normedcolorcoords[s] = (float*)cmlCreateNormedGamutSlice(space3d, surfacesteps[s], origins[s], axis1s[s], axis2s[s], NULL, NULL);
       rgbfloatvalues[s] = new float[totalcount*3];
       colorcoords[s] = new float[totalcount*numchannels];
       systemcoords[s] = new float[totalcount*3];
@@ -1049,7 +1049,7 @@ CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
     default: cmlSet4UInt(steps, 1, 1, 1, 1); break;
     }
     CMLuint32 totalcloudcount = steps[0] * steps[1] * steps[2] * steps[3];
-    float* cloudnormedcolorcoords = (float*)CMLcreateNormedGamutSlice(space3d, steps, NULL, NULL, NULL, NULL, NULL);
+    float* cloudnormedcolorcoords = (float*)cmlCreateNormedGamutSlice(space3d, steps, NULL, NULL, NULL, NULL, NULL);
     float* cloudrgbfloatvalues = new float[totalcloudcount*3];
     float* cloudcolorcoords = new float[totalcloudcount*numchannels];
     float* cloudsystemcoords = new float[totalcloudcount*3];

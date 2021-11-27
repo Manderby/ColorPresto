@@ -5,7 +5,7 @@
 @implementation MachinesController
 
 - (id)init{
-  cm = CMLcreateColorMachine();
+  cm = cmlCreateColorMachine();
 //  CMLsetRadiometricComputation(cm, CML_TRUE);
   CMLsetMachineForColorClasses(cm);
 
@@ -19,7 +19,7 @@
 - (void)recomputeScreenMachines{
   if(sm){CMLreleaseColorMachine(sm);}
 
-  sm = CMLcreateColorMachine();
+  sm = cmlCreateColorMachine();
 
   //sm->setRGBLUTSize(8);
   
@@ -69,7 +69,7 @@
 
 - (void)resetCurrentMachine{
   CMLreleaseColorMachine(cm);
-  cm = CMLcreateColorMachine();
+  cm = cmlCreateColorMachine();
   CMLsetMachineForColorClasses(cm);
 }
 

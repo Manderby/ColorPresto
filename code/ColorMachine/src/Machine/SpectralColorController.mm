@@ -107,17 +107,17 @@
   CMLgetSpecDistFunctions(cm, specdistfuncs);
 
   CGColorRef Rlinecolor = CGColorCreateGenericRGB(1.f, .5f, .5f, 1.f);
-  SpectralColor Rcolor(CMLduplicateFunction(specdistfuncs[0]), true);
+  SpectralColor Rcolor(cmlDuplicateFunction(specdistfuncs[0]), true);
   [(ColorMachineApplication*)NSApp drawColor:&Rcolor fillBack:NO linecolor:Rlinecolor context:context inRect:NSRectToCGRect([self bounds])];
   CGColorRelease(Rlinecolor);
 
   CGColorRef Glinecolor = CGColorCreateGenericRGB(.5f, 1.f, .5f, 1.f);
-  SpectralColor Gcolor(CMLduplicateFunction(specdistfuncs[1]), true);
+  SpectralColor Gcolor(cmlDuplicateFunction(specdistfuncs[1]), true);
   [(ColorMachineApplication*)NSApp drawColor:&Gcolor fillBack:NO linecolor:Glinecolor context:context inRect:NSRectToCGRect([self bounds])];
   CGColorRelease(Glinecolor);
 
   CGColorRef Blinecolor = CGColorCreateGenericRGB(.5f, .5f, 1.f, 1.f);
-  SpectralColor Bcolor(CMLduplicateFunction(specdistfuncs[2]), true);
+  SpectralColor Bcolor(cmlDuplicateFunction(specdistfuncs[2]), true);
   [(ColorMachineApplication*)NSApp drawColor:&Bcolor fillBack:NO linecolor:Blinecolor context:context inRect:NSRectToCGRect([self bounds])];
   CGColorRelease(Blinecolor);
 
@@ -152,7 +152,7 @@
   CGColorRef lightlinecolor = CGColorCreateGenericRGB(1.f, 1.f, 1.f, 1.f);
   const CMLFunction* lightspectrum = CMLgetIlluminationSpectrum(cm);
   if(lightspectrum){
-    SpectralColor lightcolor(CMLduplicateFunction(lightspectrum), false);
+    SpectralColor lightcolor(cmlDuplicateFunction(lightspectrum), false);
     [(ColorMachineApplication*)NSApp drawColor:&lightcolor fillBack:NO linecolor:lightlinecolor context:context inRect:NSRectToCGRect([self bounds])];
   }
   CGColorRelease(lightlinecolor);
@@ -194,8 +194,8 @@
 
   CMLVec3 whitepointYxy;
   CMLgetWhitePointYxy(cm, whitepointYxy);
-  CMLFunction* dirac = CMLcreateDiracFilter(lambda);
-  CMLFunction* illumdirac = CMLcreateFunctionMulScalar(dirac, cmlInverse(cmlGetObserverRadiometricScale(cmlGetObserver(cm))));
+  CMLFunction* dirac = cmlCreateDiracFilter(lambda);
+  CMLFunction* illumdirac = cmlCreateFunctionMulScalar(dirac, cmlInverse(cmlGetObserverRadiometricScale(cmlGetObserver(cm))));
 //  spectral.init(&dirac, false);
 
 //  speccolor.fromFloatBuffer(cm->getSpectralXYZColor(lambda));

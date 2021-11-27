@@ -27,7 +27,7 @@
   IBOutlet NSSlider *sliderke;
   IBOutlet NSSlider *slidergammaRGB;
   IBOutlet NSSlider *slideroffsetRGB;
-  IBOutlet NSSlider *sliderlinscaleRGB;
+  IBOutlet NSSlider *sliderlinScaleRGB;
   IBOutlet NSSlider *slidersplitRGB;
   IBOutlet NSSlider *slidergammaL;
   IBOutlet GammaDisplay *gammadisplay;
@@ -52,7 +52,7 @@
   IBOutlet NSTextField *blueprimaryy;
   IBOutlet NSTextField *textfieldgammaRGB;
   IBOutlet NSTextField *textfieldoffsetRGB;
-  IBOutlet NSTextField *textfieldlinscaleRGB;
+  IBOutlet NSTextField *textfieldlinScaleRGB;
   IBOutlet NSTextField *textfieldsplitRGB;
   IBOutlet NSTextField *textfieldgammaL;
 
@@ -75,7 +75,7 @@
 - (IBAction)rgbresponseChange:(NSPopUpButton*)sender;
 - (IBAction)rgbgammaChange:(NSControl*)sender;
 - (IBAction)rgboffsetChange:(NSControl*)sender;
-- (IBAction)rgblinscaleChange:(NSControl*)sender;
+- (IBAction)rgblinScaleChange:(NSControl*)sender;
 - (IBAction)rgbsplitChange:(NSControl*)sender;
 - (IBAction)graycomputationChange:(NSPopUpButton*)sender;
 - (IBAction)labspaceChange:(NSPopUpButton*)sender;

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19158" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19158"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -183,7 +182,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="73" y="81" width="1178" height="622"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="1178" height="622"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -381,7 +380,7 @@
                             <font key="font" metaFont="smallSystem"/>
                         </sliderCell>
                         <connections>
-                            <action selector="rgblinscaleChange:" target="1885" id="5138"/>
+                            <action selector="rgblinScaleChange:" target="1885" id="5138"/>
                         </connections>
                     </slider>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1659">
@@ -513,7 +512,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <action selector="rgblinscaleChange:" target="1885" id="5137"/>
+                            <action selector="rgblinScaleChange:" target="1885" id="5137"/>
                         </connections>
                     </textField>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5141">
@@ -2143,7 +2142,7 @@
                 <outlet property="slidergammaL" destination="3701" id="3736"/>
                 <outlet property="slidergammaRGB" destination="1843" id="4896"/>
                 <outlet property="sliderke" destination="1217" id="2053"/>
-                <outlet property="sliderlinscaleRGB" destination="5130" id="5135"/>
+                <outlet property="sliderlinScaleRGB" destination="5130" id="5135"/>
                 <outlet property="slideroffsetRGB" destination="5127" id="5136"/>
                 <outlet property="slidersplitRGB" destination="5141" id="5149"/>
                 <outlet property="textL" destination="4226" id="4701"/>
@@ -2154,7 +2153,7 @@
                 <outlet property="textfieldgammaL" destination="3703" id="3737"/>
                 <outlet property="textfieldgammaRGB" destination="1770" id="4897"/>
                 <outlet property="textfieldke" destination="1218" id="2058"/>
-                <outlet property="textfieldlinscaleRGB" destination="5120" id="5133"/>
+                <outlet property="textfieldlinScaleRGB" destination="5120" id="5133"/>
                 <outlet property="textfieldoffsetRGB" destination="5111" id="5134"/>
                 <outlet property="textfieldsplitRGB" destination="5143" id="5150"/>
                 <outlet property="whitepointY" destination="5000" id="5004"/>
@@ -2182,8 +2181,8 @@
         </customObject>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="15" height="13"/>
-        <image name="NSRemoveTemplate" width="15" height="4"/>
-        <image name="NSRightFacingTriangleTemplate" width="10" height="14"/>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="NSRightFacingTriangleTemplate" width="9" height="12"/>
     </resources>
 </document>

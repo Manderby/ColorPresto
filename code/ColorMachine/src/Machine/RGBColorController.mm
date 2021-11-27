@@ -27,7 +27,7 @@
     glColor3d(1, .5, .5);
     for(uint32 x=0; x<width; ++x){
       float curx = (float)x / width;
-      float y = height * CMLeval(responses[0], curx);
+      float y = height * cmlEval(responses[0], curx);
       float z = sinf(stripes*((float)x * NA_PI2f / (float)width + (0.f/3.f) * NA_PI2f));
       glVertex3d(x, y, z);
     }
@@ -36,7 +36,7 @@
     glColor3d(.5, 1, .5);
     for(uint32 x=0; x<width; ++x){
       float curx = (float)x / width;
-      float y = height * CMLeval(responses[1], curx);
+      float y = height * cmlEval(responses[1], curx);
       float z = sinf(stripes*((float)x * NA_PI2f / (float)width + (1.f/3.f) * NA_PI2f));
       glVertex3d(x, y, z);
     }
@@ -45,7 +45,7 @@
     glColor3d(.5, .5, 1);
     for(uint32 x=0; x<width; ++x){
       float curx = (float)x / width;
-      float y = height * CMLeval(responses[2], curx);
+      float y = height * cmlEval(responses[2], curx);
       float z = sinf(stripes*((float)x * NA_PI2f / (float)width + (2.f/3.f) * NA_PI2f));
       glVertex3d(x, y, z);
     }

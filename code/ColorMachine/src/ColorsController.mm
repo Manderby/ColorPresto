@@ -161,21 +161,21 @@
 //      cgcolor = CGColorCreateGenericRGB(linecolor[0], linecolor[1], linecolor[2], 1.f);
 //      CGContextSetStrokeColorWithColor(context, cgcolor);
 //
-//      CMLDefinitionRange defrange = colorspec->getDefinitionRange();
+//      CMLDefinitionRange defRange = colorspec->getDefinitionRange();
 //      CGContextBeginPath(context);
-//      if(defrange.stepsize == 0.f){defrange.stepsize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
-//      size_t samplecount = CMLgetIntervalCount(defrange.minSampleCoord, defrange.maxSampleCoord, defrange.stepsize);
+//      if(defRange.stepSize == 0.f){defRange.stepSize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
+//      size_t samplecount = CMLgetIntervalCount(defRange.minSampleCoord, defRange.maxSampleCoord, defRange.stepSize);
 //      if(samplecount == 1){
-//        float curcoord = defrange.minSampleCoord;
-//        CGFloat x = cellFrame.origin.x + ((curcoord - defrange.minSampleCoord) / (defrange.maxSampleCoord - defrange.minSampleCoord)) * COLOR_VIEW_WIDTH + .5f;
+//        float curcoord = defRange.minSampleCoord;
+//        CGFloat x = cellFrame.origin.x + ((curcoord - defRange.minSampleCoord) / (defRange.maxSampleCoord - defRange.minSampleCoord)) * COLOR_VIEW_WIDTH + .5f;
 //        CGFloat y1 = cellFrame.origin.y + height * (1.f - 0.f * viewrange + viewoffset);
 //        CGFloat y2 = cellFrame.origin.y + height * (1.f - (*colorspec)(curcoord) * divisor * viewrange + viewoffset);
 //        CGContextMoveToPoint(context, x, y1);
 //        CGContextAddLineToPoint(context, x, y2);
 //      }else{
 //        for(size_t i=0; i<samplecount; i++){
-//          float curcoord = defrange.minSampleCoord + i * defrange.stepsize;
-//          CGFloat x = cellFrame.origin.x + ((curcoord - defrange.minSampleCoord) / (defrange.maxSampleCoord - defrange.minSampleCoord)) * COLOR_VIEW_WIDTH + .5f;
+//          float curcoord = defRange.minSampleCoord + i * defRange.stepSize;
+//          CGFloat x = cellFrame.origin.x + ((curcoord - defRange.minSampleCoord) / (defRange.maxSampleCoord - defRange.minSampleCoord)) * COLOR_VIEW_WIDTH + .5f;
 //          CGFloat y = cellFrame.origin.y + height * (1.f - (*colorspec)(curcoord) * divisor * viewrange + viewoffset);
 //          if(i == 0){CGContextMoveToPoint(context, x, y);}
 //          CGContextAddLineToPoint(context, x, y);

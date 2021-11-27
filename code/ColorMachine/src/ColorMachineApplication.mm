@@ -57,8 +57,8 @@ size_t bordercount;
   
   
 //  [colorgroup setTitle:@"Test"];
-//  Color* newcolor = new SpectralColor(CMLcreateCIEDIlluminant(5678.f), false);
-//  Color* newcolor2 = new SpectralColor(CMLcreateFunctionMulScalar(CMLcreateCIEDIlluminant(7777.f), .01f), true);
+//  Color* newcolor = new SpectralColor(cmlCreateCIEDIlluminant(5678.f), false);
+//  Color* newcolor2 = new SpectralColor(cmlCreateFunctionMulScalar(cmlCreateCIEDIlluminant(7777.f), .01f), true);
 //  
 //  ColorItemColorGroup* cicg = [[[ColorItemColorGroup alloc] init] autorelease];
 //  [cicg setGroup:colorgroup];
@@ -376,32 +376,32 @@ size_t bordercount;
     const CMLFunction* spectrum = ((SpectralColor*)color)->getSpectrum();
     float divisor = 1.f;
     if(colorType == CML_COLOR_SPECTRUM_ILLUMINATION){
-      float maxvalue = CMLgetFunctionMaxValue(spectrum);
+      float maxvalue = cmlGetFunctionMaxValue(spectrum);
       if(maxvalue == 0){
         divisor = 1.f;
       }else{
-        divisor = cmlInverse(CMLgetFunctionMaxValue(spectrum));
+        divisor = cmlInverse(cmlGetFunctionMaxValue(spectrum));
       }
     }
     CGContextSetStrokeColorWithColor(context, linecolor);
     CGContextBeginPath(context);
-    CMLDefinitionRange defrange;
-    CMLgetFunctionDefinitionRange(spectrum, &defrange);
-    // In case this is a continuous function, set the stepsize to the default.
-    if(defrange.stepsize == 0.f){defrange.stepsize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
-    size_t samplecount = cmlGetSampleCount(defrange.minSampleCoord, defrange.maxSampleCoord, defrange.stepsize);
+    CMLDefinitionRange defRange;
+    cmlGetFunctionDefinitionRange(spectrum, &defRange);
+    // In case this is a continuous function, set the stepSize to the default.
+    if(defRange.stepSize == 0.f){defRange.stepSize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
+    size_t samplecount = cmlGetSampleCount(defRange.minSampleCoord, defRange.maxSampleCoord, defRange.stepSize);
     if(samplecount == 1){
-      float curcoord = defrange.minSampleCoord;
+      float curcoord = defRange.minSampleCoord;
         CGFloat x = rect.origin.x + ((curcoord - CML_DEFAULT_INTEGRATION_MIN) / (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN)) * rect.size.width + .5f;
       CGFloat y1 = rect.origin.y + rect.size.height * (0 + VIEWOFFSET);
-      CGFloat y2 = rect.origin.y + rect.size.height * (CMLeval(spectrum, curcoord) * divisor * VIEWRANGE + VIEWOFFSET);
+      CGFloat y2 = rect.origin.y + rect.size.height * (cmlEval(spectrum, curcoord) * divisor * VIEWRANGE + VIEWOFFSET);
       CGContextMoveToPoint(context, x, y1);
       CGContextAddLineToPoint(context, x, y2);
     }else{
       for(size_t i=0; i<samplecount; i++){
-        float curcoord = defrange.minSampleCoord + i * defrange.stepsize;
+        float curcoord = defRange.minSampleCoord + i * defRange.stepSize;
         CGFloat x = rect.origin.x + ((curcoord - CML_DEFAULT_INTEGRATION_MIN) / (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN)) * rect.size.width + .5f;
-        CGFloat y = rect.origin.y + rect.size.height * (CMLeval(spectrum, curcoord) * divisor * VIEWRANGE + VIEWOFFSET);
+        CGFloat y = rect.origin.y + rect.size.height * (cmlEval(spectrum, curcoord) * divisor * VIEWRANGE + VIEWOFFSET);
         if(i == 0){CGContextMoveToPoint(context, x, y);}
         CGContextAddLineToPoint(context, x, y);
       }

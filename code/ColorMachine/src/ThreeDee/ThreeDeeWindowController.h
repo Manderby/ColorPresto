@@ -65,7 +65,7 @@ typedef CMLBoundsFloat CMLChannelBoundsFloat[CML_MAX_NUMBER_OF_CHANNELS];
 // All of the origin- and range-parameters can be set to NULL. In this case, a
 // default origin and range will be assumed. The default origin
 // is 0 and the default range is 1 for the channel depicted by the dimension and
-// 0 elsewhere. Note that if the stepsize of a dimension is 0 or 1, the range of
+// 0 elsewhere. Note that if the stepSize of a dimension is 0 or 1, the range of
 // that dimension is unused.
 //
 // Only the values of the channels available in the given colorspace
@@ -102,7 +102,7 @@ typedef CMLBoundsFloat CMLChannelBoundsFloat[CML_MAX_NUMBER_OF_CHANNELS];
 // This function does only work with channeled color types. Any other
 // colorspace will return NULL.
 
-CMLOutput CMLcreateNormedGamutSlice(  CMLColorType colorspace,
+CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
                                  const CMLVec4UInt dimensions,
                                      const CMLVec4 origin,
                                      const CMLVec4 range0,
