@@ -193,7 +193,7 @@ size_t bordercount;
 - (IBAction)setCurrentColorAsRedPrimary:(id)sender{
   CMLColorMachine* cm = [machinescontroller currentMachine];
   CMLVec3 primaries[3];
-  CMLgetRGBPrimariesYxy(cm, primaries);
+  cmlGetRGBPrimariesYxy(cm, primaries);
   [colorscontroller currentColor]->toYxyBuffer(primaries[0]);
   CMLsetRGBPrimariesYxy(cm, primaries);
   [self updateMachine];
@@ -201,7 +201,7 @@ size_t bordercount;
 - (IBAction)setCurrentColorAsGreenPrimary:(id)sender{
   CMLColorMachine* cm = [machinescontroller currentMachine];
   CMLVec3 primaries[3];
-  CMLgetRGBPrimariesYxy(cm, primaries);
+  cmlGetRGBPrimariesYxy(cm, primaries);
   [colorscontroller currentColor]->toYxyBuffer(primaries[1]);
   CMLsetRGBPrimariesYxy(cm, primaries);
   [self updateMachine];
@@ -209,7 +209,7 @@ size_t bordercount;
 - (IBAction)setCurrentColorAsBluePrimary:(id)sender{
   CMLColorMachine* cm = [machinescontroller currentMachine];
   CMLVec3 primaries[3];
-  CMLgetRGBPrimariesYxy(cm, primaries);
+  cmlGetRGBPrimariesYxy(cm, primaries);
   [colorscontroller currentColor]->toYxyBuffer(primaries[2]);
   CMLsetRGBPrimariesYxy(cm, primaries);
   [self updateMachine];
@@ -234,34 +234,34 @@ size_t bordercount;
                drawgrid:(BOOL)drawgridlines
                drawmask:(BOOL)drawmask{
   
-  CMLuint32 numcolorchannels = CMLgetNumChannels(inputcolortype);
+  CMLuint32 numcolorchannels = cmlGetNumChannels(inputcolortype);
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   CMLColorMachine* sm = [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
-  CMLVec3 cmwhitepointYxy;
-  CMLVec3 smwhitepointYxy;
+  CMLVec3 cmwhitePointYxy;
+  CMLVec3 smwhitePointYxy;
   CMLColorConverter colortoXYZ = cmlGetColorConverter(CML_COLOR_XYZ, inputcolortype);
   float* colorbuffer = new float[numcolorchannels * count];
 //  float* RGBbuffer = new float[3 * count];
   float* XYZbuffer = new float[3 * count];
   
-  CMLgetWhitePointYxy(cm, cmwhitepointYxy);
-  cmwhitepointYxy[0] = 1.f;
-  CMLgetWhitePointYxy(sm, smwhitepointYxy);
-  smwhitepointYxy[0] = 1.f;
+  cmlGetWhitePointYxy(cm, cmwhitePointYxy);
+  cmwhitePointYxy[0] = 1.f;
+  cmlGetWhitePointYxy(sm, smwhitePointYxy);
+  smwhitePointYxy[0] = 1.f;
   
   normedconverter(colorbuffer, inputarray, count);
   colortoXYZ(cm, XYZbuffer, colorbuffer, count);
   float* aXYZbuffer = new float[3 * count];
   CMLMat33 amatrix;
-  cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smwhitepointYxy, cmwhitepointYxy);
+  cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smwhitePointYxy, cmwhitePointYxy);
   for(size_t i=0; i<count; i++){
-    CMLconvertXYZtoChromaticAdaptedXYZ(&(aXYZbuffer[i*3]), &(XYZbuffer[i*3]), amatrix);
+    cmlConvertXYZtoChromaticAdaptedXYZ(&(aXYZbuffer[i*3]), &(XYZbuffer[i*3]), amatrix);
   }
   cmlXYZToRGB(sm, texdata, aXYZbuffer, count);
   delete [] aXYZbuffer;
 
 //  if((showmask && drawmask) || (showgrid && drawgridlines)){
-//    CMLuint32 nummaskchannels = CMLgetNumChannels(maskcolor);
+//    CMLuint32 nummaskchannels = cmlGetNumChannels(maskcolor);
 //    CMLColorConverter colortomask = cmlGetColorConverter(maskcolor, inputcolortype);
 //    CMLNormedConverter masktonormal = cmlGetNormedOutputConverter(maskcolor);
 //    float* maskbuffer = new float[count];
@@ -321,20 +321,20 @@ size_t bordercount;
   
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   CMLColorMachine* sm = [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
-  CMLVec3 cmwhitepointYxy;
-  CMLVec3 smwhitepointYxy;
-  CMLgetWhitePointYxy(cm, cmwhitepointYxy);
-  cmwhitepointYxy[0] = 1.f;
-  CMLgetWhitePointYxy(sm, smwhitepointYxy);
-  smwhitepointYxy[0] = 1.f;
+  CMLVec3 cmwhitePointYxy;
+  CMLVec3 smwhitePointYxy;
+  cmlGetWhitePointYxy(cm, cmwhitePointYxy);
+  cmwhitePointYxy[0] = 1.f;
+  cmlGetWhitePointYxy(sm, smwhitePointYxy);
+  smwhitePointYxy[0] = 1.f;
 
   CMLVec3 XYZbuffer;
   inputcolor->toXYZBuffer(XYZbuffer);
   
   CMLVec3 aXYZbuffer;
   CMLMat33 amatrix;
-  cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smwhitepointYxy, cmwhitepointYxy);
-  CMLconvertXYZtoChromaticAdaptedXYZ(aXYZbuffer, XYZbuffer, amatrix);
+  cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smwhitePointYxy, cmwhitePointYxy);
+  cmlConvertXYZtoChromaticAdaptedXYZ(aXYZbuffer, XYZbuffer, amatrix);
   cmlXYZToRGB(sm, outdata, aXYZbuffer, 1);
 
   cmlClampRGB(outdata, 1);

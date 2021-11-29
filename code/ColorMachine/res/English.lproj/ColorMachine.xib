@@ -113,7 +113,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="4837"/>
-                            <menuItem title="Set current color as whitepoint" keyEquivalent="W" id="4835">
+                            <menuItem title="Set current color as whitePoint" keyEquivalent="W" id="4835">
                                 <connections>
                                     <action selector="setCurrentColorAsWhitepoint:" target="-3" id="4844"/>
                                 </connections>
@@ -278,7 +278,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <action selector="whitepointChange:" target="1885" id="2262"/>
+                            <action selector="whitePointChange:" target="1885" id="2262"/>
                             <outlet property="nextKeyView" destination="1770" id="3834"/>
                         </connections>
                     </textField>
@@ -291,7 +291,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <action selector="whitepointChange:" target="1885" id="2261"/>
+                            <action selector="whitePointChange:" target="1885" id="2261"/>
                             <outlet property="nextKeyView" destination="1794" id="3833"/>
                         </connections>
                     </textField>
@@ -304,7 +304,7 @@
                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                         <connections>
-                            <action selector="whitepointChange:" target="1885" id="5157"/>
+                            <action selector="whitePointChange:" target="1885" id="5157"/>
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1797">
@@ -2118,7 +2118,7 @@
                 <outlet property="blueprimaryY" destination="1750" id="2144"/>
                 <outlet property="blueprimaryx" destination="1749" id="2143"/>
                 <outlet property="blueprimaryy" destination="1748" id="2145"/>
-                <outlet property="chromaticadaptationselect" destination="2296" id="2302"/>
+                <outlet property="chromaticAdaptationselect" destination="2296" id="2302"/>
                 <outlet property="collapseexpandColorSelectionButton" destination="5005" id="5007"/>
                 <outlet property="gammadisplay" destination="2478" id="4698"/>
                 <outlet property="graycomputationselect" destination="1608" id="3662"/>
@@ -2156,9 +2156,9 @@
                 <outlet property="textfieldlinScaleRGB" destination="5120" id="5133"/>
                 <outlet property="textfieldoffsetRGB" destination="5111" id="5134"/>
                 <outlet property="textfieldsplitRGB" destination="5143" id="5150"/>
-                <outlet property="whitepointY" destination="5000" id="5004"/>
-                <outlet property="whitepointx" destination="1795" id="2119"/>
-                <outlet property="whitepointy" destination="1794" id="2121"/>
+                <outlet property="whitePointY" destination="5000" id="5004"/>
+                <outlet property="whitePointx" destination="1795" id="2119"/>
+                <outlet property="whitePointy" destination="1794" id="2121"/>
                 <outlet property="window" destination="371" id="4828"/>
             </connections>
         </customObject>

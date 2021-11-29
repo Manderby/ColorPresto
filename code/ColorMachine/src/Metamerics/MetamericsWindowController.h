@@ -124,7 +124,7 @@ extern const char* referenceilluminationstrings[NUMBER_OF_REFERENCE_ILLUMINATION
   IBOutlet NSTextField *testfield3;
 
   IBOutlet NSPopUpButton *referenceilluminationselect;
-  ReferenceIlluminationType referenceilluminationtype;
+  ReferenceIlluminationType referenceilluminationType;
 }
 - (void)awakeFromNib;
 - (void)update;

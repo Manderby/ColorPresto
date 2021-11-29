@@ -36,7 +36,7 @@
   for(CMLuint32 x=0; x<width; x++){
     float lambda = imin + ((float)x / width) * (imax - imin);
     CMLVec3 xyz;
-    CMLgetSpectralXYZColor(sm, xyz, lambda);
+    cmlGetSpectralXYZColor(sm, xyz, lambda);
     CMLVec3 rgb;
     cmlXYZToRGB(sm, rgb, xyz, 1);
     cmlClampRGB(rgb, 1);
@@ -104,7 +104,7 @@
   
   // Draw the spectral distribution functions
   const CMLFunction* specdistfuncs[3];
-  CMLgetSpecDistFunctions(cm, specdistfuncs);
+  cmlGetSpecDistFunctions(cm, specdistfuncs);
 
   CGColorRef Rlinecolor = CGColorCreateGenericRGB(1.f, .5f, .5f, 1.f);
   SpectralColor Rcolor(cmlDuplicateFunction(specdistfuncs[0]), true);
@@ -150,7 +150,7 @@
 
   // Draw the illumination
   CGColorRef lightlinecolor = CGColorCreateGenericRGB(1.f, 1.f, 1.f, 1.f);
-  const CMLFunction* lightspectrum = CMLgetIlluminationSpectrum(cm);
+  const CMLFunction* lightspectrum = cmlGetIlluminationSpectrum(cm);
   if(lightspectrum){
     SpectralColor lightcolor(cmlDuplicateFunction(lightspectrum), false);
     [(ColorMachineApplication*)NSApp drawColor:&lightcolor fillBack:NO linecolor:lightlinecolor context:context inRect:NSRectToCGRect([self bounds])];
@@ -192,8 +192,8 @@
   Color* controllercolor = [colorcontroller getColor];
 //  SpectralColor& spectral = *(SpectralColor*)[colorcontroller color];
 
-  CMLVec3 whitepointYxy;
-  CMLgetWhitePointYxy(cm, whitepointYxy);
+  CMLVec3 whitePointYxy;
+  cmlGetWhitePointYxy(cm, whitePointYxy);
   CMLFunction* dirac = cmlCreateDiracFilter(lambda);
   CMLFunction* illumdirac = cmlCreateFunctionMulScalar(dirac, cmlInverse(cmlGetObserverRadiometricScale(cmlGetObserver(cm))));
 //  spectral.init(&dirac, false);

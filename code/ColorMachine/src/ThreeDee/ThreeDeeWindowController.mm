@@ -16,7 +16,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   
   if(colorspace > CML_COLOR_CMYK){return NULL;}
   
-  CMLuint32 numchannels = CMLgetNumChannels(colorspace);
+  CMLuint32 numchannels = cmlGetNumChannels(colorspace);
 
   CMLVec4 o;
   CMLVec4 r[CML_MAX_NUMBER_OF_CHANNELS];
@@ -599,8 +599,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   
   float min[3];
   float max[3];
-  CMLgetMinBounds(min, coordspace);
-  CMLgetMaxBounds(max, coordspace);
+  cmlGetMinBounds(min, coordspace);
+  cmlGetMaxBounds(max, coordspace);
 
   CMLColorConverter coordconverter = cmlGetColorConverter(coordspace, space3d);
   CMLNormedConverter normedinputconverter = cmlGetNormedInputConverter(space3d);
@@ -612,7 +612,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
 
 
-  int numchannels = CMLgetNumChannels(space3d);
+  int numchannels = cmlGetNumChannels(space3d);
 
 
 
@@ -1114,7 +1114,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       for(int32 istep = 0; istep <= intervals; istep++){
         float l = imin + (((imax - imin) * istep) / intervals);
         CMLVec3 curXYZ;
-        CMLgetSpectralXYZColor(cm, curXYZ, l);
+        cmlGetSpectralXYZColor(cm, curXYZ, l);
         if(curXYZ[1] > 0){
           CMLVec3 curRGB;
           CMLVec3 curcoords;
@@ -1276,7 +1276,7 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
   [space3dselect removeAllItems];
   for(uint32 i=0; i<CML_NUMBER_OF_COLORTYPES; ++i){
     if((CMLColorType)i >= CML_COLOR_CMYK){continue;}
-    [space3dselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetColorTypeString((CMLColorType)i)] atIndex:i];
+    [space3dselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetColorTypeString((CMLColorType)i)] atIndex:i];
   }
   [space3dselect selectItemAtIndex:(int)space3d];
 

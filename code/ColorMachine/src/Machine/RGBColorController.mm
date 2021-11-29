@@ -19,9 +19,9 @@
   float stripes = 10.f;
 
   const CMLFunction* (responses[3]);
-  responses[0] = CMLgetResponseCurveInvFunc(CMLgetResponseR(cm));
-  responses[1] = CMLgetResponseCurveInvFunc(CMLgetResponseG(cm));
-  responses[2] = CMLgetResponseCurveInvFunc(CMLgetResponseB(cm));
+  responses[0] = cmlGetResponseCurveInvFunc(cmlGetResponseR(cm));
+  responses[1] = cmlGetResponseCurveInvFunc(cmlGetResponseG(cm));
+  responses[2] = cmlGetResponseCurveInvFunc(cmlGetResponseB(cm));
 
   glBegin(GL_LINE_STRIP);
     glColor3d(1, .5, .5);

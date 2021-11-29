@@ -4,8 +4,8 @@
 
 // Prototypes:
 void convertYuvtoYcd(float* Ycd, const float* yuv);
-void convertYcdtoadaptedYuv(float* yuv, const float* testYcd, const float* srcwhitepointYcd, const float* dstwhitepointYcd);
-void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv);
+void convertYcdtoadaptedYuv(float* yuv, const float* testYcd, const float* srcwhitePointYcd, const float* dstwhitePointYcd);
+void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv);
 
 
 
@@ -659,9 +659,9 @@ void convertYuvtoYcd(float* Ycd, const float* yuv){
                     (1.708f * yuv[2] + 0.404f - 1.481f * yuv[1]) / yuv[2]);
 }
 
-void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcwhitepointYcd, const float* dstwhitepointYcd){
-  float cfactor = Ycd[1] * dstwhitepointYcd[1] / srcwhitepointYcd[1];
-  float dfactor = Ycd[2] * dstwhitepointYcd[2] / srcwhitepointYcd[2];
+void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcwhitePointYcd, const float* dstwhitePointYcd){
+  float cfactor = Ycd[1] * dstwhitePointYcd[1] / srcwhitePointYcd[1];
+  float dfactor = Ycd[2] * dstwhitePointYcd[2] / srcwhitePointYcd[2];
   float divisor = (16.518f + 1.481f * cfactor - dfactor);
   yuv[0] = Ycd[0];
   yuv[1] = (10.872f + 0.404f * cfactor - 4.f * dfactor) / divisor;
@@ -673,10 +673,10 @@ void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcwhitep
 // CIE 1960 UCS. This also corresponds to the fact that UVW is based on UCS.
 // In CML, this is Yuv.
 // UVW is CIE 1964.
-void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
+void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   UVW[2] = 25.f * cmlCbrt(yuv[0] * 100.f) - 17.f;
-  UVW[0] = 13.f * UVW[2] * (yuv[1] - whitepointYuv[1]);
-  UVW[1] = 13.f * UVW[2] * (yuv[2] - whitepointYuv[2]);
+  UVW[0] = 13.f * UVW[2] * (yuv[1] - whitePointYuv[1]);
+  UVW[1] = 13.f * UVW[2] * (yuv[2] - whitePointYuv[2]);
 }
 
 
@@ -685,7 +685,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
 @implementation MetamericsWindowController
 
 - (void)awakeFromNib{
-  referenceilluminationtype = REFERENCE_ILLUMINATION_D50;
+  referenceilluminationType = REFERENCE_ILLUMINATION_D50;
 
   // //////////////////////////
   // Init the select menus
@@ -705,7 +705,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
   CMLColorMachine* sm = [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
   
   CMLFunction* ref;
-  switch(referenceilluminationtype){
+  switch(referenceilluminationType){
   case REFERENCE_ILLUMINATION_D50:
     ref = cmlCreateIlluminationSpectrum(CML_ILLUMINATION_D50, 0.f);
     break;
@@ -722,9 +722,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
     ref = NULL;
     break;
   }
-  const CMLFunction* ill = CMLgetIlluminationSpectrum(cm);
+  const CMLFunction* ill = cmlGetIlluminationSpectrum(cm);
   
-  const char* illname = CMLgetIlluminationTypeString(CMLgetIlluminationType(cm));
+  const char* illname = cmlGetIlluminationTypeString(cmlGetIlluminationType(cm));
   [illnamelabel setStringValue:[NSString stringWithFormat:@"Current: %s", illname]];
 
   CMLFunction* observer10[3];
@@ -777,17 +777,17 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
     cmlCpy3(illXYZ2, illXYZunnorm2);
     cmlDiv3(illXYZ2, illXYZunnorm2[1]);
   }else{
-    CMLObserverType illobservertype = CMLgetObserverType(cm);
-    if(illobservertype == CML_OBSERVER_10DEG_CIE_1964){
-      CMLgetWhitePointYxy(cm, illYxy10);
+    CMLObserverType illobserverType = cmlGetObserverType(cm);
+    if(illobserverType == CML_OBSERVER_10DEG_CIE_1964){
+      cmlGetWhitePointYxy(cm, illYxy10);
       illYxy10[0] = 1.f;
-      CMLconvertYxytoXYZ(illXYZ10, illYxy10, CML_NULL);
+      cmlConvertYxytoXYZ(illXYZ10, illYxy10, CML_NULL);
       cmlSet3(illXYZ2, 0.f, 1.f, 0.f);
       ill2available = false;
     }else{
-      CMLgetWhitePointYxy(cm, illYxy2);
+      cmlGetWhitePointYxy(cm, illYxy2);
       illYxy2[0] = 1.f;
-      CMLconvertYxytoXYZ(illXYZ2, illYxy2, CML_NULL);
+      cmlConvertYxytoXYZ(illXYZ2, illYxy2, CML_NULL);
       cmlSet3(illXYZ10, 0.f, 1.f, 0.f);
       ill10available = false;
     }
@@ -802,29 +802,29 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
     cmlCpy3(refXYZ2, refXYZunnorm2);
     cmlDiv3(refXYZ2, refXYZunnorm2[1]);
   }else{
-    CMLgetWhitePointYxy(cm, refYxy2);
+    cmlGetWhitePointYxy(cm, refYxy2);
     refYxy2[0] = 1.f;
-    CMLconvertYxytoXYZ(refXYZ2, refYxy2, CML_NULL);
+    cmlConvertYxytoXYZ(refXYZ2, refYxy2, CML_NULL);
     cmlSet3(refXYZ10, 0.f, 1.f, 0.f);
     ref10available = false;
   }
 
-  CMLconvertXYZtoYxy(illYxy10, illXYZ10, CML_NULL);
-  CMLconvertYxytoYupvp(illYupvp10, illYxy10, CML_NULL);
-  CMLconvertYupvptoYuv(illYuv10, illYupvp10);
+  cmlConvertXYZtoYxy(illYxy10, illXYZ10, CML_NULL);
+  cmlConvertYxytoYupvp(illYupvp10, illYxy10, CML_NULL);
+  cmlConvertYupvptoYuv(illYuv10, illYupvp10);
   
-  CMLconvertXYZtoYxy(refYxy10, refXYZ10, CML_NULL);
-  CMLconvertYxytoYupvp(refYupvp10, refYxy10, CML_NULL);
-  CMLconvertYupvptoYuv(refYuv10, refYupvp10);
+  cmlConvertXYZtoYxy(refYxy10, refXYZ10, CML_NULL);
+  cmlConvertYxytoYupvp(refYupvp10, refYxy10, CML_NULL);
+  cmlConvertYupvptoYuv(refYuv10, refYupvp10);
   
-  CMLconvertXYZtoYxy(illYxy2, illXYZ2, CML_NULL);
-  CMLconvertYxytoYupvp(illYupvp2, illYxy2, CML_NULL);
-  CMLconvertYupvptoYuv(illYuv2, illYupvp2);
+  cmlConvertXYZtoYxy(illYxy2, illXYZ2, CML_NULL);
+  cmlConvertYxytoYupvp(illYupvp2, illYxy2, CML_NULL);
+  cmlConvertYupvptoYuv(illYuv2, illYupvp2);
   convertYuvtoYcd(illYcd2, illYuv2);
   
-  CMLconvertXYZtoYxy(refYxy2, refXYZ2, CML_NULL);
-  CMLconvertYxytoYupvp(refYupvp2, refYxy2, CML_NULL);
-  CMLconvertYupvptoYuv(refYuv2, refYupvp2);
+  cmlConvertXYZtoYxy(refYxy2, refXYZ2, CML_NULL);
+  cmlConvertYxytoYupvp(refYupvp2, refYxy2, CML_NULL);
+  cmlConvertYupvptoYuv(refYuv2, refYupvp2);
   convertYuvtoYcd(refYcd2, refYuv2);
 
   if(ill10available){
@@ -950,15 +950,15 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
       cmlSet3(metamerrefXYZptr, cmlFilterFunction(metamerrefremission, observer2[0]), cmlFilterFunction(metamerrefremission, observer2[1]), cmlFilterFunction(metamerrefremission, observer2[2]));
       cmlDiv3(metamerrefXYZptr, refXYZunnorm2[1]);
       CMLVec3 metamerrefYxy;
-      CMLconvertXYZtoYxy(metamerrefYxy, metamerrefXYZptr, CML_NULL);
+      cmlConvertXYZtoYxy(metamerrefYxy, metamerrefXYZptr, CML_NULL);
       CMLVec3 metamerrefYupvp;
-      CMLconvertYxytoYupvp(metamerrefYupvp, metamerrefYxy, CML_NULL);
+      cmlConvertYxytoYupvp(metamerrefYupvp, metamerrefYxy, CML_NULL);
       CMLVec3 metamerrefYuv;
       // ISO 3664 states in forumal D.14 the computation 6X/(X+15Y+3Z). I'm
       // pretty sure, they meant  6Y/(X+15Y+3Z) which is according to
       // CIE 1960 UCS. This also corresponds to the fact that UVW is based on
       // UCS. In CML, this is Yuv.
-      CMLconvertYupvptoYuv(metamerrefYuv, metamerrefYupvp);
+      cmlConvertYupvptoYuv(metamerrefYuv, metamerrefYupvp);
       convertYuvtoUVW(metamerrefUVW, metamerrefYuv, refYuv2);
       cmlReleaseFunction(metamerrefremission);
     }else{
@@ -972,11 +972,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
       cmlSet3(metamerillXYZptr, cmlFilterFunction(metamerillremission, observer2[0]), cmlFilterFunction(metamerillremission, observer2[1]), cmlFilterFunction(metamerillremission, observer2[2]));
       cmlDiv3(metamerillXYZptr, illXYZunnorm2[1]);
       CMLVec3 metamerillYxy;
-      CMLconvertXYZtoYxy(metamerillYxy, metamerillXYZptr, CML_NULL);
+      cmlConvertXYZtoYxy(metamerillYxy, metamerillXYZptr, CML_NULL);
       CMLVec3 metamerillYupvp;
-      CMLconvertYxytoYupvp(metamerillYupvp, metamerillYxy, CML_NULL);
+      cmlConvertYxytoYupvp(metamerillYupvp, metamerillYxy, CML_NULL);
       CMLVec3 metamerillYuv;
-      CMLconvertYupvptoYuv(metamerillYuv, metamerillYupvp);
+      cmlConvertYupvptoYuv(metamerillYuv, metamerillYupvp);
       CMLVec3 metamerillYcd;
       convertYuvtoYcd(metamerillYcd, metamerillYuv);
       CMLVec3 metamerillaYuv;
@@ -1110,7 +1110,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
 
   const float* standarddata[5] = {standard1data, standard2data, standard3data, standard4data, standard5data};
   const float* specimendata[5];
-  switch(referenceilluminationtype){
+  switch(referenceilluminationType){
   case REFERENCE_ILLUMINATION_D50:
     specimendata[0] = specimen1d50data;
     specimendata[1] = specimen2d50data;
@@ -1167,12 +1167,12 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
       CMLFunction* standardremission = cmlCreateFunctionMulFunction(standardfunction, ill);
       cmlSet3(standardXYZptr, cmlFilterFunction(standardremission, observer10[0]),  cmlFilterFunction(standardremission, observer10[1]),  cmlFilterFunction(standardremission, observer10[2]));
       cmlDiv3(standardXYZptr, illXYZunnorm10[1]);
-      CMLconvertXYZtoLab(standardLab, standardXYZptr, illXYZ10);
+      cmlConvertXYZtoLab(standardLab, standardXYZptr, illXYZ10);
 
       CMLFunction* specimenremission = cmlCreateFunctionMulFunction(specimenfunction, ill);
       cmlSet3(specimenXYZptr, cmlFilterFunction(specimenremission, observer10[0]), cmlFilterFunction(specimenremission, observer10[1]), cmlFilterFunction(specimenremission, observer10[2]));
       cmlDiv3(specimenXYZptr, illXYZunnorm10[1]);
-      CMLconvertXYZtoLab(specimenLab, specimenXYZptr, illXYZ10);
+      cmlConvertXYZtoLab(specimenLab, specimenXYZptr, illXYZ10);
       cmlReleaseFunction(standardremission);
       cmlReleaseFunction(specimenremission);
     }else{
@@ -1220,19 +1220,19 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
   // reasons and is not in the ISO-standard at all. The differences between
   // the colors can be seen better. That's all.
   CMLMat33 adaptationmatrix;
-  CMLVec3 screenwhitepoint;
-  CMLgetWhitePointYxy(sm, screenwhitepoint);
-  screenwhitepoint[0] = 1.f;
-  cmlComputeChromaticAdaptationMatrix(adaptationmatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenwhitepoint, illYxy10);
+  CMLVec3 screenwhitePoint;
+  cmlGetWhitePointYxy(sm, screenwhitePoint);
+  screenwhitePoint[0] = 1.f;
+  cmlComputeChromaticAdaptationMatrix(adaptationmatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenwhitePoint, illYxy10);
 
   float standardadaptedxyzdata[5 * 3];
 //  CMLByte standardrgb8Bitdata[5 * 3];
   float standardrgbfloatdata[5 * 3];
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[0]), &(standardXYZ[0]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[3]), &(standardXYZ[3]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[6]), &(standardXYZ[6]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[9]), &(standardXYZ[9]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[12]), &(standardXYZ[12]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[0]), &(standardXYZ[0]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[3]), &(standardXYZ[3]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[6]), &(standardXYZ[6]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[9]), &(standardXYZ[9]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[12]), &(standardXYZ[12]), adaptationmatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:standardrgbfloatdata
                                          fromArray:standardadaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1252,11 +1252,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
   float specimenaptedxyzdata[5 * 3];
 //  CMLByte specimenrgb8Bitdata[5 * 3];
   float specimenrgbfloatdata[5 * 3];
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[0]), &(specimenXYZ[0]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[3]), &(specimenXYZ[3]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[6]), &(specimenXYZ[6]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[9]), &(specimenXYZ[9]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[12]), &(specimenXYZ[12]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[0]), &(specimenXYZ[0]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[3]), &(specimenXYZ[3]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[6]), &(specimenXYZ[6]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[9]), &(specimenXYZ[9]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[12]), &(specimenXYZ[12]), adaptationmatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:specimenrgbfloatdata
                                          fromArray:specimenaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1298,7 +1298,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
   const float* UVexcitationdata[3] = {UVexcitation1data, UVexcitation2data, UVexcitation3data};
 
   const float* UVmetamerdata[3];
-  switch(referenceilluminationtype){
+  switch(referenceilluminationType){
   case REFERENCE_ILLUMINATION_D50:
     UVmetamerdata[0] = UVmetamer1d50data;
     UVmetamerdata[1] = UVmetamer2d50data;
@@ -1362,12 +1362,12 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
       CMLFunction* uvmetamerXXXremission = cmlCreateFunctionMulFunction(betaT, ill);
       cmlSet3(UVstandardXYZptr, cmlFilterFunction(uvmetamerXXXremission, observer10[0]), cmlFilterFunction(uvmetamerXXXremission, observer10[1]), cmlFilterFunction(uvmetamerXXXremission, observer10[2]));
       cmlDiv3(UVstandardXYZptr, illXYZunnorm10[1]);
-      CMLconvertXYZtoLab(UVstandardLab, UVstandardXYZptr, illXYZ10);
+      cmlConvertXYZtoLab(UVstandardLab, UVstandardXYZptr, illXYZ10);
 
       CMLFunction* UVmetamerremission = cmlCreateFunctionMulFunction(UVmetamerfunction, ill);
       cmlSet3(UVmetamerXYZptr, cmlFilterFunction(UVmetamerremission, observer10[0]), cmlFilterFunction(UVmetamerremission, observer10[1]), cmlFilterFunction(UVmetamerremission, observer10[2]));
       cmlDiv3(UVmetamerXYZptr, illXYZunnorm10[1]);
-      CMLconvertXYZtoLab(UVmetamerLab, UVmetamerXYZptr, illXYZ10);
+      cmlConvertXYZtoLab(UVmetamerLab, UVmetamerXYZptr, illXYZ10);
       cmlReleaseFunction(betatemp);
       cmlReleaseFunction(betaL);
       cmlReleaseFunction(betaT);
@@ -1419,9 +1419,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
   float UVstandardadaptedxyzdata[3 * 3];
 //  CMLByte UVstandardrgb8Bitdata[3 * 3];
   float UVstandardrgbfloatdata[3 * 3];
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[0]), &(UVstandardXYZ[0]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[3]), &(UVstandardXYZ[3]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[6]), &(UVstandardXYZ[6]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[0]), &(UVstandardXYZ[0]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[3]), &(UVstandardXYZ[3]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[6]), &(UVstandardXYZ[6]), adaptationmatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:UVstandardrgbfloatdata
                                          fromArray:UVstandardadaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1441,9 +1441,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
   float UVmetameradaptedxyzdata[3 * 3];
 //  CMLByte UVmetamerrgb8Bitdata[3 * 3];
   float UVmetamerrgbfloatdata[3 * 3];
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[0]), &(UVmetamerXYZ[0]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[3]), &(UVmetamerXYZ[3]), adaptationmatrix);
-  CMLconvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[6]), &(UVmetamerXYZ[6]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[0]), &(UVmetamerXYZ[0]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[3]), &(UVmetamerXYZ[3]), adaptationmatrix);
+  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[6]), &(UVmetamerXYZ[6]), adaptationmatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:UVmetamerrgbfloatdata
                                          fromArray:UVmetameradaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1497,7 +1497,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitepointYuv){
 }
 
 - (IBAction)referenceilluminationchange:(NSPopUpButton*)sender{
-  referenceilluminationtype = (ReferenceIlluminationType)[sender indexOfSelectedItem];
+  referenceilluminationType = (ReferenceIlluminationType)[sender indexOfSelectedItem];
   [self update];
 }
 

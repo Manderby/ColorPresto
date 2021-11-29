@@ -59,7 +59,7 @@
   [maskselect removeAllItems];
   for(uint32 i=0; i<CML_NUMBER_OF_COLORTYPES; ++i){
     if((CMLColorType)i >= CML_COLOR_CMYK){continue;}
-    [maskselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetColorTypeString((CMLColorType)i)] atIndex:i];
+    [maskselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetColorTypeString((CMLColorType)i)] atIndex:i];
   }
   [maskselect selectItemAtIndex:(int)CML_COLOR_RGB];
 
@@ -68,47 +68,47 @@
 
   [observerselect removeAllItems];
   for(uint32 i=0; i<CML_NUMBER_OF_OBSERVERS - 1; ++i){
-    [observerselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetObserverTypeString((CMLObserverType)i)] atIndex:i];
+    [observerselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetObserverTypeString((CMLObserverType)i)] atIndex:i];
   }
 
   [illuminationselect setAutoenablesItems:NO];
   [illuminationselect removeAllItems];
   for(uint32 i=0; i<CML_NUMBER_OF_ILLUMINATIONS; ++i){
-    [illuminationselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetIlluminationTypeString((CMLIlluminationType)i)] atIndex:i];
+    [illuminationselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetIlluminationTypeString((CMLIlluminationType)i)] atIndex:i];
   }
   [[illuminationselect itemAtIndex:CML_ILLUMINATION_CUSTOM_SPECTRUM] setEnabled:FALSE];
 
   [rgbcolorspaceselect removeAllItems];
   for(uint32 i=0; i<CML_NUMBER_OF_RGB_SPACES; ++i){
-    [rgbcolorspaceselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetRGBColorspaceString((CMLRGBColorSpace)i)] atIndex:i];
+    [rgbcolorspaceselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetRGBColorspaceString((CMLRGBColorSpace)i)] atIndex:i];
   }
 
   [responseRGBselect removeAllItems];
   [responseRGBselect insertItemWithTitle:@"Custom" atIndex:0];
   for(uint32 i=0; i<CML_NUMBER_OF_RESPONSE_CURVE_PRESETS; ++i){
-    [responseRGBselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetRGBResponsePresetString((CMLResponseCurvePreset)i)] atIndex:i+1];
+    [responseRGBselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetRGBResponsePresetString((CMLResponseCurvePreset)i)] atIndex:i+1];
   }
 
   [labspaceselect removeAllItems];
   uint32 curindex = 0;
   for(uint32 i=0; i<CML_NUMBER_OF_LAB_SPACES; ++i){
     if(i == CML_LAB_CUSTOM_L){continue;}
-    [labspaceselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetLabSpaceTypeString((CMLLabColorSpaceType)i)] atIndex:curindex];
+    [labspaceselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetLabSpaceTypeString((CMLLabColorSpaceType)i)] atIndex:curindex];
     curindex++;
   }
   [responseLselect removeAllItems];
   for(uint32 i=0; i<CML_NUMBER_OF_FUNCTION_TYPES; ++i){
-    [responseLselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetFunctionTypeString((CMLFunctionType)i)] atIndex:i];
+    [responseLselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetFunctionTypeString((CMLFunctionType)i)] atIndex:i];
   }
 
   [graycomputationselect removeAllItems];
   for(uint32 i=0; i<CML_NUMBER_OF_GRAY_COMPUTATIONS; ++i){
-    [graycomputationselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetGrayComputationTypeString((CMLGrayComputationType)i)] atIndex:i];
+    [graycomputationselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetGrayComputationTypeString((CMLGrayComputationType)i)] atIndex:i];
   }
 
-  [chromaticadaptationselect removeAllItems];
+  [chromaticAdaptationselect removeAllItems];
   for(uint32 i=0; i<CML_NUMBER_OF_CHROMATIC_ADAPTATIONS; ++i){
-    [chromaticadaptationselect insertItemWithTitle:[NSString stringWithUTF8String:CMLgetChromaticAdaptationTypeString((CMLChromaticAdaptationType)i)] atIndex:i];
+    [chromaticAdaptationselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetChromaticAdaptationTypeString((CMLChromaticAdaptationType)i)] atIndex:i];
   }
 
 }
@@ -141,7 +141,7 @@
   CMLIlluminationType newillum = (CMLIlluminationType)[sender indexOfSelectedItem];
   if(newillum == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
     CMLVec3 wpyxy;
-    CMLgetWhitePointYxy(cm, wpyxy);
+    cmlGetWhitePointYxy(cm, wpyxy);
     wpyxy[0] = 1.f;
     CMLsetWhitePointYxy(cm, wpyxy);
   }else{
@@ -150,21 +150,21 @@
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
-//- (IBAction)chromaticadaptationChange:(NSPopUpButton*)sender {
+//- (IBAction)chromaticAdaptationChange:(NSPopUpButton*)sender {
 //  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
 //  CMLChromaticAdaptationType newadaptation = (CMLChromaticAdaptationType)[sender indexOfSelectedItem];
 //  CMLsetChromaticAdaptation(cm, newadaptation);
 //  [(ColorMachineApplication*)NSApp updateMachine];
 //}
 
-- (IBAction)whitepointChange:(NSControl*)sender{
+- (IBAction)whitePointChange:(NSControl*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   CMLVec3 curwhite;
-  CMLgetWhitePointYxy(cm, curwhite);
+  cmlGetWhitePointYxy(cm, curwhite);
   curwhite[0] = 1.f;
-  if(sender == whitepointx){
+  if(sender == whitePointx){
     curwhite[1] = [sender floatValue];
-  }else if(sender == whitepointy){
+  }else if(sender == whitePointy){
     curwhite[2] = [sender floatValue];
   }else{
 //    curwhite[0] = [sender floatValue];
@@ -176,7 +176,7 @@
 - (IBAction)rgbprimariesChange:(NSControl*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   CMLVec3 primaries[3];
-  CMLgetRGBPrimariesYxy(cm, primaries);
+  cmlGetRGBPrimariesYxy(cm, primaries);
   if(sender == redprimaryx){
     primaries[0][1] = [sender floatValue];
   }else if(sender == redprimaryy){
@@ -196,67 +196,67 @@
 
 - (IBAction)rgbresponseChange:(NSPopUpButton*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-//  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
+//  const CMLResponseCurve* responseR = cmlGetResponseR(cm);
   if      (sender == responseRGBselect){
     NSInteger selecteditem = [responseRGBselect indexOfSelectedItem] - 1;
     if(selecteditem < 0){return;}
     CMLResponseCurve* newresponse = cmlCreateResponseCurveWithPreset(NULL, (CMLResponseCurvePreset)selecteditem);
 //    CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [textfieldoffsetRGB floatValue], [textfieldlinScaleRGB floatValue], [textfieldsplitRGB floatValue]);
     CMLsetResponseRGB(cm, newresponse);
-    CMLdestroyResponseCurve(newresponse);
-//    CMLsetResponseRGB(cm, (CMLFunctionType)[sender indexOfSelectedItem], CMLgetResponseCurveParam0(responseR), CMLgetResponseCurveParam1(responseR), CMLgetResponseCurveParam2(responseR), CMLgetResponseCurveParam3(responseR));
+    cmlDestroyResponseCurve(newresponse);
+//    CMLsetResponseRGB(cm, (CMLFunctionType)[sender indexOfSelectedItem], cmlGetResponseCurveParam0(responseR), cmlGetResponseCurveParam1(responseR), cmlGetResponseCurveParam2(responseR), cmlGetResponseCurveParam3(responseR));
   }
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 - (IBAction)rgbgammaChange:(NSControl*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-//  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
-//  CMLFunctionType curvetype = CMLgetResponseCurveFunctionType(responseR);
+//  const CMLResponseCurve* responseR = cmlGetResponseR(cm);
+//  CMLFunctionType curvetype = cmlGetResponseCurveFunctionType(responseR);
   if      ((sender == slidergammaRGB) || (sender == textfieldgammaRGB)){
     CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [sender floatValue], [textfieldoffsetRGB floatValue], [textfieldlinScaleRGB floatValue], [textfieldsplitRGB floatValue]);
     CMLsetResponseRGB(cm, newresponse);
-    CMLdestroyResponseCurve(newresponse);
-//    CMLsetResponseRGB(cm, curvetype, [sender floatValue], CMLgetResponseCurveParam1(responseR), CMLgetResponseCurveParam2(responseR), CMLgetResponseCurveParam3(responseR));
+    cmlDestroyResponseCurve(newresponse);
+//    CMLsetResponseRGB(cm, curvetype, [sender floatValue], cmlGetResponseCurveParam1(responseR), cmlGetResponseCurveParam2(responseR), cmlGetResponseCurveParam3(responseR));
   }
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 - (IBAction)rgboffsetChange:(NSControl*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-//  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
-//  CMLFunctionType curvetype = CMLgetResponseCurveFunctionType(responseR);
+//  const CMLResponseCurve* responseR = cmlGetResponseR(cm);
+//  CMLFunctionType curvetype = cmlGetResponseCurveFunctionType(responseR);
   if      ((sender == slideroffsetRGB) || (sender == textfieldoffsetRGB)){
     CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [sender floatValue], [textfieldlinScaleRGB floatValue], [textfieldsplitRGB floatValue]);
     CMLsetResponseRGB(cm, newresponse);
-    CMLdestroyResponseCurve(newresponse);
-//    CMLsetResponseRGB(cm, curvetype, CMLgetResponseCurveParam0(responseR), [sender floatValue], CMLgetResponseCurveParam2(responseR), CMLgetResponseCurveParam3(responseR));
+    cmlDestroyResponseCurve(newresponse);
+//    CMLsetResponseRGB(cm, curvetype, cmlGetResponseCurveParam0(responseR), [sender floatValue], cmlGetResponseCurveParam2(responseR), cmlGetResponseCurveParam3(responseR));
   }
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 - (IBAction)rgblinScaleChange:(NSControl*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-//  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
-//  CMLFunctionType curvetype = CMLgetResponseCurveFunctionType(responseR);
+//  const CMLResponseCurve* responseR = cmlGetResponseR(cm);
+//  CMLFunctionType curvetype = cmlGetResponseCurveFunctionType(responseR);
   if      ((sender == sliderlinScaleRGB) || (sender == textfieldlinScaleRGB)){
     CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [textfieldoffsetRGB floatValue], [sender floatValue], [textfieldsplitRGB floatValue]);
     CMLsetResponseRGB(cm, newresponse);
-    CMLdestroyResponseCurve(newresponse);
-//    CMLsetResponseRGB(cm, curvetype, CMLgetResponseCurveParam0(responseR), CMLgetResponseCurveParam1(responseR), [sender floatValue], CMLgetResponseCurveParam3(responseR));
+    cmlDestroyResponseCurve(newresponse);
+//    CMLsetResponseRGB(cm, curvetype, cmlGetResponseCurveParam0(responseR), cmlGetResponseCurveParam1(responseR), [sender floatValue], cmlGetResponseCurveParam3(responseR));
   }
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 - (IBAction)rgbsplitChange:(NSControl*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-//  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
-//  CMLFunctionType curvetype = CMLgetResponseCurveFunctionType(responseR);
+//  const CMLResponseCurve* responseR = cmlGetResponseR(cm);
+//  CMLFunctionType curvetype = cmlGetResponseCurveFunctionType(responseR);
   if      ((sender == slidersplitRGB) || (sender == textfieldsplitRGB)){
     CMLResponseCurve* newresponse = cmlCreateResponseCurveWith4ParamsFunction(NULL, [textfieldgammaRGB floatValue], [textfieldoffsetRGB floatValue], [textfieldlinScaleRGB floatValue], [sender floatValue]);
     CMLsetResponseRGB(cm, newresponse);
-    CMLdestroyResponseCurve(newresponse);
-//    CMLsetResponseRGB(cm, curvetype, CMLgetResponseCurveParam0(responseR), CMLgetResponseCurveParam1(responseR), CMLgetResponseCurveParam2(responseR), [sender floatValue]);
+    cmlDestroyResponseCurve(newresponse);
+//    CMLsetResponseRGB(cm, curvetype, cmlGetResponseCurveParam0(responseR), cmlGetResponseCurveParam1(responseR), cmlGetResponseCurveParam2(responseR), [sender floatValue]);
   }
   [(ColorMachineApplication*)NSApp updateMachine];
 }
@@ -311,7 +311,7 @@
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   float K;
   float ke;
-  CMLgetAdamsChromaticityValenceParameters(cm, &K, &ke);
+  cmlGetAdamsChromaticityValenceParameters(cm, &K, &ke);
   CMLsetAdamsChromaticityValenceParameters(cm, [sender floatValue], ke);
   [(ColorMachineApplication*)NSApp updateMachine];
 }
@@ -320,7 +320,7 @@
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   float K;
   float ke;
-  CMLgetAdamsChromaticityValenceParameters(cm, &K, &ke);
+  cmlGetAdamsChromaticityValenceParameters(cm, &K, &ke);
   CMLsetAdamsChromaticityValenceParameters(cm, K, [sender floatValue]);
   [(ColorMachineApplication*)NSApp updateMachine];
 }
@@ -346,18 +346,18 @@
 
   uint32 selecteditem;
 
-  [observerselect             selectItemAtIndex:(int)CMLgetObserverType(cm)];
-  [illuminationselect         selectItemAtIndex:(int)CMLgetIlluminationType(cm)];
-//  [chromaticadaptationselect  selectItemAtIndex:(int)CMLgetChromaticAdaptation(cm)];
-  [graycomputationselect      selectItemAtIndex:(int)CMLgetGrayComputationType(cm)];
-  selecteditem = (int)CMLgetLabColorSpace(cm);
+  [observerselect             selectItemAtIndex:(int)cmlGetObserverType(cm)];
+  [illuminationselect         selectItemAtIndex:(int)cmlGetIlluminationType(cm)];
+//  [chromaticAdaptationselect  selectItemAtIndex:(int)cmlGetChromaticAdaptation(cm)];
+  [graycomputationselect      selectItemAtIndex:(int)cmlGetGrayComputationType(cm)];
+  selecteditem = (int)cmlGetLabColorSpace(cm);
   if(selecteditem >= CML_LAB_CUSTOM_L){selecteditem--;}
   [labspaceselect             selectItemAtIndex:selecteditem];
-  [rgbcolorspaceselect        selectItemAtIndex:(int)CMLgetRGBColorSpace(cm)];
+  [rgbcolorspaceselect        selectItemAtIndex:(int)cmlGetRGBColorSpace(cm)];
   
   [maskselect setEnabled:(showmask | showgrid)];
 
-  CMLIlluminationType illumination = CMLgetIlluminationType(cm);
+  CMLIlluminationType illumination = cmlGetIlluminationType(cm);
   if((illumination == CML_ILLUMINATION_BLACKBODY) || (illumination == CML_ILLUMINATION_D_ILLUMINANT)){
     [sliderT setEnabled:true];
     [textfieldT setEnabled:true];
@@ -372,16 +372,16 @@
   }
 
   if(illumination == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
-//    [whitepointY setEnabled:true];
-    [whitepointx setEnabled:true];
-    [whitepointy setEnabled:true];
+//    [whitePointY setEnabled:true];
+    [whitePointx setEnabled:true];
+    [whitePointy setEnabled:true];
   }else{
-//    [whitepointY setEnabled:false];
-    [whitepointx setEnabled:false];
-    [whitepointy setEnabled:false];
+//    [whitePointY setEnabled:false];
+    [whitePointx setEnabled:false];
+    [whitePointy setEnabled:false];
   }
 
-  switch(CMLgetLabColorSpace(cm)){
+  switch(cmlGetLabColorSpace(cm)){
   case CML_LAB_CIELAB:
     [textL setStringValue:@"L*"];
     [texta setStringValue:@"a*"];
@@ -393,7 +393,7 @@
     [textb setStringValue:@"b"];
   }
 
-  if(CMLgetLabColorSpace(cm) == CML_LAB_ADAMS_CROMATIC_VALENCE){
+  if(cmlGetLabColorSpace(cm) == CML_LAB_ADAMS_CROMATIC_VALENCE){
     [sliderK setEnabled:true];
     [sliderke setEnabled:true];
     [textfieldK setEnabled:true];
@@ -405,7 +405,7 @@
     [textfieldke setEnabled:false];
   }
 
-  float temp = CMLgetIlluminationTemperature(cm);
+  float temp = cmlGetIlluminationTemperature(cm);
   float slidervalue;
 //  if(temp == CML_INFINITY){slidervalue = 1.f;}else{slidervalue = -((4000.f / temp) - 1.f);}
   if(temp == CML_INFINITY){slidervalue = 1.f;}else{slidervalue = 1.f - expf(-((temp - 2000.f) / 6000.f));}
@@ -413,21 +413,21 @@
   [textfieldT setStringValue:[NSString stringWithFormat:@"%5.01f", temp]];
 
   CMLVec3 whitePointYxy;
-  CMLgetWhitePointYxy(cm, whitePointYxy);
-  [whitepointY setStringValue:[NSString stringWithFormat:@"%1.01f", whitePointYxy[0]]];
-  [whitepointx setStringValue:[NSString stringWithFormat:@"%1.05f", whitePointYxy[1]]];
-  [whitepointy setStringValue:[NSString stringWithFormat:@"%1.05f", whitePointYxy[2]]];
+  cmlGetWhitePointYxy(cm, whitePointYxy);
+  [whitePointY setStringValue:[NSString stringWithFormat:@"%1.01f", whitePointYxy[0]]];
+  [whitePointx setStringValue:[NSString stringWithFormat:@"%1.05f", whitePointYxy[1]]];
+  [whitePointy setStringValue:[NSString stringWithFormat:@"%1.05f", whitePointYxy[2]]];
 
   float K;
   float ke;
-  CMLgetAdamsChromaticityValenceParameters(cm, &K, &ke);
+  cmlGetAdamsChromaticityValenceParameters(cm, &K, &ke);
   [sliderK setFloatValue:K];
   [sliderke setFloatValue:ke];
   [textfieldK setStringValue:[NSString stringWithFormat:@"%2.03f", K]];
   [textfieldke setStringValue:[NSString stringWithFormat:@"%2.03f", ke]];
 
   CMLVec3 primaries[3];
-  CMLgetRGBPrimariesYxy(cm, primaries);
+  cmlGetRGBPrimariesYxy(cm, primaries);
   [redprimaryY setStringValue:[NSString stringWithFormat:@"%1.05f", primaries[0][0]]];
   [redprimaryx setStringValue:[NSString stringWithFormat:@"%1.05f", primaries[0][1]]];
   [redprimaryy setStringValue:[NSString stringWithFormat:@"%1.05f", primaries[0][2]]];
@@ -438,25 +438,25 @@
   [blueprimaryx setStringValue:[NSString stringWithFormat:@"%1.05f", primaries[2][1]]];
   [blueprimaryy setStringValue:[NSString stringWithFormat:@"%1.05f", primaries[2][2]]];
 
-  const CMLResponseCurve* responseR = CMLgetResponseR(cm);
-//  [responseRGBselect selectItemAtIndex:(int)CMLgetResponseCurveFunctionType(responseR)];
-  [textfieldgammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", CMLgetResponseCurveParam0(responseR)]];
-  [slidergammaRGB setFloatValue:CMLgetResponseCurveParam0(responseR)];
-  [textfieldoffsetRGB setStringValue:[NSString stringWithFormat:@"%1.05f", CMLgetResponseCurveParam1(responseR)]];
-  [slideroffsetRGB setFloatValue:CMLgetResponseCurveParam1(responseR)];
-  [textfieldlinScaleRGB setStringValue:[NSString stringWithFormat:@"%2.04f", CMLgetResponseCurveParam2(responseR)]];
-  [sliderlinScaleRGB setFloatValue:CMLgetResponseCurveParam2(responseR)];
-  [textfieldsplitRGB setStringValue:[NSString stringWithFormat:@"%1.05f", CMLgetResponseCurveParam3(responseR)]];
-  [slidersplitRGB setFloatValue:CMLgetResponseCurveParam3(responseR)];
+  const CMLResponseCurve* responseR = cmlGetResponseR(cm);
+//  [responseRGBselect selectItemAtIndex:(int)cmlGetResponseCurveFunctionType(responseR)];
+  [textfieldgammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", cmlGetResponseCurveParam0(responseR)]];
+  [slidergammaRGB setFloatValue:cmlGetResponseCurveParam0(responseR)];
+  [textfieldoffsetRGB setStringValue:[NSString stringWithFormat:@"%1.05f", cmlGetResponseCurveParam1(responseR)]];
+  [slideroffsetRGB setFloatValue:cmlGetResponseCurveParam1(responseR)];
+  [textfieldlinScaleRGB setStringValue:[NSString stringWithFormat:@"%2.04f", cmlGetResponseCurveParam2(responseR)]];
+  [sliderlinScaleRGB setFloatValue:cmlGetResponseCurveParam2(responseR)];
+  [textfieldsplitRGB setStringValue:[NSString stringWithFormat:@"%1.05f", cmlGetResponseCurveParam3(responseR)]];
+  [slidersplitRGB setFloatValue:cmlGetResponseCurveParam3(responseR)];
 
   [gammadisplay setNeedsDisplay:YES];
   
-//  const CMLResponseCurve* responseL = CMLgetResponseL(cm);
-//  float Lfunctiontype = CMLgetResponseCurveFunctionType(responseL);
-//  float Lgamma = CMLgetResponseCurveParam0(responseL);
+//  const CMLResponseCurve* responseL = cmlGetResponseL(cm);
+//  float LfunctionType = cmlGetResponseCurveFunctionType(responseL);
+//  float Lgamma = cmlGetResponseCurveParam0(responseL);
   //responsefun = cm->getResponseL();
-//  [responseLselect selectItemAtIndex:(int)Lfunctiontype];
-//  if(Lfunctiontype == CML_FUNCTION_GAMMA){
+//  [responseLselect selectItemAtIndex:(int)LfunctionType];
+//  if(LfunctionType == CML_FUNCTION_GAMMA){
 //    [textfieldgammaL setStringValue:[NSString stringWithFormat:@"%1.03f", Lgamma]];
 //    [slidergammaL setFloatValue:Lgamma];
 //  }else{
@@ -464,7 +464,7 @@
 //  }
 
 
-  CMLRGBColorSpace rgbcolorspace = CMLgetRGBColorSpace(cm);
+  CMLRGBColorSpace rgbcolorspace = cmlGetRGBColorSpace(cm);
   if(rgbcolorspace == CML_RGB_CUSTOM){
     [redprimaryx setEnabled:true];
     [redprimaryy setEnabled:true];
@@ -482,9 +482,9 @@
     [blueprimaryx setEnabled:false];
     [blueprimaryy setEnabled:false];
     [responseRGBselect setEnabled:false];
-    [responseRGBselect selectItemAtIndex:CMLgetRGBColorSpaceResponseCurvePreset(rgbcolorspace) + 1];
+    [responseRGBselect selectItemAtIndex:cmlGetRGBColorSpaceResponseCurvePreset(rgbcolorspace) + 1];
   }
-//  CMLFunctionType functiontype = CMLgetResponseCurveFunctionType(responseR);
+//  CMLFunctionType functionType = cmlGetResponseCurveFunctionType(responseR);
   if(rgbcolorspace == CML_RGB_CUSTOM){
     [textfieldgammaRGB setEnabled:true];
     [slidergammaRGB setEnabled:true];
@@ -505,13 +505,13 @@
     [slidersplitRGB setEnabled:false];
   }
 
-  CMLLabColorSpaceType labcolorspace = CMLgetLabColorSpace(cm);
+  CMLLabColorSpaceType labcolorspace = cmlGetLabColorSpace(cm);
   if(labcolorspace == CML_LAB_CUSTOM_L){
     [responseLselect setEnabled:true];
   }else{
     [responseLselect setEnabled:false];
   }
-//  if((labcolorspace == CML_LAB_CUSTOM_L) && (Lfunctiontype == CML_FUNCTION_GAMMA)){
+//  if((labcolorspace == CML_LAB_CUSTOM_L) && (LfunctionType == CML_FUNCTION_GAMMA)){
 //    [textfieldgammaL setEnabled:true];
 //    [slidergammaL setEnabled:true];
 //  }else{

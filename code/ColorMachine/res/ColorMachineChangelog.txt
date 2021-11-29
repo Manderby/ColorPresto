@@ -18,11 +18,11 @@ Version 1.3.6
 - Fixed a crash when selecting certain RGB color spaces while a measurement
   device was attached or was getting attached. This also likely fixes a rare
   crash when quitting the application.
-- Custom whitepoint now always have Y value 1.
-- Remission spectra are gray when a custom whitepoint is used.
+- Custom whitePoint now always have Y value 1.
+- Remission spectra are gray when a custom whitePoint is used.
 - Illumination spectra now show the background color relative to the currently
   selected reference illumination.
-- Computation of undefined values of certain colorspaces now use the whitepoint
+- Computation of undefined values of certain colorspaces now use the whitePoint
   again.
 - Lots of internal changes and more to come. Probably last version before
   something new and big.
@@ -103,7 +103,7 @@ Build 1.2.4.1
 Version 1.2.4
 -------------
 - The hue orientation of HSV and HSL has been removed
-- Created new State-menu to reset machine, set whitepoint and primaries.
+- Created new State-menu to reset machine, set whitePoint and primaries.
 - Moved Tools menu to Window
 - adjusted the help
 - Reimplemented 3d display
@@ -228,7 +228,7 @@ Version 1.1.11
 --------------
 - Fixed a bug in displaying the Yxy spectral curve
 - Recompiled with new MBLib. New Observers and lights available.
-- Added Normalization of whitepoint checkbox
+- Added Normalization of whitePoint checkbox
 - Added Selection of temperature estimation
 
 Version 1.1.10
@@ -349,7 +349,7 @@ Version 1.1.3
 Build 1.1.2.1
 -------------
 - The "No spectrum available" text is moved to a better place.
-- Preparation for custom Y value for the whitepoint but not supported yet.
+- Preparation for custom Y value for the whitePoint but not supported yet.
 - Recompilation with the new MBLib
 
 Version 1.1.2
@@ -390,7 +390,7 @@ Version 1.1
 
 Build 1.0.4.3
 -------------
-- Added some informational values about whitepoint and rgb colorspace
+- Added some informational values about whitePoint and rgb colorspace
 - Work unfinished. Will be made customizable.
 - Changed Layout
 

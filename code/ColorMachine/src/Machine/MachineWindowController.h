@@ -13,7 +13,7 @@
 
   IBOutlet NSPopUpButton* observerselect;
   IBOutlet NSPopUpButton* illuminationselect;
-  IBOutlet NSPopUpButton* chromaticadaptationselect;
+  IBOutlet NSPopUpButton* chromaticAdaptationselect;
   IBOutlet NSPopUpButton* graycomputationselect;
   IBOutlet NSPopUpButton* labspaceselect;
   IBOutlet NSPopUpButton* rgbcolorspaceselect;
@@ -36,9 +36,9 @@
   IBOutlet NSTextField *textL;
   IBOutlet NSTextField *texta;
   IBOutlet NSTextField *textb;
-  IBOutlet NSTextField *whitepointY;
-  IBOutlet NSTextField *whitepointx;
-  IBOutlet NSTextField *whitepointy;
+  IBOutlet NSTextField *whitePointY;
+  IBOutlet NSTextField *whitePointx;
+  IBOutlet NSTextField *whitePointy;
   IBOutlet NSTextField *textfieldK;
   IBOutlet NSTextField *textfieldke;
   IBOutlet NSTextField *redprimaryY;
@@ -69,8 +69,8 @@
 
 - (IBAction)observerChange:(NSPopUpButton*)sender;
 - (IBAction)illuminationChange:(NSPopUpButton*)sender;
-//- (IBAction)chromaticadaptationChange:(NSPopUpButton*)sender;
-- (IBAction)whitepointChange:(NSControl*)sender;
+//- (IBAction)chromaticAdaptationChange:(NSPopUpButton*)sender;
+- (IBAction)whitePointChange:(NSControl*)sender;
 - (IBAction)rgbprimariesChange:(NSControl*)sender;
 - (IBAction)rgbresponseChange:(NSPopUpButton*)sender;
 - (IBAction)rgbgammaChange:(NSControl*)sender;

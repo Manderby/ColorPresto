@@ -50,7 +50,7 @@
   }else{
     if(color){
       CMLColorType colorType = color->getColorType();
-      const char* colorname = CMLgetColorTypeString(colorType);
+      const char* colorname = cmlGetColorTypeString(colorType);
       switch(colorType){
       case CML_COLOR_GRAY:
         title = [NSString stringWithFormat:@"%s %1.04f", colorname, (*color)[0]];
@@ -164,7 +164,7 @@
 //      CMLDefinitionRange defRange = colorspec->getDefinitionRange();
 //      CGContextBeginPath(context);
 //      if(defRange.stepSize == 0.f){defRange.stepSize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
-//      size_t samplecount = CMLgetIntervalCount(defRange.minSampleCoord, defRange.maxSampleCoord, defRange.stepSize);
+//      size_t samplecount = cmlGetIntervalCount(defRange.minSampleCoord, defRange.maxSampleCoord, defRange.stepSize);
 //      if(samplecount == 1){
 //        float curcoord = defRange.minSampleCoord;
 //        CGFloat x = cellFrame.origin.x + ((curcoord - defRange.minSampleCoord) / (defRange.maxSampleCoord - defRange.minSampleCoord)) * COLOR_VIEW_WIDTH + .5f;

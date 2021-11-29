@@ -146,7 +146,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   float scalefactor = 1.f;
   width = (CMLuint32)round([self bounds].size.width * scalefactor);
   height = (CMLuint32)round([self bounds].size.height * scalefactor);
-  CMLuint32 channelcount = CMLgetNumChannels(colorType);
+  CMLuint32 channelcount = cmlGetNumChannels(colorType);
   delete colordata;
   colordata = new float[width * height * channelcount];
 //  delete rgb8Bitdata;
@@ -184,7 +184,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 }
 
 - (void)drawRect:(NSRect)rect{
-  CMLuint32 channelcount = CMLgetNumChannels(colorType);
+  CMLuint32 channelcount = cmlGetNumChannels(colorType);
 //  if(channelcount == 1){
 //    int t = 1234;
 //  }
@@ -286,7 +286,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
     for(int32 istep = 0; istep <= intervals; istep++){
       float l = imin + (((imax - imin) * istep) / intervals);
       CMLVec3 curXYZ;
-      CMLgetSpectralXYZColor(cm, curXYZ, l);
+      cmlGetSpectralXYZColor(cm, curXYZ, l);
       if(curXYZ[1] > 0.f){
 
         CMLVec3 curRGB;
