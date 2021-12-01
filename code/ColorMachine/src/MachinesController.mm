@@ -6,8 +6,8 @@
 
 - (id)init{
   cm = cmlCreateColorMachine();
-//  CMLsetRadiometricComputation(cm, CML_TRUE);
-  CMLsetMachineForColorClasses(cm);
+//  cmlSetRadiometricComputation(cm, CML_TRUE);
+  cmlSetMachineForColorClasses(cm);
 
   sm = NULL;
   [self recomputeScreenMachines];
@@ -17,7 +17,7 @@
 
 
 - (void)recomputeScreenMachines{
-  if(sm){CMLreleaseColorMachine(sm);}
+  if(sm){cmlReleaseColorMachine(sm);}
 
   sm = cmlCreateColorMachine();
 
@@ -68,9 +68,9 @@
 }
 
 - (void)resetCurrentMachine{
-  CMLreleaseColorMachine(cm);
+  cmlReleaseColorMachine(cm);
   cm = cmlCreateColorMachine();
-  CMLsetMachineForColorClasses(cm);
+  cmlSetMachineForColorClasses(cm);
 }
 
 - (CMLColorMachine*)currentMachine{return cm;}

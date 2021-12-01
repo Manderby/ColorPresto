@@ -248,7 +248,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 //  CGContextDrawImage(context, NSRectToCGRect([self bounds]), cgimage);
 
   Byte* rgb8Bitdata = new Byte[width * height * 3];
-//  CMLsetIntegerMappingType(cm, CML_INTEGER_MAPPING_FLOOR);
+//  cmlSetIntegerMappingType(cm, CML_INTEGER_MAPPING_FLOOR);
   cmlRGBToData8(cm, rgb8Bitdata, normedrgbdata, width * height);
   CGContextRef context = (CGContextRef)[[NSGraphicsContext currentContext] graphicsPort];
   NSBitmapImageRep* imgrep = [[NSBitmapImageRep alloc]

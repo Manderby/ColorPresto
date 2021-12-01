@@ -781,13 +781,13 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     if(illobserverType == CML_OBSERVER_10DEG_CIE_1964){
       cmlGetWhitePointYxy(cm, illYxy10);
       illYxy10[0] = 1.f;
-      cmlConvertYxytoXYZ(illXYZ10, illYxy10, CML_NULL);
+      cmlConvertYxyToXYZ(illXYZ10, illYxy10, CML_NULL);
       cmlSet3(illXYZ2, 0.f, 1.f, 0.f);
       ill2available = false;
     }else{
       cmlGetWhitePointYxy(cm, illYxy2);
       illYxy2[0] = 1.f;
-      cmlConvertYxytoXYZ(illXYZ2, illYxy2, CML_NULL);
+      cmlConvertYxyToXYZ(illXYZ2, illYxy2, CML_NULL);
       cmlSet3(illXYZ10, 0.f, 1.f, 0.f);
       ill10available = false;
     }
@@ -804,27 +804,27 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   }else{
     cmlGetWhitePointYxy(cm, refYxy2);
     refYxy2[0] = 1.f;
-    cmlConvertYxytoXYZ(refXYZ2, refYxy2, CML_NULL);
+    cmlConvertYxyToXYZ(refXYZ2, refYxy2, CML_NULL);
     cmlSet3(refXYZ10, 0.f, 1.f, 0.f);
     ref10available = false;
   }
 
-  cmlConvertXYZtoYxy(illYxy10, illXYZ10, CML_NULL);
-  cmlConvertYxytoYupvp(illYupvp10, illYxy10, CML_NULL);
-  cmlConvertYupvptoYuv(illYuv10, illYupvp10);
+  cmlConvertXYZToYxy(illYxy10, illXYZ10, CML_NULL);
+  cmlConvertYxyToYupvp(illYupvp10, illYxy10, CML_NULL);
+  cmlConvertYupvpToYuv(illYuv10, illYupvp10);
   
-  cmlConvertXYZtoYxy(refYxy10, refXYZ10, CML_NULL);
-  cmlConvertYxytoYupvp(refYupvp10, refYxy10, CML_NULL);
-  cmlConvertYupvptoYuv(refYuv10, refYupvp10);
+  cmlConvertXYZToYxy(refYxy10, refXYZ10, CML_NULL);
+  cmlConvertYxyToYupvp(refYupvp10, refYxy10, CML_NULL);
+  cmlConvertYupvpToYuv(refYuv10, refYupvp10);
   
-  cmlConvertXYZtoYxy(illYxy2, illXYZ2, CML_NULL);
-  cmlConvertYxytoYupvp(illYupvp2, illYxy2, CML_NULL);
-  cmlConvertYupvptoYuv(illYuv2, illYupvp2);
+  cmlConvertXYZToYxy(illYxy2, illXYZ2, CML_NULL);
+  cmlConvertYxyToYupvp(illYupvp2, illYxy2, CML_NULL);
+  cmlConvertYupvpToYuv(illYuv2, illYupvp2);
   convertYuvtoYcd(illYcd2, illYuv2);
   
-  cmlConvertXYZtoYxy(refYxy2, refXYZ2, CML_NULL);
-  cmlConvertYxytoYupvp(refYupvp2, refYxy2, CML_NULL);
-  cmlConvertYupvptoYuv(refYuv2, refYupvp2);
+  cmlConvertXYZToYxy(refYxy2, refXYZ2, CML_NULL);
+  cmlConvertYxyToYupvp(refYupvp2, refYxy2, CML_NULL);
+  cmlConvertYupvpToYuv(refYuv2, refYupvp2);
   convertYuvtoYcd(refYcd2, refYuv2);
 
   if(ill10available){
@@ -950,15 +950,15 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
       cmlSet3(metamerrefXYZptr, cmlFilterFunction(metamerrefremission, observer2[0]), cmlFilterFunction(metamerrefremission, observer2[1]), cmlFilterFunction(metamerrefremission, observer2[2]));
       cmlDiv3(metamerrefXYZptr, refXYZunnorm2[1]);
       CMLVec3 metamerrefYxy;
-      cmlConvertXYZtoYxy(metamerrefYxy, metamerrefXYZptr, CML_NULL);
+      cmlConvertXYZToYxy(metamerrefYxy, metamerrefXYZptr, CML_NULL);
       CMLVec3 metamerrefYupvp;
-      cmlConvertYxytoYupvp(metamerrefYupvp, metamerrefYxy, CML_NULL);
+      cmlConvertYxyToYupvp(metamerrefYupvp, metamerrefYxy, CML_NULL);
       CMLVec3 metamerrefYuv;
       // ISO 3664 states in forumal D.14 the computation 6X/(X+15Y+3Z). I'm
       // pretty sure, they meant  6Y/(X+15Y+3Z) which is according to
       // CIE 1960 UCS. This also corresponds to the fact that UVW is based on
       // UCS. In CML, this is Yuv.
-      cmlConvertYupvptoYuv(metamerrefYuv, metamerrefYupvp);
+      cmlConvertYupvpToYuv(metamerrefYuv, metamerrefYupvp);
       convertYuvtoUVW(metamerrefUVW, metamerrefYuv, refYuv2);
       cmlReleaseFunction(metamerrefremission);
     }else{
@@ -972,11 +972,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
       cmlSet3(metamerillXYZptr, cmlFilterFunction(metamerillremission, observer2[0]), cmlFilterFunction(metamerillremission, observer2[1]), cmlFilterFunction(metamerillremission, observer2[2]));
       cmlDiv3(metamerillXYZptr, illXYZunnorm2[1]);
       CMLVec3 metamerillYxy;
-      cmlConvertXYZtoYxy(metamerillYxy, metamerillXYZptr, CML_NULL);
+      cmlConvertXYZToYxy(metamerillYxy, metamerillXYZptr, CML_NULL);
       CMLVec3 metamerillYupvp;
-      cmlConvertYxytoYupvp(metamerillYupvp, metamerillYxy, CML_NULL);
+      cmlConvertYxyToYupvp(metamerillYupvp, metamerillYxy, CML_NULL);
       CMLVec3 metamerillYuv;
-      cmlConvertYupvptoYuv(metamerillYuv, metamerillYupvp);
+      cmlConvertYupvpToYuv(metamerillYuv, metamerillYupvp);
       CMLVec3 metamerillYcd;
       convertYuvtoYcd(metamerillYcd, metamerillYuv);
       CMLVec3 metamerillaYuv;
@@ -1167,12 +1167,12 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
       CMLFunction* standardremission = cmlCreateFunctionMulFunction(standardfunction, ill);
       cmlSet3(standardXYZptr, cmlFilterFunction(standardremission, observer10[0]),  cmlFilterFunction(standardremission, observer10[1]),  cmlFilterFunction(standardremission, observer10[2]));
       cmlDiv3(standardXYZptr, illXYZunnorm10[1]);
-      cmlConvertXYZtoLab(standardLab, standardXYZptr, illXYZ10);
+      cmlConvertXYZToLab(standardLab, standardXYZptr, illXYZ10);
 
       CMLFunction* specimenremission = cmlCreateFunctionMulFunction(specimenfunction, ill);
       cmlSet3(specimenXYZptr, cmlFilterFunction(specimenremission, observer10[0]), cmlFilterFunction(specimenremission, observer10[1]), cmlFilterFunction(specimenremission, observer10[2]));
       cmlDiv3(specimenXYZptr, illXYZunnorm10[1]);
-      cmlConvertXYZtoLab(specimenLab, specimenXYZptr, illXYZ10);
+      cmlConvertXYZToLab(specimenLab, specimenXYZptr, illXYZ10);
       cmlReleaseFunction(standardremission);
       cmlReleaseFunction(specimenremission);
     }else{
@@ -1228,11 +1228,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float standardadaptedxyzdata[5 * 3];
 //  CMLByte standardrgb8Bitdata[5 * 3];
   float standardrgbfloatdata[5 * 3];
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[0]), &(standardXYZ[0]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[3]), &(standardXYZ[3]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[6]), &(standardXYZ[6]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[9]), &(standardXYZ[9]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(standardadaptedxyzdata[12]), &(standardXYZ[12]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[0]), &(standardXYZ[0]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[3]), &(standardXYZ[3]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[6]), &(standardXYZ[6]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[9]), &(standardXYZ[9]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[12]), &(standardXYZ[12]), adaptationmatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:standardrgbfloatdata
                                          fromArray:standardadaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1252,11 +1252,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float specimenaptedxyzdata[5 * 3];
 //  CMLByte specimenrgb8Bitdata[5 * 3];
   float specimenrgbfloatdata[5 * 3];
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[0]), &(specimenXYZ[0]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[3]), &(specimenXYZ[3]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[6]), &(specimenXYZ[6]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[9]), &(specimenXYZ[9]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(specimenaptedxyzdata[12]), &(specimenXYZ[12]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[0]), &(specimenXYZ[0]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[3]), &(specimenXYZ[3]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[6]), &(specimenXYZ[6]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[9]), &(specimenXYZ[9]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[12]), &(specimenXYZ[12]), adaptationmatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:specimenrgbfloatdata
                                          fromArray:specimenaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1362,12 +1362,12 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
       CMLFunction* uvmetamerXXXremission = cmlCreateFunctionMulFunction(betaT, ill);
       cmlSet3(UVstandardXYZptr, cmlFilterFunction(uvmetamerXXXremission, observer10[0]), cmlFilterFunction(uvmetamerXXXremission, observer10[1]), cmlFilterFunction(uvmetamerXXXremission, observer10[2]));
       cmlDiv3(UVstandardXYZptr, illXYZunnorm10[1]);
-      cmlConvertXYZtoLab(UVstandardLab, UVstandardXYZptr, illXYZ10);
+      cmlConvertXYZToLab(UVstandardLab, UVstandardXYZptr, illXYZ10);
 
       CMLFunction* UVmetamerremission = cmlCreateFunctionMulFunction(UVmetamerfunction, ill);
       cmlSet3(UVmetamerXYZptr, cmlFilterFunction(UVmetamerremission, observer10[0]), cmlFilterFunction(UVmetamerremission, observer10[1]), cmlFilterFunction(UVmetamerremission, observer10[2]));
       cmlDiv3(UVmetamerXYZptr, illXYZunnorm10[1]);
-      cmlConvertXYZtoLab(UVmetamerLab, UVmetamerXYZptr, illXYZ10);
+      cmlConvertXYZToLab(UVmetamerLab, UVmetamerXYZptr, illXYZ10);
       cmlReleaseFunction(betatemp);
       cmlReleaseFunction(betaL);
       cmlReleaseFunction(betaT);
@@ -1419,9 +1419,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float UVstandardadaptedxyzdata[3 * 3];
 //  CMLByte UVstandardrgb8Bitdata[3 * 3];
   float UVstandardrgbfloatdata[3 * 3];
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[0]), &(UVstandardXYZ[0]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[3]), &(UVstandardXYZ[3]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[6]), &(UVstandardXYZ[6]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[0]), &(UVstandardXYZ[0]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[3]), &(UVstandardXYZ[3]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[6]), &(UVstandardXYZ[6]), adaptationmatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:UVstandardrgbfloatdata
                                          fromArray:UVstandardadaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1441,9 +1441,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float UVmetameradaptedxyzdata[3 * 3];
 //  CMLByte UVmetamerrgb8Bitdata[3 * 3];
   float UVmetamerrgbfloatdata[3 * 3];
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[0]), &(UVmetamerXYZ[0]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[3]), &(UVmetamerXYZ[3]), adaptationmatrix);
-  cmlConvertXYZtoChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[6]), &(UVmetamerXYZ[6]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[0]), &(UVmetamerXYZ[0]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[3]), &(UVmetamerXYZ[3]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[6]), &(UVmetamerXYZ[6]), adaptationmatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:UVmetamerrgbfloatdata
                                          fromArray:UVmetameradaptedxyzdata
                                      withColorType:CML_COLOR_XYZ

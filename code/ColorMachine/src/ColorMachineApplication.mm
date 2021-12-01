@@ -186,7 +186,7 @@ size_t bordercount;
 - (IBAction)setCurrentColorAsWhitepoint:(id)sender{
   float yxybuf[3];
   [colorscontroller currentColor]->toYxyBuffer(yxybuf);
-  CMLsetWhitePointYxy([machinescontroller currentMachine], yxybuf);
+  cmlSetWhitePointYxy([machinescontroller currentMachine], yxybuf);
   [self updateMachine];
 }
 
@@ -195,7 +195,7 @@ size_t bordercount;
   CMLVec3 primaries[3];
   cmlGetRGBPrimariesYxy(cm, primaries);
   [colorscontroller currentColor]->toYxyBuffer(primaries[0]);
-  CMLsetRGBPrimariesYxy(cm, primaries);
+  cmlSetRGBPrimariesYxy(cm, primaries);
   [self updateMachine];
 }
 - (IBAction)setCurrentColorAsGreenPrimary:(id)sender{
@@ -203,7 +203,7 @@ size_t bordercount;
   CMLVec3 primaries[3];
   cmlGetRGBPrimariesYxy(cm, primaries);
   [colorscontroller currentColor]->toYxyBuffer(primaries[1]);
-  CMLsetRGBPrimariesYxy(cm, primaries);
+  cmlSetRGBPrimariesYxy(cm, primaries);
   [self updateMachine];
 }
 - (IBAction)setCurrentColorAsBluePrimary:(id)sender{
@@ -211,7 +211,7 @@ size_t bordercount;
   CMLVec3 primaries[3];
   cmlGetRGBPrimariesYxy(cm, primaries);
   [colorscontroller currentColor]->toYxyBuffer(primaries[2]);
-  CMLsetRGBPrimariesYxy(cm, primaries);
+  cmlSetRGBPrimariesYxy(cm, primaries);
   [self updateMachine];
 }
 
@@ -255,7 +255,7 @@ size_t bordercount;
   CMLMat33 amatrix;
   cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smwhitePointYxy, cmwhitePointYxy);
   for(size_t i=0; i<count; i++){
-    cmlConvertXYZtoChromaticAdaptedXYZ(&(aXYZbuffer[i*3]), &(XYZbuffer[i*3]), amatrix);
+    cmlConvertXYZToChromaticAdaptedXYZ(&(aXYZbuffer[i*3]), &(XYZbuffer[i*3]), amatrix);
   }
   cmlXYZToRGB(sm, texdata, aXYZbuffer, count);
   delete [] aXYZbuffer;
@@ -334,7 +334,7 @@ size_t bordercount;
   CMLVec3 aXYZbuffer;
   CMLMat33 amatrix;
   cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smwhitePointYxy, cmwhitePointYxy);
-  cmlConvertXYZtoChromaticAdaptedXYZ(aXYZbuffer, XYZbuffer, amatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(aXYZbuffer, XYZbuffer, amatrix);
   cmlXYZToRGB(sm, outdata, aXYZbuffer, 1);
 
   cmlClampRGB(outdata, 1);

@@ -498,7 +498,7 @@
 - (void)setCurrentColor:(const Color*)color{
 
   if(color->getColorType() == CML_COLOR_SPECTRUM_ILLUMINATION){
-    CMLsetIlluminationSpectrum([(ColorMachineApplication*)NSApp getCurrentMachine], ((const SpectralColor*)color)->getSpectrum());
+    cmlSetIlluminationSpectrum([(ColorMachineApplication*)NSApp getCurrentMachine], ((const SpectralColor*)color)->getSpectrum());
     [(ColorMachineApplication*)NSApp updateMachine];
     return;
   }
