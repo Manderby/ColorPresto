@@ -89,11 +89,11 @@
     [responseRGBselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetRGBResponsePresetString((CMLResponseCurvePreset)i)] atIndex:i+1];
   }
 
-  [labspaceselect removeAllItems];
+  [labSpaceselect removeAllItems];
   uint32 curindex = 0;
   for(uint32 i=0; i<CML_NUMBER_OF_LAB_SPACES; ++i){
     if(i == CML_LAB_CUSTOM_L){continue;}
-    [labspaceselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetLabSpaceTypeString((CMLLabColorSpaceType)i)] atIndex:curindex];
+    [labSpaceselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetLabSpaceTypeString((CMLLabColorSpaceType)i)] atIndex:curindex];
     curindex++;
   }
   [responseLselect removeAllItems];
@@ -267,7 +267,7 @@
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
-- (IBAction)labspaceChange:(NSPopUpButton*)sender {
+- (IBAction)labSpaceChange:(NSPopUpButton*)sender {
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   uint64 selectedindex = [sender indexOfSelectedItem];
   if(selectedindex >= CML_LAB_CUSTOM_L){selectedindex++;}
@@ -287,7 +287,7 @@
 //  [(ColorMachineApplication*)NSApp updateMachine];
 }
 
-- (IBAction)rgbspaceChange:(NSPopUpButton*)sender {
+- (IBAction)rgbSpaceChange:(NSPopUpButton*)sender {
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   cmlSetRGBColorSpace(cm, (CMLRGBColorSpace)[sender indexOfSelectedItem]);
   [(ColorMachineApplication*)NSApp updateMachine];
@@ -352,7 +352,7 @@
   [graycomputationselect      selectItemAtIndex:(int)cmlGetGrayComputationType(cm)];
   selecteditem = (int)cmlGetLabColorSpace(cm);
   if(selecteditem >= CML_LAB_CUSTOM_L){selecteditem--;}
-  [labspaceselect             selectItemAtIndex:selecteditem];
+  [labSpaceselect             selectItemAtIndex:selecteditem];
   [rgbcolorspaceselect        selectItemAtIndex:(int)cmlGetRGBColorSpace(cm)];
   
   [maskselect setEnabled:(showmask | showgrid)];

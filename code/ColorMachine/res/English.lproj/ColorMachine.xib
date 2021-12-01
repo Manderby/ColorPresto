@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19158" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19158"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -182,7 +182,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="73" y="81" width="1178" height="622"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="1178" height="622"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -607,7 +607,7 @@
                             <menu key="menu" title="OtherViews" id="1668"/>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="rgbspaceChange:" target="1885" id="2156"/>
+                            <action selector="rgbSpaceChange:" target="1885" id="2156"/>
                         </connections>
                     </popUpButton>
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3697">
@@ -752,7 +752,7 @@
                             <menu key="menu" title="OtherViews" id="1202"/>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="labspaceChange:" target="1885" id="2060"/>
+                            <action selector="labSpaceChange:" target="1885" id="2060"/>
                         </connections>
                     </popUpButton>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1199">
@@ -2127,7 +2127,7 @@
                 <outlet property="greenprimaryy" destination="1740" id="2147"/>
                 <outlet property="gridlinesstate" destination="1825" id="2191"/>
                 <outlet property="illuminationselect" destination="1776" id="2116"/>
-                <outlet property="labspaceselect" destination="1198" id="2051"/>
+                <outlet property="labSpaceselect" destination="1198" id="2051"/>
                 <outlet property="maskselect" destination="1822" id="2192"/>
                 <outlet property="maskstate" destination="1826" id="2193"/>
                 <outlet property="observerselect" destination="1398" id="2125"/>
@@ -2181,8 +2181,8 @@
         </customObject>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
-        <image name="NSRightFacingTriangleTemplate" width="9" height="12"/>
+        <image name="NSAddTemplate" width="15" height="13"/>
+        <image name="NSRemoveTemplate" width="15" height="4"/>
+        <image name="NSRightFacingTriangleTemplate" width="10" height="14"/>
     </resources>
 </document>

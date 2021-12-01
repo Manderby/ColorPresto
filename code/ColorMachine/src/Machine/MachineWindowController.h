@@ -15,7 +15,7 @@
   IBOutlet NSPopUpButton* illuminationselect;
   IBOutlet NSPopUpButton* chromaticAdaptationselect;
   IBOutlet NSPopUpButton* graycomputationselect;
-  IBOutlet NSPopUpButton* labspaceselect;
+  IBOutlet NSPopUpButton* labSpaceselect;
   IBOutlet NSPopUpButton* rgbcolorspaceselect;
   IBOutlet NSPopUpButton* responseRGBselect;
   IBOutlet NSPopUpButton* responseLselect;
@@ -78,10 +78,10 @@
 - (IBAction)rgblinScaleChange:(NSControl*)sender;
 - (IBAction)rgbsplitChange:(NSControl*)sender;
 - (IBAction)graycomputationChange:(NSPopUpButton*)sender;
-- (IBAction)labspaceChange:(NSPopUpButton*)sender;
+- (IBAction)labSpaceChange:(NSPopUpButton*)sender;
 - (IBAction)labresponseChange:(NSPopUpButton*)sender;
 - (IBAction)labgammaChange:(NSControl*)sender;
-- (IBAction)rgbspaceChange:(NSPopUpButton*)sender;
+- (IBAction)rgbSpaceChange:(NSPopUpButton*)sender;
 
 - (IBAction)valueChangeT:(NSControl*)sender;
 - (IBAction)valueChangeK:(NSControl*)sender;

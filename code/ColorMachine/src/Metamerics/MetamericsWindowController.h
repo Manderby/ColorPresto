@@ -15,7 +15,7 @@ typedef enum{
   NUMBER_OF_REFERENCE_ILLUMINATIONS
 } ReferenceIlluminationType;
 
-extern const char* referenceilluminationstrings[NUMBER_OF_REFERENCE_ILLUMINATIONS];
+extern const char* referenceIlluminationstrings[NUMBER_OF_REFERENCE_ILLUMINATIONS];
 
 
 @interface TwoColorView : NSView {
@@ -123,11 +123,11 @@ extern const char* referenceilluminationstrings[NUMBER_OF_REFERENCE_ILLUMINATION
   IBOutlet NSTextField *testfield2;
   IBOutlet NSTextField *testfield3;
 
-  IBOutlet NSPopUpButton *referenceilluminationselect;
-  ReferenceIlluminationType referenceilluminationType;
+  IBOutlet NSPopUpButton *referenceIlluminationselect;
+  ReferenceIlluminationType referenceIlluminationType;
 }
 - (void)awakeFromNib;
 - (void)update;
 - (void)showDialog;
-- (IBAction)referenceilluminationchange:(NSPopUpButton*)sender;
+- (IBAction)referenceIlluminationchange:(NSPopUpButton*)sender;
 @end
