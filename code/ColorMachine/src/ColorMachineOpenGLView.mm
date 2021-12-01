@@ -39,7 +39,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 		NSOpenGLPFADepthSize, 16,
     NSOpenGLPFAAllowOfflineRenderers, // lets OpenGL know this context is offline renderer aware
 		0 };
-	NSOpenGLPixelFormat *pixelformat = [[[NSOpenGLPixelFormat alloc] initWithAttributes:attr] autorelease];
+	NSOpenGLPixelFormat *pixelformat = NA_COCOA_AUTORELEASE([[NSOpenGLPixelFormat alloc] initWithAttributes:attr]);
   self = [super initWithFrame:frameRect pixelFormat:pixelformat];
 //  if([self respondsToSelector:@selector(setWantsBestResolutionOpenGLSurface:)]){
 //    #if defined __MAC_10_7 || defined __MAC_10_8
@@ -123,7 +123,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 //  delete [] rgb8Bitdata;
   delete [] colorbuffer;
   delete [] normedbuffer;
-  [super dealloc];
+  NA_COCOA_SUPER_DEALLOC();
 }
 
 - (void)initWithController:(ColorController*)newcontroller
@@ -243,7 +243,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 //    bytesPerRow:width*3*sizeof(float)
 //    bitsPerPixel:96];
 //  CGImage* cgimage = [imgrep CGImage];
-//  [imgrep release];
+//  NA_COCOA_RELEASE(imgrep);
 //
 //  CGContextDrawImage(context, NSRectToCGRect([self bounds]), cgimage);
 
@@ -264,7 +264,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
     bytesPerRow:width*3
     bitsPerPixel:24];
   CGImage* cgimage = [imgrep CGImage];
-  [imgrep release];
+  NA_COCOA_RELEASE(imgrep);
   
   CGContextDrawImage(context, NSRectToCGRect([self bounds]), cgimage);
   delete [] rgb8Bitdata;
@@ -355,7 +355,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 //    bytesPerRow:7*4
 //    bitsPerPixel:32];
 //  CGImage* cgdotimage = [dotimgrep CGImage];
-//  [dotimgrep release];
+//  NA_COCOA_RELEASE(dotimgrep);
 //  
 //  CGContextDrawImage(context, dotrect, cgdotimage);
 

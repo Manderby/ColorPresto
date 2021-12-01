@@ -60,7 +60,7 @@
     bytesPerRow:width*3
     bitsPerPixel:24];
   CGImage* cgimage = [imgrep CGImage];
-  [imgrep release];
+  NA_COCOA_RELEASE(imgrep);
   
   CGContextDrawImage(context, NSRectToCGRect([self bounds]), cgimage);
   delete [] rgb8Bitdata;
@@ -134,7 +134,7 @@
 //    parastyle, NSParagraphStyleAttributeName, nil];
 //  currentText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", (int)CML_DEFAULT_INTEGRATION_MIN] attributes: attributes1];
 //  [currentText drawInRect:[self bounds]];
-//  [currentText release];
+//  NA_COCOA_RELEASE(currentText);
 //
 //  [parastyle setAlignment:NSRightTextAlignment];
 //  NSDictionary *attributes2 = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -143,9 +143,9 @@
 //    parastyle, NSParagraphStyleAttributeName, nil];
 //  currentText = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"%d", (int)CML_DEFAULT_INTEGRATION_MAX] attributes: attributes2];
 //  [currentText drawInRect:[self bounds]];
-//  [currentText release];
+//  NA_COCOA_RELEASE(currentText);
 //  
-//  [parastyle release];
+//  NA_COCOA_RELEASE(parastyle);
 
 
   // Draw the illumination

@@ -1,6 +1,6 @@
 
 #import "AboutWindowController.h"
-
+#include <NABase.h>
 
 @implementation AboutWindowController
 
@@ -24,7 +24,7 @@
 
   [websitelink setAttributedStringValue: attrString];
 
-  [attrString release];
+  NA_COCOA_RELEASE(attrString);
 }
 
 - (void)showDialog{

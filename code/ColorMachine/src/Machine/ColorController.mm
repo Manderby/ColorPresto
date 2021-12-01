@@ -17,7 +17,7 @@
 
 - (void)dealloc{
   delete color;
-  [super dealloc];
+  NA_COCOA_SUPER_DEALLOC();
 }
 
 - (NSView*) colordisplay{return colordisplay;}
@@ -42,7 +42,7 @@
 
     [[NSColor whiteColor] setStroke];
 
-    NSShadow * shadow = [[[NSShadow alloc] init] autorelease];
+    NSShadow * shadow = NA_COCOA_AUTORELEASE([[NSShadow alloc] init]);
     [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.0f alpha:.45f]];
     [shadow setShadowBlurRadius:1.5f];
     [shadow set];

@@ -7,6 +7,7 @@
 #import "ColorsController.h"
 #import "GrayColorController.h"
 #import "MachineWindowController.h"
+#import "ScreenResolutionWindowController.h"
 
 #include <NADateTime.h>
 #include <NAApp/macOS/UI/NAUICocoaLegacy.h>
@@ -60,15 +61,15 @@ size_t bordercount;
 //  Color* newcolor = new SpectralColor(cmlCreateCIEDIlluminant(5678.f), false);
 //  Color* newcolor2 = new SpectralColor(cmlCreateFunctionMulScalar(cmlCreateCIEDIlluminant(7777.f), .01f), true);
 //  
-//  ColorItemColorGroup* cicg = [[[ColorItemColorGroup alloc] init] autorelease];
+//  ColorItemColorGroup* cicg = NA_COCOA_AUTORELEASE([[ColorItemColorGroup alloc] init]);
 //  [cicg setGroup:colorgroup];
-//  ColorItem* newitem = [[[ColorItem alloc] initWithCMLColor:newcolor title:nil] autorelease];
+//  ColorItem* newitem = NA_COCOA_AUTORELEASE([[ColorItem alloc] initWithCMLColor:newcolor title:nil]);
 //  [newitem setTitle:@"TestSpectrum"];
 //  [cicg setItem:newitem];
 //
-//  ColorItemColorGroup* cicg2 = [[[ColorItemColorGroup alloc] init] autorelease];
+//  ColorItemColorGroup* cicg2 = NA_COCOA_AUTORELEASE([[ColorItemColorGroup alloc] init]);
 //  [cicg2 setGroup:colorgroup];
-//  ColorItem* newitem2 = [[[ColorItem alloc] initWithCMLColor:newcolor2 title:nil] autorelease];
+//  ColorItem* newitem2 = NA_COCOA_AUTORELEASE([[ColorItem alloc] initWithCMLColor:newcolor2 title:nil]);
 //  [newitem2 setTitle:@"TestSpectrum"];
 //  [cicg2 setItem:newitem2];
 //

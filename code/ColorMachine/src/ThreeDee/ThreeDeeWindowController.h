@@ -164,7 +164,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   bool showaxis;
   float rotation;
   bool dispatchinprogress;
-  dispatch_semaphore_t semaphore;
+//  dispatch_semaphore_t semaphore;
   
   CMLColorType space3d;
   uint8 steps3d;
@@ -184,7 +184,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 - (void)showDialog;
 - (void)windowWillClose:(NSNotification *)notification;
 
-- (void)autodisplay;
+//- (void)autodisplay;
 
 - (void)getBackgroundRGB:(CMLVec3) returncolor;
 - (void)getAxisRGB:(CMLVec3) returncolor;

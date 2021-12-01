@@ -3,6 +3,18 @@
 #import "ColorsController.h"
 #import "ColorMachineApplication.h"
 #import "MachineWindowController.h"
+#import "GrayColorController.h"
+#import "XYZColorController.h"
+#import "YxyColorController.h"
+#import "YuvColorController.h"
+#import "LabColorController.h"
+#import "LuvColorController.h"
+#import "RGBColorController.h"
+#import "HSVColorController.h"
+#import "HSLColorController.h"
+#import "YCbCrColorController.h"
+#import "SpectralColorController.h"
+
 
 
 @implementation OutlineViewItem
@@ -20,7 +32,7 @@
 }
 
 - (id)copyWithZone:(NSZone *)zone{
-  return [self retain];
+  return NA_COCOA_RETAIN(self);
 }
 
 - (BOOL)isExpandable{return NO;}
@@ -111,7 +123,7 @@
 
 - (void)dealloc{
   delete color;
-  [super dealloc];
+  NA_COCOA_SUPER_DEALLOC();
 }
 
 - (BOOL)isExpandable{
@@ -193,7 +205,7 @@
     [NSColor blackColor], NSForegroundColorAttributeName, nil];
   NSAttributedString * currentText1 = [[NSAttributedString alloc] initWithString:title attributes: attributes];
   [currentText1 drawAtPoint:NSMakePoint(cellFrame.origin.x + COLOR_VIEW_WIDTH + START_X_OFFSET, cellFrame.origin.y)];
-  [currentText1 release];
+  NA_COCOA_RELEASE(currentText1);
 }
 
 - (BOOL)collapseAtClick{return NO;}
@@ -215,8 +227,8 @@
 @implementation ColorGroup
 
 - (void)dealloc{
-  [colors release];
-  [super dealloc];
+  NA_COCOA_RELEASE(colors);
+  NA_COCOA_SUPER_DEALLOC();
 }
 
 - (NSInteger)getNumChildren{
@@ -225,7 +237,7 @@
 
 - (void)addItem:(ColorItem*)item{
   [colors addObject:item];
-//  [item release];
+//  NA_COCOA_RELEASE(item release);
 }
 
 - (ColorItem*)getChildAtIndex:(NSInteger)index{
@@ -251,7 +263,7 @@
     [NSColor blackColor], NSForegroundColorAttributeName, nil];
   NSAttributedString * currentText1 = [[NSAttributedString alloc] initWithString:title attributes: attributes];
   [currentText1 drawAtPoint:NSMakePoint(cellFrame.origin.x + START_X_OFFSET, cellFrame.origin.y)];
-  [currentText1 release];
+  NA_COCOA_RELEASE(currentText1);
 
 }
 
@@ -265,14 +277,14 @@
 
 @implementation ColorItemColorGroup
 
-- (void)setItem:(ColorItem*)newitem{item = [newitem retain];}
-- (void)setGroup:(ColorGroup*)newgroup{group = [newgroup retain];}
+- (void)setItem:(ColorItem*)newitem{item = NA_COCOA_RETAIN(newitem);}
+- (void)setGroup:(ColorGroup*)newgroup{group = NA_COCOA_RETAIN(newgroup);}
 - (ColorItem*)getItem{return item;}
 - (ColorGroup*)getGroup{return group;}
 - (void)dealloc{
-  [item release];
-  [group release];
-  [super dealloc];
+  NA_COCOA_RELEASE(item);
+  NA_COCOA_RELEASE(group);
+  NA_COCOA_SUPER_DEALLOC();
 }
 
 @end
@@ -323,8 +335,8 @@
     drawrect.origin.y += drawrect.size.height;
     [currentText drawInRect:drawrect];
 //    [currentText drawinRect:NSMakePoint(cellFrame.origin.x + COLOR_VIEW_WIDTH + START_X_OFFSET, cellFrame.origin.y)];
-    [currentText release];
-    [parastyle release];
+    NA_COCOA_RELEASE(currentText);
+    NA_COCOA_RELEASE(parastyle);
   }
 }
 
@@ -372,14 +384,14 @@
   self = [super init];
   workcolorcontroller = nil;
   colorgroups = [[NSMutableArray alloc] init];
-//  [colorgroups addObject:[[[ColorGroup alloc] init] autorelease]];
+//  [colorgroups addObject:NA_COCOA_AUTORELEASE([[ColorGroup alloc] init] autorelease)];
   
   return self;
 }
 
 - (void)dealloc{
-  [colorgroups release];
-  [super dealloc];
+  NA_COCOA_RELEASE(colorgroups);
+  NA_COCOA_SUPER_DEALLOC();
 }
 
 - (const Color*)currentColor{

@@ -353,7 +353,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   
   if (!pixelformat) {NSLog(@"No OpenGL pixel format");}
 
-  self = [super initWithFrame:frameRect pixelFormat: [pixelformat autorelease]];
+  self = [super initWithFrame:frameRect pixelFormat: NA_COCOA_AUTORELEASE(pixelformat)];
 //  if([self respondsToSelector:@selector(setWantsBestResolutionOpenGLSurface:)]){
 //    #if defined __MAC_10_7 || defined __MAC_10_8
 //      [self setWantsBestResolutionOpenGLSurface:YES];
@@ -1285,13 +1285,13 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
     [coord3dselect insertItemWithTitle:[NSString stringWithUTF8String:coordsystemnames[(CMLColorType)i]] atIndex:i];
   }
   
-  semaphore = dispatch_semaphore_create(1);
+//  semaphore = dispatch_semaphore_create(1);
   [self update];
 }
 
 - (void)dealloc{
-  dispatch_release(semaphore);
-  [super dealloc];
+//  dispatch_release(semaphore);
+  NA_COCOA_SUPER_DEALLOC();
 }
 
 - (void) update{
@@ -1310,22 +1310,22 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
   [spectrumcheckbox setState:showspectrum?NSOnState:NSOffState];
   
   bool manualupdate = false;
-  bool startautoupdate = false;
-  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-  if(timeout){return;}
-  if(!dispatchinprogress){
-    if(rotation != 0.){
-      startautoupdate = true;
-      dispatchinprogress = true;
-    }else{
-      manualupdate = true;
-    }
-  }
-  dispatch_semaphore_signal(semaphore);
+//  bool startautoupdate = false;
+//  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//  if(timeout){return;}
+//  if(!dispatchinprogress){
+//    if(rotation != 0.){
+//      startautoupdate = true;
+//      dispatchinprogress = true;
+//    }else{
+//      manualupdate = true;
+//    }
+//  }
+//  dispatch_semaphore_signal(semaphore);
 
-  if(startautoupdate){
-    [self autodisplay];
-  }
+//  if(startautoupdate){
+//    [self autodisplay];
+//  }
   if(manualupdate){
     [colordisplay setNeedsDisplay:YES];
   }
@@ -1393,26 +1393,26 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
   return gridwhiteness;
 }
 
-- (void)autodisplay{  
-
-  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-  if(timeout){return;}
-
-  if(rotation != 0.f){
-    int64_t fps = 30;
-    dispatch_time_t nexttime = dispatch_time(DISPATCH_TIME_NOW, 1000000000 / fps);
-    dispatch_queue_t queue = dispatch_get_main_queue();
-    dispatch_after(nexttime, queue, ^{
-      [colordisplay rotateBy:rotation];
-      [colordisplay setNeedsDisplay:YES];
-      [self autodisplay];
-      });
-  }else{
-    dispatchinprogress = false;
-  }
-  
-  dispatch_semaphore_signal(semaphore);
-}
+//- (void)autodisplay{  
+//
+//  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//  if(timeout){return;}
+//
+//  if(rotation != 0.f){
+//    int64_t fps = 30;
+//    dispatch_time_t nexttime = dispatch_time(DISPATCH_TIME_NOW, 1000000000 / fps);
+//    dispatch_queue_t queue = dispatch_get_main_queue();
+//    dispatch_after(nexttime, queue, ^{
+//      [colordisplay rotateBy:rotation];
+//      [colordisplay setNeedsDisplay:YES];
+//      [self autodisplay];
+//      });
+//  }else{
+//    dispatchinprogress = false;
+//  }
+//  
+//  dispatch_semaphore_signal(semaphore);
+//}
 
 //- (IBAction)switchFullscreen:(NSButton*)sender{
 //  fullscreen = !fullscreen;
@@ -1485,19 +1485,19 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
 }
 
 - (IBAction)rotationChange:(NSSlider*)sender {
-  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-  if(timeout){return;}
-  rotation = -[sender floatValue] * .025f;
-  if((rotation > -.0025) && (rotation < .0025)){rotation = 0.f;}
-  dispatch_semaphore_signal(semaphore);
+//  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//  if(timeout){return;}
+//  rotation = -[sender floatValue] * .025f;
+//  if((rotation > -.0025) && (rotation < .0025)){rotation = 0.f;}
+//  dispatch_semaphore_signal(semaphore);
   [self update];
 }
 
 - (IBAction)stopRotation:(NSButton*)sender{
-  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-  if(timeout){return;}
-  rotation = 0.f;
-  dispatch_semaphore_signal(semaphore);
+//  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+//  if(timeout){return;}
+//  rotation = 0.f;
+//  dispatch_semaphore_signal(semaphore);
   [self update];
 }
 

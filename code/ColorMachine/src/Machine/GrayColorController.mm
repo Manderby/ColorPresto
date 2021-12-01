@@ -52,7 +52,7 @@
   
   currentText = [[NSAttributedString alloc] initWithString:@"Color" attributes: attributes];
   [currentText drawInRect:NSRectFromCGRect(colorrect)];
-  [currentText release];
+  NA_COCOA_RELEASE(currentText);
 
   colorrect.origin.x += colorrect.size.width;
 
@@ -63,10 +63,10 @@
   
   currentText = [[NSAttributedString alloc] initWithString:@"Gray" attributes: attributes];
   [currentText drawInRect:NSRectFromCGRect(colorrect)];
-  [currentText release];
+  NA_COCOA_RELEASE(currentText);
 
-  [shadow release];
-  [parastyle release];
+  NA_COCOA_RELEASE(shadow);
+  NA_COCOA_RELEASE(parastyle);
   
   CGColorSpaceRelease(colorspace);
 
