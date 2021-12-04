@@ -72,11 +72,11 @@
 //- (IBAction)chromaticAdaptationChange:(NSPopUpButton*)sender;
 - (IBAction)whitePointChange:(NSControl*)sender;
 - (IBAction)rgbprimariesChange:(NSControl*)sender;
-- (IBAction)rgbresponseChange:(NSPopUpButton*)sender;
-- (IBAction)rgbgammaChange:(NSControl*)sender;
-- (IBAction)rgboffsetChange:(NSControl*)sender;
-- (IBAction)rgblinScaleChange:(NSControl*)sender;
-- (IBAction)rgbsplitChange:(NSControl*)sender;
+- (IBAction)rgbResponseChange:(NSPopUpButton*)sender;
+- (IBAction)rgbGammaChange:(NSControl*)sender;
+- (IBAction)rgbOffsetChange:(NSControl*)sender;
+- (IBAction)rgbLinScaleChange:(NSControl*)sender;
+- (IBAction)rgbSplitChange:(NSControl*)sender;
 - (IBAction)graycomputationChange:(NSPopUpButton*)sender;
 - (IBAction)labSpaceChange:(NSPopUpButton*)sender;
 - (IBAction)labresponseChange:(NSPopUpButton*)sender;
