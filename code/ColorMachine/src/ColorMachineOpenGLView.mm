@@ -283,8 +283,8 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
     bool firstpointfound = false;
     CMLVec3 prevcoords;
-    for(int32 istep = 0; istep <= intervals; istep++){
-      float l = imin + (((imax - imin) * istep) / intervals);
+    for(int32 iStep = 0; iStep <= intervals; iStep++){
+      float l = imin + (((imax - imin) * iStep) / intervals);
       CMLVec3 curXYZ;
       cmlGetSpectralXYZColor(cm, curXYZ, l);
       if(curXYZ[1] > 0.f){

@@ -390,8 +390,8 @@ size_t bordercount;
     cmlGetFunctionDefinitionRange(spectrum, &defRange);
     // In case this is a continuous function, set the stepSize to the default.
     if(defRange.stepSize == 0.f){defRange.stepSize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
-    size_t samplecount = cmlGetSampleCount(defRange.minSampleCoord, defRange.maxSampleCoord, defRange.stepSize);
-    if(samplecount == 1){
+    size_t sampleCount = cmlGetSampleCount(defRange.minSampleCoord, defRange.maxSampleCoord, defRange.stepSize);
+    if(sampleCount == 1){
       float curcoord = defRange.minSampleCoord;
         CGFloat x = rect.origin.x + ((curcoord - CML_DEFAULT_INTEGRATION_MIN) / (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN)) * rect.size.width + .5f;
       CGFloat y1 = rect.origin.y + rect.size.height * (0 + VIEWOFFSET);
@@ -399,7 +399,7 @@ size_t bordercount;
       CGContextMoveToPoint(context, x, y1);
       CGContextAddLineToPoint(context, x, y2);
     }else{
-      for(size_t i=0; i<samplecount; i++){
+      for(size_t i=0; i<sampleCount; i++){
         float curcoord = defRange.minSampleCoord + i * defRange.stepSize;
         CGFloat x = rect.origin.x + ((curcoord - CML_DEFAULT_INTEGRATION_MIN) / (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN)) * rect.size.width + .5f;
         CGFloat y = rect.origin.y + rect.size.height * (cmlEval(spectrum, curcoord) * divisor * VIEWRANGE + VIEWOFFSET);

@@ -939,7 +939,16 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float avg8 = 0.f;
 
   for(int i=0; i<14; i++){
-    CMLFunction* metamerfunction = cmlCreateArrayFunction(metamerdata[i], false, 81, 380.f, 780.f, CML_INTERPOLATION_LINEAR, CML_EXTRAPOLATION_LINEAR_ZERO, CML_EXTRAPOLATION_LINEAR_ZERO);
+    CMLArrayFunctionInput input = {
+      metamerdata[i],
+      false,
+      { 81,
+        380.f,
+        780.f,
+        CML_INTERPOLATION_LINEAR,
+        CML_EXTRAPOLATION_LINEAR_ZERO,
+        CML_EXTRAPOLATION_LINEAR_ZERO}};
+    CMLFunction* metamerfunction = cmlCreateArrayFunction(input);
 
     float* metamerrefXYZptr = &(metamerrefXYZ[i * 3]);
     float* metamerillXYZptr = &(metamerillXYZ[i * 3]);
@@ -1154,8 +1163,26 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float avg5 = 0.f;
 
   for(int i=0; i<5; i++){
-    CMLFunction* standardfunction = cmlCreateArrayFunction(standarddata[i], false, 81, 380.f, 780.f, CML_INTERPOLATION_LINEAR, CML_EXTRAPOLATION_LINEAR_ZERO, CML_EXTRAPOLATION_LINEAR_ZERO);
-    CMLFunction* specimenfunction = cmlCreateArrayFunction(specimendata[i], false, 81, 380.f, 780.f, CML_INTERPOLATION_LINEAR, CML_EXTRAPOLATION_LINEAR_ZERO, CML_EXTRAPOLATION_LINEAR_ZERO);
+    CMLArrayFunctionInput inputStandard = {
+      standarddata[i],
+      false,
+      { 81,
+        380.f,
+        780.f,
+        CML_INTERPOLATION_LINEAR,
+        CML_EXTRAPOLATION_LINEAR_ZERO,
+        CML_EXTRAPOLATION_LINEAR_ZERO}};
+    CMLFunction* standardfunction = cmlCreateArrayFunction(inputStandard);
+    CMLArrayFunctionInput inputSpecimen = {
+      specimendata[i],
+      false,
+      { 81,
+        380.f,
+        780.f,
+        CML_INTERPOLATION_LINEAR,
+        CML_EXTRAPOLATION_LINEAR_ZERO,
+        CML_EXTRAPOLATION_LINEAR_ZERO}};
+    CMLFunction* specimenfunction = cmlCreateArrayFunction(inputSpecimen);
 
     float* standardXYZptr = &(standardXYZ[i * 3]);
     float* specimenXYZptr = &(specimenXYZ[i * 3]);
@@ -1293,7 +1320,16 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   // D.4.3 Ultraviolet range metameric index
   // /////////////////////
 
-  CMLFunction* fluorescentremissionfunction = cmlCreateArrayFunction(fluorescentremissiondata, false, 35, 400.f, 570.f, CML_INTERPOLATION_LINEAR, CML_EXTRAPOLATION_LINEAR_ZERO, CML_EXTRAPOLATION_LINEAR_ZERO);
+  CMLArrayFunctionInput inputFluorescent = {
+    fluorescentremissiondata,
+    false,
+    { 35,
+      400.f,
+      570.f,
+      CML_INTERPOLATION_LINEAR,
+      CML_EXTRAPOLATION_LINEAR_ZERO,
+      CML_EXTRAPOLATION_LINEAR_ZERO}};
+  CMLFunction* fluorescentremissionfunction = cmlCreateArrayFunction(inputFluorescent);
   const float* UVstandarddata[3] = {UVstandard1data, UVstandard2data, UVstandard3data};
   const float* UVexcitationdata[3] = {UVexcitation1data, UVexcitation2data, UVexcitation3data};
 
@@ -1332,9 +1368,36 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float avg3 = 0.f;
 
   for(int i=0; i<3; i++){
-    CMLFunction* UVstandardfunction = cmlCreateArrayFunction(UVstandarddata[i], false, 61, 400.f, 700.f, CML_INTERPOLATION_LINEAR, CML_EXTRAPOLATION_LINEAR_ZERO, CML_EXTRAPOLATION_LINEAR_ZERO);
-    CMLFunction* UVexcitationfunction = cmlCreateArrayFunction(UVexcitationdata[i], false, 33, 300.f, 460.f, CML_INTERPOLATION_LINEAR, CML_EXTRAPOLATION_LINEAR_ZERO, CML_EXTRAPOLATION_LINEAR_ZERO);
-    CMLFunction* UVmetamerfunction = cmlCreateArrayFunction(UVmetamerdata[i], false, 61, 400.f, 700.f, CML_INTERPOLATION_LINEAR, CML_EXTRAPOLATION_LINEAR_ZERO, CML_EXTRAPOLATION_LINEAR_ZERO);
+    CMLArrayFunctionInput inputUVStandard = {
+      UVstandarddata[i],
+      false,
+      { 61,
+        400.f,
+        700.f,
+        CML_INTERPOLATION_LINEAR,
+        CML_EXTRAPOLATION_LINEAR_ZERO,
+        CML_EXTRAPOLATION_LINEAR_ZERO}};
+    CMLFunction* UVstandardfunction = cmlCreateArrayFunction(inputUVStandard);
+    CMLArrayFunctionInput inputUVExcitation = {
+      UVexcitationdata[i],
+      false,
+      { 33,
+        300.f,
+        460.f,
+        CML_INTERPOLATION_LINEAR,
+        CML_EXTRAPOLATION_LINEAR_ZERO,
+        CML_EXTRAPOLATION_LINEAR_ZERO}};
+    CMLFunction* UVexcitationfunction = cmlCreateArrayFunction(inputUVExcitation);
+    CMLArrayFunctionInput inputUVMetamer = {
+      UVmetamerdata[i],
+      false,
+      { 61,
+        400.f,
+        700.f,
+        CML_INTERPOLATION_LINEAR,
+        CML_EXTRAPOLATION_LINEAR_ZERO,
+        CML_EXTRAPOLATION_LINEAR_ZERO}};
+    CMLFunction* UVmetamerfunction = cmlCreateArrayFunction(inputUVMetamer);
 
     float* UVstandardXYZptr = &(UVstandardXYZ[i * 3]);
     float* UVmetamerXYZptr = &(UVmetamerXYZ[i * 3]);
