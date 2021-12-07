@@ -41,18 +41,18 @@
 - (IBAction)valueChangeYCbCr:(NSControl*)sender {
   YCbCrColor& ycbcr = *(YCbCrColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldY){ycbcr[0] = value;
-  }else if(sender == textfieldCb){ycbcr[1] = value;
-  }else if(sender == textfieldCr){ycbcr[2] = value;}
+  if      (sender == textFieldY){ycbcr[0] = value;
+  }else if(sender == textFieldCb){ycbcr[1] = value;
+  }else if(sender == textFieldCr){ycbcr[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
 - (void) update{
   YCbCrColor& ycbcr = *(YCbCrColor*)[self color];
   ycbcr = [(ColorMachineApplication*)NSApp getCurrentColor]->toYCbCr();
-  [textfieldY setStringValue:[NSString stringWithFormat:@"%1.05f", ycbcr[0]]];
-  [textfieldCb setStringValue:[NSString stringWithFormat:@"%1.04f", ycbcr[1]]];
-  [textfieldCr setStringValue:[NSString stringWithFormat:@"%1.04f", ycbcr[2]]];
+  [textFieldY setStringValue:[NSString stringWithFormat:@"%1.05f", ycbcr[0]]];
+  [textFieldCb setStringValue:[NSString stringWithFormat:@"%1.04f", ycbcr[1]]];
+  [textFieldCr setStringValue:[NSString stringWithFormat:@"%1.04f", ycbcr[2]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderY setNeedsDisplay:YES];

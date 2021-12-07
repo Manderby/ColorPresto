@@ -62,7 +62,7 @@ extern const char* referenceIlluminationstrings[NUMBER_OF_REFERENCE_ILLUMINATION
   IBOutlet NSTextField *refYupvp2_vp;
   IBOutlet NSTextField *refYuv2_u;
   IBOutlet NSTextField *refYuv2_v;
-  IBOutlet NSTextField *chrErrortextfield;
+  IBOutlet NSTextField *chrErrortextField;
   
   IBOutlet NSTextField *deltaEavg8;
   IBOutlet NSTextField *deltaEmetamer1;

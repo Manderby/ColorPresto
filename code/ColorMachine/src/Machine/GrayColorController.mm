@@ -80,7 +80,7 @@
 @implementation GrayColorController
 
 - (void)awakeFromNib{
-  [textfieldGray setNextKeyView:textfieldGray];
+  [textFieldGray setNextKeyView:textFieldGray];
   [self color] = new GrayColor(.5f);
   [sliderGray initWithController:self
                     colorType:CML_COLOR_GRAY
@@ -100,7 +100,7 @@
 - (void)update{
   GrayColor& gray = *(GrayColor*)[self color];
   gray = [(ColorMachineApplication*)NSApp getCurrentColor]->toGray();
-  [textfieldGray setStringValue:[NSString stringWithFormat:@"%1.04f", gray[0]]];
+  [textFieldGray setStringValue:[NSString stringWithFormat:@"%1.04f", gray[0]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderGray setNeedsDisplay:YES];

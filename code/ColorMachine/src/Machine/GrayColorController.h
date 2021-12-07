@@ -15,7 +15,7 @@
 @interface GrayColorController : ColorController {
   IBOutlet ColorWell *sliderGray;
   IBOutlet NSTextField *labelGray;
-  IBOutlet InputTextField *textfieldGray;
+  IBOutlet InputTextField *textFieldGray;
 }
 - (void)awakeFromNib;
 - (IBAction)valueChangeGray:(NSControl*)sender;

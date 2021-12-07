@@ -8,62 +8,62 @@
 
 @interface MachineWindowController : NSWindowController <NSWindowDelegate> {
 
-  IBOutlet NSButton *maskstate;
-  IBOutlet NSButton *gridlinesstate;
+  IBOutlet NSButton *maskState;
+  IBOutlet NSButton *gridLinesState;
 
-  IBOutlet NSPopUpButton* observerselect;
-  IBOutlet NSPopUpButton* illuminationselect;
-  IBOutlet NSPopUpButton* chromaticAdaptationselect;
-  IBOutlet NSPopUpButton* graycomputationselect;
-  IBOutlet NSPopUpButton* labSpaceselect;
-  IBOutlet NSPopUpButton* rgbcolorspaceselect;
-  IBOutlet NSPopUpButton* responseRGBselect;
-  IBOutlet NSPopUpButton* responseLselect;
+  IBOutlet NSPopUpButton* observerSelect;
+  IBOutlet NSPopUpButton* illuminationSelect;
+  IBOutlet NSPopUpButton* chromaticAdaptationSelect;
+  IBOutlet NSPopUpButton* grayComputationSelect;
+  IBOutlet NSPopUpButton* labSpaceSelect;
+  IBOutlet NSPopUpButton* rgbColorSpaceSelect;
+  IBOutlet NSPopUpButton* responseRGBSelect;
+  IBOutlet NSPopUpButton* responseLSelect;
 //  IBOutlet NSPopUpButton* cmyktransformselect;
   IBOutlet NSPopUpButton* maskselect;
 
   IBOutlet NSSlider *sliderT;
   IBOutlet NSSlider *sliderK;
   IBOutlet NSSlider *sliderke;
-  IBOutlet NSSlider *slidergammaRGB;
-  IBOutlet NSSlider *slideroffsetRGB;
-  IBOutlet NSSlider *sliderlinScaleRGB;
-  IBOutlet NSSlider *slidersplitRGB;
-  IBOutlet NSSlider *slidergammaL;
-  IBOutlet GammaDisplay *gammadisplay;
+  IBOutlet NSSlider *sliderGammaRGB;
+  IBOutlet NSSlider *sliderOffsetRGB;
+  IBOutlet NSSlider *sliderLinScaleRGB;
+  IBOutlet NSSlider *sliderSplitRGB;
+  IBOutlet NSSlider *sliderGammaL;
+  IBOutlet GammaDisplay *gammaDisplay;
 
-  IBOutlet NSTextField *textfieldT;
+  IBOutlet NSTextField *textFieldT;
   IBOutlet NSTextField *textL;
   IBOutlet NSTextField *texta;
   IBOutlet NSTextField *textb;
   IBOutlet NSTextField *whitePointY;
   IBOutlet NSTextField *whitePointx;
   IBOutlet NSTextField *whitePointy;
-  IBOutlet NSTextField *textfieldK;
-  IBOutlet NSTextField *textfieldke;
-  IBOutlet NSTextField *redprimaryY;
-  IBOutlet NSTextField *redprimaryx;
-  IBOutlet NSTextField *redprimaryy;
-  IBOutlet NSTextField *greenprimaryY;
-  IBOutlet NSTextField *greenprimaryx;
-  IBOutlet NSTextField *greenprimaryy;
-  IBOutlet NSTextField *blueprimaryY;
-  IBOutlet NSTextField *blueprimaryx;
-  IBOutlet NSTextField *blueprimaryy;
-  IBOutlet NSTextField *textfieldgammaRGB;
-  IBOutlet NSTextField *textfieldoffsetRGB;
-  IBOutlet NSTextField *textfieldlinScaleRGB;
-  IBOutlet NSTextField *textfieldsplitRGB;
-  IBOutlet NSTextField *textfieldgammaL;
+  IBOutlet NSTextField *textFieldK;
+  IBOutlet NSTextField *textFieldke;
+  IBOutlet NSTextField *redPrimaryY;
+  IBOutlet NSTextField *redPrimaryx;
+  IBOutlet NSTextField *redPrimaryy;
+  IBOutlet NSTextField *greenPrimaryY;
+  IBOutlet NSTextField *greenPrimaryx;
+  IBOutlet NSTextField *greenPrimaryy;
+  IBOutlet NSTextField *bluePrimaryY;
+  IBOutlet NSTextField *bluePrimaryx;
+  IBOutlet NSTextField *bluePrimaryy;
+  IBOutlet NSTextField *textFieldGammaRGB;
+  IBOutlet NSTextField *textFieldOffsetRGB;
+  IBOutlet NSTextField *textFieldLinScaleRGB;
+  IBOutlet NSTextField *textFieldSplitRGB;
+  IBOutlet NSTextField *textFieldGammaL;
 
-  BOOL colorselectionisExpanded;
-  IBOutlet NSButton *collapseexpandColorSelectionButton;
+  BOOL colorSelectionIsExpanded;
+  IBOutlet NSButton *collapseExpandColorSelectionButton;
 
   
 }
 - (void)awakeFromNib;
 
-- (IBAction)maskstateChange:(NSButton*)sender;
+- (IBAction)maskStateChange:(NSButton*)sender;
 - (IBAction)maskChange:(NSPopUpButton*)sender;
 - (IBAction)gridlinesChange:(NSButton*)sender;
 

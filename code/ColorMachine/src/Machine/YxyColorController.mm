@@ -41,18 +41,18 @@
 - (IBAction)valueChangeYxy:(NSControl*)sender {
   YxyColor& yxy = *(YxyColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldY){yxy[0] = value;
-  }else if(sender == textfieldx){yxy[1] = value;
-  }else if(sender == textfieldy){yxy[2] = value;}
+  if      (sender == textFieldY){yxy[0] = value;
+  }else if(sender == textFieldx){yxy[1] = value;
+  }else if(sender == textFieldy){yxy[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
 - (void) update{
   YxyColor& yxy = *(YxyColor*)[self color];
   yxy = [(ColorMachineApplication*)NSApp getCurrentColor]->toYxy();
-  [textfieldY setStringValue:[NSString stringWithFormat:@"%1.05f", yxy[0]]];
-  [textfieldx setStringValue:[NSString stringWithFormat:@"%1.05f", yxy[1]]];
-  [textfieldy setStringValue:[NSString stringWithFormat:@"%1.05f", yxy[2]]];
+  [textFieldY setStringValue:[NSString stringWithFormat:@"%1.05f", yxy[0]]];
+  [textFieldx setStringValue:[NSString stringWithFormat:@"%1.05f", yxy[1]]];
+  [textFieldy setStringValue:[NSString stringWithFormat:@"%1.05f", yxy[2]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderY setNeedsDisplay:YES];

@@ -254,7 +254,7 @@ Version 1.1.9
 
 Build 1.1.8.1
 -------------
-- Integration-Step slider and textfield have been changed to only support some
+- Integration-Step slider and textField have been changed to only support some
   values
 - Integration of curves is done more computationally solid.
 
@@ -413,7 +413,7 @@ Version 1.0.3
 -------------
 - The limits of a colorspace can now separately be visualized with a mask and
   the grid.
-- The web color textfields can now be edited. The Hex only accepts 6 characters.
+- The web color textFields can now be edited. The Hex only accepts 6 characters.
   The Decimal accepts comma separated as well as space separated values.
 
 Build 1.0.2.7
@@ -435,7 +435,7 @@ Build 1.0.2.4
 - changed light spectrum view to fit more nicely in the frame. 0-entries are
   now visible as well as the max.
 - Added X, Y, Z spectra to the spectrum view
-- Added one more decimal digit to some textfields.
+- Added one more decimal digit to some textFields.
 
 Build 1.0.2.3
 -------------
@@ -473,8 +473,8 @@ Version 1.0.2
 
 Version 1.0.1
 -------------
-- All textfields are now formatted using a manual implementation.
-- Grid view has been implemented. Any Colorspace can be viewed as a grid within
+- All textFields are now formatted using a manual implementation.
+- Grid view has been implemented. Any ColorSpace can be viewed as a grid within
   any other colorspace. There is a new popup-selector at the top of the window.
 - The grid can be viewed with 2 or all 3 axis. Standard is 2.
 - Out-of-RGB-gamut has been discarded. grid view is much better.

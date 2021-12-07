@@ -13,9 +13,9 @@
   IBOutlet NSTextField *labelH;
   IBOutlet NSTextField *labelS;
   IBOutlet NSTextField *labelV;
-  IBOutlet InputTextField *textfieldH;
-  IBOutlet InputTextField *textfieldS;
-  IBOutlet InputTextField *textfieldV;
+  IBOutlet InputTextField *textFieldH;
+  IBOutlet InputTextField *textFieldS;
+  IBOutlet InputTextField *textFieldV;
 }
 - (void)awakeFromNib;
 - (IBAction)valueChangeHSV:(NSControl*)sender;

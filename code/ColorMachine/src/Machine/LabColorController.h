@@ -16,11 +16,11 @@
   IBOutlet NSTextField *labelb;
   IBOutlet NSTextField *labelc;
   IBOutlet NSTextField *labelh;
-  IBOutlet InputTextField *textfieldL;
-  IBOutlet InputTextField *textfielda;
-  IBOutlet InputTextField *textfieldb;
-  IBOutlet InputTextField *textfieldc;
-  IBOutlet InputTextField *textfieldh;
+  IBOutlet InputTextField *textFieldL;
+  IBOutlet InputTextField *textFielda;
+  IBOutlet InputTextField *textFieldb;
+  IBOutlet InputTextField *textFieldc;
+  IBOutlet InputTextField *textFieldh;
 }
 - (void)awakeFromNib;
 - (IBAction)valueChangeLab:(NSControl*)sender;

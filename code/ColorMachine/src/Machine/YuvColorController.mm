@@ -55,9 +55,9 @@
 - (IBAction)valueChangeYupvp:(NSControl*)sender {
   YupvpColor& yupvp = *(YupvpColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldY){yupvp[0] = value;
-  }else if(sender == textfieldu){yupvp[1] = value;
-  }else if(sender == textfieldv){yupvp[2] = value;}
+  if      (sender == textFieldY){yupvp[0] = value;
+  }else if(sender == textFieldu){yupvp[1] = value;
+  }else if(sender == textFieldv){yupvp[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
@@ -65,8 +65,8 @@
   YupvpColor& yupvp = *(YupvpColor*)[self color];
   YuvColor yuv(yupvp);
   float value = [sender floatValue];
-  if(sender == textfieldu){yuv[1] = value;
-  }else if(sender == textfieldv){yuv[2] = value;}
+  if(sender == textFieldu){yuv[1] = value;
+  }else if(sender == textFieldv){yuv[2] = value;}
   yupvp = yuv.toYupvp();
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
@@ -75,11 +75,11 @@
   YupvpColor& yupvp = *(YupvpColor*)[self color];
   yupvp = [(ColorMachineApplication*)NSApp getCurrentColor]->toYupvp();
   YuvColor yuv(yupvp);
-  [textfieldY setStringValue:[NSString stringWithFormat:@"%1.05f", yupvp[0]]];
-  [textfieldup setStringValue:[NSString stringWithFormat:@"%1.05f", yupvp[1]]];
-  [textfieldvp setStringValue:[NSString stringWithFormat:@"%1.05f", yupvp[2]]];
-  [textfieldu setStringValue:[NSString stringWithFormat:@"%1.05f", yuv[1]]];
-  [textfieldv setStringValue:[NSString stringWithFormat:@"%1.05f", yuv[2]]];
+  [textFieldY setStringValue:[NSString stringWithFormat:@"%1.05f", yupvp[0]]];
+  [textFieldup setStringValue:[NSString stringWithFormat:@"%1.05f", yupvp[1]]];
+  [textFieldvp setStringValue:[NSString stringWithFormat:@"%1.05f", yupvp[2]]];
+  [textFieldu setStringValue:[NSString stringWithFormat:@"%1.05f", yuv[1]]];
+  [textFieldv setStringValue:[NSString stringWithFormat:@"%1.05f", yuv[2]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderY setNeedsDisplay:YES];

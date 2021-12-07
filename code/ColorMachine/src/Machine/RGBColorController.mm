@@ -95,9 +95,9 @@
 - (IBAction)valueChangeRGB:(NSControl*)sender {
   RGBColor& rgb = *(RGBColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldR){rgb[0] = value;
-  }else if(sender == textfieldG){rgb[1] = value;
-  }else if(sender == textfieldB){rgb[2] = value;}
+  if      (sender == textFieldR){rgb[0] = value;
+  }else if(sender == textFieldG){rgb[1] = value;
+  }else if(sender == textFieldB){rgb[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
@@ -135,15 +135,15 @@
 - (void) update{
   RGBColor& rgb = *(RGBColor*)[self color];
   rgb = [(ColorMachineApplication*)NSApp getCurrentColor]->toRGB();
-  [textfieldR setStringValue:[NSString stringWithFormat:@"%1.05f", rgb[0]]];
-  [textfieldG setStringValue:[NSString stringWithFormat:@"%1.05f", rgb[1]]];
-  [textfieldB setStringValue:[NSString stringWithFormat:@"%1.05f", rgb[2]]];
+  [textFieldR setStringValue:[NSString stringWithFormat:@"%1.05f", rgb[0]]];
+  [textFieldG setStringValue:[NSString stringWithFormat:@"%1.05f", rgb[1]]];
+  [textFieldB setStringValue:[NSString stringWithFormat:@"%1.05f", rgb[2]]];
   RGBColor clamped = rgb;
   clamped.clamp();
   Byte rgbbuf[3];
   clamped.to8BitBuffer(rgbbuf);
-  [textfieldweb setStringValue:[NSString stringWithFormat:@"%02x%02x%02x", (int)rgbbuf[0], (int)rgbbuf[1], (int)rgbbuf[2]]];
-  [textfieldwebrgb setStringValue:[NSString stringWithFormat:@"%d, %d, %d", (int)rgbbuf[0], (int)rgbbuf[1], (int)rgbbuf[2]]];
+  [textFieldweb setStringValue:[NSString stringWithFormat:@"%02x%02x%02x", (int)rgbbuf[0], (int)rgbbuf[1], (int)rgbbuf[2]]];
+  [textFieldwebrgb setStringValue:[NSString stringWithFormat:@"%d, %d, %d", (int)rgbbuf[0], (int)rgbbuf[1], (int)rgbbuf[2]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderR setNeedsDisplay:YES];

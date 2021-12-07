@@ -20,7 +20,7 @@
   BOOL active;
   Color* color;
   IBOutlet NSView *colordisplay;
-  IBOutlet InputTextField* firsttextfield;
+  IBOutlet InputTextField* firsttextField;
 }
 - (id)init;
 - (void)dealloc;

@@ -17,11 +17,11 @@
   IBOutlet NSTextField *labelvp;
   IBOutlet NSTextField *labelu;
   IBOutlet NSTextField *labelv;
-  IBOutlet InputTextField *textfieldY;
-  IBOutlet InputTextField *textfieldup;
-  IBOutlet InputTextField *textfieldvp;
-  IBOutlet InputTextField *textfieldu;
-  IBOutlet InputTextField *textfieldv;
+  IBOutlet InputTextField *textFieldY;
+  IBOutlet InputTextField *textFieldup;
+  IBOutlet InputTextField *textFieldvp;
+  IBOutlet InputTextField *textFieldu;
+  IBOutlet InputTextField *textFieldv;
 }
 - (void)awakeFromNib;
 - (IBAction)valueChangeYupvp:(NSControl*)sender;

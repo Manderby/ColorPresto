@@ -12,9 +12,9 @@
   IBOutlet NSTextField *labelX;
   IBOutlet NSTextField *labelY;
   IBOutlet NSTextField *labelZ;
-  IBOutlet InputTextField *textfieldX;
-  IBOutlet InputTextField *textfieldY;
-  IBOutlet InputTextField *textfieldZ;
+  IBOutlet InputTextField *textFieldX;
+  IBOutlet InputTextField *textFieldY;
+  IBOutlet InputTextField *textFieldZ;
 }
 - (void)awakeFromNib;
 - (IBAction)valueChangeXYZ:(NSControl*)sender;

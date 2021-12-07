@@ -65,7 +65,7 @@
 
 - (void)mouseDown:(NSEvent *)theEvent{
   [(ColorMachineApplication*)NSApp setWorkingColorController:self];
-  [[self window] makeFirstResponder:firsttextfield];
+  [[self window] makeFirstResponder:firsttextField];
 }
 
 @end

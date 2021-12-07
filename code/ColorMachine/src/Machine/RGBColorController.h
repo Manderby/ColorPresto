@@ -17,11 +17,11 @@
   IBOutlet NSTextField *labelG;
   IBOutlet NSTextField *labelB;
   IBOutlet NSTextField *labelHash;
-  IBOutlet InputTextField *textfieldR;
-  IBOutlet InputTextField *textfieldG;
-  IBOutlet InputTextField *textfieldB;
-  IBOutlet InputTextField *textfieldweb;
-  IBOutlet InputTextField *textfieldwebrgb;
+  IBOutlet InputTextField *textFieldR;
+  IBOutlet InputTextField *textFieldG;
+  IBOutlet InputTextField *textFieldB;
+  IBOutlet InputTextField *textFieldweb;
+  IBOutlet InputTextField *textFieldwebrgb;
 }
 - (void)awakeFromNib;
 - (IBAction)valueChangeRGB:(NSControl*)sender;

@@ -40,18 +40,18 @@
 - (IBAction)valueChangeLuv:(NSControl*)sender {
   LuvColor& luv = *(LuvColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldL){luv[0] = value;
-  }else if(sender == textfieldu){luv[1] = value;
-  }else if(sender == textfieldv){luv[2] = value;}
+  if      (sender == textFieldL){luv[0] = value;
+  }else if(sender == textFieldu){luv[1] = value;
+  }else if(sender == textFieldv){luv[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
 - (void) update{
   LuvColor& luv = *(LuvColor*)[self color];
   luv = [(ColorMachineApplication*)NSApp getCurrentColor]->toLuv();
-  [textfieldL setStringValue:[NSString stringWithFormat:@"%3.02f", luv[0]]];
-  [textfieldu setStringValue:[NSString stringWithFormat:@"%3.02f", luv[1]]];
-  [textfieldv setStringValue:[NSString stringWithFormat:@"%3.02f", luv[2]]];
+  [textFieldL setStringValue:[NSString stringWithFormat:@"%3.02f", luv[0]]];
+  [textFieldu setStringValue:[NSString stringWithFormat:@"%3.02f", luv[1]]];
+  [textFieldv setStringValue:[NSString stringWithFormat:@"%3.02f", luv[2]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderL setNeedsDisplay:YES];

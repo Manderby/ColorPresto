@@ -918,9 +918,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     cmlCpy3(chrerrordistance, refYupvp10);
     cmlSub3(chrerrordistance, illYupvp10);
     float chrerror = cmlLength2(&(chrerrordistance[1]));
-    [chrErrortextfield setStringValue:[NSString stringWithFormat:@"%1.05f", chrerror]];
+    [chrErrortextField setStringValue:[NSString stringWithFormat:@"%1.05f", chrerror]];
   }else{
-    [chrErrortextfield setStringValue:[NSString stringWithFormat:@""]];
+    [chrErrortextField setStringValue:[NSString stringWithFormat:@""]];
   }
 
 

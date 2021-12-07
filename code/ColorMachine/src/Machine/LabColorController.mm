@@ -55,9 +55,9 @@
 - (IBAction)valueChangeLab:(NSControl*)sender {
   LabColor& lab = *(LabColor*)[self color];
   float value = [sender floatValue];
-  if      (sender == textfieldL){lab[0] = value;
-  }else if(sender == textfielda){lab[1] = value;
-  }else if(sender == textfieldb){lab[2] = value;}
+  if      (sender == textFieldL){lab[0] = value;
+  }else if(sender == textFielda){lab[1] = value;
+  }else if(sender == textFieldb){lab[2] = value;}
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 
@@ -65,8 +65,8 @@
   LabColor& lab = *(LabColor*)[self color];
   LchColor lch(lab);
   float value = [sender floatValue];
-  if      (sender == textfieldc){lch[1] = value;
-  }else if(sender == textfieldh){lch[2] = value;}
+  if      (sender == textFieldc){lch[1] = value;
+  }else if(sender == textFieldh){lch[2] = value;}
   lab = lch.toLab();
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
@@ -75,11 +75,11 @@
   LabColor& lab = *(LabColor*)[self color];
   lab = [(ColorMachineApplication*)NSApp getCurrentColor]->toLab();
   LchColor lch(lab);
-  [textfieldL setStringValue:[NSString stringWithFormat:@"%3.02f", lab[0]]];
-  [textfielda setStringValue:[NSString stringWithFormat:@"%3.02f", lab[1]]];
-  [textfieldb setStringValue:[NSString stringWithFormat:@"%3.02f", lab[2]]];
-  [textfieldc setStringValue:[NSString stringWithFormat:@"%3.02f", lch[1]]];
-  [textfieldh setStringValue:[NSString stringWithFormat:@"%3.02f", lch[2]]];
+  [textFieldL setStringValue:[NSString stringWithFormat:@"%3.02f", lab[0]]];
+  [textFielda setStringValue:[NSString stringWithFormat:@"%3.02f", lab[1]]];
+  [textFieldb setStringValue:[NSString stringWithFormat:@"%3.02f", lab[2]]];
+  [textFieldc setStringValue:[NSString stringWithFormat:@"%3.02f", lch[1]]];
+  [textFieldh setStringValue:[NSString stringWithFormat:@"%3.02f", lch[2]]];
 //  [self setNeedsDisplay:YES];
   [colordisplay setNeedsDisplay:YES];
   [sliderL setNeedsDisplay:YES];

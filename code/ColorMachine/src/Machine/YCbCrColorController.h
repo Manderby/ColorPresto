@@ -12,9 +12,9 @@
   IBOutlet NSTextField *labelY;
   IBOutlet NSTextField *labelCb;
   IBOutlet NSTextField *labelCr;
-  IBOutlet InputTextField *textfieldY;
-  IBOutlet InputTextField *textfieldCb;
-  IBOutlet InputTextField *textfieldCr;
+  IBOutlet InputTextField *textFieldY;
+  IBOutlet InputTextField *textFieldCb;
+  IBOutlet InputTextField *textFieldCr;
 }
 - (void)awakeFromNib;
 - (IBAction)valueChangeYCbCr:(NSControl*)sender;
