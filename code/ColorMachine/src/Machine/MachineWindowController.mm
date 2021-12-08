@@ -491,28 +491,43 @@
   [sliderSplitRGB       setEnabled:false];
 
   const CMLResponseCurve* rResponse = cmlGetResponseR(cm);
-  const CMLFunction* rFunction = cmlGetResponseCurveInvFunc(rResponse);
+  const CMLFunction* rFunction = cmlGetResponseCurveFunc(rResponse);
   switch(responseTypes[colorIndex]){
   case CML_RESPONSE_LINEAR:
     [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.]];
-    break;
-  case CML_RESPONSE_SQRT:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.]];
-    break;
-  case CML_RESPONSE_GAMMA_ADOBE_98:
+    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.]];
     break;
   case CML_RESPONSE_GAMMA_1_8:
     [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.8]];
+    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.8]];
     break;
   case CML_RESPONSE_GAMMA_1_9:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.2]];
+    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.9]];
+    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.9]];
+    break;
+  case CML_RESPONSE_GAMMA_2_0:
+    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.]];
+    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.]];
+    break;
+  case CML_RESPONSE_GAMMA_ADOBE_98:
+    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.f + 51.f / 256.f]];
+    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.f + 51.f / 256.f]];
     break;
   case CML_RESPONSE_GAMMA_2_2:
     [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.2]];
+    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.2]];
     break;
   case CML_RESPONSE_GAMMA_LINEAR_REC_BT_10BIT:
+    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.f / 0.45f]];
+    [textFieldOffsetRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 0.099f]];
+    [textFieldLinScaleRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 4.5f]];
+    [textFieldSplitRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 0.018f]];
     break;
   case CML_RESPONSE_GAMMA_LINEAR_REC_BT_12BIT:
+    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.f / 0.45f]];
+    [textFieldOffsetRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 0.0993f]];
+    [textFieldLinScaleRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 4.5f]];
+    [textFieldSplitRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 0.0181f]];
     break;
   case CML_RESPONSE_SRGB:
     break;

@@ -377,7 +377,7 @@
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5130">
                         <rect key="frame" x="235" y="356" width="46" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" minValue="1" maxValue="20" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="5131">
+                        <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" minValue="1" maxValue="5" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="5131">
                             <font key="font" metaFont="smallSystem"/>
                         </sliderCell>
                         <connections>
@@ -626,12 +626,12 @@
                     <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DsD-Wv-yc6">
                         <rect key="frame" x="116" y="377" width="75" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <popUpButtonCell key="cell" type="push" title="R+G+B" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" inset="2" selectedItem="bgC-1z-QVi" id="z3s-hS-GcB">
+                        <popUpButtonCell key="cell" type="push" title="R+G+B" bezelStyle="rounded" alignment="left" controlSize="small" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" inset="2" selectedItem="bgC-1z-QVi" id="z3s-hS-GcB">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="smallSystem"/>
                             <menu key="menu" title="OtherViews" id="Xnc-a4-jcH">
                                 <items>
-                                    <menuItem title="R+G+B" id="bgC-1z-QVi">
+                                    <menuItem title="R+G+B" state="on" id="bgC-1z-QVi">
                                         <modifierMask key="keyEquivalentModifierMask"/>
                                     </menuItem>
                                     <menuItem title="R" id="CVM-VW-qk1">
