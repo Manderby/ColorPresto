@@ -476,58 +476,44 @@
   [greenPrimaryy setEnabled:customRGB];
   [bluePrimaryx  setEnabled:customRGB];
   [bluePrimaryy  setEnabled:customRGB];
-
-  [textFieldGammaRGB    setEnabled:false];
-  [textFieldOffsetRGB   setEnabled:false];
-  [textFieldLinScaleRGB setEnabled:false];
-  [textFieldSplitRGB    setEnabled:false];
-  [textFieldGammaRGB    setStringValue:@""];
-  [textFieldOffsetRGB   setStringValue:@""];
-  [textFieldLinScaleRGB setStringValue:@""];
-  [textFieldSplitRGB    setStringValue:@""];
-  [sliderGammaRGB       setEnabled:false];
-  [sliderOffsetRGB      setEnabled:false];
-  [sliderLinScaleRGB    setEnabled:false];
-  [sliderSplitRGB       setEnabled:false];
+  
+  float gamma = -1.;
+  float offset = -1.;
+  float linScale = -1.;
+  float split = -1.;
 
   const CMLResponseCurve* rResponse = cmlGetResponseR(cm);
   const CMLFunction* rFunction = cmlGetResponseCurveFunc(rResponse);
   switch(responseTypes[colorIndex]){
   case CML_RESPONSE_LINEAR:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.]];
-    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.]];
+    gamma = 1.0;
     break;
   case CML_RESPONSE_GAMMA_1_8:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.8]];
-    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.8]];
+    gamma = 1.8;
     break;
   case CML_RESPONSE_GAMMA_1_9:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.9]];
-    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.9]];
+    gamma = 1.9;
     break;
   case CML_RESPONSE_GAMMA_2_0:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.]];
-    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.]];
+    gamma = 2.0;
     break;
   case CML_RESPONSE_GAMMA_ADOBE_98:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.f + 51.f / 256.f]];
-    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.f + 51.f / 256.f]];
+    gamma = 2.f + 51.f / 256.f;
     break;
   case CML_RESPONSE_GAMMA_2_2:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.2]];
-    [sliderGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 2.2]];
+    gamma = 2.2;
     break;
   case CML_RESPONSE_GAMMA_LINEAR_REC_BT_10BIT:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.f / 0.45f]];
-    [textFieldOffsetRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 0.099f]];
-    [textFieldLinScaleRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 4.5f]];
-    [textFieldSplitRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 0.018f]];
+    gamma = 1.f / 0.45f;
+    offset = 0.099f;
+    linScale = 4.5f;
+    split = 0.018f;
     break;
   case CML_RESPONSE_GAMMA_LINEAR_REC_BT_12BIT:
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 1.f / 0.45f]];
-    [textFieldOffsetRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 0.0993f]];
-    [textFieldLinScaleRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 4.5f]];
-    [textFieldSplitRGB setStringValue:[NSString stringWithFormat:@"%1.05f", 0.0181f]];
+    gamma = 1.f / 0.45f;
+    offset = 0.0993f;
+    linScale = 4.5f;
+    split = 0.0181f;
     break;
   case CML_RESPONSE_SRGB:
     break;
@@ -536,29 +522,37 @@
   case CML_RESPONSE_LSTAR_STANDARD:
     break;
   case CML_RESPONSE_CUSTOM_GAMMA: {
-    const float* gamma = (const float*)cmlGetFunctionInput(rFunction);
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", (double)*gamma]];
-    [textFieldGammaRGB setEnabled:true];
-    [sliderGammaRGB setEnabled:true];
+    gamma = *(const float*)cmlGetFunctionInput(rFunction);
     break; }
   case CML_RESPONSE_CUSTOM_GAMMA_LINEAR: {
     const GammaLinearInputParameters* inputParams = (const GammaLinearInputParameters*)cmlGetFunctionInput(rFunction);
-    [textFieldGammaRGB setStringValue:[NSString stringWithFormat:@"%1.05f", (double)inputParams->gamma]];
-    [textFieldGammaRGB setEnabled:true];
-    [sliderGammaRGB setEnabled:true];
-    [textFieldOffsetRGB setStringValue:[NSString stringWithFormat:@"%1.05f", (double)inputParams->offset]];
-    [textFieldOffsetRGB setEnabled:true];
-    [sliderOffsetRGB setEnabled:true];
-    [textFieldLinScaleRGB setStringValue:[NSString stringWithFormat:@"%1.05f", (double)inputParams->linScale]];
-    [textFieldLinScaleRGB setEnabled:true];
-    [sliderLinScaleRGB setEnabled:true];
-    [textFieldSplitRGB setStringValue:[NSString stringWithFormat:@"%1.05f", (double)inputParams->split]];
-    [textFieldSplitRGB setEnabled:true];
-    [sliderSplitRGB setEnabled:true];
+    gamma = inputParams->gamma;
+    offset = inputParams->offset;
+    linScale = inputParams->linScale;
+    split = inputParams->split;
     break; }
   default:
     break;
   }
+
+  [textFieldGammaRGB    setStringValue:gamma > -1.f ?    [NSString stringWithFormat:@"%1.05f", (double)gamma] :    @""];
+  [textFieldOffsetRGB   setStringValue:offset > -1.f ?   [NSString stringWithFormat:@"%1.05f", (double)offset] :   @""];
+  [textFieldLinScaleRGB setStringValue:linScale > -1.f ? [NSString stringWithFormat:@"%1.05f", (double)linScale] : @""];
+  [textFieldSplitRGB    setStringValue:split > -1.f ?    [NSString stringWithFormat:@"%1.05f", (double)split] :    @""];
+  [sliderGammaRGB       setFloatValue:gamma > -1.f ?    gamma :    0.f];
+  [sliderOffsetRGB      setFloatValue:offset > -1.f ?   offset :   0.f];
+  [sliderLinScaleRGB    setFloatValue:linScale > -1.f ? linScale : 0.f];
+  [sliderSplitRGB       setFloatValue:split > -1.f ?    split :    0.f];
+  
+  CMLBool activateFields = responseTypes[colorIndex] == CML_RESPONSE_CUSTOM_GAMMA || responseTypes[colorIndex] == CML_RESPONSE_CUSTOM_GAMMA_LINEAR;
+  [textFieldGammaRGB    setEnabled:activateFields];
+  [textFieldOffsetRGB   setEnabled:activateFields];
+  [textFieldLinScaleRGB setEnabled:activateFields];
+  [textFieldSplitRGB    setEnabled:activateFields];
+  [sliderGammaRGB       setEnabled:activateFields];
+  [sliderOffsetRGB      setEnabled:activateFields];
+  [sliderLinScaleRGB    setEnabled:activateFields];
+  [sliderSplitRGB       setEnabled:activateFields];
 
   CMLLabColorSpaceType labcolorspace = cmlGetLabColorSpace(cm);
   if(labcolorspace == CML_LAB_CUSTOM_L){
