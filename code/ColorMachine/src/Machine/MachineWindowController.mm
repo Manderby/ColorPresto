@@ -199,9 +199,11 @@
     CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA){
-      cmlInitResponseCurveWithCustomGamma(newResponse, 2.2);
+      const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
+      cmlInitResponseCurveWithCustomGamma(newResponse, inputParams->gamma);
     }else if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      cmlInitResponseCurveWithCustomGammaLinear(newResponse, 2.2, .1, .2, .5);
+      const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
+      cmlInitResponseCurveWithCustomGammaLinear(newResponse, inputParams->gamma, inputParams->offset, inputParams->linScale, inputParams->split);
     }else{
       cmlInitResponseCurveWithType(newResponse, selectedItem);
     }
@@ -222,6 +224,8 @@
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA){
       cmlInitResponseCurveWithCustomGamma(newResponse, gamma);
     }else if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+      GammaLinearInputParameters inputParams = {gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
+      cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
     }
     cmlSetResponseRGB(cm, newResponse);
@@ -239,6 +243,8 @@
     
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+      GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
+      cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
     }
     cmlSetResponseRGB(cm, newResponse);
@@ -256,6 +262,8 @@
     
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+      GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]};
+      cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]);
     }
     cmlSetResponseRGB(cm, newResponse);
@@ -273,6 +281,8 @@
     
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+      GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split};
+      cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split);
     }
     cmlSetResponseRGB(cm, newResponse);
@@ -482,8 +492,6 @@
   float linScale = -1.;
   float split = -1.;
 
-  const CMLResponseCurve* rResponse = cmlGetResponseR(cm);
-  const CMLFunction* rFunction = cmlGetResponseCurveFunc(rResponse);
   switch(responseTypes[colorIndex]){
   case CML_RESPONSE_LINEAR:
     gamma = 1.0;
@@ -522,10 +530,11 @@
   case CML_RESPONSE_LSTAR_STANDARD:
     break;
   case CML_RESPONSE_CUSTOM_GAMMA: {
-    gamma = *(const float*)cmlGetFunctionInput(rFunction);
+    const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
+    gamma = inputParams->gamma;
     break; }
   case CML_RESPONSE_CUSTOM_GAMMA_LINEAR: {
-    const GammaLinearInputParameters* inputParams = (const GammaLinearInputParameters*)cmlGetFunctionInput(rFunction);
+    const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
     gamma = inputParams->gamma;
     offset = inputParams->offset;
     linScale = inputParams->linScale;
