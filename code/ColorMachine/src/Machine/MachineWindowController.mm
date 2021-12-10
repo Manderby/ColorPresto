@@ -220,12 +220,13 @@
     CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
     float gamma = [sender floatValue];
     
+    GammaLinearInputParameters inputParams = {gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
+    cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
+
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA){
       cmlInitResponseCurveWithCustomGamma(newResponse, gamma);
     }else if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      GammaLinearInputParameters inputParams = {gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
-      cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
     }
     cmlSetResponseRGB(cm, newResponse);
@@ -241,10 +242,11 @@
     CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
     float offset = [sender floatValue];
     
+    GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
+    cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
+
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
-      cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
     }
     cmlSetResponseRGB(cm, newResponse);
@@ -260,10 +262,11 @@
     CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
     float scale = [sender floatValue];
     
+    GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]};
+    cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
+
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]};
-      cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]);
     }
     cmlSetResponseRGB(cm, newResponse);
@@ -279,10 +282,11 @@
     CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
     float split = [sender floatValue];
     
+    GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split};
+    cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
+
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split};
-      cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split);
     }
     cmlSetResponseRGB(cm, newResponse);
@@ -553,15 +557,29 @@
   [sliderLinScaleRGB    setFloatValue:linScale > -1.f ? linScale : 0.f];
   [sliderSplitRGB       setFloatValue:split > -1.f ?    split :    0.f];
   
-  CMLBool activateFields = responseTypes[colorIndex] == CML_RESPONSE_CUSTOM_GAMMA || responseTypes[colorIndex] == CML_RESPONSE_CUSTOM_GAMMA_LINEAR;
-  [textFieldGammaRGB    setEnabled:activateFields];
-  [textFieldOffsetRGB   setEnabled:activateFields];
-  [textFieldLinScaleRGB setEnabled:activateFields];
-  [textFieldSplitRGB    setEnabled:activateFields];
-  [sliderGammaRGB       setEnabled:activateFields];
-  [sliderOffsetRGB      setEnabled:activateFields];
-  [sliderLinScaleRGB    setEnabled:activateFields];
-  [sliderSplitRGB       setEnabled:activateFields];
+  [textFieldGammaRGB    setEnabled:CML_FALSE];
+  [textFieldOffsetRGB   setEnabled:CML_FALSE];
+  [textFieldLinScaleRGB setEnabled:CML_FALSE];
+  [textFieldSplitRGB    setEnabled:CML_FALSE];
+  [sliderGammaRGB       setEnabled:CML_FALSE];
+  [sliderOffsetRGB      setEnabled:CML_FALSE];
+  [sliderLinScaleRGB    setEnabled:CML_FALSE];
+  [sliderSplitRGB       setEnabled:CML_FALSE];
+
+  if(responseTypes[colorIndex] == CML_RESPONSE_CUSTOM_GAMMA){
+    [textFieldGammaRGB    setEnabled:CML_TRUE];
+    [sliderGammaRGB       setEnabled:CML_TRUE];
+  }
+  if(responseTypes[colorIndex] == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+  [textFieldGammaRGB    setEnabled:CML_TRUE];
+  [textFieldOffsetRGB   setEnabled:CML_TRUE];
+  [textFieldLinScaleRGB setEnabled:CML_TRUE];
+  [textFieldSplitRGB    setEnabled:CML_TRUE];
+  [sliderGammaRGB       setEnabled:CML_TRUE];
+  [sliderOffsetRGB      setEnabled:CML_TRUE];
+  [sliderLinScaleRGB    setEnabled:CML_TRUE];
+  [sliderSplitRGB       setEnabled:CML_TRUE];
+  }
 
   CMLLabColorSpaceType labcolorspace = cmlGetLabColorSpace(cm);
   if(labcolorspace == CML_LAB_CUSTOM_L){
