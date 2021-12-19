@@ -1274,7 +1274,7 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
   showaxis = true;
   showspectrum = false;
   [space3dselect removeAllItems];
-  for(uint32 i=0; i<CML_NUMBER_OF_COLORTYPES; ++i){
+  for(uint32 i=0; i<CML_COLOR_COUNT; ++i){
     if((CMLColorType)i >= CML_COLOR_CMYK){continue;}
     [space3dselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetColorTypeString((CMLColorType)i)] atIndex:i];
   }

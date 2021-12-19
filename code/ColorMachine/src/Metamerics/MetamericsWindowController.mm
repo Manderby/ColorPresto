@@ -722,16 +722,19 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     ref = NULL;
     break;
   }
-  const CMLFunction* ill = cmlGetIlluminationSpectrum(cm);
   
-  const char* illname = cmlGetIlluminationTypeString(cmlGetIlluminationType(cm));
-  [illnamelabel setStringValue:[NSString stringWithFormat:@"Current: %s", illname]];
+  const CMLObserver* observer = cmlGetObserver(cm);
+  const CMLIllumination* illumination = cmlGetReferenceIllumination(observer);
+  const CMLFunction* illuminationSpec = cmlGetIlluminationSpectrum(cm);
+  
+  const char* illuminationName = cmlGetIlluminationTypeString(cmlGetIlluminationType(illumination));
+  [illnamelabel setStringValue:[NSString stringWithFormat:@"Current: %s", illuminationName]];
 
-  CMLFunction* observer10[3];
-  cmlCreateSpecDistFunctions(observer10, CML_DEFAULT_10DEG_OBSERVER);
+  CMLFunction* observer10Funcs[3];
+  cmlCreateSpecDistFunctions(observer10Funcs, CML_DEFAULT_10DEG_OBSERVER);
 
-  CMLFunction* observer2[3];
-  cmlCreateSpecDistFunctions(observer2, CML_DEFAULT_2DEG_OBSERVER);
+  CMLFunction* observer2Funcs[3];
+  cmlCreateSpecDistFunctions(observer2Funcs, CML_DEFAULT_2DEG_OBSERVER);
 
   // /////////////////////
   // Whitepoint computation
@@ -768,16 +771,16 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   CMLVec3 refYuv2;
   CMLVec3 refYcd2;
   
-  if(ill){
-    cmlSet3(illXYZunnorm10, cmlFilterFunction(ill, observer10[0]), cmlFilterFunction(ill, observer10[1]), cmlFilterFunction(ill, observer10[2]));
+  if(illumination){
+    cmlSet3(illXYZunnorm10, cmlFilterFunction(illuminationSpec, observer10Funcs[0]), cmlFilterFunction(illuminationSpec, observer10Funcs[1]), cmlFilterFunction(illuminationSpec, observer10Funcs[2]));
     cmlCpy3(illXYZ10, illXYZunnorm10);
     cmlDiv3(illXYZ10, illXYZunnorm10[1]);
 
-    cmlSet3(illXYZunnorm2, cmlFilterFunction(ill, observer2[0]), cmlFilterFunction(ill, observer2[1]), cmlFilterFunction(ill, observer2[2]));
+    cmlSet3(illXYZunnorm2, cmlFilterFunction(illuminationSpec, observer2Funcs[0]), cmlFilterFunction(illuminationSpec, observer2Funcs[1]), cmlFilterFunction(illuminationSpec, observer2Funcs[2]));
     cmlCpy3(illXYZ2, illXYZunnorm2);
     cmlDiv3(illXYZ2, illXYZunnorm2[1]);
   }else{
-    CMLObserverType illobserverType = cmlGetObserverType(cm);
+    CMLObserverType illobserverType = cmlGetObserverType(cmlGetObserver(cm));
     if(illobserverType == CML_OBSERVER_10DEG_CIE_1964){
       cmlGetWhitePointYxy(cm, illYxy10);
       illYxy10[0] = 1.f;
@@ -794,11 +797,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   }
 
   if(ref){
-    cmlSet3(refXYZunnorm10, cmlFilterFunction(ref, observer10[0]), cmlFilterFunction(ref, observer10[1]), cmlFilterFunction(ref, observer10[2]));
+    cmlSet3(refXYZunnorm10, cmlFilterFunction(ref, observer10Funcs[0]), cmlFilterFunction(ref, observer10Funcs[1]), cmlFilterFunction(ref, observer10Funcs[2]));
     cmlCpy3(refXYZ10, refXYZunnorm10);
     cmlDiv3(refXYZ10, refXYZunnorm10[1]);
 
-    cmlSet3(refXYZunnorm2, cmlFilterFunction(ref, observer2[0]), cmlFilterFunction(ref, observer2[1]), cmlFilterFunction(ref, observer2[2]));
+    cmlSet3(refXYZunnorm2, cmlFilterFunction(ref, observer2Funcs[0]), cmlFilterFunction(ref, observer2Funcs[1]), cmlFilterFunction(ref, observer2Funcs[2]));
     cmlCpy3(refXYZ2, refXYZunnorm2);
     cmlDiv3(refXYZ2, refXYZunnorm2[1]);
   }else{
@@ -956,7 +959,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     CMLVec3 metamerrefUVW;
     if(ref){
       CMLFunction* metamerrefremission = cmlCreateFunctionMulFunction(metamerfunction, ref);
-      cmlSet3(metamerrefXYZptr, cmlFilterFunction(metamerrefremission, observer2[0]), cmlFilterFunction(metamerrefremission, observer2[1]), cmlFilterFunction(metamerrefremission, observer2[2]));
+      cmlSet3(metamerrefXYZptr, cmlFilterFunction(metamerrefremission, observer2Funcs[0]), cmlFilterFunction(metamerrefremission, observer2Funcs[1]), cmlFilterFunction(metamerrefremission, observer2Funcs[2]));
       cmlDiv3(metamerrefXYZptr, refXYZunnorm2[1]);
       CMLVec3 metamerrefYxy;
       cmlConvertXYZToYxy(metamerrefYxy, metamerrefXYZptr, CML_NULL);
@@ -976,9 +979,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     }
 
     CMLVec3 metamerillUVW;
-    if(ill){
-      CMLFunction* metamerillremission = cmlCreateFunctionMulFunction(metamerfunction, ill);
-      cmlSet3(metamerillXYZptr, cmlFilterFunction(metamerillremission, observer2[0]), cmlFilterFunction(metamerillremission, observer2[1]), cmlFilterFunction(metamerillremission, observer2[2]));
+    if(illumination){
+      CMLFunction* metamerillremission = cmlCreateFunctionMulFunction(metamerfunction, illuminationSpec);
+      cmlSet3(metamerillXYZptr, cmlFilterFunction(metamerillremission, observer2Funcs[0]), cmlFilterFunction(metamerillremission, observer2Funcs[1]), cmlFilterFunction(metamerillremission, observer2Funcs[2]));
       cmlDiv3(metamerillXYZptr, illXYZunnorm2[1]);
       CMLVec3 metamerillYxy;
       cmlConvertXYZToYxy(metamerillYxy, metamerillXYZptr, CML_NULL);
@@ -1011,7 +1014,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 
   avg8 /= 8.f;
   
-  if(ill && ref){
+  if(illumination && ref){
     [deltaEavg8 setStringValue:[NSString stringWithFormat:@"%2.03f", avg8]];
     [deltaEmetamer1 setStringValue:[NSString stringWithFormat:@"%2.03f", Rindex[0]]];
     [deltaEmetamer2 setStringValue:[NSString stringWithFormat:@"%2.03f", Rindex[1]]];
@@ -1190,14 +1193,14 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     CMLVec3 standardLab;
     CMLVec3 specimenLab;
 
-    if(ill){
-      CMLFunction* standardremission = cmlCreateFunctionMulFunction(standardfunction, ill);
-      cmlSet3(standardXYZptr, cmlFilterFunction(standardremission, observer10[0]),  cmlFilterFunction(standardremission, observer10[1]),  cmlFilterFunction(standardremission, observer10[2]));
+    if(illumination){
+      CMLFunction* standardremission = cmlCreateFunctionMulFunction(standardfunction, illuminationSpec);
+      cmlSet3(standardXYZptr, cmlFilterFunction(standardremission, observer10Funcs[0]),  cmlFilterFunction(standardremission, observer10Funcs[1]),  cmlFilterFunction(standardremission, observer10Funcs[2]));
       cmlDiv3(standardXYZptr, illXYZunnorm10[1]);
       cmlConvertXYZToLab(standardLab, standardXYZptr, illXYZ10);
 
-      CMLFunction* specimenremission = cmlCreateFunctionMulFunction(specimenfunction, ill);
-      cmlSet3(specimenXYZptr, cmlFilterFunction(specimenremission, observer10[0]), cmlFilterFunction(specimenremission, observer10[1]), cmlFilterFunction(specimenremission, observer10[2]));
+      CMLFunction* specimenremission = cmlCreateFunctionMulFunction(specimenfunction, illuminationSpec);
+      cmlSet3(specimenXYZptr, cmlFilterFunction(specimenremission, observer10Funcs[0]), cmlFilterFunction(specimenremission, observer10Funcs[1]), cmlFilterFunction(specimenremission, observer10Funcs[2]));
       cmlDiv3(specimenXYZptr, illXYZunnorm10[1]);
       cmlConvertXYZToLab(specimenLab, specimenXYZptr, illXYZ10);
       cmlReleaseFunction(standardremission);
@@ -1221,7 +1224,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 
   avg5 /= 5.f;
 
-  if(ref && ill){
+  if(ref && illumination){
     [MIvisavg5 setStringValue:[NSString stringWithFormat:@"%1.04f", avg5]];
     [MIvis1 setStringValue:[NSString stringWithFormat:@"%1.04f", MIvis[0]]];
     [MIvis2 setStringValue:[NSString stringWithFormat:@"%1.04f", MIvis[1]]];
@@ -1406,7 +1409,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     CMLVec3 UVstandardLab;
     CMLVec3 UVmetamerLab;
 
-    if(ill){
+    if(illumination){
       // To correspond with the ISO standard, the excitationN factor must be
       // displayed with (100.f * excitationN * 5.f / illXYZunnorm10[1])
       // The strange factor 5 needs to be here because in the ISO norm, the
@@ -1417,18 +1420,18 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
       // to normalize the computational result at the very end. Therefore,
       // to comply with the temporary results published in ISO-3664, the
       // normalization factor 5 must be introduced manually.
-      float excitationN = cmlFilterFunction(ill, UVexcitationfunction);
-      CMLFunction* betatemp = cmlCreateFunctionDivFunction(fluorescentremissionfunction, ill);
+      float excitationN = cmlFilterFunction(illuminationSpec, UVexcitationfunction);
+      CMLFunction* betatemp = cmlCreateFunctionDivFunction(fluorescentremissionfunction, illuminationSpec);
       CMLFunction* betaL = cmlCreateFunctionMulScalar(betatemp, excitationN);
       CMLFunction* betaT = cmlCreateFunctionAddFunction(UVstandardfunction, betaL);
 
-      CMLFunction* uvmetamerXXXremission = cmlCreateFunctionMulFunction(betaT, ill);
-      cmlSet3(UVstandardXYZptr, cmlFilterFunction(uvmetamerXXXremission, observer10[0]), cmlFilterFunction(uvmetamerXXXremission, observer10[1]), cmlFilterFunction(uvmetamerXXXremission, observer10[2]));
+      CMLFunction* uvmetamerXXXremission = cmlCreateFunctionMulFunction(betaT, illuminationSpec);
+      cmlSet3(UVstandardXYZptr, cmlFilterFunction(uvmetamerXXXremission, observer10Funcs[0]), cmlFilterFunction(uvmetamerXXXremission, observer10Funcs[1]), cmlFilterFunction(uvmetamerXXXremission, observer10Funcs[2]));
       cmlDiv3(UVstandardXYZptr, illXYZunnorm10[1]);
       cmlConvertXYZToLab(UVstandardLab, UVstandardXYZptr, illXYZ10);
 
-      CMLFunction* UVmetamerremission = cmlCreateFunctionMulFunction(UVmetamerfunction, ill);
-      cmlSet3(UVmetamerXYZptr, cmlFilterFunction(UVmetamerremission, observer10[0]), cmlFilterFunction(UVmetamerremission, observer10[1]), cmlFilterFunction(UVmetamerremission, observer10[2]));
+      CMLFunction* UVmetamerremission = cmlCreateFunctionMulFunction(UVmetamerfunction, illuminationSpec);
+      cmlSet3(UVmetamerXYZptr, cmlFilterFunction(UVmetamerremission, observer10Funcs[0]), cmlFilterFunction(UVmetamerremission, observer10Funcs[1]), cmlFilterFunction(UVmetamerremission, observer10Funcs[2]));
       cmlDiv3(UVmetamerXYZptr, illXYZunnorm10[1]);
       cmlConvertXYZToLab(UVmetamerLab, UVmetamerXYZptr, illXYZ10);
       cmlReleaseFunction(betatemp);
@@ -1461,7 +1464,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   
   avg3 /= 3.f;
 
-  if(ref && ill){
+  if(ref && illumination){
     [MIUVavg3 setStringValue:[NSString stringWithFormat:@"%1.04f", avg3]];
     [MIUV1 setStringValue:[NSString stringWithFormat:@"%1.04f", MIUV[0]]];
     [MIUV2 setStringValue:[NSString stringWithFormat:@"%1.04f", MIUV[1]]];
@@ -1532,7 +1535,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 
 
   float avg53 = (avg5 * 5.f + avg3 * 3.f) / 8.f;
-  if(ref && ill){
+  if(ref && illumination){
     [MIavg8 setStringValue:[NSString stringWithFormat:@"%1.04f", avg53]];
   }else{
     [MIavg8 setStringValue:[NSString stringWithFormat:@""]];
@@ -1546,12 +1549,12 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 
 
   cmlReleaseFunction(ref);
-  cmlReleaseFunction(observer10[0]);
-  cmlReleaseFunction(observer10[1]);
-  cmlReleaseFunction(observer10[2]);
-  cmlReleaseFunction(observer2[0]);
-  cmlReleaseFunction(observer2[1]);
-  cmlReleaseFunction(observer2[2]);
+  cmlReleaseFunction(observer10Funcs[0]);
+  cmlReleaseFunction(observer10Funcs[1]);
+  cmlReleaseFunction(observer10Funcs[2]);
+  cmlReleaseFunction(observer2Funcs[0]);
+  cmlReleaseFunction(observer2Funcs[1]);
+  cmlReleaseFunction(observer2Funcs[2]);
 
 }
 

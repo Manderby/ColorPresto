@@ -57,7 +57,7 @@
   // //////////////////////////
 
   [maskselect removeAllItems];
-  for(uint32 i=0; i<CML_NUMBER_OF_COLORTYPES; ++i){
+  for(uint32 i=0; i<CML_COLOR_COUNT; ++i){
     if((CMLColorType)i >= CML_COLOR_CMYK){continue;}
     [maskselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetColorTypeString((CMLColorType)i)] atIndex:i];
   }
@@ -67,46 +67,46 @@
 
 
   [observerSelect removeAllItems];
-  for(uint32 i=0; i<CML_NUMBER_OF_OBSERVERS - 1; ++i){
+  for(uint32 i=0; i<CML_OBSERVER_COUNT - 1; ++i){
     [observerSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetObserverTypeString((CMLObserverType)i)] atIndex:i];
   }
 
   [illuminationSelect setAutoenablesItems:NO];
   [illuminationSelect removeAllItems];
-  for(uint32 i=0; i<CML_NUMBER_OF_ILLUMINATIONS; ++i){
+  for(uint32 i=0; i<CML_ILLUMINATION_COUNT; ++i){
     [illuminationSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetIlluminationTypeString((CMLIlluminationType)i)] atIndex:i];
   }
   [[illuminationSelect itemAtIndex:CML_ILLUMINATION_CUSTOM_SPECTRUM] setEnabled:FALSE];
 
   [rgbColorSpaceSelect removeAllItems];
-  for(uint32 i=0; i<CML_NUMBER_OF_RGB_SPACES; ++i){
+  for(uint32 i=0; i<CML_RGB_COUNT; ++i){
     [rgbColorSpaceSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetRGBColorSpaceTypeString((CMLRGBColorSpaceType)i)] atIndex:i];
   }
 
   [responseRGBSelect removeAllItems];
-  for(uint32 i = 1; i < CML_NUMBER_OF_RESPONSE_CURVE_TYPES; ++i){ // Index 0 would be the undefined response.
+  for(uint32 i = 1; i < CML_RESPONSE_CUSTOM_COUNT; ++i){ // Index 0 would be the undefined response.
     [responseRGBSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetRGBResponseTypeString((CMLResponseCurveType)i)] atIndex:i - 1];
   }
 
   [labSpaceSelect removeAllItems];
   uint32 curindex = 0;
-  for(uint32 i=0; i<CML_NUMBER_OF_LAB_SPACES; ++i){
+  for(uint32 i=0; i<CML_LAB_COUNT; ++i){
     if(i == CML_LAB_CUSTOM_L){continue;}
     [labSpaceSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetLabSpaceTypeString((CMLLabColorSpaceType)i)] atIndex:curindex];
     curindex++;
   }
   [responseLSelect removeAllItems];
-  for(uint32 i = 1; i < CML_NUMBER_OF_FUNCTION_TYPES; ++i){ // Index 0 would be the undefined function.
+  for(uint32 i = 1; i < CML_FUNCTION_COUNT; ++i){ // Index 0 would be the undefined function.
     [responseLSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetFunctionTypeString((CMLFunctionType)i)] atIndex:i - 1];
   }
 
   [grayComputationSelect removeAllItems];
-  for(uint32 i=0; i<CML_NUMBER_OF_GRAY_COMPUTATIONS; ++i){
+  for(uint32 i=0; i<CML_GRAY_COUNT; ++i){
     [grayComputationSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetGrayComputationTypeString((CMLGrayComputationType)i)] atIndex:i];
   }
 
   [chromaticAdaptationSelect removeAllItems];
-  for(uint32 i=0; i<CML_NUMBER_OF_CHROMATIC_ADAPTATIONS; ++i){
+  for(uint32 i=0; i<CML_CHROMATIC_ADAPTATION_COUNT; ++i){
     [chromaticAdaptationSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetChromaticAdaptationTypeString((CMLChromaticAdaptationType)i)] atIndex:i];
   }
 
@@ -381,8 +381,12 @@
 
   uint32 selectedItem;
 
-  [observerSelect             selectItemAtIndex:(int)cmlGetObserverType(cm)];
-  [illuminationSelect         selectItemAtIndex:(int)cmlGetIlluminationType(cm)];
+  const CMLObserver* observer = cmlGetObserver(cm);
+  const CMLIllumination* illumination = cmlGetReferenceIllumination(observer);
+  CMLIlluminationType illuminationType = cmlGetIlluminationType(illumination);
+
+  [observerSelect             selectItemAtIndex:(int)cmlGetObserverType(observer)];
+  [illuminationSelect         selectItemAtIndex:(int)illuminationType];
 //  [chromaticAdaptationSelect  selectItemAtIndex:(int)cmlGetChromaticAdaptation(cm)];
   [grayComputationSelect      selectItemAtIndex:(int)cmlGetGrayComputationType(cm)];
   selectedItem = (int)cmlGetLabColorSpace(cm);
@@ -392,21 +396,20 @@
   
   [maskselect setEnabled:(showmask | showgrid)];
 
-  CMLIlluminationType illumination = cmlGetIlluminationType(cm);
-  if((illumination == CML_ILLUMINATION_BLACKBODY) || (illumination == CML_ILLUMINATION_D_ILLUMINANT)){
+  if((illuminationType == CML_ILLUMINATION_BLACKBODY) || (illuminationType == CML_ILLUMINATION_D_ILLUMINANT)){
     [sliderT setEnabled:true];
     [textFieldT setEnabled:true];
   }else{
     [sliderT setEnabled:false];
     [textFieldT setEnabled:false];
   }
-  if(illumination == CML_ILLUMINATION_CUSTOM_SPECTRUM){
+  if(illuminationType == CML_ILLUMINATION_CUSTOM_SPECTRUM){
     [[illuminationSelect itemAtIndex:CML_ILLUMINATION_CUSTOM_SPECTRUM] setEnabled:YES];
   }else{
     [[illuminationSelect itemAtIndex:CML_ILLUMINATION_CUSTOM_SPECTRUM] setEnabled:NO];
   }
 
-  if(illumination == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
+  if(illuminationType == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
 //    [whitePointY setEnabled:true];
     [whitePointx setEnabled:true];
     [whitePointy setEnabled:true];
