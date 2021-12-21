@@ -137,14 +137,14 @@
 
 - (IBAction)illuminationChange:(NSPopUpButton*)sender {
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-  CMLIlluminationType newillum = (CMLIlluminationType)[sender indexOfSelectedItem];
-  if(newillum == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
+  CMLIlluminationType newIllum = (CMLIlluminationType)[sender indexOfSelectedItem];
+  if(newIllum == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
     CMLVec3 wpyxy;
     cmlGetWhitePointYxy(cm, wpyxy);
     wpyxy[0] = 1.f;
     cmlSetWhitePointYxy(cm, wpyxy);
   }else{
-    cmlSetIlluminationType(cm, newillum);
+    cmlSetIlluminationType(cm, newIllum);
   }
   [(ColorMachineApplication*)NSApp updateMachine];
 }
@@ -381,11 +381,9 @@
 
   uint32 selectedItem;
 
-  const CMLObserver* observer = cmlGetObserver(cm);
-  const CMLIllumination* illumination = cmlGetReferenceIllumination(observer);
-  CMLIlluminationType illuminationType = cmlGetIlluminationType(illumination);
+  CMLIlluminationType illuminationType = cmlGetReferenceIlluminationType(cm);
 
-  [observerSelect             selectItemAtIndex:(int)cmlGetObserverType(observer)];
+  [observerSelect             selectItemAtIndex:(int)cmlGetObserverType(cm)];
   [illuminationSelect         selectItemAtIndex:(int)illuminationType];
 //  [chromaticAdaptationSelect  selectItemAtIndex:(int)cmlGetChromaticAdaptation(cm)];
   [grayComputationSelect      selectItemAtIndex:(int)cmlGetGrayComputationType(cm)];

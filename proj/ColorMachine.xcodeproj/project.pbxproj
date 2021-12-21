@@ -284,7 +284,6 @@
 		90BF91812752667B001EA32C /* CMLNormedConversions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91302752667A001EA32C /* CMLNormedConversions.h */; };
 		90BF91822752667B001EA32C /* CMLRGBColorspace.c in Sources */ = {isa = PBXBuildFile; fileRef = 90BF91312752667A001EA32C /* CMLRGBColorspace.c */; };
 		90BF91832752667B001EA32C /* CML.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91322752667A001EA32C /* CML.h */; };
-		90BF91852752667B001EA32C /* CMLObserver.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91342752667A001EA32C /* CMLObserver.h */; };
 		90BF91862752667B001EA32C /* CMLFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91352752667A001EA32C /* CMLFunctions.h */; };
 		90BF91872752667B001EA32C /* CMLBaseAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91362752667A001EA32C /* CMLBaseAPI.h */; };
 		90BF91882752667B001EA32C /* CMLResponseCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91372752667A001EA32C /* CMLResponseCurve.h */; };
@@ -658,7 +657,6 @@
 		90BF91302752667A001EA32C /* CMLNormedConversions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLNormedConversions.h; sourceTree = "<group>"; };
 		90BF91312752667A001EA32C /* CMLRGBColorspace.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMLRGBColorspace.c; sourceTree = "<group>"; };
 		90BF91322752667A001EA32C /* CML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CML.h; sourceTree = "<group>"; };
-		90BF91342752667A001EA32C /* CMLObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLObserver.h; sourceTree = "<group>"; };
 		90BF91352752667A001EA32C /* CMLFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLFunctions.h; sourceTree = "<group>"; };
 		90BF91362752667A001EA32C /* CMLBaseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLBaseAPI.h; sourceTree = "<group>"; };
 		90BF91372752667A001EA32C /* CMLResponseCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLResponseCurve.h; sourceTree = "<group>"; };
@@ -1301,7 +1299,6 @@
 				90BF91352752667A001EA32C /* CMLFunctions.h */,
 				90BF911C2752667A001EA32C /* CMLIllumination.h */,
 				90BF91582752667B001EA32C /* CMLMath.h */,
-				90BF91342752667A001EA32C /* CMLObserver.h */,
 				90BF91372752667A001EA32C /* CMLResponseCurve.h */,
 				90BF911D2752667A001EA32C /* CMLDefinitions.h */,
 				90BF91392752667A001EA32C /* ColorClasses */,
@@ -1415,7 +1412,6 @@
 				90BF919E2752667B001EA32C /* CMLLabColor.h in Headers */,
 				90BF91892752667B001EA32C /* CMLColorMachine.h in Headers */,
 				90BF916E2752667B001EA32C /* CMLIllumination.h in Headers */,
-				90BF91852752667B001EA32C /* CMLObserver.h in Headers */,
 				90BF915A2752667B001EA32C /* CMLEnvironment.h in Headers */,
 				90BF91872752667B001EA32C /* CMLBaseAPI.h in Headers */,
 				90BF91922752667B001EA32C /* CMLRGBColor.h in Headers */,

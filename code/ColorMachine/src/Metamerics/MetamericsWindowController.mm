@@ -723,11 +723,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     break;
   }
   
-  const CMLObserver* observer = cmlGetObserver(cm);
-  const CMLIllumination* illumination = cmlGetReferenceIllumination(observer);
-  const CMLFunction* illuminationSpec = cmlGetIlluminationSpectrum(cm);
+  const CMLFunction* illuminationSpec = cmlGetReferenceIlluminationSpectrum(cm);
   
-  const char* illuminationName = cmlGetIlluminationTypeString(cmlGetIlluminationType(illumination));
+  const char* illuminationName = cmlGetIlluminationTypeString(cmlGetReferenceIlluminationType(cm));
   [illnamelabel setStringValue:[NSString stringWithFormat:@"Current: %s", illuminationName]];
 
   CMLFunction* observer10Funcs[3];
@@ -771,7 +769,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   CMLVec3 refYuv2;
   CMLVec3 refYcd2;
   
-  if(illumination){
+  if(illuminationSpec){
     cmlSet3(illXYZunnorm10, cmlFilterFunction(illuminationSpec, observer10Funcs[0]), cmlFilterFunction(illuminationSpec, observer10Funcs[1]), cmlFilterFunction(illuminationSpec, observer10Funcs[2]));
     cmlCpy3(illXYZ10, illXYZunnorm10);
     cmlDiv3(illXYZ10, illXYZunnorm10[1]);
@@ -780,8 +778,8 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     cmlCpy3(illXYZ2, illXYZunnorm2);
     cmlDiv3(illXYZ2, illXYZunnorm2[1]);
   }else{
-    CMLObserverType illobserverType = cmlGetObserverType(cmlGetObserver(cm));
-    if(illobserverType == CML_OBSERVER_10DEG_CIE_1964){
+    CMLObserverType illObserverType = cmlGetObserverType(cm);
+    if(illObserverType == CML_OBSERVER_10DEG_CIE_1964){
       cmlGetWhitePointYxy(cm, illYxy10);
       illYxy10[0] = 1.f;
       cmlConvertYxyToXYZ(illXYZ10, illYxy10, CML_NULL);
@@ -979,7 +977,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     }
 
     CMLVec3 metamerillUVW;
-    if(illumination){
+    if(illuminationSpec){
       CMLFunction* metamerillremission = cmlCreateFunctionMulFunction(metamerfunction, illuminationSpec);
       cmlSet3(metamerillXYZptr, cmlFilterFunction(metamerillremission, observer2Funcs[0]), cmlFilterFunction(metamerillremission, observer2Funcs[1]), cmlFilterFunction(metamerillremission, observer2Funcs[2]));
       cmlDiv3(metamerillXYZptr, illXYZunnorm2[1]);
@@ -1014,7 +1012,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 
   avg8 /= 8.f;
   
-  if(illumination && ref){
+  if(illuminationSpec && ref){
     [deltaEavg8 setStringValue:[NSString stringWithFormat:@"%2.03f", avg8]];
     [deltaEmetamer1 setStringValue:[NSString stringWithFormat:@"%2.03f", Rindex[0]]];
     [deltaEmetamer2 setStringValue:[NSString stringWithFormat:@"%2.03f", Rindex[1]]];
@@ -1193,7 +1191,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     CMLVec3 standardLab;
     CMLVec3 specimenLab;
 
-    if(illumination){
+    if(illuminationSpec){
       CMLFunction* standardremission = cmlCreateFunctionMulFunction(standardfunction, illuminationSpec);
       cmlSet3(standardXYZptr, cmlFilterFunction(standardremission, observer10Funcs[0]),  cmlFilterFunction(standardremission, observer10Funcs[1]),  cmlFilterFunction(standardremission, observer10Funcs[2]));
       cmlDiv3(standardXYZptr, illXYZunnorm10[1]);
@@ -1224,7 +1222,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 
   avg5 /= 5.f;
 
-  if(ref && illumination){
+  if(ref && illuminationSpec){
     [MIvisavg5 setStringValue:[NSString stringWithFormat:@"%1.04f", avg5]];
     [MIvis1 setStringValue:[NSString stringWithFormat:@"%1.04f", MIvis[0]]];
     [MIvis2 setStringValue:[NSString stringWithFormat:@"%1.04f", MIvis[1]]];
@@ -1409,7 +1407,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     CMLVec3 UVstandardLab;
     CMLVec3 UVmetamerLab;
 
-    if(illumination){
+    if(illuminationSpec){
       // To correspond with the ISO standard, the excitationN factor must be
       // displayed with (100.f * excitationN * 5.f / illXYZunnorm10[1])
       // The strange factor 5 needs to be here because in the ISO norm, the
@@ -1464,7 +1462,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   
   avg3 /= 3.f;
 
-  if(ref && illumination){
+  if(ref && illuminationSpec){
     [MIUVavg3 setStringValue:[NSString stringWithFormat:@"%1.04f", avg3]];
     [MIUV1 setStringValue:[NSString stringWithFormat:@"%1.04f", MIUV[0]]];
     [MIUV2 setStringValue:[NSString stringWithFormat:@"%1.04f", MIUV[1]]];
@@ -1535,7 +1533,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 
 
   float avg53 = (avg5 * 5.f + avg3 * 3.f) / 8.f;
-  if(ref && illumination){
+  if(ref && illuminationSpec){
     [MIavg8 setStringValue:[NSString stringWithFormat:@"%1.04f", avg53]];
   }else{
     [MIavg8 setStringValue:[NSString stringWithFormat:@""]];
