@@ -13,35 +13,35 @@
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Lab)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Lab)
                      channelx:0
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [slidera initWithController:self
                     colorType:CML_COLOR_Lab
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Lab)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Lab)
                      channelx:1
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [sliderb initWithController:self
                     colorType:CML_COLOR_Lab
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Lab)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Lab)
                      channelx:2
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [sliderc initWithController:self
                     colorType:CML_COLOR_Lch
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Lch)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Lch)
                      channelx:1
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [sliderh initWithController:self
                     colorType:CML_COLOR_Lch
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_Lch)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_Lch)
                      channelx:2
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [(ColorWell*)colordisplay initWithController:self
                     colorType:CML_COLOR_Lab

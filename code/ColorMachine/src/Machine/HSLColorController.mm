@@ -12,21 +12,21 @@
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_HSL)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_HSL)
                      channelx:0
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [sliderS initWithController:self
                     colorType:CML_COLOR_HSL
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_HSL)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_HSL)
                      channelx:1
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [sliderL initWithController:self
                     colorType:CML_COLOR_HSL
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_HSL)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_HSL)
                      channelx:2
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [(ColorWell*)colordisplay initWithController:self
                     colorType:CML_COLOR_HSL

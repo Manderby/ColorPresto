@@ -130,8 +130,8 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
                  colorType:(CMLColorType)newcolortype
       normedinputconverter:(CMLNormedConverter)newnormedinputconverter
      normedoutputconverter:(CMLNormedConverter)newnormedoutputconverter
-                  channelx:(CMLuint32)newchannelx
-                  channely:(CMLuint32)newchannely
+                  channelx:(size_t)newchannelx
+                  channely:(size_t)newchannely
               drawspectrum:(BOOL)newdrawspectrum{
 
   colorcontroller = newcontroller;
@@ -144,9 +144,9 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
 //  float scalefactor = (float)[ColorMachineApplication getUIScaleFactorForWindow:[self window]];
   float scalefactor = 1.f;
-  width = (CMLuint32)round([self bounds].size.width * scalefactor);
-  height = (CMLuint32)round([self bounds].size.height * scalefactor);
-  CMLuint32 channelcount = cmlGetNumChannels(colorType);
+  width = (size_t)round([self bounds].size.width * scalefactor);
+  height = (size_t)round([self bounds].size.height * scalefactor);
+  size_t channelcount = cmlGetNumChannels(colorType);
   delete colordata;
   colordata = new float[width * height * channelcount];
 //  delete rgb8Bitdata;
@@ -154,11 +154,11 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
   float* cptr;
 
-  for(CMLuint32 c=0; c<channelcount; c++){
+  for(size_t c=0; c<channelcount; c++){
     if(channelx == c){
       cptr = &(colordata[c]);
-      for(CMLuint32 y=0; y<height; y++){
-        for(CMLuint32 x=0; x<width; x++){
+      for(size_t y=0; y<height; y++){
+        for(size_t x=0; x<width; x++){
           float curval = ((float)x)/(width-1);
           *cptr = curval;
           cptr += channelcount;
@@ -167,9 +167,9 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
     }
     if(channely == c){
       cptr = &(colordata[c]);
-      for(CMLuint32 y=0; y<height; y++){
+      for(size_t y=0; y<height; y++){
         float curval = ((height-1)-(float)y)/(height-1);
-        for(CMLuint32 x=0; x<width; x++){
+        for(size_t x=0; x<width; x++){
           *cptr = curval;
           cptr += channelcount;
         }
@@ -184,7 +184,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 }
 
 - (void)drawRect:(NSRect)rect{
-  CMLuint32 channelcount = cmlGetNumChannels(colorType);
+  size_t channelcount = cmlGetNumChannels(colorType);
 //  if(channelcount == 1){
 //    int t = 1234;
 //  }
@@ -197,17 +197,17 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   
   float* cptr;
 
-  for(CMLuint32 c=0; c<channelcount; c++){
+  for(size_t c=0; c<channelcount; c++){
     if((channelx != c) && (channely != c)){
       cptr = &(colordata[c]);
-      for(CMLuint32 i=0; i<(width*height); i++){
+      for(size_t i=0; i<(width*height); i++){
         *cptr = normedbuffer[c];
         cptr += channelcount;
       }
     }
   }
   
-  bool singleline = (channely == (CMLuint32)-1);
+  bool singleline = (channely == (size_t)-1);
   
   float* normedrgbdata = new float[width * height * 3];
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:normedrgbdata
@@ -400,7 +400,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   controllercolor->toBuffer(colorbuffer, colorType);
   normedoutputconverter(normedbuffer, colorbuffer, 1);
   normedbuffer[channelx] = mousex;
-  if(channely != (CMLuint32)-1){normedbuffer[channely] = mousey;}
+  if(channely != (size_t)-1){normedbuffer[channely] = mousey;}
   normedinputconverter(colorbuffer, normedbuffer, 1);
   
   controllercolor->fromBuffer(colorbuffer, colorType);

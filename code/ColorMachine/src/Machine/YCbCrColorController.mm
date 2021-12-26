@@ -13,21 +13,21 @@
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_YCbCr)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_YCbCr)
                      channelx:0
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [sliderCb initWithController:self
                     colorType:CML_COLOR_YCbCr
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_YCbCr)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_YCbCr)
                      channelx:1
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [sliderCr initWithController:self
                     colorType:CML_COLOR_YCbCr
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_YCbCr)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_YCbCr)
                      channelx:2
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
   [(ColorWell*)colordisplay initWithController:self
                     colorType:CML_COLOR_YCbCr

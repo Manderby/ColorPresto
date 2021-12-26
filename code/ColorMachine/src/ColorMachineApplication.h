@@ -80,7 +80,7 @@ extern size_t bordercount;
               fromArray:(float*)inputarray
           withColorType:(CMLColorType)inputcolortype
    normedInputConverter:(CMLNormedConverter)normedconverter
-                  count:(CMLuint32)count
+                  count:(size_t)count
                drawgrid:(BOOL)drawgridlines
                drawmask:(BOOL)drawmask;
 
@@ -88,7 +88,7 @@ extern size_t bordercount;
 //              fromArray:(float*)inputarray
 //          withColorType:(CMLColorType)inputcolortype
 //   normedInputConverter:(CMLNormedConverter)normedconverter
-//                  count:(CMLuint32)count
+//                  count:(size_t)count
 //               drawgrid:(BOOL)drawgridlines
 //               drawmask:(BOOL)drawmask;
 

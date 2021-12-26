@@ -1046,7 +1046,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     [deltaEmetamer14 setStringValue:[NSString stringWithFormat:@""]];
   }
 
-//  CMLByte metamerrefrgb8Bitdata[14 * 3];
+//  uint8 metamerrefrgb8Bitdata[14 * 3];
   float metamerrefrgbfloatdata[14 * 3];
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:metamerrefrgbfloatdata
                                          fromArray:metamerrefXYZ
@@ -1064,7 +1064,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 //                                          drawmask:NO];
 //  cmlData8ToRGB(cm, metamerrefrgbfloatdata, metamerrefrgb8Bitdata, 14);
   
-//  CMLByte metamerillrgb8Bitdata[14 * 3];
+//  uint8 metamerillrgb8Bitdata[14 * 3];
   float metamerillrgbfloatdata[14 * 3];
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:metamerillrgbfloatdata
                                          fromArray:metamerillXYZ
@@ -1254,7 +1254,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   cmlComputeChromaticAdaptationMatrix(adaptationmatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenwhitePoint, illYxy10);
 
   float standardadaptedxyzdata[5 * 3];
-//  CMLByte standardrgb8Bitdata[5 * 3];
+//  uint8 standardrgb8Bitdata[5 * 3];
   float standardrgbfloatdata[5 * 3];
   cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[0]), &(standardXYZ[0]), adaptationmatrix);
   cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[3]), &(standardXYZ[3]), adaptationmatrix);
@@ -1278,7 +1278,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 //  cmlData8ToRGB(cm, standardrgbfloatdata, standardrgb8Bitdata, 5);
   
   float specimenaptedxyzdata[5 * 3];
-//  CMLByte specimenrgb8Bitdata[5 * 3];
+//  uint8 specimenrgb8Bitdata[5 * 3];
   float specimenrgbfloatdata[5 * 3];
   cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[0]), &(specimenXYZ[0]), adaptationmatrix);
   cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[3]), &(specimenXYZ[3]), adaptationmatrix);
@@ -1481,7 +1481,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   else{[MIUVgradelabel setStringValue:@"Grade E"];}
 
   float UVstandardadaptedxyzdata[3 * 3];
-//  CMLByte UVstandardrgb8Bitdata[3 * 3];
+//  uint8 UVstandardrgb8Bitdata[3 * 3];
   float UVstandardrgbfloatdata[3 * 3];
   cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[0]), &(UVstandardXYZ[0]), adaptationmatrix);
   cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[3]), &(UVstandardXYZ[3]), adaptationmatrix);
@@ -1503,7 +1503,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 //  cmlData8ToRGB(cm, UVstandardrgbfloatdata, UVstandardrgb8Bitdata, 3);
   
   float UVmetameradaptedxyzdata[3 * 3];
-//  CMLByte UVmetamerrgb8Bitdata[3 * 3];
+//  uint8 UVmetamerrgb8Bitdata[3 * 3];
   float UVmetamerrgbfloatdata[3 * 3];
   cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[0]), &(UVmetamerXYZ[0]), adaptationmatrix);
   cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[3]), &(UVmetamerXYZ[3]), adaptationmatrix);

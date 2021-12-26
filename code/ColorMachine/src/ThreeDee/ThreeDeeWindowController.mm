@@ -16,7 +16,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   
   if(colorspace > CML_COLOR_CMYK){return NULL;}
   
-  CMLuint32 numchannels = cmlGetNumChannels(colorspace);
+  size_t numchannels = cmlGetNumChannels(colorspace);
 
   CMLVec4 o;
   CMLVec4 r[CML_MAX_NUMBER_OF_CHANNELS];
@@ -28,9 +28,9 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   
   CMLVec4UInt dim;
   CMLVec4 invdim;
-  CMLuint32 totalnumentries = 1;
+  size_t totalnumentries = 1;
   uint32 dimcount = 0;
-  for(CMLuint32 d=0; d<CML_MAX_NUMBER_OF_CHANNELS; d++){
+  for(size_t d=0; d<CML_MAX_NUMBER_OF_CHANNELS; d++){
     if(dimensions[d] > 1){
       dim[dimcount] = dimensions[d];
       totalnumentries *= dimensions[d];
@@ -52,29 +52,29 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       cmlCpy1(ptr, o);
       break;
     case 1:
-      for(CMLuint32 c0=0; c0<dim[0]; c0++){
+      for(size_t c0=0; c0<dim[0]; c0++){
         float f0 = (float)c0*invdim[0];
         *ptr++ = o[0] + f0 * r[0][0];
       }
       break;
     case 2:
-      for(CMLuint32 c1=0; c1<dim[1]; c1++){
+      for(size_t c1=0; c1<dim[1]; c1++){
         float f1 = (float)c1*invdim[1];
         o1[0] = o[0] + f1 * r[1][0];
-        for(CMLuint32 c0=0; c0<dim[0]; c0++){
+        for(size_t c0=0; c0<dim[0]; c0++){
           float f0 = (float)c0*invdim[0];
           *ptr++ = o1[0] + f0 * r[0][0];
         }
       }
       break;
     case 3:
-      for(CMLuint32 c2=0; c2<dim[2]; c2++){
+      for(size_t c2=0; c2<dim[2]; c2++){
         float f2 = (float)c2*invdim[2];
         o2[0] = o[0] + f2 * r[2][0];
-        for(CMLuint32 c1=0; c1<dim[1]; c1++){
+        for(size_t c1=0; c1<dim[1]; c1++){
           float f1 = (float)c1*invdim[1];
           o1[0] = o2[0] + f1 * r[1][0];
-          for(CMLuint32 c0=0; c0<dim[0]; c0++){
+          for(size_t c0=0; c0<dim[0]; c0++){
             float f0 = (float)c0*invdim[0];
             *ptr++ = o1[0] + f0 * r[0][0];
           }
@@ -82,16 +82,16 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       }
       break;
     case 4:
-      for(CMLuint32 c3=0; c3<dim[3]; c3++){
+      for(size_t c3=0; c3<dim[3]; c3++){
         float f3 = (float)c3*invdim[3];
         o3[0] = o[0] + f3 * r[3][0];
-        for(CMLuint32 c2=0; c2<dim[2]; c2++){
+        for(size_t c2=0; c2<dim[2]; c2++){
           float f2 = (float)c2*invdim[2];
           o2[0] = o3[0] + f2 * r[2][0];
-          for(CMLuint32 c1=0; c1<dim[1]; c1++){
+          for(size_t c1=0; c1<dim[1]; c1++){
             float f1 = (float)c1*invdim[1];
             o1[0] = o2[0] + f1 * r[1][0];
-            for(CMLuint32 c0=0; c0<dim[0]; c0++){
+            for(size_t c0=0; c0<dim[0]; c0++){
               float f0 = (float)c0*invdim[0];
               *ptr++ = o1[0] + f0 * r[0][0];
             }
@@ -108,18 +108,18 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       cmlCpy2(ptr, o);
       break;
     case 1:
-      for(CMLuint32 c0=0; c0<dim[0]; c0++){
+      for(size_t c0=0; c0<dim[0]; c0++){
         float f0 = (float)c0*invdim[0];
         *ptr++ = o[0] + f0 * r[0][0];
         *ptr++ = o[1] + f0 * r[0][1];
       }
       break;
     case 2:
-      for(CMLuint32 c1=0; c1<dim[1]; c1++){
+      for(size_t c1=0; c1<dim[1]; c1++){
         float f1 = (float)c1*invdim[1];
         o1[0] = o[0] + f1 * r[1][0];
         o1[1] = o[1] + f1 * r[1][1];
-        for(CMLuint32 c0=0; c0<dim[0]; c0++){
+        for(size_t c0=0; c0<dim[0]; c0++){
           float f0 = (float)c0*invdim[0];
           *ptr++ = o1[0] + f0 * r[0][0];
           *ptr++ = o1[1] + f0 * r[0][1];
@@ -127,15 +127,15 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       }
       break;
     case 3:
-      for(CMLuint32 c2=0; c2<dim[2]; c2++){
+      for(size_t c2=0; c2<dim[2]; c2++){
         float f2 = (float)c2*invdim[2];
         o2[0] = o[0] + f2 * r[2][0];
         o2[1] = o[1] + f2 * r[2][1];
-        for(CMLuint32 c1=0; c1<dim[1]; c1++){
+        for(size_t c1=0; c1<dim[1]; c1++){
           float f1 = (float)c1*invdim[1];
           o1[0] = o2[0] + f1 * r[1][0];
           o1[1] = o2[1] + f1 * r[1][1];
-          for(CMLuint32 c0=0; c0<dim[0]; c0++){
+          for(size_t c0=0; c0<dim[0]; c0++){
             float f0 = (float)c0*invdim[0];
             *ptr++ = o1[0] + f0 * r[0][0];
             *ptr++ = o1[1] + f0 * r[0][1];
@@ -144,19 +144,19 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       }
       break;
     case 4:
-      for(CMLuint32 c3=0; c3<dim[3]; c3++){
+      for(size_t c3=0; c3<dim[3]; c3++){
         float f3 = (float)c3*invdim[3];
         o3[0] = o[0] + f3 * r[3][0];
         o3[1] = o[1] + f3 * r[3][1];
-        for(CMLuint32 c2=0; c2<dim[2]; c2++){
+        for(size_t c2=0; c2<dim[2]; c2++){
           float f2 = (float)c2*invdim[2];
           o2[0] = o3[0] + f2 * r[2][0];
           o2[1] = o3[1] + f2 * r[2][1];
-          for(CMLuint32 c1=0; c1<dim[1]; c1++){
+          for(size_t c1=0; c1<dim[1]; c1++){
             float f1 = (float)c1*invdim[1];
             o1[0] = o2[0] + f1 * r[1][0];
             o1[1] = o2[1] + f1 * r[1][1];
-            for(CMLuint32 c0=0; c0<dim[0]; c0++){
+            for(size_t c0=0; c0<dim[0]; c0++){
               float f0 = (float)c0*invdim[0];
               *ptr++ = o1[0] + f0 * r[0][0];
               *ptr++ = o1[1] + f0 * r[0][1];
@@ -174,7 +174,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       cmlCpy3(ptr, o);
       break;
     case 1:
-      for(CMLuint32 c0=0; c0<dim[0]; c0++){
+      for(size_t c0=0; c0<dim[0]; c0++){
         float f0 = (float)c0*invdim[0];
         *ptr++ = o[0] + f0 * r[0][0];
         *ptr++ = o[1] + f0 * r[0][1];
@@ -182,12 +182,12 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       }
       break;
     case 2:
-      for(CMLuint32 c1=0; c1<dim[1]; c1++){
+      for(size_t c1=0; c1<dim[1]; c1++){
         float f1 = (float)c1*invdim[1];
         o1[0] = o[0] + f1 * r[1][0];
         o1[1] = o[1] + f1 * r[1][1];
         o1[2] = o[2] + f1 * r[1][2];
-        for(CMLuint32 c0=0; c0<dim[0]; c0++){
+        for(size_t c0=0; c0<dim[0]; c0++){
           float f0 = (float)c0*invdim[0];
           *ptr++ = o1[0] + f0 * r[0][0];
           *ptr++ = o1[1] + f0 * r[0][1];
@@ -196,17 +196,17 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       }
       break;
     case 3:
-      for(CMLuint32 c2=0; c2<dim[2]; c2++){
+      for(size_t c2=0; c2<dim[2]; c2++){
         float f2 = (float)c2*invdim[2];
         o2[0] = o[0] + f2 * r[2][0];
         o2[1] = o[1] + f2 * r[2][1];
         o2[2] = o[2] + f2 * r[2][2];
-        for(CMLuint32 c1=0; c1<dim[1]; c1++){
+        for(size_t c1=0; c1<dim[1]; c1++){
           float f1 = (float)c1*invdim[1];
           o1[0] = o2[0] + f1 * r[1][0];
           o1[1] = o2[1] + f1 * r[1][1];
           o1[2] = o2[2] + f1 * r[1][2];
-          for(CMLuint32 c0=0; c0<dim[0]; c0++){
+          for(size_t c0=0; c0<dim[0]; c0++){
             float f0 = (float)c0*invdim[0];
             *ptr++ = o1[0] + f0 * r[0][0];
             *ptr++ = o1[1] + f0 * r[0][1];
@@ -216,22 +216,22 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       }
       break;
     case 4:
-      for(CMLuint32 c3=0; c3<dim[3]; c3++){
+      for(size_t c3=0; c3<dim[3]; c3++){
         float f3 = (float)c3*invdim[3];
         o3[0] = o[0] + f3 * r[3][0];
         o3[1] = o[1] + f3 * r[3][1];
         o3[2] = o[2] + f3 * r[3][2];
-        for(CMLuint32 c2=0; c2<dim[2]; c2++){
+        for(size_t c2=0; c2<dim[2]; c2++){
           float f2 = (float)c2*invdim[2];
           o2[0] = o3[0] + f2 * r[2][0];
           o2[1] = o3[1] + f2 * r[2][1];
           o2[2] = o3[2] + f2 * r[2][2];
-          for(CMLuint32 c1=0; c1<dim[1]; c1++){
+          for(size_t c1=0; c1<dim[1]; c1++){
             float f1 = (float)c1*invdim[1];
             o1[0] = o2[0] + f1 * r[1][0];
             o1[1] = o2[1] + f1 * r[1][1];
             o1[2] = o2[2] + f1 * r[1][2];
-            for(CMLuint32 c0=0; c0<dim[0]; c0++){
+            for(size_t c0=0; c0<dim[0]; c0++){
               float f0 = (float)c0*invdim[0];
               *ptr++ = o1[0] + f0 * r[0][0];
               *ptr++ = o1[1] + f0 * r[0][1];
@@ -250,7 +250,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       cmlCpy4(ptr, o);
       break;
     case 1:
-      for(CMLuint32 c0=0; c0<dim[0]; c0++){
+      for(size_t c0=0; c0<dim[0]; c0++){
         float f0 = (float)c0*invdim[0];
         *ptr++ = o[0] + f0 * r[0][0];
         *ptr++ = o[1] + f0 * r[0][1];
@@ -259,13 +259,13 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       }
       break;
     case 2:
-      for(CMLuint32 c1=0; c1<dim[1]; c1++){
+      for(size_t c1=0; c1<dim[1]; c1++){
         float f1 = (float)c1*invdim[1];
         o1[0] = o[0] + f1 * r[1][0];
         o1[1] = o[1] + f1 * r[1][1];
         o1[2] = o[2] + f1 * r[1][2];
         o1[3] = o[3] + f1 * r[1][3];
-        for(CMLuint32 c0=0; c0<dim[0]; c0++){
+        for(size_t c0=0; c0<dim[0]; c0++){
           float f0 = (float)c0*invdim[0];
           *ptr++ = o1[0] + f0 * r[0][0];
           *ptr++ = o1[1] + f0 * r[0][1];
@@ -275,19 +275,19 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       }
       break;
     case 3:
-      for(CMLuint32 c2=0; c2<dim[2]; c2++){
+      for(size_t c2=0; c2<dim[2]; c2++){
         float f2 = (float)c2*invdim[2];
         o2[0] = o[0] + f2 * r[2][0];
         o2[1] = o[1] + f2 * r[2][1];
         o2[2] = o[2] + f2 * r[2][2];
         o2[3] = o[3] + f2 * r[2][3];
-        for(CMLuint32 c1=0; c1<dim[1]; c1++){
+        for(size_t c1=0; c1<dim[1]; c1++){
           float f1 = (float)c1*invdim[1];
           o1[0] = o2[0] + f1 * r[1][0];
           o1[1] = o2[1] + f1 * r[1][1];
           o1[2] = o2[2] + f1 * r[1][2];
           o1[3] = o2[3] + f1 * r[1][3];
-          for(CMLuint32 c0=0; c0<dim[0]; c0++){
+          for(size_t c0=0; c0<dim[0]; c0++){
             float f0 = (float)c0*invdim[0];
             *ptr++ = o1[0] + f0 * r[0][0];
             *ptr++ = o1[1] + f0 * r[0][1];
@@ -298,25 +298,25 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       }
       break;
     case 4:
-      for(CMLuint32 c3=0; c3<dim[3]; c3++){
+      for(size_t c3=0; c3<dim[3]; c3++){
         float f3 = (float)c3*invdim[3];
         o3[0] = o[0] + f3 * r[3][0];
         o3[1] = o[1] + f3 * r[3][1];
         o3[2] = o[2] + f3 * r[3][2];
         o3[3] = o[3] + f3 * r[3][3];
-        for(CMLuint32 c2=0; c2<dim[2]; c2++){
+        for(size_t c2=0; c2<dim[2]; c2++){
           float f2 = (float)c2*invdim[2];
           o2[0] = o3[0] + f2 * r[2][0];
           o2[1] = o3[1] + f2 * r[2][1];
           o2[2] = o3[2] + f2 * r[2][2];
           o2[3] = o3[3] + f2 * r[2][3];
-          for(CMLuint32 c1=0; c1<dim[1]; c1++){
+          for(size_t c1=0; c1<dim[1]; c1++){
             float f1 = (float)c1*invdim[1];
             o1[0] = o2[0] + f1 * r[1][0];
             o1[1] = o2[1] + f1 * r[1][1];
             o1[2] = o2[2] + f1 * r[1][2];
             o1[3] = o2[3] + f1 * r[1][3];
-            for(CMLuint32 c0=0; c0<dim[0]; c0++){
+            for(size_t c0=0; c0<dim[0]; c0++){
               float f0 = (float)c0*invdim[0];
               *ptr++ = o1[0] + f0 * r[0][0];
               *ptr++ = o1[1] + f0 * r[0][1];
@@ -371,8 +371,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 }
 
 - (void)getWidthHeight{
-  width = (CMLint32)ceil([self bounds].size.width);
-  height = (CMLint32)ceil([self bounds].size.height);
+  width = (int)ceil([self bounds].size.width);
+  height = (int)ceil([self bounds].size.height);
 }
 
 - (void)fixViewParameters{
@@ -403,7 +403,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
 - (void)reshape{
   [super reshape];
-  CMLint32 oldwidth = width;
+  int oldwidth = width;
   [self getWidthHeight];
   zoom /= (float)width / (float)oldwidth;
   [self fixViewParameters];
@@ -612,7 +612,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
 
 
-  int numchannels = cmlGetNumChannels(space3d);
+  size_t numchannels = cmlGetNumChannels(space3d);
 
 
 
@@ -633,7 +633,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   }
   glEnable(GL_DEPTH_TEST);
   
-  CMLuint32 surfacecount = 0;
+  size_t surfacecount = 0;
   CMLVec4UInt* surfacesteps = NULL;
   CMLVec4* origins = NULL;
   CMLVec4* axis1s = NULL;
@@ -889,8 +889,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     default: break;
     }
 
-    for(CMLuint32 s=0; s<surfacecount; s++){
-      CMLuint32 totalcount = surfacesteps[s][0] * surfacesteps[s][1] * surfacesteps[s][2] * surfacesteps[s][3];
+    for(size_t s=0; s<surfacecount; s++){
+      size_t totalcount = surfacesteps[s][0] * surfacesteps[s][1] * surfacesteps[s][2] * surfacesteps[s][3];
       normedcolorcoords[s] = (float*)cmlCreateNormedGamutSlice(space3d, surfacesteps[s], origins[s], axis1s[s], axis2s[s], NULL, NULL);
       rgbfloatvalues[s] = new float[totalcount*3];
       colorcoords[s] = new float[totalcount*numchannels];
@@ -915,17 +915,17 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     // Draw the quads
     // ////////////////////
 
-    for(CMLuint32 s=0; s<surfacecount; s++){
+    for(size_t s=0; s<surfacecount; s++){
       glEnable(GL_POLYGON_OFFSET_FILL);
       glPolygonOffset(1.f, 1.f);
       glShadeModel(GL_FLAT);
       glBegin(GL_QUADS);
-      for(CMLuint32 ax1 = 0; ax1 < surfacesteps[s][1] - 1; ax1++){
-        for(CMLuint32 ax2 = 0; ax2 < surfacesteps[s][0] - 1; ax2++){
-          int index0 = (ax1 + 0) * surfacesteps[s][0] * 3 + (ax2 + 0) * 3;
-          int index1 = (ax1 + 0) * surfacesteps[s][0] * 3 + (ax2 + 1) * 3;
-          int index2 = (ax1 + 1) * surfacesteps[s][0] * 3 + (ax2 + 1) * 3;
-          int index3 = (ax1 + 1) * surfacesteps[s][0] * 3 + (ax2 + 0) * 3;
+      for(size_t ax1 = 0; ax1 < surfacesteps[s][1] - 1; ax1++){
+        for(size_t ax2 = 0; ax2 < surfacesteps[s][0] - 1; ax2++){
+          size_t index0 = (ax1 + 0) * surfacesteps[s][0] * 3 + (ax2 + 0) * 3;
+          size_t index1 = (ax1 + 0) * surfacesteps[s][0] * 3 + (ax2 + 1) * 3;
+          size_t index2 = (ax1 + 1) * surfacesteps[s][0] * 3 + (ax2 + 1) * 3;
+          size_t index3 = (ax1 + 1) * surfacesteps[s][0] * 3 + (ax2 + 0) * 3;
 
           glColor4f(rgbfloatvalues[s][index3 + 0] * bodyalpha / 255.f + backgroundRGB[0] * (1.f - bodyalpha / 255.f),
                     rgbfloatvalues[s][index3 + 1] * bodyalpha / 255.f + backgroundRGB[1] * (1.f - bodyalpha / 255.f),
@@ -959,16 +959,16 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     // Draw the lines
     // ////////////////////
 
-    for(CMLuint32 s=0; s<surfacecount; s++){
+    for(size_t s=0; s<surfacecount; s++){
       if(gridalpha > 0.f){
         glShadeModel(GL_SMOOTH);
         glDepthFunc(GL_LEQUAL);
-        for(CMLuint32 ax1 = 0; ax1 < surfacesteps[s][1] - 1; ax1++){
-          for(CMLuint32 ax2 = 0; ax2 < surfacesteps[s][0] - 1; ax2++){
-            int index0 = (ax1 + 0) * surfacesteps[s][0] * 3 + (ax2 + 0) * 3;
-            int index1 = (ax1 + 0) * surfacesteps[s][0] * 3 + (ax2 + 1) * 3;
-            int index2 = (ax1 + 1) * surfacesteps[s][0] * 3 + (ax2 + 1) * 3;
-            int index3 = (ax1 + 1) * surfacesteps[s][0] * 3 + (ax2 + 0) * 3;
+        for(size_t ax1 = 0; ax1 < surfacesteps[s][1] - 1; ax1++){
+          for(size_t ax2 = 0; ax2 < surfacesteps[s][0] - 1; ax2++){
+            size_t index0 = (ax1 + 0) * surfacesteps[s][0] * 3 + (ax2 + 0) * 3;
+            size_t index1 = (ax1 + 0) * surfacesteps[s][0] * 3 + (ax2 + 1) * 3;
+            size_t index2 = (ax1 + 1) * surfacesteps[s][0] * 3 + (ax2 + 1) * 3;
+            size_t index3 = (ax1 + 1) * surfacesteps[s][0] * 3 + (ax2 + 0) * 3;
             if(hueindex >= 0){
               if(    (fabsf(normedsystemcoords[s][index0 + hueindex] - normedsystemcoords[s][index1 + hueindex]) > .5f)
                   || (fabsf(normedsystemcoords[s][index0 + hueindex] - normedsystemcoords[s][index2 + hueindex]) > .5f)
@@ -1006,7 +1006,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
     }
 
-    for(CMLuint32 s=0; s<surfacecount; s++){
+    for(size_t s=0; s<surfacecount; s++){
       delete [] normedsystemcoords[s];
       delete [] systemcoords[s];
       delete [] colorcoords[s];
@@ -1048,7 +1048,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     case CML_COLOR_HSL: cmlSet4UInt(steps, 3*steps3d + 1, steps3d, steps3d, 1); break;
     default: cmlSet4UInt(steps, 1, 1, 1, 1); break;
     }
-    CMLuint32 totalcloudcount = steps[0] * steps[1] * steps[2] * steps[3];
+    size_t totalcloudcount = steps[0] * steps[1] * steps[2] * steps[3];
     float* cloudnormedcolorcoords = (float*)cmlCreateNormedGamutSlice(space3d, steps, NULL, NULL, NULL, NULL, NULL);
     float* cloudrgbfloatvalues = new float[totalcloudcount*3];
     float* cloudcolorcoords = new float[totalcloudcount*numchannels];
@@ -1072,7 +1072,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     
     glPointSize((2.f / numchannels) / zoom);
     glBegin(GL_POINTS);
-    for(CMLuint32 i=0; i<totalcloudcount; i++){
+    for(size_t i=0; i<totalcloudcount; i++){
       glColor4f(cloudrgbfloatvalues[i * 3 + 0], cloudrgbfloatvalues[i * 3 + 1], cloudrgbfloatvalues[i * 3 + 2], pointsalpha);
       glVertex3fv(&(cloudnormedsystemcoords[i * 3]));
     }

@@ -23,8 +23,8 @@
   float imin = CML_DEFAULT_INTEGRATION_MIN;
   float imax = CML_DEFAULT_INTEGRATION_MAX;
 
-  CMLuint32 width = (CMLuint32)[self bounds].size.width;
-  CMLuint32 height = (CMLuint32)[self bounds].size.height;
+  size_t width = (size_t)[self bounds].size.width;
+  size_t height = (size_t)[self bounds].size.height;
 
   CGColorRef cgcolor;
   
@@ -33,7 +33,7 @@
   
   // Draw the background;
   Byte* rgb8Bitdata = new Byte[width * height * 3];
-  for(CMLuint32 x=0; x<width; x++){
+  for(size_t x=0; x<width; x++){
     float lambda = imin + ((float)x / width) * (imax - imin);
     CMLVec3 xyz;
     cmlGetSpectralXYZColor(sm, xyz, lambda);
@@ -43,7 +43,7 @@
     cmlMul3(rgb, .4f);
     cmlRGBToData8(sm, &(rgb8Bitdata[x*3]), rgb, 1);
   }
-  for(CMLuint32 y=1; y<height; y++){
+  for(size_t y=1; y<height; y++){
     memcpy(&(rgb8Bitdata[y * width * 3]), rgb8Bitdata, width*3);
   }
   

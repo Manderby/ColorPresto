@@ -54,14 +54,14 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str);
   CMLColorType colorType;
   float* colordata;
 //  Byte* rgb8Bitdata;
-  CMLuint32 width;
-  CMLuint32 height;
+  size_t width;
+  size_t height;
   float* colorbuffer;
   float* normedbuffer;
   CMLNormedConverter normedinputconverter;
   CMLNormedConverter normedoutputconverter;
-  CMLuint32 channelx;
-  CMLuint32 channely;
+  size_t channelx;
+  size_t channely;
   BOOL drawspectrum;
 }
 - (id)init;
@@ -70,8 +70,8 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str);
                  colorType:(CMLColorType)colorType
       normedinputconverter:(CMLNormedConverter)normedinputconverter
      normedoutputconverter:(CMLNormedConverter)normedoutputconverter
-                  channelx:(CMLuint32)channelx
-                  channely:(CMLuint32)channely
+                  channelx:(size_t)channelx
+                  channely:(size_t)channely
               drawspectrum:(BOOL)drawspectrum;
 - (void)drawRect:(NSRect)rect;
 - (void)mouseDown:(NSEvent*)event;

@@ -87,7 +87,7 @@
          normedinputconverter:cmlGetNormedInputConverter(CML_COLOR_GRAY)
         normedoutputconverter:cmlGetNormedOutputConverter(CML_COLOR_GRAY)
                      channelx:0
-                     channely:(CMLuint32)-1
+                     channely:(size_t)-1
                  drawspectrum:NO];
 }
 

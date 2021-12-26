@@ -20,13 +20,13 @@ typedef enum{
 } CoordSystemType;
 
 
-typedef CMLuint32 CMLVec4UInt[CML_MAX_NUMBER_OF_CHANNELS];
+typedef size_t CMLVec4UInt[CML_MAX_NUMBER_OF_CHANNELS];
 inline static void cmlCpy4UInt(CMLVec4UInt d, const CMLVec4UInt a) {d[0]=a[0];d[1]=a[1];d[2]=a[2];d[3]=a[3];}
 inline static void cmlSet4UInt(CMLVec4UInt d, uint32 a0, uint32 a1, uint32 a2, uint32 a3) {d[0]=a0;d[1]=a1;d[2]=a2;d[3]=a3;}
 
 typedef struct CMLBoundsInt{
-  CMLuint32 min;
-  CMLuint32 max;
+  size_t min;
+  size_t max;
 } CMLBoundsInt;
 
 typedef struct CMLBoundsFloat{
@@ -120,8 +120,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   IBOutlet ThreeDeeWindowController* controller;
   float mousex;
   float mousey;
-  CMLint32 width;
-  CMLint32 height;
+  int width;
+  int height;
   float viewpol;
   float viewequ;
   float zoom;

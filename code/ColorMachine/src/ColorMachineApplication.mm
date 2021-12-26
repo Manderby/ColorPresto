@@ -223,7 +223,7 @@ size_t bordercount;
 //              fromArray:(float*)inputarray
 //          withColorType:(CMLColorType)inputcolortype
 //   normedInputConverter:(CMLNormedConverter)normedconverter
-//                  count:(CMLuint32)count
+//                  count:(size_t)count
 //               drawgrid:(BOOL)drawgridlines
 //               drawmask:(BOOL)drawmask{
 
@@ -231,11 +231,11 @@ size_t bordercount;
               fromArray:(float*)inputarray
           withColorType:(CMLColorType)inputcolortype
    normedInputConverter:(CMLNormedConverter)normedconverter
-                  count:(CMLuint32)count
+                  count:(size_t)count
                drawgrid:(BOOL)drawgridlines
                drawmask:(BOOL)drawmask{
   
-  CMLuint32 numcolorchannels = cmlGetNumChannels(inputcolortype);
+  size_t numcolorchannels = cmlGetNumChannels(inputcolortype);
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   CMLColorMachine* sm = [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
   CMLVec3 cmwhitePointYxy;
@@ -262,17 +262,17 @@ size_t bordercount;
   delete [] aXYZbuffer;
 
 //  if((showmask && drawmask) || (showgrid && drawgridlines)){
-//    CMLuint32 nummaskchannels = cmlGetNumChannels(maskcolor);
+//    size_t nummaskchannels = cmlGetNumChannels(maskcolor);
 //    CMLColorConverter colortomask = cmlGetColorConverter(maskcolor, inputcolortype);
 //    CMLNormedConverter masktonormal = cmlGetNormedOutputConverter(maskcolor);
 //    float* maskbuffer = new float[count];
 //    float* maskcolorarray = new float[nummaskchannels * count];
 //    float* normedcolor = new float[nummaskchannels * count];
-//    for(CMLuint32 i=0; i<count; i++){maskbuffer[i] = 1.f;}
+//    for(size_t i=0; i<count; i++){maskbuffer[i] = 1.f;}
 //    colortomask(cm, maskcolorarray, colorbuffer, count);
 //    masktonormal(normedcolor, maskcolorarray, count);
 //    if(showmask && drawmask){
-//      for(CMLuint32 i=0; i<count * nummaskchannels; i++){
+//      for(size_t i=0; i<count * nummaskchannels; i++){
 //        if(!CMLInRange(normedcolor[i], 0.f, 1.f)){maskbuffer[i/nummaskchannels] = .2f;}
 //      }
 //    }
@@ -296,12 +296,12 @@ size_t bordercount;
 ////      CMLArray coords(coordsbuffer, true, (bordercount + 2) * 4);
 ////      CMLArray vals(valsbuffer, true, (bordercount + 2) * 4);
 ////      CMLSampleArrayFunction gridlines(coords, vals, CML_INTERPOLATION_LINEAR, CML_EXTRAPOLATION_CLAMP);
-////      for(CMLuint32 i=0; i<count * nummaskchannels; i++){
+////      for(size_t i=0; i<count * nummaskchannels; i++){
 ////        maskbuffer[i/nummaskchannels] *= gridlines(normedcolor[i]);
 ////      }
 //    }
 //
-//    for(CMLuint32 i=0; i<count * 3; i++){
+//    for(size_t i=0; i<count * 3; i++){
 //      RGBbuffer[i] *= maskbuffer[i/3];
 //    }
 //    delete [] normedcolor;
