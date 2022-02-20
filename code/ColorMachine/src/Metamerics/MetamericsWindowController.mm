@@ -769,12 +769,22 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   CMLVec3 refYuv2;
   CMLVec3 refYcd2;
   
+  CMLIntegration integration = cmlMakeDefaultIntegration();
+  
   if(illuminationSpec){
-    cmlSet3(illXYZunnorm10, cmlFilterFunction(illuminationSpec, observer10Funcs[0]), cmlFilterFunction(illuminationSpec, observer10Funcs[1]), cmlFilterFunction(illuminationSpec, observer10Funcs[2]));
+    cmlSet3(
+      illXYZunnorm10,
+      cmlFilterFunction(illuminationSpec, observer10Funcs[0], &integration),
+      cmlFilterFunction(illuminationSpec, observer10Funcs[1], &integration),
+      cmlFilterFunction(illuminationSpec, observer10Funcs[2], &integration));
     cmlCpy3(illXYZ10, illXYZunnorm10);
     cmlDiv3(illXYZ10, illXYZunnorm10[1]);
 
-    cmlSet3(illXYZunnorm2, cmlFilterFunction(illuminationSpec, observer2Funcs[0]), cmlFilterFunction(illuminationSpec, observer2Funcs[1]), cmlFilterFunction(illuminationSpec, observer2Funcs[2]));
+    cmlSet3(
+      illXYZunnorm2,
+      cmlFilterFunction(illuminationSpec, observer2Funcs[0], &integration),
+      cmlFilterFunction(illuminationSpec, observer2Funcs[1], &integration),
+      cmlFilterFunction(illuminationSpec, observer2Funcs[2], &integration));
     cmlCpy3(illXYZ2, illXYZunnorm2);
     cmlDiv3(illXYZ2, illXYZunnorm2[1]);
   }else{
@@ -795,11 +805,19 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   }
 
   if(ref){
-    cmlSet3(refXYZunnorm10, cmlFilterFunction(ref, observer10Funcs[0]), cmlFilterFunction(ref, observer10Funcs[1]), cmlFilterFunction(ref, observer10Funcs[2]));
+    cmlSet3(
+      refXYZunnorm10,
+      cmlFilterFunction(ref, observer10Funcs[0], &integration),
+      cmlFilterFunction(ref, observer10Funcs[1], &integration),
+      cmlFilterFunction(ref, observer10Funcs[2], &integration));
     cmlCpy3(refXYZ10, refXYZunnorm10);
     cmlDiv3(refXYZ10, refXYZunnorm10[1]);
 
-    cmlSet3(refXYZunnorm2, cmlFilterFunction(ref, observer2Funcs[0]), cmlFilterFunction(ref, observer2Funcs[1]), cmlFilterFunction(ref, observer2Funcs[2]));
+    cmlSet3(
+      refXYZunnorm2,
+      cmlFilterFunction(ref, observer2Funcs[0], &integration),
+      cmlFilterFunction(ref, observer2Funcs[1], &integration),
+      cmlFilterFunction(ref, observer2Funcs[2], &integration));
     cmlCpy3(refXYZ2, refXYZunnorm2);
     cmlDiv3(refXYZ2, refXYZunnorm2[1]);
   }else{
@@ -957,7 +975,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     CMLVec3 metamerrefUVW;
     if(ref){
       CMLFunction* metamerrefremission = cmlCreateFunctionMulFunction(metamerfunction, ref);
-      cmlSet3(metamerrefXYZptr, cmlFilterFunction(metamerrefremission, observer2Funcs[0]), cmlFilterFunction(metamerrefremission, observer2Funcs[1]), cmlFilterFunction(metamerrefremission, observer2Funcs[2]));
+      cmlSet3(
+        metamerrefXYZptr,
+        cmlFilterFunction(metamerrefremission, observer2Funcs[0], &integration),
+        cmlFilterFunction(metamerrefremission, observer2Funcs[1], &integration),
+        cmlFilterFunction(metamerrefremission, observer2Funcs[2], &integration));
       cmlDiv3(metamerrefXYZptr, refXYZunnorm2[1]);
       CMLVec3 metamerrefYxy;
       cmlConvertXYZToYxy(metamerrefYxy, metamerrefXYZptr, CML_NULL);
@@ -979,7 +1001,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     CMLVec3 metamerillUVW;
     if(illuminationSpec){
       CMLFunction* metamerillremission = cmlCreateFunctionMulFunction(metamerfunction, illuminationSpec);
-      cmlSet3(metamerillXYZptr, cmlFilterFunction(metamerillremission, observer2Funcs[0]), cmlFilterFunction(metamerillremission, observer2Funcs[1]), cmlFilterFunction(metamerillremission, observer2Funcs[2]));
+      cmlSet3(
+        metamerillXYZptr,
+        cmlFilterFunction(metamerillremission, observer2Funcs[0], &integration),
+        cmlFilterFunction(metamerillremission, observer2Funcs[1], &integration),
+        cmlFilterFunction(metamerillremission, observer2Funcs[2], &integration));
       cmlDiv3(metamerillXYZptr, illXYZunnorm2[1]);
       CMLVec3 metamerillYxy;
       cmlConvertXYZToYxy(metamerillYxy, metamerillXYZptr, CML_NULL);
@@ -1193,12 +1219,20 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 
     if(illuminationSpec){
       CMLFunction* standardremission = cmlCreateFunctionMulFunction(standardfunction, illuminationSpec);
-      cmlSet3(standardXYZptr, cmlFilterFunction(standardremission, observer10Funcs[0]),  cmlFilterFunction(standardremission, observer10Funcs[1]),  cmlFilterFunction(standardremission, observer10Funcs[2]));
+      cmlSet3(
+        standardXYZptr,
+        cmlFilterFunction(standardremission, observer10Funcs[0], &integration),
+        cmlFilterFunction(standardremission, observer10Funcs[1], &integration),
+        cmlFilterFunction(standardremission, observer10Funcs[2], &integration));
       cmlDiv3(standardXYZptr, illXYZunnorm10[1]);
       cmlConvertXYZToLab(standardLab, standardXYZptr, illXYZ10);
 
       CMLFunction* specimenremission = cmlCreateFunctionMulFunction(specimenfunction, illuminationSpec);
-      cmlSet3(specimenXYZptr, cmlFilterFunction(specimenremission, observer10Funcs[0]), cmlFilterFunction(specimenremission, observer10Funcs[1]), cmlFilterFunction(specimenremission, observer10Funcs[2]));
+      cmlSet3(
+        specimenXYZptr,
+        cmlFilterFunction(specimenremission, observer10Funcs[0], &integration),
+        cmlFilterFunction(specimenremission, observer10Funcs[1], &integration),
+        cmlFilterFunction(specimenremission, observer10Funcs[2], &integration));
       cmlDiv3(specimenXYZptr, illXYZunnorm10[1]);
       cmlConvertXYZToLab(specimenLab, specimenXYZptr, illXYZ10);
       cmlReleaseFunction(standardremission);
@@ -1418,18 +1452,26 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
       // to normalize the computational result at the very end. Therefore,
       // to comply with the temporary results published in ISO-3664, the
       // normalization factor 5 must be introduced manually.
-      float excitationN = cmlFilterFunction(illuminationSpec, UVexcitationfunction);
+      float excitationN = cmlFilterFunction(illuminationSpec, UVexcitationfunction, &integration);
       CMLFunction* betatemp = cmlCreateFunctionDivFunction(fluorescentremissionfunction, illuminationSpec);
       CMLFunction* betaL = cmlCreateFunctionMulScalar(betatemp, excitationN);
       CMLFunction* betaT = cmlCreateFunctionAddFunction(UVstandardfunction, betaL);
 
       CMLFunction* uvmetamerXXXremission = cmlCreateFunctionMulFunction(betaT, illuminationSpec);
-      cmlSet3(UVstandardXYZptr, cmlFilterFunction(uvmetamerXXXremission, observer10Funcs[0]), cmlFilterFunction(uvmetamerXXXremission, observer10Funcs[1]), cmlFilterFunction(uvmetamerXXXremission, observer10Funcs[2]));
+      cmlSet3(
+        UVstandardXYZptr,
+        cmlFilterFunction(uvmetamerXXXremission, observer10Funcs[0], &integration),
+        cmlFilterFunction(uvmetamerXXXremission, observer10Funcs[1], &integration),
+        cmlFilterFunction(uvmetamerXXXremission, observer10Funcs[2], &integration));
       cmlDiv3(UVstandardXYZptr, illXYZunnorm10[1]);
       cmlConvertXYZToLab(UVstandardLab, UVstandardXYZptr, illXYZ10);
 
       CMLFunction* UVmetamerremission = cmlCreateFunctionMulFunction(UVmetamerfunction, illuminationSpec);
-      cmlSet3(UVmetamerXYZptr, cmlFilterFunction(UVmetamerremission, observer10Funcs[0]), cmlFilterFunction(UVmetamerremission, observer10Funcs[1]), cmlFilterFunction(UVmetamerremission, observer10Funcs[2]));
+      cmlSet3(
+        UVmetamerXYZptr,
+        cmlFilterFunction(UVmetamerremission, observer10Funcs[0], &integration),
+        cmlFilterFunction(UVmetamerremission, observer10Funcs[1], &integration),
+        cmlFilterFunction(UVmetamerremission, observer10Funcs[2], &integration));
       cmlDiv3(UVmetamerXYZptr, illXYZunnorm10[1]);
       cmlConvertXYZToLab(UVmetamerLab, UVmetamerXYZptr, illXYZ10);
       cmlReleaseFunction(betatemp);

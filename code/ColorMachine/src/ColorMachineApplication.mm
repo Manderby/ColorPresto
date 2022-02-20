@@ -377,11 +377,12 @@ size_t bordercount;
     const CMLFunction* spectrum = ((SpectralColor*)color)->getSpectrum();
     float divisor = 1.f;
     if(colorType == CML_COLOR_SPECTRUM_ILLUMINATION){
-      float maxvalue = cmlGetFunctionMaxValue(spectrum);
+      CMLIntegration integration = cmlMakeDefaultIntegration();
+      float maxvalue = cmlGetFunctionMaxValue(spectrum, &integration);
       if(maxvalue == 0){
         divisor = 1.f;
       }else{
-        divisor = cmlInverse(cmlGetFunctionMaxValue(spectrum));
+        divisor = cmlInverse(cmlGetFunctionMaxValue(spectrum, &integration));
       }
     }
     CGContextSetStrokeColorWithColor(context, linecolor);

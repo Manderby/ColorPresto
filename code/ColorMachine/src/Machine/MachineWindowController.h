@@ -59,7 +59,8 @@
   BOOL colorSelectionIsExpanded;
   IBOutlet NSButton *collapseExpandColorSelectionButton;
 
-  
+  IBOutlet NSSlider *testSlider;
+
 }
 - (void)awakeFromNib;
 
@@ -87,10 +88,11 @@
 - (IBAction)valueChangeK:(NSControl*)sender;
 - (IBAction)valueChangeke:(NSControl*)sender;
 
+- (IBAction)testSliderChange:(NSControl*)sender;
+
 - (IBAction)toggleColorSelection:(id)sender;
 - (void)collapseColorSelection;
 - (void)expandColorSelection;
-
 
 - (void)windowDidChangeScreenProfile:(NSNotification *)notification;
 //- (void)windowDidChangeBackingProperties:(NSNotification *)notification;

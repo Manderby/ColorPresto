@@ -2135,6 +2135,14 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVl-HX-aVB">
+                        <rect key="frame" x="57" y="156" width="96" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="10" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="TnJ-5h-RFp"/>
+                        <connections>
+                            <action selector="testSliderChange:" target="1885" id="VN8-uI-ZCV"/>
+                        </connections>
+                    </slider>
                 </subviews>
             </view>
             <contentBorderThickness minY="22"/>
@@ -2175,6 +2183,7 @@
                 <outlet property="sliderSplitRGB" destination="5141" id="5149"/>
                 <outlet property="sliderT" destination="1777" id="2117"/>
                 <outlet property="sliderke" destination="1217" id="2053"/>
+                <outlet property="testSlider" destination="aVl-HX-aVB" id="jTY-J7-ttu"/>
                 <outlet property="textFieldGammaL" destination="3703" id="3737"/>
                 <outlet property="textFieldGammaRGB" destination="1770" id="4897"/>
                 <outlet property="textFieldK" destination="1209" id="2057"/>

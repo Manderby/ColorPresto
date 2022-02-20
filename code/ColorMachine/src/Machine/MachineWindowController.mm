@@ -84,7 +84,7 @@
   }
 
   [responseRGBSelect removeAllItems];
-  for(uint32 i = 1; i < CML_RESPONSE_CUSTOM_COUNT; ++i){ // Index 0 would be the undefined response.
+  for(uint32 i = 1; i < CML_RESPONSE_COUNT; ++i){ // Index 0 would be the undefined response.
     [responseRGBSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetRGBResponseTypeString((CMLResponseCurveType)i)] atIndex:i - 1];
   }
 
@@ -360,6 +360,12 @@
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
+
+- (IBAction)testSliderChange:(NSControl*)sender{
+//  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+//  cmlSetIntegrationStepSize(cm, [sender floatValue]);
+//  [(ColorMachineApplication*)NSApp updateMachine];
+}
 
 
 - (void )windowDidChangeScreenProfile:(NSNotification *)notification{
