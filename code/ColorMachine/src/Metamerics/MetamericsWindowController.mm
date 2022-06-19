@@ -790,13 +790,13 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   }else{
     CMLObserverType illObserverType = cmlGetObserverType(cm);
     if(illObserverType == CML_OBSERVER_10DEG_CIE_1964){
-      cmlGetWhitePointYxy(cm, illYxy10);
+      cmlCpy3(illYxy10, cmlGetReferenceWhitePointYxy(cm));
       illYxy10[0] = 1.f;
       cmlConvertYxyToXYZ(illXYZ10, illYxy10, CML_NULL);
       cmlSet3(illXYZ2, 0.f, 1.f, 0.f);
       ill2available = false;
     }else{
-      cmlGetWhitePointYxy(cm, illYxy2);
+      cmlCpy3(illYxy2, cmlGetReferenceWhitePointYxy(cm));
       illYxy2[0] = 1.f;
       cmlConvertYxyToXYZ(illXYZ2, illYxy2, CML_NULL);
       cmlSet3(illXYZ10, 0.f, 1.f, 0.f);
@@ -821,7 +821,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     cmlCpy3(refXYZ2, refXYZunnorm2);
     cmlDiv3(refXYZ2, refXYZunnorm2[1]);
   }else{
-    cmlGetWhitePointYxy(cm, refYxy2);
+    cmlCpy3(refYxy2, cmlGetReferenceWhitePointYxy(cm));
     refYxy2[0] = 1.f;
     cmlConvertYxyToXYZ(refXYZ2, refYxy2, CML_NULL);
     cmlSet3(refXYZ10, 0.f, 1.f, 0.f);
@@ -1281,20 +1281,20 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   // Note that the use of a chromatic adaptation is purely for displaying
   // reasons and is not in the ISO-standard at all. The differences between
   // the colors can be seen better. That's all.
-  CMLMat33 adaptationmatrix;
-  CMLVec3 screenwhitePoint;
-  cmlGetWhitePointYxy(sm, screenwhitePoint);
-  screenwhitePoint[0] = 1.f;
-  cmlComputeChromaticAdaptationMatrix(adaptationmatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenwhitePoint, illYxy10);
+  CMLMat33 adaptationMatrix;
+  CMLVec3 screenWhitePoint;
+  cmlCpy3(screenWhitePoint, cmlGetReferenceWhitePointYxy(sm));
+  screenWhitePoint[0] = 1.f;
+  cmlComputeChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, illYxy10);
 
   float standardadaptedxyzdata[5 * 3];
 //  uint8 standardrgb8Bitdata[5 * 3];
   float standardrgbfloatdata[5 * 3];
-  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[0]), &(standardXYZ[0]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[3]), &(standardXYZ[3]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[6]), &(standardXYZ[6]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[9]), &(standardXYZ[9]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[12]), &(standardXYZ[12]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[0]), &(standardXYZ[0]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[3]), &(standardXYZ[3]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[6]), &(standardXYZ[6]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[9]), &(standardXYZ[9]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(standardadaptedxyzdata[12]), &(standardXYZ[12]), adaptationMatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:standardrgbfloatdata
                                          fromArray:standardadaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1314,11 +1314,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float specimenaptedxyzdata[5 * 3];
 //  uint8 specimenrgb8Bitdata[5 * 3];
   float specimenrgbfloatdata[5 * 3];
-  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[0]), &(specimenXYZ[0]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[3]), &(specimenXYZ[3]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[6]), &(specimenXYZ[6]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[9]), &(specimenXYZ[9]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[12]), &(specimenXYZ[12]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[0]), &(specimenXYZ[0]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[3]), &(specimenXYZ[3]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[6]), &(specimenXYZ[6]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[9]), &(specimenXYZ[9]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(specimenaptedxyzdata[12]), &(specimenXYZ[12]), adaptationMatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:specimenrgbfloatdata
                                          fromArray:specimenaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1525,9 +1525,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float UVstandardadaptedxyzdata[3 * 3];
 //  uint8 UVstandardrgb8Bitdata[3 * 3];
   float UVstandardrgbfloatdata[3 * 3];
-  cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[0]), &(UVstandardXYZ[0]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[3]), &(UVstandardXYZ[3]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[6]), &(UVstandardXYZ[6]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[0]), &(UVstandardXYZ[0]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[3]), &(UVstandardXYZ[3]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVstandardadaptedxyzdata[6]), &(UVstandardXYZ[6]), adaptationMatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:UVstandardrgbfloatdata
                                          fromArray:UVstandardadaptedxyzdata
                                      withColorType:CML_COLOR_XYZ
@@ -1547,9 +1547,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   float UVmetameradaptedxyzdata[3 * 3];
 //  uint8 UVmetamerrgb8Bitdata[3 * 3];
   float UVmetamerrgbfloatdata[3 * 3];
-  cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[0]), &(UVmetamerXYZ[0]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[3]), &(UVmetamerXYZ[3]), adaptationmatrix);
-  cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[6]), &(UVmetamerXYZ[6]), adaptationmatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[0]), &(UVmetamerXYZ[0]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[3]), &(UVmetamerXYZ[3]), adaptationMatrix);
+  cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[6]), &(UVmetamerXYZ[6]), adaptationMatrix);
   [(ColorMachineApplication*)NSApp fillRGBfloatarray:UVmetamerrgbfloatdata
                                          fromArray:UVmetameradaptedxyzdata
                                      withColorType:CML_COLOR_XYZ

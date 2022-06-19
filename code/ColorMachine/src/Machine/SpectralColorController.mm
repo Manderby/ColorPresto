@@ -195,8 +195,6 @@
   Color* controllercolor = [colorcontroller getColor];
 //  SpectralColor& spectral = *(SpectralColor*)[colorcontroller color];
 
-  CMLVec3 whitePointYxy;
-  cmlGetWhitePointYxy(cm, whitePointYxy);
   CMLFunction* dirac = cmlCreateDiracFilter(lambda);
   CMLFunction* illumdirac = cmlCreateFunctionMulScalar(dirac, cmlInverse(cmlGetRadiometricScale(cm)));
 //  spectral.init(&dirac, false);

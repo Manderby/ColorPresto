@@ -56,7 +56,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str);
 //  Byte* rgb8Bitdata;
   size_t width;
   size_t height;
-  float* colorbuffer;
+  float* colorBuffer;
   float* normedbuffer;
   CMLNormedConverter normedinputconverter;
   CMLNormedConverter normedoutputconverter;

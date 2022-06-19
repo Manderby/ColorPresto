@@ -140,9 +140,9 @@
   CMLIlluminationType newIllum = (CMLIlluminationType)[sender indexOfSelectedItem];
   if(newIllum == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
     CMLVec3 wpyxy;
-    cmlGetWhitePointYxy(cm, wpyxy);
+    cmlCpy3(wpyxy, cmlGetReferenceWhitePointYxy(cm));
     wpyxy[0] = 1.f;
-    cmlSetWhitePointYxy(cm, wpyxy);
+    cmlSetReferenceWhitePointYxy(cm, wpyxy);
   }else{
     cmlSetIlluminationType(cm, newIllum);
   }
@@ -159,7 +159,7 @@
 - (IBAction)whitePointChange:(NSControl*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   CMLVec3 curwhite;
-  cmlGetWhitePointYxy(cm, curwhite);
+  cmlCpy3(curwhite, cmlGetReferenceWhitePointYxy(cm));
   curwhite[0] = 1.f;
   if(sender == whitePointx){
     curwhite[1] = [sender floatValue];
@@ -168,7 +168,7 @@
   }else{
 //    curwhite[0] = [sender floatValue];
   }
-  cmlSetWhitePointYxy(cm, curwhite);
+  cmlSetReferenceWhitePointYxy(cm, curwhite);
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
@@ -448,14 +448,19 @@
   }
 
   float temp = cmlGetIlluminationTemperature(cm);
+  if(temp == 0.f){
+    CMLVec3 whitePointYuv;
+    cmlYupvpToYuv(cm, whitePointYuv, cmlGetReferenceWhitePointYupvp(cm), 1);
+    temp = cmlGetCorrelatedColorTemperature(whitePointYuv);
+  }
+  
   float slidervalue;
 //  if(temp == CML_INFINITY){slidervalue = 1.f;}else{slidervalue = -((4000.f / temp) - 1.f);}
   if(temp == CML_INFINITY){slidervalue = 1.f;}else{slidervalue = 1.f - expf(-((temp - 2000.f) / 6000.f));}
   [sliderT setFloatValue:slidervalue];
   [textFieldT setStringValue:[NSString stringWithFormat:@"%5.01f", temp]];
 
-  CMLVec3 whitePointYxy;
-  cmlGetWhitePointYxy(cm, whitePointYxy);
+  const float* whitePointYxy = cmlGetReferenceWhitePointYxy(cm);
   [whitePointY setStringValue:[NSString stringWithFormat:@"%1.01f", whitePointYxy[0]]];
   [whitePointx setStringValue:[NSString stringWithFormat:@"%1.05f", whitePointYxy[1]]];
   [whitePointy setStringValue:[NSString stringWithFormat:@"%1.05f", whitePointYxy[2]]];

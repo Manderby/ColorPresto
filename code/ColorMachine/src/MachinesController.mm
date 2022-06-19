@@ -6,7 +6,6 @@
 
 - (id)init{
   cm = cmlCreateColorMachine();
-//  cmlSetRadiometricComputation(cm, CML_TRUE);
   cmlSetMachineForColorClasses(cm);
 
   sm = NULL;

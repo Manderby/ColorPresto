@@ -114,14 +114,14 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   colordata = NULL;
 //  rgb8Bitdata = NULL;
   return [super init];
-  colorbuffer = NULL;
+  colorBuffer = NULL;
   normedbuffer = NULL;
 }
 
 - (void)dealloc{
   delete [] colordata;
 //  delete [] rgb8Bitdata;
-  delete [] colorbuffer;
+  delete [] colorBuffer;
   delete [] normedbuffer;
   NA_COCOA_SUPER_DEALLOC();
 }
@@ -177,8 +177,8 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
     }
   }
 
-  delete colorbuffer;
-  colorbuffer = new float[channelcount];
+  delete colorBuffer;
+  colorBuffer = new float[channelcount];
   delete normedbuffer;
   normedbuffer = new float[channelcount];
 }
@@ -192,8 +192,8 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
 
   Color* controllercolor = [colorcontroller getColor];
-  controllercolor->toBuffer(colorbuffer, colorType);
-  normedoutputconverter(normedbuffer, colorbuffer, 1);
+  controllercolor->toBuffer(colorBuffer, colorType);
+  normedoutputconverter(normedbuffer, colorBuffer, 1);
   
   float* cptr;
 
@@ -397,13 +397,13 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 
   Color* controllercolor = [colorcontroller getColor];
 
-  controllercolor->toBuffer(colorbuffer, colorType);
-  normedoutputconverter(normedbuffer, colorbuffer, 1);
+  controllercolor->toBuffer(colorBuffer, colorType);
+  normedoutputconverter(normedbuffer, colorBuffer, 1);
   normedbuffer[channelx] = mousex;
   if(channely != (size_t)-1){normedbuffer[channely] = mousey;}
-  normedinputconverter(colorbuffer, normedbuffer, 1);
+  normedinputconverter(colorBuffer, normedbuffer, 1);
   
-  controllercolor->fromBuffer(colorbuffer, colorType);
+  controllercolor->fromBuffer(colorBuffer, colorType);
   controllercolor->clamp();
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }

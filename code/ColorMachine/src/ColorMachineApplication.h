@@ -78,7 +78,7 @@ extern size_t bordercount;
 
 - (void)fillRGBfloatarray :(float*)texdata
               fromArray:(float*)inputarray
-          withColorType:(CMLColorType)inputcolortype
+          withColorType:(CMLColorType)inputColorType
    normedInputConverter:(CMLNormedConverter)normedconverter
                   count:(size_t)count
                drawgrid:(BOOL)drawgridlines
@@ -86,7 +86,7 @@ extern size_t bordercount;
 
 //- (void)fillRGBuint8array :(Byte*)texdata
 //              fromArray:(float*)inputarray
-//          withColorType:(CMLColorType)inputcolortype
+//          withColorType:(CMLColorType)inputColorType
 //   normedInputConverter:(CMLNormedConverter)normedconverter
 //                  count:(size_t)count
 //               drawgrid:(BOOL)drawgridlines
