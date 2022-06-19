@@ -18,7 +18,7 @@
   IBOutlet NSTextField* textV;
   IBOutlet NSButton* fullscreenbutton;
   IBOutlet NSButton* closebutton;
-  IBOutlet RulerView* rulerview;
+//  IBOutlet RulerView* rulerview;
   IBOutlet NSTextField* textpixels;
   IBOutlet NSTextField* textratio;
   IBOutlet NSTextField* texthsize;

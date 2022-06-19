@@ -402,9 +402,18 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   normedbuffer[channelx] = mousex;
   if(channely != (size_t)-1){normedbuffer[channely] = mousey;}
   normedinputconverter(colorBuffer, normedbuffer, 1);
-  
+   
   controllercolor->fromBuffer(colorBuffer, colorType);
   controllercolor->clamp();
+
+  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+  if(colorType == CML_COLOR_XYZ){
+    if(cmlGetColorimetricBase(cm) == 0.f)
+      cmlDiv3(colorBuffer, cmlGetRadiometricScale(cm));
+    else
+      cmlMul3(colorBuffer, cmlGetColorimetricBase(cm));
+  }
+
   [(ColorMachineApplication*)NSApp colorHasChanged];
 }
 

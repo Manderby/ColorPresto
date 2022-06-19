@@ -3,8 +3,64 @@
 #import "ColorMachineApplication.h"
 #import "ColorMachineOpenGLView.h"
 
+#include "NAVectorAlgebra.h"
+
 #include <stdarg.h>
 #include <dispatch/dispatch.h>
+
+void cubFillMatrixPerspective(NAMat44d matrix, double fovy, double aspect, double nearZ, double farZ){
+  double cotan = naInv(naTan(naDegToRad(fovy)  * .5));
+  matrix[ 0] = cotan / aspect;
+  matrix[ 1] = 0.;
+  matrix[ 2] = 0.;
+  matrix[ 3] = 0.;
+  matrix[ 4] = 0.;
+  matrix[ 5] = cotan;
+  matrix[ 6] = 0.;
+  matrix[ 7] = 0.;
+  matrix[ 8] = 0.;
+  matrix[ 9] = 0.;
+  matrix[10] = (farZ + nearZ) / (nearZ - farZ);
+  matrix[11] = -1.;
+  matrix[12] = 0.;
+  matrix[13] = 0.;
+  matrix[14] = (2. * farZ * nearZ) / (nearZ - farZ);
+  matrix[15] = 0.;
+}
+
+void cubFillMatrixLookAt(NAMat44d matrix, double eyeX, double eyeY, double eyeZ, double centerX, double centerY, double centerZ, double upX, double upY, double upZ){
+  NAVec3d u;
+  NAVec3d v;
+
+  NAVec3d ev = { eyeX, eyeY, eyeZ };
+  NAVec3d uv = { upX, upY, upZ };
+  NAVec3d n = {eyeX - centerX, eyeY - centerY, eyeZ - centerZ};
+  naNormalizeV3dS(n);
+  naCrossV3d(u, uv, n);
+  naNormalizeV3dS(u);
+  naCrossV3d(v, n, u);
+  
+  matrix[ 0] = u[0];
+  matrix[ 1] = v[0];
+  matrix[ 2] = n[0];
+  matrix[ 3] = 0.;
+  matrix[ 4] = u[1];
+  matrix[ 5] = v[1];
+  matrix[ 6] = n[1];
+  matrix[ 7] = 0.;
+  matrix[ 8] = u[2];
+  matrix[ 9] = v[2];
+  matrix[10] = n[2];
+  matrix[11] = 0.;
+  naNegV3dS(u);
+  naNegV3dS(v);
+  naNegV3dS(n);
+  matrix[12] = naDotV3d(u, ev);
+  matrix[13] = naDotV3d(v, ev);
+  matrix[14] = naDotV3d(n, ev);
+  matrix[15] = 1.;
+}
+
 
 CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
                                  const CMLVec4UInt dimensions,
@@ -391,8 +447,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
 - (void) prepareOpenGL{
   [super prepareOpenGL];
-  GLint swapInt = 1;
-  [[self openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
+//  GLint swapInt = 1;
+//  [[self openGLContext] setValues:&swapInt forParameter:NSOpenGLCPSwapInterval];
   glEnable(GL_POINT_SMOOTH);
   glEnable(GL_LINE_SMOOTH);
   glEnable(GL_BLEND);
@@ -443,8 +499,11 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     glOrtho(-(width/200.) * zoom, (width/200.) * zoom, -(height/200.) * zoom, (height/200.) * zoom, -50., 50.);
     curzoom = zoom;
   }else{
+    NAMat44d projectionMatrix;
+    cubFillMatrixPerspective(projectionMatrix, fovy, (float)width / (float)height, .1, 50.);
+    glLoadMatrixd(projectionMatrix);
 //    gluPerspective(fovy, (float)width / (float)height, .1, 50.);
-//    curzoom = (width / 300.f) * zoom / (2.f * ((float)width / (float)height) * tanf(.5f * DegtoRad(fovy)));
+    curzoom = (width / 300.f) * zoom / (2.f * ((float)width / (float)height) * tanf(.5f * naDegToRad(fovy)));
   }
 
   glMatrixMode(GL_MODELVIEW);
@@ -571,31 +630,37 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     break;
   }
   
-//  float vshift = .2f;
+  float vshift = .2f;
+  NAMat44d matrix;
 
   switch(primeaxis){
   case 0:
-//    gluLookAt(vshift * scale[0] + curzoom * 3 * naCosf(viewpol),
-//              .5f * scale[1] + curzoom * 3 * naCosf(viewequ) * naSinf(viewpol),
-//              .5f * scale[2] + curzoom * 3 * naSinf(viewequ) * naSinf(viewpol),
-//              vshift * scale[0], .5f * scale[1], .5f * scale[2],
-//              1, 0, 0);
+    cubFillMatrixLookAt(matrix,
+      vshift * scale[0] + curzoom * 3 * naCosf(viewpol),
+      .5f * scale[1] + curzoom * 3 * naCosf(viewequ) * naSinf(viewpol),
+      .5f * scale[2] + curzoom * 3 * naSinf(viewequ) * naSinf(viewpol),
+      vshift * scale[0], .5f * scale[1], .5f * scale[2],
+      1, 0, 0);
     break;
   case 1:
-//    gluLookAt(.5f * scale[0] + curzoom * 3 * naSinf(viewequ) * naSinf(viewpol),
-//              vshift * scale[1] + curzoom * 3 * naCosf(viewpol),
-//              .5f * scale[2] + curzoom * 3 * naCosf(viewequ) * naSinf(viewpol),
-//              .5f * scale[0], vshift * scale[1], .5f * scale[2],
-//              0, 1, 0);
+    cubFillMatrixLookAt(matrix,
+      .5f * scale[0] + curzoom * 3 * naSinf(viewequ) * naSinf(viewpol),
+      vshift * scale[1] + curzoom * 3 * naCosf(viewpol),
+      .5f * scale[2] + curzoom * 3 * naCosf(viewequ) * naSinf(viewpol),
+      .5f * scale[0], vshift * scale[1], .5f * scale[2],
+      0, 1, 0);
     break;
   case 2:
-//    gluLookAt(.5f * scale[0] + curzoom * 3 * naCosf(viewequ) * naSinf(viewpol),
-//              .5f * scale[1] + curzoom * 3 * naSinf(viewequ) * naSinf(viewpol),
-//              vshift * scale[2] + curzoom * 3 * naCosf(viewpol),
-//              .5f * scale[0], .5f * scale[1], vshift * scale[2],
-//              0, 0, 1);
+    cubFillMatrixLookAt(matrix,
+      .5f * scale[0] + curzoom * 3 * naCosf(viewequ) * naSinf(viewpol),
+      .5f * scale[1] + curzoom * 3 * naSinf(viewequ) * naSinf(viewpol),
+      vshift * scale[2] + curzoom * 3 * naCosf(viewpol),
+      .5f * scale[0], .5f * scale[1], vshift * scale[2],
+      0, 0, 1);
     break;
   }
+  
+  glLoadMatrixd(matrix);
   
   float min[3];
   float max[3];
@@ -1192,7 +1257,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     ax[2] = 0.f;
   }
 
-  [[self openGLContext] flushBuffer];
+  //[[self openGLContext] flushBuffer];
+  glSwapAPPLE();
 }
 
 - (void)mouseDown:(NSEvent*)event{
@@ -1309,7 +1375,7 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
   [axischeckbox setState:showaxis?NSOnState:NSOffState];
   [spectrumcheckbox setState:showspectrum?NSOnState:NSOffState];
   
-  bool manualupdate = false;
+  bool manualupdate = true;
 //  bool startautoupdate = false;
 //  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
 //  if(timeout){return;}

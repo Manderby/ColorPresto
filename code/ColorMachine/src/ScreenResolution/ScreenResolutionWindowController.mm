@@ -144,7 +144,7 @@
   hppi = (screenrect.size.width / mmsize.width) * 25.4;
   vppi = (screenrect.size.height / mmsize.height) * 25.4;
 
-  [rulerview setController:self];
+  [[[self window] contentView] setController:self];
   [self update];
 }
 
@@ -213,7 +213,9 @@
     [fullscreenbutton setTitle:@"Fullscreen"];
   }
 
-  [[self window] display];
+//  [[self window] display];
+//  [[self window] setViewsNeedDisplay:YES];
+  [[[self window] contentView] setNeedsDisplay:YES];
 }
 
 - (void)showDialog{

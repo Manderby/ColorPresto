@@ -362,9 +362,9 @@
 
 
 - (IBAction)testSliderChange:(NSControl*)sender{
-//  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-//  cmlSetIntegrationStepSize(cm, [sender floatValue]);
-//  [(ColorMachineApplication*)NSApp updateMachine];
+  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+  cmlSetColorimetricBase(cm, [sender floatValue]);
+  [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 
