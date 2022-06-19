@@ -4,9 +4,9 @@
 #import "ColorMachineOpenGLView.h"
 
 #include "NAVectorAlgebra.h"
+#include "NAApp.h"
 
 #include <stdarg.h>
-#include <dispatch/dispatch.h>
 
 void cubFillMatrixPerspective(NAMat44d matrix, double fovy, double aspect, double nearZ, double farZ){
   double cotan = naInv(naTan(naDegToRad(fovy)  * .5));
@@ -61,6 +61,18 @@ void cubFillMatrixLookAt(NAMat44d matrix, double eyeX, double eyeY, double eyeZ,
   matrix[15] = 1.;
 }
 
+void autodisplay(void* obj){  
+  ThreeDeeWindowController* controller = (ThreeDeeWindowController*)obj;
+
+  float rotation = [controller getRotation];
+  if(rotation != 0.f){
+    [[controller getColorDisplay] rotateBy:rotation];
+    int64_t fps = 30;
+    naCallApplicationFunctionInSeconds(autodisplay, obj, 1. / fps);
+  }
+  
+  [[controller getColorDisplay] setNeedsDisplay:YES];
+}
 
 CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
                                  const CMLVec4UInt dimensions,
@@ -423,7 +435,13 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   viewpol = 1.3f;
   viewequ = NA_PIf / 4.f;
   zoom = 1.f;
+//  mutex = naMakeMutex();
   [self getWidthHeight];
+}
+
+- (void)dealloc{
+//  naClearMutex(&mutex);
+  [super dealloc];
 }
 
 - (void)getWidthHeight{
@@ -502,7 +520,6 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     NAMat44d projectionMatrix;
     cubFillMatrixPerspective(projectionMatrix, fovy, (float)width / (float)height, .1, 50.);
     glLoadMatrixd(projectionMatrix);
-//    gluPerspective(fovy, (float)width / (float)height, .1, 50.);
     curzoom = (width / 300.f) * zoom / (2.f * ((float)width / (float)height) * tanf(.5f * naDegToRad(fovy)));
   }
 
@@ -1294,7 +1311,6 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   [self setNeedsDisplay:YES];
 }
 
-
 @end
 
 
@@ -1351,12 +1367,10 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
     [coord3dselect insertItemWithTitle:[NSString stringWithUTF8String:coordsystemnames[(CMLColorType)i]] atIndex:i];
   }
   
-//  semaphore = dispatch_semaphore_create(1);
   [self update];
 }
 
 - (void)dealloc{
-//  dispatch_release(semaphore);
   NA_COCOA_SUPER_DEALLOC();
 }
 
@@ -1370,31 +1384,12 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
   [bodyalphaslider setIntValue:bodyalpha];
   [backgroundcolorslider setFloatValue:backgroundgray];
   [fovyslider setFloatValue:fovy];
-  [rotationslider setFloatValue:-rotation * 40];
+  [rotationslider setFloatValue:-rotation * 1000];
   [solidcheckbox setState:bodysolid?NSOnState:NSOffState];
   [axischeckbox setState:showaxis?NSOnState:NSOffState];
   [spectrumcheckbox setState:showspectrum?NSOnState:NSOffState];
-  
-  bool manualupdate = true;
-//  bool startautoupdate = false;
-//  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//  if(timeout){return;}
-//  if(!dispatchinprogress){
-//    if(rotation != 0.){
-//      startautoupdate = true;
-//      dispatchinprogress = true;
-//    }else{
-//      manualupdate = true;
-//    }
-//  }
-//  dispatch_semaphore_signal(semaphore);
 
-//  if(startautoupdate){
-//    [self autodisplay];
-//  }
-  if(manualupdate){
-    [colordisplay setNeedsDisplay:YES];
-  }
+  autodisplay(self);
 }
 
 - (void)showDialog{
@@ -1459,34 +1454,14 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
   return gridwhiteness;
 }
 
-//- (void)autodisplay{  
-//
-//  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//  if(timeout){return;}
-//
-//  if(rotation != 0.f){
-//    int64_t fps = 30;
-//    dispatch_time_t nexttime = dispatch_time(DISPATCH_TIME_NOW, 1000000000 / fps);
-//    dispatch_queue_t queue = dispatch_get_main_queue();
-//    dispatch_after(nexttime, queue, ^{
-//      [colordisplay rotateBy:rotation];
-//      [colordisplay setNeedsDisplay:YES];
-//      [self autodisplay];
-//      });
-//  }else{
-//    dispatchinprogress = false;
-//  }
-//  
-//  dispatch_semaphore_signal(semaphore);
-//}
+- (float)getRotation{
+  return rotation;
+}
 
-//- (IBAction)switchFullscreen:(NSButton*)sender{
-//  fullscreen = !fullscreen;
-//  if(fullscreen){
-//  }
-//  [self update];
-//}
-//
+- (ThreeDeeDisplay*)getColorDisplay{
+  return colordisplay;
+}
+
 - (IBAction)space3dChange:(NSPopUpButton*)sender {
   space3d = (CMLColorType)([sender indexOfSelectedItem]);
   if((space3d == CML_COLOR_GRAY) && (pointsalpha < .2f)){pointsalpha = 1.f;}
@@ -1551,19 +1526,13 @@ const char* coordsystemnames[NUMBER_OF_COORDINATE_SYSTEMS] = {
 }
 
 - (IBAction)rotationChange:(NSSlider*)sender {
-//  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//  if(timeout){return;}
-//  rotation = -[sender floatValue] * .025f;
-//  if((rotation > -.0025) && (rotation < .0025)){rotation = 0.f;}
-//  dispatch_semaphore_signal(semaphore);
+  rotation = -[sender floatValue] * .001f;
+  if((rotation > -.0001) && (rotation < .0001)){rotation = 0.f;}
   [self update];
 }
 
 - (IBAction)stopRotation:(NSButton*)sender{
-//  long timeout = dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-//  if(timeout){return;}
-//  rotation = 0.f;
-//  dispatch_semaphore_signal(semaphore);
+  rotation = 0.f;
   [self update];
 }
 

@@ -2,7 +2,6 @@
 #include <CML.h>
 #import "main.h"
 
-
 typedef enum{
   COORDSYSTEM_XYZ,
   COORDSYSTEM_YXY,
@@ -132,6 +131,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 - (void)getWidthHeight;
 - (void)fixViewParameters;
 
+- (void)rotateBy:(float)ang;
+
 - (void)drawRect:(NSRect)rect;
 - (void)mouseDown:(NSEvent*)event;
 - (void)mouseDragged:(NSEvent*)event;
@@ -176,7 +177,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   float gridwhiteness;
   bool bodysolid;
   bool showspectrum;
-  
+//  NAMutex mutex;
 }
 - (void)awakeFromNib;
 - (void)dealloc;
@@ -199,6 +200,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 - (uint8)getBodyAlpha;
 - (uint8)getGridAlpha;
 - (float)getGridWhiteness;
+- (float)getRotation;
+- (ThreeDeeDisplay*)getColorDisplay;
 
 //- (IBAction)switchFullscreen:(NSButton*)sender;
 - (IBAction)space3dChange:(NSPopUpButton*)sender;

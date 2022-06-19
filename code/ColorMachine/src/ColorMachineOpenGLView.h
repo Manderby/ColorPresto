@@ -1,7 +1,7 @@
 
 #import "main.h"
 #include <OpenGL/gl.h>
-#include <NAString.h>
+#include "NAString.h"
 
 @class MachineController;
 @class ColorController;
