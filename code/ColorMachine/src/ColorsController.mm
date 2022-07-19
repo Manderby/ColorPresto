@@ -14,6 +14,7 @@
 #import "HSLColorController.h"
 #import "YCbCrColorController.h"
 #import "SpectralColorController.h"
+#include "NAUICocoaLegacy.h"
 
 
 
@@ -324,7 +325,7 @@
   [super drawRect:rect];
   if([self numberOfRows] == 0){
     NSMutableParagraphStyle* parastyle = [[NSMutableParagraphStyle alloc] init];
-    [parastyle setAlignment:NSCenterTextAlignment];
+    [parastyle setAlignment:NATextAlignmentCenter];
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
       [NSFont fontWithName:@"Lucida Grande" size:10], NSFontAttributeName,
       parastyle, NSParagraphStyleAttributeName,

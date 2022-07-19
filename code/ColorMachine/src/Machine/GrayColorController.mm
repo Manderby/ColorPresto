@@ -2,6 +2,7 @@
 #import "GrayColorController.h"
 #import "MachineWindowController.h"
 #import "ColorMachineApplication.h"
+#include "NAUICocoaLegacy.h"
 
 
 
@@ -35,7 +36,7 @@
   [shadow setShadowColor:[NSColor blackColor]];
   
   NSMutableParagraphStyle* parastyle = [[NSMutableParagraphStyle alloc] init];
-  [parastyle setAlignment:NSCenterTextAlignment];
+  [parastyle setAlignment:NATextAlignmentCenter];
   
   NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
     [NSFont fontWithName:@"Lucida Grande" size:8], NSFontAttributeName,

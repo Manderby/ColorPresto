@@ -3,7 +3,7 @@
 #import "ColorMachineOpenGLView.h"
 #import "ColorMachineApplication.h"
 
-
+#include "NAUICocoaLegacy.h"
 
 
 
@@ -35,7 +35,7 @@
     NSGraphicsContext *context = [NSGraphicsContext currentContext];
     [context saveGraphicsState];
 
-    [context setCompositingOperation:NSCompositePlusDarker];
+    [context setCompositingOperation:NACompositePlusDarker];
 
     NSBezierPath *path = [NSBezierPath bezierPathWithRect:[self bounds]];
     [path setLineWidth:1.5f];
