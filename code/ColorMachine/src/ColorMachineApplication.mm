@@ -10,7 +10,7 @@
 #import "ScreenResolutionWindowController.h"
 
 #include <NADateTime.h>
-#include <NAApp/macOS/UI/NAUICocoaLegacy.h>
+#include <NAApp.h>
 
 CMLColorType maskcolor;
 bool showmask;
@@ -105,28 +105,28 @@ size_t bordercount;
 
 - (IBAction)showAbout:(id)sender{
   if(!aboutwindowcontroller){
-    naLoadNib("AboutWindow");
+    naLoadNib("AboutWindow", NSApp);
   }
   [aboutwindowcontroller showDialog];
 }
 
 - (IBAction)showScreenResolution:(id)sender{
   if(!screenresolutionwindowcontroller){
-    naLoadNib("ScreenResolution");
+    naLoadNib("ScreenResolution", NSApp);
   }
   [screenresolutionwindowcontroller showDialog];
 }
 
 - (IBAction)showThreeDee:(id)sender{
   if(!threedeewindowcontroller){
-    naLoadNib("ThreeDeeWindow");
+    naLoadNib("ThreeDeeWindow", NSApp);
   }
   [threedeewindowcontroller showDialog];
 }
 
 - (IBAction)showMetamerics:(id)sender{
   if(!metamericswindowcontroller){
-    naLoadNib("Metamerics");
+    naLoadNib("Metamerics", NSApp);
   }
   [metamericswindowcontroller showDialog];
 }

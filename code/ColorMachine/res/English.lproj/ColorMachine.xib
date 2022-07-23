@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21179.7" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21208.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21179.7"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21208.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -2135,14 +2135,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVl-HX-aVB">
-                        <rect key="frame" x="57" y="156" width="96" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="50" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="TnJ-5h-RFp"/>
-                        <connections>
-                            <action selector="testSliderChange:" target="1885" id="VN8-uI-ZCV"/>
-                        </connections>
-                    </slider>
                 </subviews>
             </view>
             <contentBorderThickness minY="22"/>
@@ -2183,7 +2175,6 @@
                 <outlet property="sliderSplitRGB" destination="5141" id="5149"/>
                 <outlet property="sliderT" destination="1777" id="2117"/>
                 <outlet property="sliderke" destination="1217" id="2053"/>
-                <outlet property="testSlider" destination="aVl-HX-aVB" id="jTY-J7-ttu"/>
                 <outlet property="textFieldGammaL" destination="3703" id="3737"/>
                 <outlet property="textFieldGammaRGB" destination="1770" id="4897"/>
                 <outlet property="textFieldK" destination="1209" id="2057"/>

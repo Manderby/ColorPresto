@@ -361,13 +361,6 @@
 }
 
 
-- (IBAction)testSliderChange:(NSControl*)sender{
-  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-  cmlSetColorimetricBase(cm, [sender floatValue]);
-  [(ColorMachineApplication*)NSApp updateMachine];
-}
-
-
 - (void )windowDidChangeScreenProfile:(NSNotification *)notification{
   [(ColorMachineApplication*)NSApp applicationDidChangeScreenParameters:notification];
 }
