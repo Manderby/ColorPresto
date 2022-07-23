@@ -323,22 +323,22 @@
 
 - (void)drawRect:(NSRect)rect{
   [super drawRect:rect];
-  if([self numberOfRows] == 0){
-    NSMutableParagraphStyle* parastyle = [[NSMutableParagraphStyle alloc] init];
-    [parastyle setAlignment:NATextAlignmentCenter];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-      [NSFont fontWithName:@"Lucida Grande" size:10], NSFontAttributeName,
-      parastyle, NSParagraphStyleAttributeName,
-      [NSColor blackColor], NSForegroundColorAttributeName, nil];
-    NSAttributedString * currentText = [[NSAttributedString alloc] initWithString:@"No measurements or devices available." attributes: attributes];
-    NSRect drawrect = [self bounds];
-    drawrect.size.height /= 2.f;
-    drawrect.origin.y += drawrect.size.height;
-    [currentText drawInRect:drawrect];
-//    [currentText drawinRect:NSMakePoint(cellFrame.origin.x + COLOR_VIEW_WIDTH + START_X_OFFSET, cellFrame.origin.y)];
-    NA_COCOA_RELEASE(currentText);
-    NA_COCOA_RELEASE(parastyle);
-  }
+//  if([self numberOfRows] == 0){
+//    NSMutableParagraphStyle* parastyle = [[NSMutableParagraphStyle alloc] init];
+//    [parastyle setAlignment:NATextAlignmentCenter];
+//    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+//      [NSFont fontWithName:@"Lucida Grande" size:10], NSFontAttributeName,
+//      parastyle, NSParagraphStyleAttributeName,
+//      [NSColor blackColor], NSForegroundColorAttributeName, nil];
+//    NSAttributedString * currentText = [[NSAttributedString alloc] initWithString:@"No measurements or devices available." attributes: attributes];
+//    NSRect drawrect = [self bounds];
+//    drawrect.size.height /= 2.f;
+//    drawrect.origin.y += drawrect.size.height;
+//    [currentText drawInRect:drawrect];
+////    [currentText drawinRect:NSMakePoint(cellFrame.origin.x + COLOR_VIEW_WIDTH + START_X_OFFSET, cellFrame.origin.y)];
+//    NA_COCOA_RELEASE(currentText);
+//    NA_COCOA_RELEASE(parastyle);
+//  }
 }
 
 - (void)mouseDown:(NSEvent *)theEvent{

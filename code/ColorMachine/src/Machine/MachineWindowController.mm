@@ -660,19 +660,8 @@
 
 
 
-- (IBAction)toggleColorSelection:(id)sender{
-  if(colorSelectionIsExpanded){
-    [self collapseColorSelection];
-  }else{
-    [self expandColorSelection];
-  }
-}
-
 - (void)collapseColorSelection{
   if(!colorSelectionIsExpanded){return;}
-//  [collapseExpandColorSelectionButton setTarget:self];
-//  [collapseExpandColorSelectionButton setAction:@selector(expandColorSelection:)];
-  [collapseExpandColorSelectionButton setImage:[NSImage imageNamed:NSImageNameRightFacingTriangleTemplate]];
   NSRect winframe = [[self window] frame];
 //  float scalefactor = (float)[ColorMachineApplication getUIScaleFactorForWindow:[self window]];
   winframe.size.width -= 257.f;
@@ -681,9 +670,6 @@
 }
 - (void)expandColorSelection{
   if(colorSelectionIsExpanded){return;}
-//  [collapseExpandColorSelectionButton setTarget:self];
-//  [collapseExpandColorSelectionButton setAction:@selector(collapseColorSelection:)];
-  [collapseExpandColorSelectionButton setImage:[NSImage imageNamed:NSImageNameLeftFacingTriangleTemplate]];
   NSRect winframe = [[self window] frame];
 //  float scalefactor = (float)[ColorMachineApplication getUIScaleFactorForWindow:[self window]];
   winframe.size.width += 257.f;

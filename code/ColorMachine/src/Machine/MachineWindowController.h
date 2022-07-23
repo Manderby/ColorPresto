@@ -58,7 +58,6 @@
   IBOutlet NSTextField *textFieldGammaL;
 
   BOOL colorSelectionIsExpanded;
-  IBOutlet NSButton *collapseExpandColorSelectionButton;
   size_t lastSelectedChannel;
 }
 - (void)awakeFromNib;
@@ -87,7 +86,6 @@
 - (IBAction)valueChangeK:(NSControl*)sender;
 - (IBAction)valueChangeke:(NSControl*)sender;
 
-- (IBAction)toggleColorSelection:(id)sender;
 - (void)collapseColorSelection;
 - (void)expandColorSelection;
 
