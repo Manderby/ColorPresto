@@ -248,16 +248,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1777">
-                        <rect key="frame" x="193" y="517" width="88" height="15"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                        <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="above" sliderType="linear" id="1782">
-                            <font key="font" metaFont="smallSystem"/>
-                        </sliderCell>
-                        <connections>
-                            <action selector="valueChangeT:" target="1885" id="2124"/>
-                        </connections>
-                    </slider>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1778">
                         <rect key="frame" x="120" y="512" width="54" height="19"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -355,7 +345,7 @@
                         </connections>
                     </textField>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1843">
-                        <rect key="frame" x="235" y="301" width="46" height="15"/>
+                        <rect key="frame" x="232" y="291" width="46" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" minValue="1" maxValue="4" doubleValue="2.2000000000000002" tickMarkPosition="above" sliderType="linear" id="1844">
                             <font key="font" metaFont="smallSystem"/>
@@ -365,7 +355,7 @@
                         </connections>
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5127">
-                        <rect key="frame" x="236" y="280" width="45" height="15"/>
+                        <rect key="frame" x="233" y="270" width="45" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="1" tickMarkPosition="above" sliderType="linear" id="5128">
                             <font key="font" metaFont="smallSystem"/>
@@ -375,7 +365,7 @@
                         </connections>
                     </slider>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5130">
-                        <rect key="frame" x="235" y="343" width="46" height="15"/>
+                        <rect key="frame" x="232" y="333" width="46" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" minValue="1" maxValue="10" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="5131">
                             <font key="font" metaFont="smallSystem"/>
@@ -517,7 +507,7 @@
                         </connections>
                     </textField>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5141">
-                        <rect key="frame" x="235" y="321" width="47" height="15"/>
+                        <rect key="frame" x="232" y="311" width="47" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" controlSize="small" continuous="YES" enabled="NO" state="on" alignment="left" maxValue="1" doubleValue="1" tickMarkPosition="above" sliderType="linear" id="5146">
                             <font key="font" metaFont="smallSystem"/>
@@ -2046,7 +2036,7 @@
                         </textFieldCell>
                     </textField>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1208">
-                        <rect key="frame" x="103" y="222" width="40" height="15"/>
+                        <rect key="frame" x="101" y="207" width="40" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="1" maxValue="2" doubleValue="1.5" tickMarkPosition="above" sliderType="linear" id="1213">
                             <font key="font" metaFont="smallSystem"/>
@@ -2069,7 +2059,7 @@
                         </connections>
                     </textField>
                     <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1217">
-                        <rect key="frame" x="242" y="222" width="40" height="15"/>
+                        <rect key="frame" x="239" y="209" width="40" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                         <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="0.10000000000000001" maxValue="1" doubleValue="0.55000000000000004" tickMarkPosition="above" sliderType="linear" id="1222">
                             <font key="font" metaFont="smallSystem"/>
@@ -2124,6 +2114,16 @@
                             <font key="font" metaFont="systemBold" size="12"/>
                         </buttonCell>
                     </button>
+                    <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1777">
+                        <rect key="frame" x="194" y="514" width="88" height="15"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                        <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="above" sliderType="linear" id="1782">
+                            <font key="font" metaFont="smallSystem"/>
+                        </sliderCell>
+                        <connections>
+                            <action selector="valueChangeT:" target="1885" id="2124"/>
+                        </connections>
+                    </slider>
                 </subviews>
             </view>
             <connections>
