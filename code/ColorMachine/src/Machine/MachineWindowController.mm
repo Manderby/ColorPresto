@@ -29,6 +29,8 @@
   
   colorSelectionIsExpanded = YES;
   [self collapseColorSelection];
+  
+  lastSelectedChannel = 0;
 
   [[self window] setDelegate:self];
   
@@ -193,8 +195,26 @@
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
+- (IBAction)rgbResponseChannelChange:(NSPopUpButton*)sender{
+  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+  size_t newSelectedChannel = [responseChannelSelect indexOfSelectedItem];
+  if(lastSelectedChannel > 0 && newSelectedChannel == 0){
+    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
+    switch(lastSelectedChannel){
+    case 0: break;
+    case 1: cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseR(cm)); break;
+    case 2: cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseG(cm)); break;
+    case 3: cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseB(cm)); break;
+    }
+    cmlSetResponseRGB(cm, newResponse);
+  }
+  lastSelectedChannel = newSelectedChannel;
+  [(ColorMachineApplication*)NSApp updateMachine];
+}
+
 - (IBAction)rgbResponseChange:(NSPopUpButton*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+
   if(sender == responseRGBSelect){
     CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
@@ -207,7 +227,14 @@
     }else{
       cmlInitResponseCurveWithType(newResponse, selectedItem);
     }
-    cmlSetResponseRGB(cm, newResponse);
+
+    switch(lastSelectedChannel){
+    case 0: cmlSetResponseRGB(cm, newResponse); break;
+    case 1: cmlSetResponseR(cm, newResponse); break;
+    case 2: cmlSetResponseG(cm, newResponse); break;
+    case 3: cmlSetResponseB(cm, newResponse); break;
+    }
+
     cmlClearResponseCurve(newResponse);
     free(newResponse);
   }
@@ -229,7 +256,14 @@
     }else if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
     }
-    cmlSetResponseRGB(cm, newResponse);
+
+    switch(lastSelectedChannel){
+    case 0: cmlSetResponseRGB(cm, newResponse); break;
+    case 1: cmlSetResponseR(cm, newResponse); break;
+    case 2: cmlSetResponseG(cm, newResponse); break;
+    case 3: cmlSetResponseB(cm, newResponse); break;
+    }
+
     cmlClearResponseCurve(newResponse);
     free(newResponse);
   }
@@ -249,7 +283,14 @@
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
     }
-    cmlSetResponseRGB(cm, newResponse);
+
+    switch(lastSelectedChannel){
+    case 0: cmlSetResponseRGB(cm, newResponse); break;
+    case 1: cmlSetResponseR(cm, newResponse); break;
+    case 2: cmlSetResponseG(cm, newResponse); break;
+    case 3: cmlSetResponseB(cm, newResponse); break;
+    }
+
     cmlClearResponseCurve(newResponse);
     free(newResponse);
   }
@@ -269,7 +310,14 @@
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]);
     }
-    cmlSetResponseRGB(cm, newResponse);
+
+    switch(lastSelectedChannel){
+    case 0: cmlSetResponseRGB(cm, newResponse); break;
+    case 1: cmlSetResponseR(cm, newResponse); break;
+    case 2: cmlSetResponseG(cm, newResponse); break;
+    case 3: cmlSetResponseB(cm, newResponse); break;
+    }
+
     cmlClearResponseCurve(newResponse);
     free(newResponse);
   }
@@ -289,7 +337,14 @@
     if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
       cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split);
     }
-    cmlSetResponseRGB(cm, newResponse);
+
+    switch(lastSelectedChannel){
+    case 0: cmlSetResponseRGB(cm, newResponse); break;
+    case 1: cmlSetResponseR(cm, newResponse); break;
+    case 2: cmlSetResponseG(cm, newResponse); break;
+    case 3: cmlSetResponseB(cm, newResponse); break;
+    }
+
     cmlClearResponseCurve(newResponse);
     free(newResponse);
   }
@@ -483,7 +538,8 @@
   CMLRGBColorSpaceType type = cmlGetRGBColorSpaceType(cm);
   CMLResponseCurveType responseTypes[3];
   cmlGetRGBResponseTypes(cm, responseTypes);
-  size_t colorIndex = 0;
+  size_t colorIndex = lastSelectedChannel;
+  if(colorIndex > 0){ colorIndex--; }
   
   [responseRGBSelect selectItemAtIndex:responseTypes[colorIndex] - 1]; // zero would be the undefined response.
   CMLBool customRGB = type == CML_RGB_CUSTOM;

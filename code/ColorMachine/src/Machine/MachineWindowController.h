@@ -17,6 +17,7 @@
   IBOutlet NSPopUpButton* grayComputationSelect;
   IBOutlet NSPopUpButton* labSpaceSelect;
   IBOutlet NSPopUpButton* rgbColorSpaceSelect;
+  IBOutlet NSPopUpButton* responseChannelSelect;
   IBOutlet NSPopUpButton* responseRGBSelect;
   IBOutlet NSPopUpButton* responseLSelect;
 //  IBOutlet NSPopUpButton* cmyktransformselect;
@@ -58,6 +59,7 @@
 
   BOOL colorSelectionIsExpanded;
   IBOutlet NSButton *collapseExpandColorSelectionButton;
+  size_t lastSelectedChannel;
 }
 - (void)awakeFromNib;
 

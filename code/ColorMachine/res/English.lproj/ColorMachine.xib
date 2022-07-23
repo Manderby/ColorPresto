@@ -647,7 +647,7 @@
                             </menu>
                         </popUpButtonCell>
                         <connections>
-                            <action selector="rgbResponseChange:" target="1885" id="q1e-Uh-6Xz"/>
+                            <action selector="rgbResponseChannelChange:" target="1885" id="xVU-DK-Pee"/>
                         </connections>
                     </popUpButton>
                     <slider hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3701">
@@ -2164,6 +2164,7 @@
                 <outlet property="redPrimaryY" destination="1736" id="2150"/>
                 <outlet property="redPrimaryx" destination="1734" id="2149"/>
                 <outlet property="redPrimaryy" destination="1730" id="2151"/>
+                <outlet property="responseChannelSelect" destination="DsD-Wv-yc6" id="Gac-CC-e3S"/>
                 <outlet property="responseLSelect" destination="3704" id="3735"/>
                 <outlet property="responseRGBSelect" destination="3697" id="4895"/>
                 <outlet property="rgbColorSpaceSelect" destination="1660" id="2153"/>
