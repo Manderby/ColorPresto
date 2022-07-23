@@ -10,7 +10,8 @@
 #import "ScreenResolutionWindowController.h"
 
 #include <NADateTime.h>
-#include <NAApp.h>
+#include "NAApp.h"
+#include "NAUICocoaLegacy.h"
 
 CMLColorType maskcolor;
 bool showmask;
@@ -417,18 +418,7 @@ size_t bordercount;
 
 
 + (CGFloat) getUIScaleFactorForWindow:(NSWindow*)window{
-//  #ifdef NSAppKitVersionNumber10_7
-//    if(NSAppKitVersionNumber >= NSAppKitVersionNumber10_7){
-//      #if defined __MAC_10_7
-//        return [window backingScaleFactor];
-//      #endif
-//    }else{
-//      return [window userSpaceScaleFactor];
-//    }
-//  #else
-//    return naGetWindowBackingScaleFactor(window);
-//  #endif
-  return 1.;
+  return naGetWindowBackingScaleFactor(window);
 }
 
 @end

@@ -384,7 +384,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 - (void)awakeFromNib{
   viewpol = 1.3f;
   viewequ = NA_PIf / 4.f;
-  zoom = 1.f;
+  float scalefactor = [ColorMachineApplication getUIScaleFactorForWindow:[self window]];
+  zoom = 1. / scalefactor;
 //  mutex = naMakeMutex();
   [self getWidthHeight];
 }
@@ -395,8 +396,9 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 }
 
 - (void)getWidthHeight{
-  width = (int)ceil([self bounds].size.width);
-  height = (int)ceil([self bounds].size.height);
+  float scalefactor = [ColorMachineApplication getUIScaleFactorForWindow:[self window]];
+  width = (int)ceil([self bounds].size.width) * scalefactor;
+  height = (int)ceil([self bounds].size.height) * scalefactor;
 }
 
 - (void)fixViewParameters{
@@ -1231,8 +1233,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 - (void)mouseDown:(NSEvent*)event{
   NSPoint eventLocation = [event locationInWindow];
   NSPoint pos = [self convertPoint:eventLocation fromView:nil];
-//  float scalefactor = [ColorMachineApplication getUIScaleFactorForWindow:[self window]];
-  float scalefactor = 1.f;
+  float scalefactor = [ColorMachineApplication getUIScaleFactorForWindow:[self window]];
   mousex = (float)pos.x * scalefactor;
   mousey = (float)pos.y * scalefactor;
 }
@@ -1240,8 +1241,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 - (void)mouseDragged:(NSEvent*)event{
   NSPoint eventLocation = [event locationInWindow];
   NSPoint pos = [self convertPoint:eventLocation fromView:nil];
-//  float scalefactor = [ColorMachineApplication getUIScaleFactorForWindow:[self window]];
-  float scalefactor = 1.f;
+  float scalefactor = [ColorMachineApplication getUIScaleFactorForWindow:[self window]];
   float newmousex = (float)pos.x * scalefactor;
   float newmousey = (float)pos.y * scalefactor;
 

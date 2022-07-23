@@ -65,8 +65,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
 - (void)reshape{
   [super reshape];
   [[self openGLContext] update];
-//  float scalefactor = (float)[ColorMachineApplication getUIScaleFactorForWindow:[self window]];
-  float scalefactor = 1.f;
+  float scalefactor = (float)[ColorMachineApplication getUIScaleFactorForWindow:[self window]];
   width = (uint32)ceil([self bounds].size.width * scalefactor);
   height = (uint32)ceil([self bounds].size.height * scalefactor);
   glViewport(0, 0, width, height);
@@ -84,7 +83,6 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   NSPoint eventLocation = [event locationInWindow];
   NSPoint pos = [self convertPoint:eventLocation fromView:nil];
   float scalefactor = (float)[ColorMachineApplication getUIScaleFactorForWindow:[self window]];
-  //convertRectToBacking;
   mousex = (float)pos.x * scalefactor / width;
   mousey = (float)pos.y * scalefactor / height;
 }
@@ -142,8 +140,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   channely = newchannely;
   drawspectrum = newdrawspectrum;
 
-//  float scalefactor = (float)[ColorMachineApplication getUIScaleFactorForWindow:[self window]];
-  float scalefactor = 1.f;
+  float scalefactor = (float)[ColorMachineApplication getUIScaleFactorForWindow:[self window]];
   width = (size_t)round([self bounds].size.width * scalefactor);
   height = (size_t)round([self bounds].size.height * scalefactor);
   size_t channelcount = cmlGetNumChannels(colorType);
