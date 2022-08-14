@@ -1,6 +1,8 @@
 
 #import "main.h"
 
+CM_PROTOTYPE(CMThreeDeeController);
+
 @class MachineWindowController;
 @class AboutWindowController;
 @class ScreenResolutionWindowController;
@@ -33,6 +35,8 @@ extern size_t bordercount;
 
 
 @interface ColorMachineApplication : NSApplication <NSApplicationDelegate>{
+  CMThreeDeeController* threeDeeController;
+
   IBOutlet AboutWindowController* aboutwindowcontroller;
   IBOutlet ThreeDeeWindowController* threedeewindowcontroller;
   IBOutlet MetamericsWindowController* metamericswindowcontroller;

@@ -34,6 +34,7 @@
 		90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5E28A99A2F00EE6F32 /* ManderApp.c */; };
 		90B6FD6928A99E6900EE6F32 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD6728A99E6900EE6F32 /* InfoPlist.strings */; };
 		90B6FD6C28A99FEE00EE6F32 /* ColorMachineTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD6A28A99FEE00EE6F32 /* ColorMachineTranslations.c */; };
+		90B6FD7128A9A51000EE6F32 /* ThreeDeeController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD7028A9A51000EE6F32 /* ThreeDeeController.c */; };
 		90B8ECED2886143D005825BF /* NABase.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE22886143D005825BF /* NABase.h */; };
 		90B8ECEE2886143D005825BF /* NAUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE32886143D005825BF /* NAUtility.h */; };
 		90B8ECEF2886143D005825BF /* NABuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE52886143D005825BF /* NABuffer.h */; };
@@ -446,6 +447,8 @@
 		90B6FD6B28A99FEE00EE6F32 /* ColorMachineTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMachineTranslations.h; sourceTree = "<group>"; };
 		90B6FD6D28A9A0E100EE6F32 /* ColorMachineStrings_eng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMachineStrings_eng.h; sourceTree = "<group>"; };
 		90B6FD6E28A9A1F200EE6F32 /* ColorMachineStrings_deu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMachineStrings_deu.h; sourceTree = "<group>"; };
+		90B6FD6F28A9A51000EE6F32 /* ThreeDeeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDeeController.h; sourceTree = "<group>"; };
+		90B6FD7028A9A51000EE6F32 /* ThreeDeeController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ThreeDeeController.c; sourceTree = "<group>"; };
 		90B8EBE02886143D005825BF /* NALib.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NALib.vcxproj; sourceTree = "<group>"; };
 		90B8EBE22886143D005825BF /* NABase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NABase.h; sourceTree = "<group>"; };
 		90B8EBE32886143D005825BF /* NAUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAUtility.h; sourceTree = "<group>"; };
@@ -1502,6 +1505,8 @@
 		90BF5118274AB29D001FDE2A /* ThreeDee */ = {
 			isa = PBXGroup;
 			children = (
+				90B6FD7028A9A51000EE6F32 /* ThreeDeeController.c */,
+				90B6FD6F28A9A51000EE6F32 /* ThreeDeeController.h */,
 				90BF5119274AB29D001FDE2A /* ThreeDeeWindowController.mm */,
 				90BF511A274AB29D001FDE2A /* ThreeDeeWindowController.h */,
 			);
@@ -2015,6 +2020,7 @@
 				90BF514C274AB29E001FDE2A /* SpectralColorController.mm in Sources */,
 				90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */,
 				90BF5146274AB29E001FDE2A /* MachineWindowController.mm in Sources */,
+				90B6FD7128A9A51000EE6F32 /* ThreeDeeController.c in Sources */,
 				90BF5145274AB29E001FDE2A /* RGBColorController.mm in Sources */,
 				90BF5150274AB29E001FDE2A /* MetamericsWindowController.mm in Sources */,
 				90BF5140274AB29E001FDE2A /* AboutWindowController.mm in Sources */,

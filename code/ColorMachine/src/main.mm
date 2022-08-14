@@ -1,8 +1,9 @@
 
+#include "ColorMachineTranslations.h"
+#include "ThreeDeeController.h"
+
 #import "main.h"
 #import "ColorMachineApplication.h"
-
-#include "ColorMachineTranslations.h"
 
 #include "ManderAppAbout.h"
 #include "ManderAppTranslations.h"
@@ -57,19 +58,29 @@
 //  return 0;
 //}
 
+
+
 void preStartup(void* arg){
   // here come translations.
   mandInitManderAppTranslations();
   initTranslations();
 }
 
+
+
 void postStartup(void* arg){
   naLoadNib("ColorMachine", NA_NULL);
   
-  // here come UI thingies.
+  // ManderApp
   mandCreateAboutController();
-  mandSetAboutDescriptionAndHelpURL(cmTranslate(ColorMachineApplicationDescription), cmTranslate(ColorMachineApplicationHelpURL));
+  mandSetAboutDescriptionAndHelpURL(
+    cmTranslate(ColorMachineApplicationDescription),
+    cmTranslate(ColorMachineApplicationHelpURL));
+
+  // Color Machine
 }
+
+
 
 int main(int argc, char *argv[]){
   naStartRuntime();

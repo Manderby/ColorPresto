@@ -1,5 +1,7 @@
 
 #include "ColorMachineTranslations.h"
+#include "ThreeDeeController.h"
+
 #import "ThreeDeeWindowController.h"
 #import "MetamericsWindowController.h"
 #import "ColorMachineApplication.h"
@@ -97,6 +99,7 @@ size_t bordercount;
 //  [self setDelegate:self];
 //  machinescontroller = [[MachinesController alloc] init];
 //  colorscontroller = [[ColorsController alloc] init];
+  threeDeeController = cmAllocThreeDeeController();
 }
 
 - (id)init{
@@ -104,6 +107,11 @@ size_t bordercount;
   [self setDelegate:self];
   machinescontroller = [[MachinesController alloc] init];
   return self;
+}
+
+- (void)dealloc{
+  cmFreeThreeDeeController(threeDeeController);
+  [super dealloc];
 }
 
 - (IBAction)showAbout:(id)sender{
@@ -132,6 +140,8 @@ size_t bordercount;
     naLoadNib("ThreeDeeWindow", NSApp);
   }
   [threedeewindowcontroller showDialog];
+
+//  cmShowThreeDeeController(threeDeeController);
 }
 
 - (IBAction)showMetamerics:(id)sender{
