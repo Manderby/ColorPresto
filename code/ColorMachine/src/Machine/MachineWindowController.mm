@@ -544,6 +544,7 @@
   [responseRGBSelect selectItemAtIndex:responseTypes[colorIndex] - 1]; // zero would be the undefined response.
   CMLBool customRGB = type == CML_RGB_CUSTOM;
 
+  [responseChannelSelect setEnabled:customRGB];
   [responseRGBSelect setEnabled:customRGB];
   [redPrimaryx   setEnabled:customRGB];
   [redPrimaryy   setEnabled:customRGB];
