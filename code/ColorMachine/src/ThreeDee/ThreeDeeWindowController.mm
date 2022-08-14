@@ -377,6 +377,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 //      [self setWantsBestResolutionOpenGLSurface:YES];
 //    #endif
 //  }
+
   return self;
 }
 
@@ -392,6 +393,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
 - (void)dealloc{
 //  naClearMutex(&mutex);
+  naShutdownPixelFont();
+  
   [super dealloc];
 }
 
@@ -424,6 +427,8 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   glEnable(GL_BLEND);
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glEnable(GL_DEPTH_TEST);
+  
+  naStartupPixelFont();
 }
 
 
@@ -481,7 +486,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
   int primeaxis;
   float scale[3];
-//  NAString* labels[3];
+  const NAUTF8Char* labels[3];
   CMLNormedConverter normedcoordconverter;
   CMLColorType coordspace;
 
@@ -490,108 +495,108 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     coordspace = CML_COLOR_XYZ;
     primeaxis = 1;
     cmlSet3(scale, 1.f, 1.f, 1.f);
-//    labels[0] = "X";
-//    labels[1] = "Y";
-//    labels[2] = "Z";
+    labels[0] = "X";
+    labels[1] = "Y";
+    labels[2] = "Z";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
     break;
   case COORDSYSTEM_YXY:
     coordspace = CML_COLOR_Yxy;
     primeaxis = 0;
     cmlSet3(scale, 1.f, 1.f, 1.f);
-//    labels[0] = "Y";
-//    labels[1] = "x";
-//    labels[2] = "y";
+    labels[0] = "Y";
+    labels[1] = "x";
+    labels[2] = "y";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
     break;
   case COORDSYSTEM_Yuv:
     coordspace = CML_COLOR_Yuv;
     primeaxis = 0;
     cmlSet3(scale, 1.f, 1.f, 1.f);
-//    labels[0] = "Y";
-//    labels[1] = "u";
-//    labels[2] = "v";
+    labels[0] = "Y";
+    labels[1] = "u";
+    labels[2] = "v";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
     break;
   case COORDSYSTEM_YCBCR:
     coordspace = CML_COLOR_YCbCr;
     primeaxis = 0;
     cmlSet3(scale, 1.f, 1.f, 1.f);
-//    labels[0] = "Y";
-//    labels[1] = "Cb";
-//    labels[2] = "Cr";
+    labels[0] = "Y";
+    labels[1] = "Cb";
+    labels[2] = "Cr";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
     break;
   case COORDSYSTEM_LAB:
     coordspace = CML_COLOR_Lab;
     primeaxis = 0;
     cmlSet3(scale, 1.f, 2.56f, 2.56f);
-//    labels[0] = "L";
-//    labels[1] = "a";
-//    labels[2] = "b";
+    labels[0] = "L";
+    labels[1] = "a";
+    labels[2] = "b";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Lab);
     break;
   case COORDSYSTEM_LCH_CARTESIAN:
     coordspace = CML_COLOR_Lch;
     primeaxis = 0;
     cmlSet3(scale, 1.f, 1.f, 3.60f);
-//    labels[0] = "L";
-//    labels[1] = "c";
-//    labels[2] = "h";
+    labels[0] = "L";
+    labels[1] = "c";
+    labels[2] = "h";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Lch);
     break;
   case COORDSYSTEM_LUV:
     coordspace = CML_COLOR_Luv;
     primeaxis = 0;
     cmlSet3(scale, 1.f, 1.f, 1.f);
-//    labels[0] = "L";
-//    labels[1] = "u";
-//    labels[2] = "v";
+    labels[0] = "L";
+    labels[1] = "u";
+    labels[2] = "v";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_Luv);
     break;
   case COORDSYSTEM_RGB:
     coordspace = CML_COLOR_RGB;
     primeaxis = 1;
     cmlSet3(scale, 1.f, 1.f, 1.f);
-//    labels[0] = "R";
-//    labels[1] = "G";
-//    labels[2] = "B";
+    labels[0] = "R";
+    labels[1] = "G";
+    labels[2] = "B";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
     break;
   case COORDSYSTEM_HSV:
     coordspace = CML_COLOR_HSV;
     primeaxis = 2;
     cmlSet3(scale, 2.f, 2.f, 1.f);
-//    labels[0] = "";
-//    labels[1] = "S";
-//    labels[2] = "V";
+    labels[0] = "";
+    labels[1] = "S";
+    labels[2] = "V";
     normedcoordconverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV);
     break;
   case COORDSYSTEM_HSV_CARTESIAN:
     coordspace = CML_COLOR_HSV;
     primeaxis = 2;
     cmlSet3(scale, 3.60f, -1.f, 1.f);
-//    labels[0] = "H";
-//    labels[1] = "S";
-//    labels[2] = "V";
+    labels[0] = "H";
+    labels[1] = "S";
+    labels[2] = "V";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_HSV);
     break;
   case COORDSYSTEM_HSL:
     coordspace = CML_COLOR_HSL;
     primeaxis = 2;
     cmlSet3(scale, 2.f, 2.f, 1.f);
-//    labels[0] = "";
-//    labels[1] = "S";
-//    labels[2] = "L";
+    labels[0] = "";
+    labels[1] = "S";
+    labels[2] = "L";
     normedcoordconverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSL);
     break;
   case COORDSYSTEM_HSL_CARTESIAN:
     coordspace = CML_COLOR_HSL;
     primeaxis = 2;
     cmlSet3(scale, 3.60f, -1.f, 1.f);
-//    labels[0] = "H";
-//    labels[1] = "S";
-//    labels[2] = "L";
+    labels[0] = "H";
+    labels[1] = "S";
+    labels[2] = "L";
     normedcoordconverter = cmlGetNormedOutputConverter(CML_COLOR_HSL);
     break;
   default:
@@ -1214,15 +1219,15 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
     ax[0] = max[0] * 1.03f;
     normedcoordconverter(normedax, ax, 1);
-//    OpenGLtextoutput(normedax[0], normedax[1], normedax[2], labels[0]);
+    naDrawASCIICharacters(labels[0], normedax[0], normedax[1], normedax[2]);
     ax[0] = 0.f;
     ax[1] = max[1] * 1.03f;
     normedcoordconverter(normedax, ax, 1);
-//    OpenGLtextoutput(normedax[0], normedax[1], normedax[2], labels[1]);
+    naDrawASCIICharacters(labels[1], normedax[0], normedax[1], normedax[2]);
     ax[1] = 0.f;
     ax[2] = max[2] * 1.03f;
     normedcoordconverter(normedax, ax, 1);
-//    OpenGLtextoutput(normedax[0], normedax[1], normedax[2], labels[2]);
+    naDrawASCIICharacters(labels[2], normedax[0], normedax[1], normedax[2]);
     ax[2] = 0.f;
   }
 
