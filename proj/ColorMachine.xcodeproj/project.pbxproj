@@ -27,6 +27,13 @@
 		90384AA22887312E0002D469 /* NA3DHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384AA12887312E0002D469 /* NA3DHelper.h */; };
 		90384AA4288731930002D469 /* NA3DHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA3288731930002D469 /* NA3DHelper.c */; };
 		90384AA828873AF10002D469 /* NAMathOperators.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA728873AF10002D469 /* NAMathOperators.c */; };
+		90B6FD6228A99A2F00EE6F32 /* ManderApp.vcxproj in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */; };
+		90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5B28A99A2F00EE6F32 /* ManderAppPreferences.c */; };
+		90B6FD6428A99A2F00EE6F32 /* ManderAppAbout.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5C28A99A2F00EE6F32 /* ManderAppAbout.c */; };
+		90B6FD6528A99A2F00EE6F32 /* ManderAppTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5D28A99A2F00EE6F32 /* ManderAppTranslations.c */; };
+		90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5E28A99A2F00EE6F32 /* ManderApp.c */; };
+		90B6FD6928A99E6900EE6F32 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD6728A99E6900EE6F32 /* InfoPlist.strings */; };
+		90B6FD6C28A99FEE00EE6F32 /* ColorMachineTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD6A28A99FEE00EE6F32 /* ColorMachineTranslations.c */; };
 		90B8ECED2886143D005825BF /* NABase.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE22886143D005825BF /* NABase.h */; };
 		90B8ECEE2886143D005825BF /* NAUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE32886143D005825BF /* NAUtility.h */; };
 		90B8ECEF2886143D005825BF /* NABuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE52886143D005825BF /* NABuffer.h */; };
@@ -259,7 +266,6 @@
 		90BF512A274AB29E001FDE2A /* Metamerics.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50C5274AB29D001FDE2A /* Metamerics.xib */; };
 		90BF512B274AB29E001FDE2A /* ThreeDeeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50C7274AB29D001FDE2A /* ThreeDeeWindow.xib */; };
 		90BF512C274AB29E001FDE2A /* ScreenResolution.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50C9274AB29D001FDE2A /* ScreenResolution.xib */; };
-		90BF5130274AB29E001FDE2A /* AboutWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50D1274AB29D001FDE2A /* AboutWindow.xib */; };
 		90BF5137274AB29E001FDE2A /* ColorMachineChangelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50E2274AB29D001FDE2A /* ColorMachineChangelog.txt */; };
 		90BF513C274AB29E001FDE2A /* ColorMachineApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50E9274AB29D001FDE2A /* ColorMachineApplication.mm */; };
 		90BF513D274AB29E001FDE2A /* MachinesController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50EB274AB29D001FDE2A /* MachinesController.mm */; };
@@ -424,6 +430,22 @@
 		90384AA12887312E0002D469 /* NA3DHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NA3DHelper.h; sourceTree = "<group>"; };
 		90384AA3288731930002D469 /* NA3DHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NA3DHelper.c; sourceTree = "<group>"; };
 		90384AA728873AF10002D469 /* NAMathOperators.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NAMathOperators.c; sourceTree = "<group>"; };
+		90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ManderApp.vcxproj; sourceTree = "<group>"; };
+		90B6FD5728A99A2F00EE6F32 /* ManderApp_deu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_deu.h; sourceTree = "<group>"; };
+		90B6FD5828A99A2F00EE6F32 /* ManderApp_eng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_eng.h; sourceTree = "<group>"; };
+		90B6FD5A28A99A2F00EE6F32 /* ManderApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp.h; sourceTree = "<group>"; };
+		90B6FD5B28A99A2F00EE6F32 /* ManderAppPreferences.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderAppPreferences.c; sourceTree = "<group>"; };
+		90B6FD5C28A99A2F00EE6F32 /* ManderAppAbout.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderAppAbout.c; sourceTree = "<group>"; };
+		90B6FD5D28A99A2F00EE6F32 /* ManderAppTranslations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderAppTranslations.c; sourceTree = "<group>"; };
+		90B6FD5E28A99A2F00EE6F32 /* ManderApp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderApp.c; sourceTree = "<group>"; };
+		90B6FD5F28A99A2F00EE6F32 /* ManderAppPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppPreferences.h; sourceTree = "<group>"; };
+		90B6FD6028A99A2F00EE6F32 /* ManderAppAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppAbout.h; sourceTree = "<group>"; };
+		90B6FD6128A99A2F00EE6F32 /* ManderAppTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppTranslations.h; sourceTree = "<group>"; };
+		90B6FD6828A99E6900EE6F32 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		90B6FD6A28A99FEE00EE6F32 /* ColorMachineTranslations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ColorMachineTranslations.c; sourceTree = "<group>"; };
+		90B6FD6B28A99FEE00EE6F32 /* ColorMachineTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMachineTranslations.h; sourceTree = "<group>"; };
+		90B6FD6D28A9A0E100EE6F32 /* ColorMachineStrings_eng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMachineStrings_eng.h; sourceTree = "<group>"; };
+		90B6FD6E28A9A1F200EE6F32 /* ColorMachineStrings_deu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMachineStrings_deu.h; sourceTree = "<group>"; };
 		90B8EBE02886143D005825BF /* NALib.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NALib.vcxproj; sourceTree = "<group>"; };
 		90B8EBE22886143D005825BF /* NABase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NABase.h; sourceTree = "<group>"; };
 		90B8EBE32886143D005825BF /* NAUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAUtility.h; sourceTree = "<group>"; };
@@ -657,7 +679,6 @@
 		90BF50C6274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Metamerics.xib; sourceTree = "<group>"; };
 		90BF50C8274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ThreeDeeWindow.xib; sourceTree = "<group>"; };
 		90BF50CA274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ScreenResolution.xib; sourceTree = "<group>"; };
-		90BF50D2274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/AboutWindow.xib; sourceTree = "<group>"; };
 		90BF50E2274AB29D001FDE2A /* ColorMachineChangelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ColorMachineChangelog.txt; sourceTree = "<group>"; };
 		90BF50E4274AB29D001FDE2A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90BF50E8274AB29D001FDE2A /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
@@ -850,6 +871,7 @@
 		29B97314FDCFA39411CA2CEA /* ColorMachine */ = {
 			isa = PBXGroup;
 			children = (
+				90B6FD5428A99A2F00EE6F32 /* ManderApp */,
 				90B8EBDF2886143D005825BF /* NALib */,
 				90BF91022752667A001EA32C /* CML */,
 				90BF50B1274AB29D001FDE2A /* ColorMachine */,
@@ -888,6 +910,41 @@
 				90384A9128872FB50002D469 /* NAVectorBaseOperationsII.h */,
 			);
 			path = NAVectorAlgebra;
+			sourceTree = "<group>";
+		};
+		90B6FD5428A99A2F00EE6F32 /* ManderApp */ = {
+			isa = PBXGroup;
+			children = (
+				90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */,
+				90B6FD5628A99A2F00EE6F32 /* res */,
+				90B6FD5928A99A2F00EE6F32 /* src */,
+			);
+			name = ManderApp;
+			path = ../../ManderApp/code/ManderApp;
+			sourceTree = "<group>";
+		};
+		90B6FD5628A99A2F00EE6F32 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				90B6FD5728A99A2F00EE6F32 /* ManderApp_deu.h */,
+				90B6FD5828A99A2F00EE6F32 /* ManderApp_eng.h */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		90B6FD5928A99A2F00EE6F32 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				90B6FD5A28A99A2F00EE6F32 /* ManderApp.h */,
+				90B6FD5B28A99A2F00EE6F32 /* ManderAppPreferences.c */,
+				90B6FD5C28A99A2F00EE6F32 /* ManderAppAbout.c */,
+				90B6FD5D28A99A2F00EE6F32 /* ManderAppTranslations.c */,
+				90B6FD5E28A99A2F00EE6F32 /* ManderApp.c */,
+				90B6FD5F28A99A2F00EE6F32 /* ManderAppPreferences.h */,
+				90B6FD6028A99A2F00EE6F32 /* ManderAppAbout.h */,
+				90B6FD6128A99A2F00EE6F32 /* ManderAppTranslations.h */,
+			);
+			path = src;
 			sourceTree = "<group>";
 		};
 		90B8EBDF2886143D005825BF /* NALib */ = {
@@ -1346,12 +1403,14 @@
 			children = (
 				90BF5161274ABA50001FDE2A /* ColorMachine.icns */,
 				90BF50C3274AB29D001FDE2A /* ColorMachine.xib */,
-				90BF50C5274AB29D001FDE2A /* Metamerics.xib */,
-				90BF50C7274AB29D001FDE2A /* ThreeDeeWindow.xib */,
-				90BF50C9274AB29D001FDE2A /* ScreenResolution.xib */,
-				90BF50D1274AB29D001FDE2A /* AboutWindow.xib */,
 				90BF50E2274AB29D001FDE2A /* ColorMachineChangelog.txt */,
+				90B6FD6E28A9A1F200EE6F32 /* ColorMachineStrings_deu.h */,
+				90B6FD6D28A9A0E100EE6F32 /* ColorMachineStrings_eng.h */,
 				90BF50E4274AB29D001FDE2A /* Info.plist */,
+				90B6FD6728A99E6900EE6F32 /* InfoPlist.strings */,
+				90BF50C5274AB29D001FDE2A /* Metamerics.xib */,
+				90BF50C9274AB29D001FDE2A /* ScreenResolution.xib */,
+				90BF50C7274AB29D001FDE2A /* ThreeDeeWindow.xib */,
 			);
 			path = res;
 			sourceTree = "<group>";
@@ -1366,6 +1425,8 @@
 				90BF511B274AB29D001FDE2A /* ColorMachineOpenGLView.mm */,
 				90BF5112274AB29D001FDE2A /* ColorsController.h */,
 				90BF50EC274AB29D001FDE2A /* ColorsController.mm */,
+				90B6FD6A28A99FEE00EE6F32 /* ColorMachineTranslations.c */,
+				90B6FD6B28A99FEE00EE6F32 /* ColorMachineTranslations.h */,
 				90BF50F7274AB29D001FDE2A /* Machine */,
 				90BF5117274AB29D001FDE2A /* MachinesController.h */,
 				90BF50EB274AB29D001FDE2A /* MachinesController.mm */,
@@ -1916,10 +1977,11 @@
 				90BF512A274AB29E001FDE2A /* Metamerics.xib in Resources */,
 				90BF5162274ABA51001FDE2A /* ColorMachine.icns in Resources */,
 				90BF5137274AB29E001FDE2A /* ColorMachineChangelog.txt in Resources */,
+				90B6FD6228A99A2F00EE6F32 /* ManderApp.vcxproj in Resources */,
 				90BF5129274AB29E001FDE2A /* ColorMachine.xib in Resources */,
 				90BF512B274AB29E001FDE2A /* ThreeDeeWindow.xib in Resources */,
 				90BF512C274AB29E001FDE2A /* ScreenResolution.xib in Resources */,
-				90BF5130274AB29E001FDE2A /* AboutWindow.xib in Resources */,
+				90B6FD6928A99E6900EE6F32 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1933,6 +1995,7 @@
 				90BF5141274AB29E001FDE2A /* main.mm in Sources */,
 				90BF5151274AB29E001FDE2A /* ThreeDeeWindowController.mm in Sources */,
 				90BF514E274AB29E001FDE2A /* HSLColorController.mm in Sources */,
+				90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */,
 				90BF5147274AB29E001FDE2A /* ColorController.mm in Sources */,
 				90BF514A274AB29E001FDE2A /* LuvColorController.mm in Sources */,
 				90BF5144274AB29E001FDE2A /* YxyColorController.mm in Sources */,
@@ -1940,13 +2003,17 @@
 				90BF5152274AB29E001FDE2A /* ColorMachineOpenGLView.mm in Sources */,
 				90BF5149274AB29E001FDE2A /* XYZColorController.mm in Sources */,
 				90BF513C274AB29E001FDE2A /* ColorMachineApplication.mm in Sources */,
+				90B6FD6528A99A2F00EE6F32 /* ManderAppTranslations.c in Sources */,
 				90BF514D274AB29E001FDE2A /* YCbCrColorController.mm in Sources */,
+				90B6FD6428A99A2F00EE6F32 /* ManderAppAbout.c in Sources */,
 				90BF513E274AB29E001FDE2A /* ColorsController.mm in Sources */,
 				90BF513D274AB29E001FDE2A /* MachinesController.mm in Sources */,
 				90BF513F274AB29E001FDE2A /* ScreenResolutionWindowController.mm in Sources */,
 				90BF5148274AB29E001FDE2A /* YuvColorController.mm in Sources */,
 				90BF514F274AB29E001FDE2A /* HSVColorController.mm in Sources */,
+				90B6FD6C28A99FEE00EE6F32 /* ColorMachineTranslations.c in Sources */,
 				90BF514C274AB29E001FDE2A /* SpectralColorController.mm in Sources */,
+				90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */,
 				90BF5146274AB29E001FDE2A /* MachineWindowController.mm in Sources */,
 				90BF5145274AB29E001FDE2A /* RGBColorController.mm in Sources */,
 				90BF5150274AB29E001FDE2A /* MetamericsWindowController.mm in Sources */,
@@ -2098,6 +2165,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		90B6FD6728A99E6900EE6F32 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				90B6FD6828A99E6900EE6F32 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		90BF50C3274AB29D001FDE2A /* ColorMachine.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2128,14 +2203,6 @@
 				90BF50CA274AB29D001FDE2A /* English */,
 			);
 			name = ScreenResolution.xib;
-			sourceTree = "<group>";
-		};
-		90BF50D1274AB29D001FDE2A /* AboutWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				90BF50D2274AB29D001FDE2A /* English */,
-			);
-			name = AboutWindow.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

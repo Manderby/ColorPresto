@@ -1,4 +1,5 @@
 
+#include "ColorMachineTranslations.h"
 #import "ThreeDeeWindowController.h"
 #import "MetamericsWindowController.h"
 #import "ColorMachineApplication.h"
@@ -12,6 +13,7 @@
 #include <NADateTime.h>
 #include "NAApp.h"
 #include "NAUICocoaLegacy.h"
+#include "ManderAppAbout.h"
 
 CMLColorType maskcolor;
 bool showmask;
@@ -105,15 +107,17 @@ size_t bordercount;
 }
 
 - (IBAction)showAbout:(id)sender{
-  if(!aboutwindowcontroller){
-    naLoadNib("AboutWindow", NSApp);
-  }
-  [aboutwindowcontroller showDialog];
+  mandShowAboutController();
+  
+//  if(!aboutwindowcontroller){
+//    naLoadNib("AboutWindow", NSApp);
+//  }
+//  [aboutwindowcontroller showDialog];
 }
 
 - (IBAction)showHelp:(NSMenuItem*)sender{
   NA_UNUSED(sender);
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:"https://manderc.com/apps/colormachine/help/index_eng.php"]]];
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:cmTranslate(ColorMachineApplicationHelpURL)]]];
 }
 
 - (IBAction)showScreenResolution:(id)sender{

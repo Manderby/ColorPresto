@@ -1,11 +1,17 @@
 
 #import "main.h"
+#import "ColorMachineApplication.h"
+
+#include "ColorMachineTranslations.h"
+
+#include "ManderAppAbout.h"
+#include "ManderAppTranslations.h"
+#include "NAApp.h"
 
 //#include "NAUtility/NAMemory.h"
 //#include "NAStruct/NABuffer.h"
-
-int main(int argc, char *argv[]){
-
+//
+//int main(int argc, char *argv[]){
 //  naStartRuntime();
 //  NABuffer* readBuffer = naCreateBufferWithInputPath("/Users/stammt/Desktop/miniascii.raw");
 //  NABufferIterator bufIter = naMakeBufferAccessor(readBuffer);
@@ -49,9 +55,26 @@ int main(int argc, char *argv[]){
 //  naRelease(outBuffer);
 //  naStopRuntime();
 //  return 0;
+//}
+
+void preStartup(void* arg){
+  // here come translations.
+  mandInitManderAppTranslations();
+  initTranslations();
+}
+
+void postStartup(void* arg){
+  naLoadNib("ColorMachine", NA_NULL);
   
+  // here come UI thingies.
+  mandCreateAboutController();
+  mandSetAboutDescriptionAndHelpURL(cmTranslate(ColorMachineApplicationDescription), cmTranslate(ColorMachineApplicationHelpURL));
+}
 
-
-  int retvalue = NSApplicationMain(argc,  (const char **) argv);
-  return retvalue;
+int main(int argc, char *argv[]){
+  naStartRuntime();
+  [ColorMachineApplication sharedApplication];
+  naStartApplication(preStartup, postStartup, NA_NULL);
+  naStopRuntime();
+  return 0;
 }
