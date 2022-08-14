@@ -54,6 +54,7 @@ extern size_t bordercount;
 - (id)init;
 
 - (IBAction)showAbout:(id)sender;
+- (IBAction)showHelp:(NSMenuItem*)sender;
 //- (IBAction)showScreensTool:(id)sender;
 - (IBAction)showScreenResolution:(id)sender;
 - (IBAction)showThreeDee:(id)sender;

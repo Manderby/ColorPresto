@@ -111,6 +111,11 @@ size_t bordercount;
   [aboutwindowcontroller showDialog];
 }
 
+- (IBAction)showHelp:(NSMenuItem*)sender{
+  NA_UNUSED(sender);
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:"https://manderc.com/apps/colormachine/help/index_eng.php"]]];
+}
+
 - (IBAction)showScreenResolution:(id)sender{
   if(!screenresolutionwindowcontroller){
     naLoadNib("ScreenResolution", NSApp);
