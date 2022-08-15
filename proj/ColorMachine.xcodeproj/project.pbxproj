@@ -678,6 +678,7 @@
 		90B8ECEB2886143D005825BF /* NAMathOperators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMathOperators.h; sourceTree = "<group>"; };
 		90B8ECEC2886143D005825BF /* NACoord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NACoord.h; sourceTree = "<group>"; };
 		90B8EDDF28861472005825BF /* NALib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NALib.h; sourceTree = "<group>"; };
+		90BAE43B28AACDFB00863696 /* mainC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainC.h; sourceTree = "<group>"; };
 		90BF50C4274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ColorMachine.xib; sourceTree = "<group>"; };
 		90BF50C6274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/Metamerics.xib; sourceTree = "<group>"; };
 		90BF50C8274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ThreeDeeWindow.xib; sourceTree = "<group>"; };
@@ -1434,6 +1435,7 @@
 				90BF5117274AB29D001FDE2A /* MachinesController.h */,
 				90BF50EB274AB29D001FDE2A /* MachinesController.mm */,
 				90BF50E8274AB29D001FDE2A /* main.h */,
+				90BAE43B28AACDFB00863696 /* mainC.h */,
 				90BF50F3274AB29D001FDE2A /* main.mm */,
 				90BF5114274AB29D001FDE2A /* Metamerics */,
 				90BF50ED274AB29D001FDE2A /* ScreenResolution */,

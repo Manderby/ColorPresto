@@ -141,7 +141,7 @@ size_t bordercount;
   }
   [threedeewindowcontroller showDialog];
 
-//  cmShowThreeDeeController(threeDeeController);
+  cmShowThreeDeeController(threeDeeController);
 }
 
 - (IBAction)showMetamerics:(id)sender{

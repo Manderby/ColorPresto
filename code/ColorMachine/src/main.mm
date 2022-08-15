@@ -3,11 +3,23 @@
 #include "ThreeDeeController.h"
 
 #import "main.h"
+#import "mainC.h"
 #import "ColorMachineApplication.h"
 
 #include "ManderAppAbout.h"
 #include "ManderAppTranslations.h"
 #include "NAApp.h"
+
+
+
+CMLColorMachine* cmGetCurrentColorMachine(){
+  return [(ColorMachineApplication*)NSApp getCurrentMachine];
+}
+
+double cmGetUIScaleFactorForWindow(void* nativeWindowPtr){
+  return [ColorMachineApplication getUIScaleFactorForWindow: (NSWindow*)nativeWindowPtr];
+}
+
 
 //#include "NAUtility/NAMemory.h"
 //#include "NAStruct/NABuffer.h"
@@ -89,3 +101,6 @@ int main(int argc, char *argv[]){
   naStopRuntime();
   return 0;
 }
+
+
+
