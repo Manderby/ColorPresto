@@ -393,7 +393,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
 - (void)dealloc{
 //  naClearMutex(&mutex);
-  naShutdownPixelFont();
+  naShutdownPixelFont(fontId);
   
   [super dealloc];
 }
@@ -428,7 +428,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
   glEnable(GL_DEPTH_TEST);
   
-  naStartupPixelFont();
+  fontId = naStartupPixelFont();
 }
 
 
@@ -1219,15 +1219,15 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
 
     ax[0] = max[0] * 1.03f;
     normedcoordconverter(normedax, ax, 1);
-    naDrawASCIICharacters(labels[0], normedax[0], normedax[1], normedax[2]);
+    naDrawASCIICharacters(fontId, labels[0], normedax[0], normedax[1], normedax[2]);
     ax[0] = 0.f;
     ax[1] = max[1] * 1.03f;
     normedcoordconverter(normedax, ax, 1);
-    naDrawASCIICharacters(labels[1], normedax[0], normedax[1], normedax[2]);
+    naDrawASCIICharacters(fontId, labels[1], normedax[0], normedax[1], normedax[2]);
     ax[1] = 0.f;
     ax[2] = max[2] * 1.03f;
     normedcoordconverter(normedax, ax, 1);
-    naDrawASCIICharacters(labels[2], normedax[0], normedax[1], normedax[2]);
+    naDrawASCIICharacters(fontId, labels[2], normedax[0], normedax[1], normedax[2]);
     ax[2] = 0.f;
   }
 

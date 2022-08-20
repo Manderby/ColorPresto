@@ -1,5 +1,7 @@
 
-#include "CML.h"
+#define CM_PROTOTYPE(type) typedef struct type type
+
+CM_PROTOTYPE(CMLColorMachine);
 
 
 #ifdef __cplusplus

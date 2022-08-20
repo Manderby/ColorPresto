@@ -27,6 +27,7 @@
 		90384AA22887312E0002D469 /* NA3DHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384AA12887312E0002D469 /* NA3DHelper.h */; };
 		90384AA4288731930002D469 /* NA3DHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA3288731930002D469 /* NA3DHelper.c */; };
 		90384AA828873AF10002D469 /* NAMathOperators.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA728873AF10002D469 /* NAMathOperators.c */; };
+		909541AD28B155D800346AB2 /* ThreeDeeView.c in Sources */ = {isa = PBXBuildFile; fileRef = 909541AB28B155D800346AB2 /* ThreeDeeView.c */; };
 		90B6FD6228A99A2F00EE6F32 /* ManderApp.vcxproj in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */; };
 		90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5B28A99A2F00EE6F32 /* ManderAppPreferences.c */; };
 		90B6FD6428A99A2F00EE6F32 /* ManderAppAbout.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5C28A99A2F00EE6F32 /* ManderAppAbout.c */; };
@@ -431,6 +432,8 @@
 		90384AA12887312E0002D469 /* NA3DHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NA3DHelper.h; sourceTree = "<group>"; };
 		90384AA3288731930002D469 /* NA3DHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NA3DHelper.c; sourceTree = "<group>"; };
 		90384AA728873AF10002D469 /* NAMathOperators.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NAMathOperators.c; sourceTree = "<group>"; };
+		909541AB28B155D800346AB2 /* ThreeDeeView.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ThreeDeeView.c; sourceTree = "<group>"; };
+		909541AC28B155D800346AB2 /* ThreeDeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDeeView.h; sourceTree = "<group>"; };
 		90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ManderApp.vcxproj; sourceTree = "<group>"; };
 		90B6FD5728A99A2F00EE6F32 /* ManderApp_deu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_deu.h; sourceTree = "<group>"; };
 		90B6FD5828A99A2F00EE6F32 /* ManderApp_eng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_eng.h; sourceTree = "<group>"; };
@@ -1509,6 +1512,8 @@
 			children = (
 				90B6FD7028A9A51000EE6F32 /* ThreeDeeController.c */,
 				90B6FD6F28A9A51000EE6F32 /* ThreeDeeController.h */,
+				909541AB28B155D800346AB2 /* ThreeDeeView.c */,
+				909541AC28B155D800346AB2 /* ThreeDeeView.h */,
 				90BF5119274AB29D001FDE2A /* ThreeDeeWindowController.mm */,
 				90BF511A274AB29D001FDE2A /* ThreeDeeWindowController.h */,
 			);
@@ -2003,6 +2008,7 @@
 				90BF5151274AB29E001FDE2A /* ThreeDeeWindowController.mm in Sources */,
 				90BF514E274AB29E001FDE2A /* HSLColorController.mm in Sources */,
 				90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */,
+				909541AD28B155D800346AB2 /* ThreeDeeView.c in Sources */,
 				90BF5147274AB29E001FDE2A /* ColorController.mm in Sources */,
 				90BF514A274AB29E001FDE2A /* LuvColorController.mm in Sources */,
 				90BF5144274AB29E001FDE2A /* YxyColorController.mm in Sources */,
@@ -2479,7 +2485,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2498,10 +2503,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wno-return-type-c-linkage";
+				WARNING_CFLAGS = (
+					"-Wno-return-type-c-linkage",
+					"-Wno-typedef-redefinition",
+				);
 			};
 			name = Optimize;
 		};
@@ -2684,7 +2693,6 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2703,10 +2711,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wno-return-type-c-linkage";
+				WARNING_CFLAGS = (
+					"-Wno-return-type-c-linkage",
+					"-Wno-typedef-redefinition",
+				);
 			};
 			name = Debug;
 		};
@@ -2724,7 +2736,6 @@
 				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_DEBUGGING_SYMBOLS = full;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
@@ -2745,10 +2756,14 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = macosx;
-				WARNING_CFLAGS = "-Wno-return-type-c-linkage";
+				WARNING_CFLAGS = (
+					"-Wno-return-type-c-linkage",
+					"-Wno-typedef-redefinition",
+				);
 			};
 			name = Release;
 		};

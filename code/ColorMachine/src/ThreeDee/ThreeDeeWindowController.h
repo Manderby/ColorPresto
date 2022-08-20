@@ -1,6 +1,7 @@
 
 #include <CML.h>
 #import "main.h"
+#include "NABase.h"
 
 typedef enum{
   COORDSYSTEM_XYZ,
@@ -124,6 +125,7 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   float viewpol;
   float viewequ;
   float zoom;
+  NAInt fontId;
 }
 - (id)initWithFrame:(NSRect)frameRect;
 - (void)awakeFromNib;

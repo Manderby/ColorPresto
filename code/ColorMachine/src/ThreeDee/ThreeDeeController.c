@@ -5,12 +5,15 @@
 
 #include "mainC.h"
 #include "ThreeDeeController.h"
+#include "ThreeDeeView.h"
 #include <CML.h>
 
 struct CMThreeDeeController{
   NAWindow* window;
   NAOpenGLSpace* display;
   NASpace* controlSpace;
+  
+  NAInt fontId;
   
   double fovy;
   double zoom;
@@ -19,7 +22,8 @@ struct CMThreeDeeController{
 
 
 void cmInitThreeDeeOpenGL(void* data){
-  NA_UNUSED(data);
+  CMThreeDeeController* con = (CMThreeDeeController*)data;
+  con->fontId = naStartupPixelFont();
 }
 
 
@@ -52,52 +56,50 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
 NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
   
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+//  CMLColorMachine* cm = cmGetCurrentColorMachine();
   
-  // ////////////////
-  // Setup the openGL view
-  // ////////////////
+  CMLColorType coordSpace = CML_COLOR_XYZ;
+  NABool showAxis = NA_TRUE;
+  CMLNormedConverter normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
+  float min[3];
+  float max[3];
+  const char* labels[3];
+  CMLVec3 axisRGB;
+  NARect viewRect;
+  int primeAxis;
+  double scale[3];
+  double curZoom;
+  double viewPol;
+  double viewEqu;
 
-//  NARect viewRect = naGetUIElementRect(con->display, NA_NULL, NA_FALSE);
-//  glViewport(0, 0, (GLsizei)viewRect.size.width, (GLsizei)viewRect.size.height);
-//  
-//  float curZoom;
-//  glMatrixMode(GL_PROJECTION);
-//  glLoadIdentity();
-//  if(con->fovy == 0){
-//    glOrtho(
-//      -(viewRect.size.width / 200.) * con->zoom,
-//      (viewRect.size.width / 200.) * con->zoom,
-//      -(viewRect.size.height / 200.) * con->zoom,
-//      (viewRect.size.height / 200.) * con->zoom,
-//      -50.,
-//      50.);
-//    curZoom = con->zoom;
-//  }else{
-//    NAMat44d projectionMatrix;
-//    naFillMatrixPerspective(
-//      projectionMatrix,
-//      con->fovy,
-//      viewRect.size.width / viewRect.size.height,
-//      .1,
-//      50.);
-//    glLoadMatrixd(projectionMatrix);
-//    curZoom = (viewRect.size.width / 300.) * con->zoom / (2. * (viewRect.size.width / viewRect.size.height) * naTan(.5 * naDegToRad(con->fovy)));
-//  }
-//
-//  glMatrixMode(GL_MODELVIEW);
-//	glLoadIdentity();
+  viewRect = naGetUIElementRect(con->display, NA_NULL, NA_FALSE);
+  cmlGetMinBounds(min, coordSpace);
+  cmlGetMaxBounds(max, coordSpace);
+  labels[0] = "X";
+  labels[1] = "Y";
+  labels[2] = "Z";
+  axisRGB[0] = 1.;
+  axisRGB[1] = 0.;
+  axisRGB[2] = 1.;
+  primeAxis = 1;
+  naFillV3d(scale, 1.f, 1.f, 1.f);
+  curZoom = 1.;
+  viewPol = 1.3f;
+  viewEqu = NA_PIf / 4.f;
 
 
 
 
 
+  cmBeginThreeDeeDrawing();
 
-  glClearColor(0., 0., 0., 1.);
-  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  cmSetupThreeDeeProjection(viewRect, con->fovy);
+  cmSetupThreeDeeModelView(primeAxis, scale, curZoom, viewPol, viewEqu);
+
+  if(showAxis){ cmDrawThreeDeeAxis(normedCoordConverter, min, max, labels, axisRGB, con->fontId);}
+
+  cmEndThreeDeeDrawing(con->display);
     
-  naSwapOpenGLSpaceBuffer(con->display);
-  
   return NA_TRUE;
 }
 
@@ -116,7 +118,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   
   // Create childs
   con->window = naNewWindow("3D", naMakeRectS(40, 30, 500, 500), NA_WINDOW_RESIZEABLE, 0);
-  con->display = naNewOpenGLSpace(naMakeSize(300, 300), cmInitThreeDeeOpenGL, NA_NULL);
+  con->display = naNewOpenGLSpace(naMakeSize(300, 300), cmInitThreeDeeOpenGL, con);
   con->controlSpace = naNewSpace(naMakeSize(200, 400));
   naSetSpaceAlternateBackground(con->controlSpace, NA_TRUE);
    
@@ -137,7 +139,6 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   // Update the whole window
   NAReaction dummyReaction = {con->window, NA_UI_COMMAND_RESHAPE, con};
   cmReshapeThreeDeeWindow(dummyReaction);
-  cmUpdateThreeDeeController(con);
 
   return con;
 }
@@ -145,6 +146,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
 
 
 void cmFreeThreeDeeController(CMThreeDeeController* con){
+  naShutdownPixelFont(con->fontId);
   naFree(con);
 }
 
