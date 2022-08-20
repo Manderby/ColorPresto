@@ -8,7 +8,7 @@
 typedef struct CMThreeDeeController CMThreeDeeController;
 
 CMThreeDeeController* cmAllocThreeDeeController(void);
-void cmFreeThreeDeeController(CMThreeDeeController* con);
+void cmDeallocThreeDeeController(CMThreeDeeController* con);
 
 void cmShowThreeDeeController(CMThreeDeeController* con);
 void cmUpdateThreeDeeController(CMThreeDeeController* con);

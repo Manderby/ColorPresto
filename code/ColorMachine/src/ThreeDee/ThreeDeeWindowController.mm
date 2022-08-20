@@ -659,7 +659,6 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
   // Draw the surfaces
   // ////////////////////
   
-  #define OUTLINE_MUL 1
   int32 hueindex = -1;
   if((coord3d == COORDSYSTEM_HSV_CARTESIAN) || (coord3d == COORDSYSTEM_HSL_CARTESIAN)){
     hueindex = 0;

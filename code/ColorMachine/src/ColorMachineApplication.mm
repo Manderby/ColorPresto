@@ -100,6 +100,7 @@ size_t bordercount;
 //  machinescontroller = [[MachinesController alloc] init];
 //  colorscontroller = [[ColorsController alloc] init];
   threeDeeController = cmAllocThreeDeeController();
+  cmUpdateThreeDeeController(threeDeeController);
 }
 
 - (id)init{
@@ -110,7 +111,7 @@ size_t bordercount;
 }
 
 - (void)dealloc{
-  cmFreeThreeDeeController(threeDeeController);
+  cmDeallocThreeDeeController(threeDeeController);
   [super dealloc];
 }
 
@@ -141,7 +142,7 @@ size_t bordercount;
   }
   [threedeewindowcontroller showDialog];
 
-  cmShowThreeDeeController(threeDeeController);
+//  cmShowThreeDeeController(threeDeeController);
 }
 
 - (IBAction)showMetamerics:(id)sender{
