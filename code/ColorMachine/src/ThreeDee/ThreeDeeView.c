@@ -1,8 +1,20 @@
 
+#include "CML.h"
 #include "NAApp.h"
 #include "NAMath.h"
 #include "NAVisual.h"
 #include "ThreeDeeView.h"
+
+
+
+typedef size_t CMLVec4UInt[CML_MAX_NUMBER_OF_CHANNELS];
+
+inline static void cmlSet4UInt(CMLVec4UInt d, size_t a0, size_t a1, size_t a2, size_t a3){
+  d[0] = a0;
+  d[1] = a1;
+  d[2] = a2;
+  d[3] = a3;
+}
 
 
 
@@ -89,6 +101,75 @@ void cmSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom
   glLoadMatrixd(matrix);
 }
 
+
+
+void cmDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* sm, double pointsAlpha, CMLColorType space3D, NAInt steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, double zoom){
+  size_t numChannels = cmlGetNumChannels(space3D);
+
+  CMLVec4UInt steps;
+  switch(space3D){
+  case CML_COLOR_GRAY:  cmlSet4UInt(steps, 2 * steps3D, 1, 1, 1); break;
+  case CML_COLOR_XYZ:   cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
+  case CML_COLOR_Yxy:   cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
+  case CML_COLOR_Yuv:   cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
+  case CML_COLOR_Yupvp: cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
+  case CML_COLOR_YCbCr: cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
+  case CML_COLOR_Lab:   cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
+  case CML_COLOR_Lch:   cmlSet4UInt(steps, steps3D, steps3D, 3 * steps3D + 1, 1); break;
+  case CML_COLOR_Luv:   cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
+  case CML_COLOR_RGB:   cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
+  case CML_COLOR_HSV:   cmlSet4UInt(steps, 3 * steps3D + 1, steps3D, steps3D, 1); break;
+  case CML_COLOR_HSL:   cmlSet4UInt(steps, 3 * steps3D + 1, steps3D, steps3D, 1); break;
+  default: cmlSet4UInt(steps, 1, 1, 1, 1); break;
+  }
+  
+  size_t totalCloudCount = steps[0] * steps[1] * steps[2] * steps[3];
+  float* cloudNormedColorCoords = (float*)cmlCreateNormedGamutSlice(space3D, steps, NA_NULL, NA_NULL, NA_NULL, NA_NULL, NA_NULL);
+  float* cloudRGBFloatValues      = naMalloc(totalCloudCount * 3 * sizeof(float));
+  float* cloudColorCoords         = naMalloc(totalCloudCount * numChannels * sizeof(float));
+  float* cloudSystemCoords        = naMalloc(totalCloudCount * 3 * sizeof(float));
+  float* cloudNormedSystemCoords  = naMalloc(totalCloudCount * 3 * sizeof(float));
+
+  normedInputConverter(cloudColorCoords, cloudNormedColorCoords, totalCloudCount);
+  coordConverter(cm, cloudSystemCoords, cloudColorCoords, totalCloudCount);
+  normedCoordConverter(cloudNormedSystemCoords, cloudSystemCoords, totalCloudCount);
+  
+  // Convert the given values to screen RGBs.
+  fillRGBfloatarrayWithArray(
+    cm,
+    sm,
+    cloudRGBFloatValues,
+    cloudNormedColorCoords,
+    space3D,
+    normedInputConverter,
+    totalCloudCount,
+    NA_FALSE,
+    NA_FALSE);
+
+  glDisable(GL_DEPTH_TEST);
+  
+  glPointSize((2.f / numChannels) / zoom);
+  glBegin(GL_POINTS);
+  for(size_t i = 0; i < totalCloudCount; ++i){
+    glColor4f(cloudRGBFloatValues[i * 3 + 0], cloudRGBFloatValues[i * 3 + 1], cloudRGBFloatValues[i * 3 + 2], pointsAlpha);
+    glVertex3fv(&(cloudNormedSystemCoords[i * 3]));
+  }
+  glEnd();
+  
+//    glEnableClientState(GL_COLOR_ARRAY);
+//    glColorPointer(3, GL_UNSIGNED_BYTE, 0, cloudrgb8Bitvalues);
+//    glEnableClientState(GL_VERTEX_ARRAY);
+//    glVertexPointer(3, GL_FLOAT, 0, cloudNormedSystemCoords);
+//    glDrawArrays(GL_POINTS, 0, totalCloudCount);
+//    glDisableClientState(GL_COLOR_ARRAY);
+//    glDisableClientState(GL_VERTEX_ARRAY);
+
+  naFree(cloudNormedSystemCoords);
+  naFree(cloudSystemCoords);
+  naFree(cloudColorCoords);
+  naFree(cloudRGBFloatValues);
+  naFree(cloudNormedColorCoords);
+}
 
 
 void cmDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normedCoordConverter, CMLColorType coordSpace, NAInt hueIndex){

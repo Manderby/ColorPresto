@@ -24,337 +24,6 @@ void autodisplay(void* obj){
   [[controller getColorDisplay] setNeedsDisplay:YES];
 }
 
-CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
-                                 const CMLVec4UInt dimensions,
-                                     const CMLVec4 origin,
-                                     const CMLVec4 range0,
-                                     const CMLVec4 range1,
-                                     const CMLVec4 range2,
-                                     const CMLVec4 range3){
-  
-  if(colorspace > CML_COLOR_CMYK){return NULL;}
-  
-  size_t numchannels = cmlGetNumChannels(colorspace);
-
-  CMLVec4 o;
-  CMLVec4 r[CML_MAX_NUMBER_OF_CHANNELS];
-  if(origin){cmlCpy4(o, origin);}else{cmlSet4(o, 0.f, 0.f, 0.f, 0.f);}
-  if(range0){cmlCpy4(r[0], range0);}else{cmlSet4(r[0], 1.f, 0.f, 0.f, 0.f);}
-  if(range1){cmlCpy4(r[1], range1);}else{cmlSet4(r[1], 0.f, 1.f, 0.f, 0.f);}
-  if(range2){cmlCpy4(r[2], range2);}else{cmlSet4(r[2], 0.f, 0.f, 1.f, 0.f);}
-  if(range3){cmlCpy4(r[3], range3);}else{cmlSet4(r[3], 0.f, 0.f, 0.f, 1.f);}
-  
-  CMLVec4UInt dim;
-  CMLVec4 invdim;
-  size_t totalnumentries = 1;
-  uint32 dimcount = 0;
-  for(size_t d=0; d<CML_MAX_NUMBER_OF_CHANNELS; d++){
-    if(dimensions[d] > 1){
-      dim[dimcount] = dimensions[d];
-      totalnumentries *= dimensions[d];
-      invdim[dimcount] = 1.f / (dimensions[d] - 1);
-      if(dimcount != d){cmlCpy4(r[dimcount], r[d]);}
-      dimcount++;
-    }
-  }
-
-  float* array = (float*)malloc(totalnumentries * numchannels * sizeof(float));
-  float* ptr = array;
-  
-  CMLVec4 o1, o2, o3;
-
-  switch(numchannels){
-  case 1:
-    switch(dimcount){
-    case 0:
-      cmlCpy1(ptr, o);
-      break;
-    case 1:
-      for(size_t c0=0; c0<dim[0]; c0++){
-        float f0 = (float)c0*invdim[0];
-        *ptr++ = o[0] + f0 * r[0][0];
-      }
-      break;
-    case 2:
-      for(size_t c1=0; c1<dim[1]; c1++){
-        float f1 = (float)c1*invdim[1];
-        o1[0] = o[0] + f1 * r[1][0];
-        for(size_t c0=0; c0<dim[0]; c0++){
-          float f0 = (float)c0*invdim[0];
-          *ptr++ = o1[0] + f0 * r[0][0];
-        }
-      }
-      break;
-    case 3:
-      for(size_t c2=0; c2<dim[2]; c2++){
-        float f2 = (float)c2*invdim[2];
-        o2[0] = o[0] + f2 * r[2][0];
-        for(size_t c1=0; c1<dim[1]; c1++){
-          float f1 = (float)c1*invdim[1];
-          o1[0] = o2[0] + f1 * r[1][0];
-          for(size_t c0=0; c0<dim[0]; c0++){
-            float f0 = (float)c0*invdim[0];
-            *ptr++ = o1[0] + f0 * r[0][0];
-          }
-        }
-      }
-      break;
-    case 4:
-      for(size_t c3=0; c3<dim[3]; c3++){
-        float f3 = (float)c3*invdim[3];
-        o3[0] = o[0] + f3 * r[3][0];
-        for(size_t c2=0; c2<dim[2]; c2++){
-          float f2 = (float)c2*invdim[2];
-          o2[0] = o3[0] + f2 * r[2][0];
-          for(size_t c1=0; c1<dim[1]; c1++){
-            float f1 = (float)c1*invdim[1];
-            o1[0] = o2[0] + f1 * r[1][0];
-            for(size_t c0=0; c0<dim[0]; c0++){
-              float f0 = (float)c0*invdim[0];
-              *ptr++ = o1[0] + f0 * r[0][0];
-            }
-          }
-        }
-      }
-      break;
-    }
-    break;
-
-  case 2:
-    switch(dimcount){
-    case 0:
-      cmlCpy2(ptr, o);
-      break;
-    case 1:
-      for(size_t c0=0; c0<dim[0]; c0++){
-        float f0 = (float)c0*invdim[0];
-        *ptr++ = o[0] + f0 * r[0][0];
-        *ptr++ = o[1] + f0 * r[0][1];
-      }
-      break;
-    case 2:
-      for(size_t c1=0; c1<dim[1]; c1++){
-        float f1 = (float)c1*invdim[1];
-        o1[0] = o[0] + f1 * r[1][0];
-        o1[1] = o[1] + f1 * r[1][1];
-        for(size_t c0=0; c0<dim[0]; c0++){
-          float f0 = (float)c0*invdim[0];
-          *ptr++ = o1[0] + f0 * r[0][0];
-          *ptr++ = o1[1] + f0 * r[0][1];
-        }
-      }
-      break;
-    case 3:
-      for(size_t c2=0; c2<dim[2]; c2++){
-        float f2 = (float)c2*invdim[2];
-        o2[0] = o[0] + f2 * r[2][0];
-        o2[1] = o[1] + f2 * r[2][1];
-        for(size_t c1=0; c1<dim[1]; c1++){
-          float f1 = (float)c1*invdim[1];
-          o1[0] = o2[0] + f1 * r[1][0];
-          o1[1] = o2[1] + f1 * r[1][1];
-          for(size_t c0=0; c0<dim[0]; c0++){
-            float f0 = (float)c0*invdim[0];
-            *ptr++ = o1[0] + f0 * r[0][0];
-            *ptr++ = o1[1] + f0 * r[0][1];
-          }
-        }
-      }
-      break;
-    case 4:
-      for(size_t c3=0; c3<dim[3]; c3++){
-        float f3 = (float)c3*invdim[3];
-        o3[0] = o[0] + f3 * r[3][0];
-        o3[1] = o[1] + f3 * r[3][1];
-        for(size_t c2=0; c2<dim[2]; c2++){
-          float f2 = (float)c2*invdim[2];
-          o2[0] = o3[0] + f2 * r[2][0];
-          o2[1] = o3[1] + f2 * r[2][1];
-          for(size_t c1=0; c1<dim[1]; c1++){
-            float f1 = (float)c1*invdim[1];
-            o1[0] = o2[0] + f1 * r[1][0];
-            o1[1] = o2[1] + f1 * r[1][1];
-            for(size_t c0=0; c0<dim[0]; c0++){
-              float f0 = (float)c0*invdim[0];
-              *ptr++ = o1[0] + f0 * r[0][0];
-              *ptr++ = o1[1] + f0 * r[0][1];
-            }
-          }
-        }
-      }
-      break;
-    }
-    break;
-
-  case 3:
-    switch(dimcount){
-    case 0:
-      cmlCpy3(ptr, o);
-      break;
-    case 1:
-      for(size_t c0=0; c0<dim[0]; c0++){
-        float f0 = (float)c0*invdim[0];
-        *ptr++ = o[0] + f0 * r[0][0];
-        *ptr++ = o[1] + f0 * r[0][1];
-        *ptr++ = o[2] + f0 * r[0][2];
-      }
-      break;
-    case 2:
-      for(size_t c1=0; c1<dim[1]; c1++){
-        float f1 = (float)c1*invdim[1];
-        o1[0] = o[0] + f1 * r[1][0];
-        o1[1] = o[1] + f1 * r[1][1];
-        o1[2] = o[2] + f1 * r[1][2];
-        for(size_t c0=0; c0<dim[0]; c0++){
-          float f0 = (float)c0*invdim[0];
-          *ptr++ = o1[0] + f0 * r[0][0];
-          *ptr++ = o1[1] + f0 * r[0][1];
-          *ptr++ = o1[2] + f0 * r[0][2];
-        }
-      }
-      break;
-    case 3:
-      for(size_t c2=0; c2<dim[2]; c2++){
-        float f2 = (float)c2*invdim[2];
-        o2[0] = o[0] + f2 * r[2][0];
-        o2[1] = o[1] + f2 * r[2][1];
-        o2[2] = o[2] + f2 * r[2][2];
-        for(size_t c1=0; c1<dim[1]; c1++){
-          float f1 = (float)c1*invdim[1];
-          o1[0] = o2[0] + f1 * r[1][0];
-          o1[1] = o2[1] + f1 * r[1][1];
-          o1[2] = o2[2] + f1 * r[1][2];
-          for(size_t c0=0; c0<dim[0]; c0++){
-            float f0 = (float)c0*invdim[0];
-            *ptr++ = o1[0] + f0 * r[0][0];
-            *ptr++ = o1[1] + f0 * r[0][1];
-            *ptr++ = o1[2] + f0 * r[0][2];
-          }
-        }
-      }
-      break;
-    case 4:
-      for(size_t c3=0; c3<dim[3]; c3++){
-        float f3 = (float)c3*invdim[3];
-        o3[0] = o[0] + f3 * r[3][0];
-        o3[1] = o[1] + f3 * r[3][1];
-        o3[2] = o[2] + f3 * r[3][2];
-        for(size_t c2=0; c2<dim[2]; c2++){
-          float f2 = (float)c2*invdim[2];
-          o2[0] = o3[0] + f2 * r[2][0];
-          o2[1] = o3[1] + f2 * r[2][1];
-          o2[2] = o3[2] + f2 * r[2][2];
-          for(size_t c1=0; c1<dim[1]; c1++){
-            float f1 = (float)c1*invdim[1];
-            o1[0] = o2[0] + f1 * r[1][0];
-            o1[1] = o2[1] + f1 * r[1][1];
-            o1[2] = o2[2] + f1 * r[1][2];
-            for(size_t c0=0; c0<dim[0]; c0++){
-              float f0 = (float)c0*invdim[0];
-              *ptr++ = o1[0] + f0 * r[0][0];
-              *ptr++ = o1[1] + f0 * r[0][1];
-              *ptr++ = o1[2] + f0 * r[0][2];
-            }
-          }
-        }
-      }
-      break;
-    }
-    break;
-
-  case 4:
-    switch(dimcount){
-    case 0:
-      cmlCpy4(ptr, o);
-      break;
-    case 1:
-      for(size_t c0=0; c0<dim[0]; c0++){
-        float f0 = (float)c0*invdim[0];
-        *ptr++ = o[0] + f0 * r[0][0];
-        *ptr++ = o[1] + f0 * r[0][1];
-        *ptr++ = o[2] + f0 * r[0][2];
-        *ptr++ = o[3] + f0 * r[0][3];
-      }
-      break;
-    case 2:
-      for(size_t c1=0; c1<dim[1]; c1++){
-        float f1 = (float)c1*invdim[1];
-        o1[0] = o[0] + f1 * r[1][0];
-        o1[1] = o[1] + f1 * r[1][1];
-        o1[2] = o[2] + f1 * r[1][2];
-        o1[3] = o[3] + f1 * r[1][3];
-        for(size_t c0=0; c0<dim[0]; c0++){
-          float f0 = (float)c0*invdim[0];
-          *ptr++ = o1[0] + f0 * r[0][0];
-          *ptr++ = o1[1] + f0 * r[0][1];
-          *ptr++ = o1[2] + f0 * r[0][2];
-          *ptr++ = o1[3] + f0 * r[0][3];
-        }
-      }
-      break;
-    case 3:
-      for(size_t c2=0; c2<dim[2]; c2++){
-        float f2 = (float)c2*invdim[2];
-        o2[0] = o[0] + f2 * r[2][0];
-        o2[1] = o[1] + f2 * r[2][1];
-        o2[2] = o[2] + f2 * r[2][2];
-        o2[3] = o[3] + f2 * r[2][3];
-        for(size_t c1=0; c1<dim[1]; c1++){
-          float f1 = (float)c1*invdim[1];
-          o1[0] = o2[0] + f1 * r[1][0];
-          o1[1] = o2[1] + f1 * r[1][1];
-          o1[2] = o2[2] + f1 * r[1][2];
-          o1[3] = o2[3] + f1 * r[1][3];
-          for(size_t c0=0; c0<dim[0]; c0++){
-            float f0 = (float)c0*invdim[0];
-            *ptr++ = o1[0] + f0 * r[0][0];
-            *ptr++ = o1[1] + f0 * r[0][1];
-            *ptr++ = o1[2] + f0 * r[0][2];
-            *ptr++ = o1[3] + f0 * r[0][3];
-          }
-        }
-      }
-      break;
-    case 4:
-      for(size_t c3=0; c3<dim[3]; c3++){
-        float f3 = (float)c3*invdim[3];
-        o3[0] = o[0] + f3 * r[3][0];
-        o3[1] = o[1] + f3 * r[3][1];
-        o3[2] = o[2] + f3 * r[3][2];
-        o3[3] = o[3] + f3 * r[3][3];
-        for(size_t c2=0; c2<dim[2]; c2++){
-          float f2 = (float)c2*invdim[2];
-          o2[0] = o3[0] + f2 * r[2][0];
-          o2[1] = o3[1] + f2 * r[2][1];
-          o2[2] = o3[2] + f2 * r[2][2];
-          o2[3] = o3[3] + f2 * r[2][3];
-          for(size_t c1=0; c1<dim[1]; c1++){
-            float f1 = (float)c1*invdim[1];
-            o1[0] = o2[0] + f1 * r[1][0];
-            o1[1] = o2[1] + f1 * r[1][1];
-            o1[2] = o2[2] + f1 * r[1][2];
-            o1[3] = o2[3] + f1 * r[1][3];
-            for(size_t c0=0; c0<dim[0]; c0++){
-              float f0 = (float)c0*invdim[0];
-              *ptr++ = o1[0] + f0 * r[0][0];
-              *ptr++ = o1[1] + f0 * r[0][1];
-              *ptr++ = o1[2] + f0 * r[0][2];
-              *ptr++ = o1[3] + f0 * r[0][3];
-            }
-          }
-        }
-      }
-      break;
-    }
-    break;
-  }
-  
-  return array;
-}
-
-
-
-
 
 
 @implementation ThreeDeeDisplay
@@ -940,13 +609,16 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
       normedcoordconverter(normedsystemcoords[s], systemcoords[s], totalcount);
       
       // Convert the given values to screen RGBs.
-      [(ColorMachineApplication*)NSApp  fillRGBfloatarray:rgbfloatvalues[s]
-                                        fromArray:normedcolorcoords[s]
-                                    withColorType:space3d
-                             normedInputConverter:normedinputconverter
-                                            count:totalcount
-                                         drawgrid:false
-                                         drawmask:false];
+      fillRGBfloatarrayWithArray(
+        [(ColorMachineApplication*)NSApp getCurrentMachine],
+        [(ColorMachineApplication*)NSApp getCurrentScreenMachine],
+        rgbfloatvalues[s],
+        normedcolorcoords[s],
+        space3d,
+        normedinputconverter,
+        totalcount,
+        NA_FALSE,
+        NA_FALSE);
     }
     
     // ////////////////////
@@ -1098,13 +770,16 @@ CMLOutput cmlCreateNormedGamutSlice(  CMLColorType colorspace,
     normedcoordconverter(cloudnormedsystemcoords, cloudsystemcoords, totalcloudcount);
     
     // Convert the given values to screen RGBs.
-    [(ColorMachineApplication*)NSApp  fillRGBfloatarray:cloudrgbfloatvalues
-                                      fromArray:cloudnormedcolorcoords
-                                  withColorType:space3d
-                           normedInputConverter:normedinputconverter
-                                          count:totalcloudcount
-                                       drawgrid:false
-                                       drawmask:false];
+    fillRGBfloatarrayWithArray(
+      [(ColorMachineApplication*)NSApp getCurrentMachine],
+      [(ColorMachineApplication*)NSApp getCurrentScreenMachine],
+      cloudrgbfloatvalues,
+      cloudnormedcolorcoords,
+      space3d,
+      normedinputconverter,
+      totalcloudcount,
+      NA_FALSE,
+      NA_FALSE);
 
     glDisable(GL_DEPTH_TEST);
     

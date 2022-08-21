@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		900B8EEE28B2E075007A137C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 900B8EED28B2E074007A137C /* main.c */; };
 		901817F7104AD42300DD1251 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901817F5104AD42300DD1251 /* OpenGL.framework */; };
 		90384A9228872FB50002D469 /* NAMatrixAlgebraOperationsII.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384A8328872FB50002D469 /* NAMatrixAlgebraOperationsII.h */; };
 		90384A9328872FB50002D469 /* NAMatrixFillerII.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384A8428872FB50002D469 /* NAMatrixFillerII.h */; };
@@ -413,6 +414,7 @@
 /* Begin PBXFileReference section */
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* Color Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Color Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		900B8EED28B2E074007A137C /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		901817F5104AD42300DD1251 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
 		90384A8328872FB50002D469 /* NAMatrixAlgebraOperationsII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMatrixAlgebraOperationsII.h; sourceTree = "<group>"; };
 		90384A8428872FB50002D469 /* NAMatrixFillerII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMatrixFillerII.h; sourceTree = "<group>"; };
@@ -1437,6 +1439,7 @@
 				90BF50F7274AB29D001FDE2A /* Machine */,
 				90BF5117274AB29D001FDE2A /* MachinesController.h */,
 				90BF50EB274AB29D001FDE2A /* MachinesController.mm */,
+				900B8EED28B2E074007A137C /* main.c */,
 				90BF50E8274AB29D001FDE2A /* main.h */,
 				90BAE43B28AACDFB00863696 /* mainC.h */,
 				90BF50F3274AB29D001FDE2A /* main.mm */,
@@ -2024,6 +2027,7 @@
 				90BF513F274AB29E001FDE2A /* ScreenResolutionWindowController.mm in Sources */,
 				90BF5148274AB29E001FDE2A /* YuvColorController.mm in Sources */,
 				90BF514F274AB29E001FDE2A /* HSVColorController.mm in Sources */,
+				900B8EEE28B2E075007A137C /* main.c in Sources */,
 				90B6FD6C28A99FEE00EE6F32 /* ColorMachineTranslations.c in Sources */,
 				90BF514C274AB29E001FDE2A /* SpectralColorController.mm in Sources */,
 				90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */,

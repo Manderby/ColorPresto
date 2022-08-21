@@ -81,22 +81,6 @@ extern size_t bordercount;
 - (IBAction)setCurrentColorAsGreenPrimary:(id)sender;
 - (IBAction)setCurrentColorAsBluePrimary:(id)sender;
 
-- (void)fillRGBfloatarray :(float*)texdata
-              fromArray:(float*)inputarray
-          withColorType:(CMLColorType)inputColorType
-   normedInputConverter:(CMLNormedConverter)normedconverter
-                  count:(size_t)count
-               drawgrid:(BOOL)drawgridlines
-               drawmask:(BOOL)drawmask;
-
-//- (void)fillRGBuint8array :(Byte*)texdata
-//              fromArray:(float*)inputarray
-//          withColorType:(CMLColorType)inputColorType
-//   normedInputConverter:(CMLNormedConverter)normedconverter
-//                  count:(size_t)count
-//               drawgrid:(BOOL)drawgridlines
-//               drawmask:(BOOL)drawmask;
-
 - (void)fillRGBfloatarray:(float*)outdata fromColor:(const Color*)inputcolor;
 
 - (void)drawColor:(const Color*)color fillBack:(BOOL)fill linecolor:(CGColorRef)linecolor context:(CGContextRef)context inRect:(CGRect)rect;

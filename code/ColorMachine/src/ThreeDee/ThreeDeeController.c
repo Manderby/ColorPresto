@@ -46,6 +46,7 @@ void cmFixThreeDeeViewParameters(CMThreeDeeController* con){
 }
 
 
+
 double cmGetAxisGray(CMThreeDeeController* con){
   float axisGray = con->backgroundGray + .5f;
   if(axisGray > 1.f){axisGray -= 1.f;}
@@ -124,9 +125,13 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
   
   CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* sm = cmGetCurrentScreenMachine();
   
   CMLColorType coordSpace = CML_COLOR_XYZ;
+  CMLColorType space3D = CML_COLOR_RGB;
   CMLNormedConverter normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
+  CMLNormedConverter normedInputConverter = cmlGetNormedInputConverter(space3D);
+  CMLColorConverter coordConverter = cmlGetColorConverter(coordSpace, space3D);
   float min[3];
   float max[3];
   const char* labels[3];
@@ -134,6 +139,8 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   int primeAxis;
   double scale[3];
   NAInt hueIndex;
+  double pointsAlpha = 1.;
+  NAInt steps3D = 25;
 
   viewSize = naGetUIElementRect(con->display, NA_NULL, NA_FALSE).size;
   cmlGetMinBounds(min, coordSpace);
@@ -172,6 +179,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   cmSetupThreeDeeProjection(viewSize, con->fovy, con->zoom);
   cmSetupThreeDeeModelView(primeAxis, scale, curZoom, con->viewPol, con->viewEqu);
 
+  if(pointsAlpha > 0.f){cmDrawThreeDeePointCloud(cm, sm, pointsAlpha, space3D, steps3D, normedInputConverter, coordConverter, normedCoordConverter, con->zoom);}
   if(con->showSpectrum){cmDrawThreeDeeSpectrum(cm, normedCoordConverter, coordSpace, hueIndex);}
   if(con->showAxis){cmDrawThreeDeeAxis(normedCoordConverter, min, max, labels, axisRGB, con->fontId);}
 
@@ -268,7 +276,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   // Set initial values
   float scaleFactor = cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->window));
 
-  con->showSpectrum = NA_TRUE;
+  con->showSpectrum = NA_FALSE;
   con->showAxis = NA_TRUE;
   con->backgroundGray = 0.3;
   con->fovy = 50.;

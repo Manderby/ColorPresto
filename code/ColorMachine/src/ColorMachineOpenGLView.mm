@@ -3,7 +3,7 @@
 #import "MachineWindowController.h"
 #import "ColorMachineApplication.h"
 #import "ColorController.h"
-
+#import "mainC.h"
 
 
 //Byte pointimage[7*7*4] = { 0,0,0,0, 0,0,0,115, 0,0,0,197, 0,0,0,247, 0,0,0,197, 0,0,0,115, 0,0,0,0,
@@ -207,13 +207,16 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   bool singleline = (channely == (size_t)-1);
   
   float* normedrgbdata = new float[width * height * 3];
-  [(ColorMachineApplication*)NSApp fillRGBfloatarray:normedrgbdata
-                                         fromArray:colordata
-                                     withColorType:colorType
-                              normedInputConverter:normedinputconverter
-                                             count:width * height
-                                          drawgrid:!singleline
-                                          drawmask:YES];
+  fillRGBfloatarrayWithArray(
+    [(ColorMachineApplication*)NSApp getCurrentMachine],
+    [(ColorMachineApplication*)NSApp getCurrentScreenMachine],
+    normedrgbdata,
+    colordata,
+    colorType,
+    normedinputconverter,
+    width * height,
+    !singleline,
+    NA_TRUE);
 
 //  float* normedrgbdata = new float[width * height * 3];
 //  [(ColorMachineApplication*)NSApp fillRGBuint8array:rgb8Bitdata

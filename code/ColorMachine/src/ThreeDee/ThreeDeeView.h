@@ -25,6 +25,17 @@ void cmSetupThreeDeeModelView(
   double viewPol,
   double viewEqu);
 
+void cmDrawThreeDeePointCloud(
+  const CMLColorMachine* cm,
+  const CMLColorMachine* sm,
+  double pointsAlpha,
+  CMLColorType space3D,
+  NAInt steps3D,
+  CMLNormedConverter normedInputConverter,
+  CMLColorConverter coordConverter,
+  CMLNormedConverter normedCoordConverter,
+  double zoom);
+
 void cmDrawThreeDeeSpectrum(
   const CMLColorMachine* cm, 
   CMLNormedConverter normedCoordConverter,
