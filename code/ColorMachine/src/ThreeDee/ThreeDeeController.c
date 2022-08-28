@@ -13,6 +13,12 @@ struct CMThreeDeeController{
   NAOpenGLSpace* display;
   NASpace* controlSpace;
   
+  NALabel* colorSpaceLabel;
+  NAPopupButton* colorSpacePopupButton;
+  
+  NALabel* coordSysLabel;
+  NAPopupButton* coordSysPopupButton;
+
   NALabel* axisLabel;
   NACheckBox* axisCheckBox;
   NALabel* spectrumLabel;
@@ -23,6 +29,8 @@ struct CMThreeDeeController{
   NASlider* backgroundSlider;
   
   NAInt fontId;
+  
+  CMLColorType colorSpace;
   
   NABool showSpectrum;
   NABool showAxis;
@@ -66,7 +74,7 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
 
   double controlWidth = 230;
-  double controlHeight = 300;
+  double controlHeight = 500;
 
   NARect windowRect = naGetUIElementRect(con->window, NA_NULL, NA_FALSE);
   NARect openGLRect = naMakeRectS(
@@ -128,10 +136,9 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
   
   CMLColorType coordSpace = CML_COLOR_XYZ;
-  CMLColorType space3D = CML_COLOR_RGB;
   CMLNormedConverter normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
-  CMLNormedConverter normedInputConverter = cmlGetNormedInputConverter(space3D);
-  CMLColorConverter coordConverter = cmlGetColorConverter(coordSpace, space3D);
+  CMLNormedConverter normedInputConverter = cmlGetNormedInputConverter(con->colorSpace);
+  CMLColorConverter coordConverter = cmlGetColorConverter(coordSpace, con->colorSpace);
   float min[3];
   float max[3];
   const char* labels[3];
@@ -179,9 +186,35 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   cmSetupThreeDeeProjection(viewSize, con->fovy, con->zoom);
   cmSetupThreeDeeModelView(primeAxis, scale, curZoom, con->viewPol, con->viewEqu);
 
-  if(pointsAlpha > 0.f){cmDrawThreeDeePointCloud(cm, sm, pointsAlpha, space3D, steps3D, normedInputConverter, coordConverter, normedCoordConverter, con->zoom);}
-  if(con->showSpectrum){cmDrawThreeDeeSpectrum(cm, normedCoordConverter, coordSpace, hueIndex);}
-  if(con->showAxis){cmDrawThreeDeeAxis(normedCoordConverter, min, max, labels, axisRGB, con->fontId);}
+  if(pointsAlpha > 0.f){
+    cmDrawThreeDeePointCloud(
+      cm,
+      sm,
+      pointsAlpha,
+      con->colorSpace,
+      steps3D,
+      normedInputConverter,
+      coordConverter,
+      normedCoordConverter,
+      con->zoom);
+  }
+  
+  if(con->showSpectrum){
+    cmDrawThreeDeeSpectrum(
+      cm,
+      normedCoordConverter,
+      coordSpace,
+      hueIndex);
+  }
+  if(con->showAxis){
+    cmDrawThreeDeeAxis(
+      normedCoordConverter,
+      min,
+      max,
+      labels,
+      axisRGB,
+      con->fontId);
+  }
 
   cmEndThreeDeeDrawing(con->display);
     
@@ -199,6 +232,21 @@ NABool cmPressThreeDeeDisplayButton(NAReaction reaction){
     con->showAxis = naGetCheckBoxState(con->axisCheckBox);
   }
 
+  cmUpdateThreeDeeController(con);
+
+  return TRUE;
+}
+
+
+
+NABool cmSelectColorSpace(NAReaction reaction){
+  CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
+
+  size_t index = naGetPopupButtonItemIndex(con->colorSpacePopupButton, reaction.uiElement);
+  if(index < CML_COLOR_CMYK){
+    con->colorSpace = (CMLColorType)index;
+  }
+  
   cmUpdateThreeDeeController(con);
 
   return TRUE;
@@ -227,30 +275,63 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   CMThreeDeeController* con = naAlloc(CMThreeDeeController);
   naZeron(con, sizeof(CMThreeDeeController));
   
-  // Create childs
+  // The window
   con->window = naNewWindow("3D", naMakeRectS(40, 30, 700, 500), NA_WINDOW_RESIZEABLE, 0);
+  naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cmReshapeThreeDeeWindow, con);
+
+  // The 3D space
   con->display = naNewOpenGLSpace(naMakeSize(300, 300), cmInitThreeDeeOpenGL, con);
+  naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cmUpdateThreeDeeDisplay, con);
+  naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cmMoveThreeDeeDisplayMouse, con);
+  naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cmScrollThreeDeeDisplay, con);
+
+  // The control space
   con->controlSpace = naNewSpace(naMakeSize(230, 400));
   naSetSpaceAlternateBackground(con->controlSpace, NA_TRUE);
 
+  con->colorSpaceLabel = naNewLabel("Color Space", 100);
+  con->colorSpacePopupButton = naNewPopupButton(100);
+  for(uint32 i = 0; i < CML_COLOR_CMYK; ++i){
+    NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString((CMLColorType)i));
+    naAddPopupButtonMenuItem(con->colorSpacePopupButton, item, NA_NULL);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectColorSpace, con);
+  }
+
+  con->coordSysLabel = naNewLabel("Coordinates", 100);
+  con->coordSysPopupButton = naNewPopupButton(100);
+
   con->axisLabel = naNewLabel("Axis", 100);
   con->axisCheckBox = naNewCheckBox("", 30);
+  naAddUIReaction(con->axisCheckBox, NA_UI_COMMAND_PRESSED, cmPressThreeDeeDisplayButton, con);
+
   con->spectrumLabel = naNewLabel("Spectrum", 100);
   con->spectrumCheckBox = naNewCheckBox("", 30);
+  naAddUIReaction(con->spectrumCheckBox, NA_UI_COMMAND_PRESSED, cmPressThreeDeeDisplayButton, con);
 
   con->fovyLabel = naNewLabel("Fovy", 100);
   con->fovySlider = naNewSlider(100);
   naSetSliderRange(con->fovySlider, 0., 90., 0);
+  naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
+
   con->backgroundLabel = naNewLabel("Background", 100);
   con->backgroundSlider = naNewSlider(100);
   naSetSliderRange(con->backgroundSlider, 0., 1., 0);
+  naAddUIReaction(con->backgroundSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
 
   // Add childs
   NASpace* content = naGetWindowContentSpace(con->window);
   naAddSpaceChild(content, con->display, naMakePos(0, 0));
   naAddSpaceChild(content, con->controlSpace, naMakePos(300, 0));
 
-  NAInt y = 100;
+  NAInt y = 300;
+  naAddSpaceChild(con->controlSpace, con->colorSpaceLabel, naMakePos(10, y));
+  naAddSpaceChild(con->controlSpace, con->colorSpacePopupButton, naMakePos(115, y));
+  y -= 25;
+  naAddSpaceChild(con->controlSpace, con->coordSysLabel, naMakePos(10, y));
+  naAddSpaceChild(con->controlSpace, con->coordSysPopupButton, naMakePos(115, y));
+  y -= 75;
+  
+  
   naAddSpaceChild(con->controlSpace, con->axisLabel, naMakePos(10, y));
   naAddSpaceChild(con->controlSpace, con->axisCheckBox, naMakePos(115, y));
   y -= 25;
@@ -263,19 +344,12 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naAddSpaceChild(con->controlSpace, con->fovyLabel, naMakePos(10, y));
   naAddSpaceChild(con->controlSpace, con->fovySlider, naMakePos(115, y));
   
-  // Add reactions
-  naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cmReshapeThreeDeeWindow, con);
-  naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cmUpdateThreeDeeDisplay, con);
-  naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cmMoveThreeDeeDisplayMouse, con);
-  naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cmScrollThreeDeeDisplay, con);
-  naAddUIReaction(con->axisCheckBox, NA_UI_COMMAND_PRESSED, cmPressThreeDeeDisplayButton, con);
-  naAddUIReaction(con->spectrumCheckBox, NA_UI_COMMAND_PRESSED, cmPressThreeDeeDisplayButton, con);
-  naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
-  naAddUIReaction(con->backgroundSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
-  
+
+
   // Set initial values
   float scaleFactor = cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->window));
 
+  con->colorSpace = CML_COLOR_RGB;
   con->showSpectrum = NA_FALSE;
   con->showAxis = NA_TRUE;
   con->backgroundGray = 0.3;
@@ -307,6 +381,8 @@ void cmShowThreeDeeController(CMThreeDeeController* con){
 
 
 void cmUpdateThreeDeeController(CMThreeDeeController* con){
+  naSetPopupButtonIndexSelected(con->colorSpacePopupButton, con->colorSpace);
+  
   naSetCheckBoxState(con->spectrumCheckBox, con->showSpectrum);
   naSetCheckBoxState(con->axisCheckBox, con->showAxis);
   naSetSliderValue(con->backgroundSlider, con->backgroundGray);
