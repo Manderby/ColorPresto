@@ -10,8 +10,10 @@ CM_PROTOTYPE(NAOpenGLSpace);
 
 
 
+void cmInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace);
+
 void cmBeginThreeDeeDrawing(const CMLVec3 axisRGB);
-void cmEndThreeDeeDrawing(NAOpenGLSpace* openGlSpace);
+void cmEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace);
 
 void cmSetupThreeDeeProjection(
   NASize viewSize,
@@ -35,6 +37,22 @@ void cmDrawThreeDeePointCloud(
   CMLColorConverter coordConverter,
   CMLNormedConverter normedCoordConverter,
   double zoom);
+
+void cmDrawThreeDeeSurfaces(
+  const CMLColorMachine* cm,
+  const CMLColorMachine* sm,
+  const CMLVec3 backgroundRGB,
+  const CMLVec3 axisRGB,
+  NABool bodySolid,
+  double bodyAlpha,
+  double gridAlpha,
+  double gridTint,
+  CMLColorType space3D,
+  NAInt steps3D,
+  CMLNormedConverter normedInputConverter,
+  CMLColorConverter coordConverter,
+  CMLNormedConverter normedCoordConverter,
+  NAInt hueIndex);
 
 void cmDrawThreeDeeSpectrum(
   const CMLColorMachine* cm, 

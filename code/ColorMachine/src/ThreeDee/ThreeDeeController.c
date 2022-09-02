@@ -8,6 +8,37 @@
 #include "ThreeDeeView.h"
 #include <CML.h>
 
+typedef enum{
+  COORD_SYS_XYZ,
+  COORD_SYS_YXY,
+  COORD_SYS_Yuv,
+  COORD_SYS_YCBCR,
+  COORD_SYS_LAB,
+  COORD_SYS_LCH_CARTESIAN,
+  COORD_SYS_LUV,
+  COORD_SYS_RGB,
+  COORD_SYS_HSV,
+  COORD_SYS_HSV_CARTESIAN,
+  COORD_SYS_HSL,
+  COORD_SYS_HSL_CARTESIAN,
+  COORD_SYS_COUNT
+} CoordSysType;
+
+const char* cm_coordSysNames[COORD_SYS_COUNT] = {
+  "XYZ",
+  "Yxy",
+  "Yuv",
+  "YCbCr",
+  "Lab",
+  "Lch Cartesian",
+  "Luv",
+  "RGB",
+  "HSV",
+  "HSV Cartesian",
+  "HSL",
+  "HSL Cartesian",
+};
+
 struct CMThreeDeeController{
   NAWindow* window;
   NAOpenGLSpace* display;
@@ -15,9 +46,22 @@ struct CMThreeDeeController{
   
   NALabel* colorSpaceLabel;
   NAPopupButton* colorSpacePopupButton;
-  
   NALabel* coordSysLabel;
   NAPopupButton* coordSysPopupButton;
+
+  NALabel* stepsLabel;
+  NASlider* stepsSlider;
+
+  NALabel* pointsOpacityLabel;
+  NASlider* pointsOpacitySlider;
+  NALabel* gridAlphaLabel;
+  NASlider* gridAlphaSlider;
+  NALabel* gridTintLabel;
+  NASlider* gridTintSlider;
+  NALabel* bodyAlphaLabel;
+  NASlider* bodyAlphaSlider;
+  NALabel* bodySolidLabel;
+  NACheckBox* bodySolidCheckBox;
 
   NALabel* axisLabel;
   NACheckBox* axisCheckBox;
@@ -31,7 +75,15 @@ struct CMThreeDeeController{
   NAInt fontId;
   
   CMLColorType colorSpace;
-  
+  CoordSysType coordSys;
+  NAInt steps3D;
+
+  double pointsOpacity;
+  double gridAlpha;
+  double gridTint;
+  double bodyAlpha;
+  NABool bodySolid;
+
   NABool showSpectrum;
   NABool showAxis;
   double backgroundGray;
@@ -66,6 +118,7 @@ double cmGetAxisGray(CMThreeDeeController* con){
 void cmInitThreeDeeOpenGL(void* data){
   CMThreeDeeController* con = (CMThreeDeeController*)data;
   con->fontId = naStartupPixelFont();
+  cmInitThreeDeeDisplay(con->display);
 }
 
 
@@ -135,33 +188,142 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
   
-  CMLColorType coordSpace = CML_COLOR_XYZ;
-  CMLNormedConverter normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
+  CMLColorType coordSpace;
+  int primeAxis;
+  double scale[3];
+  const NAUTF8Char* labels[3];
+  CMLNormedConverter normedCoordConverter;
+
+  switch(con->coordSys){
+  case COORD_SYS_XYZ:
+    coordSpace = CML_COLOR_XYZ;
+    primeAxis = 1;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "X";
+    labels[1] = "Y";
+    labels[2] = "Z";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
+    break;
+  case COORD_SYS_YXY:
+    coordSpace = CML_COLOR_Yxy;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "Y";
+    labels[1] = "x";
+    labels[2] = "y";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
+    break;
+  case COORD_SYS_Yuv:
+    coordSpace = CML_COLOR_Yuv;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "Y";
+    labels[1] = "u";
+    labels[2] = "v";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
+    break;
+  case COORD_SYS_YCBCR:
+    coordSpace = CML_COLOR_YCbCr;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "Y";
+    labels[1] = "Cb";
+    labels[2] = "Cr";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
+    break;
+  case COORD_SYS_LAB:
+    coordSpace = CML_COLOR_Lab;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 2.56, 2.56);
+    labels[0] = "L";
+    labels[1] = "a";
+    labels[2] = "b";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Lab);
+    break;
+  case COORD_SYS_LCH_CARTESIAN:
+    coordSpace = CML_COLOR_Lch;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 1., 3.60);
+    labels[0] = "L";
+    labels[1] = "c";
+    labels[2] = "h";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Lch);
+    break;
+  case COORD_SYS_LUV:
+    coordSpace = CML_COLOR_Luv;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "L";
+    labels[1] = "u";
+    labels[2] = "v";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Luv);
+    break;
+  case COORD_SYS_RGB:
+    coordSpace = CML_COLOR_RGB;
+    primeAxis = 1;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "R";
+    labels[1] = "G";
+    labels[2] = "B";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
+    break;
+  case COORD_SYS_HSV:
+    coordSpace = CML_COLOR_HSV;
+    primeAxis = 2;
+    naFillV3d(scale, 2., 2., 1.);
+    labels[0] = "";
+    labels[1] = "S";
+    labels[2] = "V";
+    normedCoordConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV);
+    break;
+  case COORD_SYS_HSV_CARTESIAN:
+    coordSpace = CML_COLOR_HSV;
+    primeAxis = 2;
+    naFillV3d(scale, 3.60, -1., 1.);
+    labels[0] = "H";
+    labels[1] = "S";
+    labels[2] = "V";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_HSV);
+    break;
+  case COORD_SYS_HSL:
+    coordSpace = CML_COLOR_HSL;
+    primeAxis = 2;
+    naFillV3d(scale, 2., 2., 1.);
+    labels[0] = "";
+    labels[1] = "S";
+    labels[2] = "L";
+    normedCoordConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSL);
+    break;
+  case COORD_SYS_HSL_CARTESIAN:
+    coordSpace = CML_COLOR_HSL;
+    primeAxis = 2;
+    naFillV3d(scale, 3.60, -1., 1.);
+    labels[0] = "H";
+    labels[1] = "S";
+    labels[2] = "L";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_HSL);
+    break;
+  default:
+    return NA_FALSE;
+  }
+
+
+
+
   CMLNormedConverter normedInputConverter = cmlGetNormedInputConverter(con->colorSpace);
   CMLColorConverter coordConverter = cmlGetColorConverter(coordSpace, con->colorSpace);
   float min[3];
   float max[3];
-  const char* labels[3];
   NASize viewSize;
-  int primeAxis;
-  double scale[3];
-  NAInt hueIndex;
-  double pointsAlpha = 1.;
-  NAInt steps3D = 25;
 
   viewSize = naGetUIElementRect(con->display, NA_NULL, NA_FALSE).size;
   cmlGetMinBounds(min, coordSpace);
   cmlGetMaxBounds(max, coordSpace);
-  labels[0] = "X";
-  labels[1] = "Y";
-  labels[2] = "Z";
-  primeAxis = 1;
-  naFillV3d(scale, 1.f, 1.f, 1.f);
 
-  CMLVec3 backgroupRGB;
+  CMLVec3 backgroundRGB;
   CMLVec3 axisRGB;
   double axisGray = cmGetAxisGray(con);
-  cmlSet3(backgroupRGB, con->backgroundGray, con->backgroundGray, con->backgroundGray);
+  cmlSet3(backgroundRGB, con->backgroundGray, con->backgroundGray, con->backgroundGray);
   cmlSet3(axisRGB, axisGray, axisGray, axisGray);
 
   double curZoom;
@@ -171,32 +333,47 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     curZoom = (viewSize.width / 300.) * con->zoom / (2. * (viewSize.width / viewSize.height) * tan(.5 * naDegToRad(con->fovy)));
   }
 
-  hueIndex = -1;
-//  if((coord3d == COORDSYSTEM_HSV_CARTESIAN) || (coord3d == COORDSYSTEM_HSL_CARTESIAN)){
-//    hueIndex = 0;
-//  }else if(coord3d == COORDSYSTEM_LCH_CARTESIAN){
-//    hueIndex = 2;
-//  }
+  NAInt hueIndex = -1;
+  if((con->coordSys == COORD_SYS_HSV_CARTESIAN) || (con->coordSys == COORD_SYS_HSL_CARTESIAN)){
+    hueIndex = 0;
+  }else if(con->coordSys == COORD_SYS_LCH_CARTESIAN){
+    hueIndex = 2;
+  }
 
-
-
-
-  cmBeginThreeDeeDrawing(backgroupRGB);
+  cmBeginThreeDeeDrawing(backgroundRGB);
 
   cmSetupThreeDeeProjection(viewSize, con->fovy, con->zoom);
   cmSetupThreeDeeModelView(primeAxis, scale, curZoom, con->viewPol, con->viewEqu);
 
-  if(pointsAlpha > 0.f){
+  if(con->pointsOpacity > 0.f){
     cmDrawThreeDeePointCloud(
       cm,
       sm,
-      pointsAlpha,
+      con->pointsOpacity,
       con->colorSpace,
-      steps3D,
+      con->steps3D,
       normedInputConverter,
       coordConverter,
       normedCoordConverter,
       con->zoom);
+  }
+
+  if(1){
+    cmDrawThreeDeeSurfaces(
+      cm,
+      sm,
+      backgroundRGB,
+      axisRGB,
+      con->bodySolid,
+      con->bodyAlpha,
+      con->gridAlpha,
+      con->gridTint,
+      con->colorSpace,
+      con->steps3D,
+      normedInputConverter,
+      coordConverter,
+      normedCoordConverter,
+      hueIndex);
   }
   
   if(con->showSpectrum){
@@ -206,6 +383,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
       coordSpace,
       hueIndex);
   }
+  
   if(con->showAxis){
     cmDrawThreeDeeAxis(
       normedCoordConverter,
@@ -226,7 +404,9 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 NABool cmPressThreeDeeDisplayButton(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
 
-  if(reaction.uiElement == con->spectrumCheckBox){
+  if(reaction.uiElement == con->bodySolidCheckBox){
+    con->bodySolid = naGetCheckBoxState(con->bodySolidCheckBox);
+  }else if(reaction.uiElement == con->spectrumCheckBox){
     con->showSpectrum = naGetCheckBoxState(con->spectrumCheckBox);
   }else if(reaction.uiElement == con->axisCheckBox){
     con->showAxis = naGetCheckBoxState(con->axisCheckBox);
@@ -254,14 +434,37 @@ NABool cmSelectColorSpace(NAReaction reaction){
 
 
 
+NABool cmSelectCoordSys(NAReaction reaction){
+  CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
+
+  size_t index = naGetPopupButtonItemIndex(con->coordSysPopupButton, reaction.uiElement);
+  con->coordSys = (CoordSysType)index;
+  
+  cmUpdateThreeDeeController(con);
+
+  return TRUE;
+}
+
+
+
 NABool cmChangeThreeDeeDisplaySlider(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
 
-  if(reaction.uiElement == con->fovySlider){
-    con->fovy = naGetSliderValue(con->fovySlider);
-    if(con->fovy < 10.f){con->fovy = 0.f;}
+  if(reaction.uiElement == con->stepsSlider){
+    con->steps3D = (NAInt)naGetSliderValue(con->stepsSlider);
+  }else if(reaction.uiElement == con->pointsOpacitySlider){
+    con->pointsOpacity = naGetSliderValue(con->pointsOpacitySlider);
+  }else if(reaction.uiElement == con->gridAlphaSlider){
+    con->gridAlpha = naGetSliderValue(con->gridAlphaSlider);
+  }else if(reaction.uiElement == con->gridTintSlider){
+    con->gridTint = naGetSliderValue(con->gridTintSlider);
+  }else if(reaction.uiElement == con->bodyAlphaSlider){
+    con->bodyAlpha = naGetSliderValue(con->bodyAlphaSlider);
   }else if(reaction.uiElement == con->backgroundSlider){
     con->backgroundGray = naGetSliderValue(con->backgroundSlider);
+  }else if(reaction.uiElement == con->fovySlider){
+    con->fovy = naGetSliderValue(con->fovySlider);
+    if(con->fovy < 10.f){con->fovy = 0.f;}
   }
   
   cmUpdateThreeDeeController(con);
@@ -291,7 +494,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
 
   con->colorSpaceLabel = naNewLabel("Color Space", 100);
   con->colorSpacePopupButton = naNewPopupButton(100);
-  for(uint32 i = 0; i < CML_COLOR_CMYK; ++i){
+  for(size_t i = 0; i < CML_COLOR_CMYK; ++i){
     NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString((CMLColorType)i));
     naAddPopupButtonMenuItem(con->colorSpacePopupButton, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectColorSpace, con);
@@ -299,6 +502,40 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
 
   con->coordSysLabel = naNewLabel("Coordinates", 100);
   con->coordSysPopupButton = naNewPopupButton(100);
+  for(size_t i = 0; i < COORD_SYS_COUNT; ++i){
+    NAMenuItem* item = naNewMenuItem(cm_coordSysNames[(CoordSysType)i]);
+    naAddPopupButtonMenuItem(con->coordSysPopupButton, item, NA_NULL);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectCoordSys, con);
+  }
+
+  con->stepsLabel = naNewLabel("Steps", 100);
+  con->stepsSlider = naNewSlider(100);
+  naSetSliderRange(con->stepsSlider, 2., 40., 0);
+  naAddUIReaction(con->stepsSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
+
+  con->pointsOpacityLabel = naNewLabel("Points Opacity", 100);
+  con->pointsOpacitySlider = naNewSlider(100);
+  naSetSliderRange(con->pointsOpacitySlider, 0., 1., 0);
+  naAddUIReaction(con->pointsOpacitySlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
+
+  con->gridAlphaLabel = naNewLabel("Grid Opacity", 100);
+  con->gridAlphaSlider = naNewSlider(100);
+  naSetSliderRange(con->gridAlphaSlider, 0., 1., 0);
+  naAddUIReaction(con->gridAlphaSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
+
+  con->gridTintLabel = naNewLabel("Grid Tint", 100);
+  con->gridTintSlider = naNewSlider(100);
+  naSetSliderRange(con->gridTintSlider, 0., 1., 0);
+  naAddUIReaction(con->gridTintSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
+
+  con->bodyAlphaLabel = naNewLabel("Body Tint", 100);
+  con->bodyAlphaSlider = naNewSlider(100);
+  naSetSliderRange(con->bodyAlphaSlider, 0., 1., 0);
+  naAddUIReaction(con->bodyAlphaSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
+
+  con->bodySolidLabel = naNewLabel("Solid", 100);
+  con->bodySolidCheckBox = naNewCheckBox("", 30);
+  naAddUIReaction(con->bodySolidCheckBox, NA_UI_COMMAND_PRESSED, cmPressThreeDeeDisplayButton, con);
 
   con->axisLabel = naNewLabel("Axis", 100);
   con->axisCheckBox = naNewCheckBox("", 30);
@@ -323,14 +560,32 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naAddSpaceChild(content, con->display, naMakePos(0, 0));
   naAddSpaceChild(content, con->controlSpace, naMakePos(300, 0));
 
-  NAInt y = 300;
+  NAInt y = 400;
   naAddSpaceChild(con->controlSpace, con->colorSpaceLabel, naMakePos(10, y));
   naAddSpaceChild(con->controlSpace, con->colorSpacePopupButton, naMakePos(115, y));
   y -= 25;
   naAddSpaceChild(con->controlSpace, con->coordSysLabel, naMakePos(10, y));
   naAddSpaceChild(con->controlSpace, con->coordSysPopupButton, naMakePos(115, y));
-  y -= 75;
-  
+  y -= 25;
+  naAddSpaceChild(con->controlSpace, con->stepsLabel, naMakePos(10, y));
+  naAddSpaceChild(con->controlSpace, con->stepsSlider, naMakePos(115, y));
+  y -= 50;
+
+  naAddSpaceChild(con->controlSpace, con->pointsOpacityLabel, naMakePos(10, y));
+  naAddSpaceChild(con->controlSpace, con->pointsOpacitySlider, naMakePos(115, y));
+  y -= 25;
+  naAddSpaceChild(con->controlSpace, con->gridAlphaLabel, naMakePos(10, y));
+  naAddSpaceChild(con->controlSpace, con->gridAlphaSlider, naMakePos(115, y));
+  y -= 25;
+  naAddSpaceChild(con->controlSpace, con->gridTintLabel, naMakePos(10, y));
+  naAddSpaceChild(con->controlSpace, con->gridTintSlider, naMakePos(115, y));
+  y -= 25;
+  naAddSpaceChild(con->controlSpace, con->bodyAlphaLabel, naMakePos(10, y));
+  naAddSpaceChild(con->controlSpace, con->bodyAlphaSlider, naMakePos(115, y));
+  y -= 25;
+  naAddSpaceChild(con->controlSpace, con->bodySolidLabel, naMakePos(10, y));
+  naAddSpaceChild(con->controlSpace, con->bodySolidCheckBox, naMakePos(115, y));
+  y -= 50;
   
   naAddSpaceChild(con->controlSpace, con->axisLabel, naMakePos(10, y));
   naAddSpaceChild(con->controlSpace, con->axisCheckBox, naMakePos(115, y));
@@ -350,6 +605,15 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   float scaleFactor = cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->window));
 
   con->colorSpace = CML_COLOR_RGB;
+  con->coordSys = COORD_SYS_LAB;
+  con->steps3D = 25;
+ 
+  con->pointsOpacity = 0.;
+  con->bodySolid = NA_TRUE;
+  con->bodyAlpha = .2;
+  con->gridAlpha = 1.;
+  con->gridTint = .5;
+
   con->showSpectrum = NA_FALSE;
   con->showAxis = NA_TRUE;
   con->backgroundGray = 0.3;
@@ -382,7 +646,16 @@ void cmShowThreeDeeController(CMThreeDeeController* con){
 
 void cmUpdateThreeDeeController(CMThreeDeeController* con){
   naSetPopupButtonIndexSelected(con->colorSpacePopupButton, con->colorSpace);
-  
+  naSetPopupButtonIndexSelected(con->coordSysPopupButton, con->coordSys);
+  naSetSliderValue(con->stepsSlider, con->steps3D);
+
+  naSetSliderValue(con->pointsOpacitySlider, con->pointsOpacity);
+  naSetSliderValue(con->gridAlphaSlider, con->gridAlpha);
+  naSetSliderValue(con->gridTintSlider, con->gridTint);
+  naSetSliderValue(con->bodyAlphaSlider, con->bodyAlpha);
+  naSetSliderValue(con->bodyAlphaSlider, con->bodyAlpha);
+  naSetCheckBoxState(con->bodySolidCheckBox, con->bodySolid);
+
   naSetCheckBoxState(con->spectrumCheckBox, con->showSpectrum);
   naSetCheckBoxState(con->axisCheckBox, con->showAxis);
   naSetSliderValue(con->backgroundSlider, con->backgroundGray);
