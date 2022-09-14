@@ -2,7 +2,6 @@
 #include "ColorMachineTranslations.h"
 #include "ThreeDeeController.h"
 
-#import "ThreeDeeWindowController.h"
 #import "MetamericsWindowController.h"
 #import "ColorMachineApplication.h"
 #import "AboutWindowController.h"
@@ -137,11 +136,6 @@ size_t bordercount;
 }
 
 - (IBAction)showThreeDee:(id)sender{
-  if(!threedeewindowcontroller){
-    naLoadNib("ThreeDeeWindow", NSApp);
-  }
-  [threedeewindowcontroller showDialog];
-
   cmShowThreeDeeController(threeDeeController);
 }
 
@@ -184,14 +178,14 @@ size_t bordercount;
 
 - (void)updateMachine{
   [machinewindowcontroller updateMachine];
-  [threedeewindowcontroller update];
+  cmUpdateThreeDeeController(threeDeeController);
   [colorscontroller updateColor];
   [metamericswindowcontroller update];
 }
 
 - (void)updateColor{
   [colorscontroller updateColor];
-  [threedeewindowcontroller update];
+  cmUpdateThreeDeeController(threeDeeController);
   [metamericswindowcontroller update];
 }
 

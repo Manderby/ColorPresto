@@ -38,7 +38,6 @@ extern size_t bordercount;
   CMThreeDeeController* threeDeeController;
 
   IBOutlet AboutWindowController* aboutwindowcontroller;
-  IBOutlet ThreeDeeWindowController* threedeewindowcontroller;
   IBOutlet MetamericsWindowController* metamericswindowcontroller;
   IBOutlet MachineWindowController* machinewindowcontroller;
   IBOutlet ScreenResolutionWindowController* screenresolutionwindowcontroller;

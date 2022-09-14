@@ -290,7 +290,6 @@
 		90BF514E274AB29E001FDE2A /* HSLColorController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF510D274AB29D001FDE2A /* HSLColorController.mm */; };
 		90BF514F274AB29E001FDE2A /* HSVColorController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF5110274AB29D001FDE2A /* HSVColorController.mm */; };
 		90BF5150274AB29E001FDE2A /* MetamericsWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF5116274AB29D001FDE2A /* MetamericsWindowController.mm */; };
-		90BF5151274AB29E001FDE2A /* ThreeDeeWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF5119274AB29D001FDE2A /* ThreeDeeWindowController.mm */; };
 		90BF5152274AB29E001FDE2A /* ColorMachineOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF511B274AB29D001FDE2A /* ColorMachineOpenGLView.mm */; };
 		90BF5162274ABA51001FDE2A /* ColorMachine.icns in Resources */ = {isa = PBXBuildFile; fileRef = 90BF5161274ABA50001FDE2A /* ColorMachine.icns */; };
 		90BF54D1274ABD68001FDE2A /* libNALib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BF531F274ABD41001FDE2A /* libNALib.a */; };
@@ -731,8 +730,6 @@
 		90BF5115274AB29D001FDE2A /* MetamericsWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetamericsWindowController.h; sourceTree = "<group>"; };
 		90BF5116274AB29D001FDE2A /* MetamericsWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MetamericsWindowController.mm; sourceTree = "<group>"; };
 		90BF5117274AB29D001FDE2A /* MachinesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachinesController.h; sourceTree = "<group>"; };
-		90BF5119274AB29D001FDE2A /* ThreeDeeWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ThreeDeeWindowController.mm; sourceTree = "<group>"; };
-		90BF511A274AB29D001FDE2A /* ThreeDeeWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDeeWindowController.h; sourceTree = "<group>"; };
 		90BF511B274AB29D001FDE2A /* ColorMachineOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorMachineOpenGLView.mm; sourceTree = "<group>"; };
 		90BF515A274AB98D001FDE2A /* libCML.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCML.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		90BF5161274ABA50001FDE2A /* ColorMachine.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorMachine.icns; sourceTree = "<group>"; };
@@ -1517,8 +1514,6 @@
 				90B6FD6F28A9A51000EE6F32 /* ThreeDeeController.h */,
 				909541AB28B155D800346AB2 /* ThreeDeeView.c */,
 				909541AC28B155D800346AB2 /* ThreeDeeView.h */,
-				90BF5119274AB29D001FDE2A /* ThreeDeeWindowController.mm */,
-				90BF511A274AB29D001FDE2A /* ThreeDeeWindowController.h */,
 			);
 			path = ThreeDee;
 			sourceTree = "<group>";
@@ -2008,7 +2003,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				90BF5141274AB29E001FDE2A /* main.mm in Sources */,
-				90BF5151274AB29E001FDE2A /* ThreeDeeWindowController.mm in Sources */,
 				90BF514E274AB29E001FDE2A /* HSLColorController.mm in Sources */,
 				90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */,
 				909541AD28B155D800346AB2 /* ThreeDeeView.c in Sources */,
