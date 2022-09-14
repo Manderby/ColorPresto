@@ -182,9 +182,9 @@ void cmDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
 
 
 void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm, const CMLVec3 backgroundRGB, const CMLVec3 axisRGB, NABool bodySolid, double bodyAlpha, double gridAlpha, double gridTint, CMLColorType space3D, NAInt steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, NAInt hueIndex){
-//  if(!bodySolid){
-////    glClear(GL_DEPTH_BUFFER_BIT);
-//  }
+  if(!bodySolid){
+//    glClear(GL_DEPTH_BUFFER_BIT);
+  }
   glEnable(GL_DEPTH_TEST);
   
   size_t numChannels = cmlGetNumChannels(space3D);

@@ -52,6 +52,10 @@ struct CMThreeDeeController{
   NALabel* stepsLabel;
   NASlider* stepsSlider;
 
+  NALabel* rotationLabel;
+  NAButton* rotationButton;
+  NASlider* rotationSlider;
+
   NALabel* pointsOpacityLabel;
   NASlider* pointsOpacitySlider;
   NALabel* gridAlphaLabel;
@@ -77,6 +81,8 @@ struct CMThreeDeeController{
   CMLColorType colorSpace;
   CoordSysType coordSys;
   NAInt steps3D;
+
+  double rotationStep;
 
   double pointsOpacity;
   double gridAlpha;
@@ -127,7 +133,7 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
 
   double controlWidth = 230;
-  double controlHeight = 500;
+  double controlHeight = 425;
 
   NARect windowRect = naGetUIElementRect(con->window, NA_NULL, NA_FALSE);
   NARect openGLRect = naMakeRectS(
@@ -147,6 +153,15 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
 }
 
 
+
+void cmStepRotation(void* data){
+  CMThreeDeeController* con = (CMThreeDeeController*)data;
+  if(con->rotationStep != 0.){
+    con->viewEqu -= con->rotationStep * .03;
+    naCallApplicationFunctionInSeconds(cmStepRotation, data, 1/60.);
+    cmUpdateThreeDeeController(con);
+  }
+}
 
 NABool cmMoveThreeDeeDisplayMouse(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
@@ -345,19 +360,6 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   cmSetupThreeDeeProjection(viewSize, con->fovy, con->zoom);
   cmSetupThreeDeeModelView(primeAxis, scale, curZoom, con->viewPol, con->viewEqu);
 
-  if(con->pointsOpacity > 0.f){
-    cmDrawThreeDeePointCloud(
-      cm,
-      sm,
-      con->pointsOpacity,
-      con->colorSpace,
-      con->steps3D,
-      normedInputConverter,
-      coordConverter,
-      normedCoordConverter,
-      con->zoom);
-  }
-
   if(1){
     cmDrawThreeDeeSurfaces(
       cm,
@@ -376,6 +378,19 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
       hueIndex);
   }
   
+  if(con->pointsOpacity > 0.f){
+    cmDrawThreeDeePointCloud(
+      cm,
+      sm,
+      con->pointsOpacity,
+      con->colorSpace,
+      con->steps3D,
+      normedInputConverter,
+      coordConverter,
+      normedCoordConverter,
+      con->zoom);
+  }
+
   if(con->showSpectrum){
     cmDrawThreeDeeSpectrum(
       cm,
@@ -404,7 +419,9 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 NABool cmPressThreeDeeDisplayButton(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
 
-  if(reaction.uiElement == con->bodySolidCheckBox){
+  if(reaction.uiElement == con->rotationButton){
+    con->rotationStep = 0.;
+  }else if(reaction.uiElement == con->bodySolidCheckBox){
     con->bodySolid = naGetCheckBoxState(con->bodySolidCheckBox);
   }else if(reaction.uiElement == con->spectrumCheckBox){
     con->showSpectrum = naGetCheckBoxState(con->spectrumCheckBox);
@@ -452,6 +469,11 @@ NABool cmChangeThreeDeeDisplaySlider(NAReaction reaction){
 
   if(reaction.uiElement == con->stepsSlider){
     con->steps3D = (NAInt)naGetSliderValue(con->stepsSlider);
+  }else if(reaction.uiElement == con->rotationSlider){
+    NABool needsRotationStart = (con->rotationStep == 0.);
+    con->rotationStep = naGetSliderValue(con->rotationSlider);
+    if(con->rotationStep < .1 && con->rotationStep > -.1){con->rotationStep = 0.;}
+    if(needsRotationStart){cmStepRotation(con);}
   }else if(reaction.uiElement == con->pointsOpacitySlider){
     con->pointsOpacity = naGetSliderValue(con->pointsOpacitySlider);
   }else if(reaction.uiElement == con->gridAlphaSlider){
@@ -489,8 +511,8 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cmScrollThreeDeeDisplay, con);
 
   // The control space
-  con->controlSpace = naNewSpace(naMakeSize(230, 400));
-  naSetSpaceAlternateBackground(con->controlSpace, NA_TRUE);
+  con->controlSpace = naNewSpace(naMakeSize(230, 425));
+//  naSetSpaceAlternateBackground(con->controlSpace, NA_TRUE);
 
   con->colorSpaceLabel = naNewLabel("Color Space", 100);
   con->colorSpacePopupButton = naNewPopupButton(100);
@@ -512,6 +534,13 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   con->stepsSlider = naNewSlider(100);
   naSetSliderRange(con->stepsSlider, 2., 40., 0);
   naAddUIReaction(con->stepsSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
+
+  con->rotationLabel = naNewLabel("Rotate", 50);
+  con->rotationButton = naNewTextButton("Stop", 60, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  con->rotationSlider = naNewSlider(100);
+  naSetSliderRange(con->rotationSlider, -1., +1., 0);
+  naAddUIReaction(con->rotationButton, NA_UI_COMMAND_PRESSED, cmPressThreeDeeDisplayButton, con);
+  naAddUIReaction(con->rotationSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
 
   con->pointsOpacityLabel = naNewLabel("Points Opacity", 100);
   con->pointsOpacitySlider = naNewSlider(100);
@@ -560,7 +589,9 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naAddSpaceChild(content, con->display, naMakePos(0, 0));
   naAddSpaceChild(content, con->controlSpace, naMakePos(300, 0));
 
-  NAInt y = 400;
+  NASize controlSpaceSize = naGetUIElementRect(con->controlSpace, NA_NULL, NA_FALSE).size;
+
+  NAInt y = controlSpaceSize.height - 30;
   naAddSpaceChild(con->controlSpace, con->colorSpaceLabel, naMakePos(10, y));
   naAddSpaceChild(con->controlSpace, con->colorSpacePopupButton, naMakePos(115, y));
   y -= 25;
@@ -569,6 +600,11 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   y -= 25;
   naAddSpaceChild(con->controlSpace, con->stepsLabel, naMakePos(10, y));
   naAddSpaceChild(con->controlSpace, con->stepsSlider, naMakePos(115, y));
+  y -= 50;
+
+  naAddSpaceChild(con->controlSpace, con->rotationLabel, naMakePos(10, y));
+  naAddSpaceChild(con->controlSpace, con->rotationButton, naMakePos(55, y));
+  naAddSpaceChild(con->controlSpace, con->rotationSlider, naMakePos(115, y));
   y -= 50;
 
   naAddSpaceChild(con->controlSpace, con->pointsOpacityLabel, naMakePos(10, y));
@@ -607,6 +643,8 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   con->colorSpace = CML_COLOR_RGB;
   con->coordSys = COORD_SYS_LAB;
   con->steps3D = 25;
+
+  con->rotationStep = 0.;
  
   con->pointsOpacity = 0.;
   con->bodySolid = NA_TRUE;
@@ -648,6 +686,8 @@ void cmUpdateThreeDeeController(CMThreeDeeController* con){
   naSetPopupButtonIndexSelected(con->colorSpacePopupButton, con->colorSpace);
   naSetPopupButtonIndexSelected(con->coordSysPopupButton, con->coordSys);
   naSetSliderValue(con->stepsSlider, con->steps3D);
+
+  naSetSliderValue(con->rotationSlider, con->rotationStep);
 
   naSetSliderValue(con->pointsOpacitySlider, con->pointsOpacity);
   naSetSliderValue(con->gridAlphaSlider, con->gridAlpha);
