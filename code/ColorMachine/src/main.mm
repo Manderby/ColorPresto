@@ -1,5 +1,5 @@
 
-#include "ColorMachineTranslations.h"
+#include "CMTranslations.h"
 #include "ThreeDeeController.h"
 
 #import "main.h"
@@ -40,8 +40,8 @@ void postStartup(void* arg){
   // ManderApp
   mandCreateAboutController();
   mandSetAboutDescriptionAndHelpURL(
-    cmTranslate(ColorMachineApplicationDescription),
-    cmTranslate(ColorMachineApplicationHelpURL));
+    cmTranslate(CMApplicationDescription),
+    cmTranslate(CMApplicationHelpURL));
 
   // Color Machine
 }

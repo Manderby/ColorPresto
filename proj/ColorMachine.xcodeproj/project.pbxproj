@@ -35,7 +35,7 @@
 		90B6FD6528A99A2F00EE6F32 /* ManderAppTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5D28A99A2F00EE6F32 /* ManderAppTranslations.c */; };
 		90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5E28A99A2F00EE6F32 /* ManderApp.c */; };
 		90B6FD6928A99E6900EE6F32 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD6728A99E6900EE6F32 /* InfoPlist.strings */; };
-		90B6FD6C28A99FEE00EE6F32 /* ColorMachineTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD6A28A99FEE00EE6F32 /* ColorMachineTranslations.c */; };
+		90B6FD6C28A99FEE00EE6F32 /* CMTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD6A28A99FEE00EE6F32 /* CMTranslations.c */; };
 		90B6FD7128A9A51000EE6F32 /* ThreeDeeController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD7028A9A51000EE6F32 /* ThreeDeeController.c */; };
 		90B8ECED2886143D005825BF /* NABase.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE22886143D005825BF /* NABase.h */; };
 		90B8ECEE2886143D005825BF /* NAUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE32886143D005825BF /* NAUtility.h */; };
@@ -415,6 +415,7 @@
 		8D1107320486CEB800E47090 /* Color Machine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Color Machine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		900B8EED28B2E074007A137C /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		901817F5104AD42300DD1251 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = /System/Library/Frameworks/OpenGL.framework; sourceTree = "<absolute>"; };
+		90280FD328D51A03005BD46A /* ColorMachineStrings_jpn.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMachineStrings_jpn.h; sourceTree = "<group>"; };
 		90384A8328872FB50002D469 /* NAMatrixAlgebraOperationsII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMatrixAlgebraOperationsII.h; sourceTree = "<group>"; };
 		90384A8428872FB50002D469 /* NAMatrixFillerII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMatrixFillerII.h; sourceTree = "<group>"; };
 		90384A8528872FB50002D469 /* NAMatrixBaseOperationsII.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAMatrixBaseOperationsII.h; sourceTree = "<group>"; };
@@ -447,8 +448,8 @@
 		90B6FD6028A99A2F00EE6F32 /* ManderAppAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppAbout.h; sourceTree = "<group>"; };
 		90B6FD6128A99A2F00EE6F32 /* ManderAppTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppTranslations.h; sourceTree = "<group>"; };
 		90B6FD6828A99E6900EE6F32 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		90B6FD6A28A99FEE00EE6F32 /* ColorMachineTranslations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ColorMachineTranslations.c; sourceTree = "<group>"; };
-		90B6FD6B28A99FEE00EE6F32 /* ColorMachineTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMachineTranslations.h; sourceTree = "<group>"; };
+		90B6FD6A28A99FEE00EE6F32 /* CMTranslations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMTranslations.c; sourceTree = "<group>"; };
+		90B6FD6B28A99FEE00EE6F32 /* CMTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTranslations.h; sourceTree = "<group>"; };
 		90B6FD6D28A9A0E100EE6F32 /* ColorMachineStrings_eng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMachineStrings_eng.h; sourceTree = "<group>"; };
 		90B6FD6E28A9A1F200EE6F32 /* ColorMachineStrings_deu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMachineStrings_deu.h; sourceTree = "<group>"; };
 		90B6FD6F28A9A51000EE6F32 /* ThreeDeeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDeeController.h; sourceTree = "<group>"; };
@@ -1412,6 +1413,7 @@
 				90BF50E2274AB29D001FDE2A /* ColorMachineChangelog.txt */,
 				90B6FD6E28A9A1F200EE6F32 /* ColorMachineStrings_deu.h */,
 				90B6FD6D28A9A0E100EE6F32 /* ColorMachineStrings_eng.h */,
+				90280FD328D51A03005BD46A /* ColorMachineStrings_jpn.h */,
 				90BF50E4274AB29D001FDE2A /* Info.plist */,
 				90B6FD6728A99E6900EE6F32 /* InfoPlist.strings */,
 				90BF50C5274AB29D001FDE2A /* Metamerics.xib */,
@@ -1431,8 +1433,8 @@
 				90BF511B274AB29D001FDE2A /* ColorMachineOpenGLView.mm */,
 				90BF5112274AB29D001FDE2A /* ColorsController.h */,
 				90BF50EC274AB29D001FDE2A /* ColorsController.mm */,
-				90B6FD6A28A99FEE00EE6F32 /* ColorMachineTranslations.c */,
-				90B6FD6B28A99FEE00EE6F32 /* ColorMachineTranslations.h */,
+				90B6FD6A28A99FEE00EE6F32 /* CMTranslations.c */,
+				90B6FD6B28A99FEE00EE6F32 /* CMTranslations.h */,
 				90BF50F7274AB29D001FDE2A /* Machine */,
 				90BF5117274AB29D001FDE2A /* MachinesController.h */,
 				90BF50EB274AB29D001FDE2A /* MachinesController.mm */,
@@ -2022,7 +2024,7 @@
 				90BF5148274AB29E001FDE2A /* YuvColorController.mm in Sources */,
 				90BF514F274AB29E001FDE2A /* HSVColorController.mm in Sources */,
 				900B8EEE28B2E075007A137C /* main.c in Sources */,
-				90B6FD6C28A99FEE00EE6F32 /* ColorMachineTranslations.c in Sources */,
+				90B6FD6C28A99FEE00EE6F32 /* CMTranslations.c in Sources */,
 				90BF514C274AB29E001FDE2A /* SpectralColorController.mm in Sources */,
 				90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */,
 				90BF5146274AB29E001FDE2A /* MachineWindowController.mm in Sources */,

@@ -1,5 +1,5 @@
 
-#include "ColorMachineTranslations.h"
+#include "CMTranslations.h"
 #include "ThreeDeeController.h"
 
 #import "MetamericsWindowController.h"
@@ -125,7 +125,7 @@ size_t bordercount;
 
 - (IBAction)showHelp:(NSMenuItem*)sender{
   NA_UNUSED(sender);
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:cmTranslate(ColorMachineApplicationHelpURL)]]];
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:cmTranslate(CMApplicationHelpURL)]]];
 }
 
 - (IBAction)showScreenResolution:(id)sender{
