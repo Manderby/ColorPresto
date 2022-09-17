@@ -143,7 +143,7 @@ void cmDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
   normedCoordConverter(cloudNormedSystemCoords, cloudSystemCoords, totalCloudCount);
   
   // Convert the given values to screen RGBs.
-  fillRGBfloatarrayWithArray(
+  fillRGBFloatArrayWithArray(
     cm,
     sm,
     cloudRGBFloatValues,
@@ -444,26 +444,26 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
     }
 
     for(size_t s = 0; s < surfaceCount; ++s){
-      size_t totalcount = surfaceSteps[s][0] * surfaceSteps[s][1] * surfaceSteps[s][2] * surfaceSteps[s][3];
+      size_t totalCount = surfaceSteps[s][0] * surfaceSteps[s][1] * surfaceSteps[s][2] * surfaceSteps[s][3];
       normedColorCoords[s] = (float*)cmlCreateNormedGamutSlice(space3D, surfaceSteps[s], origins[s], axis1s[s], axis2s[s], NULL, NULL);
-      rgbFloatValues[s] = naMalloc(totalcount * 3 * sizeof(float));
-      colorCoords[s] = naMalloc(totalcount * numChannels * sizeof(float));
-      systemCoords[s] = naMalloc(totalcount * 3 * sizeof(float));
-      normedSystemCoords[s] = naMalloc(totalcount * 3 * sizeof(float));
+      rgbFloatValues[s] = naMalloc(totalCount * 3 * sizeof(float));
+      colorCoords[s] = naMalloc(totalCount * numChannels * sizeof(float));
+      systemCoords[s] = naMalloc(totalCount * 3 * sizeof(float));
+      normedSystemCoords[s] = naMalloc(totalCount * 3 * sizeof(float));
 
-      normedInputConverter(colorCoords[s], normedColorCoords[s], totalcount);
-      coordConverter(cm, systemCoords[s], colorCoords[s], totalcount);
-      normedCoordConverter(normedSystemCoords[s], systemCoords[s], totalcount);
+      normedInputConverter(colorCoords[s], normedColorCoords[s], totalCount);
+      coordConverter(cm, systemCoords[s], colorCoords[s], totalCount);
+      normedCoordConverter(normedSystemCoords[s], systemCoords[s], totalCount);
       
       // Convert the given values to screen RGBs.
-      fillRGBfloatarrayWithArray(
+      fillRGBFloatArrayWithArray(
         cm,
         sm,
         rgbFloatValues[s],
         normedColorCoords[s],
         space3D,
         normedInputConverter,
-        totalcount,
+        totalCount,
         NA_FALSE,
         NA_FALSE);
     }

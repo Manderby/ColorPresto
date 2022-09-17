@@ -6,8 +6,6 @@
 @class MachineController;
 @class ColorController;
 
-void OpenGLtextoutput(float x, float y, float z, NAString* str);
-
 @interface ColorMachineOpenGLView : NSOpenGLView{
   float mousex;
   float mousey;

@@ -3,7 +3,7 @@
 #include "NAMemory.h"
 
 
-void fillRGBfloatarrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* outData, float* inputData, CMLColorType inputColorType, CMLNormedConverter normedConverter, size_t count, NABool drawgridlines, NABool drawmask){
+void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* outData, float* inputData, CMLColorType inputColorType, CMLNormedConverter normedConverter, size_t count, NABool drawgridlines, NABool drawmask){
   
   size_t numColorChannels = cmlGetNumChannels(inputColorType);
   CMLVec3 cmWhitePointYxy;

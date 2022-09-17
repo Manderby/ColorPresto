@@ -23,11 +23,11 @@ typedef enum{
   COORD_SYS_XYZ,
   COORD_SYS_YXY,
   COORD_SYS_Yuv,
-  COORD_SYS_YCBCR,
   COORD_SYS_LAB,
   COORD_SYS_LCH_CARTESIAN,
   COORD_SYS_LUV,
   COORD_SYS_RGB,
+  COORD_SYS_YCBCR,
   COORD_SYS_HSV,
   COORD_SYS_HSV_CARTESIAN,
   COORD_SYS_HSL,
@@ -39,11 +39,11 @@ const char* cm_coordSysNames[COORD_SYS_COUNT] = {
   "XYZ",
   "Yxy",
   "Yuv",
-  "YCbCr",
   "Lab",
   "Lch Cartesian",
   "Luv",
   "RGB",
+  "YCbCr",
   "HSV",
   "HSV Cartesian",
   "HSL",
@@ -256,15 +256,6 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[2] = "v";
     normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
     break;
-  case COORD_SYS_YCBCR:
-    coordSpace = CML_COLOR_YCbCr;
-    primeAxis = 0;
-    naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "Y";
-    labels[1] = "Cb";
-    labels[2] = "Cr";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
-    break;
   case COORD_SYS_LAB:
     coordSpace = CML_COLOR_Lab;
     primeAxis = 0;
@@ -300,6 +291,15 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[1] = "G";
     labels[2] = "B";
     normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
+    break;
+  case COORD_SYS_YCBCR:
+    coordSpace = CML_COLOR_YCbCr;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "Y";
+    labels[1] = "Cb";
+    labels[2] = "Cr";
+    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
     break;
   case COORD_SYS_HSV:
     coordSpace = CML_COLOR_HSV;
@@ -397,11 +397,12 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
       hueIndex);
   }
   
-  if(con->pointsOpacity > 0.f){
+  const NABool isGrayColorSpace = con->colorSpace == CML_COLOR_GRAY;
+  if(con->pointsOpacity > 0.f || isGrayColorSpace){
     cmDrawThreeDeePointCloud(
       cm,
       sm,
-      con->pointsOpacity,
+      isGrayColorSpace ? 1. : con->pointsOpacity,
       con->colorSpace,
       con->steps3D,
       normedInputConverter,

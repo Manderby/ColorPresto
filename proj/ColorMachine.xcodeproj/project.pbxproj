@@ -3,13 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		900B8EEE28B2E075007A137C /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 900B8EED28B2E074007A137C /* main.c */; };
 		901817F7104AD42300DD1251 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901817F5104AD42300DD1251 /* OpenGL.framework */; };
+		902EC1A128D5C73B0077843B /* libCML.dylib in Copy Files To Frameworks */ = {isa = PBXBuildFile; fileRef = 90BF515A274AB98D001FDE2A /* libCML.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		902EC1A228D5CA090077843B /* libCML.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BF515A274AB98D001FDE2A /* libCML.dylib */; };
+		902EC1A328D5CAC40077843B /* libNALib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BF531F274ABD41001FDE2A /* libNALib.a */; };
 		90384A9228872FB50002D469 /* NAMatrixAlgebraOperationsII.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384A8328872FB50002D469 /* NAMatrixAlgebraOperationsII.h */; };
 		90384A9328872FB50002D469 /* NAMatrixFillerII.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384A8428872FB50002D469 /* NAMatrixFillerII.h */; };
 		90384A9428872FB50002D469 /* NAMatrixBaseOperationsII.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384A8528872FB50002D469 /* NAMatrixBaseOperationsII.h */; };
@@ -292,8 +295,6 @@
 		90BF5150274AB29E001FDE2A /* MetamericsWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF5116274AB29D001FDE2A /* MetamericsWindowController.mm */; };
 		90BF5152274AB29E001FDE2A /* ColorMachineOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF511B274AB29D001FDE2A /* ColorMachineOpenGLView.mm */; };
 		90BF5162274ABA51001FDE2A /* ColorMachine.icns in Resources */ = {isa = PBXBuildFile; fileRef = 90BF5161274ABA50001FDE2A /* ColorMachine.icns */; };
-		90BF54D1274ABD68001FDE2A /* libNALib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BF531F274ABD41001FDE2A /* libNALib.a */; };
-		90BF54D2274AC690001FDE2A /* libCML.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BF515A274AB98D001FDE2A /* libCML.dylib */; };
 		90BF915A2752667B001EA32C /* CMLEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91072752667A001EA32C /* CMLEnvironment.h */; };
 		90BF915B2752667B001EA32C /* CMLInvert.c in Sources */ = {isa = PBXBuildFile; fileRef = 90BF91092752667A001EA32C /* CMLInvert.c */; };
 		90BF915C2752667B001EA32C /* CMLInputOutputConversions.c in Sources */ = {isa = PBXBuildFile; fileRef = 90BF910A2752667A001EA32C /* CMLInputOutputConversions.c */; };
@@ -374,13 +375,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		90269BF828874314002FD022 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 90BF531E274ABD41001FDE2A;
-			remoteInfo = NALib;
-		};
 		90BF5212274ABAB0001FDE2A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
@@ -404,6 +398,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				902EC1A128D5C73B0077843B /* libCML.dylib in Copy Files To Frameworks */,
 			);
 			name = "Copy Files To Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -822,8 +817,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90BF54D2274AC690001FDE2A /* libCML.dylib in Frameworks */,
-				90BF54D1274ABD68001FDE2A /* libNALib.a in Frameworks */,
+				902EC1A328D5CAC40077843B /* libNALib.a in Frameworks */,
+				902EC1A228D5CA090077843B /* libCML.dylib in Frameworks */,
 				B96AA9A21767414B00F041A3 /* GLUT.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				901817F7104AD42300DD1251 /* OpenGL.framework in Frameworks */,
@@ -1612,36 +1607,36 @@
 		90BF91392752667A001EA32C /* ColorClasses */ = {
 			isa = PBXGroup;
 			children = (
-				90BF913A2752667B001EA32C /* CMLColor.h */,
 				90BF913B2752667B001EA32C /* CMLCMYKColor.cpp */,
-				90BF913C2752667B001EA32C /* CMLLabColor.cpp */,
-				90BF913D2752667B001EA32C /* CMLColor.cpp */,
-				90BF913E2752667B001EA32C /* CMLRGBColor.cpp */,
-				90BF913F2752667B001EA32C /* CMLXYZColor.cpp */,
-				90BF91402752667B001EA32C /* CMLSpectralColor.cpp */,
-				90BF91412752667B001EA32C /* CMLHSLColor.cpp */,
-				90BF91422752667B001EA32C /* CMLRGBColor.h */,
 				90BF91432752667B001EA32C /* CMLCMYKColor.h */,
-				90BF91442752667B001EA32C /* CMLXYZColor.h */,
-				90BF91452752667B001EA32C /* CMLGrayColor.h */,
-				90BF91462752667B001EA32C /* CMLYupvpColor.h */,
-				90BF91472752667B001EA32C /* CMLLuvColor.cpp */,
+				90BF913D2752667B001EA32C /* CMLColor.cpp */,
+				90BF913A2752667B001EA32C /* CMLColor.h */,
 				90BF91482752667B001EA32C /* CMLGrayColor.cpp */,
-				90BF91492752667B001EA32C /* CMLYxyColor.cpp */,
-				90BF914A2752667B001EA32C /* CMLLchColor.h */,
-				90BF914B2752667B001EA32C /* CMLLchColor.cpp */,
-				90BF914C2752667B001EA32C /* CMLLuvColor.h */,
-				90BF914D2752667B001EA32C /* CMLSpectralColor.h */,
-				90BF914E2752667B001EA32C /* CMLLabColor.h */,
-				90BF914F2752667B001EA32C /* CMLYuvColor.cpp */,
-				90BF91502752667B001EA32C /* CMLYuvColor.h */,
-				90BF91512752667B001EA32C /* CMLYxyColor.h */,
-				90BF91522752667B001EA32C /* CMLHSVColor.cpp */,
+				90BF91452752667B001EA32C /* CMLGrayColor.h */,
+				90BF91412752667B001EA32C /* CMLHSLColor.cpp */,
 				90BF91532752667B001EA32C /* CMLHSLColor.h */,
+				90BF91522752667B001EA32C /* CMLHSVColor.cpp */,
+				90BF91562752667B001EA32C /* CMLHSVColor.h */,
+				90BF913C2752667B001EA32C /* CMLLabColor.cpp */,
+				90BF914E2752667B001EA32C /* CMLLabColor.h */,
+				90BF914B2752667B001EA32C /* CMLLchColor.cpp */,
+				90BF914A2752667B001EA32C /* CMLLchColor.h */,
+				90BF91472752667B001EA32C /* CMLLuvColor.cpp */,
+				90BF914C2752667B001EA32C /* CMLLuvColor.h */,
+				90BF913E2752667B001EA32C /* CMLRGBColor.cpp */,
+				90BF91422752667B001EA32C /* CMLRGBColor.h */,
+				90BF91402752667B001EA32C /* CMLSpectralColor.cpp */,
+				90BF914D2752667B001EA32C /* CMLSpectralColor.h */,
+				90BF913F2752667B001EA32C /* CMLXYZColor.cpp */,
+				90BF91442752667B001EA32C /* CMLXYZColor.h */,
+				90BF91572752667B001EA32C /* CMLYCbCrColor.cpp */,
 				90BF91542752667B001EA32C /* CMLYCbCrColor.h */,
 				90BF91552752667B001EA32C /* CMLYupvpColor.cpp */,
-				90BF91562752667B001EA32C /* CMLHSVColor.h */,
-				90BF91572752667B001EA32C /* CMLYCbCrColor.cpp */,
+				90BF91462752667B001EA32C /* CMLYupvpColor.h */,
+				90BF914F2752667B001EA32C /* CMLYuvColor.cpp */,
+				90BF91502752667B001EA32C /* CMLYuvColor.h */,
+				90BF91492752667B001EA32C /* CMLYxyColor.cpp */,
+				90BF91512752667B001EA32C /* CMLYxyColor.h */,
 			);
 			path = ColorClasses;
 			sourceTree = "<group>";
@@ -1888,6 +1883,7 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				B90D7394146528710060A304 /* Copy Files To Frameworks */,
+				902EC1A028D5C69E0077843B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1912,7 +1908,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				90269BF928874314002FD022 /* PBXTargetDependency */,
 			);
 			name = CML;
 			productName = CML;
@@ -1998,6 +1993,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		902EC1A028D5C69E0077843B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 8;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "# Note: No space between the = for environment variables\n# use otool -L Color\\ Machine in the MacOS folder to test.\n\nCOLORMACHINE_EXE_PATH=\"$TARGET_BUILD_DIR/$EXECUTABLE_PATH\"\n\nCML_ABS_PATH=\"/usr/local/lib/libCML.dylib\"\nCML_REL_PATH=\"@executable_path/../Frameworks/libCML.dylib\"\nCML_EXE_PATH=\"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH/../Frameworks/libCML.dylib\"\n\n#CALCOLOR_ABS_PATH=\"/usr/local/lib/libcalcolor.dylib\"\n#CALCOLOR_REL_PATH=\"@executable_path/../Frameworks/libcalcolor.dylib\"\n#CALCOLOR_EXE_PATH=\"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH/../Frameworks/libcalcolor.dylib\"\n\n#DICALIB_ABS_PATH=\"/usr/local/lib/libdicalib.dylib\"\n#DICALIB_REL_PATH=\"@executable_path/../Frameworks/libdicalib.dylib\"\n#DICALIB_EXE_PATH=\"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH/../Frameworks/libdicalib.dylib\"\n\n#DIHID_ABS_PATH=\"/usr/local/lib/libdihid.dylib\"\n#DIHID_REL_PATH=\"@executable_path/../Frameworks/libdihid.dylib\"\n#DIHID_EXE_PATH=\"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH/../Frameworks/libdihid.dylib\"\n\n#FXAPI_ABS_PATH=\"/usr/local/lib/libfxAPI.dylib\"\n#FXAPI_REL_PATH=\"@executable_path/../Frameworks/libfxAPI.dylib\"\n#FXAPI_EXE_PATH=\"$TARGET_BUILD_DIR/$EXECUTABLE_FOLDER_PATH/../Frameworks/libfxAPI.dylib\"\n\n# Set the ids for all libraries\ninstall_name_tool -id $CML_REL_PATH \"$CML_EXE_PATH\"\n#install_name_tool -id $CALCOLOR_REL_PATH \"$CALCOLOR_EXE_PATH\"\n#install_name_tool -id $DICALIB_REL_PATH \"$DICALIB_EXE_PATH\"\n#install_name_tool -id $DIHID_REL_PATH \"$DIHID_EXE_PATH\"\n#install_name_tool -id $FXAPI_REL_PATH \"$FXAPI_EXE_PATH\"\n\n# Set the links for ColorMachine\ninstall_name_tool -change $CML_ABS_PATH $CML_REL_PATH \"$COLORMACHINE_EXE_PATH\"\n#install_name_tool -change $CALCOLOR_ABS_PATH $CALCOLOR_REL_PATH \"$COLORMACHINE_EXE_PATH\"\n#install_name_tool -change $DICALIB_ABS_PATH $DICALIB_REL_PATH \"$COLORMACHINE_EXE_PATH\"\n#install_name_tool -change $DIHID_ABS_PATH $DIHID_REL_PATH \"$COLORMACHINE_EXE_PATH\"\n#install_name_tool -change $FXAPI_ABS_PATH $FXAPI_REL_PATH \"$COLORMACHINE_EXE_PATH\"\n\n# Set the links for FX_API\n#install_name_tool -change $CALCOLOR_ABS_PATH $CALCOLOR_REL_PATH \"$FXAPI_EXE_PATH\"\n#install_name_tool -change $DICALIB_ABS_PATH $DICALIB_REL_PATH \"$FXAPI_EXE_PATH\"\n#install_name_tool -change $DIHID_ABS_PATH $DIHID_REL_PATH \"$FXAPI_EXE_PATH\"\n\ncodesign -f -v -s \"Developer ID Application: Tobias Stamm\" \"$CML_EXE_PATH\"\n#codesign -f -v -s \"Developer Application: Manderim GmbH\" \"$CALCOLOR_EXE_PATH\"\n#codesign -f -v -s \"Developer Application: Manderim GmbH\" \"$DICALIB_EXE_PATH\"\n#codesign -f -v -s \"Developer Application: Manderim GmbH\" \"$DIHID_EXE_PATH\"\n#codesign -f -v -s \"Developer Application: Manderim GmbH\" \"$FXAPI_EXE_PATH\"\n\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
@@ -2161,11 +2178,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		90269BF928874314002FD022 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 90BF531E274ABD41001FDE2A /* NALib */;
-			targetProxy = 90269BF828874314002FD022 /* PBXContainerItemProxy */;
-		};
 		90BF5213274ABAB0001FDE2A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 90BF5159274AB98D001FDE2A /* CML */;
@@ -2249,10 +2261,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
-				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2292,7 +2302,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2334,7 +2343,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2376,9 +2384,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = YH3QFD54JB;
-				ENABLE_TESTABILITY = YES;
 				EXECUTABLE_PREFIX = lib;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2418,7 +2424,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YH3QFD54JB;
 				ENABLE_NS_ASSERTIONS = NO;
 				EXECUTABLE_PREFIX = lib;
@@ -2459,7 +2464,6 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YH3QFD54JB;
 				ENABLE_NS_ASSERTIONS = NO;
 				EXECUTABLE_PREFIX = lib;
@@ -2487,21 +2491,18 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NA_COMPILE_GUI=1",
 					"NA_COMPILE_OPENGL=1",
 				);
 				GCC_THREADSAFE_STATICS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
@@ -2521,11 +2522,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = YH3QFD54JB;
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_PPC64 = NO;
 				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2559,12 +2557,10 @@
 					"$(SRCROOT)/../lib/NALib/code/NALib/src/**",
 				);
 				INFOPLIST_FILE = ../code/ColorMachine/res/Info.plist;
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.manderim.Color-Machine";
 				PRODUCT_NAME = "Color Machine";
 				PROVISIONING_PROFILE = "";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE_SKIPPED_SDK_FRAMEWORKS = OpenGL;
 			};
 			name = Optimize;
@@ -2576,11 +2572,8 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = YH3QFD54JB;
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_PPC64 = NO;
 				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2614,12 +2607,10 @@
 					"$(SRCROOT)/../lib/NALib/code/NALib/src/**",
 				);
 				INFOPLIST_FILE = ../code/ColorMachine/res/Info.plist;
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.manderim.Color-Machine";
 				PRODUCT_NAME = "Color Machine";
 				PROVISIONING_PROFILE = "";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE_SKIPPED_SDK_FRAMEWORKS = OpenGL;
 			};
 			name = Debug;
@@ -2630,13 +2621,9 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = YH3QFD54JB;
-				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_MODEL_PPC64 = NO;
 				GCC_MODEL_TUNING = G5;
-				GCC_PRECOMPILE_PREFIX_HEADER = NO;
-				GCC_PREFIX_HEADER = "";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2670,13 +2657,11 @@
 					"$(SRCROOT)/../lib/NALib/code/NALib/src/**",
 				);
 				INFOPLIST_FILE = ../code/ColorMachine/res/Info.plist;
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "ch.manderim.Color-Machine";
 				PRODUCT_NAME = "Color Machine";
 				PROVISIONING_PROFILE = "";
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = YES;
-				USER_HEADER_SEARCH_PATHS = "";
 				VALIDATE_WORKSPACE_SKIPPED_SDK_FRAMEWORKS = OpenGL;
 			};
 			name = Release;
@@ -2695,21 +2680,19 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NA_COMPILE_GUI=1",
 					"NA_COMPILE_OPENGL=1",
 				);
 				GCC_THREADSAFE_STATICS = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
@@ -2733,14 +2716,12 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
-				DEAD_CODE_STRIPPING = YES;
 				DEPLOYMENT_POSTPROCESSING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_DEBUGGING_SYMBOLS = full;
 				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"NA_COMPILE_GUI=1",
 					"NA_COMPILE_OPENGL=1",
@@ -2754,8 +2735,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				ONLY_ACTIVE_ARCH = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
 				PROVISIONING_PROFILE = "";

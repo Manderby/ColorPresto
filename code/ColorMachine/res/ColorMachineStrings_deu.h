@@ -9,7 +9,7 @@ NA_LOC(CMApplicationHelpURL, "https://manderc.com/apps/colormachine/help/index.p
 
 NA_LOC(CMColorSpace, "Farbraum");
 NA_LOC(CMCoordinates, "Koordinaten");
-NA_LOC(CMSteps, "Schrittweite");
+NA_LOC(CMSteps, "Unterteilungen");
 NA_LOC(CMRotation, "Rotation");
 NA_LOC(CMStop, "Stopp");
 

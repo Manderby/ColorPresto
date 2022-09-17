@@ -14,12 +14,6 @@
 //                          0,0,0,115, 73,73,73,251, 176,176,176,255, 243,243,243,255, 176,176,176,255, 73,73,73,251, 0,0,0,115,
 //                          0,0,0,0, 0,0,0,115, 0,0,0,197, 0,0,0,247, 0,0,0,197, 0,0,0,115, 0,0,0,0};
 
-void OpenGLtextoutput(float x, float y, float z, NAString* str) {
-  glRasterPos3f(x, y, z);
-//  for (size_t i = 0; i < naGetStringByteSize(str); i++) {
-//    glutBitmapCharacter(GLUT_BITMAP_HELVETICA_10, (naGetStringUTF8Pointer(str))[i]);
-//  }
-}
 
 
 
@@ -207,7 +201,7 @@ void OpenGLtextoutput(float x, float y, float z, NAString* str) {
   bool singleline = (channely == (size_t)-1);
   
   float* normedrgbdata = new float[width * height * 3];
-  fillRGBfloatarrayWithArray(
+  fillRGBFloatArrayWithArray(
     [(ColorMachineApplication*)NSApp getCurrentMachine],
     [(ColorMachineApplication*)NSApp getCurrentScreenMachine],
     normedrgbdata,
