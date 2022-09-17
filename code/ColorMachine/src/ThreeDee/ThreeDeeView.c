@@ -467,7 +467,7 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
         NA_FALSE,
         NA_FALSE);
     }
-    
+
     // ////////////////////
     // Draw the quads
     // ////////////////////

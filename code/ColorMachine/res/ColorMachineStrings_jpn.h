@@ -7,6 +7,8 @@ NA_LOC_LANG("jpn");
 NA_LOC(CMApplicationDescription, "Frontend for color conversions based on\nCML: Color Machine Library.\nDesign and Implementation: Tobias Stamm");
 NA_LOC(CMApplicationHelpURL, "https://manderc.com/apps/colormachine/help/index_eng.php");
 
+NA_LOC(CM3DView, "3D View");
+
 NA_LOC(CMColorSpace, "色空間");
 NA_LOC(CMCoordinates, "座標");
 NA_LOC(CMSteps, "インクリメント");

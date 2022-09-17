@@ -23,6 +23,7 @@ const double fullControlWidth = marginHMiddle + controlWidth + marginHRight;
 typedef enum{
   COORD_SYS_XYZ,
   COORD_SYS_YXY,
+  COORD_SYS_Yupvp,
   COORD_SYS_Yuv,
   COORD_SYS_LAB,
   COORD_SYS_LCH_CARTESIAN,
@@ -39,6 +40,7 @@ typedef enum{
 const char* cm_coordSysNames[COORD_SYS_COUNT] = {
   "XYZ",
   "Yxy",
+  "Yu'v'",
   "Yuv",
   "Lab",
   "Lch Cartesian",
@@ -227,7 +229,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   int primeAxis;
   double scale[3];
   const NAUTF8Char* labels[3];
-  CMLNormedConverter normedCoordConverter;
+  CMLNormedConverter normedOutputConverter;
 
   switch(con->coordSys){
   case COORD_SYS_XYZ:
@@ -237,7 +239,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "X";
     labels[1] = "Y";
     labels[2] = "Z";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
     break;
   case COORD_SYS_YXY:
     coordSpace = CML_COLOR_Yxy;
@@ -246,16 +248,25 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "Y";
     labels[1] = "x";
     labels[2] = "y";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
+    break;
+  case COORD_SYS_Yupvp:
+    coordSpace = CML_COLOR_Yupvp;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 2. * (2.f / 3.f), 2. * (2.f / 3.f));
+    labels[0] = "Y";
+    labels[1] = "u'";
+    labels[2] = "v'";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yupvp);
     break;
   case COORD_SYS_Yuv:
     coordSpace = CML_COLOR_Yuv;
     primeAxis = 0;
-    naFillV3d(scale, 1., 1., 1.);
+    naFillV3d(scale, 1., 2. * (2.f / 3.f), 2. * (4.f / 9.f));
     labels[0] = "Y";
     labels[1] = "u";
     labels[2] = "v";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
     break;
   case COORD_SYS_LAB:
     coordSpace = CML_COLOR_Lab;
@@ -264,7 +275,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "L";
     labels[1] = "a";
     labels[2] = "b";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Lab);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Lab);
     break;
   case COORD_SYS_LCH_CARTESIAN:
     coordSpace = CML_COLOR_Lch;
@@ -273,7 +284,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "L";
     labels[1] = "c";
     labels[2] = "h";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Lch);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Lch);
     break;
   case COORD_SYS_LUV:
     coordSpace = CML_COLOR_Luv;
@@ -282,7 +293,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "L";
     labels[1] = "u";
     labels[2] = "v";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_Luv);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Luv);
     break;
   case COORD_SYS_RGB:
     coordSpace = CML_COLOR_RGB;
@@ -291,7 +302,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "R";
     labels[1] = "G";
     labels[2] = "B";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
     break;
   case COORD_SYS_YCBCR:
     coordSpace = CML_COLOR_YCbCr;
@@ -300,7 +311,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "Y";
     labels[1] = "Cb";
     labels[2] = "Cr";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
     break;
   case COORD_SYS_HSV:
     coordSpace = CML_COLOR_HSV;
@@ -309,7 +320,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "";
     labels[1] = "S";
     labels[2] = "V";
-    normedCoordConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV);
+    normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV);
     break;
   case COORD_SYS_HSV_CARTESIAN:
     coordSpace = CML_COLOR_HSV;
@@ -318,7 +329,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "H";
     labels[1] = "S";
     labels[2] = "V";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_HSV);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSV);
     break;
   case COORD_SYS_HSL:
     coordSpace = CML_COLOR_HSL;
@@ -327,7 +338,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "";
     labels[1] = "S";
     labels[2] = "L";
-    normedCoordConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSL);
+    normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSL);
     break;
   case COORD_SYS_HSL_CARTESIAN:
     coordSpace = CML_COLOR_HSL;
@@ -336,7 +347,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[0] = "H";
     labels[1] = "S";
     labels[2] = "L";
-    normedCoordConverter = cmlGetNormedOutputConverter(CML_COLOR_HSL);
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSL);
     break;
   default:
     return NA_FALSE;
@@ -394,7 +405,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
       con->steps3D,
       normedInputConverter,
       coordConverter,
-      normedCoordConverter,
+      normedOutputConverter,
       hueIndex);
   }
   
@@ -408,21 +419,21 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
       con->steps3D,
       normedInputConverter,
       coordConverter,
-      normedCoordConverter,
+      normedOutputConverter,
       con->zoom);
   }
 
   if(con->showSpectrum){
     cmDrawThreeDeeSpectrum(
       cm,
-      normedCoordConverter,
+      normedOutputConverter,
       coordSpace,
       hueIndex);
   }
   
   if(con->showAxis){
     cmDrawThreeDeeAxis(
-      normedCoordConverter,
+      normedOutputConverter,
       min,
       max,
       labels,
@@ -522,7 +533,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naZeron(con, sizeof(CMThreeDeeController));
   
   // The window
-  con->window = naNewWindow("3D", naMakeRectS(40, 30, 800, 450), NA_WINDOW_RESIZEABLE, 0);
+  con->window = naNewWindow(cmTranslate(CM3DView), naMakeRectS(40, 30, 800, 450), NA_WINDOW_RESIZEABLE, 0);
   naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cmReshapeThreeDeeWindow, con);
 
   // The 3D space

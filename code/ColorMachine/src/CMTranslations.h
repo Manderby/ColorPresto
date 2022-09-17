@@ -12,6 +12,8 @@ enum{
   CMApplicationHelpURL,
 
   // Strings for 3D view
+  CM3DView,
+
   CMColorSpace,
   CMCoordinates,
   CMSteps,

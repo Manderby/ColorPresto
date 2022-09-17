@@ -7,6 +7,8 @@ NA_LOC_LANG("deu");
 NA_LOC(CMApplicationDescription, "Frontend für Farbumwandlungen basierend auf\nCML: Color Machine Library.\nDesign und Implementation: Tobias Stamm");
 NA_LOC(CMApplicationHelpURL, "https://manderc.com/apps/colormachine/help/index.php");
 
+NA_LOC(CM3DView, "3D Ansicht");
+
 NA_LOC(CMColorSpace, "Farbraum");
 NA_LOC(CMCoordinates, "Koordinaten");
 NA_LOC(CMSteps, "Unterteilungen");
