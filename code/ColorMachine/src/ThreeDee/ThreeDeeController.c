@@ -176,7 +176,7 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
 void cmStepRotation(void* data){
   CMThreeDeeController* con = (CMThreeDeeController*)data;
   if(con->rotationStep != 0.){
-    con->viewEqu -= con->rotationStep * .03;
+    con->viewEqu -= con->rotationStep * .015;
     naCallApplicationFunctionInSeconds(cmStepRotation, data, 1/60.);
     cmUpdateThreeDeeController(con);
   }

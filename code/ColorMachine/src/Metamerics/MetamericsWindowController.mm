@@ -63,10 +63,11 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv);
 
 
 const char* referenceIlluminationstrings[NUMBER_OF_REFERENCE_ILLUMINATIONS] = {
-  "D50",  // REFERENCE_ILLUMINATION_D50
-  "D55",  // REFERENCE_ILLUMINATION_D55
-  "D65",  // REFERENCE_ILLUMINATION_D65
-  "D75",  // REFERENCE_ILLUMINATION_D75
+  "D50 ISO-3664",  // REFERENCE_ILLUMINATION_D50_ISO
+  "D50",           // REFERENCE_ILLUMINATION_D50
+  "D55",           // REFERENCE_ILLUMINATION_D55
+  "D65",           // REFERENCE_ILLUMINATION_D65
+  "D75",           // REFERENCE_ILLUMINATION_D75
 };
 
 
@@ -685,7 +686,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 @implementation MetamericsWindowController
 
 - (void)awakeFromNib{
-  referenceIlluminationType = REFERENCE_ILLUMINATION_D50;
+  referenceIlluminationType = REFERENCE_ILLUMINATION_D50_ISO;
 
   // //////////////////////////
   // Init the select menus
@@ -695,7 +696,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   for(uint32 i=0; i<NUMBER_OF_REFERENCE_ILLUMINATIONS; ++i){
     [referenceIlluminationselect insertItemWithTitle:[NSString stringWithUTF8String:referenceIlluminationstrings[i]] atIndex:i];
   }
-  [referenceIlluminationselect selectItemAtIndex:(int)REFERENCE_ILLUMINATION_D50];
+  [referenceIlluminationselect selectItemAtIndex:(int)REFERENCE_ILLUMINATION_D50_ISO];
 
   [self update];
 }
@@ -706,6 +707,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   
   CMLFunction* ref;
   switch(referenceIlluminationType){
+  case REFERENCE_ILLUMINATION_D50_ISO:
+    ref = cmlCreateIlluminationSpectrum(CML_ILLUMINATION_D50_ISO, 0.f);
+    break;
   case REFERENCE_ILLUMINATION_D50:
     ref = cmlCreateIlluminationSpectrum(CML_ILLUMINATION_D50, 0.f);
     break;
@@ -1153,6 +1157,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   const float* standarddata[5] = {standard1data, standard2data, standard3data, standard4data, standard5data};
   const float* specimendata[5];
   switch(referenceIlluminationType){
+  case REFERENCE_ILLUMINATION_D50_ISO:
   case REFERENCE_ILLUMINATION_D50:
     specimendata[0] = specimen1d50data;
     specimendata[1] = specimen2d50data;
@@ -1382,6 +1387,7 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 
   const float* UVmetamerdata[3];
   switch(referenceIlluminationType){
+  case REFERENCE_ILLUMINATION_D50_ISO:
   case REFERENCE_ILLUMINATION_D50:
     UVmetamerdata[0] = UVmetamer1d50data;
     UVmetamerdata[1] = UVmetamer2d50data;
