@@ -14,11 +14,24 @@ enum{
   // Strings for 3D view
   CM3DView,
 
+  CMColorSpaceXYZ,
+  CMColorSpaceYxy,
+  CMColorSpaceYupvp,
+  CMColorSpaceYuv,
+  CMColorSpaceLab,
+  CMColorSpaceLch,
+  CMColorSpaceLuv,
+  CMColorSpaceRGB,
+  CMColorSpaceYCbCr,
+  CMColorSpaceHSV,
+  CMColorSpaceHSL,
+
   CMColorSpace,
   CMCoordinates,
   CMSteps,
   CMRotation,
   CMStop,
+  CMCartesian,
   
   CMPointsOpacity,
   CMGridOpacity,
