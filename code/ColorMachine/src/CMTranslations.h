@@ -11,9 +11,11 @@ enum{
   CMApplicationDescription,
   CMApplicationHelpURL,
 
-  // Strings for 3D view
-  CM3DView,
+  // Strings for Whitepoint and Metamerics window
+  CMWhitepointsAndMetamerics,
 
+  // Strings for 3D window
+  CM3DView,
   CMColorSpaceXYZ,
   CMColorSpaceYxy,
   CMColorSpaceYupvp,
@@ -25,14 +27,12 @@ enum{
   CMColorSpaceYCbCr,
   CMColorSpaceHSV,
   CMColorSpaceHSL,
-
   CMColorSpace,
   CMCoordinates,
   CMSteps,
   CMRotation,
   CMStop,
   CMCartesian,
-  
   CMPointsOpacity,
   CMGridOpacity,
   CMGridTint,

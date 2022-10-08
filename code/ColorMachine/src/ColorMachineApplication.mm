@@ -1,6 +1,7 @@
 
+#include "CMMetamericsController.h"
 #include "CMTranslations.h"
-#include "ThreeDeeController.h"
+#include "CMThreeDeeController.h"
 
 #import "MetamericsWindowController.h"
 #import "ColorMachineApplication.h"
@@ -99,6 +100,8 @@ size_t bordercount;
 //  machinescontroller = [[MachinesController alloc] init];
 //  colorscontroller = [[ColorsController alloc] init];
   threeDeeController = cmAllocThreeDeeController();
+  metamericsController = cmAllocMetamericsController();
+  cmUpdateMetamericsController(metamericsController);
   cmUpdateThreeDeeController(threeDeeController);
 }
 
@@ -144,6 +147,7 @@ size_t bordercount;
     naLoadNib("Metamerics", NSApp);
   }
   [metamericswindowcontroller showDialog];
+  cmShowMetamericsController(metamericsController);
 }
 
 - (void)setCurrentColor:(const Color*)color{
@@ -178,6 +182,7 @@ size_t bordercount;
 
 - (void)updateMachine{
   [machinewindowcontroller updateMachine];
+  cmUpdateMetamericsController(metamericsController);
   cmUpdateThreeDeeController(threeDeeController);
   [colorscontroller updateColor];
   [metamericswindowcontroller update];
@@ -185,6 +190,7 @@ size_t bordercount;
 
 - (void)updateColor{
   [colorscontroller updateColor];
+  cmUpdateMetamericsController(metamericsController);
   cmUpdateThreeDeeController(threeDeeController);
   [metamericswindowcontroller update];
 }

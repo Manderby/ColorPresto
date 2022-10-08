@@ -20,22 +20,22 @@ NA_LOC(CMColorSpaceYCbCr, "Ycbcr");
 NA_LOC(CMColorSpaceHSV, "HSV");
 NA_LOC(CMColorSpaceHSL, "HSL");
 
+// Translations for the Whitepoint and Metamerics Window
+NA_LOC(CMWhitepointsAndMetamerics, "Weisspunkte und Metamerie");
+
 // Translations for the 3D Window
 NA_LOC(CM3DView, "3D Ansicht");
-
 NA_LOC(CMColorSpace, "Farbraum");
 NA_LOC(CMCoordinates, "Koordinaten");
 NA_LOC(CMSteps, "Unterteilungen");
 NA_LOC(CMRotation, "Rotation");
 NA_LOC(CMStop, "Stopp");
 NA_LOC(CMCartesian, "%s Kartesisch"); // %s is a colorspace name
-
 NA_LOC(CMPointsOpacity, "Punkte Deckkraft");
 NA_LOC(CMGridOpacity, "Raster Deckkraft");
 NA_LOC(CMGridTint, "Raster Färbung");
 NA_LOC(CMBodyTint, "Körper Färbung");
 NA_LOC(CMSolid, "Solider Körper");
-
 NA_LOC(CMAxis, "Achsen");
 NA_LOC(CMSpectrum, "Spektrum");
 NA_LOC(CMBackground, "Hintergrund");

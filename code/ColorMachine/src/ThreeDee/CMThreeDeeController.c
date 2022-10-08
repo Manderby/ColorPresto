@@ -6,8 +6,8 @@
 #include "CMTranslations.h"
 
 #include "mainC.h"
-#include "ThreeDeeController.h"
-#include "ThreeDeeView.h"
+#include "CMThreeDeeController.h"
+#include "CMThreeDeeView.h"
 #include <CML.h>
 
 const double marginHLeft = 10;

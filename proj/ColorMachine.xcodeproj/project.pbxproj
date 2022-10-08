@@ -31,7 +31,10 @@
 		90384AA22887312E0002D469 /* NA3DHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384AA12887312E0002D469 /* NA3DHelper.h */; };
 		90384AA4288731930002D469 /* NA3DHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA3288731930002D469 /* NA3DHelper.c */; };
 		90384AA828873AF10002D469 /* NAMathOperators.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA728873AF10002D469 /* NAMathOperators.c */; };
-		909541AD28B155D800346AB2 /* ThreeDeeView.c in Sources */ = {isa = PBXBuildFile; fileRef = 909541AB28B155D800346AB2 /* ThreeDeeView.c */; };
+		9068AC5D28D6643E001635DD /* CMMetamericsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 9068AC5C28D6643E001635DD /* CMMetamericsController.c */; };
+		909541AD28B155D800346AB2 /* CMThreeDeeView.c in Sources */ = {isa = PBXBuildFile; fileRef = 909541AB28B155D800346AB2 /* CMThreeDeeView.c */; };
+		9099F4FA28F2092500C18D81 /* UVRangeMetamericIndex.c in Sources */ = {isa = PBXBuildFile; fileRef = 9099F4F828F2092500C18D81 /* UVRangeMetamericIndex.c */; };
+		9099F4FD28F2145300C18D81 /* CMTwoColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 9099F4FB28F2145300C18D81 /* CMTwoColorController.c */; };
 		90B6FD6228A99A2F00EE6F32 /* ManderApp.vcxproj in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */; };
 		90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5B28A99A2F00EE6F32 /* ManderAppPreferences.c */; };
 		90B6FD6428A99A2F00EE6F32 /* ManderAppAbout.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5C28A99A2F00EE6F32 /* ManderAppAbout.c */; };
@@ -39,7 +42,7 @@
 		90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5E28A99A2F00EE6F32 /* ManderApp.c */; };
 		90B6FD6928A99E6900EE6F32 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD6728A99E6900EE6F32 /* InfoPlist.strings */; };
 		90B6FD6C28A99FEE00EE6F32 /* CMTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD6A28A99FEE00EE6F32 /* CMTranslations.c */; };
-		90B6FD7128A9A51000EE6F32 /* ThreeDeeController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD7028A9A51000EE6F32 /* ThreeDeeController.c */; };
+		90B6FD7128A9A51000EE6F32 /* CMThreeDeeController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD7028A9A51000EE6F32 /* CMThreeDeeController.c */; };
 		90B8ECED2886143D005825BF /* NABase.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE22886143D005825BF /* NABase.h */; };
 		90B8ECEE2886143D005825BF /* NAUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE32886143D005825BF /* NAUtility.h */; };
 		90B8ECEF2886143D005825BF /* NABuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE52886143D005825BF /* NABuffer.h */; };
@@ -429,8 +432,14 @@
 		90384AA12887312E0002D469 /* NA3DHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NA3DHelper.h; sourceTree = "<group>"; };
 		90384AA3288731930002D469 /* NA3DHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NA3DHelper.c; sourceTree = "<group>"; };
 		90384AA728873AF10002D469 /* NAMathOperators.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NAMathOperators.c; sourceTree = "<group>"; };
-		909541AB28B155D800346AB2 /* ThreeDeeView.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ThreeDeeView.c; sourceTree = "<group>"; };
-		909541AC28B155D800346AB2 /* ThreeDeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDeeView.h; sourceTree = "<group>"; };
+		9068AC5B28D6643E001635DD /* CMMetamericsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMetamericsController.h; sourceTree = "<group>"; };
+		9068AC5C28D6643E001635DD /* CMMetamericsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMMetamericsController.c; sourceTree = "<group>"; };
+		909541AB28B155D800346AB2 /* CMThreeDeeView.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMThreeDeeView.c; sourceTree = "<group>"; };
+		909541AC28B155D800346AB2 /* CMThreeDeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMThreeDeeView.h; sourceTree = "<group>"; };
+		9099F4F828F2092500C18D81 /* UVRangeMetamericIndex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = UVRangeMetamericIndex.c; sourceTree = "<group>"; };
+		9099F4F928F2092500C18D81 /* UVRangeMetamericIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UVRangeMetamericIndex.h; sourceTree = "<group>"; };
+		9099F4FB28F2145300C18D81 /* CMTwoColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMTwoColorController.c; sourceTree = "<group>"; };
+		9099F4FC28F2145300C18D81 /* CMTwoColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTwoColorController.h; sourceTree = "<group>"; };
 		90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ManderApp.vcxproj; sourceTree = "<group>"; };
 		90B6FD5728A99A2F00EE6F32 /* ManderApp_deu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_deu.h; sourceTree = "<group>"; };
 		90B6FD5828A99A2F00EE6F32 /* ManderApp_eng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_eng.h; sourceTree = "<group>"; };
@@ -447,8 +456,8 @@
 		90B6FD6B28A99FEE00EE6F32 /* CMTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTranslations.h; sourceTree = "<group>"; };
 		90B6FD6D28A9A0E100EE6F32 /* ColorMachineStrings_eng.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMachineStrings_eng.h; sourceTree = "<group>"; };
 		90B6FD6E28A9A1F200EE6F32 /* ColorMachineStrings_deu.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorMachineStrings_deu.h; sourceTree = "<group>"; };
-		90B6FD6F28A9A51000EE6F32 /* ThreeDeeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeDeeController.h; sourceTree = "<group>"; };
-		90B6FD7028A9A51000EE6F32 /* ThreeDeeController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ThreeDeeController.c; sourceTree = "<group>"; };
+		90B6FD6F28A9A51000EE6F32 /* CMThreeDeeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMThreeDeeController.h; sourceTree = "<group>"; };
+		90B6FD7028A9A51000EE6F32 /* CMThreeDeeController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMThreeDeeController.c; sourceTree = "<group>"; };
 		90B8EBE02886143D005825BF /* NALib.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NALib.vcxproj; sourceTree = "<group>"; };
 		90B8EBE22886143D005825BF /* NABase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NABase.h; sourceTree = "<group>"; };
 		90B8EBE32886143D005825BF /* NAUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAUtility.h; sourceTree = "<group>"; };
@@ -1498,8 +1507,14 @@
 		90BF5114274AB29D001FDE2A /* Metamerics */ = {
 			isa = PBXGroup;
 			children = (
+				9068AC5C28D6643E001635DD /* CMMetamericsController.c */,
+				9068AC5B28D6643E001635DD /* CMMetamericsController.h */,
+				9099F4FB28F2145300C18D81 /* CMTwoColorController.c */,
+				9099F4FC28F2145300C18D81 /* CMTwoColorController.h */,
 				90BF5115274AB29D001FDE2A /* MetamericsWindowController.h */,
 				90BF5116274AB29D001FDE2A /* MetamericsWindowController.mm */,
+				9099F4F828F2092500C18D81 /* UVRangeMetamericIndex.c */,
+				9099F4F928F2092500C18D81 /* UVRangeMetamericIndex.h */,
 			);
 			path = Metamerics;
 			sourceTree = "<group>";
@@ -1507,10 +1522,10 @@
 		90BF5118274AB29D001FDE2A /* ThreeDee */ = {
 			isa = PBXGroup;
 			children = (
-				90B6FD7028A9A51000EE6F32 /* ThreeDeeController.c */,
-				90B6FD6F28A9A51000EE6F32 /* ThreeDeeController.h */,
-				909541AB28B155D800346AB2 /* ThreeDeeView.c */,
-				909541AC28B155D800346AB2 /* ThreeDeeView.h */,
+				90B6FD7028A9A51000EE6F32 /* CMThreeDeeController.c */,
+				90B6FD6F28A9A51000EE6F32 /* CMThreeDeeController.h */,
+				909541AB28B155D800346AB2 /* CMThreeDeeView.c */,
+				909541AC28B155D800346AB2 /* CMThreeDeeView.h */,
 			);
 			path = ThreeDee;
 			sourceTree = "<group>";
@@ -1937,7 +1952,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1400;
+				LastUpgradeCheck = 1410;
 				ORGANIZATIONNAME = "Manderim GmbH";
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
@@ -2024,12 +2039,15 @@
 				90BF5141274AB29E001FDE2A /* main.mm in Sources */,
 				90BF514E274AB29E001FDE2A /* HSLColorController.mm in Sources */,
 				90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */,
-				909541AD28B155D800346AB2 /* ThreeDeeView.c in Sources */,
+				9099F4FD28F2145300C18D81 /* CMTwoColorController.c in Sources */,
+				909541AD28B155D800346AB2 /* CMThreeDeeView.c in Sources */,
 				90BF5147274AB29E001FDE2A /* ColorController.mm in Sources */,
+				9099F4FA28F2092500C18D81 /* UVRangeMetamericIndex.c in Sources */,
 				90BF514A274AB29E001FDE2A /* LuvColorController.mm in Sources */,
 				90BF5144274AB29E001FDE2A /* YxyColorController.mm in Sources */,
 				90BF514B274AB29E001FDE2A /* GrayColorController.mm in Sources */,
 				90BF5152274AB29E001FDE2A /* ColorMachineOpenGLView.mm in Sources */,
+				9068AC5D28D6643E001635DD /* CMMetamericsController.c in Sources */,
 				90BF5149274AB29E001FDE2A /* XYZColorController.mm in Sources */,
 				90BF513C274AB29E001FDE2A /* ColorMachineApplication.mm in Sources */,
 				90B6FD6528A99A2F00EE6F32 /* ManderAppTranslations.c in Sources */,
@@ -2045,7 +2063,7 @@
 				90BF514C274AB29E001FDE2A /* SpectralColorController.mm in Sources */,
 				90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */,
 				90BF5146274AB29E001FDE2A /* MachineWindowController.mm in Sources */,
-				90B6FD7128A9A51000EE6F32 /* ThreeDeeController.c in Sources */,
+				90B6FD7128A9A51000EE6F32 /* CMThreeDeeController.c in Sources */,
 				90BF5145274AB29E001FDE2A /* RGBColorController.mm in Sources */,
 				90BF5150274AB29E001FDE2A /* MetamericsWindowController.mm in Sources */,
 				90BF5140274AB29E001FDE2A /* AboutWindowController.mm in Sources */,
@@ -2502,7 +2520,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
@@ -2692,7 +2710,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";
@@ -2735,7 +2753,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "-headerpad_max_install_names";

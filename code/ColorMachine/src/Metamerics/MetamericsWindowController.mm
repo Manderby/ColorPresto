@@ -1566,8 +1566,8 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[3]), &(UVmetamerXYZ[3]), adaptationMatrix);
   cmlConvertXYZToChromaticAdaptedXYZ(&(UVmetameradaptedxyzdata[6]), &(UVmetamerXYZ[6]), adaptationMatrix);
   fillRGBFloatArrayWithArray(
-    [(ColorMachineApplication*)NSApp getCurrentMachine],
-    [(ColorMachineApplication*)NSApp getCurrentScreenMachine],
+    cm,
+    sm,
     UVmetamerrgbfloatdata,
     UVmetameradaptedxyzdata,
     CML_COLOR_XYZ,
@@ -1575,14 +1575,6 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
     3,
     NA_FALSE,
     NA_FALSE);
-//  [(ColorMachineApplication*)NSApp fillRGBuint8array:UVmetamerrgb8Bitdata
-//                                         fromArray:UVmetameradaptedxyzdata
-//                                     withColorType:CML_COLOR_XYZ
-//                              normedInputConverter:cmlGetNormedInputConverter(CML_COLOR_XYZ)
-//                                             count:3
-//                                          drawgrid:NO
-//                                          drawmask:NO];
-//  cmlData8ToRGB(cm, UVmetamerrgbfloatdata, UVmetamerrgb8Bitdata, 3);
 
   [MIUVcolorview1 setColors:&(UVstandardrgbfloatdata[0*3]) :&(UVmetamerrgbfloatdata[0*3])];
   [MIUVcolorview2 setColors:&(UVstandardrgbfloatdata[1*3]) :&(UVmetamerrgbfloatdata[1*3])];

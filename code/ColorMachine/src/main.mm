@@ -1,6 +1,6 @@
 
 #include "CMTranslations.h"
-#include "ThreeDeeController.h"
+#include "CMThreeDeeController.h"
 
 #import "main.h"
 #import "mainC.h"
