@@ -1,18 +1,11 @@
 
 #include "CMMetamericsController.h"
+#include "CMUVRangeMetamericIndex.h"
 #include "CMTranslations.h"
 #include "CMTwoColorController.h"
 #include "NAApp.h"
 #include "CML.h"
 #include "mainC.h"
-
-typedef enum{
-  REFERENCE_ILLUMINATION_D50,
-  REFERENCE_ILLUMINATION_D55,
-  REFERENCE_ILLUMINATION_D65,
-  REFERENCE_ILLUMINATION_D75,
-  NUMBER_OF_REFERENCE_ILLUMINATIONS
-} CMReferenceIlluminationType;
 
 
 
@@ -184,7 +177,7 @@ void cmShowMetamericsController(CMMetamericsController* con){
 
 void cmUpdateMetamericsController(CMMetamericsController* con){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
-  //CMLColorMachine* sm = cmGetCurrentScreenMachine();
+//  CMLColorMachine* sm = cmGetCurrentScreenMachine();
 
   const CMLFunction* ref;
   switch(con->referenceIlluminationType){
@@ -215,17 +208,27 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
   naSetLabelText(con->UVMetamerics8Label, "0.00000");
   naSetLabelText(con->UVMetamericsLabel, "0.00000");
 
-  NAVec3f leftColor = {1,0,0};
-  NAVec3f rightColor = {1,0,1};
-  NAVec3f right2Color = {1,1,1};
-  cmSetTwoColorControllerColors(con->UVMetamerics6Display, leftColor, rightColor);
-  cmSetTwoColorControllerColors(con->UVMetamerics7Display, leftColor, right2Color);
-  cmSetTwoColorControllerColors(con->UVMetamerics8Display, leftColor, right2Color);
+  UVMetamericColors metamericColors = cmComputeUVMetamericColors(
+    con->referenceIlluminationType);
+
+  cmSetTwoColorControllerColors(
+    con->UVMetamerics6Display,
+    metamericColors.uvStandardRGBFloatData[0],
+    metamericColors.uvMetamerRGBFloatData[0]);
+  cmSetTwoColorControllerColors(
+    con->UVMetamerics7Display,
+    metamericColors.uvStandardRGBFloatData[1],
+    metamericColors.uvMetamerRGBFloatData[1]);
+  cmSetTwoColorControllerColors(
+    con->UVMetamerics8Display,
+    metamericColors.uvStandardRGBFloatData[2],
+    metamericColors.uvMetamerRGBFloatData[2]);
   cmUpdateTwoColorController(con->UVMetamerics6Display);
   cmUpdateTwoColorController(con->UVMetamerics7Display);
   cmUpdateTwoColorController(con->UVMetamerics8Display);
 
   const CMLFunction* illuminationSpec = cmlGetReferenceIlluminationSpectrum(cm);
+
   float avg5 = 1.;
   float avg3 = 3.;
   float avg53 = (avg5 * 5.f + avg3 * 3.f) / 8.f;

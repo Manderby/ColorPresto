@@ -1,19 +1,12 @@
 
 #include <CML.h>
 #import "main.h"
-
+#include "CMMetamericsController.h"
 
 
 @class MachineController;
 
 
-typedef enum{
-  REFERENCE_ILLUMINATION_D50,
-  REFERENCE_ILLUMINATION_D55,
-  REFERENCE_ILLUMINATION_D65,
-  REFERENCE_ILLUMINATION_D75,
-  NUMBER_OF_REFERENCE_ILLUMINATIONS
-} ReferenceIlluminationType;
 
 extern const char* referenceIlluminationstrings[NUMBER_OF_REFERENCE_ILLUMINATIONS];
 
@@ -124,7 +117,7 @@ extern const char* referenceIlluminationstrings[NUMBER_OF_REFERENCE_ILLUMINATION
   IBOutlet NSTextField *testfield3;
 
   IBOutlet NSPopUpButton *referenceIlluminationselect;
-  ReferenceIlluminationType referenceIlluminationType;
+  CMReferenceIlluminationType referenceIlluminationType;
 }
 - (void)awakeFromNib;
 - (void)update;
