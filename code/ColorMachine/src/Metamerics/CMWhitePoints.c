@@ -2,6 +2,23 @@
 #include "CMWhitePoints.h"
 #include "mainC.h"
 
+
+
+void CMFillChromaticAdaptationMatrix(CMLMat33 adaptationMatrix, const CMLVec3 whitePointYxy10)
+{
+  CMLColorMachine* sm = cmGetCurrentScreenMachine();
+
+  // Note that the use of a chromatic adaptation is purely for displaying
+  // reasons and is not in the ISO-standard at all. The differences between
+  // the colors can be seen better when using the 10 deg observer. That's all.
+  CMLVec3 screenWhitePoint;
+  cmlCpy3(screenWhitePoint, cmlGetReferenceWhitePointYxy(sm));
+  screenWhitePoint[0] = 1.f;
+  cmlFillChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, whitePointYxy10);
+}
+
+
+
 CMWhitePoints CMGetWhitePoints()
 {
   CMLColorMachine* cm = cmGetCurrentColorMachine();

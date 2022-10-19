@@ -22,7 +22,7 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
   colorToXYZ(cm, XYZbuffer, colorBuffer, count);
   float* aXYZbuffer = naMalloc(3 * count * sizeof(float));
   CMLMat33 amatrix;
-  cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smWhitePointYxy, cmWhitePointYxy);
+  cmlFillChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smWhitePointYxy, cmWhitePointYxy);
   for(size_t i=0; i<count; i++){
     cmlConvertXYZToChromaticAdaptedXYZ(&(aXYZbuffer[i*3]), &(XYZbuffer[i*3]), amatrix);
   }

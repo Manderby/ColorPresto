@@ -1,4 +1,7 @@
 
+#ifndef CM_WHITE_POINTS_DEFINED
+#define CM_WHITE_POINTS_DEFINED
+
 #include "CML.h"
 
 typedef struct CMWhitePoints CMWhitePoints;
@@ -11,4 +14,10 @@ struct CMWhitePoints{
   CMLVec3 illYxy2;
 };
 
+void CMFillChromaticAdaptationMatrix(
+  CMLMat33 adaptationMatrix,
+  const CMLVec3 whitePointYxy10);
+  
 CMWhitePoints CMGetWhitePoints();
+
+#endif // CM_WHITE_POINTS_DEFINED

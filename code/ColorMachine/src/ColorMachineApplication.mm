@@ -255,7 +255,7 @@ size_t bordercount;
   
   CMLVec3 aXYZbuffer;
   CMLMat33 amatrix;
-  cmlComputeChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smWhitePointYxy, cmWhitePointYxy);
+  cmlFillChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smWhitePointYxy, cmWhitePointYxy);
   cmlConvertXYZToChromaticAdaptedXYZ(aXYZbuffer, XYZbuffer, amatrix);
   cmlXYZToRGB(sm, outdata, aXYZbuffer, 1);
 

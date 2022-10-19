@@ -1,5 +1,5 @@
 
-#include "CMUVRangeMetamericIndex.h"
+#include "CMUVMetamericColors.h"
 #include "CMMetamericsController.h"
 #include "CMWhitePoints.h"
 #include "mainC.h"
@@ -188,15 +188,16 @@ const float UVMetamer3D75Data[] = {
 
 
 UVMetamericColors cmComputeUVMetamericColors(
+  CMLFunction* observer10Funcs[3],
+  const CMWhitePoints* wp,
   CMReferenceIlluminationType referenceIlluminationType)
 {
+  UVMetamericColors metamericColors;
+
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
   CMLIntegration integration = cmlMakeDefaultIntegration();
-  CMLFunction* observer10Funcs[3];
-  cmlCreateSpecDistFunctions(observer10Funcs, CML_DEFAULT_10DEG_OBSERVER);
   const CMLFunction* illuminationSpec = cmlGetReferenceIlluminationSpectrum(cm);
-  const CMWhitePoints wp = CMGetWhitePoints();
 
   CMLArrayFunctionInput inputFluorescent = {
     fluorescentRemissionData,
@@ -240,10 +241,8 @@ UVMetamericColors cmComputeUVMetamericColors(
     break;
   }
 
-  float MIUV[3];
   float uvStandardXYZ[3 * 3];
   float uvMetamerXYZ[3 * 3];
-  float avg3 = 0.f;
 
   for(int i = 0; i < 3; ++i){
     CMLArrayFunctionInput inputUVStandard = {
@@ -305,8 +304,8 @@ UVMetamericColors cmComputeUVMetamericColors(
         cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[0], &integration),
         cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[1], &integration),
         cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[2], &integration));
-      cmlDiv3(uvStandardXYZptr, wp.illXYZunnorm10[1]);
-      cmlConvertXYZToLab(UVStandardLab, uvStandardXYZptr, wp.illXYZ10);
+      cmlDiv3(uvStandardXYZptr, wp->illXYZunnorm10[1]);
+      cmlConvertXYZToLab(UVStandardLab, uvStandardXYZptr, wp->illXYZ10);
 
       CMLFunction* UVmetamerremission = cmlCreateFunctionMulFunction(UVMetamerFunction, illuminationSpec);
       cmlSet3(
@@ -314,8 +313,8 @@ UVMetamericColors cmComputeUVMetamericColors(
         cmlFilterFunction(UVmetamerremission, observer10Funcs[0], &integration),
         cmlFilterFunction(UVmetamerremission, observer10Funcs[1], &integration),
         cmlFilterFunction(UVmetamerremission, observer10Funcs[2], &integration));
-      cmlDiv3(uvMetamerXYZptr, wp.illXYZunnorm10[1]);
-      cmlConvertXYZToLab(UVMetamerLab, uvMetamerXYZptr, wp.illXYZ10);
+      cmlDiv3(uvMetamerXYZptr, wp->illXYZunnorm10[1]);
+      cmlConvertXYZToLab(UVMetamerLab, uvMetamerXYZptr, wp->illXYZ10);
       cmlReleaseFunction(betatemp);
       cmlReleaseFunction(betaL);
       cmlReleaseFunction(betaT);
@@ -329,14 +328,8 @@ UVMetamericColors cmComputeUVMetamericColors(
     }
     
     cmlSub3(UVMetamerLab, UVStandardLab);
-    MIUV[i] = cmlLength2(&((UVMetamerLab)[1]));
+    metamericColors.metamericIndex[i] = cmlLength2(&((UVMetamerLab)[1]));
 
-//    [testfield1 setStringValue:[NSString stringWithFormat:@"%1.05f", 100.f * excitationN / illXYZunnorm10[1]]];
-//    [testfield2 setStringValue:[NSString stringWithFormat:@"%1.05f", uvMetamerXYZptr[1]]];
-//    [testfield3 setStringValue:[NSString stringWithFormat:@"%1.05f", uvMetamerXYZptr[2]]];
-
-    avg3 += MIUV[i];
-    
     cmlReleaseFunction(UVStandardFunction);
     cmlReleaseFunction(UVExcitationFunction);
     cmlReleaseFunction(UVMetamerFunction);
@@ -344,8 +337,6 @@ UVMetamericColors cmComputeUVMetamericColors(
 
   cmlReleaseFunction(fluorescentRemissionFunction);
   
-  avg3 /= 3.f;
-
   // Note that the use of a chromatic adaptation is purely for displaying
   // reasons and is not in the ISO-standard at all. The differences between
   // the colors can be seen better when using the 10 deg observer. That's all.
@@ -353,9 +344,7 @@ UVMetamericColors cmComputeUVMetamericColors(
   CMLVec3 screenWhitePoint;
   cmlCpy3(screenWhitePoint, cmlGetReferenceWhitePointYxy(sm));
   screenWhitePoint[0] = 1.f;
-  cmlComputeChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, wp.illYxy10);
-
-  UVMetamericColors metamericColors;
+  cmlFillChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, wp->illYxy10);
 
   float uvStandardAdaptedXYZData[3 * 3];
   cmlConvertXYZToChromaticAdaptedXYZ(&(uvStandardAdaptedXYZData[0]), &(uvStandardXYZ[0]), adaptationMatrix);
