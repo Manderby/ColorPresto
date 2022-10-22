@@ -98,6 +98,7 @@ size_t bordercount;
 - (void)applicationWillTerminate:(NSApplication *)sender{
   cmDeallocThreeDeeController(threeDeeController);
   cmDeallocMetamericsController(metamericsController);
+  naDelete(naGetApplication());
 
   naStopRuntime();
 }

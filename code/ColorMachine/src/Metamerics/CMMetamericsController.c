@@ -41,7 +41,12 @@ struct CMMetamericsController{
   
   NASpace* refSpace;
 
+  NALabel* refTitle;
   NAPopupButton* refPopupButton;
+  NAMenuItem* refD50MenuItem;
+  NAMenuItem* refD55MenuItem;
+  NAMenuItem* refD65MenuItem;
+  NAMenuItem* refD75MenuItem;
 
   NALabel* refXYZTitle;
   NALabel* refYxyTitle;
@@ -131,9 +136,27 @@ const NAUTF8Char* getGrade(float value){
 
 
 
+NABool cmSelectRefSpectrum(NAReaction reaction){
+  CMMetamericsController* con = (CMMetamericsController*)reaction.controller;
+  if(reaction.uiElement == con->refD50MenuItem){
+    con->referenceIlluminationType = REFERENCE_ILLUMINATION_D50;
+  }else if(reaction.uiElement == con->refD55MenuItem){
+    con->referenceIlluminationType = REFERENCE_ILLUMINATION_D55;
+  }else if(reaction.uiElement == con->refD65MenuItem){
+    con->referenceIlluminationType = REFERENCE_ILLUMINATION_D65;
+  }else if(reaction.uiElement == con->refD75MenuItem){
+    con->referenceIlluminationType = REFERENCE_ILLUMINATION_D75;
+  }
+
+  cmUpdateMetamericsController(con);
+
+  return NA_TRUE;
+}
+
+
+
 CMMetamericsController* cmAllocMetamericsController(void){
   monoFont = naCreateFontWithPreset(NA_FONT_KIND_MONOSPACE, NA_FONT_SIZE_DEFAULT);
-//  monoFont = naCreateFont("Andale Mono", NA_FONT_FLAG_REGULAR, 12.5);
 
   CMMetamericsController* con = naAlloc(CMMetamericsController);
   naZeron(con, sizeof(CMMetamericsController));
@@ -176,16 +199,34 @@ CMMetamericsController* cmAllocMetamericsController(void){
   con->refSpace = naNewSpace(naMakeSize(columnWidth, refSpaceHeight));
   naSetSpaceAlternateBackground(con->refSpace, NA_TRUE);
 
-  con->refPopupButton = naNewPopupButton(60);
+  con->refTitle = naNewLabel("Reference:", 70);
+
+  con->refPopupButton = naNewPopupButton(70);
+  con->refD50MenuItem = naNewMenuItem("D50");
+  con->refD55MenuItem = naNewMenuItem("D55");
+  con->refD65MenuItem = naNewMenuItem("D65");
+  con->refD75MenuItem = naNewMenuItem("D75");
+  naAddPopupButtonMenuItem(con->refPopupButton, con->refD50MenuItem, NA_NULL);
+  naAddPopupButtonMenuItem(con->refPopupButton, con->refD55MenuItem, NA_NULL);
+  naAddPopupButtonMenuItem(con->refPopupButton, con->refD65MenuItem, NA_NULL);
+  naAddPopupButtonMenuItem(con->refPopupButton, con->refD75MenuItem, NA_NULL);
+  naAddUIReaction(con->refD50MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
+  naAddUIReaction(con->refD55MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
+  naAddUIReaction(con->refD65MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
+  naAddUIReaction(con->refD75MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
 
   con->refXYZTitle = naNewLabel("XYZ", valueWidth);
   naSetLabelTextAlignment(con->refXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
+  naSetLabelFont(con->refXYZTitle, boldFont);
   con->refYxyTitle = naNewLabel("Yxy", valueWidth);
   naSetLabelTextAlignment(con->refYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
+  naSetLabelFont(con->refYxyTitle, boldFont);
   con->refYupvpTitle = naNewLabel("Yu'v'", valueWidth);
   naSetLabelTextAlignment(con->refYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
+  naSetLabelFont(con->refYupvpTitle, boldFont);
   con->refYuvTitle = naNewLabel("Yuv", valueWidth);
   naSetLabelTextAlignment(con->refYuvTitle, NA_TEXT_ALIGNMENT_CENTER);
+  naSetLabelFont(con->refYuvTitle, boldFont);
 
   con->refXYZ10Label = cmNewThreeValueLabel();
   con->refYxy10Label = cmNewThreeValueLabel();
@@ -314,7 +355,8 @@ CMMetamericsController* cmAllocMetamericsController(void){
 
   double refY = refSpaceHeight - marginYTop;
   refY -= 25;
-  // add dropdown
+  naAddSpaceChild(con->refSpace, con->refTitle, naMakePos(75, refY));
+  naAddSpaceChild(con->refSpace, con->refPopupButton, naMakePos(155, refY));
   refY -= 25;
   naAddSpaceChild(con->refSpace, con->refXYZTitle, naMakePos(marginHLeft + 0 * (valueWidth + margin2H) - 3, refY));
   naAddSpaceChild(con->refSpace, con->refYxyTitle, naMakePos(marginHLeft + 1 * (valueWidth + margin2H) - 3, refY));
