@@ -268,7 +268,7 @@ const float specimen5D75Data[] = {
 
 
 
-VisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3], const CMWhitePoints* wp, const CMLMat33 adaptationMatrix, CMReferenceIlluminationType referenceIlluminationType){
+VisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3], const CMWhitePoints* wp10, const CMLMat33 adaptationMatrix, CMReferenceIlluminationType referenceIlluminationType){
   
   VisMetamericColors metamericColors;
   
@@ -355,8 +355,8 @@ VisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3], 
         cmlFilterFunction(standardremission, observer10Funcs[0], &integration),
         cmlFilterFunction(standardremission, observer10Funcs[1], &integration),
         cmlFilterFunction(standardremission, observer10Funcs[2], &integration));
-      cmlDiv3(standardXYZptr, wp->illXYZunnorm10[1]);
-      cmlConvertXYZToLab(standardLab, standardXYZptr, wp->illXYZ10);
+      cmlDiv3(standardXYZptr, wp10->XYZunnorm[1]);
+      cmlConvertXYZToLab(standardLab, standardXYZptr, wp10->XYZ);
 
       CMLFunction* specimenremission = cmlCreateFunctionMulFunction(specimenfunction, illuminationSpec);
       cmlSet3(
@@ -364,8 +364,8 @@ VisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3], 
         cmlFilterFunction(specimenremission, observer10Funcs[0], &integration),
         cmlFilterFunction(specimenremission, observer10Funcs[1], &integration),
         cmlFilterFunction(specimenremission, observer10Funcs[2], &integration));
-      cmlDiv3(specimenXYZptr, wp->illXYZunnorm10[1]);
-      cmlConvertXYZToLab(specimenLab, specimenXYZptr, wp->illXYZ10);
+      cmlDiv3(specimenXYZptr, wp10->XYZunnorm[1]);
+      cmlConvertXYZToLab(specimenLab, specimenXYZptr, wp10->XYZ);
       cmlReleaseFunction(standardremission);
       cmlReleaseFunction(specimenremission);
     }else{

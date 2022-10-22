@@ -10,15 +10,15 @@
 #include "CMThreeDeeView.h"
 #include <CML.h>
 
-const double marginHLeft = 10;
-const double marginH = 15;
-const double marginHRight = 15;
-const double marginYBottom = 15;
-const double marginYTop = marginYBottom - 3;
-const double labelWidth = 110;
-const double controlWidth = 140;
-const double marginHMiddle = marginHLeft + labelWidth + marginH;
-const double fullControlWidth = marginHMiddle + controlWidth + marginHRight;
+static const double marginHLeft = 10.;
+static const double marginH = 15.;
+static const double marginHRight = 15.;
+static const double marginYBottom = 15.;
+static const double marginYTop = marginYBottom - 3.;
+static const double labelWidth = 110.;
+static const double controlWidth = 140.;
+static const double marginHMiddle = marginHLeft + labelWidth + marginH;
+static const double fullControlWidth = marginHMiddle + controlWidth + marginHRight;
 
 typedef enum{
   COORD_SYS_XYZ,
@@ -646,9 +646,9 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naAddSpaceChild(content, con->controlSpace, naMakePos(300, 0));
 
   NASize controlSpaceSize = naGetUIElementRect(con->controlSpace, NA_NULL, NA_FALSE).size;
-  NAInt y = controlSpaceSize.height;
+  double y = controlSpaceSize.height;
 
-  NAInt coordY = coordinateSpaceHeight - marginYTop;
+  double coordY = coordinateSpaceHeight - marginYTop;
   coordY -= 25;
   naAddSpaceChild(con->coordinateSpace, con->colorSpaceLabel, naMakePos(marginHLeft, coordY));
   naAddSpaceChild(con->coordinateSpace, con->colorSpacePopupButton, naMakePos(marginHMiddle, coordY));
@@ -662,7 +662,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   y -= coordinateSpaceHeight;
   naAddSpaceChild(con->controlSpace, con->coordinateSpace, naMakePos(0, y));
   
-  NAInt rotationY = rotationSpaceHeight - marginYTop;
+  double rotationY = rotationSpaceHeight - marginYTop;
   rotationY -= 25;
   naAddSpaceChild(con->rotationSpace, con->rotationLabel, naMakePos(marginHLeft, rotationY));
   naAddSpaceChild(con->rotationSpace, con->rotationButton, naMakePos(marginHLeft + 50, rotationY));
@@ -671,7 +671,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   y -= rotationSpaceHeight;
   naAddSpaceChild(con->controlSpace, con->rotationSpace, naMakePos(0, y));
 
-  NAInt opacityY = opacitySpaceHeight - marginYTop;
+  double opacityY = opacitySpaceHeight - marginYTop;
   opacityY -= 25;
   naAddSpaceChild(con->opacitySpace, con->pointsOpacityLabel, naMakePos(marginHLeft, opacityY));
   naAddSpaceChild(con->opacitySpace, con->pointsOpacitySlider, naMakePos(marginHMiddle, opacityY));
@@ -691,7 +691,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   y -= opacitySpaceHeight;
   naAddSpaceChild(con->controlSpace, con->opacitySpace, naMakePos(0, y));
 
-  NAInt optionsY = optionsSpaceHeight - marginYTop;
+  double optionsY = optionsSpaceHeight - marginYTop;
   optionsY -= 25;
   naAddSpaceChild(con->optionsSpace, con->axisLabel, naMakePos(marginHLeft, optionsY));
   naAddSpaceChild(con->optionsSpace, con->axisCheckBox, naMakePos(marginHMiddle, optionsY));

@@ -189,7 +189,7 @@ const float UVMetamer3D75Data[] = {
 
 UVMetamericColors cmComputeUVMetamericColors(
   CMLFunction* observer10Funcs[3],
-  const CMWhitePoints* wp,
+  const CMWhitePoints* wp10,
   CMReferenceIlluminationType referenceIlluminationType)
 {
   UVMetamericColors metamericColors;
@@ -304,8 +304,8 @@ UVMetamericColors cmComputeUVMetamericColors(
         cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[0], &integration),
         cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[1], &integration),
         cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[2], &integration));
-      cmlDiv3(uvStandardXYZptr, wp->illXYZunnorm10[1]);
-      cmlConvertXYZToLab(UVStandardLab, uvStandardXYZptr, wp->illXYZ10);
+      cmlDiv3(uvStandardXYZptr, wp10->XYZunnorm[1]);
+      cmlConvertXYZToLab(UVStandardLab, uvStandardXYZptr, wp10->XYZ);
 
       CMLFunction* UVmetamerremission = cmlCreateFunctionMulFunction(UVMetamerFunction, illuminationSpec);
       cmlSet3(
@@ -313,8 +313,8 @@ UVMetamericColors cmComputeUVMetamericColors(
         cmlFilterFunction(UVmetamerremission, observer10Funcs[0], &integration),
         cmlFilterFunction(UVmetamerremission, observer10Funcs[1], &integration),
         cmlFilterFunction(UVmetamerremission, observer10Funcs[2], &integration));
-      cmlDiv3(uvMetamerXYZptr, wp->illXYZunnorm10[1]);
-      cmlConvertXYZToLab(UVMetamerLab, uvMetamerXYZptr, wp->illXYZ10);
+      cmlDiv3(uvMetamerXYZptr, wp10->XYZunnorm[1]);
+      cmlConvertXYZToLab(UVMetamerLab, uvMetamerXYZptr, wp10->XYZ);
       cmlReleaseFunction(betatemp);
       cmlReleaseFunction(betaL);
       cmlReleaseFunction(betaT);
@@ -344,7 +344,7 @@ UVMetamericColors cmComputeUVMetamericColors(
   CMLVec3 screenWhitePoint;
   cmlCpy3(screenWhitePoint, cmlGetReferenceWhitePointYxy(sm));
   screenWhitePoint[0] = 1.f;
-  cmlFillChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, wp->illYxy10);
+  cmlFillChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, wp10->Yxy);
 
   float uvStandardAdaptedXYZData[3 * 3];
   cmlConvertXYZToChromaticAdaptedXYZ(&(uvStandardAdaptedXYZData[0]), &(uvStandardXYZ[0]), adaptationMatrix);

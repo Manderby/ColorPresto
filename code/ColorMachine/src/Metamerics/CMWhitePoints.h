@@ -6,18 +6,20 @@
 
 typedef struct CMWhitePoints CMWhitePoints;
 struct CMWhitePoints{
-  CMLVec3 illXYZ10;
-  CMLVec3 illXYZ2;
-  CMLVec3 illXYZunnorm10;
-  CMLVec3 illXYZunnorm2;
-  CMLVec3 illYxy10;
-  CMLVec3 illYxy2;
+  CMLVec3 XYZ;
+  CMLVec3 XYZunnorm;
+  CMLVec3 Yxy;
+  CMLVec3 Yupvp;
+  CMLVec3 Yuv;
 };
 
 void CMFillChromaticAdaptationMatrix(
   CMLMat33 adaptationMatrix,
   const CMLVec3 whitePointYxy10);
   
-CMWhitePoints CMGetWhitePoints();
+CMWhitePoints CMGetWhitePoints(
+  const CMLFunction* spec,
+  const float* wpYxy,
+  CMLFunction** observerFuncs);
 
 #endif // CM_WHITE_POINTS_DEFINED

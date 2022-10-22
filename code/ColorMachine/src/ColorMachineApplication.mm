@@ -95,6 +95,14 @@ size_t bordercount;
   return NSTerminateNow;
 }
 
+- (void)applicationWillTerminate:(NSApplication *)sender{
+  cmDeallocThreeDeeController(threeDeeController);
+  cmDeallocMetamericsController(metamericsController);
+
+  naStopRuntime();
+}
+
+
 - (void)awakeFromNib{
 //  [self setDelegate:self];
 //  machinescontroller = [[MachinesController alloc] init];
@@ -113,7 +121,6 @@ size_t bordercount;
 }
 
 - (void)dealloc{
-  cmDeallocThreeDeeController(threeDeeController);
   [super dealloc];
 }
 
