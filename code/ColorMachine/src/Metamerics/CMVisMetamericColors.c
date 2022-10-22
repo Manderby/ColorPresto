@@ -268,9 +268,9 @@ const float specimen5D75Data[] = {
 
 
 
-VisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3], const CMWhitePoints* wp10, const CMLMat33 adaptationMatrix, CMReferenceIlluminationType referenceIlluminationType){
+CMVisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3], const CMWhitePoints* illWhitePoint10, const CMLMat33 adaptationMatrix, CMReferenceIlluminationType referenceIlluminationType){
   
-  VisMetamericColors metamericColors;
+  CMVisMetamericColors metamericColors;
   
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
@@ -355,8 +355,8 @@ VisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3], 
         cmlFilterFunction(standardremission, observer10Funcs[0], &integration),
         cmlFilterFunction(standardremission, observer10Funcs[1], &integration),
         cmlFilterFunction(standardremission, observer10Funcs[2], &integration));
-      cmlDiv3(standardXYZptr, wp10->XYZunnorm[1]);
-      cmlConvertXYZToLab(standardLab, standardXYZptr, wp10->XYZ);
+      cmlDiv3(standardXYZptr, illWhitePoint10->XYZunnorm[1]);
+      cmlConvertXYZToLab(standardLab, standardXYZptr, illWhitePoint10->XYZ);
 
       CMLFunction* specimenremission = cmlCreateFunctionMulFunction(specimenfunction, illuminationSpec);
       cmlSet3(
@@ -364,8 +364,8 @@ VisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3], 
         cmlFilterFunction(specimenremission, observer10Funcs[0], &integration),
         cmlFilterFunction(specimenremission, observer10Funcs[1], &integration),
         cmlFilterFunction(specimenremission, observer10Funcs[2], &integration));
-      cmlDiv3(specimenXYZptr, wp10->XYZunnorm[1]);
-      cmlConvertXYZToLab(specimenLab, specimenXYZptr, wp10->XYZ);
+      cmlDiv3(specimenXYZptr, illWhitePoint10->XYZunnorm[1]);
+      cmlConvertXYZToLab(specimenLab, specimenXYZptr, illWhitePoint10->XYZ);
       cmlReleaseFunction(standardremission);
       cmlReleaseFunction(specimenremission);
     }else{

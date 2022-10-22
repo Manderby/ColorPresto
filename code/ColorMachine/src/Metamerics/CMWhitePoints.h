@@ -11,6 +11,7 @@ struct CMWhitePoints{
   CMLVec3 Yxy;
   CMLVec3 Yupvp;
   CMLVec3 Yuv;
+  CMLVec3 Ycd;
 };
 
 void CMFillChromaticAdaptationMatrix(

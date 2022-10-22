@@ -9,14 +9,14 @@ CM_PROTOTYPE(CMWhitePoints);
 // D.4.3 Ultraviolet range metameric index
 // /////////////////////
 
-typedef struct UVMetamericColors UVMetamericColors;
-struct UVMetamericColors{
+typedef struct CMUVMetamericColors CMUVMetamericColors;
+struct CMUVMetamericColors{
   CMLVec3 uvStandardRGBFloatData[3];
   CMLVec3 uvMetamerRGBFloatData[3];
   float metamericIndex[3];
 };
 
-UVMetamericColors cmComputeUVMetamericColors(
+CMUVMetamericColors cmComputeUVMetamericColors(
   CMLFunction* observer10Funcs[3],
-  const CMWhitePoints* wp,
+  const CMWhitePoints* illWhitePoint10,
   CMReferenceIlluminationType referenceIlluminationType);

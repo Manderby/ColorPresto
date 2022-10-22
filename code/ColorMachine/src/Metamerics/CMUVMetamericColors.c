@@ -187,12 +187,12 @@ const float UVMetamer3D75Data[] = {
 
 
 
-UVMetamericColors cmComputeUVMetamericColors(
+CMUVMetamericColors cmComputeUVMetamericColors(
   CMLFunction* observer10Funcs[3],
-  const CMWhitePoints* wp10,
+  const CMWhitePoints* illWhitePoint10,
   CMReferenceIlluminationType referenceIlluminationType)
 {
-  UVMetamericColors metamericColors;
+  CMUVMetamericColors metamericColors;
 
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
@@ -304,8 +304,8 @@ UVMetamericColors cmComputeUVMetamericColors(
         cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[0], &integration),
         cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[1], &integration),
         cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[2], &integration));
-      cmlDiv3(uvStandardXYZptr, wp10->XYZunnorm[1]);
-      cmlConvertXYZToLab(UVStandardLab, uvStandardXYZptr, wp10->XYZ);
+      cmlDiv3(uvStandardXYZptr, illWhitePoint10->XYZunnorm[1]);
+      cmlConvertXYZToLab(UVStandardLab, uvStandardXYZptr, illWhitePoint10->XYZ);
 
       CMLFunction* UVmetamerremission = cmlCreateFunctionMulFunction(UVMetamerFunction, illuminationSpec);
       cmlSet3(
@@ -313,8 +313,8 @@ UVMetamericColors cmComputeUVMetamericColors(
         cmlFilterFunction(UVmetamerremission, observer10Funcs[0], &integration),
         cmlFilterFunction(UVmetamerremission, observer10Funcs[1], &integration),
         cmlFilterFunction(UVmetamerremission, observer10Funcs[2], &integration));
-      cmlDiv3(uvMetamerXYZptr, wp10->XYZunnorm[1]);
-      cmlConvertXYZToLab(UVMetamerLab, uvMetamerXYZptr, wp10->XYZ);
+      cmlDiv3(uvMetamerXYZptr, illWhitePoint10->XYZunnorm[1]);
+      cmlConvertXYZToLab(UVMetamerLab, uvMetamerXYZptr, illWhitePoint10->XYZ);
       cmlReleaseFunction(betatemp);
       cmlReleaseFunction(betaL);
       cmlReleaseFunction(betaT);
@@ -344,7 +344,7 @@ UVMetamericColors cmComputeUVMetamericColors(
   CMLVec3 screenWhitePoint;
   cmlCpy3(screenWhitePoint, cmlGetReferenceWhitePointYxy(sm));
   screenWhitePoint[0] = 1.f;
-  cmlFillChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, wp10->Yxy);
+  cmlFillChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, illWhitePoint10->Yxy);
 
   float uvStandardAdaptedXYZData[3 * 3];
   cmlConvertXYZToChromaticAdaptedXYZ(&(uvStandardAdaptedXYZData[0]), &(uvStandardXYZ[0]), adaptationMatrix);
