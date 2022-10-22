@@ -8,7 +8,6 @@ CM_PROTOTYPE(CMThreeDeeController);
 @class AboutWindowController;
 @class ScreenResolutionWindowController;
 @class ThreeDeeWindowController;
-@class MetamericsWindowController;
 
 @class MachinesController;
 @class ColorController;
@@ -40,7 +39,6 @@ extern size_t bordercount;
   CMThreeDeeController* threeDeeController;
 
   IBOutlet AboutWindowController* aboutwindowcontroller;
-  IBOutlet MetamericsWindowController* metamericswindowcontroller;
   IBOutlet MachineWindowController* machinewindowcontroller;
   IBOutlet ScreenResolutionWindowController* screenresolutionwindowcontroller;
   

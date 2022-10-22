@@ -3,7 +3,6 @@
 #include "CMTranslations.h"
 #include "CMThreeDeeController.h"
 
-#import "MetamericsWindowController.h"
 #import "ColorMachineApplication.h"
 #import "AboutWindowController.h"
 #import "MachinesController.h"
@@ -151,10 +150,6 @@ size_t bordercount;
 }
 
 - (IBAction)showMetamerics:(id)sender{
-  if(!metamericswindowcontroller){
-    naLoadNib("Metamerics", NSApp);
-  }
-  [metamericswindowcontroller showDialog];
   cmShowMetamericsController(metamericsController);
 }
 
@@ -193,14 +188,12 @@ size_t bordercount;
   cmUpdateMetamericsController(metamericsController);
   cmUpdateThreeDeeController(threeDeeController);
   [colorscontroller updateColor];
-  [metamericswindowcontroller update];
 }
 
 - (void)updateColor{
   [colorscontroller updateColor];
   cmUpdateMetamericsController(metamericsController);
   cmUpdateThreeDeeController(threeDeeController);
-  [metamericswindowcontroller update];
 }
 
 //- (void)colorItemHasChanged:(NSNotification*)notification{
