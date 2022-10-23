@@ -270,60 +270,60 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
     float* metamerRefXYZptr = &(metamerRefXYZ[i * 3]);
     float* metamerIllXYZptr = &(metamerIllXYZ[i * 3]);
 
-    CMLVec3 metamerrefUVW;
+    CMLVec3 metamerRefUVW;
     if(refSpec){
-      CMLFunction* metamerrefremission = cmlCreateFunctionMulFunction(metamerfunction, refSpec);
+      CMLFunction* metamerRefRemission = cmlCreateFunctionMulFunction(metamerfunction, refSpec);
       cmlSet3(
         metamerRefXYZptr,
-        cmlFilterFunction(metamerrefremission, observer2Funcs[0], &integration),
-        cmlFilterFunction(metamerrefremission, observer2Funcs[1], &integration),
-        cmlFilterFunction(metamerrefremission, observer2Funcs[2], &integration));
+        cmlFilterFunction(metamerRefRemission, observer2Funcs[0], &integration),
+        cmlFilterFunction(metamerRefRemission, observer2Funcs[1], &integration),
+        cmlFilterFunction(metamerRefRemission, observer2Funcs[2], &integration));
       cmlDiv3(metamerRefXYZptr, refWhitePoint2->XYZunnorm[1]);
-      CMLVec3 metamerrefYxy;
-      cmlConvertXYZToYxy(metamerrefYxy, metamerRefXYZptr, CML_NULL);
-      CMLVec3 metamerrefYupvp;
-      cmlConvertYxyToYupvp(metamerrefYupvp, metamerrefYxy, CML_NULL);
-      CMLVec3 metamerrefYuv;
+      CMLVec3 metamerRefYxy;
+      cmlConvertXYZToYxy(metamerRefYxy, metamerRefXYZptr, CML_NULL);
+      CMLVec3 metamerRefYupvp;
+      cmlConvertYxyToYupvp(metamerRefYupvp, metamerRefYxy, CML_NULL);
+      CMLVec3 metamerRefYuv;
       // ISO 3664 states in forumal D.14 the computation 6X/(X+15Y+3Z). I'm
       // pretty sure, they meant  6Y/(X+15Y+3Z) which is according to
       // CIE 1960 UCS. This also corresponds to the fact that UVW is based on
       // UCS. In CML, this is Yuv.
-      cmlConvertYupvpToYuv(metamerrefYuv, metamerrefYupvp);
-      convertYuvtoUVW(metamerrefUVW, metamerrefYuv, refWhitePoint2->Yuv);
-      cmlReleaseFunction(metamerrefremission);
+      cmlConvertYupvpToYuv(metamerRefYuv, metamerRefYupvp);
+      convertYuvtoUVW(metamerRefUVW, metamerRefYuv, refWhitePoint2->Yuv);
+      cmlReleaseFunction(metamerRefRemission);
     }else{
       cmlSet3(metamerRefXYZptr, 0.f, 0.f, 0.f);
-      cmlSet3(metamerrefUVW, 0.f, 0.f, 0.f);
+      cmlSet3(metamerRefUVW, 0.f, 0.f, 0.f);
     }
 
-    CMLVec3 metamerillUVW;
+    CMLVec3 metamerIllUVW;
     if(illuminationSpec){
-      CMLFunction* metamerillremission = cmlCreateFunctionMulFunction(metamerfunction, illuminationSpec);
+      CMLFunction* metamerIllRemission = cmlCreateFunctionMulFunction(metamerfunction, illuminationSpec);
       cmlSet3(
         metamerIllXYZptr,
-        cmlFilterFunction(metamerillremission, observer2Funcs[0], &integration),
-        cmlFilterFunction(metamerillremission, observer2Funcs[1], &integration),
-        cmlFilterFunction(metamerillremission, observer2Funcs[2], &integration));
+        cmlFilterFunction(metamerIllRemission, observer2Funcs[0], &integration),
+        cmlFilterFunction(metamerIllRemission, observer2Funcs[1], &integration),
+        cmlFilterFunction(metamerIllRemission, observer2Funcs[2], &integration));
       cmlDiv3(metamerIllXYZptr, illWhitePoint2->XYZunnorm[1]);
-      CMLVec3 metamerillYxy;
-      cmlConvertXYZToYxy(metamerillYxy, metamerIllXYZptr, CML_NULL);
-      CMLVec3 metamerillYupvp;
-      cmlConvertYxyToYupvp(metamerillYupvp, metamerillYxy, CML_NULL);
-      CMLVec3 metamerillYuv;
-      cmlConvertYupvpToYuv(metamerillYuv, metamerillYupvp);
-      CMLVec3 metamerillYcd;
-      convertYuvtoYcd(metamerillYcd, metamerillYuv);
-      CMLVec3 metamerillaYuv;
-      convertYcdtoadaptedYuv(metamerillaYuv, metamerillYcd, illWhitePoint2->Ycd, refWhitePoint2->Ycd);
-      convertYuvtoUVW(metamerillUVW, metamerillaYuv, refWhitePoint2->Yuv);
-      cmlReleaseFunction(metamerillremission);
+      CMLVec3 metamerIllYxy;
+      cmlConvertXYZToYxy(metamerIllYxy, metamerIllXYZptr, CML_NULL);
+      CMLVec3 metamerIllYupvp;
+      cmlConvertYxyToYupvp(metamerIllYupvp, metamerIllYxy, CML_NULL);
+      CMLVec3 metamerIllYuv;
+      cmlConvertYupvpToYuv(metamerIllYuv, metamerIllYupvp);
+      CMLVec3 metamerIllYcd;
+      convertYuvtoYcd(metamerIllYcd, metamerIllYuv);
+      CMLVec3 metamerIllaYuv;
+      convertYcdtoadaptedYuv(metamerIllaYuv, metamerIllYcd, illWhitePoint2->Ycd, refWhitePoint2->Ycd);
+      convertYuvtoUVW(metamerIllUVW, metamerIllaYuv, refWhitePoint2->Yuv);
+      cmlReleaseFunction(metamerIllRemission);
     }else{
       cmlSet3(metamerIllXYZptr, 0.f, 0.f, 0.f);
-      cmlSet3(metamerillUVW, 0.f, 0.f, 0.f);
+      cmlSet3(metamerIllUVW, 0.f, 0.f, 0.f);
     }
 
-    cmlSub3(metamerrefUVW, metamerillUVW);
-    float deltaE = cmlLength3(metamerrefUVW);
+    cmlSub3(metamerRefUVW, metamerIllUVW);
+    float deltaE = cmlLength3(metamerRefUVW);
     colors.colorRenderingIndex[i] = 100.f - 4.6f * deltaE;
     
     cmlReleaseFunction(metamerfunction);
@@ -513,124 +513,157 @@ void cmUpdateColorRenderingIndexController(
   CMLFunction* observer2Funcs[3],
   const CMWhitePoints* illWhitePoint2,
   const CMWhitePoints* refWhitePoint2,
-  const CMLFunction* refSpec)
+  const CMLFunction* refSpec,
+  NABool valid)
 {
-  CMColorRenderingColors colors = cmComputeColorRenderingColors(
-    observer2Funcs,
-    refWhitePoint2,
-    illWhitePoint2,
-    refSpec);
+  if(valid){
+    CMColorRenderingColors colors = cmComputeColorRenderingColors(
+      observer2Funcs,
+      refWhitePoint2,
+      illWhitePoint2,
+      refSpec);
 
-  naSetLabelText(
-    con->color1Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[0]));
-  cmUpdateTwoColorController(
-    con->color1Display,
-    colors.crMetamerRGBFloatData[0],
-    colors.crReferenceRGBFloatData[0]);
-  naSetLabelText(
-    con->color2Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[1]));
-  cmUpdateTwoColorController(
-    con->color2Display,
-    colors.crMetamerRGBFloatData[1],
-    colors.crReferenceRGBFloatData[1]);
-  naSetLabelText(
-    con->color3Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[2]));
-  cmUpdateTwoColorController(
-    con->color3Display,
-    colors.crMetamerRGBFloatData[2],
-    colors.crReferenceRGBFloatData[2]);
-  naSetLabelText(
-    con->color4Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[3]));
-  cmUpdateTwoColorController(
-    con->color4Display,
-    colors.crMetamerRGBFloatData[3],
-    colors.crReferenceRGBFloatData[3]);
-  naSetLabelText(
-    con->color5Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[4]));
-  cmUpdateTwoColorController(
-    con->color5Display,
-    colors.crMetamerRGBFloatData[4],
-    colors.crReferenceRGBFloatData[4]);
-  naSetLabelText(
-    con->color6Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[5]));
-  cmUpdateTwoColorController(
-    con->color6Display,
-    colors.crMetamerRGBFloatData[5],
-    colors.crReferenceRGBFloatData[5]);
-  naSetLabelText(
-    con->color7Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[6]));
-  cmUpdateTwoColorController(
-    con->color7Display,
-    colors.crMetamerRGBFloatData[6],
-    colors.crReferenceRGBFloatData[6]);
-  naSetLabelText(
-    con->color8Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[7]));
-  cmUpdateTwoColorController(
-    con->color8Display,
-    colors.crMetamerRGBFloatData[7],
-    colors.crReferenceRGBFloatData[7]);
+    naSetLabelText(
+      con->color1Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[0]));
+    cmUpdateTwoColorController(
+      con->color1Display,
+      colors.crMetamerRGBFloatData[0],
+      colors.crReferenceRGBFloatData[0]);
+    naSetLabelText(
+      con->color2Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[1]));
+    cmUpdateTwoColorController(
+      con->color2Display,
+      colors.crMetamerRGBFloatData[1],
+      colors.crReferenceRGBFloatData[1]);
+    naSetLabelText(
+      con->color3Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[2]));
+    cmUpdateTwoColorController(
+      con->color3Display,
+      colors.crMetamerRGBFloatData[2],
+      colors.crReferenceRGBFloatData[2]);
+    naSetLabelText(
+      con->color4Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[3]));
+    cmUpdateTwoColorController(
+      con->color4Display,
+      colors.crMetamerRGBFloatData[3],
+      colors.crReferenceRGBFloatData[3]);
+    naSetLabelText(
+      con->color5Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[4]));
+    cmUpdateTwoColorController(
+      con->color5Display,
+      colors.crMetamerRGBFloatData[4],
+      colors.crReferenceRGBFloatData[4]);
+    naSetLabelText(
+      con->color6Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[5]));
+    cmUpdateTwoColorController(
+      con->color6Display,
+      colors.crMetamerRGBFloatData[5],
+      colors.crReferenceRGBFloatData[5]);
+    naSetLabelText(
+      con->color7Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[6]));
+    cmUpdateTwoColorController(
+      con->color7Display,
+      colors.crMetamerRGBFloatData[6],
+      colors.crReferenceRGBFloatData[6]);
+    naSetLabelText(
+      con->color8Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[7]));
+    cmUpdateTwoColorController(
+      con->color8Display,
+      colors.crMetamerRGBFloatData[7],
+      colors.crReferenceRGBFloatData[7]);
 
-  float colorAverage = 
-    colors.colorRenderingIndex[0]
-    + colors.colorRenderingIndex[1]
-    + colors.colorRenderingIndex[2]
-    + colors.colorRenderingIndex[3]
-    + colors.colorRenderingIndex[4]
-    + colors.colorRenderingIndex[5]
-    + colors.colorRenderingIndex[6]
-    + colors.colorRenderingIndex[7];
-  colorAverage /= 8.f;
+    float colorAverage = 
+      colors.colorRenderingIndex[0]
+      + colors.colorRenderingIndex[1]
+      + colors.colorRenderingIndex[2]
+      + colors.colorRenderingIndex[3]
+      + colors.colorRenderingIndex[4]
+      + colors.colorRenderingIndex[5]
+      + colors.colorRenderingIndex[6]
+      + colors.colorRenderingIndex[7];
+    colorAverage /= 8.f;
 
-  naSetLabelText(con->colorLabel, naAllocSprintf(NA_TRUE, "%3.03f", colorAverage));
+    naSetLabelText(con->colorLabel, naAllocSprintf(NA_TRUE, "%3.03f", colorAverage));
 
-  naSetLabelText(
-    con->color9Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[8]));
-  cmUpdateTwoColorController(
-    con->color9Display,
-    colors.crMetamerRGBFloatData[8],
-    colors.crReferenceRGBFloatData[8]);
-  naSetLabelText(
-    con->color10Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[9]));
-  cmUpdateTwoColorController(
-    con->color10Display,
-    colors.crMetamerRGBFloatData[9],
-    colors.crReferenceRGBFloatData[9]);
-  naSetLabelText(
-    con->color11Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[10]));
-  cmUpdateTwoColorController(
-    con->color11Display,
-    colors.crMetamerRGBFloatData[10],
-    colors.crReferenceRGBFloatData[10]);
-  naSetLabelText(
-    con->color12Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[11]));
-  cmUpdateTwoColorController(
-    con->color12Display,
-    colors.crMetamerRGBFloatData[11],
-    colors.crReferenceRGBFloatData[11]);
-  naSetLabelText(
-    con->color13Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[12]));
-  cmUpdateTwoColorController(
-    con->color13Display,
-    colors.crMetamerRGBFloatData[12],
-    colors.crReferenceRGBFloatData[12]);
-  naSetLabelText(
-    con->color14Label,
-    naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[13]));
-  cmUpdateTwoColorController(
-    con->color14Display,
-    colors.crMetamerRGBFloatData[13],
-    colors.crReferenceRGBFloatData[13]);
+    naSetLabelText(
+      con->color9Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[8]));
+    cmUpdateTwoColorController(
+      con->color9Display,
+      colors.crMetamerRGBFloatData[8],
+      colors.crReferenceRGBFloatData[8]);
+    naSetLabelText(
+      con->color10Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[9]));
+    cmUpdateTwoColorController(
+      con->color10Display,
+      colors.crMetamerRGBFloatData[9],
+      colors.crReferenceRGBFloatData[9]);
+    naSetLabelText(
+      con->color11Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[10]));
+    cmUpdateTwoColorController(
+      con->color11Display,
+      colors.crMetamerRGBFloatData[10],
+      colors.crReferenceRGBFloatData[10]);
+    naSetLabelText(
+      con->color12Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[11]));
+    cmUpdateTwoColorController(
+      con->color12Display,
+      colors.crMetamerRGBFloatData[11],
+      colors.crReferenceRGBFloatData[11]);
+    naSetLabelText(
+      con->color13Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[12]));
+    cmUpdateTwoColorController(
+      con->color13Display,
+      colors.crMetamerRGBFloatData[12],
+      colors.crReferenceRGBFloatData[12]);
+    naSetLabelText(
+      con->color14Label,
+      naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[13]));
+    cmUpdateTwoColorController(
+      con->color14Display,
+      colors.crMetamerRGBFloatData[13],
+      colors.crReferenceRGBFloatData[13]);
+  }else{
+    naSetLabelText(con->color1Label,  "");
+    naSetLabelText(con->color2Label,  "");
+    naSetLabelText(con->color3Label,  "");
+    naSetLabelText(con->color4Label,  "");
+    naSetLabelText(con->color5Label,  "");
+    naSetLabelText(con->color6Label,  "");
+    naSetLabelText(con->color7Label,  "");
+    naSetLabelText(con->color8Label,  "");
+    naSetLabelText(con->color9Label,  "");
+    naSetLabelText(con->color10Label, "");
+    naSetLabelText(con->color11Label, "");
+    naSetLabelText(con->color12Label, "");
+    naSetLabelText(con->color13Label, "");
+    naSetLabelText(con->color14Label, "");
+    cmUpdateTwoColorController(con->color1Display,  greyColor, greyColor);
+    cmUpdateTwoColorController(con->color2Display,  greyColor, greyColor);
+    cmUpdateTwoColorController(con->color3Display,  greyColor, greyColor);
+    cmUpdateTwoColorController(con->color4Display,  greyColor, greyColor);
+    cmUpdateTwoColorController(con->color5Display,  greyColor, greyColor);
+    cmUpdateTwoColorController(con->color6Display,  greyColor, greyColor);
+    cmUpdateTwoColorController(con->color7Display,  greyColor, greyColor);
+    cmUpdateTwoColorController(con->color8Display,  greyColor, greyColor);
+    cmUpdateTwoColorController(con->color9Display,  greyColor, greyColor);
+    cmUpdateTwoColorController(con->color10Display, greyColor, greyColor);
+    cmUpdateTwoColorController(con->color11Display, greyColor, greyColor);
+    cmUpdateTwoColorController(con->color12Display, greyColor, greyColor);
+    cmUpdateTwoColorController(con->color13Display, greyColor, greyColor);
+    cmUpdateTwoColorController(con->color14Display, greyColor, greyColor);
+    naSetLabelText(con->colorLabel, "");
+  }
 }

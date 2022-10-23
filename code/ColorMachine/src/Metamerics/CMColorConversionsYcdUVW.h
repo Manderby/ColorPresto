@@ -27,6 +27,7 @@ void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcWhiteP
 // UVW is CIE 1964.
 void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv);
 
+// ISO 3664 2009 Table D.9
 const NAUTF8Char* getGrade(float value);
 
 

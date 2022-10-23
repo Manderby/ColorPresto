@@ -7,7 +7,7 @@ CM_PROTOTYPE(NASpace);
 
 
 // /////////////////////
-// D.4.2 Color Rendering index
+// ISO 3664 2009 D.4.2 Color Rendering index
 // /////////////////////
 
 typedef struct CMColorRenderingIndexController CMColorRenderingIndexController;
@@ -22,4 +22,5 @@ void cmUpdateColorRenderingIndexController(
   CMLFunction* observer2Funcs[3],
   const CMWhitePoints* illWhitePoint2,
   const CMWhitePoints* refWhitePoint2,
-  const CMLFunction* refSpec);
+  const CMLFunction* refSpec,
+  NABool valid);

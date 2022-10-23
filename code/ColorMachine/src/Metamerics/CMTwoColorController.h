@@ -19,8 +19,8 @@ NAOpenGLSpace* cmGetTwoColorControllerUIElement(CMTwoColorController* con);
 
 void cmUpdateTwoColorController(
   CMTwoColorController* con,
-  NAVec3f leftColor,
-  NAVec3f rightColor);
+  const float* leftColor,
+  const float* rightColor);
   
   
 

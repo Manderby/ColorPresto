@@ -515,37 +515,49 @@ void cmUpdateUVMetamericIndexController(
   CMUVMetamericIndexController* con,
   CMLFunction* observer10Funcs[3],
   const CMWhitePoints* illWhitePoint10,
-  CMReferenceIlluminationType referenceIlluminationType)
+  CMReferenceIlluminationType referenceIlluminationType,
+  NABool valid)
 {
-  con->uvMetamericColors = cmComputeUVMetamericColors(
-    observer10Funcs,
-    illWhitePoint10,
-    referenceIlluminationType);
+  if(valid){
+    con->uvMetamericColors = cmComputeUVMetamericColors(
+      observer10Funcs,
+      illWhitePoint10,
+      referenceIlluminationType);
 
-  naSetLabelText(
-    con->metamerics6Label,
-    naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.metamericIndex[0]));
-  cmUpdateTwoColorController(
-    con->metamerics6Display,
-    con->uvMetamericColors.uvStandardRGBFloatData[0],
-    con->uvMetamericColors.uvMetamerRGBFloatData[0]);
+    naSetLabelText(
+      con->metamerics6Label,
+      naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.metamericIndex[0]));
+    cmUpdateTwoColorController(
+      con->metamerics6Display,
+      con->uvMetamericColors.uvStandardRGBFloatData[0],
+      con->uvMetamericColors.uvMetamerRGBFloatData[0]);
 
-  naSetLabelText(
-    con->metamerics7Label,
-    naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.metamericIndex[1]));
-  cmUpdateTwoColorController(
-    con->metamerics7Display,
-    con->uvMetamericColors.uvStandardRGBFloatData[1],
-    con->uvMetamericColors.uvMetamerRGBFloatData[1]);
-  
-  naSetLabelText(
-    con->metamerics8Label,
-    naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.metamericIndex[2]));
-  cmUpdateTwoColorController(
-    con->metamerics8Display,
-    con->uvMetamericColors.uvStandardRGBFloatData[2],
-    con->uvMetamericColors.uvMetamerRGBFloatData[2]);
+    naSetLabelText(
+      con->metamerics7Label,
+      naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.metamericIndex[1]));
+    cmUpdateTwoColorController(
+      con->metamerics7Display,
+      con->uvMetamericColors.uvStandardRGBFloatData[1],
+      con->uvMetamericColors.uvMetamerRGBFloatData[1]);
+    
+    naSetLabelText(
+      con->metamerics8Label,
+      naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.metamericIndex[2]));
+    cmUpdateTwoColorController(
+      con->metamerics8Display,
+      con->uvMetamericColors.uvStandardRGBFloatData[2],
+      con->uvMetamericColors.uvMetamerRGBFloatData[2]);
 
-  naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.avg3));
-  naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cmTranslate(CMGrade), getGrade(con->uvMetamericColors.avg3)));
+    naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.avg3));
+    naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cmTranslate(CMGrade), getGrade(con->uvMetamericColors.avg3)));\
+  }else{
+    naSetLabelText(con->metamerics6Label, "");
+    naSetLabelText(con->metamerics7Label, "");
+    naSetLabelText(con->metamerics8Label, "");
+    cmUpdateTwoColorController(con->metamerics6Display, greyColor, greyColor);
+    cmUpdateTwoColorController(con->metamerics7Display, greyColor, greyColor);
+    cmUpdateTwoColorController(con->metamerics8Display, greyColor, greyColor);
+    naSetLabelText(con->metamericsLabel, "");
+    naSetLabelText(con->metamericsGradeLabel, "");
+  }
 }

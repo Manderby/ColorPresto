@@ -20,5 +20,4 @@ NASpace* cmGetChromaticityErrorUIElement(CMChromaticityErrorController* con);
 void cmUpdateChromaticityErrorController(
   CMChromaticityErrorController* con,
   const CMWhitePoints* refWhitePoint10,
-  const CMWhitePoints* illWhitePoint10,
-  NABool valid);
+  const CMWhitePoints* illWhitePoint10);

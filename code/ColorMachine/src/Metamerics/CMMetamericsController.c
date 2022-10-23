@@ -229,28 +229,30 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
   cmUpdateChromaticityErrorController(
     con->chromaticityErrorController,
     &refWhitePoint10,
-    &illWhitePoint10,
-    illuminationSpec != NA_NULL);
+    &illWhitePoint10);
     
   cmUpdateColorRenderingIndexController(
     con->colorRenderingIndexController,
     observer2Funcs,
     &illWhitePoint2,
     &refWhitePoint2,
-    ref);
+    ref,
+    illuminationSpec != NA_NULL);
 
   cmUpdateVisMetamericIndexController(
     con->visMetamericIndexController,
     observer10Funcs,
     &illWhitePoint10,
     adaptationMatrix,
-    referenceIlluminationType);
+    referenceIlluminationType,
+    illuminationSpec != NA_NULL);
 
   cmUpdateUVMetamericIndexController(
     con->uvMetamericIndexController,
     observer10Funcs,
     &illWhitePoint10,
-    referenceIlluminationType);
+    referenceIlluminationType,
+    illuminationSpec != NA_NULL);
 
   cmUpdateTotalMetamericIndexController(
     con->totalMetamericIndexController,

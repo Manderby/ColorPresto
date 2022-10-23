@@ -11,7 +11,7 @@ CM_PROTOTYPE(NASpace);
 
 
 // /////////////////////
-// D.4.3 Ultraviolet range metameric index
+// ISO 3664 2009 D.4.3 Ultraviolet range metameric index
 // /////////////////////
 
 typedef struct CMUVMetamericIndexController CMUVMetamericIndexController;
@@ -26,4 +26,5 @@ void cmUpdateUVMetamericIndexController(
   CMUVMetamericIndexController* con,
   CMLFunction* observer10Funcs[3],
   const CMWhitePoints* illWhitePoint10,
-  CMReferenceIlluminationType referenceIlluminationType);
+  CMReferenceIlluminationType referenceIlluminationType,
+  NABool valid);

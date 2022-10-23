@@ -79,7 +79,7 @@ NAOpenGLSpace* cmGetTwoColorControllerUIElement(CMTwoColorController* con){
 
 
 
-void cmUpdateTwoColorController(CMTwoColorController* con, NAVec3f leftColor, NAVec3f rightColor){
+void cmUpdateTwoColorController(CMTwoColorController* con, const float* leftColor, const float* rightColor){
   naCopyV3f(con->leftColor, leftColor);
   naCopyV3f(con->rightColor, rightColor);
 

@@ -30,6 +30,7 @@ static const double spaceMarginDegreeLeft = spaceMarginLeft + degreeWidth;
 static const double indexWidth = 30.;
 static const double twoColorWidth = 150.;
 
+static const float greyColor[3] = {.5f, .5f, .5f};
 
 
 void cmStartupDesign(void);

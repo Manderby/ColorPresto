@@ -76,13 +76,12 @@ void cmUpdateTotalMetamericIndexController(
   float avg3,
   NABool valid)
 {
-  float avg53 = (avg5 * 5.f + avg3 * 3.f) / 8.f;
-
   if(valid){
+    float avg53 = (avg5 * 5.f + avg3 * 3.f) / 8.f;
     naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", avg53));
+    naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cmTranslate(CMGrade), getGrade(avg53)));
   }else{
     naSetLabelText(con->metamericsLabel, "");
+    naSetLabelText(con->metamericsGradeLabel, "");
   }
-
-  naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cmTranslate(CMGrade), getGrade(avg53)));
 }

@@ -59,20 +59,13 @@ NASpace* cmGetChromaticityErrorUIElement(CMChromaticityErrorController* con){
 void cmUpdateChromaticityErrorController(
   CMChromaticityErrorController* con,
   const CMWhitePoints* refWhitePoint10,
-  const CMWhitePoints* illWhitePoint10,
-  NABool valid)
+  const CMWhitePoints* illWhitePoint10)
 {
-  if(valid){
-    CMLVec3 chromErrorDistance;
-    cmlCpy3(chromErrorDistance, refWhitePoint10->Yupvp);
-    cmlSub3(chromErrorDistance, illWhitePoint10->Yupvp);
-    float chromError = cmlLength2(&(chromErrorDistance[1]));
-    naSetLabelText(
-      con->chromaticityErrorLabel,
-      naAllocSprintf(NA_TRUE, "%1.05f\n", chromError));
-  }else{
-    naSetLabelText(
-      con->chromaticityErrorLabel,
-      "");
-  }
+  CMLVec3 chromErrorDistance;
+  cmlCpy3(chromErrorDistance, refWhitePoint10->Yupvp);
+  cmlSub3(chromErrorDistance, illWhitePoint10->Yupvp);
+  float chromError = cmlLength2(&(chromErrorDistance[1]));
+  naSetLabelText(
+    con->chromaticityErrorLabel,
+    naAllocSprintf(NA_TRUE, "%1.05f\n", chromError));
 }

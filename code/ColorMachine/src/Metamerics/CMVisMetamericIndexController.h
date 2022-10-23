@@ -10,7 +10,7 @@ CM_PROTOTYPE(NASpace);
 
 
 // /////////////////////
-// D.4.3 Visible range metameric index
+// ISO 3664 2009 D.4.3 Visible range metameric index
 // /////////////////////
 
 typedef struct CMVisMetamericIndexController CMVisMetamericIndexController;
@@ -26,4 +26,5 @@ void cmUpdateVisMetamericIndexController(
   CMLFunction* observer10Funcs[3],
   const CMWhitePoints* illWhitePoint10,
   const CMLMat33 adaptationMatrix,
-  CMReferenceIlluminationType referenceIlluminationType);
+  CMReferenceIlluminationType referenceIlluminationType,
+  NABool valid);
