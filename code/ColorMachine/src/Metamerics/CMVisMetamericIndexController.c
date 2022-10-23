@@ -1,6 +1,11 @@
 
-#include "CMVisMetamericColors.h"
+#include "CMVisMetamericIndexController.h"
+
+#include "CMDesign.h"
+#include "CMTwoColorController.h"
 #include "CMWhitePoints.h"
+
+#include "NAApp.h"
 
 
 
@@ -268,7 +273,47 @@ const float specimen5D75Data[] = {
 
 
 
-CMVisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3], const CMWhitePoints* illWhitePoint10, const CMLMat33 adaptationMatrix, CMReferenceIlluminationType referenceIlluminationType){
+typedef struct CMVisMetamericColors CMVisMetamericColors;
+struct CMVisMetamericColors{
+  CMLVec3 visStandardRGBFloatData[5];
+  CMLVec3 visMetamerRGBFloatData[5];
+  float metamericIndex[5];
+  float avg5;
+};
+
+struct CMVisMetamericIndexController{
+  NASpace* space;
+
+  NALabel* title;
+  NALabel* metamerics1IndexLabel;
+  NALabel* metamerics1Label;
+  CMTwoColorController* metamerics1Display;
+  NALabel* metamerics2IndexLabel;
+  NALabel* metamerics2Label;
+  CMTwoColorController* metamerics2Display;
+  NALabel* metamerics3IndexLabel;
+  NALabel* metamerics3Label;
+  CMTwoColorController* metamerics3Display;
+  NALabel* metamerics4IndexLabel;
+  NALabel* metamerics4Label;
+  CMTwoColorController* metamerics4Display;
+  NALabel* metamerics5IndexLabel;
+  NALabel* metamerics5Label;
+  CMTwoColorController* metamerics5Display;
+  NALabel* metamericsAverageLabel;
+  NALabel* metamericsLabel;
+  NALabel* metamericsGradeLabel;
+
+  CMVisMetamericColors visMetamericColors;
+};
+
+
+
+CMVisMetamericColors cmComputeVisMetamericColors(
+  CMLFunction* observer10Funcs[3],
+  const CMWhitePoints* illWhitePoint10,
+  const CMLMat33 adaptationMatrix,
+  CMReferenceIlluminationType referenceIlluminationType){
   
   CMVisMetamericColors metamericColors;
   
@@ -413,5 +458,175 @@ CMVisMetamericColors cmComputeVisMetamericColors(CMLFunction* observer10Funcs[3]
     NA_FALSE,
     NA_FALSE);
 
+  metamericColors.avg5 = metamericColors.metamericIndex[0]
+    + metamericColors.metamericIndex[1]
+    + metamericColors.metamericIndex[2]
+    + metamericColors.metamericIndex[3]
+    + metamericColors.metamericIndex[4];
+  metamericColors.avg5 /= 5.f;
+
   return metamericColors;
+}
+
+
+
+CMVisMetamericIndexController* cmAllocVisMetamericIndexController(void){
+  CMVisMetamericIndexController* con = naAlloc(CMVisMetamericIndexController);
+  naZeron(con, sizeof(CMVisMetamericIndexController));
+
+  double marginH1 = 0.;
+  double marginH2 = 5.;
+
+  double spaceWidth = spaceMarginLeft + indexWidth + marginH1 + valueWidth + marginH2 + twoColorWidth + spaceMarginRight;
+  double spaceHeight = 7 * uiElemHeight + spaceMarginV;
+
+  double valueLeft = spaceMarginLeft + indexWidth + marginH1;
+  double colorLeft = valueLeft + valueWidth + marginH2;
+
+  con->space = naNewSpace(naMakeSize(spaceWidth, spaceHeight));
+//  naSetSpaceAlternateBackground(con->space, NA_TRUE);
+
+  con->title = cmNewTitleLabel("Visible Range Metameric Index:", 250);
+  
+  con->metamerics1IndexLabel = naNewLabel("1:", indexWidth);
+  con->metamerics1Label = cmNewValueLabel();
+  con->metamerics1Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+
+  con->metamerics2IndexLabel = naNewLabel("2:", indexWidth);
+  con->metamerics2Label = cmNewValueLabel();
+  con->metamerics2Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+
+  con->metamerics3IndexLabel = naNewLabel("3:", indexWidth);
+  con->metamerics3Label = cmNewValueLabel();
+  con->metamerics3Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+
+  con->metamerics4IndexLabel = naNewLabel("4:", indexWidth);
+  con->metamerics4Label = cmNewValueLabel();
+  con->metamerics4Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+
+  con->metamerics5IndexLabel = naNewLabel("5:", indexWidth);
+  con->metamerics5Label = cmNewValueLabel();
+  con->metamerics5Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+
+  con->metamericsAverageLabel = naNewLabel("Ø:", indexWidth);
+  con->metamericsLabel = cmNewValueLabel();
+  con->metamericsGradeLabel = naNewLabel("Grade A", 120);
+
+
+
+  // Placing elements in the space
+
+  double spaceY = spaceHeight - spaceMarginTop;
+  spaceY -= uiElemHeight;
+  naAddSpaceChild(con->space, con->title, naMakePos(spaceMarginLeft, spaceY));
+  
+  spaceY -= uiElemHeight;
+  naAddSpaceChild(con->space, con->metamerics1IndexLabel, naMakePos(spaceMarginLeft, spaceY));
+  naAddSpaceChild(con->space, con->metamerics1Label, naMakePos(valueLeft, spaceY));
+  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->metamerics1Display), naMakePos(colorLeft, spaceY));
+  
+  spaceY -= uiElemHeight;
+  naAddSpaceChild(con->space, con->metamerics2IndexLabel, naMakePos(spaceMarginLeft, spaceY));
+  naAddSpaceChild(con->space, con->metamerics2Label, naMakePos(valueLeft, spaceY));
+  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->metamerics2Display), naMakePos(colorLeft, spaceY));
+  
+  spaceY -= uiElemHeight;
+  naAddSpaceChild(con->space, con->metamerics3IndexLabel, naMakePos(spaceMarginLeft, spaceY));
+  naAddSpaceChild(con->space, con->metamerics3Label, naMakePos(valueLeft, spaceY));
+  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->metamerics3Display), naMakePos(colorLeft, spaceY));
+
+  spaceY -= uiElemHeight;
+  naAddSpaceChild(con->space, con->metamerics4IndexLabel, naMakePos(spaceMarginLeft, spaceY));
+  naAddSpaceChild(con->space, con->metamerics4Label, naMakePos(valueLeft, spaceY));
+  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->metamerics4Display), naMakePos(colorLeft, spaceY));
+  
+  spaceY -= uiElemHeight;
+  naAddSpaceChild(con->space, con->metamerics5IndexLabel, naMakePos(spaceMarginLeft, spaceY));
+  naAddSpaceChild(con->space, con->metamerics5Label, naMakePos(valueLeft, spaceY));
+  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->metamerics5Display), naMakePos(colorLeft, spaceY));
+  
+  spaceY -= uiElemHeight;
+  naAddSpaceChild(con->space, con->metamericsAverageLabel, naMakePos(spaceMarginLeft, spaceY));
+  naAddSpaceChild(con->space, con->metamericsLabel, naMakePos(valueLeft, spaceY));
+  naAddSpaceChild(con->space, con->metamericsGradeLabel, naMakePos(colorLeft, spaceY));
+
+  return con;
+}
+
+
+
+void cmDeallocVisMetamericIndexController(CMVisMetamericIndexController* con){
+  naFree(con);
+}
+
+
+
+NASpace* cmGetVisMetamericIndexUIElement(CMVisMetamericIndexController* con){
+  return con->space;
+}
+
+
+
+float cmGetVisMetamericIndexAverage(CMVisMetamericIndexController* con){
+  return con->visMetamericColors.avg5;
+}
+
+
+
+void cmUpdateVisMetamericIndexController(
+  CMVisMetamericIndexController* con,
+  CMLFunction* observer10Funcs[3],
+  const CMWhitePoints* illWhitePoint10,
+  const CMLMat33 adaptationMatrix,
+  CMReferenceIlluminationType referenceIlluminationType)
+{
+  con->visMetamericColors = cmComputeVisMetamericColors(
+    observer10Funcs,
+    illWhitePoint10,
+    adaptationMatrix,
+    referenceIlluminationType);
+
+  naSetLabelText(
+    con->metamerics1Label,
+    naAllocSprintf(NA_TRUE, "%1.04f", con->visMetamericColors.metamericIndex[0]));
+  cmUpdateTwoColorController(
+    con->metamerics1Display,
+    con->visMetamericColors.visStandardRGBFloatData[0],
+    con->visMetamericColors.visMetamerRGBFloatData[0]);
+
+  naSetLabelText(
+    con->metamerics2Label,
+    naAllocSprintf(NA_TRUE, "%1.04f", con->visMetamericColors.metamericIndex[1]));
+  cmUpdateTwoColorController(
+    con->metamerics2Display,
+    con->visMetamericColors.visStandardRGBFloatData[1],
+    con->visMetamericColors.visMetamerRGBFloatData[1]);
+
+  naSetLabelText(
+    con->metamerics3Label,
+    naAllocSprintf(NA_TRUE, "%1.04f", con->visMetamericColors.metamericIndex[2]));
+  cmUpdateTwoColorController(
+    con->metamerics3Display,
+    con->visMetamericColors.visStandardRGBFloatData[2],
+    con->visMetamericColors.visMetamerRGBFloatData[2]);
+
+  naSetLabelText(
+    con->metamerics4Label,
+    naAllocSprintf(NA_TRUE, "%1.04f", con->visMetamericColors.metamericIndex[3]));
+  cmUpdateTwoColorController(
+    con->metamerics4Display,
+    con->visMetamericColors.visStandardRGBFloatData[3],
+    con->visMetamericColors.visMetamerRGBFloatData[3]);
+
+  naSetLabelText(
+    con->metamerics5Label,
+    naAllocSprintf(NA_TRUE, "%1.04f", con->visMetamericColors.metamericIndex[4]));
+  cmUpdateTwoColorController(
+    con->metamerics5Display,
+    con->visMetamericColors.visStandardRGBFloatData[4],
+    con->visMetamericColors.visMetamerRGBFloatData[4]);
+
+  naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", con->visMetamericColors.avg5));
+  naSetLabelText(con->metamericsGradeLabel, getGrade(con->visMetamericColors.avg5));
+
 }

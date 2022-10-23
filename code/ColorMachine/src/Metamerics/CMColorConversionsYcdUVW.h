@@ -2,6 +2,10 @@
 #ifndef CM_COLOR_CONVERSION_YCD_UVW_DEFINED
 #define CM_COLOR_CONVERSION_YCD_UVW_DEFINED
 
+#include "NAUtility/NAString.h"
+
+
+
 typedef enum{
   REFERENCE_ILLUMINATION_D50,
   REFERENCE_ILLUMINATION_D55,
@@ -22,6 +26,10 @@ void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcWhiteP
 // In CML, this is Yuv.
 // UVW is CIE 1964.
 void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv);
+
+const NAUTF8Char* getGrade(float value);
+
+
 
 #endif // CM_COLOR_CONVERSION_YCD_UVW_DEFINED
 

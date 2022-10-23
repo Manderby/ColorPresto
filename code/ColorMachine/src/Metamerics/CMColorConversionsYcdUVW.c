@@ -2,6 +2,9 @@
 #include "CMColorConversionsYcdUVW.h"
 #include "mainC.h"
 
+
+// todo: add conversions to main window or even CML.
+
 void convertYuvtoYcd(float* Ycd, const float* yuv){
   cmlSet3(
     Ycd,
@@ -28,4 +31,12 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
   UVW[2] = 25.f * cmlCbrt(yuv[0] * 100.f) - 17.f;
   UVW[0] = 13.f * UVW[2] * (yuv[1] - whitePointYuv[1]);
   UVW[1] = 13.f * UVW[2] * (yuv[2] - whitePointYuv[2]);
+}
+
+const NAUTF8Char* getGrade(float value){
+  if(value <= .25f){return "Grade A";}
+  else if(value <= .5f){return "Grade B";}
+  else if(value <= 1.f){return "Grade C";}
+  else if(value <= 2.f){return "Grade D";}
+  return "Grade E";
 }

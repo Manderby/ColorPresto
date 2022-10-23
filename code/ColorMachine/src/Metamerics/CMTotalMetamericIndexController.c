@@ -1,0 +1,87 @@
+
+#include "CMTotalMetamericIndexController.h"
+
+#include "CMDesign.h"
+#include "CMColorConversionsYcdUVW.h"
+
+#include "NAApp.h"
+
+
+struct CMTotalMetamericIndexController{
+  NASpace* space;
+
+  NALabel* title;
+  NALabel* metamericsAverageLabel;
+  NALabel* metamericsLabel;
+  NALabel* metamericsGradeLabel;
+};
+
+
+
+CMTotalMetamericIndexController* cmAllocTotalMetamericIndexController(void){
+  CMTotalMetamericIndexController* con = naAlloc(CMTotalMetamericIndexController);
+  naZeron(con, sizeof(CMTotalMetamericIndexController));
+
+  double marginH1 = 0.;
+  double marginH2 = 5.;
+
+  double spaceWidth = spaceMarginLeft + indexWidth + marginH1 + valueWidth + marginH2 + twoColorWidth + spaceMarginRight;
+  double spaceHeight = 2 * uiElemHeight + spaceMarginV;
+
+  double valueLeft = spaceMarginLeft + indexWidth + marginH1;
+  double colorLeft = valueLeft + valueWidth + marginH2;
+
+  con->space = naNewSpace(naMakeSize(spaceWidth, spaceHeight));
+//  naSetSpaceAlternateBackground(con->space, NA_TRUE);
+
+  con->title = cmNewTitleLabel("Total Metameric Index (1-8):", 250);
+  con->metamericsAverageLabel = naNewLabel("Ø:", 120);
+  con->metamericsLabel = cmNewValueLabel();
+  con->metamericsGradeLabel = naNewLabel("Grade A", 120);
+
+
+
+  // Placing elements in the space
+
+  double spaceY = spaceHeight - spaceMarginTop;
+  spaceY -= uiElemHeight;
+  naAddSpaceChild(con->space, con->title, naMakePos(spaceMarginLeft, spaceY));
+ 
+  spaceY -= uiElemHeight;
+  naAddSpaceChild(con->space, con->metamericsAverageLabel, naMakePos(spaceMarginLeft, spaceY));
+  naAddSpaceChild(con->space, con->metamericsLabel, naMakePos(valueLeft, spaceY));
+  naAddSpaceChild(con->space, con->metamericsGradeLabel, naMakePos(colorLeft, spaceY));
+
+  return con;
+}
+
+
+
+void cmDeallocTotalMetamericIndexController(CMTotalMetamericIndexController* con){
+  naFree(con);
+}
+
+
+
+NASpace* cmGetTotalMetamericIndexUIElement(CMTotalMetamericIndexController* con){
+  return con->space;
+}
+
+
+
+void cmUpdateTotalMetamericIndexController(
+  CMTotalMetamericIndexController* con,
+  float avg5,
+  float avg3,
+  NABool valid)
+{
+  float avg53 = (avg5 * 5.f + avg3 * 3.f) / 8.f;
+
+  if(valid){
+    naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", avg53));
+  }else{
+    naSetLabelText(con->metamericsLabel, "");
+  }
+
+  naSetLabelText(con->metamericsGradeLabel, getGrade(avg53));
+}

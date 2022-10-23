@@ -31,12 +31,13 @@
 		90384AA22887312E0002D469 /* NA3DHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384AA12887312E0002D469 /* NA3DHelper.h */; };
 		90384AA4288731930002D469 /* NA3DHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA3288731930002D469 /* NA3DHelper.c */; };
 		90384AA828873AF10002D469 /* NAMathOperators.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA728873AF10002D469 /* NAMathOperators.c */; };
-		906848CC2904609C00C59002 /* CMColorRenderingIndex.c in Sources */ = {isa = PBXBuildFile; fileRef = 906848CB2904609C00C59002 /* CMColorRenderingIndex.c */; };
+		906848CC2904609C00C59002 /* CMColorRenderingIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 906848CB2904609C00C59002 /* CMColorRenderingIndexController.c */; };
 		906848CF2904682900C59002 /* CMColorConversionsYcdUVW.c in Sources */ = {isa = PBXBuildFile; fileRef = 906848CD2904682900C59002 /* CMColorConversionsYcdUVW.c */; };
 		9068AC5D28D6643E001635DD /* CMMetamericsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 9068AC5C28D6643E001635DD /* CMMetamericsController.c */; };
 		907961612905282000D1D9D7 /* CMChromaticityErrorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 907961602905282000D1D9D7 /* CMChromaticityErrorController.c */; };
 		907961642905330700D1D9D7 /* CMDesign.c in Sources */ = {isa = PBXBuildFile; fileRef = 907961632905330700D1D9D7 /* CMDesign.c */; };
 		907961672905623F00D1D9D7 /* CMWhitePointsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 907961652905623F00D1D9D7 /* CMWhitePointsController.c */; };
+		9079616A29059E4100D1D9D7 /* CMTotalMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 9079616829059E4100D1D9D7 /* CMTotalMetamericIndexController.c */; };
 		909541AD28B155D800346AB2 /* CMThreeDeeView.c in Sources */ = {isa = PBXBuildFile; fileRef = 909541AB28B155D800346AB2 /* CMThreeDeeView.c */; };
 		9099F4FD28F2145300C18D81 /* CMTwoColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 9099F4FB28F2145300C18D81 /* CMTwoColorController.c */; };
 		90B6FD6228A99A2F00EE6F32 /* ManderApp.vcxproj in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */; };
@@ -376,9 +377,9 @@
 		90BF91A62752667B001EA32C /* CMLHSVColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91562752667B001EA32C /* CMLHSVColor.h */; };
 		90BF91A72752667B001EA32C /* CMLYCbCrColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 90BF91572752667B001EA32C /* CMLYCbCrColor.cpp */; };
 		90BF91A82752667B001EA32C /* CMLMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91582752667B001EA32C /* CMLMath.h */; };
-		90C6C9B3290094AE00F350A4 /* CMVisMetamericColors.c in Sources */ = {isa = PBXBuildFile; fileRef = 90C6C9B2290094AE00F350A4 /* CMVisMetamericColors.c */; };
+		90C6C9B3290094AE00F350A4 /* CMVisMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90C6C9B2290094AE00F350A4 /* CMVisMetamericIndexController.c */; };
 		90ED439C28FF431F004E8A54 /* CMWhitePoints.c in Sources */ = {isa = PBXBuildFile; fileRef = 90ED439A28FF431F004E8A54 /* CMWhitePoints.c */; };
-		90ED439D28FF431F004E8A54 /* CMUVMetamericColors.c in Sources */ = {isa = PBXBuildFile; fileRef = 90ED439B28FF431F004E8A54 /* CMUVMetamericColors.c */; };
+		90ED439D28FF431F004E8A54 /* CMUVMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90ED439B28FF431F004E8A54 /* CMUVMetamericIndexController.c */; };
 		B96AA9A21767414B00F041A3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96AA9A11767414B00F041A3 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
@@ -437,8 +438,8 @@
 		90384AA12887312E0002D469 /* NA3DHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NA3DHelper.h; sourceTree = "<group>"; };
 		90384AA3288731930002D469 /* NA3DHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NA3DHelper.c; sourceTree = "<group>"; };
 		90384AA728873AF10002D469 /* NAMathOperators.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NAMathOperators.c; sourceTree = "<group>"; };
-		906848CA2904609C00C59002 /* CMColorRenderingIndex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMColorRenderingIndex.h; sourceTree = "<group>"; };
-		906848CB2904609C00C59002 /* CMColorRenderingIndex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMColorRenderingIndex.c; sourceTree = "<group>"; };
+		906848CA2904609C00C59002 /* CMColorRenderingIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMColorRenderingIndexController.h; sourceTree = "<group>"; };
+		906848CB2904609C00C59002 /* CMColorRenderingIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMColorRenderingIndexController.c; sourceTree = "<group>"; };
 		906848CD2904682900C59002 /* CMColorConversionsYcdUVW.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMColorConversionsYcdUVW.c; sourceTree = "<group>"; };
 		906848CE2904682900C59002 /* CMColorConversionsYcdUVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMColorConversionsYcdUVW.h; sourceTree = "<group>"; };
 		9068AC5B28D6643E001635DD /* CMMetamericsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMetamericsController.h; sourceTree = "<group>"; };
@@ -449,6 +450,8 @@
 		907961632905330700D1D9D7 /* CMDesign.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMDesign.c; sourceTree = "<group>"; };
 		907961652905623F00D1D9D7 /* CMWhitePointsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMWhitePointsController.c; sourceTree = "<group>"; };
 		907961662905623F00D1D9D7 /* CMWhitePointsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMWhitePointsController.h; sourceTree = "<group>"; };
+		9079616829059E4100D1D9D7 /* CMTotalMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMTotalMetamericIndexController.c; sourceTree = "<group>"; };
+		9079616929059E4100D1D9D7 /* CMTotalMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTotalMetamericIndexController.h; sourceTree = "<group>"; };
 		909541AB28B155D800346AB2 /* CMThreeDeeView.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMThreeDeeView.c; sourceTree = "<group>"; };
 		909541AC28B155D800346AB2 /* CMThreeDeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMThreeDeeView.h; sourceTree = "<group>"; };
 		9099F4FB28F2145300C18D81 /* CMTwoColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMTwoColorController.c; sourceTree = "<group>"; };
@@ -827,12 +830,12 @@
 		90BF91562752667B001EA32C /* CMLHSVColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLHSVColor.h; sourceTree = "<group>"; };
 		90BF91572752667B001EA32C /* CMLYCbCrColor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CMLYCbCrColor.cpp; sourceTree = "<group>"; };
 		90BF91582752667B001EA32C /* CMLMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLMath.h; sourceTree = "<group>"; };
-		90C6C9B1290094AE00F350A4 /* CMVisMetamericColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMVisMetamericColors.h; sourceTree = "<group>"; };
-		90C6C9B2290094AE00F350A4 /* CMVisMetamericColors.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMVisMetamericColors.c; sourceTree = "<group>"; };
-		90ED439828FF431F004E8A54 /* CMUVMetamericColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMUVMetamericColors.h; sourceTree = "<group>"; };
+		90C6C9B1290094AE00F350A4 /* CMVisMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMVisMetamericIndexController.h; sourceTree = "<group>"; };
+		90C6C9B2290094AE00F350A4 /* CMVisMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMVisMetamericIndexController.c; sourceTree = "<group>"; };
+		90ED439828FF431F004E8A54 /* CMUVMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMUVMetamericIndexController.h; sourceTree = "<group>"; };
 		90ED439928FF431F004E8A54 /* CMWhitePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMWhitePoints.h; sourceTree = "<group>"; };
 		90ED439A28FF431F004E8A54 /* CMWhitePoints.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMWhitePoints.c; sourceTree = "<group>"; };
-		90ED439B28FF431F004E8A54 /* CMUVMetamericColors.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMUVMetamericColors.c; sourceTree = "<group>"; };
+		90ED439B28FF431F004E8A54 /* CMUVMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMUVMetamericIndexController.c; sourceTree = "<group>"; };
 		B96AA9A11767414B00F041A3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		B9917CB115C9AA9E00F0140B /* libcml.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcml.dylib; path = /usr/local/lib/libcml.dylib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -1528,16 +1531,18 @@
 				9079615F2905282000D1D9D7 /* CMChromaticityErrorController.h */,
 				906848CD2904682900C59002 /* CMColorConversionsYcdUVW.c */,
 				906848CE2904682900C59002 /* CMColorConversionsYcdUVW.h */,
-				906848CB2904609C00C59002 /* CMColorRenderingIndex.c */,
-				906848CA2904609C00C59002 /* CMColorRenderingIndex.h */,
+				906848CB2904609C00C59002 /* CMColorRenderingIndexController.c */,
+				906848CA2904609C00C59002 /* CMColorRenderingIndexController.h */,
 				9068AC5C28D6643E001635DD /* CMMetamericsController.c */,
 				9068AC5B28D6643E001635DD /* CMMetamericsController.h */,
+				9079616829059E4100D1D9D7 /* CMTotalMetamericIndexController.c */,
+				9079616929059E4100D1D9D7 /* CMTotalMetamericIndexController.h */,
 				9099F4FB28F2145300C18D81 /* CMTwoColorController.c */,
 				9099F4FC28F2145300C18D81 /* CMTwoColorController.h */,
-				90ED439B28FF431F004E8A54 /* CMUVMetamericColors.c */,
-				90ED439828FF431F004E8A54 /* CMUVMetamericColors.h */,
-				90C6C9B2290094AE00F350A4 /* CMVisMetamericColors.c */,
-				90C6C9B1290094AE00F350A4 /* CMVisMetamericColors.h */,
+				90ED439B28FF431F004E8A54 /* CMUVMetamericIndexController.c */,
+				90ED439828FF431F004E8A54 /* CMUVMetamericIndexController.h */,
+				90C6C9B2290094AE00F350A4 /* CMVisMetamericIndexController.c */,
+				90C6C9B1290094AE00F350A4 /* CMVisMetamericIndexController.h */,
 				90ED439A28FF431F004E8A54 /* CMWhitePoints.c */,
 				90ED439928FF431F004E8A54 /* CMWhitePoints.h */,
 				907961652905623F00D1D9D7 /* CMWhitePointsController.c */,
@@ -2077,13 +2082,13 @@
 				90BF5149274AB29E001FDE2A /* XYZColorController.mm in Sources */,
 				90BF513C274AB29E001FDE2A /* ColorMachineApplication.mm in Sources */,
 				907961612905282000D1D9D7 /* CMChromaticityErrorController.c in Sources */,
-				906848CC2904609C00C59002 /* CMColorRenderingIndex.c in Sources */,
+				906848CC2904609C00C59002 /* CMColorRenderingIndexController.c in Sources */,
 				907961672905623F00D1D9D7 /* CMWhitePointsController.c in Sources */,
 				90B6FD6528A99A2F00EE6F32 /* ManderAppTranslations.c in Sources */,
 				90ED439C28FF431F004E8A54 /* CMWhitePoints.c in Sources */,
 				90BF514D274AB29E001FDE2A /* YCbCrColorController.mm in Sources */,
-				90C6C9B3290094AE00F350A4 /* CMVisMetamericColors.c in Sources */,
-				90ED439D28FF431F004E8A54 /* CMUVMetamericColors.c in Sources */,
+				90C6C9B3290094AE00F350A4 /* CMVisMetamericIndexController.c in Sources */,
+				90ED439D28FF431F004E8A54 /* CMUVMetamericIndexController.c in Sources */,
 				90B6FD6428A99A2F00EE6F32 /* ManderAppAbout.c in Sources */,
 				90BF513E274AB29E001FDE2A /* ColorsController.mm in Sources */,
 				90BF513D274AB29E001FDE2A /* MachinesController.mm in Sources */,
@@ -2092,6 +2097,7 @@
 				90BF514F274AB29E001FDE2A /* HSVColorController.mm in Sources */,
 				900B8EEE28B2E075007A137C /* main.c in Sources */,
 				90B6FD6C28A99FEE00EE6F32 /* CMTranslations.c in Sources */,
+				9079616A29059E4100D1D9D7 /* CMTotalMetamericIndexController.c in Sources */,
 				90BF514C274AB29E001FDE2A /* SpectralColorController.mm in Sources */,
 				90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */,
 				90BF5146274AB29E001FDE2A /* MachineWindowController.mm in Sources */,

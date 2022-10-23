@@ -4,6 +4,8 @@
 
 #include "CML.h"
 
+
+
 typedef struct CMWhitePoints CMWhitePoints;
 struct CMWhitePoints{
   CMLVec3 XYZ;
@@ -13,6 +15,8 @@ struct CMWhitePoints{
   CMLVec3 Yuv;
   CMLVec3 Ycd;
 };
+
+
 
 void CMFillChromaticAdaptationMatrix(
   CMLMat33 adaptationMatrix,

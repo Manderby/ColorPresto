@@ -7,9 +7,6 @@
 
 
 
-
-
-
 typedef struct CMMetamericsController CMMetamericsController;
 
 CMMetamericsController* cmAllocMetamericsController(void);
