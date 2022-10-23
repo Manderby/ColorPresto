@@ -1,8 +1,9 @@
 
 #include "CMTotalMetamericIndexController.h"
 
-#include "CMDesign.h"
 #include "CMColorConversionsYcdUVW.h"
+#include "CMDesign.h"
+#include "CMTranslations.h"
 
 #include "NAApp.h"
 
@@ -34,10 +35,10 @@ CMTotalMetamericIndexController* cmAllocTotalMetamericIndexController(void){
   con->space = naNewSpace(naMakeSize(spaceWidth, spaceHeight));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->title = cmNewTitleLabel("Total Metameric Index (1-8):", 250);
-  con->metamericsAverageLabel = naNewLabel("Ø:", 120);
+  con->title = cmNewTitleLabel(cmTranslate(CMTotalMetamericIndex), 250);
+  con->metamericsAverageLabel = naNewLabel(cmTranslate(CMAverage), 120);
   con->metamericsLabel = cmNewValueLabel();
-  con->metamericsGradeLabel = naNewLabel("Grade A", 120);
+  con->metamericsGradeLabel = naNewLabel("", 120);
 
 
 
@@ -83,5 +84,5 @@ void cmUpdateTotalMetamericIndexController(
     naSetLabelText(con->metamericsLabel, "");
   }
 
-  naSetLabelText(con->metamericsGradeLabel, getGrade(avg53));
+  naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cmTranslate(CMGrade), getGrade(avg53)));
 }

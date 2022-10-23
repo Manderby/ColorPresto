@@ -28,7 +28,7 @@ static const double degreeWidth = 35;
 static const double spaceMarginDegreeLeft = spaceMarginLeft + degreeWidth;
 
 static const double indexWidth = 30.;
-static const double twoColorWidth = 140.;
+static const double twoColorWidth = 150.;
 
 
 

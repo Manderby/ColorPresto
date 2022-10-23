@@ -4,6 +4,7 @@
 #include "CMDesign.h"
 #include "CMTwoColorController.h"
 #include "CMMetamericsController.h"
+#include "CMTranslations.h"
 #include "CMWhitePoints.h"
 
 #include "mainC.h"
@@ -441,7 +442,7 @@ CMUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
 
 
 
-  con->title = cmNewTitleLabel("Ultraviolet Range Metameric Index:", 250);
+  con->title = cmNewTitleLabel(cmTranslate(CMUVMetamericIndex), 250);
 
   con->metamerics6IndexLabel = naNewLabel("6:", indexWidth);
   con->metamerics6Label = cmNewValueLabel();
@@ -455,9 +456,9 @@ CMUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
   con->metamerics8Label = cmNewValueLabel();
   con->metamerics8Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
 
-  con->metamericsAverageLabel = naNewLabel("Ø:", 120);
+  con->metamericsAverageLabel = naNewLabel(cmTranslate(CMAverage), 120);
   con->metamericsLabel = cmNewValueLabel();
-  con->metamericsGradeLabel = naNewLabel("Grade A", 120);
+  con->metamericsGradeLabel = naNewLabel("", 120);
 
 
 
@@ -546,5 +547,5 @@ void cmUpdateUVMetamericIndexController(
     con->uvMetamericColors.uvMetamerRGBFloatData[2]);
 
   naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.avg3));
-  naSetLabelText(con->metamericsGradeLabel, getGrade(con->uvMetamericColors.avg3));
+  naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cmTranslate(CMGrade), getGrade(con->uvMetamericColors.avg3)));
 }

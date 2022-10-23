@@ -2,6 +2,7 @@
 #include "CMVisMetamericIndexController.h"
 
 #include "CMDesign.h"
+#include "CMTranslations.h"
 #include "CMTwoColorController.h"
 #include "CMWhitePoints.h"
 
@@ -486,7 +487,7 @@ CMVisMetamericIndexController* cmAllocVisMetamericIndexController(void){
   con->space = naNewSpace(naMakeSize(spaceWidth, spaceHeight));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->title = cmNewTitleLabel("Visible Range Metameric Index:", 250);
+  con->title = cmNewTitleLabel(cmTranslate(CMVisMetamericIndex), 250);
   
   con->metamerics1IndexLabel = naNewLabel("1:", indexWidth);
   con->metamerics1Label = cmNewValueLabel();
@@ -508,9 +509,9 @@ CMVisMetamericIndexController* cmAllocVisMetamericIndexController(void){
   con->metamerics5Label = cmNewValueLabel();
   con->metamerics5Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
 
-  con->metamericsAverageLabel = naNewLabel("Ø:", indexWidth);
+  con->metamericsAverageLabel = naNewLabel(cmTranslate(CMAverage), indexWidth);
   con->metamericsLabel = cmNewValueLabel();
-  con->metamericsGradeLabel = naNewLabel("Grade A", 120);
+  con->metamericsGradeLabel = naNewLabel("", 120);
 
 
 
@@ -627,6 +628,6 @@ void cmUpdateVisMetamericIndexController(
     con->visMetamericColors.visMetamerRGBFloatData[4]);
 
   naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", con->visMetamericColors.avg5));
-  naSetLabelText(con->metamericsGradeLabel, getGrade(con->visMetamericColors.avg5));
+  naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cmTranslate(CMGrade), getGrade(con->visMetamericColors.avg5)));
 
 }

@@ -3,6 +3,7 @@
 
 #include "CMDesign.h"
 #include "CMMetamericsController.h"
+#include "CMTranslations.h"
 #include "CMWhitePoints.h"
 
 #include "CML.h"
@@ -93,19 +94,19 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
 
   // Illumination whitepoint
   
-  con->ill10DegLabel = cmNewTitleLabel("10°", degreeWidth);
-  con->ill2DegLabel = cmNewTitleLabel("2°", degreeWidth);
+  con->ill10DegLabel = cmNewTitleLabel(cmTranslate(CMObserverDegree10), degreeWidth);
+  con->ill2DegLabel = cmNewTitleLabel(cmTranslate(CMObserverDegree2), degreeWidth);
 
-  con->illTitle = cmNewTitleLabel("Current:", fourValuesWidth);
+  con->illTitle = cmNewTitleLabel("", fourValuesWidth);
   naSetLabelTextAlignment(con->illTitle, NA_TEXT_ALIGNMENT_CENTER);
 
-  con->illXYZTitle = cmNewTitleLabel("XYZ", valueWidth);
+  con->illXYZTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceXYZ), valueWidth);
   naSetLabelTextAlignment(con->illXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
-  con->illYxyTitle = cmNewTitleLabel("Yxy", valueWidth);
+  con->illYxyTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYxy), valueWidth);
   naSetLabelTextAlignment(con->illYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
-  con->illYupvpTitle = cmNewTitleLabel("Yu'v'", valueWidth);
+  con->illYupvpTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYupvp), valueWidth);
   naSetLabelTextAlignment(con->illYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
-  con->illYuvTitle = cmNewTitleLabel("Yuv", valueWidth);
+  con->illYuvTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYuv), valueWidth);
   naSetLabelTextAlignment(con->illYuvTitle, NA_TEXT_ALIGNMENT_CENTER);
 
   con->illXYZ10Label = cmNewThreeValueLabel();
@@ -120,10 +121,10 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
 
   // Reference whitepoint
 
-  con->ref10DegLabel = cmNewTitleLabel("10°", degreeWidth);
-  con->ref2DegLabel = cmNewTitleLabel("2°", degreeWidth);
+  con->ref10DegLabel = cmNewTitleLabel(cmTranslate(CMObserverDegree10), degreeWidth);
+  con->ref2DegLabel = cmNewTitleLabel(cmTranslate(CMObserverDegree2), degreeWidth);
 
-  con->refTitle = cmNewTitleLabel("Reference:", 80);
+  con->refTitle = cmNewTitleLabel(cmTranslate(CMReferenceIllumination), 80);
 
   con->refPopupButton = naNewPopupButton(70);
   con->refD50MenuItem = naNewMenuItem("D50");
@@ -232,7 +233,7 @@ void cmUpdateWhitePointsController(
   // current whitepoint
   naSetLabelText(
     con->illTitle,
-    naAllocSprintf(NA_TRUE, "Current: %s", illuminationName));
+    naAllocSprintf(NA_TRUE, cmTranslate(CMCurrentIllumination), illuminationName));
 
   naSetLabelText(
     con->illXYZ10Label,

@@ -11,12 +11,14 @@ enum{
   CMApplicationDescription,
   CMApplicationHelpURL,
 
-  // Strings for Whitepoint and Metamerics window
-  CMWhitepointsAndMetamerics,
-  CMChromaticityErrorTitle,
+  // General things
+  CMAverage,
 
-  // Strings for 3D window
-  CM3DView,
+  // Observer strings
+  CMObserverDegree2,
+  CMObserverDegree10,
+
+  // Colorspaces
   CMColorSpaceXYZ,
   CMColorSpaceYxy,
   CMColorSpaceYupvp,
@@ -28,6 +30,20 @@ enum{
   CMColorSpaceYCbCr,
   CMColorSpaceHSV,
   CMColorSpaceHSL,
+
+  // Strings for Whitepoint and Metamerics window
+  CMWhitepointsAndMetamerics,
+  CMCurrentIllumination,
+  CMReferenceIllumination,
+  CMChromaticityErrorTitle,
+  CMColorRenderingIndex,
+  CMVisMetamericIndex,
+  CMUVMetamericIndex,
+  CMTotalMetamericIndex,
+  CMGrade,
+
+  // Strings for 3D window
+  CM3DView,
   CMColorSpace,
   CMCoordinates,
   CMSteps,

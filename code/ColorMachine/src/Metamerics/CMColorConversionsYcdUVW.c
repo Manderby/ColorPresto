@@ -34,9 +34,9 @@ void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv){
 }
 
 const NAUTF8Char* getGrade(float value){
-  if(value <= .25f){return "Grade A";}
-  else if(value <= .5f){return "Grade B";}
-  else if(value <= 1.f){return "Grade C";}
-  else if(value <= 2.f){return "Grade D";}
-  return "Grade E";
+  if(value <= .25f){return "A";}
+  else if(value <= .5f){return "B";}
+  else if(value <= 1.f){return "C";}
+  else if(value <= 2.f){return "D";}
+  return "E";
 }

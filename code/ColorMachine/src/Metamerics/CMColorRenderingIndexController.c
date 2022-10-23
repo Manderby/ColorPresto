@@ -3,8 +3,9 @@
 
 #include "CMColorConversionsYcdUVW.h"
 #include "CMDesign.h"
-#include "CMWhitePoints.h"
+#include "CMTranslations.h"
 #include "CMTwoColorController.h"
+#include "CMWhitePoints.h"
 
 #include "CML.h"
 
@@ -371,7 +372,7 @@ CMColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
   con->space = naNewSpace(naMakeSize(spaceWidth, spaceHeight));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->title = cmNewTitleLabel("Color Rendering Index:", 250);
+  con->title = cmNewTitleLabel(cmTranslate(CMColorRenderingIndex), 250);
 
   con->color1IndexLabel = naNewLabel("1:", indexWidth);
   con->color1Label = cmNewValueLabel();
@@ -398,7 +399,7 @@ CMColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
   con->color8Label = cmNewValueLabel();
   con->color8Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
 
-  con->colorAverageLabel = naNewLabel("Ø:", 120);
+  con->colorAverageLabel = naNewLabel(cmTranslate(CMAverage), 120);
   con->colorLabel = cmNewValueLabel();
 
   con->color9IndexLabel = naNewLabel("9:", indexWidth);
