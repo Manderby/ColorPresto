@@ -1,6 +1,10 @@
 
 #include "CMMetamericsController.h"
 
+#include "CMChromaticityErrorController.h"
+#include "CMWhitePointsController.h"
+
+#include "CMColorConversionsYcdUVW.h"
 #include "CMColorRenderingIndex.h"
 #include "CMTranslations.h"
 #include "CMTwoColorController.h"
@@ -10,31 +14,19 @@
 #include "NAApp.h"
 #include "CML.h"
 #include "mainC.h"
+#include "CMDesign.h"
 
 
-static const double marginHLeft = 15.;
-static const double marginH = 5.;
-static const double margin2H = 10.;
-static const double marginHRight = 15.;
-static const double marginYBottom = 15.;
-static const double marginYTop = marginYBottom - 3.;
-
-static const double indexWidth = 35.;
-static const double valueWidth = 60.;
-static const double threeValueHeight = 55.;
-static const double threeValueMargin = threeValueHeight + 10.;
-static const double colorWidth = 160.;
-static const double columnWidth = marginHLeft + indexWidth + valueWidth + colorWidth + 2 * marginH + marginHRight;
+static const double indexWidth = 30.;
+static const double colorWidth = 140.;
+static const double columnWidth = spaceMarginLeft + indexWidth + valueWidth + colorWidth + 1 * 5. + spaceMarginRight;
 static const double degreeWidth = 30;
-static const double firstColumnWidth = columnWidth + degreeWidth + 5;
-static const double firstColumLeft = marginHLeft + degreeWidth + 5;
+static const double firstColumLeft = spaceMarginLeft + degreeWidth + 5;
 
-static const double valueLeft = marginHLeft + indexWidth + marginH;
-static const double colorLeft = valueLeft + valueWidth + marginH;
-
+static const double valueLeft = spaceMarginLeft + indexWidth;
+static const double colorLeft = valueLeft + valueWidth + 5.;
 
 
-NAFont* monoFont;
 
 struct CMMetamericsController{
   NAWindow* window;
@@ -43,56 +35,8 @@ struct CMMetamericsController{
   NASpace* colorRenderingBigSpace;
   NASpace* metamericsBigSpace;
   
-  NASpace* illSpace;
-  NALabel* ill10DegLabel;
-  NALabel* ill2DegLabel;
-  
-  NALabel* illTitle;
-
-  NALabel* illXYZTitle;
-  NALabel* illYxyTitle;
-  NALabel* illYupvpTitle;
-  NALabel* illYuvTitle;
-
-  NALabel* illXYZ10Label;
-  NALabel* illYxy10Label;
-  NALabel* illYupvp10Label;
-  NALabel* illYuv10Label;
-
-  NALabel* illXYZ2Label;
-  NALabel* illYxy2Label;
-  NALabel* illYupvp2Label;
-  NALabel* illYuv2Label;
-  
-  NASpace* refSpace;
-  NALabel* ref10DegLabel;
-  NALabel* ref2DegLabel;
-
-  NALabel* refTitle;
-  NAPopupButton* refPopupButton;
-  NAMenuItem* refD50MenuItem;
-  NAMenuItem* refD55MenuItem;
-  NAMenuItem* refD65MenuItem;
-  NAMenuItem* refD75MenuItem;
-
-  NALabel* refXYZTitle;
-  NALabel* refYxyTitle;
-  NALabel* refYupvpTitle;
-  NALabel* refYuvTitle;
-
-  NALabel* refXYZ10Label;
-  NALabel* refYxy10Label;
-  NALabel* refYupvp10Label;
-  NALabel* refYuv10Label;
-
-  NALabel* refXYZ2Label;
-  NALabel* refYxy2Label;
-  NALabel* refYupvp2Label;
-  NALabel* refYuv2Label;
-  
-  NASpace* chromaticitySpace;
-  NALabel* chromaticityTitle;
-  NALabel* chromaticityLabel;
+  CMWhitePointsController* whitePointsController;
+  CMChromaticityErrorController* chromaticityErrorController;
 
   NASpace* colorRenderingSpace;
   NALabel* colorRenderingTitle;
@@ -184,24 +128,9 @@ struct CMMetamericsController{
   NALabel* totalMetamericsAverageLabel;
   NALabel* totalMetamericsLabel;
   NALabel* totalMetamericsGradeLabel;
-
-  CMReferenceIlluminationType referenceIlluminationType;
 };
 
 
-
-NALabel* cmNewValueLabel(){
-  NALabel* label = naNewLabel("", valueWidth);
-  naSetLabelFont(label, monoFont);
-  return label;
-}
-
-NALabel* cmNewThreeValueLabel(){
-  NALabel* label = naNewLabel("", valueWidth);
-  naSetLabelHeight(label, threeValueHeight);
-  naSetLabelFont(label, monoFont);
-  return label;
-}
 
 const NAUTF8Char* getGrade(float value){
   if(value <= .25f){return "Grade A";}
@@ -213,40 +142,14 @@ const NAUTF8Char* getGrade(float value){
 
 
 
-NABool cmSelectRefSpectrum(NAReaction reaction){
-  CMMetamericsController* con = (CMMetamericsController*)reaction.controller;
-  if(reaction.uiElement == con->refD50MenuItem){
-    con->referenceIlluminationType = REFERENCE_ILLUMINATION_D50;
-  }else if(reaction.uiElement == con->refD55MenuItem){
-    con->referenceIlluminationType = REFERENCE_ILLUMINATION_D55;
-  }else if(reaction.uiElement == con->refD65MenuItem){
-    con->referenceIlluminationType = REFERENCE_ILLUMINATION_D65;
-  }else if(reaction.uiElement == con->refD75MenuItem){
-    con->referenceIlluminationType = REFERENCE_ILLUMINATION_D75;
-  }
-
-  cmUpdateMetamericsController(con);
-
-  return NA_TRUE;
-}
-
-
-
 CMMetamericsController* cmAllocMetamericsController(void){
-  monoFont = naCreateFontWithPreset(NA_FONT_KIND_MONOSPACE, NA_FONT_SIZE_DEFAULT);
-
   CMMetamericsController* con = naAlloc(CMMetamericsController);
   naZeron(con, sizeof(CMMetamericsController));
 
-  NAFont* boldFont = naCreateFontWithPreset(NA_FONT_KIND_TITLE, NA_FONT_SIZE_DEFAULT);
-
-  const double illSpaceHeight = 2 * 25 + 2 * threeValueMargin + marginYTop + marginYBottom;
-  const double refSpaceHeight = 1 * 25 + 2 * threeValueMargin + marginYTop + marginYBottom;
-  const double chromaticitySpaceHeight = 1 * 25 + marginYTop + marginYBottom;
-  const double colorRenderingSpaceHeight = 17 * 25 + marginYTop + marginYBottom;
-  const double visMetamericsSpaceHeight = 7 * 25 + marginYTop + marginYBottom;
-  const double uvMetamericsSpaceHeight = 5 * 25 + marginYTop + marginYBottom;
-  const double totalMetamericsSpaceHeight = 2 * 25 + marginYTop + marginYBottom;
+  const double colorRenderingSpaceHeight = 17 * uiElemHeight + spaceMarginV;
+  const double visMetamericsSpaceHeight = 7 * uiElemHeight + spaceMarginV;
+  const double uvMetamericsSpaceHeight = 5 * uiElemHeight + spaceMarginV;
+  const double totalMetamericsSpaceHeight = 2 * uiElemHeight + spaceMarginV;
 
   const double totalHeight = colorRenderingSpaceHeight;
 
@@ -255,118 +158,27 @@ CMMetamericsController* cmAllocMetamericsController(void){
     naMakeRectS(
       600,
       500,
-      firstColumnWidth + 2 * columnWidth,
+      metamericsFirstColumnWidth + 2 * columnWidth,
       totalHeight),
     0,
     0);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 
-  con->whitePointBigSpace = naNewSpace(naMakeSize(firstColumnWidth, totalHeight));
   con->colorRenderingBigSpace = naNewSpace(naMakeSize(columnWidth, totalHeight));
   naSetSpaceAlternateBackground(con->colorRenderingBigSpace, NA_TRUE);
   con->metamericsBigSpace = naNewSpace(naMakeSize(columnWidth, totalHeight));
 
 
-  // Illumination whitepoint
-  con->illSpace = naNewSpace(naMakeSize(firstColumnWidth, illSpaceHeight));
 
-  con->ill10DegLabel = naNewLabel("10°", degreeWidth);
-  naSetLabelFont(con->ill10DegLabel, boldFont);
-  con->ill2DegLabel = naNewLabel("2°", degreeWidth);
-  naSetLabelFont(con->ill2DegLabel, boldFont);
-
-  con->illTitle = naNewLabel("Current:", columnWidth - marginHLeft - marginHRight);
-  naSetLabelTextAlignment(con->illTitle, NA_TEXT_ALIGNMENT_CENTER);
-
-  con->illXYZTitle = naNewLabel("XYZ", valueWidth);
-  naSetLabelTextAlignment(con->illXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelFont(con->illXYZTitle, boldFont);
-  con->illYxyTitle = naNewLabel("Yxy", valueWidth);
-  naSetLabelTextAlignment(con->illYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelFont(con->illYxyTitle, boldFont);
-  con->illYupvpTitle = naNewLabel("Yu'v'", valueWidth);
-  naSetLabelTextAlignment(con->illYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelFont(con->illYupvpTitle, boldFont);
-  con->illYuvTitle = naNewLabel("Yuv", valueWidth);
-  naSetLabelTextAlignment(con->illYuvTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelFont(con->illYuvTitle, boldFont);
-
-  con->illXYZ10Label = cmNewThreeValueLabel();
-  con->illYxy10Label = cmNewThreeValueLabel();
-  con->illYupvp10Label = cmNewThreeValueLabel();
-  con->illYuv10Label = cmNewThreeValueLabel();
-  
-  con->illXYZ2Label = cmNewThreeValueLabel();
-  con->illYxy2Label = cmNewThreeValueLabel();
-  con->illYupvp2Label = cmNewThreeValueLabel();
-  con->illYuv2Label = cmNewThreeValueLabel();
-
-
-
-  // Reference whitepoint
-  con->refSpace = naNewSpace(naMakeSize(firstColumnWidth, refSpaceHeight));
-
-  con->ref10DegLabel = naNewLabel("10°", degreeWidth);
-  naSetLabelFont(con->ref10DegLabel, boldFont);
-  con->ref2DegLabel = naNewLabel("2°", degreeWidth);
-  naSetLabelFont(con->ref2DegLabel, boldFont);
-
-  con->refTitle = naNewLabel("Reference:", 70);
-
-  con->refPopupButton = naNewPopupButton(70);
-  con->refD50MenuItem = naNewMenuItem("D50");
-  con->refD55MenuItem = naNewMenuItem("D55");
-  con->refD65MenuItem = naNewMenuItem("D65");
-  con->refD75MenuItem = naNewMenuItem("D75");
-  naAddPopupButtonMenuItem(con->refPopupButton, con->refD50MenuItem, NA_NULL);
-  naAddPopupButtonMenuItem(con->refPopupButton, con->refD55MenuItem, NA_NULL);
-  naAddPopupButtonMenuItem(con->refPopupButton, con->refD65MenuItem, NA_NULL);
-  naAddPopupButtonMenuItem(con->refPopupButton, con->refD75MenuItem, NA_NULL);
-  naAddUIReaction(con->refD50MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
-  naAddUIReaction(con->refD55MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
-  naAddUIReaction(con->refD65MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
-  naAddUIReaction(con->refD75MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
-
-  con->refXYZTitle = naNewLabel("XYZ", valueWidth);
-  naSetLabelTextAlignment(con->refXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelFont(con->refXYZTitle, boldFont);
-  con->refYxyTitle = naNewLabel("Yxy", valueWidth);
-  naSetLabelTextAlignment(con->refYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelFont(con->refYxyTitle, boldFont);
-  con->refYupvpTitle = naNewLabel("Yu'v'", valueWidth);
-  naSetLabelTextAlignment(con->refYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelFont(con->refYupvpTitle, boldFont);
-  con->refYuvTitle = naNewLabel("Yuv", valueWidth);
-  naSetLabelTextAlignment(con->refYuvTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelFont(con->refYuvTitle, boldFont);
-
-  con->refXYZ10Label = cmNewThreeValueLabel();
-  con->refYxy10Label = cmNewThreeValueLabel();
-  con->refYupvp10Label = cmNewThreeValueLabel();
-  con->refYuv10Label = cmNewThreeValueLabel();
-  
-  con->refXYZ2Label = cmNewThreeValueLabel();
-  con->refYxy2Label = cmNewThreeValueLabel();
-  con->refYupvp2Label = cmNewThreeValueLabel();
-  con->refYuv2Label = cmNewThreeValueLabel();
-  
-
-
-  // Chromaticity error
-  con->chromaticitySpace = naNewSpace(naMakeSize(firstColumnWidth, chromaticitySpaceHeight));
-
-  con->chromaticityTitle = naNewLabel("Chromaticity Error:", 250);
-  naSetLabelFont(con->chromaticityTitle, boldFont);
-
-  con->chromaticityLabel = cmNewValueLabel();
+  con->chromaticityErrorController = cmAllocChromaticityErrorController();
+  con->whitePointsController = cmAllocWhitePointsController();
 
 
 
   // Color Rendering index
   con->colorRenderingSpace = naNewSpace(naMakeSize(columnWidth, colorRenderingSpaceHeight));
 
-  con->colorRenderingTitle = naNewLabel("Color Rendering Index:", 250);
-  naSetLabelFont(con->colorRenderingTitle, boldFont);
+  con->colorRenderingTitle = cmNewTitleLabel("Color Rendering Index:", 250);
 
   con->colorRendering1IndexLabel = naNewLabel("1:", indexWidth);
   con->colorRendering1Label = cmNewValueLabel();
@@ -393,7 +205,8 @@ CMMetamericsController* cmAllocMetamericsController(void){
   con->colorRendering8Label = cmNewValueLabel();
   con->colorRendering8Display = cmAllocTwoColorController(naMakeSize(colorWidth, 21));
 
-  con->colorRenderingAverageLabel = naNewLabel("Avg:", 120);
+  con->colorRenderingAverageLabel = naNewLabel("Ø:", 120);
+//  naSetLabelFont(con->colorRenderingAverageLabel, boldFont);
   con->colorRenderingLabel = cmNewValueLabel();
 
   con->colorRendering9IndexLabel = naNewLabel("9:", indexWidth);
@@ -418,8 +231,7 @@ CMMetamericsController* cmAllocMetamericsController(void){
   // visible range metamerics
   con->visMetamericsSpace = naNewSpace(naMakeSize(columnWidth, visMetamericsSpaceHeight));
   
-  con->visMetamericsTitle = naNewLabel("Visible Range Metameric Index:", 250);
-  naSetLabelFont(con->visMetamericsTitle, boldFont);
+  con->visMetamericsTitle = cmNewTitleLabel("Visible Range Metameric Index:", 250);
   
   con->visMetamerics1IndexLabel = naNewLabel("1:", indexWidth);
   con->visMetamerics1Label = cmNewValueLabel();
@@ -441,7 +253,8 @@ CMMetamericsController* cmAllocMetamericsController(void){
   con->visMetamerics5Label = cmNewValueLabel();
   con->visMetamerics5Display = cmAllocTwoColorController(naMakeSize(colorWidth, 21));
 
-  con->visMetamericsAverageLabel = naNewLabel("Avg:", indexWidth);
+  con->visMetamericsAverageLabel = naNewLabel("Ø:", indexWidth);
+//  naSetLabelFont(con->visMetamericsAverageLabel, boldFont);
   con->visMetamericsLabel = cmNewValueLabel();
   con->visMetamericsGradeLabel = naNewLabel("Grade A", 120);
 
@@ -449,8 +262,7 @@ CMMetamericsController* cmAllocMetamericsController(void){
   // UV metamerics
   con->uvMetamericsSpace = naNewSpace(naMakeSize(columnWidth, uvMetamericsSpaceHeight));
 
-  con->uvMetamericsTitle = naNewLabel("Ultraviolet Range Metameric Index:", 250);
-  naSetLabelFont(con->uvMetamericsTitle, boldFont);
+  con->uvMetamericsTitle = cmNewTitleLabel("Ultraviolet Range Metameric Index:", 250);
 
   con->uvMetamerics6IndexLabel = naNewLabel("6:", indexWidth);
   con->uvMetamerics6Label = cmNewValueLabel();
@@ -464,7 +276,8 @@ CMMetamericsController* cmAllocMetamericsController(void){
   con->uvMetamerics8Label = cmNewValueLabel();
   con->uvMetamerics8Display = cmAllocTwoColorController(naMakeSize(colorWidth, 21));
 
-  con->uvMetamericsAverageLabel = naNewLabel("Avg:", 120);
+  con->uvMetamericsAverageLabel = naNewLabel("Ø:", 120);
+//  naSetLabelFont(con->uvMetamericsAverageLabel, boldFont);
   con->uvMetamericsLabel = cmNewValueLabel();
   con->uvMetamericsGradeLabel = naNewLabel("Grade A", 120);
 
@@ -472,9 +285,9 @@ CMMetamericsController* cmAllocMetamericsController(void){
   // Total metamerics
   con->totalMetamericsSpace = naNewSpace(naMakeSize(columnWidth, totalMetamericsSpaceHeight));
 
-  con->totalMetamericsTitle = naNewLabel("Total Metameric Index (Average 1-8):", 250);
-  naSetLabelFont(con->totalMetamericsTitle, boldFont);
-  con->totalMetamericsAverageLabel = naNewLabel("Avg:", 120);
+  con->totalMetamericsTitle = cmNewTitleLabel("Total Metameric Index (1-8):", 250);
+  con->totalMetamericsAverageLabel = naNewLabel("Ø:", 120);
+//  naSetLabelFont(con->totalMetamericsAverageLabel, boldFont);
   con->totalMetamericsLabel = cmNewValueLabel();
   con->totalMetamericsGradeLabel = naNewLabel("Grade A", 120);
 
@@ -484,74 +297,35 @@ CMMetamericsController* cmAllocMetamericsController(void){
 
   // Left BigSpace: White Points and Chromaticity Error
 
-  double columnY = totalHeight;
-
-  double illY = illSpaceHeight - marginYTop;
-  illY -= 25;
-  naAddSpaceChild(con->illSpace, con->illTitle, naMakePos(firstColumLeft, illY));
-  illY -= 25;
-  naAddSpaceChild(con->illSpace, con->illXYZTitle, naMakePos(firstColumLeft + 0 * (valueWidth + margin2H) - 3, illY));
-  naAddSpaceChild(con->illSpace, con->illYxyTitle, naMakePos(firstColumLeft + 1 * (valueWidth + margin2H) - 3, illY));
-  naAddSpaceChild(con->illSpace, con->illYupvpTitle, naMakePos(firstColumLeft + 2 * (valueWidth + margin2H) - 3, illY));
-  naAddSpaceChild(con->illSpace, con->illYuvTitle, naMakePos(firstColumLeft + 3 * (valueWidth + margin2H) - 3, illY));
-  illY -= threeValueMargin;
-  naAddSpaceChild(con->illSpace, con->illXYZ10Label, naMakePos(firstColumLeft + 0 * (valueWidth + margin2H), illY));
-  naAddSpaceChild(con->illSpace, con->illYxy10Label, naMakePos(firstColumLeft + 1 * (valueWidth + margin2H), illY));
-  naAddSpaceChild(con->illSpace, con->illYupvp10Label, naMakePos(firstColumLeft + 2 * (valueWidth + margin2H), illY));
-  naAddSpaceChild(con->illSpace, con->illYuv10Label, naMakePos(firstColumLeft + 3 * (valueWidth + margin2H), illY));
-
-  illY -= threeValueMargin;
-  naAddSpaceChild(con->illSpace, con->illXYZ2Label, naMakePos(firstColumLeft + 0 * (valueWidth + margin2H), illY));
-  naAddSpaceChild(con->illSpace, con->illYxy2Label, naMakePos(firstColumLeft + 1 * (valueWidth + margin2H), illY));
-  naAddSpaceChild(con->illSpace, con->illYupvp2Label, naMakePos(firstColumLeft + 2 * (valueWidth + margin2H), illY));
-  naAddSpaceChild(con->illSpace, con->illYuv2Label, naMakePos(firstColumLeft + 3 * (valueWidth + margin2H), illY));
-
-  naAddSpaceChild(con->illSpace, con->ill10DegLabel, naMakePos(marginHLeft, 103));
-  naAddSpaceChild(con->illSpace, con->ill2DegLabel, naMakePos(marginHLeft, 33));
-
-  columnY -= illSpaceHeight;
-  naAddSpaceChild(con->whitePointBigSpace, con->illSpace, naMakePos(0, columnY));
+  double columnY;
 
 
 
-  double refY = refSpaceHeight - marginYTop;
-  refY -= 25;
-  naAddSpaceChild(con->refSpace, con->refTitle, naMakePos(110, refY));
-  naAddSpaceChild(con->refSpace, con->refPopupButton, naMakePos(190, refY));
-//  refY -= 25;
-//  naAddSpaceChild(con->refSpace, con->refXYZTitle, naMakePos(firstColumLeft + 0 * (valueWidth + margin2H) - 3, refY));
-//  naAddSpaceChild(con->refSpace, con->refYxyTitle, naMakePos(firstColumLeft + 1 * (valueWidth + margin2H) - 3, refY));
-//  naAddSpaceChild(con->refSpace, con->refYupvpTitle, naMakePos(firstColumLeft + 2 * (valueWidth + margin2H) - 3, refY));
-//  naAddSpaceChild(con->refSpace, con->refYuvTitle, naMakePos(firstColumLeft + 3 * (valueWidth + margin2H) - 3, refY));
-  refY -= threeValueMargin;
-  naAddSpaceChild(con->refSpace, con->refXYZ10Label, naMakePos(firstColumLeft + 0 * (valueWidth + margin2H), refY));
-  naAddSpaceChild(con->refSpace, con->refYxy10Label, naMakePos(firstColumLeft + 1 * (valueWidth + margin2H), refY));
-  naAddSpaceChild(con->refSpace, con->refYupvp10Label, naMakePos(firstColumLeft + 2 * (valueWidth + margin2H), refY));
-  naAddSpaceChild(con->refSpace, con->refYuv10Label, naMakePos(firstColumLeft + 3 * (valueWidth + margin2H), refY));
+  NASpace* whitePointsSpace = cmGetWhitePointsUIElement(con->whitePointsController);
+  NASpace* chromaticityErrorSpace = cmGetChromaticityErrorUIElement(con->chromaticityErrorController);
+  
+  NASize whitePointsSize = naGetUIElementRect(whitePointsSpace, NA_NULL, NA_FALSE).size;
+  NASize chromaticityErrorSize = naGetUIElementRect(chromaticityErrorSpace, NA_NULL, NA_FALSE).size;
+  double firstColumnHeight = whitePointsSize.height + chromaticityErrorSize.height;
+  double firstColumnWidth = naMax(whitePointsSize.width, chromaticityErrorSize.width);
+  
+  con->whitePointBigSpace = naNewSpace(naMakeSize(firstColumnWidth, firstColumnHeight));
 
-  refY -= threeValueMargin;
-  naAddSpaceChild(con->refSpace, con->refXYZ2Label, naMakePos(firstColumLeft + 0 * (valueWidth + margin2H), refY));
-  naAddSpaceChild(con->refSpace, con->refYxy2Label, naMakePos(firstColumLeft + 1 * (valueWidth + margin2H), refY));
-  naAddSpaceChild(con->refSpace, con->refYupvp2Label, naMakePos(firstColumLeft + 2 * (valueWidth + margin2H), refY));
-  naAddSpaceChild(con->refSpace, con->refYuv2Label, naMakePos(firstColumLeft + 3 * (valueWidth + margin2H), refY));
+  columnY = firstColumnHeight;
 
-  naAddSpaceChild(con->refSpace, con->ref10DegLabel, naMakePos(marginHLeft, 103));
-  naAddSpaceChild(con->refSpace, con->ref2DegLabel, naMakePos(marginHLeft, 33));
+  columnY -= whitePointsSize.height;
+  naAddSpaceChild(
+    con->whitePointBigSpace,
+    whitePointsSpace,
+    naMakePos(0, columnY));
 
-  columnY -= refSpaceHeight;
-  naAddSpaceChild(con->whitePointBigSpace, con->refSpace, naMakePos(0, columnY));
+  columnY -= chromaticityErrorSize.height;
+  naAddSpaceChild(
+    con->whitePointBigSpace,
+    chromaticityErrorSpace,
+    naMakePos(firstColumLeft, columnY));
 
-
-
-  double chromaticityY = chromaticitySpaceHeight - marginYTop;
-  chromaticityY -= 25;
-  naAddSpaceChild(con->chromaticitySpace, con->chromaticityTitle, naMakePos(firstColumLeft, chromaticityY));
-  naAddSpaceChild(con->chromaticitySpace, con->chromaticityLabel, naMakePos(firstColumLeft + 180, chromaticityY));
-
-  columnY -= chromaticitySpaceHeight;
-  naAddSpaceChild(con->whitePointBigSpace, con->chromaticitySpace, naMakePos(0, columnY));
-
-  naAddSpaceChild(contentSpace, con->whitePointBigSpace, naMakePos(0, 0));
+  naAddSpaceChild(contentSpace, con->whitePointBigSpace, naMakePos(0, totalHeight - firstColumnHeight));
 
 
 
@@ -559,76 +333,76 @@ CMMetamericsController* cmAllocMetamericsController(void){
 
   columnY = totalHeight;
 
-  double colorRenderingY = colorRenderingSpaceHeight - marginYTop;
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRenderingTitle, naMakePos(marginHLeft, colorRenderingY));
+  double colorRenderingY = colorRenderingSpaceHeight - spaceMarginTop;
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRenderingTitle, naMakePos(spaceMarginLeft, colorRenderingY));
 
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering1IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering1IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering1Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering1Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering2IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering2IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering2Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering2Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering3IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering3IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering3Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering3Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering4IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering4IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering4Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering4Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering5IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering5IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering5Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering5Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering6IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering6IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering6Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering6Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering7IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering7IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering7Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering7Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering8IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering8IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering8Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering8Display), naMakePos(colorLeft, colorRenderingY));
 
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRenderingAverageLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRenderingAverageLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRenderingLabel, naMakePos(valueLeft, colorRenderingY));
 
   colorRenderingY -= 50;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering9IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering9IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering9Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering9Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering10IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering10IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering10Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering10Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering11IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering11IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering11Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering11Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering12IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering12IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering12Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering12Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering13IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering13IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering13Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering13Display), naMakePos(colorLeft, colorRenderingY));
-  colorRenderingY -= 25;
-  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering14IndexLabel, naMakePos(marginHLeft, colorRenderingY));
+  colorRenderingY -= uiElemHeight;
+  naAddSpaceChild(con->colorRenderingSpace, con->colorRendering14IndexLabel, naMakePos(spaceMarginLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, con->colorRendering14Label, naMakePos(valueLeft, colorRenderingY));
   naAddSpaceChild(con->colorRenderingSpace, cmGetTwoColorControllerUIElement(con->colorRendering14Display), naMakePos(colorLeft, colorRenderingY));
 
   columnY -= colorRenderingSpaceHeight;
   naAddSpaceChild(con->colorRenderingBigSpace, con->colorRenderingSpace, naMakePos(0, columnY));
 
-  naAddSpaceChild(contentSpace, con->colorRenderingBigSpace, naMakePos(firstColumnWidth, 0));
+  naAddSpaceChild(contentSpace, con->colorRenderingBigSpace, naMakePos(metamericsFirstColumnWidth, 0));
 
 
 
@@ -636,37 +410,37 @@ CMMetamericsController* cmAllocMetamericsController(void){
 
   columnY = totalHeight;
 
-  double visMetamericsY = visMetamericsSpaceHeight - marginYTop;
-  visMetamericsY -= 25;
-  naAddSpaceChild(con->visMetamericsSpace, con->visMetamericsTitle, naMakePos(marginHLeft, visMetamericsY));
+  double visMetamericsY = visMetamericsSpaceHeight - spaceMarginTop;
+  visMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->visMetamericsSpace, con->visMetamericsTitle, naMakePos(spaceMarginLeft, visMetamericsY));
   
-  visMetamericsY -= 25;
-  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics1IndexLabel, naMakePos(marginHLeft, visMetamericsY));
+  visMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics1IndexLabel, naMakePos(spaceMarginLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics1Label, naMakePos(valueLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, cmGetTwoColorControllerUIElement(con->visMetamerics1Display), naMakePos(colorLeft, visMetamericsY));
   
-  visMetamericsY -= 25;
-  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics2IndexLabel, naMakePos(marginHLeft, visMetamericsY));
+  visMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics2IndexLabel, naMakePos(spaceMarginLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics2Label, naMakePos(valueLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, cmGetTwoColorControllerUIElement(con->visMetamerics2Display), naMakePos(colorLeft, visMetamericsY));
   
-  visMetamericsY -= 25;
-  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics3IndexLabel, naMakePos(marginHLeft, visMetamericsY));
+  visMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics3IndexLabel, naMakePos(spaceMarginLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics3Label, naMakePos(valueLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, cmGetTwoColorControllerUIElement(con->visMetamerics3Display), naMakePos(colorLeft, visMetamericsY));
 
-  visMetamericsY -= 25;
-  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics4IndexLabel, naMakePos(marginHLeft, visMetamericsY));
+  visMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics4IndexLabel, naMakePos(spaceMarginLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics4Label, naMakePos(valueLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, cmGetTwoColorControllerUIElement(con->visMetamerics4Display), naMakePos(colorLeft, visMetamericsY));
   
-  visMetamericsY -= 25;
-  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics5IndexLabel, naMakePos(marginHLeft, visMetamericsY));
+  visMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics5IndexLabel, naMakePos(spaceMarginLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, con->visMetamerics5Label, naMakePos(valueLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, cmGetTwoColorControllerUIElement(con->visMetamerics5Display), naMakePos(colorLeft, visMetamericsY));
   
-  visMetamericsY -= 25;
-  naAddSpaceChild(con->visMetamericsSpace, con->visMetamericsAverageLabel, naMakePos(marginHLeft, visMetamericsY));
+  visMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->visMetamericsSpace, con->visMetamericsAverageLabel, naMakePos(spaceMarginLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, con->visMetamericsLabel, naMakePos(valueLeft, visMetamericsY));
   naAddSpaceChild(con->visMetamericsSpace, con->visMetamericsGradeLabel, naMakePos(colorLeft, visMetamericsY));
 
@@ -675,28 +449,28 @@ CMMetamericsController* cmAllocMetamericsController(void){
 
 
 
-  double uvMetamericsY = uvMetamericsSpaceHeight - marginYTop;
-  uvMetamericsY -= 25;
+  double uvMetamericsY = uvMetamericsSpaceHeight - spaceMarginTop;
+  uvMetamericsY -= uiElemHeight;
 
-  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamericsTitle, naMakePos(marginHLeft, uvMetamericsY));
+  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamericsTitle, naMakePos(spaceMarginLeft, uvMetamericsY));
 
-  uvMetamericsY -= 25;
-  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamerics6IndexLabel, naMakePos(marginHLeft, uvMetamericsY));
+  uvMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamerics6IndexLabel, naMakePos(spaceMarginLeft, uvMetamericsY));
   naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamerics6Label, naMakePos(valueLeft, uvMetamericsY));
   naAddSpaceChild(con->uvMetamericsSpace, cmGetTwoColorControllerUIElement(con->uvMetamerics6Display), naMakePos(colorLeft, uvMetamericsY));
 
-  uvMetamericsY -= 25;
-  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamerics7IndexLabel, naMakePos(marginHLeft, uvMetamericsY));
+  uvMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamerics7IndexLabel, naMakePos(spaceMarginLeft, uvMetamericsY));
   naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamerics7Label, naMakePos(valueLeft, uvMetamericsY));
   naAddSpaceChild(con->uvMetamericsSpace, cmGetTwoColorControllerUIElement(con->uvMetamerics7Display), naMakePos(colorLeft, uvMetamericsY));
 
-  uvMetamericsY -= 25;
-  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamerics8IndexLabel, naMakePos(marginHLeft, uvMetamericsY));
+  uvMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamerics8IndexLabel, naMakePos(spaceMarginLeft, uvMetamericsY));
   naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamerics8Label, naMakePos(valueLeft, uvMetamericsY));
   naAddSpaceChild(con->uvMetamericsSpace, cmGetTwoColorControllerUIElement(con->uvMetamerics8Display), naMakePos(colorLeft, uvMetamericsY));
 
-  uvMetamericsY -= 25;
-  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamericsAverageLabel, naMakePos(marginHLeft, uvMetamericsY));
+  uvMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamericsAverageLabel, naMakePos(spaceMarginLeft, uvMetamericsY));
   naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamericsLabel, naMakePos(valueLeft, uvMetamericsY));
   naAddSpaceChild(con->uvMetamericsSpace, con->uvMetamericsGradeLabel, naMakePos(colorLeft, uvMetamericsY));
 
@@ -705,26 +479,23 @@ CMMetamericsController* cmAllocMetamericsController(void){
 
 
 
-  double totalMetamericsY = totalMetamericsSpaceHeight - marginYTop;
-  totalMetamericsY -= 25;
+  double totalMetamericsY = totalMetamericsSpaceHeight - spaceMarginTop;
+  totalMetamericsY -= uiElemHeight;
 
-  naAddSpaceChild(con->totalMetamericsSpace, con->totalMetamericsTitle, naMakePos(marginHLeft, totalMetamericsY));
+  naAddSpaceChild(con->totalMetamericsSpace, con->totalMetamericsTitle, naMakePos(spaceMarginLeft, totalMetamericsY));
  
-  totalMetamericsY -= 25;
-  naAddSpaceChild(con->totalMetamericsSpace, con->totalMetamericsAverageLabel, naMakePos(marginHLeft, totalMetamericsY));
+  totalMetamericsY -= uiElemHeight;
+  naAddSpaceChild(con->totalMetamericsSpace, con->totalMetamericsAverageLabel, naMakePos(spaceMarginLeft, totalMetamericsY));
   naAddSpaceChild(con->totalMetamericsSpace, con->totalMetamericsLabel, naMakePos(valueLeft, totalMetamericsY));
   naAddSpaceChild(con->totalMetamericsSpace, con->totalMetamericsGradeLabel, naMakePos(colorLeft, totalMetamericsY));
 
   columnY -= totalMetamericsSpaceHeight;
   naAddSpaceChild(con->metamericsBigSpace, con->totalMetamericsSpace, naMakePos(0, columnY));
 
-  naAddSpaceChild(contentSpace, con->metamericsBigSpace, naMakePos(firstColumnWidth + columnWidth, 0));
+  naAddSpaceChild(contentSpace, con->metamericsBigSpace, naMakePos(metamericsFirstColumnWidth + columnWidth, 0));
 
 
 
-  naRelease(boldFont);
-
-  con->referenceIlluminationType = REFERENCE_ILLUMINATION_D50;
   
   return con;
 }
@@ -732,7 +503,8 @@ CMMetamericsController* cmAllocMetamericsController(void){
 
 
 void cmDeallocMetamericsController(CMMetamericsController* con){
-  naRelease(monoFont);
+  cmDeallocChromaticityErrorController(con->chromaticityErrorController);
+  cmDeallocWhitePointsController(con->whitePointsController);
   naFree(con);
 }
 
@@ -752,9 +524,11 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
   CMLFunction* observer2Funcs[3];
   cmlCreateSpecDistFunctions(observer2Funcs, CML_DEFAULT_2DEG_OBSERVER);
   const CMLFunction* illuminationSpec = cmlGetReferenceIlluminationSpectrum(cm);
+  CMReferenceIlluminationType referenceIlluminationType = cmGetReferenceIlluminationType(con->whitePointsController);
+
 
   const CMLFunction* ref;
-  switch(con->referenceIlluminationType){
+  switch(referenceIlluminationType){
   case REFERENCE_ILLUMINATION_D50:
     ref = cmlCreateIlluminationSpectrum(CML_ILLUMINATION_D50, 0.f);
     break;
@@ -796,87 +570,21 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
 
 
 
-  // current whitepoint
-  const char* illuminationName = cmlGetIlluminationTypeString(cmlGetReferenceIlluminationType(cm));
-  naSetLabelText(
-    con->illTitle,
-    naAllocSprintf(NA_TRUE, "Current: %s", illuminationName));
 
-  naSetLabelText(
-    con->illXYZ10Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint10.XYZ[0], illWhitePoint10.XYZ[1], illWhitePoint10.XYZ[2]));
-  naSetLabelText(
-    con->illYxy10Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint10.Yxy[0], illWhitePoint10.Yxy[1], illWhitePoint10.Yxy[2]));
-  naSetLabelText(
-    con->illYupvp10Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint10.Yupvp[0], illWhitePoint10.Yupvp[1], illWhitePoint10.Yupvp[2]));
-  naSetLabelText(
-    con->illYuv10Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint10.Yuv[0], illWhitePoint10.Yuv[1], illWhitePoint10.Yuv[2]));
+  cmUpdateWhitePointsController(
+    con->whitePointsController,
+    cmlGetIlluminationTypeString(cmlGetReferenceIlluminationType(cm)),
+    &illWhitePoint10,
+    &illWhitePoint2,
+    &refWhitePoint10,
+    &refWhitePoint2);
 
-  naSetLabelText(
-    con->illXYZ2Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint2.XYZ[0], illWhitePoint2.XYZ[1], illWhitePoint2.XYZ[2]));
-  naSetLabelText(
-    con->illYxy2Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint2.Yxy[0], illWhitePoint2.Yxy[1], illWhitePoint2.Yxy[2]));
-  naSetLabelText(
-    con->illYupvp2Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint2.Yupvp[0], illWhitePoint2.Yupvp[1], illWhitePoint2.Yupvp[2]));
-  naSetLabelText(
-    con->illYuv2Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint2.Yuv[0], illWhitePoint2.Yuv[1], illWhitePoint2.Yuv[2]));
-
-
-
-  // Reference whitepoint
-  
-  naSetLabelText(
-    con->refXYZ10Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", refWhitePoint10.XYZ[0], refWhitePoint10.XYZ[1], refWhitePoint10.XYZ[2]));
-  naSetLabelText(
-    con->refYxy10Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", refWhitePoint10.Yxy[0], refWhitePoint10.Yxy[1], refWhitePoint10.Yxy[2]));
-  naSetLabelText(
-    con->refYupvp10Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", refWhitePoint10.Yupvp[0], refWhitePoint10.Yupvp[1], refWhitePoint10.Yupvp[2]));
-  naSetLabelText(
-    con->refYuv10Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", refWhitePoint10.Yuv[0], refWhitePoint10.Yuv[1], refWhitePoint10.Yuv[2]));
-
-  naSetLabelText(
-    con->refXYZ2Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", refWhitePoint2.XYZ[0], refWhitePoint2.XYZ[1], refWhitePoint2.XYZ[2]));
-  naSetLabelText(
-    con->refYxy2Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", refWhitePoint2.Yxy[0], refWhitePoint2.Yxy[1], refWhitePoint2.Yxy[2]));
-  naSetLabelText(
-    con->refYupvp2Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", refWhitePoint2.Yupvp[0], refWhitePoint2.Yupvp[1], refWhitePoint2.Yupvp[2]));
-  naSetLabelText(
-    con->refYuv2Label,
-    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", refWhitePoint2.Yuv[0], refWhitePoint2.Yuv[1], refWhitePoint2.Yuv[2]));
-
-
-  // /////////////////////
-  // D.4.1 Chromaticity Error
-  // /////////////////////
-
-  if(illuminationSpec){
-    CMLVec3 chromErrorDistance;
-    cmlCpy3(chromErrorDistance, refWhitePoint10.Yupvp);
-    cmlSub3(chromErrorDistance, illWhitePoint10.Yupvp);
-    float chromError = cmlLength2(&(chromErrorDistance[1]));
-    naSetLabelText(
-      con->chromaticityLabel,
-      naAllocSprintf(NA_TRUE, "%1.05f\n", chromError));
-  }else{
-    naSetLabelText(
-      con->chromaticityLabel,
-      "");
-  }
-
+  cmUpdateChromaticityErrorController(
+    con->chromaticityErrorController,
+    &refWhitePoint10,
+    &illWhitePoint10,
+    illuminationSpec != NA_NULL);
+    
 
 
   // Color Rendering Index
@@ -890,67 +598,59 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
   naSetLabelText(
     con->colorRendering1Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[0]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering1Display,
     colorRenderingColors.crMetamerRGBFloatData[0],
     colorRenderingColors.crReferenceRGBFloatData[0]);
-  cmUpdateTwoColorController(con->colorRendering1Display);
   naSetLabelText(
     con->colorRendering2Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[1]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering2Display,
     colorRenderingColors.crMetamerRGBFloatData[1],
     colorRenderingColors.crReferenceRGBFloatData[1]);
-  cmUpdateTwoColorController(con->colorRendering2Display);
   naSetLabelText(
     con->colorRendering3Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[2]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering3Display,
     colorRenderingColors.crMetamerRGBFloatData[2],
     colorRenderingColors.crReferenceRGBFloatData[2]);
-  cmUpdateTwoColorController(con->colorRendering3Display);
   naSetLabelText(
     con->colorRendering4Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[3]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering4Display,
     colorRenderingColors.crMetamerRGBFloatData[3],
     colorRenderingColors.crReferenceRGBFloatData[3]);
-  cmUpdateTwoColorController(con->colorRendering4Display);
   naSetLabelText(
     con->colorRendering5Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[4]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering5Display,
     colorRenderingColors.crMetamerRGBFloatData[4],
     colorRenderingColors.crReferenceRGBFloatData[4]);
-  cmUpdateTwoColorController(con->colorRendering5Display);
   naSetLabelText(
     con->colorRendering6Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[5]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering6Display,
     colorRenderingColors.crMetamerRGBFloatData[5],
     colorRenderingColors.crReferenceRGBFloatData[5]);
-  cmUpdateTwoColorController(con->colorRendering6Display);
   naSetLabelText(
     con->colorRendering7Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[6]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering7Display,
     colorRenderingColors.crMetamerRGBFloatData[6],
     colorRenderingColors.crReferenceRGBFloatData[6]);
-  cmUpdateTwoColorController(con->colorRendering7Display);
   naSetLabelText(
     con->colorRendering8Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[7]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering8Display,
     colorRenderingColors.crMetamerRGBFloatData[7],
     colorRenderingColors.crReferenceRGBFloatData[7]);
-  cmUpdateTwoColorController(con->colorRendering8Display);
 
   float colorRenderingAverage = 
     colorRenderingColors.colorRenderingIndex[0]
@@ -968,105 +668,94 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
   naSetLabelText(
     con->colorRendering9Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[8]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering9Display,
     colorRenderingColors.crMetamerRGBFloatData[8],
     colorRenderingColors.crReferenceRGBFloatData[8]);
-  cmUpdateTwoColorController(con->colorRendering9Display);
   naSetLabelText(
     con->colorRendering10Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[9]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering10Display,
     colorRenderingColors.crMetamerRGBFloatData[9],
     colorRenderingColors.crReferenceRGBFloatData[9]);
-  cmUpdateTwoColorController(con->colorRendering10Display);
   naSetLabelText(
     con->colorRendering11Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[10]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering11Display,
     colorRenderingColors.crMetamerRGBFloatData[10],
     colorRenderingColors.crReferenceRGBFloatData[10]);
-  cmUpdateTwoColorController(con->colorRendering11Display);
   naSetLabelText(
     con->colorRendering12Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[11]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering12Display,
     colorRenderingColors.crMetamerRGBFloatData[11],
     colorRenderingColors.crReferenceRGBFloatData[11]);
-  cmUpdateTwoColorController(con->colorRendering12Display);
   naSetLabelText(
     con->colorRendering13Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[12]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering13Display,
     colorRenderingColors.crMetamerRGBFloatData[12],
     colorRenderingColors.crReferenceRGBFloatData[12]);
-  cmUpdateTwoColorController(con->colorRendering13Display);
   naSetLabelText(
     con->colorRendering14Label,
     naAllocSprintf(NA_TRUE, "%3.03f", colorRenderingColors.colorRenderingIndex[13]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->colorRendering14Display,
     colorRenderingColors.crMetamerRGBFloatData[13],
     colorRenderingColors.crReferenceRGBFloatData[13]);
-  cmUpdateTwoColorController(con->colorRendering14Display);
 
 
-  // Visible Range Metamerics
+  // Visible Metamerics
 
   CMVisMetamericColors visMetamericColors = cmComputeVisMetamericColors(
     observer10Funcs,
     &illWhitePoint10,
     adaptationMatrix,
-    con->referenceIlluminationType);
+    referenceIlluminationType);
 
   naSetLabelText(
     con->visMetamerics1Label,
     naAllocSprintf(NA_TRUE, "%1.04f", visMetamericColors.metamericIndex[0]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->visMetamerics1Display,
-    visMetamericColors.visMetamerRGBFloatData[0],
-    visMetamericColors.visStandardRGBFloatData[0]);
-  cmUpdateTwoColorController(con->visMetamerics1Display);
+    visMetamericColors.visStandardRGBFloatData[0],
+    visMetamericColors.visMetamerRGBFloatData[0]);
 
   naSetLabelText(
     con->visMetamerics2Label,
     naAllocSprintf(NA_TRUE, "%1.04f", visMetamericColors.metamericIndex[1]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->visMetamerics2Display,
-    visMetamericColors.visMetamerRGBFloatData[1],
-    visMetamericColors.visStandardRGBFloatData[1]);
-  cmUpdateTwoColorController(con->visMetamerics2Display);
+    visMetamericColors.visStandardRGBFloatData[1],
+    visMetamericColors.visMetamerRGBFloatData[1]);
 
   naSetLabelText(
     con->visMetamerics3Label,
     naAllocSprintf(NA_TRUE, "%1.04f", visMetamericColors.metamericIndex[2]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->visMetamerics3Display,
-    visMetamericColors.visMetamerRGBFloatData[2],
-    visMetamericColors.visStandardRGBFloatData[2]);
-  cmUpdateTwoColorController(con->visMetamerics3Display);
+    visMetamericColors.visStandardRGBFloatData[2],
+    visMetamericColors.visMetamerRGBFloatData[2]);
 
   naSetLabelText(
     con->visMetamerics4Label,
     naAllocSprintf(NA_TRUE, "%1.04f", visMetamericColors.metamericIndex[3]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->visMetamerics4Display,
-    visMetamericColors.visMetamerRGBFloatData[3],
-    visMetamericColors.visStandardRGBFloatData[3]);
-  cmUpdateTwoColorController(con->visMetamerics4Display);
+    visMetamericColors.visStandardRGBFloatData[3],
+    visMetamericColors.visMetamerRGBFloatData[3]);
 
   naSetLabelText(
     con->visMetamerics5Label,
     naAllocSprintf(NA_TRUE, "%1.04f", visMetamericColors.metamericIndex[4]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->visMetamerics5Display,
-    visMetamericColors.visMetamerRGBFloatData[4],
-    visMetamericColors.visStandardRGBFloatData[4]);
-  cmUpdateTwoColorController(con->visMetamerics5Display);
+    visMetamericColors.visStandardRGBFloatData[4],
+    visMetamericColors.visMetamerRGBFloatData[4]);
 
   float avg5 = visMetamericColors.metamericIndex[0]
     + visMetamericColors.metamericIndex[1]
@@ -1085,34 +774,31 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
   CMUVMetamericColors uvMetamericColors = cmComputeUVMetamericColors(
     observer10Funcs,
     &illWhitePoint10,
-    con->referenceIlluminationType);
+    referenceIlluminationType);
 
   naSetLabelText(
     con->uvMetamerics6Label,
     naAllocSprintf(NA_TRUE, "%1.04f", uvMetamericColors.metamericIndex[0]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->uvMetamerics6Display,
-    uvMetamericColors.uvMetamerRGBFloatData[0],
-    uvMetamericColors.uvStandardRGBFloatData[0]);
-  cmUpdateTwoColorController(con->uvMetamerics6Display);
+    uvMetamericColors.uvStandardRGBFloatData[0],
+    uvMetamericColors.uvMetamerRGBFloatData[0]);
 
   naSetLabelText(
     con->uvMetamerics7Label,
     naAllocSprintf(NA_TRUE, "%1.04f", uvMetamericColors.metamericIndex[1]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->uvMetamerics7Display,
-    uvMetamericColors.uvMetamerRGBFloatData[1],
-    uvMetamericColors.uvStandardRGBFloatData[1]);
-  cmUpdateTwoColorController(con->uvMetamerics7Display);
+    uvMetamericColors.uvStandardRGBFloatData[1],
+    uvMetamericColors.uvMetamerRGBFloatData[1]);
   
   naSetLabelText(
     con->uvMetamerics8Label,
     naAllocSprintf(NA_TRUE, "%1.04f", uvMetamericColors.metamericIndex[2]));
-  cmSetTwoColorControllerColors(
+  cmUpdateTwoColorController(
     con->uvMetamerics8Display,
-    uvMetamericColors.uvMetamerRGBFloatData[2],
-    uvMetamericColors.uvStandardRGBFloatData[2]);
-  cmUpdateTwoColorController(con->uvMetamerics8Display);
+    uvMetamericColors.uvStandardRGBFloatData[2],
+    uvMetamericColors.uvMetamerRGBFloatData[2]);
 
   float avg3 = uvMetamericColors.metamericIndex[0]
     + uvMetamericColors.metamericIndex[1]

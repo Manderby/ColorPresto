@@ -14,6 +14,8 @@ void cmInitTwoColorDisplay(void* data){
   NA_UNUSED(data);
 //  CMTwoColorController* con = (CMTwoColorController*)(data);
   glShadeModel(GL_FLAT);
+  glEnable(GL_BLEND);
+  glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 
@@ -30,6 +32,20 @@ NABool cmRedrawTwoColorController(NAReaction reaction){
   glColor3fv(con->rightColor);
   glVertex2d(+1., -1.);
   glVertex2d(+1., +1.);
+  glEnd();
+
+  NABabyColor color;
+  naFillDefaultTextColorWithSkin(color, naGetSkinForCurrentAppearance());
+  color[3] = .2;
+
+  glLineWidth(2);
+  glBegin(GL_LINE_STRIP);
+  glColor4fv(color);
+  glVertex2d(-1., -1.);
+  glVertex2d(-1., +1.);
+  glVertex2d(+1., +1.);
+  glVertex2d(+1., -1.);
+  glVertex2d(-1., -1.);
   glEnd();
   
   naSwapOpenGLSpaceBuffer(con->space);
@@ -63,13 +79,10 @@ NAOpenGLSpace* cmGetTwoColorControllerUIElement(CMTwoColorController* con){
 
 
 
-void cmSetTwoColorControllerColors(CMTwoColorController* con, NAVec3f leftColor, NAVec3f rightColor){
+void cmUpdateTwoColorController(CMTwoColorController* con, NAVec3f leftColor, NAVec3f rightColor){
   naCopyV3f(con->leftColor, leftColor);
   naCopyV3f(con->rightColor, rightColor);
-}
 
-
-
-void cmUpdateTwoColorController(const CMTwoColorController* con){
   naRefreshUIElement(con->space, 0.);
 }
+

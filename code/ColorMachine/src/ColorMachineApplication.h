@@ -73,6 +73,7 @@ extern size_t bordercount;
 - (ColorsController*)getColorsController;
 - (void)updateMachine;
 - (void)updateColor;
+- (void)updateMetamerics;
 
 - (IBAction)resetMachine:(id)sender;
 - (IBAction)setCurrentColorAsWhitepoint:(id)sender;

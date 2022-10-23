@@ -1,4 +1,17 @@
 
+#ifndef CM_COLOR_CONVERSION_YCD_UVW_DEFINED
+#define CM_COLOR_CONVERSION_YCD_UVW_DEFINED
+
+typedef enum{
+  REFERENCE_ILLUMINATION_D50,
+  REFERENCE_ILLUMINATION_D55,
+  REFERENCE_ILLUMINATION_D65,
+  REFERENCE_ILLUMINATION_D75,
+  NUMBER_OF_REFERENCE_ILLUMINATIONS
+} CMReferenceIlluminationType;
+
+
+
 void convertYuvtoYcd(float* Ycd, const float* yuv);
 
 void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcWhitePointYcd, const float* dstWhitePointYcd);
@@ -9,3 +22,6 @@ void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcWhiteP
 // In CML, this is Yuv.
 // UVW is CIE 1964.
 void convertYuvtoUVW(float* UVW, float* yuv, const float* whitePointYuv);
+
+#endif // CM_COLOR_CONVERSION_YCD_UVW_DEFINED
+

@@ -13,6 +13,7 @@ enum{
 
   // Strings for Whitepoint and Metamerics window
   CMWhitepointsAndMetamerics,
+  CMChromaticityErrorTitle,
 
   // Strings for 3D window
   CM3DView,

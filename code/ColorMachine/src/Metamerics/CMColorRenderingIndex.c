@@ -176,9 +176,10 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
 
   CMLIntegration integration = cmlMakeDefaultIntegration();
 
-  const float* metamerdata[14] = {metamer1Data, metamer2Data, metamer3Data, metamer4Data, metamer5Data,
-                                  metamer6Data, metamer7Data, metamer8Data, metamer9Data, metamer10Data,
-                                  metamer11Data, metamer12Data, metamer13Data, metamer14Data};
+  const float* metamerdata[14] = {
+    metamer1Data, metamer2Data, metamer3Data, metamer4Data, metamer5Data,
+    metamer6Data, metamer7Data, metamer8Data, metamer9Data, metamer10Data,
+    metamer11Data, metamer12Data, metamer13Data, metamer14Data};
   float metamerRefXYZ[14 * 3];
   float metamerIllXYZ[14 * 3];
 

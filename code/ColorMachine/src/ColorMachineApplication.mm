@@ -1,4 +1,6 @@
 
+#include "CMDesign.h"
+
 #include "CMMetamericsController.h"
 #include "CMTranslations.h"
 #include "CMThreeDeeController.h"
@@ -98,6 +100,7 @@ size_t bordercount;
   cmDeallocThreeDeeController(threeDeeController);
   cmDeallocMetamericsController(metamericsController);
   naDelete(naGetApplication());
+  cmShutdownDesign();
 
   naStopRuntime();
 }
@@ -107,6 +110,7 @@ size_t bordercount;
 //  [self setDelegate:self];
 //  machinescontroller = [[MachinesController alloc] init];
 //  colorscontroller = [[ColorsController alloc] init];
+  cmStartupDesign();
   threeDeeController = cmAllocThreeDeeController();
   metamericsController = cmAllocMetamericsController();
   cmUpdateMetamericsController(metamericsController);
@@ -185,15 +189,19 @@ size_t bordercount;
 
 - (void)updateMachine{
   [machinewindowcontroller updateMachine];
-  cmUpdateMetamericsController(metamericsController);
+  [self updateMetamerics];
   cmUpdateThreeDeeController(threeDeeController);
   [colorscontroller updateColor];
 }
 
 - (void)updateColor{
   [colorscontroller updateColor];
-  cmUpdateMetamericsController(metamericsController);
+  [self updateMetamerics];
   cmUpdateThreeDeeController(threeDeeController);
+}
+
+- (void)updateMetamerics{
+  cmUpdateMetamericsController(metamericsController);
 }
 
 //- (void)colorItemHasChanged:(NSNotification*)notification{

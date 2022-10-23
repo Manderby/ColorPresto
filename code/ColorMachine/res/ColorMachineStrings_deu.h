@@ -22,6 +22,7 @@ NA_LOC(CMColorSpaceHSL, "HSL");
 
 // Translations for the Whitepoint and Metamerics Window
 NA_LOC(CMWhitepointsAndMetamerics, "Weisspunkte und Metamerie");
+NA_LOC(CMChromaticityErrorTitle, "Chromatischer Fehler:");
 
 // Translations for the 3D Window
 NA_LOC(CM3DView, "3D Ansicht");

@@ -18,6 +18,10 @@ CMLColorMachine* cmGetCurrentColorMachine(){
 CMLColorMachine* cmGetCurrentScreenMachine(){
   return [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
 }
+void cmUpdateMetamerics(void){
+  [(ColorMachineApplication*)NSApp updateMetamerics];
+}
+
 
 
 double cmGetUIScaleFactorForWindow(void* nativeWindowPtr){

@@ -17,13 +17,12 @@ void cmDeallocTwoColorController(CMTwoColorController* con);
 
 NAOpenGLSpace* cmGetTwoColorControllerUIElement(CMTwoColorController* con);
 
-void cmSetTwoColorControllerColors(
+void cmUpdateTwoColorController(
   CMTwoColorController* con,
   NAVec3f leftColor,
   NAVec3f rightColor);
   
-void cmUpdateTwoColorController(const CMTwoColorController* con);
-
+  
 
 #ifdef __cplusplus
   }

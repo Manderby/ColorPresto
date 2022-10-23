@@ -15,6 +15,8 @@ CM_PROTOTYPE(CMLColorMachine);
 
 CMLColorMachine* cmGetCurrentColorMachine(void);
 CMLColorMachine* cmGetCurrentScreenMachine(void);
+void cmUpdateMetamerics(void);
+
 double cmGetUIScaleFactorForWindow(void* nativeWindowPtr);
 
 void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* texdata, float* inputarray, CMLColorType inputColorType, CMLNormedConverter normedconverter, size_t count, NABool drawgridlines, NABool drawmask);

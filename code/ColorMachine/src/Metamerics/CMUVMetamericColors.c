@@ -1,7 +1,9 @@
 
 #include "CMUVMetamericColors.h"
+
 #include "CMMetamericsController.h"
 #include "CMWhitePoints.h"
+
 #include "mainC.h"
 
 
@@ -294,32 +296,32 @@ CMUVMetamericColors cmComputeUVMetamericColors(
       // to comply with the temporary results published in ISO-3664, the
       // normalization factor 5 must be introduced manually.
       float excitationN = cmlFilterFunction(illuminationSpec, UVExcitationFunction, &integration);
-      CMLFunction* betatemp = cmlCreateFunctionDivFunction(fluorescentRemissionFunction, illuminationSpec);
-      CMLFunction* betaL = cmlCreateFunctionMulScalar(betatemp, excitationN);
+      CMLFunction* betaTemp = cmlCreateFunctionDivFunction(fluorescentRemissionFunction, illuminationSpec);
+      CMLFunction* betaL = cmlCreateFunctionMulScalar(betaTemp, excitationN);
       CMLFunction* betaT = cmlCreateFunctionAddFunction(UVStandardFunction, betaL);
 
-      CMLFunction* UVMetamerXXXRemission = cmlCreateFunctionMulFunction(betaT, illuminationSpec);
+      CMLFunction* UVStandardRemission = cmlCreateFunctionMulFunction(betaT, illuminationSpec);
       cmlSet3(
         uvStandardXYZptr,
-        cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[0], &integration),
-        cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[1], &integration),
-        cmlFilterFunction(UVMetamerXXXRemission, observer10Funcs[2], &integration));
+        cmlFilterFunction(UVStandardRemission, observer10Funcs[0], &integration),
+        cmlFilterFunction(UVStandardRemission, observer10Funcs[1], &integration),
+        cmlFilterFunction(UVStandardRemission, observer10Funcs[2], &integration));
       cmlDiv3(uvStandardXYZptr, illWhitePoint10->XYZunnorm[1]);
       cmlConvertXYZToLab(UVStandardLab, uvStandardXYZptr, illWhitePoint10->XYZ);
 
-      CMLFunction* UVmetamerremission = cmlCreateFunctionMulFunction(UVMetamerFunction, illuminationSpec);
+      CMLFunction* UVMetamerRemission = cmlCreateFunctionMulFunction(UVMetamerFunction, illuminationSpec);
       cmlSet3(
         uvMetamerXYZptr,
-        cmlFilterFunction(UVmetamerremission, observer10Funcs[0], &integration),
-        cmlFilterFunction(UVmetamerremission, observer10Funcs[1], &integration),
-        cmlFilterFunction(UVmetamerremission, observer10Funcs[2], &integration));
+        cmlFilterFunction(UVMetamerRemission, observer10Funcs[0], &integration),
+        cmlFilterFunction(UVMetamerRemission, observer10Funcs[1], &integration),
+        cmlFilterFunction(UVMetamerRemission, observer10Funcs[2], &integration));
       cmlDiv3(uvMetamerXYZptr, illWhitePoint10->XYZunnorm[1]);
       cmlConvertXYZToLab(UVMetamerLab, uvMetamerXYZptr, illWhitePoint10->XYZ);
-      cmlReleaseFunction(betatemp);
+      cmlReleaseFunction(betaTemp);
       cmlReleaseFunction(betaL);
       cmlReleaseFunction(betaT);
-      cmlReleaseFunction(UVMetamerXXXRemission);
-      cmlReleaseFunction(UVmetamerremission);
+      cmlReleaseFunction(UVStandardRemission);
+      cmlReleaseFunction(UVMetamerRemission);
     }else{
       cmlSet3(uvStandardXYZptr, 0.f, 0.f, 0.f);
       cmlSet3(UVStandardLab, 0.f, 0.f, 0.f);
