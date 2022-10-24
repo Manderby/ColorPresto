@@ -12,7 +12,7 @@ CM_PROTOTYPE(NAOpenGLSpace);
 
 typedef struct CMTwoColorController CMTwoColorController;
 
-CMTwoColorController* cmAllocTwoColorController(NASize size);
+CMTwoColorController* cmAllocTwoColorController();
 void cmDeallocTwoColorController(CMTwoColorController* con);
 
 NAOpenGLSpace* cmGetTwoColorControllerUIElement(CMTwoColorController* con);

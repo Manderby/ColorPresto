@@ -1,6 +1,9 @@
 
 #include "CMTwoColorController.h"
+
 #include "NAApp.h"
+
+#include "CMDesign.h"
 
 struct CMTwoColorController{
   NAOpenGLSpace* space;
@@ -55,11 +58,11 @@ NABool cmRedrawTwoColorController(NAReaction reaction){
 
 
 
-CMTwoColorController* cmAllocTwoColorController(NASize size){
+CMTwoColorController* cmAllocTwoColorController(){
   CMTwoColorController* con = naAlloc(CMTwoColorController);
   naZeron(con, sizeof(CMTwoColorController));
 
-  con->space = naNewOpenGLSpace(size, cmInitTwoColorDisplay, con);
+  con->space = naNewOpenGLSpace(naMakeSize(twoColorWidth, 21), cmInitTwoColorDisplay, con);
   naAddUIReaction(con->space, NA_UI_COMMAND_REDRAW, cmRedrawTwoColorController, con);
   
   return con;

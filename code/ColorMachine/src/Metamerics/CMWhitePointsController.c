@@ -86,11 +86,7 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
   CMWhitePointsController* con = naAlloc(CMWhitePointsController);
   naZeron(con, sizeof(CMWhitePointsController));
 
-  double spaceWidth = spaceMarginLeft + degreeWidth + 4 * valueWidth + 3 * marginH + spaceMarginRight;
-  double spaceHeight = 4 * uiElemHeight + 4 * threeValueMargin + spaceMarginV;
-
-  con->space = naNewSpace(naMakeSize(spaceWidth, spaceHeight));
-//  naSetSpaceAlternateBackground(con->space, NA_TRUE);
+  con->space = naNewSpace(naMakeSize(1, 1));
 
   // Illumination whitepoint
   
@@ -98,15 +94,15 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
   con->ill2DegLabel = cmNewTitleLabel(cmTranslate(CMObserverDegree2), degreeWidth);
 
   con->illTitle = cmNewTitleLabel("", fourValuesWidth);
-  naSetLabelTextAlignment(con->illTitle, NA_TEXT_ALIGNMENT_CENTER);
+//  naSetLabelTextAlignment(con->illTitle, NA_TEXT_ALIGNMENT_CENTER);
 
   con->illXYZTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceXYZ), valueWidth);
-  naSetLabelTextAlignment(con->illXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
   con->illYxyTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYxy), valueWidth);
-  naSetLabelTextAlignment(con->illYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
   con->illYupvpTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYupvp), valueWidth);
-  naSetLabelTextAlignment(con->illYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
   con->illYuvTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYuv), valueWidth);
+  naSetLabelTextAlignment(con->illXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
+  naSetLabelTextAlignment(con->illYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
+  naSetLabelTextAlignment(con->illYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYuvTitle, NA_TEXT_ALIGNMENT_CENTER);
 
   con->illXYZ10Label = cmNewThreeValueLabel();
@@ -154,50 +150,50 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
 
   // Adding elements to the space
 
-  double spaceY = spaceHeight - spaceMarginTop;
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->illTitle, naMakePos(spaceMarginDegreeLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->illXYZTitle, naMakePos(spaceMarginDegreeLeft + 0 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->illYxyTitle, naMakePos(spaceMarginDegreeLeft + 1 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->illYupvpTitle, naMakePos(spaceMarginDegreeLeft + 2 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->illYuvTitle, naMakePos(spaceMarginDegreeLeft + 3 * (valueWidth + marginH), spaceY));
-  spaceY -= threeValueMargin;
-  naAddSpaceChild(con->space, con->illXYZ10Label, naMakePos(spaceMarginDegreeLeft + 0 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->illYxy10Label, naMakePos(spaceMarginDegreeLeft + 1 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->illYupvp10Label, naMakePos(spaceMarginDegreeLeft + 2 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->illYuv10Label, naMakePos(spaceMarginDegreeLeft + 3 * (valueWidth + marginH), spaceY));
+  cmBeginUILayout(con->space, naMakeBezel4(spaceMarginRight, spaceMarginTop, spaceMarginDegreeLeft, spaceMarginBottom));
+  cmAddUIRow(con->illTitle, uiElemHeight);
+  
+  cmAddUIRow(con->illXYZTitle, uiElemHeight);
+  cmAddUICol(con->illYxyTitle, marginH);
+  cmAddUICol(con->illYupvpTitle, marginH);
+  cmAddUICol(con->illYuvTitle, marginH);
 
-  spaceY -= threeValueMargin;
-  naAddSpaceChild(con->space, con->illXYZ2Label, naMakePos(spaceMarginDegreeLeft + 0 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->illYxy2Label, naMakePos(spaceMarginDegreeLeft + 1 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->illYupvp2Label, naMakePos(spaceMarginDegreeLeft + 2 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->illYuv2Label, naMakePos(spaceMarginDegreeLeft + 3 * (valueWidth + marginH), spaceY));
+  cmAddUIPos(0, threeValueHeightMargin);
+  cmAddUIRow(con->illXYZ10Label, threeValueHeight);
+  cmAddUICol(con->illYxy10Label, marginH);
+  cmAddUICol(con->illYupvp10Label, marginH);
+  cmAddUICol(con->illYuv10Label, marginH);
 
-  naAddSpaceChild(con->space, con->ill10DegLabel, naMakePos(spaceMarginLeft, 283));
-  naAddSpaceChild(con->space, con->ill2DegLabel, naMakePos(spaceMarginLeft, 218));
+  cmAddUIPos(0, threeValueHeightMargin);
+  cmAddUIRow(con->illXYZ2Label, 0);
+  cmAddUICol(con->illYxy2Label, marginH);
+  cmAddUICol(con->illYupvp2Label, marginH);
+  cmAddUICol(con->illYuv2Label, marginH);
 
+  cmAddUIPos(0, spaceMarginV);
+  
+  cmAddUIRow(con->refTitle, uiElemHeight);
+  cmAddUICol(con->refPopupButton, 5.);
 
+  cmAddUIPos(0, threeValueHeightMargin);
+  cmAddUIRow(con->refXYZ10Label, threeValueHeight);
+  cmAddUICol(con->refYxy10Label, marginH);
+  cmAddUICol(con->refYupvp10Label, marginH);
+  cmAddUICol(con->refYuv10Label, marginH);
 
-  spaceY -= 2 * uiElemHeight;
-  naAddSpaceChild(con->space, con->refTitle, naMakePos(120, spaceY));
-  naAddSpaceChild(con->space, con->refPopupButton, naMakePos(200, spaceY));
-  spaceY -= threeValueMargin;
-  naAddSpaceChild(con->space, con->refXYZ10Label, naMakePos(spaceMarginDegreeLeft + 0 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->refYxy10Label, naMakePos(spaceMarginDegreeLeft + 1 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->refYupvp10Label, naMakePos(spaceMarginDegreeLeft + 2 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->refYuv10Label, naMakePos(spaceMarginDegreeLeft + 3 * (valueWidth + marginH), spaceY));
+  cmAddUIPos(0, threeValueHeightMargin);
+  cmAddUIRow(con->refXYZ2Label, 0);
+  cmAddUICol(con->refYxy2Label, marginH);
+  cmAddUICol(con->refYupvp2Label, marginH);
+  cmAddUICol(con->refYuv2Label, marginH);
 
-  spaceY -= threeValueMargin;
-  naAddSpaceChild(con->space, con->refXYZ2Label, naMakePos(spaceMarginDegreeLeft + 0 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->refYxy2Label, naMakePos(spaceMarginDegreeLeft + 1 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->refYupvp2Label, naMakePos(spaceMarginDegreeLeft + 2 * (valueWidth + marginH), spaceY));
-  naAddSpaceChild(con->space, con->refYuv2Label, naMakePos(spaceMarginDegreeLeft + 3 * (valueWidth + marginH), spaceY));
+  cmEndUILayout();
+
+  naAddSpaceChild(con->space, con->ill10DegLabel, naMakePos(spaceMarginLeft, 286));
+  naAddSpaceChild(con->space, con->ill2DegLabel, naMakePos(spaceMarginLeft, 221));
 
   naAddSpaceChild(con->space, con->ref10DegLabel, naMakePos(spaceMarginLeft, 103));
   naAddSpaceChild(con->space, con->ref2DegLabel, naMakePos(spaceMarginLeft, 38));
-
-
 
   con->referenceIlluminationType = REFERENCE_ILLUMINATION_D50;
 

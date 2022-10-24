@@ -73,76 +73,42 @@ CMMetamericsController* cmAllocMetamericsController(void){
 
   con->window = naNewWindow(
     cmTranslate(CMWhitepointsAndMetamerics),
-    naMakeRectS(
-      400,
-      500,
-      windowWidth,
-      windowHeight),
+    naMakeRectS(400, 500, windowWidth, windowHeight),
     0,
     0);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
+//  NABabyColor babyBackground = {
+//    naLinearizeColorValue(.25),
+//    naLinearizeColorValue(.25),
+//    naLinearizeColorValue(.25),
+//    1.};
+//  naSetSpaceBackgroundColor(contentSpace, &babyBackground);
+
+  con->column1Space = naNewSpace(naMakeSize(column1Width, column1Height));
+  con->column2Space = naNewSpace(naMakeSize(column2Width, column2Height));
+  naSetSpaceAlternateBackground(con->column2Space, NA_TRUE);
+  con->column3Space = naNewSpace(naMakeSize(column3Width, column3Height));
 
 
 
   // Placing elements in the window
 
-  double columnY;
+  cmBeginUILayout(con->column1Space, naMakeBezel4Zero());
+  cmAddUIRow(whitePointsSpace, 0);
+  cmAddUIRow(chromaticityErrorSpace, 0);
 
-  con->column1Space = naNewSpace(naMakeSize(column1Width, column1Height));
+  cmBeginUILayout(con->column2Space, naMakeBezel4Zero());
+  cmAddUIRow(rolorRenderingIndexSpace, 0);
 
-  columnY = column1Height;
-  columnY -= whitePointsSize.height;
-  naAddSpaceChild(
-    con->column1Space,
-    whitePointsSpace,
-    naMakePos(0, columnY));
+  cmBeginUILayout(con->column3Space, naMakeBezel4Zero());
+  cmAddUIRow(visMetamericIndexSpace, 0);
+  cmAddUIRow(uvMetamericIndexSpace, 0);
+  cmAddUIRow(totalMetamericIndexSpace, 0);
 
-  columnY -= chromaticityErrorSize.height;
-  naAddSpaceChild(
-    con->column1Space,
-    chromaticityErrorSpace,
-    naMakePos(spaceMarginDegreeLeft, columnY));
-
-  naAddSpaceChild(contentSpace, con->column1Space, naMakePos(0, windowHeight - column1Height));
-
-
-
-  con->column2Space = naNewSpace(naMakeSize(column2Width, column2Height));
-  naSetSpaceAlternateBackground(con->column2Space, NA_TRUE);
-
-  columnY = column2Height;
-  columnY -= colorRenderingIndexSize.height;
-  naAddSpaceChild(
-    con->column2Space,
-    rolorRenderingIndexSpace,
-    naMakePos(0, columnY));
-
-  naAddSpaceChild(contentSpace, con->column2Space, naMakePos(column1Width, windowHeight - column2Height));
-
-
- 
-  con->column3Space = naNewSpace(naMakeSize(column3Width, column3Height));
-
-  columnY = column3Height;
-  columnY -= visMetamericIndexSize.height;
-  naAddSpaceChild(
-    con->column3Space,
-    visMetamericIndexSpace,
-    naMakePos(0, columnY));
-
-  columnY -= uvMetamericIndexSize.height;
-  naAddSpaceChild(
-    con->column3Space,
-    uvMetamericIndexSpace,
-    naMakePos(0, columnY));
-
-  columnY -= totalMetamericIndexSize.height;
-  naAddSpaceChild(
-    con->column3Space,
-    totalMetamericIndexSpace,
-    naMakePos(0, columnY));
-
-  naAddSpaceChild(contentSpace, con->column3Space, naMakePos(column1Width + column2Width, windowHeight - column3Height));
+  cmBeginUILayout(contentSpace, naMakeBezel4Zero());
+  cmAddUICol(con->column1Space, 0);
+  cmAddUICol(con->column2Space, 0);
+  cmAddUICol(con->column3Space, 0);
 
   return con;
 }
@@ -152,6 +118,11 @@ CMMetamericsController* cmAllocMetamericsController(void){
 void cmDeallocMetamericsController(CMMetamericsController* con){
   cmDeallocChromaticityErrorController(con->chromaticityErrorController);
   cmDeallocWhitePointsController(con->whitePointsController);
+  cmDeallocColorRenderingIndexController(con->colorRenderingIndexController);
+  cmDeallocVisMetamericIndexController(con->visMetamericIndexController);
+  cmDeallocUVMetamericIndexController(con->uvMetamericIndexController);
+  cmDeallocTotalMetamericIndexController(con->totalMetamericIndexController);
+
   naFree(con);
 }
 
@@ -172,7 +143,6 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
   cmlCreateSpecDistFunctions(observer2Funcs, CML_DEFAULT_2DEG_OBSERVER);
   const CMLFunction* illuminationSpec = cmlGetReferenceIlluminationSpectrum(cm);
   CMReferenceIlluminationType referenceIlluminationType = cmGetReferenceIlluminationType(con->whitePointsController);
-
 
   const CMLFunction* ref;
   switch(referenceIlluminationType){
@@ -214,7 +184,6 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
 
   CMLMat33 adaptationMatrix;
   CMFillChromaticAdaptationMatrix(adaptationMatrix, illWhitePoint10.Yxy);
-
 
 
 

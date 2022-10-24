@@ -428,16 +428,7 @@ CMUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
   CMUVMetamericIndexController* con = naAlloc(CMUVMetamericIndexController);
   naZeron(con, sizeof(CMUVMetamericIndexController));
 
-  double marginH1 = 0.;
-  double marginH2 = 5.;
-
-  double spaceWidth = spaceMarginLeft + indexWidth + marginH1 + valueWidth + marginH2 + twoColorWidth + spaceMarginRight;
-  double spaceHeight = 5 * uiElemHeight + spaceMarginV;
-
-  double valueLeft = spaceMarginLeft + indexWidth + marginH1;
-  double colorLeft = valueLeft + valueWidth + marginH2;
-
-  con->space = naNewSpace(naMakeSize(spaceWidth, spaceHeight));
+  con->space = naNewSpace(naMakeSize(1, 1));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
 
@@ -446,17 +437,17 @@ CMUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
 
   con->metamerics6IndexLabel = naNewLabel("6:", indexWidth);
   con->metamerics6Label = cmNewValueLabel();
-  con->metamerics6Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->metamerics6Display = cmAllocTwoColorController();
 
   con->metamerics7IndexLabel = naNewLabel("7:", indexWidth);
   con->metamerics7Label = cmNewValueLabel();
-  con->metamerics7Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->metamerics7Display = cmAllocTwoColorController();
 
   con->metamerics8IndexLabel = naNewLabel("8:", indexWidth);
   con->metamerics8Label = cmNewValueLabel();
-  con->metamerics8Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->metamerics8Display = cmAllocTwoColorController();
 
-  con->metamericsAverageLabel = naNewLabel(cmTranslate(CMAverage), 120);
+  con->metamericsAverageLabel = naNewLabel(cmTranslate(CMAverage), indexWidth);
   con->metamericsLabel = cmNewValueLabel();
   con->metamericsGradeLabel = naNewLabel("", 120);
 
@@ -464,30 +455,27 @@ CMUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
 
   // Adding elements to the space
 
-  double spaceY = spaceHeight - spaceMarginTop;
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->title, naMakePos(spaceMarginLeft, spaceY));
+  cmBeginUILayout(con->space, spaceBezel);
+  cmAddUIRow(con->title, uiElemHeight);
+
+  cmAddUIRow(con->metamerics6IndexLabel, uiElemHeight);
+  cmAddUICol(con->metamerics6Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->metamerics6Display), valueMargin);
+
+  cmAddUIRow(con->metamerics7IndexLabel, uiElemHeight);
+  cmAddUICol(con->metamerics7Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->metamerics7Display), valueMargin);
+
+  cmAddUIRow(con->metamerics8IndexLabel, uiElemHeight);
+  cmAddUICol(con->metamerics8Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->metamerics8Display), valueMargin);
+
+  cmAddUIRow(con->metamericsAverageLabel, uiElemHeight);
+  cmAddUICol(con->metamericsLabel, indexMargin);
+  cmAddUICol(con->metamericsGradeLabel, valueMargin);
   
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->metamerics6IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->metamerics6Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->metamerics6Display), naMakePos(colorLeft, spaceY));
-
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->metamerics7IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->metamerics7Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->metamerics7Display), naMakePos(colorLeft, spaceY));
-
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->metamerics8IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->metamerics8Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->metamerics8Display), naMakePos(colorLeft, spaceY));
-
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->metamericsAverageLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->metamericsLabel, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, con->metamericsGradeLabel, naMakePos(colorLeft, spaceY));
-
+  cmEndUILayout();
+  
   return con;
 }
 

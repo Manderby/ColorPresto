@@ -44,3 +44,80 @@ NALabel* cmNewThreeValueLabel(){
   naSetLabelFont(label, monoFont);
   return label;
 }
+
+
+
+NASpace* curDesignSpace = NA_NULL;
+NABezel4 curDesignMargin;
+NAPos curDesignPos = {0., 0.};
+double maxDesignWidth = 0.;
+double curDesignRowHeight = 0.;
+NABool curDesignRowHeightFixed = NA_FALSE;
+
+void cmBeginUILayout(NASpace* space, NABezel4 margin){
+  NASize size = naGetUIElementRect(space, NA_NULL, NA_FALSE).size;
+  curDesignSpace = space;
+  curDesignMargin = margin;
+  curDesignPos = naMakePos(margin.left, size.height - margin.top);
+  maxDesignWidth = margin.left;
+  curDesignRowHeight = 0.;
+  curDesignRowHeightFixed = NA_FALSE;
+}
+
+void cmAddUIPos(double x, double y){
+  #if NA_DEBUG
+    if(!curDesignSpace)
+      naError("No space defined for design. Use cmBeginUILayout");
+  #endif
+  curDesignPos.x += x;
+  curDesignPos.y -= y;
+}
+
+void cm_AddLayoutRowPlain(void* child, NASize size){
+  if(curDesignRowHeightFixed){
+    naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - curDesignRowHeight));
+  }else{
+    naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - size.height));
+    curDesignRowHeight = naMax(curDesignRowHeight, size.height);
+  }
+  curDesignPos.x += size.width;
+  maxDesignWidth = naMax(maxDesignWidth, curDesignPos.x);
+}
+
+void cmAddUIRow(void* child, double rowHeight){
+  #if NA_DEBUG
+    if(!curDesignSpace)
+      naError("No space defined for design. Use cmBeginUILayout");
+  #endif
+  NASize size = naGetUIElementRect(child, NA_NULL, NA_FALSE).size;
+  curDesignPos.x = curDesignMargin.left;
+  curDesignPos.y -= curDesignRowHeight;
+  if(rowHeight){
+    curDesignRowHeightFixed = NA_TRUE;
+    curDesignRowHeight = rowHeight;
+  }else{
+    curDesignRowHeightFixed = NA_FALSE;
+    curDesignRowHeight = size.height;
+  }
+  cm_AddLayoutRowPlain(child, size);
+}
+
+void cmAddUICol(void* child, double marginLeft){
+  #if NA_DEBUG
+    if(!curDesignSpace)
+      naError("No space defined for design. Use cmBeginUILayout");
+  #endif
+  NASize size = naGetUIElementRect(child, NA_NULL, NA_FALSE).size;
+  curDesignPos.x += marginLeft;
+  cm_AddLayoutRowPlain(child, size);
+}
+
+void cmEndUILayout(){
+  NARect spaceRect = naGetUIElementRect(curDesignSpace, NA_NULL, NA_FALSE);
+  spaceRect.size.width = maxDesignWidth + curDesignMargin.right;
+  double newHeight = spaceRect.size.height - (curDesignPos.y - curDesignRowHeight) + curDesignMargin.bottom;
+  naShiftSpaceChilds(curDesignSpace, naMakePos(0, newHeight - spaceRect.size.height));
+  spaceRect.size.height = newHeight;
+  naSetSpaceRect(curDesignSpace, spaceRect);
+  curDesignSpace = NA_NULL;
+}

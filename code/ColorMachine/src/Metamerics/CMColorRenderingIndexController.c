@@ -360,136 +360,127 @@ CMColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
   CMColorRenderingIndexController* con = naAlloc(CMColorRenderingIndexController);
   naZeron(con, sizeof(CMColorRenderingIndexController));
 
-  double marginH1 = 0.;
-  double marginH2 = 5.;
-
-  double spaceWidth = spaceMarginLeft + indexWidth + marginH1 + valueWidth + marginH2 + twoColorWidth + spaceMarginRight;
-  double spaceHeight = 17 * uiElemHeight + spaceMarginV;
-
-  double valueLeft = spaceMarginLeft + indexWidth + marginH1;
-  double colorLeft = valueLeft + valueWidth + marginH2;
-
-  con->space = naNewSpace(naMakeSize(spaceWidth, spaceHeight));
+  con->space = naNewSpace(naMakeSize(1, 1));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
   con->title = cmNewTitleLabel(cmTranslate(CMColorRenderingIndex), 250);
 
   con->color1IndexLabel = naNewLabel("1:", indexWidth);
   con->color1Label = cmNewValueLabel();
-  con->color1Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color1Display = cmAllocTwoColorController();
   con->color2IndexLabel = naNewLabel("2:", indexWidth);
   con->color2Label = cmNewValueLabel();
-  con->color2Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color2Display = cmAllocTwoColorController();
   con->color3IndexLabel = naNewLabel("3:", indexWidth);
   con->color3Label = cmNewValueLabel();
-  con->color3Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color3Display = cmAllocTwoColorController();
   con->color4IndexLabel = naNewLabel("4:", indexWidth);
   con->color4Label = cmNewValueLabel();
-  con->color4Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color4Display = cmAllocTwoColorController();
   con->color5IndexLabel = naNewLabel("5:", indexWidth);
   con->color5Label = cmNewValueLabel();
-  con->color5Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color5Display = cmAllocTwoColorController();
   con->color6IndexLabel = naNewLabel("6:", indexWidth);
   con->color6Label = cmNewValueLabel();
-  con->color6Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color6Display = cmAllocTwoColorController();
   con->color7IndexLabel = naNewLabel("7:", indexWidth);
   con->color7Label = cmNewValueLabel();
-  con->color7Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color7Display = cmAllocTwoColorController();
   con->color8IndexLabel = naNewLabel("8:", indexWidth);
   con->color8Label = cmNewValueLabel();
-  con->color8Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color8Display = cmAllocTwoColorController();
 
-  con->colorAverageLabel = naNewLabel(cmTranslate(CMAverage), 120);
+  con->colorAverageLabel = naNewLabel(cmTranslate(CMAverage), indexWidth);
   con->colorLabel = cmNewValueLabel();
 
   con->color9IndexLabel = naNewLabel("9:", indexWidth);
   con->color9Label = cmNewValueLabel();
-  con->color9Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color9Display = cmAllocTwoColorController();
   con->color10IndexLabel = naNewLabel("10:", indexWidth);
   con->color10Label = cmNewValueLabel();
-  con->color10Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color10Display = cmAllocTwoColorController();
   con->color11IndexLabel = naNewLabel("11:", indexWidth);
   con->color11Label = cmNewValueLabel();
-  con->color11Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color11Display = cmAllocTwoColorController();
   con->color12IndexLabel = naNewLabel("12:", indexWidth);
   con->color12Label = cmNewValueLabel();
-  con->color12Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color12Display = cmAllocTwoColorController();
   con->color13IndexLabel = naNewLabel("13:", indexWidth);
   con->color13Label = cmNewValueLabel();
-  con->color13Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color13Display = cmAllocTwoColorController();
   con->color14IndexLabel = naNewLabel("14:", indexWidth);
   con->color14Label = cmNewValueLabel();
-  con->color14Display = cmAllocTwoColorController(naMakeSize(twoColorWidth, 21));
+  con->color14Display = cmAllocTwoColorController();
 
 
 
   // place the elements in the space
 
-  double spaceY = spaceHeight - spaceMarginTop;
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->title, naMakePos(spaceMarginLeft, spaceY));
+  cmBeginUILayout(con->space, spaceBezel);
+  cmAddUIRow(con->title, uiElemHeight);
 
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color1IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color1Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color1Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color2IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color2Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color2Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color3IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color3Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color3Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color4IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color4Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color4Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color5IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color5Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color5Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color6IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color6Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color6Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color7IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color7Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color7Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color8IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color8Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color8Display), naMakePos(colorLeft, spaceY));
+  cmAddUIRow(con->color1IndexLabel, uiElemHeight);
+  cmAddUICol(con->color1Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color1Display), valueMargin);
 
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->colorAverageLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->colorLabel, naMakePos(valueLeft, spaceY));
+  cmAddUIRow(con->color2IndexLabel, uiElemHeight);
+  cmAddUICol(con->color2Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color2Display), valueMargin);
 
-  spaceY -= 2 * uiElemHeight;
-  naAddSpaceChild(con->space, con->color9IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color9Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color9Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color10IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color10Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color10Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color11IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color11Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color11Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color12IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color12Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color12Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color13IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color13Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color13Display), naMakePos(colorLeft, spaceY));
-  spaceY -= uiElemHeight;
-  naAddSpaceChild(con->space, con->color14IndexLabel, naMakePos(spaceMarginLeft, spaceY));
-  naAddSpaceChild(con->space, con->color14Label, naMakePos(valueLeft, spaceY));
-  naAddSpaceChild(con->space, cmGetTwoColorControllerUIElement(con->color14Display), naMakePos(colorLeft, spaceY));
+  cmAddUIRow(con->color3IndexLabel, uiElemHeight);
+  cmAddUICol(con->color3Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color3Display), valueMargin);
+
+  cmAddUIRow(con->color4IndexLabel, uiElemHeight);
+  cmAddUICol(con->color4Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color4Display), valueMargin);
+
+  cmAddUIRow(con->color5IndexLabel, uiElemHeight);
+  cmAddUICol(con->color5Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color5Display), valueMargin);
+
+  cmAddUIRow(con->color6IndexLabel, uiElemHeight);
+  cmAddUICol(con->color6Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color6Display), valueMargin);
+
+  cmAddUIRow(con->color7IndexLabel, uiElemHeight);
+  cmAddUICol(con->color7Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color7Display), valueMargin);
+
+  cmAddUIRow(con->color8IndexLabel, uiElemHeight);
+  cmAddUICol(con->color8Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color8Display), valueMargin);
+
+  cmAddUIRow(con->colorAverageLabel, uiElemHeight);
+  cmAddUICol(con->colorLabel, indexMargin);
+
+  cmAddUIPos(0, spaceMarginV);
+
+  cmAddUIRow(con->color9IndexLabel, uiElemHeight);
+  cmAddUICol(con->color9Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color9Display), valueMargin);
+
+  cmAddUIRow(con->color10IndexLabel, uiElemHeight);
+  cmAddUICol(con->color10Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color10Display), valueMargin);
+
+  cmAddUIRow(con->color11IndexLabel, uiElemHeight);
+  cmAddUICol(con->color11Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color11Display), valueMargin);
+
+  cmAddUIRow(con->color12IndexLabel, uiElemHeight);
+  cmAddUICol(con->color12Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color12Display), valueMargin);
+
+  cmAddUIRow(con->color13IndexLabel, uiElemHeight);
+  cmAddUICol(con->color13Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color13Display), valueMargin);
+
+  cmAddUIRow(con->color14IndexLabel, uiElemHeight);
+  cmAddUICol(con->color14Label, indexMargin);
+  cmAddUICol(cmGetTwoColorControllerUIElement(con->color14Display), valueMargin);
+
+  cmEndUILayout();
 
   return con;
 }
