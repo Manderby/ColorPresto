@@ -68,12 +68,12 @@ CMMetamericsController* cmAllocMetamericsController(void){
   double column3Height = visMetamericIndexSize.height + uvMetamericIndexSize.height + totalMetamericIndexSize.height;
   double column3Width = naMax(naMax(visMetamericIndexSize.width, uvMetamericIndexSize.width), totalMetamericIndexSize.width);
 
-  double windowWidth = column1Width + column2Width + column3Width;
-  double windowHeight = naMax(naMax(column1Height, column2Height), column3Height);
+//  double windowWidth = column1Width + column2Width + column3Width;
+//  double windowHeight = naMax(naMax(column1Height, column2Height), column3Height);
 
   con->window = naNewWindow(
     cmTranslate(CMWhitepointsAndMetamerics),
-    naMakeRectS(400, 500, windowWidth, windowHeight),
+    naMakeRectS(400, 500, 1, 1),
     0,
     0);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
@@ -96,19 +96,23 @@ CMMetamericsController* cmAllocMetamericsController(void){
   cmBeginUILayout(con->column1Space, naMakeBezel4Zero());
   cmAddUIRow(whitePointsSpace, 0);
   cmAddUIRow(chromaticityErrorSpace, 0);
+  cmEndUILayout();
 
   cmBeginUILayout(con->column2Space, naMakeBezel4Zero());
   cmAddUIRow(rolorRenderingIndexSpace, 0);
+  cmEndUILayout();
 
   cmBeginUILayout(con->column3Space, naMakeBezel4Zero());
   cmAddUIRow(visMetamericIndexSpace, 0);
   cmAddUIRow(uvMetamericIndexSpace, 0);
   cmAddUIRow(totalMetamericIndexSpace, 0);
+  cmEndUILayout();
 
   cmBeginUILayout(contentSpace, naMakeBezel4Zero());
   cmAddUICol(con->column1Space, 0);
   cmAddUICol(con->column2Space, 0);
   cmAddUICol(con->column3Space, 0);
+  cmEndUILayout();
 
   return con;
 }

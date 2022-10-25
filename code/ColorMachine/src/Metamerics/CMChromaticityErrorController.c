@@ -29,7 +29,9 @@ CMChromaticityErrorController* cmAllocChromaticityErrorController(void){
   con->title = cmNewTitleLabel(cmTranslate(CMChromaticityErrorTitle), 160.);
   con->chromaticityErrorLabel = cmNewValueLabel();
 
-  cmBeginUILayout(con->space, naMakeBezel4(spaceMarginRight, spaceMarginTop, spaceMarginDegreeLeft, spaceMarginBottom));
+  cmBeginUILayout(
+    con->space,
+    naMakeBezel4(spaceMarginRight, spaceMarginTop, spaceMarginDegreeLeft, spaceMarginBottom));
   cmAddUIRow(con->title, uiElemHeight);
   cmAddUICol(con->chromaticityErrorLabel, marginH);
   

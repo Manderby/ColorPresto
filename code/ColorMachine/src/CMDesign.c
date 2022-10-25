@@ -118,6 +118,15 @@ void cmEndUILayout(){
   double newHeight = spaceRect.size.height - (curDesignPos.y - curDesignRowHeight) + curDesignMargin.bottom;
   naShiftSpaceChilds(curDesignSpace, naMakePos(0, newHeight - spaceRect.size.height));
   spaceRect.size.height = newHeight;
+  NAWindow* window = naGetUIElementWindow(curDesignSpace);
+  if(window){
+    NASpace* contentSpace = naGetWindowContentSpace(window);
+    if(contentSpace == curDesignSpace){
+      NARect windowRect = naGetUIElementRect(window, NA_NULL, NA_FALSE);
+      windowRect.size = spaceRect.size;
+      naSetWindowRect(window, windowRect);
+    }
+  }
   naSetSpaceRect(curDesignSpace, spaceRect);
   curDesignSpace = NA_NULL;
 }

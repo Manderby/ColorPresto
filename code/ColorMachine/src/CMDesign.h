@@ -16,7 +16,11 @@ static const double spaceMarginLeft = 15.;
 static const double spaceMarginRight = 15.;
 static const double spaceMarginBottom = 15.;
 static const double spaceMarginTop = spaceMarginBottom - 3.;
-static const NABezel4 spaceBezel = {spaceMarginRight, spaceMarginTop, spaceMarginLeft, spaceMarginBottom};
+static const NABezel4 spaceBezel = {
+  spaceMarginRight,
+  spaceMarginTop,
+  spaceMarginLeft,
+  spaceMarginBottom};
 static const double spaceMarginV = spaceMarginTop + spaceMarginBottom;
 
 static const double marginH = 15.;
@@ -24,6 +28,12 @@ static const double marginH = 15.;
 static const double valueWidth = 60.;
 static const double threeValueHeight = 55.;
 static const double threeValueHeightMargin = 10.;
+static const double spaceMarginLeft3D = 10.;
+static const NABezel4 threeDeeBezel = {
+  spaceMarginRight,
+  spaceMarginTop,
+  spaceMarginLeft3D,
+  spaceMarginBottom};
 
 static const double degreeWidth = 35;
 static const double spaceMarginDegreeLeft = spaceMarginLeft + degreeWidth;

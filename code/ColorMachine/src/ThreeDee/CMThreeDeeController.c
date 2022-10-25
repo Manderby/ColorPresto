@@ -11,7 +11,8 @@
 #include "CMThreeDeeView.h"
 #include <CML.h>
 
-static const double spaceMarginLeft3D = 10.;
+static const double initial3DDisplayWidth = 500.;
+static const double rotationLabelWidth = 55.;
 static const double labelWidth = 110.;
 static const double controlWidth = 140.;
 static const double marginHMiddle = spaceMarginLeft3D + labelWidth + marginH;
@@ -156,11 +157,12 @@ void cmInitThreeDeeOpenGL(void* data){
 NABool cmReshapeThreeDeeWindow(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
 
-  double controlHeight = 500;
-
   NARect windowRect = naGetUIElementRect(con->window, NA_NULL, NA_FALSE);
   NARect oldOpenGLRect = naGetUIElementRect(con->display, NA_NULL, NA_FALSE);
+  NARect oldControlRect = naGetUIElementRect(con->controlSpace, NA_NULL, NA_FALSE);
   
+  double controlHeight = oldControlRect.size.height;
+
   NARect openGLRect = naMakeRectS(
     0,
     0,
@@ -381,7 +383,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   if(con->fovy == 0){
     curZoom = con->zoom;
   }else{
-    curZoom = (viewSize.width / 300.) * con->zoom / (2. * (viewSize.width / viewSize.height) * tan(.5 * naDegToRad(con->fovy)));
+    curZoom = (viewSize.width / initial3DDisplayWidth) * con->zoom / (2. * (viewSize.width / viewSize.height) * tan(.5 * naDegToRad(con->fovy)));
   }
 
   NAInt hueIndex = -1;
@@ -538,17 +540,17 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naZeron(con, sizeof(CMThreeDeeController));
   
   // The window
-  con->window = naNewWindow(cmTranslate(CM3DView), naMakeRectS(40, 30, 800, 450), NA_WINDOW_RESIZEABLE, 0);
+  con->window = naNewWindow(cmTranslate(CM3DView), naMakeRectS(40, 30, 1, 1), NA_WINDOW_RESIZEABLE, 0);
   naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cmReshapeThreeDeeWindow, con);
 
   // The 3D space
-  con->display = naNewOpenGLSpace(naMakeSize(300, 300), cmInitThreeDeeOpenGL, con);
+  con->display = naNewOpenGLSpace(naMakeSize(initial3DDisplayWidth, 300), cmInitThreeDeeOpenGL, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cmUpdateThreeDeeDisplay, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cmMoveThreeDeeDisplayMouse, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cmScrollThreeDeeDisplay, con);
   
   // The control space
-  con->controlSpace = naNewSpace(naMakeSize(fullControlWidth, 500));
+  con->controlSpace = naNewSpace(naMakeSize(fullControlWidth, 1));
   
   const double coordinateSpaceHeight = 3 * uiElemHeight + spaceMarginV;
   con->coordinateSpace = naNewSpace(naMakeSize(fullControlWidth, coordinateSpaceHeight));
@@ -587,7 +589,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naSetSliderRange(con->stepsSlider, 2., 40., 0);
   naAddUIReaction(con->stepsSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
 
-  con->rotationLabel = naNewLabel(cmTranslate(CMRotation), labelWidth);
+  con->rotationLabel = naNewLabel(cmTranslate(CMRotation), rotationLabelWidth);
   con->rotationSlider = naNewSlider(controlWidth);
   con->rotationButton = naNewTextButton(cmTranslate(CMStop), 70, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
   naSetSliderRange(con->rotationSlider, -1., +1., 0);
@@ -637,74 +639,89 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naSetSliderRange(con->fovySlider, 90., 0., 0);
   naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeDisplaySlider, con);
 
-  // Add childs
+
+
+  cmBeginUILayout(con->coordinateSpace, threeDeeBezel);
+  
+  cmAddUIRow(con->colorSpaceLabel, uiElemHeight);
+  cmAddUICol(con->colorSpacePopupButton, marginH);
+
+  cmAddUIRow(con->coordSysLabel, uiElemHeight);
+  cmAddUICol(con->coordSysPopupButton, marginH);
+
+  cmAddUIRow(con->stepsLabel, uiElemHeight);
+  cmAddUICol(con->stepsSlider, marginH);
+
+  cmEndUILayout();
+  
+
+  
+  cmBeginUILayout(con->rotationSpace, threeDeeBezel);
+  
+  cmAddUIRow(con->rotationLabel, uiElemHeight);
+  cmAddUICol(con->rotationButton, 0.);
+  cmAddUICol(con->rotationSlider, 0.);
+
+  cmEndUILayout();
+
+
+
+  cmBeginUILayout(con->opacitySpace, threeDeeBezel);
+  
+  cmAddUIRow(con->pointsOpacityLabel, uiElemHeight);
+  cmAddUICol(con->pointsOpacitySlider, marginH);
+
+  cmAddUIRow(con->gridAlphaLabel, uiElemHeight);
+  cmAddUICol(con->gridAlphaSlider, marginH);
+
+  cmAddUIRow(con->gridTintLabel, uiElemHeight);
+  cmAddUICol(con->gridTintSlider, marginH);
+
+  cmAddUIRow(con->bodyAlphaLabel, uiElemHeight);
+  cmAddUICol(con->bodyAlphaSlider, marginH);
+
+  cmAddUIRow(con->bodySolidLabel, uiElemHeight);
+  cmAddUICol(con->bodySolidCheckBox, marginH);
+
+  cmEndUILayout();
+
+
+
+  cmBeginUILayout(con->optionsSpace, threeDeeBezel);
+  
+  cmAddUIRow(con->axisLabel, uiElemHeight);
+  cmAddUICol(con->axisCheckBox, marginH);
+
+  cmAddUIRow(con->spectrumLabel, uiElemHeight);
+  cmAddUICol(con->spectrumCheckBox, marginH);
+
+  cmAddUIRow(con->backgroundLabel, uiElemHeight);
+  cmAddUICol(con->backgroundSlider, marginH);
+
+  cmAddUIRow(con->fovyLabel, uiElemHeight);
+  cmAddUICol(con->fovySlider, marginH);
+
+  cmEndUILayout();
+
+
+
+  cmBeginUILayout(con->controlSpace, naMakeBezel4Zero());
+  cmAddUIRow(con->coordinateSpace, 0);
+  cmAddUIRow(con->rotationSpace, 0);
+  cmAddUIRow(con->opacitySpace, 0);
+  cmAddUIRow(con->optionsSpace, 0);
+  cmEndUILayout();
+
+
+
+  // Add window childs
   NASpace* content = naGetWindowContentSpace(con->window);
-  naAddSpaceChild(content, con->display, naMakePos(0, 0));
-  naAddSpaceChild(content, con->controlSpace, naMakePos(300, 0));
 
-  NASize controlSpaceSize = naGetUIElementRect(con->controlSpace, NA_NULL, NA_FALSE).size;
-  double y = controlSpaceSize.height;
-
-  double coordY = coordinateSpaceHeight - spaceMarginTop;
-  coordY -= uiElemHeight;
-  naAddSpaceChild(con->coordinateSpace, con->colorSpaceLabel, naMakePos(spaceMarginLeft3D, coordY));
-  naAddSpaceChild(con->coordinateSpace, con->colorSpacePopupButton, naMakePos(marginHMiddle, coordY));
-  coordY -= uiElemHeight;
-  naAddSpaceChild(con->coordinateSpace, con->coordSysLabel, naMakePos(spaceMarginLeft3D, coordY));
-  naAddSpaceChild(con->coordinateSpace, con->coordSysPopupButton, naMakePos(marginHMiddle, coordY));
-  coordY -= uiElemHeight;
-  naAddSpaceChild(con->coordinateSpace, con->stepsLabel, naMakePos(spaceMarginLeft3D, coordY));
-  naAddSpaceChild(con->coordinateSpace, con->stepsSlider, naMakePos(marginHMiddle, coordY));
-
-  y -= coordinateSpaceHeight;
-  naAddSpaceChild(con->controlSpace, con->coordinateSpace, naMakePos(0, y));
+  cmBeginUILayout(content, naMakeBezel4Zero());
+  cmAddUIRow(con->display, 0);
+  cmAddUICol(con->controlSpace, 0);
+  cmEndUILayout();
   
-  double rotationY = rotationSpaceHeight - spaceMarginTop;
-  rotationY -= uiElemHeight;
-  naAddSpaceChild(con->rotationSpace, con->rotationLabel, naMakePos(spaceMarginLeft3D, rotationY));
-  naAddSpaceChild(con->rotationSpace, con->rotationButton, naMakePos(spaceMarginLeft3D + 50, rotationY));
-  naAddSpaceChild(con->rotationSpace, con->rotationSlider, naMakePos(marginHMiddle, rotationY));
-
-  y -= rotationSpaceHeight;
-  naAddSpaceChild(con->controlSpace, con->rotationSpace, naMakePos(0, y));
-
-  double opacityY = opacitySpaceHeight - spaceMarginTop;
-  opacityY -= uiElemHeight;
-  naAddSpaceChild(con->opacitySpace, con->pointsOpacityLabel, naMakePos(spaceMarginLeft3D, opacityY));
-  naAddSpaceChild(con->opacitySpace, con->pointsOpacitySlider, naMakePos(marginHMiddle, opacityY));
-  opacityY -= uiElemHeight;
-  naAddSpaceChild(con->opacitySpace, con->gridAlphaLabel, naMakePos(spaceMarginLeft3D, opacityY));
-  naAddSpaceChild(con->opacitySpace, con->gridAlphaSlider, naMakePos(marginHMiddle, opacityY));
-  opacityY -= uiElemHeight;
-  naAddSpaceChild(con->opacitySpace, con->gridTintLabel, naMakePos(spaceMarginLeft3D, opacityY));
-  naAddSpaceChild(con->opacitySpace, con->gridTintSlider, naMakePos(marginHMiddle, opacityY));
-  opacityY -= uiElemHeight;
-  naAddSpaceChild(con->opacitySpace, con->bodyAlphaLabel, naMakePos(spaceMarginLeft3D, opacityY));
-  naAddSpaceChild(con->opacitySpace, con->bodyAlphaSlider, naMakePos(marginHMiddle, opacityY));
-  opacityY -= uiElemHeight;
-  naAddSpaceChild(con->opacitySpace, con->bodySolidLabel, naMakePos(spaceMarginLeft3D, opacityY));
-  naAddSpaceChild(con->opacitySpace, con->bodySolidCheckBox, naMakePos(marginHMiddle, opacityY));
-  
-  y -= opacitySpaceHeight;
-  naAddSpaceChild(con->controlSpace, con->opacitySpace, naMakePos(0, y));
-
-  double optionsY = optionsSpaceHeight - spaceMarginTop;
-  optionsY -= uiElemHeight;
-  naAddSpaceChild(con->optionsSpace, con->axisLabel, naMakePos(spaceMarginLeft3D, optionsY));
-  naAddSpaceChild(con->optionsSpace, con->axisCheckBox, naMakePos(marginHMiddle, optionsY));
-  optionsY -= uiElemHeight;
-  naAddSpaceChild(con->optionsSpace, con->spectrumLabel, naMakePos(spaceMarginLeft3D, optionsY));
-  naAddSpaceChild(con->optionsSpace, con->spectrumCheckBox, naMakePos(marginHMiddle, optionsY));
-  optionsY -= uiElemHeight;
-  naAddSpaceChild(con->optionsSpace, con->backgroundLabel, naMakePos(spaceMarginLeft3D, optionsY));
-  naAddSpaceChild(con->optionsSpace, con->backgroundSlider, naMakePos(marginHMiddle, optionsY));
-  optionsY -= uiElemHeight;
-  naAddSpaceChild(con->optionsSpace, con->fovyLabel, naMakePos(spaceMarginLeft3D, optionsY));
-  naAddSpaceChild(con->optionsSpace, con->fovySlider, naMakePos(marginHMiddle, optionsY));
-  
-  y -= optionsSpaceHeight;
-  naAddSpaceChild(con->controlSpace, con->optionsSpace, naMakePos(0, y));
-
 
 
   // Set initial values
