@@ -49,14 +49,14 @@ CMMetamericsController* cmAllocMetamericsController(void){
 
   NASpace* whitePointsSpace = cmGetWhitePointsUIElement(con->whitePointsController);
   NASpace* chromaticityErrorSpace = cmGetChromaticityErrorUIElement(con->chromaticityErrorController);
-  NASpace* rolorRenderingIndexSpace = cmGetColorRenderingIndexUIElement(con->colorRenderingIndexController);
+  NASpace* colorRenderingIndexSpace = cmGetColorRenderingIndexUIElement(con->colorRenderingIndexController);
   NASpace* visMetamericIndexSpace = cmGetVisMetamericIndexUIElement(con->visMetamericIndexController);
   NASpace* uvMetamericIndexSpace = cmGetUVMetamericIndexUIElement(con->uvMetamericIndexController);
   NASpace* totalMetamericIndexSpace = cmGetTotalMetamericIndexUIElement(con->totalMetamericIndexController);
 
   NASize whitePointsSize = naGetUIElementRect(whitePointsSpace, NA_NULL, NA_FALSE).size;
   NASize chromaticityErrorSize = naGetUIElementRect(chromaticityErrorSpace, NA_NULL, NA_FALSE).size;
-  NASize colorRenderingIndexSize = naGetUIElementRect(rolorRenderingIndexSpace, NA_NULL, NA_FALSE).size;
+  NASize colorRenderingIndexSize = naGetUIElementRect(colorRenderingIndexSpace, NA_NULL, NA_FALSE).size;
   NASize visMetamericIndexSize = naGetUIElementRect(visMetamericIndexSpace, NA_NULL, NA_FALSE).size;
   NASize uvMetamericIndexSize = naGetUIElementRect(uvMetamericIndexSpace, NA_NULL, NA_FALSE).size;
   NASize totalMetamericIndexSize = naGetUIElementRect(totalMetamericIndexSpace, NA_NULL, NA_FALSE).size;
@@ -99,7 +99,7 @@ CMMetamericsController* cmAllocMetamericsController(void){
   cmEndUILayout();
 
   cmBeginUILayout(con->column2Space, naMakeBezel4Zero());
-  cmAddUIRow(rolorRenderingIndexSpace, 0);
+  cmAddUIRow(colorRenderingIndexSpace, 0);
   cmEndUILayout();
 
   cmBeginUILayout(con->column3Space, naMakeBezel4Zero());

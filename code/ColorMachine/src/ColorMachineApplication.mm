@@ -7,7 +7,6 @@
 
 #import "ColorMachineApplication.h"
 #import "AboutWindowController.h"
-#import "MachinesController.h"
 #import "ColorsController.h"
 #import "GrayColorController.h"
 #import "MachineWindowController.h"
@@ -32,7 +31,7 @@ size_t bordercount;
 @implementation ColorMachineApplication
 
 - (void)applicationDidChangeScreenParameters:(NSNotification *)aNotification{
-  [machinescontroller recomputeScreenMachines];
+  // theoretically, needs recomputation of the screen machine. todo.
   [self updateMachine];
 }
 
@@ -99,6 +98,10 @@ size_t bordercount;
 - (void)applicationWillTerminate:(NSApplication *)sender{
   cmDeallocThreeDeeController(threeDeeController);
   cmDeallocMetamericsController(metamericsController);
+
+  cmlReleaseColorMachine(cm);
+  cmlReleaseColorMachine(sm);
+
   naDelete(naGetApplication());
   cmShutdownDesign();
 
@@ -107,12 +110,15 @@ size_t bordercount;
 
 
 - (void)awakeFromNib{
-//  [self setDelegate:self];
-//  machinescontroller = [[MachinesController alloc] init];
-//  colorscontroller = [[ColorsController alloc] init];
   cmStartupDesign();
+  
+  cm = cmlCreateColorMachine();
+  cmlSetMachineForColorClasses(cm);
+  sm = cmlCreateColorMachine();
+
   threeDeeController = cmAllocThreeDeeController();
   metamericsController = cmAllocMetamericsController();
+  
   cmUpdateMetamericsController(metamericsController);
   cmUpdateThreeDeeController(threeDeeController);
 }
@@ -120,7 +126,6 @@ size_t bordercount;
 - (id)init{
   self = [super init];
   [self setDelegate:self];
-  machinescontroller = [[MachinesController alloc] init];
   return self;
 }
 
@@ -174,10 +179,10 @@ size_t bordercount;
 
 
 - (CMLColorMachine*)getCurrentMachine{
-  return [machinescontroller currentMachine];
+  return cm;
 }
 - (CMLColorMachine*)getCurrentScreenMachine{
-  return [machinescontroller currentScreenMachine];
+  return sm;
 }
 - (MachineWindowController*)getMachineWindowController{
   return machinewindowcontroller;
@@ -210,19 +215,20 @@ size_t bordercount;
 
 
 - (IBAction)resetMachine:(id)sender{
-  [machinescontroller resetCurrentMachine];
+  cmlReleaseColorMachine(cm);
+  cm = cmlCreateColorMachine();
+  cmlSetMachineForColorClasses(cm);
   [self updateMachine];
 }
 
 - (IBAction)setCurrentColorAsWhitepoint:(id)sender{
   float yxybuf[3];
   [colorscontroller currentColor]->toYxyBuffer(yxybuf);
-  cmlSetReferenceWhitePointYxy([machinescontroller currentMachine], yxybuf);
+  cmlSetReferenceWhitePointYxy(cm, yxybuf);
   [self updateMachine];
 }
 
 - (IBAction)setCurrentColorAsRedPrimary:(id)sender{
-  CMLColorMachine* cm = [machinescontroller currentMachine];
   CMLVec3 primaries[3];
   cmlGetRGBPrimariesYxy(cm, primaries);
   [colorscontroller currentColor]->toYxyBuffer(primaries[0]);
@@ -230,7 +236,6 @@ size_t bordercount;
   [self updateMachine];
 }
 - (IBAction)setCurrentColorAsGreenPrimary:(id)sender{
-  CMLColorMachine* cm = [machinescontroller currentMachine];
   CMLVec3 primaries[3];
   cmlGetRGBPrimariesYxy(cm, primaries);
   [colorscontroller currentColor]->toYxyBuffer(primaries[1]);
@@ -238,7 +243,6 @@ size_t bordercount;
   [self updateMachine];
 }
 - (IBAction)setCurrentColorAsBluePrimary:(id)sender{
-  CMLColorMachine* cm = [machinescontroller currentMachine];
   CMLVec3 primaries[3];
   cmlGetRGBPrimariesYxy(cm, primaries);
   [colorscontroller currentColor]->toYxyBuffer(primaries[2]);
@@ -250,8 +254,6 @@ size_t bordercount;
 
 - (void)fillRGBfloatarray:(float*)outdata fromColor:(const Color*)inputcolor{
   
-  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-  CMLColorMachine* sm = [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
   CMLVec3 cmWhitePointYxy;
   CMLVec3 smWhitePointYxy;
   cmlCpy3(cmWhitePointYxy, cmlGetReferenceWhitePointYxy(cm));

@@ -281,7 +281,6 @@
 		90BF512C274AB29E001FDE2A /* ScreenResolution.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50C9274AB29D001FDE2A /* ScreenResolution.xib */; };
 		90BF5137274AB29E001FDE2A /* ColorMachineChangelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50E2274AB29D001FDE2A /* ColorMachineChangelog.txt */; };
 		90BF513C274AB29E001FDE2A /* ColorMachineApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50E9274AB29D001FDE2A /* ColorMachineApplication.mm */; };
-		90BF513D274AB29E001FDE2A /* MachinesController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50EB274AB29D001FDE2A /* MachinesController.mm */; };
 		90BF513E274AB29E001FDE2A /* ColorsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50EC274AB29D001FDE2A /* ColorsController.mm */; };
 		90BF513F274AB29E001FDE2A /* ScreenResolutionWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50EF274AB29D001FDE2A /* ScreenResolutionWindowController.mm */; };
 		90BF5140274AB29E001FDE2A /* AboutWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50F1274AB29D001FDE2A /* AboutWindowController.mm */; };
@@ -712,7 +711,6 @@
 		90BF50E8274AB29D001FDE2A /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		90BF50E9274AB29D001FDE2A /* ColorMachineApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorMachineApplication.mm; sourceTree = "<group>"; };
 		90BF50EA274AB29D001FDE2A /* ColorMachineApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMachineApplication.h; sourceTree = "<group>"; };
-		90BF50EB274AB29D001FDE2A /* MachinesController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MachinesController.mm; sourceTree = "<group>"; };
 		90BF50EC274AB29D001FDE2A /* ColorsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorsController.mm; sourceTree = "<group>"; };
 		90BF50EE274AB29D001FDE2A /* ScreenResolutionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenResolutionWindowController.h; sourceTree = "<group>"; };
 		90BF50EF274AB29D001FDE2A /* ScreenResolutionWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScreenResolutionWindowController.mm; sourceTree = "<group>"; };
@@ -747,7 +745,6 @@
 		90BF5111274AB29D001FDE2A /* LabColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LabColorController.h; sourceTree = "<group>"; };
 		90BF5112274AB29D001FDE2A /* ColorsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsController.h; sourceTree = "<group>"; };
 		90BF5113274AB29D001FDE2A /* ColorMachineOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMachineOpenGLView.h; sourceTree = "<group>"; };
-		90BF5117274AB29D001FDE2A /* MachinesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachinesController.h; sourceTree = "<group>"; };
 		90BF511B274AB29D001FDE2A /* ColorMachineOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorMachineOpenGLView.mm; sourceTree = "<group>"; };
 		90BF515A274AB98D001FDE2A /* libCML.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libCML.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		90BF5161274ABA50001FDE2A /* ColorMachine.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorMachine.icns; sourceTree = "<group>"; };
@@ -1458,8 +1455,6 @@
 				90B6FD6A28A99FEE00EE6F32 /* CMTranslations.c */,
 				90B6FD6B28A99FEE00EE6F32 /* CMTranslations.h */,
 				90BF50F7274AB29D001FDE2A /* Machine */,
-				90BF5117274AB29D001FDE2A /* MachinesController.h */,
-				90BF50EB274AB29D001FDE2A /* MachinesController.mm */,
 				900B8EED28B2E074007A137C /* main.c */,
 				90BF50E8274AB29D001FDE2A /* main.h */,
 				907961632905330700D1D9D7 /* CMDesign.c */,
@@ -2091,7 +2086,6 @@
 				90ED439D28FF431F004E8A54 /* CMUVMetamericIndexController.c in Sources */,
 				90B6FD6428A99A2F00EE6F32 /* ManderAppAbout.c in Sources */,
 				90BF513E274AB29E001FDE2A /* ColorsController.mm in Sources */,
-				90BF513D274AB29E001FDE2A /* MachinesController.mm in Sources */,
 				90BF513F274AB29E001FDE2A /* ScreenResolutionWindowController.mm in Sources */,
 				90BF5148274AB29E001FDE2A /* YuvColorController.mm in Sources */,
 				90BF514F274AB29E001FDE2A /* HSVColorController.mm in Sources */,

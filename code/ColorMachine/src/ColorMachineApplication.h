@@ -9,7 +9,6 @@ CM_PROTOTYPE(CMThreeDeeController);
 @class ScreenResolutionWindowController;
 @class ThreeDeeWindowController;
 
-@class MachinesController;
 @class ColorController;
 @class ColorsController;
 @class GrayColorController;
@@ -35,6 +34,9 @@ extern size_t bordercount;
 
 
 @interface ColorMachineApplication : NSApplication <NSApplicationDelegate>{
+  CMLColorMachine* cm; // current ColorMachine
+  CMLColorMachine* sm; // current ScreenMachine
+
   CMMetamericsController* metamericsController;
   CMThreeDeeController* threeDeeController;
 
@@ -42,7 +44,6 @@ extern size_t bordercount;
   IBOutlet MachineWindowController* machinewindowcontroller;
   IBOutlet ScreenResolutionWindowController* screenresolutionwindowcontroller;
   
-  MachinesController* machinescontroller;
   IBOutlet ColorsController* colorscontroller;
   
   NSTimeInterval sleepinterval;
