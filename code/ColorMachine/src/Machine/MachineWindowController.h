@@ -1,6 +1,8 @@
 
 #import "main.h"
 
+CM_PROTOTYPE(CMHSLColorController);
+CM_PROTOTYPE(CMHSVColorController);
 
 @class GammaDisplay;
 
@@ -59,6 +61,9 @@
 
   BOOL colorSelectionIsExpanded;
   size_t lastSelectedChannel;
+
+  CMHSLColorController* hslColorController;
+  CMHSVColorController* hsvColorController;
 }
 - (void)awakeFromNib;
 
@@ -91,6 +96,8 @@
 
 - (void)windowDidChangeScreenProfile:(NSNotification *)notification;
 //- (void)windowDidChangeBackingProperties:(NSNotification *)notification;
+
+- (CMHSLColorController*)getHSLColorController;
 
 - (void)updateMachine;
 

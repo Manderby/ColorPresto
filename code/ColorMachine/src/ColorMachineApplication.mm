@@ -1,9 +1,12 @@
 
 #include "CMDesign.h"
 
+#include "CMColorsManager.h"
 #include "CMMetamericsController.h"
 #include "CMTranslations.h"
 #include "CMThreeDeeController.h"
+
+#include "CMHSLColorController.h"
 
 #import "ColorMachineApplication.h"
 #import "AboutWindowController.h"
@@ -99,6 +102,8 @@ size_t bordercount;
   cmDeallocThreeDeeController(threeDeeController);
   cmDeallocMetamericsController(metamericsController);
 
+  cmDeallocColorsController(colorsManager);
+
   cmlReleaseColorMachine(cm);
   cmlReleaseColorMachine(sm);
 
@@ -112,9 +117,10 @@ size_t bordercount;
 - (void)awakeFromNib{
   cmStartupDesign();
   
-  cm = cmlCreateColorMachine();
-  cmlSetMachineForColorClasses(cm);
-  sm = cmlCreateColorMachine();
+  colorsManager = cmAllocColorsController();
+
+//  CMHSLColorController* hslColorController = [machinewindowcontroller getHSLColorController];
+//  cmSetColorsManagerCurrentColorController(colorsManager, (CMColorController*)hslColorController);
 
   threeDeeController = cmAllocThreeDeeController();
   metamericsController = cmAllocMetamericsController();
@@ -126,6 +132,11 @@ size_t bordercount;
 - (id)init{
   self = [super init];
   [self setDelegate:self];
+
+  cm = cmlCreateColorMachine();
+  cmlSetMachineForColorClasses(cm);
+  sm = cmlCreateColorMachine();
+
   return self;
 }
 
@@ -189,6 +200,9 @@ size_t bordercount;
 }
 - (ColorsController*)getColorsController{
   return colorscontroller;
+}
+- (CMColorsManager*)getColorsManager{
+  return colorsManager;
 }
 
 

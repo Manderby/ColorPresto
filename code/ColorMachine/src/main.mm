@@ -1,6 +1,9 @@
 
+#include "CMColorsManager.h"
 #include "CMTranslations.h"
 #include "CMThreeDeeController.h"
+
+#include "CMHSLColorController.h"
 
 #import "main.h"
 #import "mainC.h"
@@ -15,13 +18,38 @@
 CMLColorMachine* cmGetCurrentColorMachine(){
   return [(ColorMachineApplication*)NSApp getCurrentMachine];
 }
+
 CMLColorMachine* cmGetCurrentScreenMachine(){
   return [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
 }
+
+void cmUpdateMachine(){
+  [(ColorMachineApplication*)NSApp updateMachine];
+}
+
+void cmSetCurrentColorController(const CMColorController* con){
+  cmSetColorsManagerCurrentColorController(
+    [(ColorMachineApplication*)NSApp getColorsManager],
+    con);
+  [(ColorMachineApplication*)NSApp updateMachine];
+}
+
+const CMColorController* cmGetCurrentColorController(){
+  return cmGetColorsManagerCurrentColorController(
+    [(ColorMachineApplication*)NSApp getColorsManager]);
+}
+
+const float* cmGetCurrentColorData(){
+  return cmGetColorsManagerCurrentColorData([(ColorMachineApplication*)NSApp getColorsManager]);
+}
+
+CMLColorType cmGetCurrentColorType(){
+  return cmGetColorsManagerCurrentColorType([(ColorMachineApplication*)NSApp getColorsManager]);
+}
+
 void cmUpdateMetamerics(void){
   [(ColorMachineApplication*)NSApp updateMetamerics];
 }
-
 
 
 double cmGetUIScaleFactorForWindow(void* nativeWindowPtr){

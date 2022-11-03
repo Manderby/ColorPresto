@@ -3,6 +3,9 @@
 
 CM_PROTOTYPE(CMLColorMachine);
 
+CM_PROTOTYPE(CMColorController);
+CM_PROTOTYPE(CMHSLColorController);
+
 
 #ifdef __cplusplus
   extern "C"{
@@ -15,6 +18,15 @@ CM_PROTOTYPE(CMLColorMachine);
 
 CMLColorMachine* cmGetCurrentColorMachine(void);
 CMLColorMachine* cmGetCurrentScreenMachine(void);
+
+void cmUpdateMachine();
+
+void cmSetCurrentColorController(const CMColorController* con);
+const CMColorController* cmGetCurrentColorController();
+
+const float* cmGetCurrentColorData(void);
+CMLColorType cmGetCurrentColorType(void);
+
 void cmUpdateMetamerics(void);
 
 double cmGetUIScaleFactorForWindow(void* nativeWindowPtr);

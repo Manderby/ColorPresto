@@ -1,8 +1,11 @@
 
 #import "main.h"
 
+CM_PROTOTYPE(CMColorsManager);
 CM_PROTOTYPE(CMMetamericsController);
 CM_PROTOTYPE(CMThreeDeeController);
+
+CM_PROTOTYPE(CMHSLColorController);
 
 @class MachineWindowController;
 @class AboutWindowController;
@@ -36,6 +39,8 @@ extern size_t bordercount;
 @interface ColorMachineApplication : NSApplication <NSApplicationDelegate>{
   CMLColorMachine* cm; // current ColorMachine
   CMLColorMachine* sm; // current ScreenMachine
+
+  CMColorsManager* colorsManager;
 
   CMMetamericsController* metamericsController;
   CMThreeDeeController* threeDeeController;
@@ -72,6 +77,7 @@ extern size_t bordercount;
 - (CMLColorMachine*)getCurrentScreenMachine;
 - (MachineWindowController*)getMachineWindowController;
 - (ColorsController*)getColorsController;
+- (CMColorsManager*)getColorsManager;
 - (void)updateMachine;
 - (void)updateColor;
 - (void)updateMetamerics;

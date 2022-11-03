@@ -13,8 +13,11 @@
 #import "YCbCrColorController.h"
 #import "SpectralColorController.h"
 
+#include "CMColorController.h"
+#include "CMHSLColorController.h"
+#include "CMHSVColorController.h"
 
-
+#include "NAApp.h"
 
 
 
@@ -32,6 +35,27 @@
 
   [[self window] setDelegate:self];
   
+  
+  hslColorController = cmAllocHSLColorController();
+  hsvColorController = cmAllocHSVColorController();
+
+  NSView* childView;
+  NSRect frame;
+
+  NASpace* hslSpace = cmGetColorControllerUIElement((CMColorController*)hslColorController);
+  childView = (NSView*)naGetUIElementNativePtr(hslSpace);
+  [[[self window] contentView] addSubview:childView];
+  frame = [childView frame];
+  frame.origin = NSMakePoint(290, 20);
+  [childView setFrame: frame];
+
+  NASpace* hsvSpace = cmGetColorControllerUIElement((CMColorController*)hsvColorController);
+  childView = (NSView*)naGetUIElementNativePtr(hsvSpace);
+  [[[self window] contentView] addSubview:childView];
+  frame = [childView frame];
+  frame.origin = NSMakePoint(590, 20);
+  [childView setFrame: frame];
+    
   
 //  NSScreen* screen = [[self window] screen];
 //  NSNumber* screenID = (NSNumber*)[screendict objectForKey:@"NSScreenNumber"];
@@ -423,6 +447,10 @@
 //}
 
 
+- (CMHSLColorController*)getHSLColorController{
+  return hslColorController;
+}
+
 
 - (void)updateMachine{
 
@@ -654,6 +682,13 @@
     [textFieldGammaL setEnabled:false];
     [sliderGammaL setEnabled:false];
 //  }
+
+  
+  cmSetColorControllerActive((CMColorController*)hslColorController, cmGetCurrentColorController() == (CMColorController*)hslColorController);
+  cmSetColorControllerActive((CMColorController*)hsvColorController, cmGetCurrentColorController() == (CMColorController*)hsvColorController);
+
+  cmUpdateHSLColorController(hslColorController);
+  cmUpdateHSVColorController(hsvColorController);
 
 }
 
