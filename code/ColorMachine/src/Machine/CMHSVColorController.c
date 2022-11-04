@@ -1,5 +1,6 @@
 
 #include "CMColorController.h"
+#include "CMColorWell1D.h"
 #include "CMColorWell2D.h"
 #include "CMHSVColorController.h"
 #include "NAApp.h"
@@ -16,6 +17,9 @@ struct CMHSVColorController{
   NATextField* textFieldH;
   NATextField* textFieldS;
   NATextField* textFieldV;
+  CMColorWell1D* colorWell1DH;
+  CMColorWell1D* colorWell1DS;
+  CMColorWell1D* colorWell1DV;
 
   CMLVec3 hsvColor;
 };
@@ -60,12 +64,15 @@ CMHSVColorController* cmAllocHSVColorController(void){
   con->textFieldH = cmNewValueTextBox();
   con->textFieldS = cmNewValueTextBox();
   con->textFieldV = cmNewValueTextBox();
-  
+  con->colorWell1DH = cmAllocColorWell1D(&(con->baseController), 0);
+  con->colorWell1DS = cmAllocColorWell1D(&(con->baseController), 1);
+  con->colorWell1DV = cmAllocColorWell1D(&(con->baseController), 2);
+
   naAddUIReaction(con->textFieldH, NA_UI_COMMAND_EDIT_FINISHED, cmHSVValueEdited, con);
   naAddUIReaction(con->textFieldS, NA_UI_COMMAND_EDIT_FINISHED, cmHSVValueEdited, con);
   naAddUIReaction(con->textFieldV, NA_UI_COMMAND_EDIT_FINISHED, cmHSVValueEdited, con);
 
-  NABezel4 colorWellBezel = {10, 10, colorWellSize + 20, 10};
+  NABezel4 colorWellBezel = {20 + colorWellSize, 5, colorWellSize + 20, 5};
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelH, colorValueCondensedRowHeight);
@@ -80,7 +87,20 @@ CMHSVColorController* cmAllocHSVColorController(void){
   naAddSpaceChild(
     con->baseController.space,
     cmGetColorWell2DUIElement(con->colorWell2D),
-    naMakePos(10, 10));
+    naMakePos(10, 5));
+
+  naAddSpaceChild(
+    con->baseController.space,
+    cmGetColorWell1DUIElement(con->colorWell1DH),
+    naMakePos(215, 70));
+  naAddSpaceChild(
+    con->baseController.space,
+    cmGetColorWell1DUIElement(con->colorWell1DS),
+    naMakePos(215, 50));
+  naAddSpaceChild(
+    con->baseController.space,
+    cmGetColorWell1DUIElement(con->colorWell1DV),
+    naMakePos(215, 30));
 
   return con;
 }
@@ -115,7 +135,7 @@ void cmUpdateHSVColorController(CMHSVColorController* con){
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_HSV, currentColorType);
   converter(cm, con->hsvColor, currentColorData, 1);
   
-  cmUpdateColorWell2d(con->colorWell2D);
+  cmUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(
     con->textFieldH,
@@ -126,4 +146,8 @@ void cmUpdateHSVColorController(CMHSVColorController* con){
   naSetTextFieldText(
     con->textFieldV,
     naAllocSprintf(NA_TRUE, "%1.05f", con->hsvColor[2]));
+
+  cmUpdateColorWell1D(con->colorWell1DH);
+  cmUpdateColorWell1D(con->colorWell1DS);
+  cmUpdateColorWell1D(con->colorWell1DV);
 }

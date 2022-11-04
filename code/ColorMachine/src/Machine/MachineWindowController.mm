@@ -46,7 +46,7 @@
   childView = (NSView*)naGetUIElementNativePtr(hslSpace);
   [[[self window] contentView] addSubview:childView];
   frame = [childView frame];
-  frame.origin = NSMakePoint(290, 20);
+  frame.origin = NSMakePoint(250, 20);
   [childView setFrame: frame];
 
   NASpace* hsvSpace = cmGetColorControllerUIElement((CMColorController*)hsvColorController);

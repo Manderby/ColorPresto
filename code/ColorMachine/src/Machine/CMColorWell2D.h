@@ -21,7 +21,7 @@ void cmDeallocColorWell2D(CMColorWell2D* well);
 
 NAOpenGLSpace* cmGetColorWell2DUIElement(CMColorWell2D* well);
 
-void cmUpdateColorWell2d(CMColorWell2D* well);
+void cmUpdateColorWell2D(CMColorWell2D* well);
 
 
 #ifdef __cplusplus

@@ -41,6 +41,7 @@ static const double spaceMarginDegreeLeft = spaceMarginLeft + degreeWidth;
 
 static const double indexWidth = 30.;
 static const double twoColorWidth = 150.;
+static const double twoColorHeight = 21.;
 
 static const double indexMargin = 0.;
 static const double valueMargin = 5.;
@@ -49,6 +50,7 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 
 static const float colorValueCondensedRowHeight = 20.;
 static const int colorWellSize = 100;
+static const double colorWell1DHeight = 13.;
 
 
 void cmStartupDesign(void);

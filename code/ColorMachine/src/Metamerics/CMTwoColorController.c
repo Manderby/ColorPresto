@@ -62,7 +62,7 @@ CMTwoColorController* cmAllocTwoColorController(){
   CMTwoColorController* con = naAlloc(CMTwoColorController);
   naZeron(con, sizeof(CMTwoColorController));
 
-  con->space = naNewOpenGLSpace(naMakeSize(twoColorWidth, 21), cmInitTwoColorDisplay, con);
+  con->space = naNewOpenGLSpace(naMakeSize(twoColorWidth, twoColorHeight), cmInitTwoColorDisplay, con);
   naAddUIReaction(con->space, NA_UI_COMMAND_REDRAW, cmRedrawTwoColorController, con);
   
   return con;

@@ -47,8 +47,20 @@ NABool cmDragColorWell2D(NAReaction reaction){
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
   if(mouseStatus->leftPressed){
     NARect displayRect = naGetUIElementRect(well->display, naGetApplication(), NA_FALSE);
-    normedColorValues[0] = (mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width;
-    normedColorValues[1] = (mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height;
+    switch(well->fixedIndex){
+    case 0:
+      normedColorValues[1] = (mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width;
+      normedColorValues[2] = (mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height;
+      break;
+    case 1:
+      normedColorValues[0] = (mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width;
+      normedColorValues[2] = (mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height;
+      break;
+    case 2:
+      normedColorValues[0] = (mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width;
+      normedColorValues[1] = (mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height;
+      break;
+    }
   }
   
   CMLVec3 newColorValues;
@@ -82,11 +94,16 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   CMLVec3 normedColorValues;
   outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
   
+  float fixedValueA;
+  float fixedValueB;
+
   switch(well->fixedIndex){
   case 0:
     for(int y = 0; y < colorWellSize; ++y){
       float yValue = (float)y / (float)colorWellSize;
       for(int x = 0; x < colorWellSize; ++x){
+        fixedValueA = normedColorValues[1];
+        fixedValueB = normedColorValues[2];
         float xValue = (float)x / (float)colorWellSize;
         *inputPtr++ = normedColorValues[0];
         *inputPtr++ = xValue;
@@ -98,6 +115,8 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     for(int y = 0; y < colorWellSize; ++y){
       float yValue = (float)y / (float)colorWellSize;
       for(int x = 0; x < colorWellSize; ++x){
+        fixedValueA = normedColorValues[0];
+        fixedValueB = normedColorValues[2];
         float xValue = (float)x / (float)colorWellSize;
         *inputPtr++ = xValue;
         *inputPtr++ = normedColorValues[1];
@@ -109,6 +128,8 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     for(int y = 0; y < colorWellSize; ++y){
       float yValue = (float)y / (float)colorWellSize;
       for(int x = 0; x < colorWellSize; ++x){
+        fixedValueA = normedColorValues[0];
+        fixedValueB = normedColorValues[1];
         float xValue = (float)x / (float)colorWellSize;
         *inputPtr++ = xValue;
         *inputPtr++ = yValue;
@@ -148,7 +169,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   glBegin(GL_LINE_LOOP);
     for(int i = 0; i < subdivisions; ++i){
       float ang = NA_PI2 * (float)i / (float)subdivisions;
-      glVertex2f(normedColorValues[0] * 2. - 1. + whiteR * naCos(ang), normedColorValues[1] * 2. - 1. + whiteR * naSin(ang));
+      glVertex2f(fixedValueA * 2. - 1. + whiteR * naCos(ang), fixedValueB * 2. - 1. + whiteR * naSin(ang));
     }
   glEnd();
 
@@ -156,7 +177,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   glBegin(GL_LINE_LOOP);
     for(int i = 0; i < subdivisions; ++i){
       float ang = NA_PI2 * (float)i / (float)subdivisions;
-      glVertex2f(normedColorValues[0] * 2. - 1. + blackR * naCos(ang), normedColorValues[1] * 2. - 1. + blackR * naSin(ang));
+      glVertex2f(fixedValueA * 2. - 1. + blackR * naCos(ang), fixedValueB * 2. - 1. + blackR * naSin(ang));
     }
   glEnd();
 
@@ -194,6 +215,6 @@ NAOpenGLSpace* cmGetColorWell2DUIElement(CMColorWell2D* well){
 
 
 
-void cmUpdateColorWell2d(CMColorWell2D* well){
+void cmUpdateColorWell2D(CMColorWell2D* well){
   naRefreshUIElement(well->display, 0.);
 }
