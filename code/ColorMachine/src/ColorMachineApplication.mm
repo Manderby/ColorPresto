@@ -115,7 +115,6 @@ size_t bordercount;
 
 
 - (void)awakeFromNib{
-  cmStartupDesign();
   
   colorsManager = cmAllocColorsController();
 
@@ -136,6 +135,8 @@ size_t bordercount;
   cm = cmlCreateColorMachine();
   cmlSetMachineForColorClasses(cm);
   sm = cmlCreateColorMachine();
+
+  cmStartupDesign();
 
   return self;
 }

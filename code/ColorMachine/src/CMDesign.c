@@ -31,7 +31,7 @@ NALabel* cmNewTitleLabel(const NAUTF8Char* text, double width){
 
 
 NALabel* cmNewValueLabel(){
-  NALabel* label = naNewLabel("", valueWidth);
+  NALabel* label = naNewLabel("", labelValueWidth);
   naSetLabelFont(label, monoFont);
   return label;
 }
@@ -39,10 +39,18 @@ NALabel* cmNewValueLabel(){
 
 
 NALabel* cmNewThreeValueLabel(){
-  NALabel* label = naNewLabel("", valueWidth);
+  NALabel* label = naNewLabel("", labelValueWidth);
   naSetLabelHeight(label, threeValueHeight);
   naSetLabelFont(label, monoFont);
   return label;
+}
+
+
+
+NATextField* cmNewValueTextBox(){
+  NATextField* textField = naNewTextField(textFieldValueWidth);
+  naSetTextFieldFont(textField, monoFont);
+  return textField;
 }
 
 

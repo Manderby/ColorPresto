@@ -23,7 +23,7 @@ CMLColorMachine* cmGetCurrentScreenMachine(){
   return [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
 }
 
-void cmUpdateMachine(){
+void cmUpdateColor(){
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 

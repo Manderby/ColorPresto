@@ -59,7 +59,7 @@ struct CMWhitePointsController{
   CMReferenceIlluminationType referenceIlluminationType;
 };
 
-static const double fourValuesWidth = 4 * valueWidth + 3 * marginH;
+static const double fourValuesWidth = 4 * labelValueWidth + 3 * marginH;
 
 
 
@@ -96,10 +96,10 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
   con->illTitle = cmNewTitleLabel("", fourValuesWidth);
 //  naSetLabelTextAlignment(con->illTitle, NA_TEXT_ALIGNMENT_CENTER);
 
-  con->illXYZTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceXYZ), valueWidth);
-  con->illYxyTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYxy), valueWidth);
-  con->illYupvpTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYupvp), valueWidth);
-  con->illYuvTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYuv), valueWidth);
+  con->illXYZTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceXYZ), labelValueWidth);
+  con->illYxyTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYxy), labelValueWidth);
+  con->illYupvpTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYupvp), labelValueWidth);
+  con->illYuvTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYuv), labelValueWidth);
   naSetLabelTextAlignment(con->illXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);

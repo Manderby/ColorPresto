@@ -25,7 +25,8 @@ static const double spaceMarginV = spaceMarginTop + spaceMarginBottom;
 
 static const double marginH = 15.;
 
-static const double valueWidth = 60.;
+static const double labelValueWidth = 60.;
+static const double textFieldValueWidth = 65.;
 static const double threeValueHeight = 55.;
 static const double threeValueHeightMargin = 10.;
 static const double spaceMarginLeft3D = 10.;
@@ -46,6 +47,9 @@ static const double valueMargin = 5.;
 
 static const float greyColor[3] = {.5f, .5f, .5f};
 
+static const float colorValueCondensedRowHeight = 20.;
+static const int colorWellSize = 100;
+
 
 void cmStartupDesign(void);
 void cmShutdownDesign(void);
@@ -55,6 +59,7 @@ NALabel* cmNewTitleLabel(
   double width);
 NALabel* cmNewValueLabel(void);
 NALabel* cmNewThreeValueLabel(void);
+NATextField* cmNewValueTextBox(void);
 
 // Before constructing a UI layout, you need to define within which NASpace you
 // want the layout to be in. Use cmBeginUILayout for that.

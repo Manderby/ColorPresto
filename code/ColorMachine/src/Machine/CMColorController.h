@@ -25,6 +25,7 @@ void cmSetColorControllerActive(CMColorController* con, NABool active);
 
 CMLColorType cmGetColorControllerColorType(const CMColorController* con);
 const void* cmGetColorControllerColorData(const CMColorController* con);
+void cmSetColorControllerColorData(CMColorController* con, const void* data);
 
 NASpace* cmGetColorControllerUIElement(CMColorController* con);
 void cmUpdateColorController(CMColorController* con);

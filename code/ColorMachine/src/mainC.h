@@ -19,7 +19,7 @@ CM_PROTOTYPE(CMHSLColorController);
 CMLColorMachine* cmGetCurrentColorMachine(void);
 CMLColorMachine* cmGetCurrentScreenMachine(void);
 
-void cmUpdateMachine();
+void cmUpdateColor();
 
 void cmSetCurrentColorController(const CMColorController* con);
 const CMColorController* cmGetCurrentColorController();

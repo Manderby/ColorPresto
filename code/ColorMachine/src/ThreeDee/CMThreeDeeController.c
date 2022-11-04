@@ -160,7 +160,7 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
   NARect windowRect = naGetUIElementRect(con->window, NA_NULL, NA_FALSE);
   NARect oldOpenGLRect = naGetUIElementRect(con->display, NA_NULL, NA_FALSE);
   NARect oldControlRect = naGetUIElementRect(con->controlSpace, NA_NULL, NA_FALSE);
-  
+
   double controlHeight = oldControlRect.size.height;
 
   NARect openGLRect = naMakeRectS(

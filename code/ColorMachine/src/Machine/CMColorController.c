@@ -53,6 +53,15 @@ const void* cmGetColorControllerColorData(const CMColorController* con){
 
 
 
+void cmSetColorControllerColorData(CMColorController* con, const void* data){
+  switch(con->colorType){
+  case CML_COLOR_HSL: cmSetHSLColorControllerColorData((CMHSLColorController*)con, data); break; 
+  case CML_COLOR_HSV: cmSetHSVColorControllerColorData((CMHSVColorController*)con, data); break;
+  default: break;
+  }
+}
+
+
 
 NASpace* cmGetColorControllerUIElement(CMColorController* con){
   return con->space;

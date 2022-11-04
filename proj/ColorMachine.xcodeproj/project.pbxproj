@@ -42,6 +42,7 @@
 		9079616A29059E4100D1D9D7 /* CMTotalMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 9079616829059E4100D1D9D7 /* CMTotalMetamericIndexController.c */; };
 		909541AD28B155D800346AB2 /* CMThreeDeeView.c in Sources */ = {isa = PBXBuildFile; fileRef = 909541AB28B155D800346AB2 /* CMThreeDeeView.c */; };
 		9099F4FD28F2145300C18D81 /* CMTwoColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 9099F4FB28F2145300C18D81 /* CMTwoColorController.c */; };
+		909C538D29141D4C002C157C /* CMColorWell2D.c in Sources */ = {isa = PBXBuildFile; fileRef = 909C538C29141D4C002C157C /* CMColorWell2D.c */; };
 		90B6FD6228A99A2F00EE6F32 /* ManderApp.vcxproj in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */; };
 		90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5B28A99A2F00EE6F32 /* ManderAppPreferences.c */; };
 		90B6FD6428A99A2F00EE6F32 /* ManderAppAbout.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5C28A99A2F00EE6F32 /* ManderAppAbout.c */; };
@@ -462,6 +463,8 @@
 		909541AC28B155D800346AB2 /* CMThreeDeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMThreeDeeView.h; sourceTree = "<group>"; };
 		9099F4FB28F2145300C18D81 /* CMTwoColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMTwoColorController.c; sourceTree = "<group>"; };
 		9099F4FC28F2145300C18D81 /* CMTwoColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTwoColorController.h; sourceTree = "<group>"; };
+		909C538B29141D4C002C157C /* CMColorWell2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMColorWell2D.h; sourceTree = "<group>"; };
+		909C538C29141D4C002C157C /* CMColorWell2D.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMColorWell2D.c; sourceTree = "<group>"; };
 		90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ManderApp.vcxproj; sourceTree = "<group>"; };
 		90B6FD5728A99A2F00EE6F32 /* ManderApp_deu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_deu.h; sourceTree = "<group>"; };
 		90B6FD5828A99A2F00EE6F32 /* ManderApp_eng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_eng.h; sourceTree = "<group>"; };
@@ -1502,6 +1505,8 @@
 			children = (
 				906A393A2913E42000167195 /* CMColorController.c */,
 				906A39392913E42000167195 /* CMColorController.h */,
+				909C538C29141D4C002C157C /* CMColorWell2D.c */,
+				909C538B29141D4C002C157C /* CMColorWell2D.h */,
 				90E68D0E29131CA6007FFF9C /* CMHSLColorController.c */,
 				90E68D0F29131CA6007FFF9C /* CMHSLColorController.h */,
 				906A393C2913F2BD00167195 /* CMHSVColorController.c */,
@@ -2089,6 +2094,7 @@
 				90BF5144274AB29E001FDE2A /* YxyColorController.mm in Sources */,
 				90BF514B274AB29E001FDE2A /* GrayColorController.mm in Sources */,
 				90BF5152274AB29E001FDE2A /* ColorMachineOpenGLView.mm in Sources */,
+				909C538D29141D4C002C157C /* CMColorWell2D.c in Sources */,
 				90E68D0D2913142C007FFF9C /* CMColorsManager.c in Sources */,
 				9068AC5D28D6643E001635DD /* CMMetamericsController.c in Sources */,
 				90BF5149274AB29E001FDE2A /* XYZColorController.mm in Sources */,
