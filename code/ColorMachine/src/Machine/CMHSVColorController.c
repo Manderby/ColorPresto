@@ -61,16 +61,12 @@ CMHSVColorController* cmAllocHSVColorController(void){
   con->labelH = naNewLabel("H", 20);
   con->labelS = naNewLabel("S", 20);
   con->labelV = naNewLabel("V", 20);
-  con->textFieldH = cmNewValueTextBox();
-  con->textFieldS = cmNewValueTextBox();
-  con->textFieldV = cmNewValueTextBox();
+  con->textFieldH = cmNewValueTextBox(cmHSVValueEdited, con);
+  con->textFieldS = cmNewValueTextBox(cmHSVValueEdited, con);
+  con->textFieldV = cmNewValueTextBox(cmHSVValueEdited, con);
   con->colorWell1DH = cmAllocColorWell1D(&(con->baseController), 0);
   con->colorWell1DS = cmAllocColorWell1D(&(con->baseController), 1);
   con->colorWell1DV = cmAllocColorWell1D(&(con->baseController), 2);
-
-  naAddUIReaction(con->textFieldH, NA_UI_COMMAND_EDIT_FINISHED, cmHSVValueEdited, con);
-  naAddUIReaction(con->textFieldS, NA_UI_COMMAND_EDIT_FINISHED, cmHSVValueEdited, con);
-  naAddUIReaction(con->textFieldV, NA_UI_COMMAND_EDIT_FINISHED, cmHSVValueEdited, con);
 
   NABezel4 colorWellBezel = {20 + colorWellSize, 5, colorWellSize + 20, 5};
   cmBeginUILayout(con->baseController.space, colorWellBezel);

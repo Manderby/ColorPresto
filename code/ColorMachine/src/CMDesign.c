@@ -47,9 +47,11 @@ NALabel* cmNewThreeValueLabel(){
 
 
 
-NATextField* cmNewValueTextBox(){
+NATextField* cmNewValueTextBox(NAReactionHandler reactionHandler, void* con){
   NATextField* textField = naNewTextField(textFieldValueWidth);
   naSetTextFieldFont(textField, monoFont);
+  naSetTextFieldTextAlignment(textField, NA_TEXT_ALIGNMENT_RIGHT);
+  naAddUIReaction(textField, NA_UI_COMMAND_EDIT_FINISHED, reactionHandler, con);
   return textField;
 }
 

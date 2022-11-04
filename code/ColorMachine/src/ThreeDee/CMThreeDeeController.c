@@ -11,7 +11,6 @@
 #include "CMThreeDeeView.h"
 #include <CML.h>
 
-static const double initial3DDisplayWidth = 500.;
 static const double rotationLabelWidth = 55.;
 static const double labelWidth = 110.;
 static const double controlWidth = 140.;
@@ -544,7 +543,7 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cmReshapeThreeDeeWindow, con);
 
   // The 3D space
-  con->display = naNewOpenGLSpace(naMakeSize(initial3DDisplayWidth, 300), cmInitThreeDeeOpenGL, con);
+  con->display = naNewOpenGLSpace(naMakeSize(initial3DDisplayWidth, initial3DDisplayWidth), cmInitThreeDeeOpenGL, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cmUpdateThreeDeeDisplay, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cmMoveThreeDeeDisplayMouse, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cmScrollThreeDeeDisplay, con);

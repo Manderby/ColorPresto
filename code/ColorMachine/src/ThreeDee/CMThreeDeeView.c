@@ -4,6 +4,7 @@
 #include "NAMath.h"
 #include "NAVisual.h"
 #include "CMThreeDeeView.h"
+#include "CMDesign.h"
 
 
 
@@ -49,24 +50,25 @@ void cmSetupThreeDeeProjection(NASize viewSize, double fovy, double zoom){
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
+  NAMat44d projectionMatrix;
   if(fovy == 0){
-    glOrtho(
-      -(viewSize.width  / 200.) * zoom,
-       (viewSize.width  / 200.) * zoom,
-      -(viewSize.height / 200.) * zoom,
-       (viewSize.height / 200.) * zoom,
-      -50.,
-      50.);
+    naFillMatrixOrtho(
+      projectionMatrix,
+      -zoom * 3. * .5,
+      zoom * 3. * .5,
+      -zoom * 3. * .5,
+      zoom * 3. * .5,
+      .1,
+      50);
   }else{
-    NAMat44d projectionMatrix;
     naFillMatrixPerspective(
       projectionMatrix,
       fovy,
       viewSize.width / viewSize.height,
       .1,
       50.);
-    glLoadMatrixd(projectionMatrix);
   }
+  glLoadMatrixd(projectionMatrix);
 }
 
 

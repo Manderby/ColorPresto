@@ -75,6 +75,7 @@ NABool cmDragColorWell1D(NAReaction reaction){
 NABool cmDrawColorWell1D(NAReaction reaction){
   CMColorWell1D* well = (CMColorWell1D*)reaction.controller;
   CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* sm = cmGetCurrentScreenMachine();
 
   NASize viewSize = naGetUIElementRect(well->display, NA_NULL, NA_FALSE).size;
   glViewport(0, 0, (GLsizei)viewSize.width, (GLsizei)viewSize.height);
@@ -84,7 +85,6 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   CMLColorType colorType = cmGetColorControllerColorType(well->colorController);
   CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
   CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
-  CMLColorConverter colorConverter = cmlGetColorConverter(CML_COLOR_RGB, colorType);
 
   float inputValues[colorWellSize * 3];
   float* inputPtr = inputValues;
@@ -123,10 +123,18 @@ NABool cmDrawColorWell1D(NAReaction reaction){
     break;
   }
 
-  float colorValues[colorWellSize * 3];
+  // Convert the given values to screen RGBs.
   float rgbValues[colorWellSize * 3];
-  inputConverter(colorValues, inputValues, colorWellSize);
-  colorConverter(cm, rgbValues, colorValues, colorWellSize);
+  fillRGBFloatArrayWithArray(
+    cm,
+    sm,
+    rgbValues,
+    inputValues,
+    colorType,
+    inputConverter,
+    colorWellSize,
+    NA_FALSE,
+    NA_FALSE);
 
   glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, colorWellSize, 0, GL_RGB, GL_FLOAT, rgbValues);
 

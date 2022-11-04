@@ -25,6 +25,8 @@ static const double spaceMarginV = spaceMarginTop + spaceMarginBottom;
 
 static const double marginH = 15.;
 
+static const double initial3DDisplayWidth = 500.;
+
 static const double labelValueWidth = 60.;
 static const double textFieldValueWidth = 65.;
 static const double threeValueHeight = 55.;
@@ -61,7 +63,7 @@ NALabel* cmNewTitleLabel(
   double width);
 NALabel* cmNewValueLabel(void);
 NALabel* cmNewThreeValueLabel(void);
-NATextField* cmNewValueTextBox(void);
+NATextField* cmNewValueTextBox(NAReactionHandler reactionHandler, void* con);
 
 // Before constructing a UI layout, you need to define within which NASpace you
 // want the layout to be in. Use cmBeginUILayout for that.
