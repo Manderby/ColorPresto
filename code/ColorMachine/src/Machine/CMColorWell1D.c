@@ -86,7 +86,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
   CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
 
-  float inputValues[colorWellSize * 3];
+  float inputValues[colorWell1DSize * 3];
   float* inputPtr = inputValues;
   CMLVec3 normedColorValues;
   outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
@@ -95,27 +95,27 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   
   switch(well->variableIndex){
   case 0:
-    for(int x = 0; x < colorWellSize; ++x){
+    for(int x = 0; x < colorWell1DSize; ++x){
       variableValue = normedColorValues[0];
-      float xValue = (float)x / (float)colorWellSize;
+      float xValue = (float)x / (float)colorWell1DSize;
       *inputPtr++ = xValue;
       *inputPtr++ = normedColorValues[1];
       *inputPtr++ = normedColorValues[2];
     }
     break;
   case 1:
-    for(int x = 0; x < colorWellSize; ++x){
+    for(int x = 0; x < colorWell1DSize; ++x){
       variableValue = normedColorValues[1];
-      float xValue = (float)x / (float)colorWellSize;
+      float xValue = (float)x / (float)colorWell1DSize;
       *inputPtr++ = normedColorValues[0];
       *inputPtr++ = xValue;
       *inputPtr++ = normedColorValues[2];
     }
     break;
   case 2:
-    for(int x = 0; x < colorWellSize; ++x){
+    for(int x = 0; x < colorWell1DSize; ++x){
       variableValue = normedColorValues[2];
-      float xValue = (float)x / (float)colorWellSize;
+      float xValue = (float)x / (float)colorWell1DSize;
       *inputPtr++ = normedColorValues[0];
       *inputPtr++ = normedColorValues[1];
       *inputPtr++ = xValue;
@@ -124,7 +124,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   }
 
   // Convert the given values to screen RGBs.
-  float rgbValues[colorWellSize * 3];
+  float rgbValues[colorWell1DSize * 3];
   fillRGBFloatArrayWithArray(
     cm,
     sm,
@@ -132,11 +132,11 @@ NABool cmDrawColorWell1D(NAReaction reaction){
     inputValues,
     colorType,
     inputConverter,
-    colorWellSize,
+    colorWell1DSize,
     NA_FALSE,
     NA_FALSE);
 
-  glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, colorWellSize, 0, GL_RGB, GL_FLOAT, rgbValues);
+  glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, colorWell1DSize, 0, GL_RGB, GL_FLOAT, rgbValues);
 
   glEnable(GL_TEXTURE_1D);
   glBegin(GL_TRIANGLE_STRIP);
@@ -150,10 +150,10 @@ NABool cmDrawColorWell1D(NAReaction reaction){
     glVertex2i(+1., +1.);
   glEnd();
 
-  const float whiteR = 2. * 3. / (float)colorWellSize;
-  const float blackR = 2. * 4. / (float)colorWellSize;
+  const float whiteR = 2. * 3. / (float)colorWell1DSize;
+  const float blackR = 2. * 4. / (float)colorWell1DSize;
   const int subdivisions = 16;
-  const float yDivisor = colorWellSize / colorWell1DHeight;
+  const float yDivisor = colorWell1DSize / colorWell1DHeight;
 
   glDisable(GL_TEXTURE_1D);
   glDisable(GL_DEPTH);
@@ -184,7 +184,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
 CMColorWell1D* cmAllocColorWell1D(CMColorController* colorController, size_t variableIndex){
   CMColorWell1D* well = naAlloc(CMColorWell1D);
   
-  well->display = naNewOpenGLSpace(naMakeSize(colorWellSize, colorWell1DHeight), cmInitColorWell1D, well);
+  well->display = naNewOpenGLSpace(naMakeSize(colorWell1DSize, colorWell1DHeight), cmInitColorWell1D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_REDRAW, cmDrawColorWell1D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_MOVED, cmDragColorWell1D, well);
   

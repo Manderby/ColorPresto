@@ -67,7 +67,7 @@ CMHSLColorController* cmAllocHSLColorController(void){
   con->colorWell1DS = cmAllocColorWell1D(&(con->baseController), 1);
   con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), 2);
   
-  NABezel4 colorWellBezel = {20 + colorWellSize, 5, colorWellSize + 10, 5};
+  NABezel4 colorWellBezel = {20 + colorWell1DSize, 5, colorWell2DSize + 10, 5};
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelH, colorValueCondensedRowHeight);
@@ -87,15 +87,15 @@ CMHSLColorController* cmAllocHSLColorController(void){
   naAddSpaceChild(
     con->baseController.space,
     cmGetColorWell1DUIElement(con->colorWell1DH),
-    naMakePos(215, 70));
+    naMakePos(colorWell1DMarginLeft, 70));
   naAddSpaceChild(
     con->baseController.space,
     cmGetColorWell1DUIElement(con->colorWell1DS),
-    naMakePos(215, 50));
+    naMakePos(colorWell1DMarginLeft, 50));
   naAddSpaceChild(
     con->baseController.space,
     cmGetColorWell1DUIElement(con->colorWell1DL),
-    naMakePos(215, 30));
+    naMakePos(colorWell1DMarginLeft, 30));
   
   return con;
 }

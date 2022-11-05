@@ -3,6 +3,7 @@
 
 CM_PROTOTYPE(CMHSLColorController);
 CM_PROTOTYPE(CMHSVColorController);
+CM_PROTOTYPE(CMRGBColorController);
 CM_PROTOTYPE(CMYCbCrColorController);
 
 @class GammaDisplay;
@@ -65,6 +66,7 @@ CM_PROTOTYPE(CMYCbCrColorController);
 
   CMHSLColorController* hslColorController;
   CMHSVColorController* hsvColorController;
+  CMRGBColorController* rgbColorController;
   CMYCbCrColorController* ycbcrColorController;
 }
 - (void)awakeFromNib;

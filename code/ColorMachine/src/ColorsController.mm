@@ -9,7 +9,6 @@
 #import "YuvColorController.h"
 #import "LabColorController.h"
 #import "LuvColorController.h"
-#import "RGBColorController.h"
 #import "SpectralColorController.h"
 #include "NAUICocoaLegacy.h"
 

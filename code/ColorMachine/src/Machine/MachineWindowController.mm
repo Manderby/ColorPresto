@@ -7,12 +7,12 @@
 #import "YxyColorController.h"
 #import "LabColorController.h"
 #import "LuvColorController.h"
-#import "RGBColorController.h"
 #import "SpectralColorController.h"
 
 #include "CMColorController.h"
 #include "CMHSLColorController.h"
 #include "CMHSVColorController.h"
+#include "CMRGBColorController.h"
 #include "CMYCbCrColorController.h"
 
 #include "NAApp.h"
@@ -36,30 +36,38 @@
   
   hslColorController = cmAllocHSLColorController();
   hsvColorController = cmAllocHSVColorController();
+  rgbColorController = cmAllocRGBColorController();
   ycbcrColorController = cmAllocYCbCrColorController();
 
   NSView* childView;
   NSRect frame;
 
+  NASpace* rgbSpace = cmGetColorControllerUIElement((CMColorController*)rgbColorController);
+  childView = (NSView*)naGetUIElementNativePtr(rgbSpace);
+  [[[self window] contentView] addSubview:childView];
+  frame = [childView frame];
+  frame.origin = NSMakePoint(950, 340);
+  [childView setFrame: frame];
+    
   NASpace* hsvSpace = cmGetColorControllerUIElement((CMColorController*)hsvColorController);
   childView = (NSView*)naGetUIElementNativePtr(hsvSpace);
   [[[self window] contentView] addSubview:childView];
   frame = [childView frame];
-  frame.origin = NSMakePoint(600, 250);
+  frame.origin = NSMakePoint(950, 230);
   [childView setFrame: frame];
     
   NASpace* hslSpace = cmGetColorControllerUIElement((CMColorController*)hslColorController);
   childView = (NSView*)naGetUIElementNativePtr(hslSpace);
   [[[self window] contentView] addSubview:childView];
   frame = [childView frame];
-  frame.origin = NSMakePoint(600, 140);
+  frame.origin = NSMakePoint(950, 120);
   [childView setFrame: frame];
 
   NASpace* ycbcrSpace = cmGetColorControllerUIElement((CMColorController*)ycbcrColorController);
   childView = (NSView*)naGetUIElementNativePtr(ycbcrSpace);
   [[[self window] contentView] addSubview:childView];
   frame = [childView frame];
-  frame.origin = NSMakePoint(600, 30);
+  frame.origin = NSMakePoint(950, 10);
   [childView setFrame: frame];
   
 //  NSScreen* screen = [[self window] screen];
@@ -689,10 +697,12 @@
 //  }
 
   
+  cmSetColorControllerActive((CMColorController*)rgbColorController, cmGetCurrentColorController() == (CMColorController*)rgbColorController);
   cmSetColorControllerActive((CMColorController*)hslColorController, cmGetCurrentColorController() == (CMColorController*)hslColorController);
   cmSetColorControllerActive((CMColorController*)hsvColorController, cmGetCurrentColorController() == (CMColorController*)hsvColorController);
   cmSetColorControllerActive((CMColorController*)ycbcrColorController, cmGetCurrentColorController() == (CMColorController*)ycbcrColorController);
 
+  cmUpdateRGBColorController(rgbColorController);
   cmUpdateHSLColorController(hslColorController);
   cmUpdateHSVColorController(hsvColorController);
   cmUpdateYCbCrColorController(ycbcrColorController);

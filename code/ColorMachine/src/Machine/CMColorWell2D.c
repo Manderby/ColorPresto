@@ -89,7 +89,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
   CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
 
-  float inputValues[colorWellSize * colorWellSize * 3];
+  float inputValues[colorWell2DSize * colorWell2DSize * 3];
   float* inputPtr = inputValues;
   CMLVec3 normedColorValues;
   outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
@@ -99,12 +99,12 @@ NABool cmDrawColorWell2D(NAReaction reaction){
 
   switch(well->fixedIndex){
   case 0:
-    for(int y = 0; y < colorWellSize; ++y){
-      float yValue = (float)y / (float)colorWellSize;
-      for(int x = 0; x < colorWellSize; ++x){
+    for(int y = 0; y < colorWell2DSize; ++y){
+      float yValue = (float)y / (float)colorWell2DSize;
+      for(int x = 0; x < colorWell2DSize; ++x){
         fixedValueA = normedColorValues[1];
         fixedValueB = normedColorValues[2];
-        float xValue = (float)x / (float)colorWellSize;
+        float xValue = (float)x / (float)colorWell2DSize;
         *inputPtr++ = normedColorValues[0];
         *inputPtr++ = xValue;
         *inputPtr++ = yValue;
@@ -112,12 +112,12 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     }
     break;
   case 1:
-    for(int y = 0; y < colorWellSize; ++y){
-      float yValue = (float)y / (float)colorWellSize;
-      for(int x = 0; x < colorWellSize; ++x){
+    for(int y = 0; y < colorWell2DSize; ++y){
+      float yValue = (float)y / (float)colorWell2DSize;
+      for(int x = 0; x < colorWell2DSize; ++x){
         fixedValueA = normedColorValues[0];
         fixedValueB = normedColorValues[2];
-        float xValue = (float)x / (float)colorWellSize;
+        float xValue = (float)x / (float)colorWell2DSize;
         *inputPtr++ = xValue;
         *inputPtr++ = normedColorValues[1];
         *inputPtr++ = yValue;
@@ -125,12 +125,12 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     }
     break;
   case 2:
-    for(int y = 0; y < colorWellSize; ++y){
-      float yValue = (float)y / (float)colorWellSize;
-      for(int x = 0; x < colorWellSize; ++x){
+    for(int y = 0; y < colorWell2DSize; ++y){
+      float yValue = (float)y / (float)colorWell2DSize;
+      for(int x = 0; x < colorWell2DSize; ++x){
         fixedValueA = normedColorValues[0];
         fixedValueB = normedColorValues[1];
-        float xValue = (float)x / (float)colorWellSize;
+        float xValue = (float)x / (float)colorWell2DSize;
         *inputPtr++ = xValue;
         *inputPtr++ = yValue;
         *inputPtr++ = normedColorValues[2];
@@ -140,7 +140,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   }
 
   // Convert the given values to screen RGBs.
-  float rgbValues[colorWellSize * colorWellSize * 3];
+  float rgbValues[colorWell2DSize * colorWell2DSize * 3];
   fillRGBFloatArrayWithArray(
     cm,
     sm,
@@ -148,11 +148,11 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     inputValues,
     colorType,
     inputConverter,
-    colorWellSize * colorWellSize,
+    colorWell2DSize * colorWell2DSize,
     NA_FALSE,
     NA_FALSE);
 
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWellSize, colorWellSize, 0, GL_RGB, GL_FLOAT, rgbValues);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, rgbValues);
 
   glEnable(GL_TEXTURE_2D);
   glBegin(GL_TRIANGLE_STRIP);
@@ -166,8 +166,8 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     glVertex2i(+1., +1.);
   glEnd();
 
-  const float whiteR = 2. * 3. / (float)colorWellSize;
-  const float blackR = 2. * 4. / (float)colorWellSize;
+  const float whiteR = 2. * 3. / (float)colorWell2DSize;
+  const float blackR = 2. * 4. / (float)colorWell2DSize;
   const int subdivisions = 16;
 
   glDisable(GL_TEXTURE_2D);
@@ -199,7 +199,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
 CMColorWell2D* cmAllocColorWell2D(CMColorController* colorController, size_t fixedIndex){
   CMColorWell2D* well = naAlloc(CMColorWell2D);
   
-  well->display = naNewOpenGLSpace(naMakeSize(colorWellSize, colorWellSize), cmInitColorWell2D, well);
+  well->display = naNewOpenGLSpace(naMakeSize(colorWell2DSize, colorWell2DSize), cmInitColorWell2D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_REDRAW, cmDrawColorWell2D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_MOVED, cmDragColorWell2D, well);
   

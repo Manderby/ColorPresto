@@ -28,7 +28,7 @@ static const double marginH = 15.;
 static const double initial3DDisplayWidth = 500.;
 
 static const double labelValueWidth = 60.;
-static const double textFieldValueWidth = 65.;
+static const double textFieldValueWidth = 75.;
 static const double threeValueHeight = 55.;
 static const double threeValueHeightMargin = 10.;
 static const double spaceMarginLeft3D = 10.;
@@ -51,7 +51,9 @@ static const double valueMargin = 5.;
 static const float greyColor[3] = {.5f, .5f, .5f};
 
 static const float colorValueCondensedRowHeight = 20.;
-static const int colorWellSize = 100;
+static const int colorWell2DSize = 100;
+static const int colorWell1DSize = 128;
+static const float colorWell1DMarginLeft = 225;
 static const double colorWell1DHeight = 13.;
 static const float colorComponentWidth = 30.;
 static const float colorComponentMarginH = 5.;
@@ -66,6 +68,7 @@ NALabel* cmNewValueLabel(void);
 NALabel* cmNewColorComponentLabel(const NAUTF8Char* string);
 NALabel* cmNewThreeValueLabel(void);
 NATextField* cmNewValueTextBox(NAReactionHandler reactionHandler, void* con);
+NATextField* cmNewBigValueTextBox(NAReactionHandler reactionHandler, void* con);
 
 // Before constructing a UI layout, you need to define within which NASpace you
 // want the layout to be in. Use cmBeginUILayout for that.
