@@ -10,9 +10,6 @@
 #import "LabColorController.h"
 #import "LuvColorController.h"
 #import "RGBColorController.h"
-#import "HSVColorController.h"
-#import "HSLColorController.h"
-#import "YCbCrColorController.h"
 #import "SpectralColorController.h"
 #include "NAUICocoaLegacy.h"
 

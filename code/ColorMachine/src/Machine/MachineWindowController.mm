@@ -8,14 +8,12 @@
 #import "LabColorController.h"
 #import "LuvColorController.h"
 #import "RGBColorController.h"
-#import "HSVColorController.h"
-#import "HSLColorController.h"
-#import "YCbCrColorController.h"
 #import "SpectralColorController.h"
 
 #include "CMColorController.h"
 #include "CMHSLColorController.h"
 #include "CMHSVColorController.h"
+#include "CMYCbCrColorController.h"
 
 #include "NAApp.h"
 
@@ -38,24 +36,31 @@
   
   hslColorController = cmAllocHSLColorController();
   hsvColorController = cmAllocHSVColorController();
+  ycbcrColorController = cmAllocYCbCrColorController();
 
   NSView* childView;
   NSRect frame;
-
-  NASpace* hslSpace = cmGetColorControllerUIElement((CMColorController*)hslColorController);
-  childView = (NSView*)naGetUIElementNativePtr(hslSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(250, 20);
-  [childView setFrame: frame];
 
   NASpace* hsvSpace = cmGetColorControllerUIElement((CMColorController*)hsvColorController);
   childView = (NSView*)naGetUIElementNativePtr(hsvSpace);
   [[[self window] contentView] addSubview:childView];
   frame = [childView frame];
-  frame.origin = NSMakePoint(590, 20);
+  frame.origin = NSMakePoint(600, 250);
   [childView setFrame: frame];
     
+  NASpace* hslSpace = cmGetColorControllerUIElement((CMColorController*)hslColorController);
+  childView = (NSView*)naGetUIElementNativePtr(hslSpace);
+  [[[self window] contentView] addSubview:childView];
+  frame = [childView frame];
+  frame.origin = NSMakePoint(600, 140);
+  [childView setFrame: frame];
+
+  NASpace* ycbcrSpace = cmGetColorControllerUIElement((CMColorController*)ycbcrColorController);
+  childView = (NSView*)naGetUIElementNativePtr(ycbcrSpace);
+  [[[self window] contentView] addSubview:childView];
+  frame = [childView frame];
+  frame.origin = NSMakePoint(600, 30);
+  [childView setFrame: frame];
   
 //  NSScreen* screen = [[self window] screen];
 //  NSNumber* screenID = (NSNumber*)[screendict objectForKey:@"NSScreenNumber"];
@@ -686,9 +691,11 @@
   
   cmSetColorControllerActive((CMColorController*)hslColorController, cmGetCurrentColorController() == (CMColorController*)hslColorController);
   cmSetColorControllerActive((CMColorController*)hsvColorController, cmGetCurrentColorController() == (CMColorController*)hsvColorController);
+  cmSetColorControllerActive((CMColorController*)ycbcrColorController, cmGetCurrentColorController() == (CMColorController*)ycbcrColorController);
 
   cmUpdateHSLColorController(hslColorController);
   cmUpdateHSVColorController(hsvColorController);
+  cmUpdateYCbCrColorController(ycbcrColorController);
 
 }
 

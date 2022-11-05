@@ -53,7 +53,8 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 static const float colorValueCondensedRowHeight = 20.;
 static const int colorWellSize = 100;
 static const double colorWell1DHeight = 13.;
-
+static const float colorComponentWidth = 30.;
+static const float colorComponentMarginH = 5.;
 
 void cmStartupDesign(void);
 void cmShutdownDesign(void);
@@ -62,6 +63,7 @@ NALabel* cmNewTitleLabel(
   const NAUTF8Char* text,
   double width);
 NALabel* cmNewValueLabel(void);
+NALabel* cmNewColorComponentLabel(const NAUTF8Char* string);
 NALabel* cmNewThreeValueLabel(void);
 NATextField* cmNewValueTextBox(NAReactionHandler reactionHandler, void* con);
 

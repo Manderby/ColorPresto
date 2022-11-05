@@ -57,9 +57,9 @@ CMHSLColorController* cmAllocHSLColorController(void){
   
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 2);
   
-  con->labelH = naNewLabel("H", 20);
-  con->labelS = naNewLabel("S", 20);
-  con->labelL = naNewLabel("L", 20);
+  con->labelH = cmNewColorComponentLabel("H");
+  con->labelS = cmNewColorComponentLabel("S");
+  con->labelL = cmNewColorComponentLabel("L");
   con->textFieldH = cmNewValueTextBox(cmHSLValueEdited, con);
   con->textFieldS = cmNewValueTextBox(cmHSLValueEdited, con);
   con->textFieldL = cmNewValueTextBox(cmHSLValueEdited, con);
@@ -67,15 +67,15 @@ CMHSLColorController* cmAllocHSLColorController(void){
   con->colorWell1DS = cmAllocColorWell1D(&(con->baseController), 1);
   con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), 2);
   
-  NABezel4 colorWellBezel = {20 + colorWellSize, 5, colorWellSize + 20, 5};
+  NABezel4 colorWellBezel = {20 + colorWellSize, 5, colorWellSize + 10, 5};
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelH, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldH, 0);
+  cmAddUICol(con->textFieldH, colorComponentMarginH);
   cmAddUIRow(con->labelS, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldS, 0);
+  cmAddUICol(con->textFieldS, colorComponentMarginH);
   cmAddUIRow(con->labelL, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldL, 0);
+  cmAddUICol(con->textFieldL, colorComponentMarginH);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmEndUILayout();
   

@@ -38,10 +38,19 @@ NALabel* cmNewValueLabel(){
 
 
 
+NALabel* cmNewColorComponentLabel(const NAUTF8Char* string){
+  NALabel* label = naNewLabel(string, colorComponentWidth);
+  naSetLabelTextAlignment(label, NA_TEXT_ALIGNMENT_RIGHT);
+  return label;
+}
+
+
+
 NALabel* cmNewThreeValueLabel(){
   NALabel* label = naNewLabel("", labelValueWidth);
   naSetLabelHeight(label, threeValueHeight);
   naSetLabelFont(label, monoFont);
+  naSetLabelTextAlignment(label, NA_TEXT_ALIGNMENT_RIGHT);
   return label;
 }
 

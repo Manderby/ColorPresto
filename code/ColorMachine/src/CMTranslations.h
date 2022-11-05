@@ -23,6 +23,8 @@ enum{
   CMColorSpaceYxy,
   CMColorSpaceYupvp,
   CMColorSpaceYuv,
+  CMColorSpaceYcd,
+  CMColorSpaceUVW,
   CMColorSpaceLab,
   CMColorSpaceLch,
   CMColorSpaceLuv,

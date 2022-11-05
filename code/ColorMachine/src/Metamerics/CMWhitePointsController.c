@@ -25,16 +25,22 @@ struct CMWhitePointsController{
   NALabel* illYxyTitle;
   NALabel* illYupvpTitle;
   NALabel* illYuvTitle;
+  NALabel* illYcdTitle;
+  NALabel* illUVWTitle;
 
   NALabel* illXYZ10Label;
   NALabel* illYxy10Label;
   NALabel* illYupvp10Label;
   NALabel* illYuv10Label;
+  NALabel* illYcd10Label;
+  NALabel* illUVW10Label;
 
   NALabel* illXYZ2Label;
   NALabel* illYxy2Label;
   NALabel* illYupvp2Label;
   NALabel* illYuv2Label;
+  NALabel* illYcd2Label;
+  NALabel* illUVW2Label;
   
   NALabel* ref10DegLabel;
   NALabel* ref2DegLabel;
@@ -100,20 +106,28 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
   con->illYxyTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYxy), labelValueWidth);
   con->illYupvpTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYupvp), labelValueWidth);
   con->illYuvTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYuv), labelValueWidth);
+  con->illYcdTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYcd), labelValueWidth);
+  con->illUVWTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceUVW), labelValueWidth);
   naSetLabelTextAlignment(con->illXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYuvTitle, NA_TEXT_ALIGNMENT_CENTER);
+  naSetLabelTextAlignment(con->illYcdTitle, NA_TEXT_ALIGNMENT_CENTER);
+  naSetLabelTextAlignment(con->illUVWTitle, NA_TEXT_ALIGNMENT_CENTER);
 
   con->illXYZ10Label = cmNewThreeValueLabel();
   con->illYxy10Label = cmNewThreeValueLabel();
   con->illYupvp10Label = cmNewThreeValueLabel();
   con->illYuv10Label = cmNewThreeValueLabel();
+  con->illYcd10Label = cmNewThreeValueLabel();
+  con->illUVW10Label = cmNewThreeValueLabel();
   
   con->illXYZ2Label = cmNewThreeValueLabel();
   con->illYxy2Label = cmNewThreeValueLabel();
   con->illYupvp2Label = cmNewThreeValueLabel();
   con->illYuv2Label = cmNewThreeValueLabel();
+  con->illYcd2Label = cmNewThreeValueLabel();
+  con->illUVW2Label = cmNewThreeValueLabel();
 
   // Reference whitepoint
 
@@ -157,18 +171,24 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
   cmAddUICol(con->illYxyTitle, marginH);
   cmAddUICol(con->illYupvpTitle, marginH);
   cmAddUICol(con->illYuvTitle, marginH);
+//  cmAddUICol(con->illYcdTitle, marginH);
+//  cmAddUICol(con->illUVWTitle, marginH);
 
   cmAddUIPos(0, threeValueHeightMargin);
   cmAddUIRow(con->illXYZ10Label, threeValueHeight);
   cmAddUICol(con->illYxy10Label, marginH);
   cmAddUICol(con->illYupvp10Label, marginH);
   cmAddUICol(con->illYuv10Label, marginH);
+//  cmAddUICol(con->illYcd10Label, marginH);
+//  cmAddUICol(con->illUVW10Label, marginH);
 
   cmAddUIPos(0, threeValueHeightMargin);
   cmAddUIRow(con->illXYZ2Label, 0);
   cmAddUICol(con->illYxy2Label, marginH);
   cmAddUICol(con->illYupvp2Label, marginH);
   cmAddUICol(con->illYuv2Label, marginH);
+//  cmAddUICol(con->illYcd2Label, marginH);
+//  cmAddUICol(con->illUVW2Label, marginH);
 
   cmAddUIPos(0, spaceMarginV);
   
@@ -243,6 +263,12 @@ void cmUpdateWhitePointsController(
   naSetLabelText(
     con->illYuv10Label,
     naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint10->Yuv[0], illWhitePoint10->Yuv[1], illWhitePoint10->Yuv[2]));
+//  naSetLabelText(
+//    con->illYcd10Label,
+//    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint10->Ycd[0], illWhitePoint10->Ycd[1], illWhitePoint10->Ycd[2]));
+//  naSetLabelText(
+//    con->illUVW10Label,
+//    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%3.03f", illWhitePoint10->UVW[0], illWhitePoint10->UVW[1], illWhitePoint10->UVW[2]));
 
   naSetLabelText(
     con->illXYZ2Label,
@@ -256,6 +282,12 @@ void cmUpdateWhitePointsController(
   naSetLabelText(
     con->illYuv2Label,
     naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint2->Yuv[0], illWhitePoint2->Yuv[1], illWhitePoint2->Yuv[2]));
+//  naSetLabelText(
+//    con->illYcd2Label,
+//    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%1.05f", illWhitePoint2->Ycd[0], illWhitePoint2->Ycd[1], illWhitePoint2->Ycd[2]));
+//  naSetLabelText(
+//    con->illUVW2Label,
+//    naAllocSprintf(NA_TRUE, "%1.05f\n%1.05f\n%3.03f", illWhitePoint2->UVW[0], illWhitePoint2->UVW[1], illWhitePoint2->UVW[2]));
 
 
 

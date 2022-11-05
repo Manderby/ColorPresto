@@ -20,6 +20,8 @@ NA_LOC(CMColorSpaceXYZ, "XYZ");       // do not translate
 NA_LOC(CMColorSpaceYxy, "Yxy");       // do not translate
 NA_LOC(CMColorSpaceYupvp, "Yu\'v\'"); // do not translate
 NA_LOC(CMColorSpaceYuv, "Yuv");       // do not translate
+NA_LOC(CMColorSpaceYcd, "Ycd");       // do not translate
+NA_LOC(CMColorSpaceUVW, "UVW");       // do not translate
 NA_LOC(CMColorSpaceLab, "Lab");       // do not translate
 NA_LOC(CMColorSpaceLch, "Lch");       // do not translate
 NA_LOC(CMColorSpaceLuv, "Luv");       // do not translate

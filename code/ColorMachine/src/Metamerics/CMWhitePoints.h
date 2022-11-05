@@ -14,6 +14,7 @@ struct CMWhitePoints{
   CMLVec3 Yupvp;
   CMLVec3 Yuv;
   CMLVec3 Ycd;
+  CMLVec3 UVW;
 };
 
 
