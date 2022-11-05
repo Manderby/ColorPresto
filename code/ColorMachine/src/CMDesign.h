@@ -27,8 +27,8 @@ static const double marginH = 15.;
 
 static const double initial3DDisplayWidth = 500.;
 
-static const double labelValueWidth = 60.;
-static const double textFieldValueWidth = 75.;
+static const double labelValueWidth = 55.;
+static const double textFieldValueWidth = 65.;
 static const double threeValueHeight = 55.;
 static const double threeValueHeightMargin = 10.;
 static const double spaceMarginLeft3D = 10.;
@@ -41,22 +41,22 @@ static const NABezel4 threeDeeBezel = {
 static const double degreeWidth = 35;
 static const double spaceMarginDegreeLeft = spaceMarginLeft + degreeWidth;
 
-static const double indexWidth = 30.;
+static const double indexWidth = 25.;
 static const double twoColorWidth = 150.;
 static const double twoColorHeight = 21.;
 
 static const double indexMargin = 0.;
-static const double valueMargin = 5.;
+static const double valueMargin = 10.;
 
 static const float greyColor[3] = {.5f, .5f, .5f};
 
 static const float colorValueCondensedRowHeight = 20.;
 static const int colorWell2DSize = 100;
-static const int colorWell1DSize = 128;
-static const float colorWell1DMarginLeft = 225;
+static const int colorWell1DSize = 100;
+static const float colorWell1DMarginLeft = 210;
 static const double colorWell1DHeight = 13.;
-static const float colorComponentWidth = 30.;
-static const float colorComponentMarginH = 5.;
+static const float colorComponentWidth = 25.;
+static const float colorComponentMarginH = -5.;
 
 void cmStartupDesign(void);
 void cmShutdownDesign(void);

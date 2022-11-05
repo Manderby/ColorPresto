@@ -13,6 +13,8 @@ struct CMColorWell1D{
   GLuint wellTex;
   
   CMColorController* colorController;
+  const void* colorData;
+  CMLColorType colorType;
   size_t variableIndex;
 };
 
@@ -35,14 +37,14 @@ void cmInitColorWell1D(void* data){
 
 NABool cmDragColorWell1D(NAReaction reaction){
   CMColorWell1D* well = (CMColorWell1D*)reaction.controller;
+  CMLColorMachine* cm = cmGetCurrentColorMachine();
 
-  CMLColorType colorType = cmGetColorControllerColorType(well->colorController);
-  CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
-  CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
-  CMLColorMutator clamper = cmlGetClamper(colorType);
+  CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(well->colorType);
+  CMLNormedConverter inputConverter = cmlGetNormedInputConverter(well->colorType);
+  CMLColorMutator clamper = cmlGetClamper(well->colorType);
 
   CMLVec3 normedColorValues;
-  outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
+  outputConverter(normedColorValues, well->colorData, 1);
   
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
   if(mouseStatus->leftPressed){
@@ -64,7 +66,13 @@ NABool cmDragColorWell1D(NAReaction reaction){
   inputConverter(newColorValues, normedColorValues, 1);
   clamper(newColorValues, 1);
   
-  cmSetColorControllerColorData(well->colorController, newColorValues);
+  CMLColorConverter converter = cmlGetColorConverter(
+    cmGetColorControllerColorType(well->colorController),
+    well->colorType);
+  CMLVec3 convertedColorValues;
+  converter(cm, convertedColorValues, newColorValues, 1);
+
+  cmSetColorControllerColorData(well->colorController, convertedColorValues);
   cmUpdateColor();
 
   return NA_TRUE;
@@ -82,14 +90,13 @@ NABool cmDrawColorWell1D(NAReaction reaction){
 
   glClear(GL_DEPTH_BUFFER_BIT);
 
-  CMLColorType colorType = cmGetColorControllerColorType(well->colorController);
-  CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
-  CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
+  CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(well->colorType);
+  CMLNormedConverter inputConverter = cmlGetNormedInputConverter(well->colorType);
 
   float inputValues[colorWell1DSize * 3];
   float* inputPtr = inputValues;
   CMLVec3 normedColorValues;
-  outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
+  outputConverter(normedColorValues, well->colorData, 1);
   
   float variableValue;
   
@@ -130,7 +137,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
     sm,
     rgbValues,
     inputValues,
-    colorType,
+    well->colorType,
     inputConverter,
     colorWell1DSize,
     NA_FALSE,
@@ -181,7 +188,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
 
 
 
-CMColorWell1D* cmAllocColorWell1D(CMColorController* colorController, size_t variableIndex){
+CMColorWell1D* cmAllocColorWell1D(CMColorController* colorController, CMLColorType colorType, const float* colorData, size_t variableIndex){
   CMColorWell1D* well = naAlloc(CMColorWell1D);
   
   well->display = naNewOpenGLSpace(naMakeSize(colorWell1DSize, colorWell1DHeight), cmInitColorWell1D, well);
@@ -189,6 +196,8 @@ CMColorWell1D* cmAllocColorWell1D(CMColorController* colorController, size_t var
   naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_MOVED, cmDragColorWell1D, well);
   
   well->colorController = colorController;
+  well->colorType = colorType;
+  well->colorData = colorData;
   well->variableIndex = variableIndex;
   
   return well;

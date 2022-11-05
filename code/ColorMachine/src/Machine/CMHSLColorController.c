@@ -63,11 +63,11 @@ CMHSLColorController* cmAllocHSLColorController(void){
   con->textFieldH = cmNewValueTextBox(cmHSLValueEdited, con);
   con->textFieldS = cmNewValueTextBox(cmHSLValueEdited, con);
   con->textFieldL = cmNewValueTextBox(cmHSLValueEdited, con);
-  con->colorWell1DH = cmAllocColorWell1D(&(con->baseController), 0);
-  con->colorWell1DS = cmAllocColorWell1D(&(con->baseController), 1);
-  con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), 2);
+  con->colorWell1DH = cmAllocColorWell1D(&(con->baseController), CML_COLOR_HSL, con->hslColor, 0);
+  con->colorWell1DS = cmAllocColorWell1D(&(con->baseController), CML_COLOR_HSL, con->hslColor, 1);
+  con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), CML_COLOR_HSL, con->hslColor, 2);
   
-  NABezel4 colorWellBezel = {20 + colorWell1DSize, 5, colorWell2DSize + 10, 5};
+  NABezel4 colorWellBezel = {20 + colorWell1DSize, 5, colorWell2DSize + 15, 5};
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelH, colorValueCondensedRowHeight);

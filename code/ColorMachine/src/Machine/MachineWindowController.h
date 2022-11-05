@@ -3,6 +3,7 @@
 
 CM_PROTOTYPE(CMHSLColorController);
 CM_PROTOTYPE(CMHSVColorController);
+CM_PROTOTYPE(CMLabColorController);
 CM_PROTOTYPE(CMRGBColorController);
 CM_PROTOTYPE(CMYCbCrColorController);
 
@@ -66,6 +67,7 @@ CM_PROTOTYPE(CMYCbCrColorController);
 
   CMHSLColorController* hslColorController;
   CMHSVColorController* hsvColorController;
+  CMLabColorController* labColorController;
   CMRGBColorController* rgbColorController;
   CMYCbCrColorController* ycbcrColorController;
 }

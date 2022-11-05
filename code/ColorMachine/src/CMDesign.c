@@ -10,7 +10,8 @@ NAFont* monoFont;
 
 void cmStartupDesign(){
   boldFont = naCreateFontWithPreset(NA_FONT_KIND_TITLE, NA_FONT_SIZE_DEFAULT);
-  monoFont = naCreateFontWithPreset(NA_FONT_KIND_MONOSPACE, NA_FONT_SIZE_DEFAULT);
+//  monoFont = naCreateFontWithPreset(NA_FONT_KIND_MONOSPACE, NA_FONT_SIZE_DEFAULT);
+  monoFont = naCreateFont("Helvetica", 0, 13);
 }
 
 
@@ -32,6 +33,7 @@ NALabel* cmNewTitleLabel(const NAUTF8Char* text, double width){
 
 NALabel* cmNewValueLabel(){
   NALabel* label = naNewLabel("", labelValueWidth);
+  naSetLabelTextAlignment(label, NA_TEXT_ALIGNMENT_RIGHT);
   naSetLabelFont(label, monoFont);
   return label;
 }
@@ -40,7 +42,6 @@ NALabel* cmNewValueLabel(){
 
 NALabel* cmNewColorComponentLabel(const NAUTF8Char* string){
   NALabel* label = naNewLabel(string, colorComponentWidth);
-  naSetLabelTextAlignment(label, NA_TEXT_ALIGNMENT_RIGHT);
   return label;
 }
 

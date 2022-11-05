@@ -64,11 +64,11 @@ CMYCbCrColorController* cmAllocYCbCrColorController(void){
   con->textFieldY = cmNewValueTextBox(cmYCbCrValueEdited, con);
   con->textFieldCb = cmNewValueTextBox(cmYCbCrValueEdited, con);
   con->textFieldCr = cmNewValueTextBox(cmYCbCrValueEdited, con);
-  con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), 0);
-  con->colorWell1DCb = cmAllocColorWell1D(&(con->baseController), 1);
-  con->colorWell1DCr = cmAllocColorWell1D(&(con->baseController), 2);
+  con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), CML_COLOR_YCbCr, con->ycbcrColor, 0);
+  con->colorWell1DCb = cmAllocColorWell1D(&(con->baseController), CML_COLOR_YCbCr, con->ycbcrColor, 1);
+  con->colorWell1DCr = cmAllocColorWell1D(&(con->baseController), CML_COLOR_YCbCr, con->ycbcrColor, 2);
 
-  NABezel4 colorWellBezel = {20 + colorWell1DSize, 5, colorWell2DSize + 10, 5};
+  NABezel4 colorWellBezel = {20 + colorWell1DSize, 5, colorWell2DSize + 15, 5};
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelY, colorValueCondensedRowHeight);

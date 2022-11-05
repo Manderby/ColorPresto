@@ -5,13 +5,13 @@
 #import "GrayColorController.h"
 #import "XYZColorController.h"
 #import "YxyColorController.h"
-#import "LabColorController.h"
 #import "LuvColorController.h"
 #import "SpectralColorController.h"
 
 #include "CMColorController.h"
 #include "CMHSLColorController.h"
 #include "CMHSVColorController.h"
+#include "CMLabColorController.h"
 #include "CMRGBColorController.h"
 #include "CMYCbCrColorController.h"
 
@@ -36,11 +36,19 @@
   
   hslColorController = cmAllocHSLColorController();
   hsvColorController = cmAllocHSVColorController();
+  labColorController = cmAllocLabColorController();
   rgbColorController = cmAllocRGBColorController();
   ycbcrColorController = cmAllocYCbCrColorController();
 
   NSView* childView;
   NSRect frame;
+
+  NASpace* labSpace = cmGetColorControllerUIElement((CMColorController*)labColorController);
+  childView = (NSView*)naGetUIElementNativePtr(labSpace);
+  [[[self window] contentView] addSubview:childView];
+  frame = [childView frame];
+  frame.origin = NSMakePoint(600, 120);
+  [childView setFrame: frame];
 
   NASpace* rgbSpace = cmGetColorControllerUIElement((CMColorController*)rgbColorController);
   childView = (NSView*)naGetUIElementNativePtr(rgbSpace);
@@ -700,11 +708,13 @@
   cmSetColorControllerActive((CMColorController*)rgbColorController, cmGetCurrentColorController() == (CMColorController*)rgbColorController);
   cmSetColorControllerActive((CMColorController*)hslColorController, cmGetCurrentColorController() == (CMColorController*)hslColorController);
   cmSetColorControllerActive((CMColorController*)hsvColorController, cmGetCurrentColorController() == (CMColorController*)hsvColorController);
+  cmSetColorControllerActive((CMColorController*)labColorController, cmGetCurrentColorController() == (CMColorController*)labColorController);
   cmSetColorControllerActive((CMColorController*)ycbcrColorController, cmGetCurrentColorController() == (CMColorController*)ycbcrColorController);
 
   cmUpdateRGBColorController(rgbColorController);
   cmUpdateHSLColorController(hslColorController);
   cmUpdateHSVColorController(hsvColorController);
+  cmUpdateLabColorController(labColorController);
   cmUpdateYCbCrColorController(ycbcrColorController);
 
 }

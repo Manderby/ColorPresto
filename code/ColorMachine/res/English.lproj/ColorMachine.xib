@@ -1394,170 +1394,6 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4202" customClass="LabColorController">
-                        <rect key="frame" x="604" y="123" width="315" height="110"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <subviews>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4225" customClass="InputTextField">
-                                <rect key="frame" x="143" y="85" width="54" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="0.50" drawsBackground="YES" id="4250">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="valueChangeLab:" target="4202" id="4815"/>
-                                    <outlet property="colorcontroller" destination="4202" id="4733"/>
-                                    <outlet property="nextKeyView" destination="4229" id="4254"/>
-                                </connections>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4226">
-                                <rect key="frame" x="115" y="87" width="23" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="L*" id="4249">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4227">
-                                <rect key="frame" x="115" y="67" width="23" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="a*" id="4248">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4228">
-                                <rect key="frame" x="115" y="47" width="23" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="b*" id="4247">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4229" customClass="InputTextField">
-                                <rect key="frame" x="143" y="65" width="54" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="0.50" drawsBackground="YES" id="4246">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="valueChangeLab:" target="4202" id="4816"/>
-                                    <outlet property="colorcontroller" destination="4202" id="4734"/>
-                                    <outlet property="nextKeyView" destination="4230" id="4252"/>
-                                </connections>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4230" customClass="InputTextField">
-                                <rect key="frame" x="143" y="45" width="54" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="0.50" drawsBackground="YES" id="4245">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="valueChangeLab:" target="4202" id="4817"/>
-                                    <outlet property="colorcontroller" destination="4202" id="4735"/>
-                                    <outlet property="nextKeyView" destination="4225" id="5010"/>
-                                </connections>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4231">
-                                <rect key="frame" x="115" y="27" width="23" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="c" id="4244">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4232">
-                                <rect key="frame" x="115" y="7" width="23" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="h" id="4243">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4233" customClass="InputTextField">
-                                <rect key="frame" x="143" y="25" width="54" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="0.50" drawsBackground="YES" id="4242">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="valueChangeLch:" target="4202" id="4818"/>
-                                    <outlet property="colorcontroller" destination="4202" id="4736"/>
-                                    <outlet property="nextKeyView" destination="4234" id="4253"/>
-                                </connections>
-                            </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4234" customClass="InputTextField">
-                                <rect key="frame" x="143" y="5" width="54" height="19"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" continuous="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" alignment="right" title="0.50" drawsBackground="YES" id="4241">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                                <connections>
-                                    <action selector="valueChangeLch:" target="4202" id="4819"/>
-                                    <outlet property="colorcontroller" destination="4202" id="4737"/>
-                                    <outlet property="nextKeyView" destination="4233" id="5011"/>
-                                </connections>
-                            </textField>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4235" customClass="ColorWell">
-                                <rect key="frame" x="10" y="5" width="100" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4236" customClass="ColorWell">
-                                <rect key="frame" x="205" y="87" width="100" height="13"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4237" customClass="ColorWell">
-                                <rect key="frame" x="205" y="67" width="100" height="13"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4238" customClass="ColorWell">
-                                <rect key="frame" x="205" y="47" width="100" height="13"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4239" customClass="ColorWell">
-                                <rect key="frame" x="205" y="27" width="100" height="13"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4240" customClass="ColorWell">
-                                <rect key="frame" x="205" y="7" width="100" height="13"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                            </customView>
-                        </subviews>
-                        <connections>
-                            <outlet property="colordisplay" destination="4235" id="4670"/>
-                            <outlet property="firsttextField" destination="4225" id="4738"/>
-                            <outlet property="labelL" destination="4226" id="4675"/>
-                            <outlet property="labela" destination="4227" id="4671"/>
-                            <outlet property="labelb" destination="4228" id="4672"/>
-                            <outlet property="labelc" destination="4231" id="4673"/>
-                            <outlet property="labelh" destination="4232" id="4674"/>
-                            <outlet property="sliderL" destination="4236" id="4680"/>
-                            <outlet property="slidera" destination="4237" id="4676"/>
-                            <outlet property="sliderb" destination="4238" id="4677"/>
-                            <outlet property="sliderc" destination="4239" id="4678"/>
-                            <outlet property="sliderh" destination="4240" id="4679"/>
-                            <outlet property="textFieldL" destination="4225" id="4685"/>
-                            <outlet property="textFielda" destination="4229" id="4681"/>
-                            <outlet property="textFieldb" destination="4230" id="4682"/>
-                            <outlet property="textFieldc" destination="4233" id="4683"/>
-                            <outlet property="textFieldh" destination="4234" id="4684"/>
-                        </connections>
-                    </customView>
                     <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4261" customClass="LuvColorController">
                         <rect key="frame" x="604" y="233" width="315" height="110"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -1709,9 +1545,6 @@
                 <outlet property="textFieldSplitRGB" destination="5143" id="5150"/>
                 <outlet property="textFieldT" destination="1778" id="2118"/>
                 <outlet property="textFieldke" destination="1218" id="2058"/>
-                <outlet property="textL" destination="4226" id="4701"/>
-                <outlet property="texta" destination="4227" id="4699"/>
-                <outlet property="textb" destination="4228" id="4700"/>
                 <outlet property="whitePointY" destination="5000" id="5004"/>
                 <outlet property="whitePointx" destination="1795" id="2119"/>
                 <outlet property="whitePointy" destination="1794" id="2121"/>
@@ -1723,7 +1556,6 @@
             <connections>
                 <outlet property="colorsoutlineview" destination="4977" id="4985"/>
                 <outlet property="graycolorcontroller" destination="4494" id="4987"/>
-                <outlet property="labcolorcontroller" destination="4202" id="4990"/>
                 <outlet property="luvcolorcontroller" destination="4261" id="4991"/>
                 <outlet property="spectralcolorcontroller" destination="4127" id="4993"/>
                 <outlet property="xyzcolorcontroller" destination="4442" id="4994"/>

@@ -363,7 +363,7 @@ CMColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->title = cmNewTitleLabel(cmTranslate(CMColorRenderingIndex), 250);
+  con->title = cmNewTitleLabel(cmTranslate(CMColorRenderingIndex), 200);
 
   con->color1IndexLabel = naNewLabel("1:", indexWidth);
   con->color1Label = cmNewValueLabel();
