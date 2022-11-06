@@ -14,6 +14,7 @@
 #include "CMLabColorController.h"
 #include "CMRGBColorController.h"
 #include "CMYCbCrColorController.h"
+#include "CMYcdColorController.h"
 
 #include "NAApp.h"
 
@@ -39,9 +40,17 @@
   labColorController = cmAllocLabColorController();
   rgbColorController = cmAllocRGBColorController();
   ycbcrColorController = cmAllocYCbCrColorController();
+  ycdColorController = cmAllocYcdColorController();
 
   NSView* childView;
   NSRect frame;
+
+  NASpace* ycdSpace = cmGetColorControllerUIElement((CMColorController*)ycdColorController);
+  childView = (NSView*)naGetUIElementNativePtr(ycdSpace);
+  [[[self window] contentView] addSubview:childView];
+  frame = [childView frame];
+  frame.origin = NSMakePoint(300, 10);
+  [childView setFrame: frame];
 
   NASpace* labSpace = cmGetColorControllerUIElement((CMColorController*)labColorController);
   childView = (NSView*)naGetUIElementNativePtr(labSpace);
@@ -710,12 +719,14 @@
   cmSetColorControllerActive((CMColorController*)hsvColorController, cmGetCurrentColorController() == (CMColorController*)hsvColorController);
   cmSetColorControllerActive((CMColorController*)labColorController, cmGetCurrentColorController() == (CMColorController*)labColorController);
   cmSetColorControllerActive((CMColorController*)ycbcrColorController, cmGetCurrentColorController() == (CMColorController*)ycbcrColorController);
+  cmSetColorControllerActive((CMColorController*)ycdColorController, cmGetCurrentColorController() == (CMColorController*)ycdColorController);
 
   cmUpdateRGBColorController(rgbColorController);
   cmUpdateHSLColorController(hslColorController);
   cmUpdateHSVColorController(hsvColorController);
   cmUpdateLabColorController(labColorController);
   cmUpdateYCbCrColorController(ycbcrColorController);
+  cmUpdateYcdColorController(ycdColorController);
 
 }
 

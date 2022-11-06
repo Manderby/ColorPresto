@@ -1,0 +1,149 @@
+
+#include "CMColorController.h"
+#include "CMColorWell1D.h"
+#include "CMColorWell2D.h"
+#include "CMYcdColorController.h"
+#include "NAApp.h"
+#include "CMDesign.h"
+
+struct CMYcdColorController{
+  CMColorController baseController;
+  
+  CMColorWell2D* colorWell2D;
+  
+  NALabel* labelY;
+  NALabel* labelc;
+  NALabel* labeld;
+  NATextField* textFieldY;
+  NATextField* textFieldc;
+  NATextField* textFieldd;
+  CMColorWell1D* colorWell1DY;
+  CMColorWell1D* colorWell1Dc;
+  CMColorWell1D* colorWell1Dd;
+
+  CMLVec3 ycdColor;
+};
+
+
+
+NABool cmYcdValueEdited(NAReaction reaction){
+  CMYcdColorController* con = (CMYcdColorController*)reaction.controller;
+
+  if(reaction.uiElement == con->textFieldY){
+    NAString* string = naNewStringWithTextFieldText(con->textFieldY);
+    con->ycdColor[0] = atof(naGetStringUTF8Pointer(string));
+    naDelete(string);
+  }else if(reaction.uiElement == con->textFieldc){
+    NAString* string = naNewStringWithTextFieldText(con->textFieldc);
+    con->ycdColor[1] = atof(naGetStringUTF8Pointer(string));
+    naDelete(string);
+  }else if(reaction.uiElement == con->textFieldd){
+    NAString* string = naNewStringWithTextFieldText(con->textFieldd);
+    con->ycdColor[2] = atof(naGetStringUTF8Pointer(string));
+    naDelete(string);
+  }
+  
+  cmSetCurrentColorController(&(con->baseController));
+  cmUpdateColor();
+  
+  return NA_TRUE;
+}
+
+
+CMYcdColorController* cmAllocYcdColorController(void){
+  CMYcdColorController* con = naAlloc(CMYcdColorController);
+  
+  cmInitColorController(&(con->baseController), CML_COLOR_Ycd);
+  
+  con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
+  
+  con->labelY = cmNewColorComponentLabel("Y");
+  con->labelc = cmNewColorComponentLabel("c");
+  con->labeld = cmNewColorComponentLabel("d");
+  con->textFieldY = cmNewValueTextBox(cmYcdValueEdited, con);
+  con->textFieldc = cmNewValueTextBox(cmYcdValueEdited, con);
+  con->textFieldd = cmNewValueTextBox(cmYcdValueEdited, con);
+  con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Ycd, con->ycdColor, 0);
+  con->colorWell1Dc = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Ycd, con->ycdColor, 1);
+  con->colorWell1Dd = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Ycd, con->ycdColor, 2);
+  
+  NABezel4 colorWellBezel = {20 + colorWell1DSize, 5, colorWell2DSize + 15, 5};
+  cmBeginUILayout(con->baseController.space, colorWellBezel);
+  cmAddUIPos(0, colorValueCondensedRowHeight);
+  cmAddUIRow(con->labelY, colorValueCondensedRowHeight);
+  cmAddUICol(con->textFieldY, colorComponentMarginH);
+  cmAddUIRow(con->labelc, colorValueCondensedRowHeight);
+  cmAddUICol(con->textFieldc, colorComponentMarginH);
+  cmAddUIRow(con->labeld, colorValueCondensedRowHeight);
+  cmAddUICol(con->textFieldd, colorComponentMarginH);
+  cmAddUIPos(0, colorValueCondensedRowHeight);
+
+  cmEndUILayout();
+  
+  naAddSpaceChild(
+    con->baseController.space,
+    cmGetColorWell2DUIElement(con->colorWell2D),
+    naMakePos(10, 5));
+
+  naAddSpaceChild(
+    con->baseController.space,
+    cmGetColorWell1DUIElement(con->colorWell1DY),
+    naMakePos(colorWell1DMarginLeft, 70));
+  naAddSpaceChild(
+    con->baseController.space,
+    cmGetColorWell1DUIElement(con->colorWell1Dc),
+    naMakePos(colorWell1DMarginLeft, 50));
+  naAddSpaceChild(
+    con->baseController.space,
+    cmGetColorWell1DUIElement(con->colorWell1Dd),
+    naMakePos(colorWell1DMarginLeft, 30));
+  
+  return con;
+}
+
+
+
+void cmDeallocYcdColorController(CMYcdColorController* con){
+  cmClearColorController(&(con->baseController));
+  naFree(con);
+}
+
+
+
+const void* cmGetYcdColorControllerColorData(const CMYcdColorController* con){
+  return &(con->ycdColor);
+}
+
+
+
+void cmSetYcdColorControllerColorData(CMYcdColorController* con, const void* data){
+  cmlCpy3(con->ycdColor, data);
+}
+
+
+
+void cmUpdateYcdColorController(CMYcdColorController* con){
+  cmUpdateColorController(&(con->baseController));
+  
+  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorType currentColorType = cmGetCurrentColorType();
+  const float* currentColorData = cmGetCurrentColorData();
+  CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Ycd, currentColorType);
+  converter(cm, con->ycdColor, currentColorData, 1);
+  
+  cmUpdateColorWell2D(con->colorWell2D);
+  
+  naSetTextFieldText(
+    con->textFieldY,
+    naAllocSprintf(NA_TRUE, "%1.05f", con->ycdColor[0]));
+  naSetTextFieldText(
+    con->textFieldc,
+    naAllocSprintf(NA_TRUE, "%1.05f", con->ycdColor[1]));
+  naSetTextFieldText(
+    con->textFieldd,
+    naAllocSprintf(NA_TRUE, "%1.05f", con->ycdColor[2]));
+
+  cmUpdateColorWell1D(con->colorWell1DY);
+  cmUpdateColorWell1D(con->colorWell1Dc);
+  cmUpdateColorWell1D(con->colorWell1Dd);
+}

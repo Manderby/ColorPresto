@@ -201,6 +201,7 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
   case CML_COLOR_Yxy:   surfaceCount = 4; break;
   case CML_COLOR_Yuv:   surfaceCount = 4; break;
   case CML_COLOR_Yupvp: surfaceCount = 4; break;
+  case CML_COLOR_Ycd:   surfaceCount = 6; break;
   case CML_COLOR_YCbCr: surfaceCount = 6; break;
   case CML_COLOR_Lab:   surfaceCount = 6; break;
   case CML_COLOR_Lch:   surfaceCount = 3; break;
@@ -303,6 +304,32 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
       cmlSet4(origins[3], 1.f, 1.f, 1.f, 1.f);
       cmlSet4(axis1s[3], 0.f, 0.f, -1.f, 0.f);
       cmlSet4(axis2s[3], -1.f, 0.f, 0.f, 0.f);
+      break;
+    case CML_COLOR_Ycd:
+      cmlSet4UInt(surfaceSteps[0], steps3D, steps3D, 1, 1);
+      cmlSet4(origins[0], 0.f, 0.f, 0.f, 0.f);
+      cmlSet4(axis1s[0], 1.f, 0.f, 0.f, 0.f);
+      cmlSet4(axis2s[0], 0.f, 1.f, 0.f, 0.f);
+      cmlSet4UInt(surfaceSteps[1], steps3D, steps3D, 1, 1);
+      cmlSet4(origins[1], 0.f, 0.f, 0.f, 0.f);
+      cmlSet4(axis1s[1], 0.f, 1.f, 0.f, 0.f);
+      cmlSet4(axis2s[1], 0.f, 0.f, 1.f, 0.f);
+      cmlSet4UInt(surfaceSteps[2], steps3D, steps3D, 1, 1);
+      cmlSet4(origins[2], 0.f, 0.f, 0.f, 0.f);
+      cmlSet4(axis1s[2], 0.f, 0.f, 1.f, 0.f);
+      cmlSet4(axis2s[2], 1.f, 0.f, 0.f, 0.f);
+      cmlSet4UInt(surfaceSteps[3], steps3D, steps3D, 1, 1);
+      cmlSet4(origins[3], 1.f, 1.f, 1.f, 1.f);
+      cmlSet4(axis1s[3], -1.f, 0.f, 0.f, 0.f);
+      cmlSet4(axis2s[3], 0.f, -1.f, 0.f, 0.f);
+      cmlSet4UInt(surfaceSteps[4], steps3D, steps3D, 1, 1);
+      cmlSet4(origins[4], 1.f, 1.f, 1.f, 1.f);
+      cmlSet4(axis1s[4], 0.f, -1.f, 0.f, 0.f);
+      cmlSet4(axis2s[4], 0.f, 0.f, -1.f, 0.f);
+      cmlSet4UInt(surfaceSteps[5], steps3D, steps3D, 1, 1);
+      cmlSet4(origins[5], 1.f, 1.f, 1.f, 1.f);
+      cmlSet4(axis1s[5], 0.f, 0.f, -1.f, 0.f);
+      cmlSet4(axis2s[5], -1.f, 0.f, 0.f, 0.f);
       break;
     case CML_COLOR_YCbCr:
       cmlSet4UInt(surfaceSteps[0], steps3D, steps3D, 1, 1);

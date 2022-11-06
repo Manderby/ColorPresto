@@ -5,6 +5,7 @@
 #include "CMLabColorController.h"
 #include "CMRGBColorController.h"
 #include "CMYCbCrColorController.h"
+#include "CMYcdColorController.h"
 #include "NAApp.h"
 
 
@@ -53,6 +54,7 @@ const void* cmGetColorControllerColorData(const CMColorController* con){
   case CML_COLOR_Lab: return cmGetLabColorControllerColorData((const CMLabColorController*)con);
   case CML_COLOR_RGB: return cmGetRGBColorControllerColorData((const CMRGBColorController*)con);
   case CML_COLOR_YCbCr: return cmGetYCbCrColorControllerColorData((const CMYCbCrColorController*)con);
+  case CML_COLOR_Ycd: return cmGetYcdColorControllerColorData((const CMYcdColorController*)con);
   default: return NA_NULL;
   }
 }
@@ -66,6 +68,7 @@ void cmSetColorControllerColorData(CMColorController* con, const void* data){
   case CML_COLOR_Lab: cmSetLabColorControllerColorData((CMLabColorController*)con, data); break;
   case CML_COLOR_RGB: cmSetRGBColorControllerColorData((CMRGBColorController*)con, data); break;
   case CML_COLOR_YCbCr: cmSetYCbCrColorControllerColorData((CMYCbCrColorController*)con, data); break;
+  case CML_COLOR_Ycd: cmSetYcdColorControllerColorData((CMYcdColorController*)con, data); break;
   default: break;
   }
 }

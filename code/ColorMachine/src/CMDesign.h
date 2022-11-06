@@ -119,7 +119,7 @@ void cmBeginUILayout(NASpace* space, NABezel4 margin);
 void cmAddUIPos(double x, double y);
 void cmAddUIRow(void* child, double rowHeight);
 void cmAddUICol(void* child, double marginLeft);
-void cmEndUILayout();
+void cmEndUILayout(void);
 
 #ifdef __cplusplus
   }

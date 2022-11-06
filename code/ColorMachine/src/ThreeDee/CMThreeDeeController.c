@@ -22,6 +22,7 @@ typedef enum{
   COORD_SYS_Yxy,
   COORD_SYS_Yupvp,
   COORD_SYS_Yuv,
+  COORD_SYS_Ycd,
   COORD_SYS_Lab,
   COORD_SYS_Lch_CARTESIAN,
   COORD_SYS_Luv,
@@ -108,6 +109,7 @@ const NAUTF8Char* cmGetCoordSysName(CoordSysType coordSysType){
   case COORD_SYS_Yxy: retValue = cmTranslate(CMColorSpaceYxy); break;
   case COORD_SYS_Yupvp: retValue = cmTranslate(CMColorSpaceYupvp); break;
   case COORD_SYS_Yuv: retValue = cmTranslate(CMColorSpaceYuv); break;
+  case COORD_SYS_Ycd: retValue = cmTranslate(CMColorSpaceYcd); break;
   case COORD_SYS_Lab: retValue = cmTranslate(CMColorSpaceLab); break;
   case COORD_SYS_Lch_CARTESIAN: retValue = cmTranslate(CMColorSpaceLch); break;
   case COORD_SYS_Luv: retValue = cmTranslate(CMColorSpaceLuv); break;
@@ -273,6 +275,15 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[1] = "u";
     labels[2] = "v";
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
+    break;
+  case COORD_SYS_Ycd:
+    coordSpace = CML_COLOR_Ycd;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "Y";
+    labels[1] = "c";
+    labels[2] = "d";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Ycd);
     break;
   case COORD_SYS_Lab:
     coordSpace = CML_COLOR_Lab;
