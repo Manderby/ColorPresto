@@ -31,7 +31,7 @@ void cmUpdateMetamerics(void);
 
 double cmGetUIScaleFactorForWindow(void* nativeWindowPtr);
 
-void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* texdata, float* inputarray, CMLColorType inputColorType, CMLNormedConverter normedconverter, size_t count, NABool drawgridlines, NABool drawmask);
+void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* texdata, float* inputarray, CMLColorType inputColorType, CMLNormedConverter normedConverter, size_t count, NABool drawgridlines, NABool drawmask);
 
 
 #ifdef __cplusplus

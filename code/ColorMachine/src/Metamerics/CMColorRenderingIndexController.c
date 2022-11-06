@@ -312,7 +312,7 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
       CMLVec3 metamerIllYuv;
       cmlConvertYupvpToYuv(metamerIllYuv, metamerIllYupvp);
       CMLVec3 metamerIllYcd;
-      convertYuvtoYcd(metamerIllYcd, metamerIllYuv);
+      cmlConvertYuvToYcd(metamerIllYcd, metamerIllYuv);
       CMLVec3 metamerIllaYuv;
       convertYcdtoadaptedYuv(metamerIllaYuv, metamerIllYcd, illWhitePoint2->Ycd, refWhitePoint2->Ycd);
       convertYuvtoUVW(metamerIllUVW, metamerIllaYuv, refWhitePoint2->Yuv);

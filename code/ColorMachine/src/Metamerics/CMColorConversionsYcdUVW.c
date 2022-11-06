@@ -5,14 +5,6 @@
 
 // todo: add conversions to main window or even CML.
 
-void convertYuvtoYcd(float* Ycd, const float* yuv){
-  cmlSet3(
-    Ycd,
-    yuv[0],
-    (4.f - yuv[1] - 10.f * yuv[2]) / yuv[2],
-    (1.708f * yuv[2] + 0.404f - 1.481f * yuv[1]) / yuv[2]);
-}
-
 void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcWhitePointYcd, const float* dstWhitePointYcd){
   float cfactor = Ycd[1] * dstWhitePointYcd[1] / srcWhitePointYcd[1];
   float dfactor = Ycd[2] * dstWhitePointYcd[2] / srcWhitePointYcd[2];

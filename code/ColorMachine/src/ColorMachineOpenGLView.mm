@@ -272,11 +272,11 @@
     float imax = CML_DEFAULT_INTEGRATION_MAX;
     int32 intervals = (int32)((imax - imin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
     
-    CMLColorConverter coordconverter = cmlGetColorConverter(colorType, CML_COLOR_XYZ);
-    CMLNormedConverter normedconverter = cmlGetNormedOutputConverter(colorType);
+    CMLColorConverter coordConverter = cmlGetColorConverter(colorType, CML_COLOR_XYZ);
+    CMLNormedConverter normedConverter = cmlGetNormedOutputConverter(colorType);
 
-    bool firstpointfound = false;
-    CMLVec3 prevcoords;
+    bool firstPointFound = false;
+    CMLVec3 prevCoords;
     for(int32 iStep = 0; iStep <= intervals; iStep++){
       float l = imin + (((imax - imin) * iStep) / intervals);
       CMLVec3 curXYZ;
@@ -285,28 +285,28 @@
 
         CMLVec3 curRGB;
         CMLVec3 curcoords;
-        CMLVec3 curnormedcoords;
-        coordconverter(cm, curcoords, curXYZ, 1);
-        normedconverter(curnormedcoords, curcoords, 1);
+        CMLVec3 curNormedCoords;
+        coordConverter(cm, curcoords, curXYZ, 1);
+        normedConverter(curNormedCoords, curcoords, 1);
         cmlXYZToRGB(cm, curRGB, curXYZ, 1);
         cmlMul3(curRGB, .7f);
         cmlClampRGB(curRGB, 1);
 //        curRGB *= .7f;
 //        glColor3fv(curRGB);
-        if(!firstpointfound){
-          cmlCpy3(prevcoords, curnormedcoords);
-          firstpointfound = true;
+        if(!firstPointFound){
+          cmlCpy3(prevCoords, curNormedCoords);
+          firstPointFound = true;
         }else{
           CGContextBeginPath(context);
-          CGContextMoveToPoint(context, prevcoords[1] * width, prevcoords[2] * height);
-          CGContextAddLineToPoint(context, curnormedcoords[1] * width, curnormedcoords[2] * height);
+          CGContextMoveToPoint(context, prevCoords[1] * width, prevCoords[2] * height);
+          CGContextAddLineToPoint(context, curNormedCoords[1] * width, curNormedCoords[2] * height);
           CGColorRef cgcolor = CGColorCreateGenericRGB(curRGB[0], curRGB[1], curRGB[2], .75f);
           CGContextSetStrokeColorWithColor(context, cgcolor);
           CGContextStrokePath(context);
           CGColorRelease(cgcolor);
         }
-        cmlCpy3(prevcoords, curnormedcoords);
-//        glVertex3fv(curnormedcoords);
+        cmlCpy3(prevCoords, curNormedCoords);
+//        glVertex3fv(curNormedCoords);
       }
     }
 

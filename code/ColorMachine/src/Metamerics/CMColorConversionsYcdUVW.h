@@ -16,8 +16,6 @@ typedef enum{
 
 
 
-void convertYuvtoYcd(float* Ycd, const float* yuv);
-
 void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcWhitePointYcd, const float* dstWhitePointYcd);
 
 // ISO 3664 states in forumal D.14 the computation 6X/(X+15Y+3Z). I'm

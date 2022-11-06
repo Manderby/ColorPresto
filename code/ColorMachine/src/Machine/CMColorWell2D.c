@@ -173,16 +173,58 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   glDisable(GL_TEXTURE_2D);
   glDisable(GL_DEPTH);
 
-  glColor4f(1., 1., 1., 1.);
+  // Draw the spectrum
+  if((colorType == CML_COLOR_Yupvp) || (colorType == CML_COLOR_Yxy)){
+    float imin = CML_DEFAULT_INTEGRATION_MIN;
+    float imax = CML_DEFAULT_INTEGRATION_MAX;
+    int32 intervals = (int32)((imax - imin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
+    
+    CMLColorConverter coordConverter = cmlGetColorConverter(colorType, CML_COLOR_XYZ);
+    CMLNormedConverter normedConverter = cmlGetNormedOutputConverter(colorType);
+
+//    NABool firstPointFound = NA_FALSE;
+//    CMLVec3 prevCoords;
+    glBegin(GL_LINE_STRIP);
+    for(int32 iStep = 0; iStep <= intervals; iStep++){
+      float l = imin + (((imax - imin) * iStep) / intervals);
+      CMLVec3 curXYZ;
+      cmlGetSpectralXYZColor(cm, curXYZ, l);
+      if(curXYZ[1] > 0.f){
+
+        CMLVec3 curRGB;
+        CMLVec3 curcoords;
+        CMLVec3 curNormedCoords;
+        coordConverter(cm, curcoords, curXYZ, 1);
+        normedConverter(curNormedCoords, curcoords, 1);
+        cmlXYZToRGB(cm, curRGB, curXYZ, 1);
+        cmlMul3(curRGB, .7f);
+        cmlClampRGB(curRGB, 1);
+        cmlMul3(curRGB, .75f);
+        glColor3fv(curRGB);
+
+        switch(well->fixedIndex){
+        case 0:
+          glVertex2f(curNormedCoords[1] * 2. - 1., curNormedCoords[2] * 2. - 1.);
+          break;
+        case 1:
+          glVertex2f(curNormedCoords[0] * 2. - 1., curNormedCoords[2] * 2. - 1.);
+          break;
+        case 2:
+          glVertex2f(curNormedCoords[0] * 2. - 1., curNormedCoords[1] * 2. - 1.);
+          break;
+        }
+      }
+    }
+    glEnd();
+  }
+
   glBegin(GL_LINE_LOOP);
+    glColor4f(1., 1., 1., 1.);
     for(int i = 0; i < subdivisions; ++i){
       float ang = NA_PI2 * (float)i / (float)subdivisions;
       glVertex2f(fixedValueA * 2. - 1. + whiteR * naCos(ang), fixedValueB * 2. - 1. + whiteR * naSin(ang));
     }
-  glEnd();
-
-  glColor4f(0., 0., 0., 1.);
-  glBegin(GL_LINE_LOOP);
+    glColor4f(0., 0., 0., 1.);
     for(int i = 0; i < subdivisions; ++i){
       float ang = NA_PI2 * (float)i / (float)subdivisions;
       glVertex2f(fixedValueA * 2. - 1. + blackR * naCos(ang), fixedValueB * 2. - 1. + blackR * naSin(ang));
