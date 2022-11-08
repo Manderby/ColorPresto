@@ -16,19 +16,19 @@ NA_LOC(CMObserverDegree10, "10°");
 
 // The different color spaces
 NA_LOC(CMColorSpace, "色空間");        // do translate
-NA_LOC(CMColorSpaceXYZ, "XYZ");       // do not translate
-NA_LOC(CMColorSpaceYxy, "Yxy");       // do not translate
-NA_LOC(CMColorSpaceYupvp, "Yu\'v\'"); // do not translate
-NA_LOC(CMColorSpaceYuv, "Yuv");       // do not translate
-NA_LOC(CMColorSpaceYcd, "Ycd");       // do not translate
-NA_LOC(CMColorSpaceUVW, "UVW");       // do not translate
-NA_LOC(CMColorSpaceLab, "Lab");       // do not translate
-NA_LOC(CMColorSpaceLch, "Lch");       // do not translate
-NA_LOC(CMColorSpaceLuv, "Luv");       // do not translate
-NA_LOC(CMColorSpaceRGB, "RGB");       // do not translate
+NA_LOC(CMColorSpaceHSL,   "HSL");     // do not translate
+NA_LOC(CMColorSpaceHSV,   "HSV");     // do not translate
+NA_LOC(CMColorSpaceLab,   "Lab");     // do not translate
+NA_LOC(CMColorSpaceLch,   "Lch");     // do not translate
+NA_LOC(CMColorSpaceLuv,   "Luv");     // do not translate
+NA_LOC(CMColorSpaceRGB,   "RGB");     // do not translate
+NA_LOC(CMColorSpaceUVW,   "UVW");     // do not translate
+NA_LOC(CMColorSpaceXYZ,   "XYZ");     // do not translate
 NA_LOC(CMColorSpaceYCbCr, "Ycbcr");   // do not translate
-NA_LOC(CMColorSpaceHSV, "HSV");       // do not translate
-NA_LOC(CMColorSpaceHSL, "HSL");       // do not translate
+NA_LOC(CMColorSpaceYcd,   "Ycd");     // do not translate
+NA_LOC(CMColorSpaceYupvp, "Yu\'v\'"); // do not translate
+NA_LOC(CMColorSpaceYuv,   "Yuv");     // do not translate
+NA_LOC(CMColorSpaceYxy,   "Yxy");     // do not translate
 
 // Translations for the Whitepoint and Metamerics Window
 NA_LOC(CMWhitepointsAndMetamerics, "Whitepoints and Metamerics");

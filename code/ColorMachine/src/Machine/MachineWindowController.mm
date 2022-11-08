@@ -54,28 +54,28 @@
   childView = (NSView*)naGetUIElementNativePtr(xyzSpace);
   [[[self window] contentView] addSubview:childView];
   frame = [childView frame];
-  frame.origin = NSMakePoint(300, 340);
+  frame.origin = NSMakePoint(300, 230);
   [childView setFrame: frame];
 
   NASpace* yxySpace = cmGetColorControllerUIElement((CMColorController*)yxyColorController);
   childView = (NSView*)naGetUIElementNativePtr(yxySpace);
   [[[self window] contentView] addSubview:childView];
   frame = [childView frame];
-  frame.origin = NSMakePoint(300, 230);
+  frame.origin = NSMakePoint(300, 120);
   [childView setFrame: frame];
 
   NASpace* yuvSpace = cmGetColorControllerUIElement((CMColorController*)yuvColorController);
   childView = (NSView*)naGetUIElementNativePtr(yuvSpace);
   [[[self window] contentView] addSubview:childView];
   frame = [childView frame];
-  frame.origin = NSMakePoint(300, 120);
+  frame.origin = NSMakePoint(300, 10);
   [childView setFrame: frame];
 
   NASpace* ycdSpace = cmGetColorControllerUIElement((CMColorController*)ycdColorController);
   childView = (NSView*)naGetUIElementNativePtr(ycdSpace);
   [[[self window] contentView] addSubview:childView];
   frame = [childView frame];
-  frame.origin = NSMakePoint(300, 10);
+  frame.origin = NSMakePoint(620, 10);
   [childView setFrame: frame];
 
   NASpace* luvSpace = cmGetColorControllerUIElement((CMColorController*)luvColorController);
@@ -145,7 +145,7 @@
 
   [maskselect removeAllItems];
   for(uint32 i=0; i<CML_COLOR_COUNT; ++i){
-    if((CMLColorType)i >= CML_COLOR_CMYK){continue;}
+    if((CMLColorType)i == CML_COLOR_CMYK){continue;}
     [maskselect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetColorTypeString((CMLColorType)i)] atIndex:i];
   }
   [maskselect selectItemAtIndex:(int)CML_COLOR_RGB];

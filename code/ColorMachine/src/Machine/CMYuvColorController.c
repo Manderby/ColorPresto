@@ -83,7 +83,6 @@ CMYuvColorController* cmAllocYuvColorController(void){
 
   NABezel4 colorWellBezel = {20 + colorWell1DSize, 5, colorWell2DSize + 15, 5};
   cmBeginUILayout(con->baseController.space, colorWellBezel);
-  cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelY, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldY, colorComponentMarginH);
   cmAddUIRow(con->labelup, colorValueCondensedRowHeight);

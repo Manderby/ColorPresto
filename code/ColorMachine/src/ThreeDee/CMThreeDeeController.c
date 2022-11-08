@@ -18,20 +18,36 @@ static const double marginHMiddle = spaceMarginLeft3D + labelWidth + marginH;
 static const double fullControlWidth = marginHMiddle + controlWidth + spaceMarginRight;
 
 typedef enum{
-  COORD_SYS_XYZ,
-  COORD_SYS_Yxy,
-  COORD_SYS_Yupvp,
-  COORD_SYS_Yuv,
-  COORD_SYS_Ycd,
+  COLOR_SPACE_GRAY,
+  COLOR_SPACE_HSL,
+  COLOR_SPACE_HSV,
+  COLOR_SPACE_Lab,
+  COLOR_SPACE_Lch,
+  COLOR_SPACE_Luv,
+  COLOR_SPACE_RGB,
+  COLOR_SPACE_XYZ,
+  COLOR_SPACE_YCbCr,
+  COLOR_SPACE_Ycd,
+  COLOR_SPACE_Yuv,
+  COLOR_SPACE_Yxy,
+  COLOR_SPACE_COUNT
+} ColorSpaceType;
+
+typedef enum{
+  COORD_SYS_HSL,
+  COORD_SYS_HSL_CARTESIAN,
+  COORD_SYS_HSV,
+  COORD_SYS_HSV_CARTESIAN,
   COORD_SYS_Lab,
   COORD_SYS_Lch_CARTESIAN,
   COORD_SYS_Luv,
   COORD_SYS_RGB,
+  COORD_SYS_XYZ,
   COORD_SYS_Ycbcr,
-  COORD_SYS_HSV,
-  COORD_SYS_HSV_CARTESIAN,
-  COORD_SYS_HSL,
-  COORD_SYS_HSL_CARTESIAN,
+  COORD_SYS_Ycd,
+  COORD_SYS_Yupvp,
+  COORD_SYS_Yuv,
+  COORD_SYS_Yxy,
   COORD_SYS_COUNT
 } CoordSysType;
 
@@ -79,8 +95,8 @@ struct CMThreeDeeController{
   
   NAInt fontId;
   
-  CMLColorType colorSpace;
-  CoordSysType coordSys;
+  ColorSpaceType colorSpaceType;
+  CoordSysType coordSysType;
   NAInt steps3D;
 
   double rotationStep;
@@ -102,23 +118,50 @@ struct CMThreeDeeController{
 };
 
 
+
+CMLColorType cmGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
+  CMLColorType retValue = CML_COLOR_COUNT;
+  switch(colorSpaceType){
+  case COLOR_SPACE_GRAY:  retValue = CML_COLOR_GRAY; break;
+  case COLOR_SPACE_HSL:   retValue = CML_COLOR_HSL; break;
+  case COLOR_SPACE_HSV:   retValue = CML_COLOR_HSV; break;
+  case COLOR_SPACE_Lab:   retValue = CML_COLOR_Lab; break;
+  case COLOR_SPACE_Lch:   retValue = CML_COLOR_Lch; break;
+  case COLOR_SPACE_Luv:   retValue = CML_COLOR_Luv; break;
+  case COLOR_SPACE_RGB:   retValue = CML_COLOR_RGB; break;
+  case COLOR_SPACE_XYZ:   retValue = CML_COLOR_XYZ; break;
+  case COLOR_SPACE_YCbCr: retValue = CML_COLOR_YCbCr; break;
+  case COLOR_SPACE_Ycd:   retValue = CML_COLOR_Ycd; break;
+  case COLOR_SPACE_Yuv:   retValue = CML_COLOR_Yuv; break;
+  case COLOR_SPACE_Yxy:   retValue = CML_COLOR_Yxy; break;
+  default:
+    #if NA_DEBUG
+      naError("Unknown colorspace.");
+    #endif
+    break;
+  }
+  return retValue;
+}
+
+
+
 const NAUTF8Char* cmGetCoordSysName(CoordSysType coordSysType){
   const NAUTF8Char* retValue = "";
   switch(coordSysType){
-  case COORD_SYS_XYZ: retValue = cmTranslate(CMColorSpaceXYZ); break;
-  case COORD_SYS_Yxy: retValue = cmTranslate(CMColorSpaceYxy); break;
-  case COORD_SYS_Yupvp: retValue = cmTranslate(CMColorSpaceYupvp); break;
-  case COORD_SYS_Yuv: retValue = cmTranslate(CMColorSpaceYuv); break;
-  case COORD_SYS_Ycd: retValue = cmTranslate(CMColorSpaceYcd); break;
+  case COORD_SYS_HSL: retValue = cmTranslate(CMColorSpaceHSL); break;
+  case COORD_SYS_HSL_CARTESIAN: retValue = cmTranslate(CMColorSpaceHSL); break;
+  case COORD_SYS_HSV: retValue = cmTranslate(CMColorSpaceHSV); break;
+  case COORD_SYS_HSV_CARTESIAN: retValue = cmTranslate(CMColorSpaceHSV); break;
   case COORD_SYS_Lab: retValue = cmTranslate(CMColorSpaceLab); break;
   case COORD_SYS_Lch_CARTESIAN: retValue = cmTranslate(CMColorSpaceLch); break;
   case COORD_SYS_Luv: retValue = cmTranslate(CMColorSpaceLuv); break;
   case COORD_SYS_RGB: retValue = cmTranslate(CMColorSpaceRGB); break;
+  case COORD_SYS_XYZ: retValue = cmTranslate(CMColorSpaceXYZ); break;
   case COORD_SYS_Ycbcr: retValue = cmTranslate(CMColorSpaceYCbCr); break;
-  case COORD_SYS_HSV: retValue = cmTranslate(CMColorSpaceHSV); break;
-  case COORD_SYS_HSV_CARTESIAN: retValue = cmTranslate(CMColorSpaceHSV); break;
-  case COORD_SYS_HSL: retValue = cmTranslate(CMColorSpaceHSL); break;
-  case COORD_SYS_HSL_CARTESIAN: retValue = cmTranslate(CMColorSpaceHSL); break;
+  case COORD_SYS_Ycd: retValue = cmTranslate(CMColorSpaceYcd); break;
+  case COORD_SYS_Yupvp: retValue = cmTranslate(CMColorSpaceYupvp); break;
+  case COORD_SYS_Yuv: retValue = cmTranslate(CMColorSpaceYuv); break;
+  case COORD_SYS_Yxy: retValue = cmTranslate(CMColorSpaceYxy); break;
   default: break;
   }
   if(coordSysType == COORD_SYS_Lch_CARTESIAN || coordSysType == COORD_SYS_HSV_CARTESIAN || coordSysType == COORD_SYS_HSL_CARTESIAN){
@@ -126,6 +169,7 @@ const NAUTF8Char* cmGetCoordSysName(CoordSysType coordSysType){
   }
   return retValue;
 }
+
 
 
 void cmFixThreeDeeViewParameters(CMThreeDeeController* con){
@@ -239,51 +283,42 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   const NAUTF8Char* labels[3];
   CMLNormedConverter normedOutputConverter;
 
-  switch(con->coordSys){
-  case COORD_SYS_XYZ:
-    coordSpace = CML_COLOR_XYZ;
-    primeAxis = 1;
-    naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "X";
-    labels[1] = "Y";
-    labels[2] = "Z";
-    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
+  switch(con->coordSysType){
+  case COORD_SYS_HSL:
+    coordSpace = CML_COLOR_HSL;
+    primeAxis = 2;
+    naFillV3d(scale, 2., 2., 1.);
+    labels[0] = "";
+    labels[1] = "S";
+    labels[2] = "L";
+    normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSL);
     break;
-  case COORD_SYS_Yxy:
-    coordSpace = CML_COLOR_Yxy;
-    primeAxis = 0;
-    naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "Y";
-    labels[1] = "x";
-    labels[2] = "y";
-    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
+  case COORD_SYS_HSL_CARTESIAN:
+    coordSpace = CML_COLOR_HSL;
+    primeAxis = 2;
+    naFillV3d(scale, 3.60, -1., 1.);
+    labels[0] = "H";
+    labels[1] = "S";
+    labels[2] = "L";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSL);
     break;
-  case COORD_SYS_Yupvp:
-    coordSpace = CML_COLOR_Yupvp;
-    primeAxis = 0;
-    naFillV3d(scale, 1., (2.f / 3.f), (2.f / 3.f));
-    labels[0] = "Y";
-    labels[1] = "u'";
-    labels[2] = "v'";
-    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yupvp);
+  case COORD_SYS_HSV:
+    coordSpace = CML_COLOR_HSV;
+    primeAxis = 2;
+    naFillV3d(scale, 2., 2., 1.);
+    labels[0] = "";
+    labels[1] = "S";
+    labels[2] = "V";
+    normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV);
     break;
-  case COORD_SYS_Yuv:
-    coordSpace = CML_COLOR_Yuv;
-    primeAxis = 0;
-    naFillV3d(scale, 1., (2.f / 3.f), (4.f / 9.f));
-    labels[0] = "Y";
-    labels[1] = "u";
-    labels[2] = "v";
-    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
-    break;
-  case COORD_SYS_Ycd:
-    coordSpace = CML_COLOR_Ycd;
-    primeAxis = 0;
-    naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "Y";
-    labels[1] = "c";
-    labels[2] = "d";
-    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Ycd);
+  case COORD_SYS_HSV_CARTESIAN:
+    coordSpace = CML_COLOR_HSV;
+    primeAxis = 2;
+    naFillV3d(scale, 3.60, -1., 1.);
+    labels[0] = "H";
+    labels[1] = "S";
+    labels[2] = "V";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSV);
     break;
   case COORD_SYS_Lab:
     coordSpace = CML_COLOR_Lab;
@@ -321,6 +356,15 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[2] = "B";
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
     break;
+  case COORD_SYS_XYZ:
+    coordSpace = CML_COLOR_XYZ;
+    primeAxis = 1;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "X";
+    labels[1] = "Y";
+    labels[2] = "Z";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
+    break;
   case COORD_SYS_Ycbcr:
     coordSpace = CML_COLOR_YCbCr;
     primeAxis = 0;
@@ -330,41 +374,41 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[2] = "Cr";
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
     break;
-  case COORD_SYS_HSV:
-    coordSpace = CML_COLOR_HSV;
-    primeAxis = 2;
-    naFillV3d(scale, 2., 2., 1.);
-    labels[0] = "";
-    labels[1] = "S";
-    labels[2] = "V";
-    normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV);
+  case COORD_SYS_Ycd:
+    coordSpace = CML_COLOR_Ycd;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "Y";
+    labels[1] = "c";
+    labels[2] = "d";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Ycd);
     break;
-  case COORD_SYS_HSV_CARTESIAN:
-    coordSpace = CML_COLOR_HSV;
-    primeAxis = 2;
-    naFillV3d(scale, 3.60, -1., 1.);
-    labels[0] = "H";
-    labels[1] = "S";
-    labels[2] = "V";
-    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSV);
+  case COORD_SYS_Yupvp:
+    coordSpace = CML_COLOR_Yupvp;
+    primeAxis = 0;
+    naFillV3d(scale, 1., (2.f / 3.f), (2.f / 3.f));
+    labels[0] = "Y";
+    labels[1] = "u'";
+    labels[2] = "v'";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yupvp);
     break;
-  case COORD_SYS_HSL:
-    coordSpace = CML_COLOR_HSL;
-    primeAxis = 2;
-    naFillV3d(scale, 2., 2., 1.);
-    labels[0] = "";
-    labels[1] = "S";
-    labels[2] = "L";
-    normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSL);
+  case COORD_SYS_Yuv:
+    coordSpace = CML_COLOR_Yuv;
+    primeAxis = 0;
+    naFillV3d(scale, 1., (2.f / 3.f), (4.f / 9.f));
+    labels[0] = "Y";
+    labels[1] = "u";
+    labels[2] = "v";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
     break;
-  case COORD_SYS_HSL_CARTESIAN:
-    coordSpace = CML_COLOR_HSL;
-    primeAxis = 2;
-    naFillV3d(scale, 3.60, -1., 1.);
-    labels[0] = "H";
-    labels[1] = "S";
-    labels[2] = "L";
-    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSL);
+  case COORD_SYS_Yxy:
+    coordSpace = CML_COLOR_Yxy;
+    primeAxis = 0;
+    naFillV3d(scale, 1., 1., 1.);
+    labels[0] = "Y";
+    labels[1] = "x";
+    labels[2] = "y";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
     break;
   default:
     return NA_FALSE;
@@ -372,9 +416,9 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 
 
 
-
-  CMLNormedConverter normedInputConverter = cmlGetNormedInputConverter(con->colorSpace);
-  CMLColorConverter coordConverter = cmlGetColorConverter(coordSpace, con->colorSpace);
+  CMLColorType colorType = cmGetCMLColorTypeFromColorSpaceType(con->colorSpaceType);
+  CMLNormedConverter normedInputConverter = cmlGetNormedInputConverter(colorType);
+  CMLColorConverter coordConverter = cmlGetColorConverter(coordSpace, colorType);
   float min[3];
   float max[3];
   NASize viewSize;
@@ -397,9 +441,9 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   }
 
   NAInt hueIndex = -1;
-  if((con->coordSys == COORD_SYS_HSV_CARTESIAN) || (con->coordSys == COORD_SYS_HSL_CARTESIAN)){
+  if((con->coordSysType == COORD_SYS_HSV_CARTESIAN) || (con->coordSysType == COORD_SYS_HSL_CARTESIAN)){
     hueIndex = 0;
-  }else if(con->coordSys == COORD_SYS_Lch_CARTESIAN){
+  }else if(con->coordSysType == COORD_SYS_Lch_CARTESIAN){
     hueIndex = 2;
   }
 
@@ -418,7 +462,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
       con->bodyAlpha,
       con->gridAlpha,
       con->gridTint,
-      con->colorSpace,
+      colorType,
       con->steps3D,
       normedInputConverter,
       coordConverter,
@@ -426,13 +470,13 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
       hueIndex);
   }
   
-  const NABool isGrayColorSpace = con->colorSpace == CML_COLOR_GRAY;
+  const NABool isGrayColorSpace = con->colorSpaceType == COLOR_SPACE_GRAY;
   if(con->pointsOpacity > 0.f || isGrayColorSpace){
     cmDrawThreeDeePointCloud(
       cm,
       sm,
       isGrayColorSpace ? 1. : con->pointsOpacity,
-      con->colorSpace,
+      colorType,
       con->steps3D,
       normedInputConverter,
       coordConverter,
@@ -489,10 +533,8 @@ NABool cmSelectColorSpace(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
 
   size_t index = naGetPopupButtonItemIndex(con->colorSpacePopupButton, reaction.uiElement);
-  if(index < CML_COLOR_CMYK){
-    con->colorSpace = (CMLColorType)index;
-  }
-  
+  con->colorSpaceType = (ColorSpaceType)index;
+
   cmUpdateThreeDeeController(con);
 
   return TRUE;
@@ -504,7 +546,7 @@ NABool cmSelectCoordSys(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
 
   size_t index = naGetPopupButtonItemIndex(con->coordSysPopupButton, reaction.uiElement);
-  con->coordSys = (CoordSysType)index;
+  con->coordSysType = (CoordSysType)index;
   
   cmUpdateThreeDeeController(con);
 
@@ -580,8 +622,9 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
 
   con->colorSpaceLabel = naNewLabel(cmTranslate(CMColorSpace), labelWidth);
   con->colorSpacePopupButton = naNewPopupButton(controlWidth);
-  for(size_t i = 0; i < CML_COLOR_CMYK; ++i){
-    NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString((CMLColorType)i));
+  for(size_t i = 0; i < COLOR_SPACE_COUNT; ++i){
+    ColorSpaceType colorSpaceType = (ColorSpaceType)i;
+    NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString(cmGetCMLColorTypeFromColorSpaceType(colorSpaceType)));
     naAddPopupButtonMenuItem(con->colorSpacePopupButton, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectColorSpace, con);
   }
@@ -737,8 +780,8 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   // Set initial values
   float scaleFactor = cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->window));
 
-  con->colorSpace = CML_COLOR_RGB;
-  con->coordSys = COORD_SYS_Lab;
+  con->colorSpaceType = COLOR_SPACE_RGB;
+  con->coordSysType = COORD_SYS_Lab;
   con->steps3D = 25;
 
   con->rotationStep = 0.;
@@ -780,8 +823,8 @@ void cmShowThreeDeeController(CMThreeDeeController* con){
 
 
 void cmUpdateThreeDeeController(CMThreeDeeController* con){
-  naSetPopupButtonIndexSelected(con->colorSpacePopupButton, con->colorSpace);
-  naSetPopupButtonIndexSelected(con->coordSysPopupButton, con->coordSys);
+  naSetPopupButtonIndexSelected(con->colorSpacePopupButton, con->colorSpaceType);
+  naSetPopupButtonIndexSelected(con->coordSysPopupButton, con->coordSysType);
   naSetSliderValue(con->stepsSlider, con->steps3D);
 
   naSetSliderValue(con->rotationSlider, con->rotationStep);
