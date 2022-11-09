@@ -347,7 +347,7 @@ size_t bordercount;
       CGContextMoveToPoint(context, x, y1);
       CGContextAddLineToPoint(context, x, y2);
     }else{
-      for(size_t i=0; i<sampleCount; i++){
+      for(size_t i = 0; i < sampleCount; ++i){
         float curcoord = defRange.minSampleCoord + i * defRange.stepSize;
         CGFloat x = rect.origin.x + ((curcoord - CML_DEFAULT_INTEGRATION_MIN) / (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN)) * rect.size.width + .5f;
         CGFloat y = rect.origin.y + rect.size.height * (cmlEval(spectrum, curcoord) * divisor * VIEWRANGE + VIEWOFFSET);

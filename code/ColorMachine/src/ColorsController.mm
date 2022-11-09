@@ -56,23 +56,17 @@
       CMLColorType colorType = color->getColorType();
       const char* colorname = cmlGetColorTypeString(colorType);
       switch(colorType){
+      case CML_COLOR_CMYK:
+        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2], (*color)[3]];
+        break;
       case CML_COLOR_GRAY:
         title = [NSString stringWithFormat:@"%s %1.04f", colorname, (*color)[0]];
         break;
-      case CML_COLOR_XYZ:
-        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
+      case CML_COLOR_HSL:
+        title = [NSString stringWithFormat:@"%s %3.00f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
         break;
-      case CML_COLOR_Yxy:
-        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
-        break;
-      case CML_COLOR_Yuv:
-        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
-        break;
-      case CML_COLOR_Yupvp:
-        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
-        break;
-      case CML_COLOR_YCbCr:
-        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
+      case CML_COLOR_HSV:
+        title = [NSString stringWithFormat:@"%s %3.00f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
         break;
       case CML_COLOR_Lab:
         title = [NSString stringWithFormat:@"%s %3.00f, %3.00f, %3.00f", colorname, (*color)[0], (*color)[1], (*color)[2]];
@@ -86,20 +80,29 @@
       case CML_COLOR_RGB:
         title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
         break;
-      case CML_COLOR_HSV:
-        title = [NSString stringWithFormat:@"%s %3.00f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
-        break;
-      case CML_COLOR_HSL:
-        title = [NSString stringWithFormat:@"%s %3.00f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
-        break;
-      case CML_COLOR_CMYK:
-        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2], (*color)[3]];
-        break;
       case CML_COLOR_SPECTRUM_ILLUMINATION:
         title = [NSString stringWithFormat:@"%s", colorname];
         break;
       case CML_COLOR_SPECTRUM_REMISSION:
         title = [NSString stringWithFormat:@"%s", colorname];
+        break;
+      case CML_COLOR_XYZ:
+        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
+        break;
+      case CML_COLOR_YCbCr:
+        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
+        break;
+      case CML_COLOR_Ycd:
+        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
+        break;
+      case CML_COLOR_Yuv:
+        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
+        break;
+      case CML_COLOR_Yupvp:
+        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
+        break;
+      case CML_COLOR_Yxy:
+        title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2]];
         break;
       default:
         title = [NSString stringWithFormat:@"Unknown"];
@@ -177,7 +180,7 @@
 //        CGContextMoveToPoint(context, x, y1);
 //        CGContextAddLineToPoint(context, x, y2);
 //      }else{
-//        for(size_t i=0; i<sampleCount; i++){
+//        for(size_t i=0; i<sampleCount; ++i){
 //          float curcoord = defRange.minSampleCoord + i * defRange.stepSize;
 //          CGFloat x = cellFrame.origin.x + ((curcoord - defRange.minSampleCoord) / (defRange.maxSampleCoord - defRange.minSampleCoord)) * COLOR_VIEW_WIDTH + .5f;
 //          CGFloat y = cellFrame.origin.y + height * (1.f - (*colorspec)(curcoord) * divisor * viewrange + viewoffset);

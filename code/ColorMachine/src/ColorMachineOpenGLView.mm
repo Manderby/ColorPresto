@@ -191,7 +191,7 @@
   for(size_t c=0; c<channelcount; c++){
     if((channelx != c) && (channely != c)){
       cptr = &(colordata[c]);
-      for(size_t i=0; i<(width*height); i++){
+      for(size_t i=0; i<(width*height); ++i){
         *cptr = normedbuffer[c];
         cptr += channelcount;
       }

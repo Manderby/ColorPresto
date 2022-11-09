@@ -71,7 +71,7 @@
   int lineoffset = (int)roundf((imin) / 10.f);
   float linecount = (imax - imin) / 10.f;
 
-  for(int i = 0; i <= (int)linecount; i++){
+  for(int i = 0; i <= (int)linecount; ++i){
     if(!((lineoffset+i)%10)){
       cgcolor = CGColorCreateGenericRGB(1.f, 1.f, 1.f, .45f);
     }else if(!((lineoffset+i)%5)){

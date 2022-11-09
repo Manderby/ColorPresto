@@ -23,7 +23,7 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
   float* aXYZbuffer = naMalloc(3 * count * sizeof(float));
   CMLMat33 amatrix;
   cmlFillChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smWhitePointYxy, cmWhitePointYxy);
-  for(size_t i=0; i<count; i++){
+  for(size_t i=0; i<count; ++i){
     cmlConvertXYZToChromaticAdaptedXYZ(&(aXYZbuffer[i*3]), &(XYZbuffer[i*3]), amatrix);
   }
   cmlXYZToRGB(sm, outData, aXYZbuffer, count);
@@ -36,11 +36,11 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
 //    float* maskbuffer = new float[count];
 //    float* maskcolorarray = new float[nummaskchannels * count];
 //    float* normedcolor = new float[nummaskchannels * count];
-//    for(size_t i=0; i<count; i++){maskbuffer[i] = 1.f;}
+//    for(size_t i=0; i<count; ++i){maskbuffer[i] = 1.f;}
 //    colortomask(cm, maskcolorarray, colorBuffer, count);
 //    masktonormal(normedcolor, maskcolorarray, count);
 //    if(showmask && drawmask){
-//      for(size_t i=0; i<count * nummaskchannels; i++){
+//      for(size_t i=0; i<count * nummaskchannels; ++i){
 //        if(!CMLInRange(normedcolor[i], 0.f, 1.f)){maskbuffer[i/nummaskchannels] = .2f;}
 //      }
 //    }
@@ -50,7 +50,7 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
 //      float* coordsbuffer = new float[((bordercount + 2) * 4)];
 //      float* valsbuffer = new float[((bordercount + 2) * 4)];
 //      
-//      for(uint32 i=0; i<bordercount + 2; i++){
+//      for(uint32 i=0; i<bordercount + 2; ++i){
 //        float pos = ((float)i)/((float)(bordercount+1));
 //        coordsbuffer[i*4+0] = pos - borderthickness - ledge;
 //        coordsbuffer[i*4+1] = pos - borderthickness + ledge;
@@ -64,12 +64,12 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
 ////      CMLArray coords(coordsbuffer, true, (bordercount + 2) * 4);
 ////      CMLArray vals(valsbuffer, true, (bordercount + 2) * 4);
 ////      CMLSampleArrayFunction gridlines(coords, vals, CML_INTERPOLATION_LINEAR, CML_EXTRAPOLATION_CLAMP);
-////      for(size_t i=0; i<count * nummaskchannels; i++){
+////      for(size_t i=0; i<count * nummaskchannels; ++i){
 ////        maskbuffer[i/nummaskchannels] *= gridlines(normedcolor[i]);
 ////      }
 //    }
 //
-//    for(size_t i=0; i<count * 3; i++){
+//    for(size_t i=0; i<count * 3; ++i){
 //      RGBbuffer[i] *= maskbuffer[i/3];
 //    }
 //    delete [] normedcolor;

@@ -28,7 +28,7 @@
   CGContextSaveGState(context);
   
   CGContextSetLineWidth(context, 72.f / scres.height);
-  for(int i=-hmax; i <= hmax; i++){
+  for(int i=-hmax; i <= hmax; ++i){
     if(i==0){
       CGContextSetRGBStrokeColor(context, .7f, .0f, 0.f, 1.f);
     }else if(!((int)i%10)){
@@ -43,7 +43,7 @@
     CGContextStrokePath(context);
   }
   CGContextSetLineWidth(context, 72.f / scres.width);
-  for(int i=-vmax; i <= vmax; i++){
+  for(int i=-vmax; i <= vmax; ++i){
     if(i==0){
       CGContextSetRGBStrokeColor(context, .7f, .0f, 0.f, 1.f);
     }else if(!((int)i%10)){
@@ -58,7 +58,7 @@
     CGContextStrokePath(context);
   }
   int cmax = (int)sqrt(hmax * hmax + vmax * vmax);
-  for(int i=0; i <= cmax; i++){
+  for(int i=0; i <= cmax; ++i){
     if(i==0){
       CGContextSetRGBStrokeColor(context, .7f, .0f, 0.f, .4f);
     }else if(!((int)i%10)){
