@@ -535,6 +535,12 @@
   [labSpaceSelect             selectItemAtIndex:selectedItem];
   [rgbColorSpaceSelect        selectItemAtIndex:(int)cmlGetRGBColorSpaceType(cm)];
   
+//  CMLFunction* specDistFunctions[3];
+//  CMLDefinitionRange defRange;
+//  cmlCreateSpecDistFunctions(specDistFunctions, cmlGetObserverType(cm));
+//  cmlGetFunctionDefinitionRange(specDistFunctions[0], &defRange);
+//  printf("%f\n", defRange.stepSize);
+  
   [maskselect setEnabled:(showmask | showgrid)];
 
   if((illuminationType == CML_ILLUMINATION_BLACKBODY) || (illuminationType == CML_ILLUMINATION_D_ILLUMINANT)){
