@@ -27,6 +27,10 @@ void cmUpdateColor(){
   [(ColorMachineApplication*)NSApp updateMachine];
 }
 
+void cmUpdateMachine(){
+  [(ColorMachineApplication*)NSApp updateMachine];
+}
+
 void cmSetCurrentColorController(const CMColorController* con){
   cmSetColorsManagerCurrentColorController(
     [(ColorMachineApplication*)NSApp getColorsManager],

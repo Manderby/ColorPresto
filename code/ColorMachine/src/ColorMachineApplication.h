@@ -2,6 +2,7 @@
 #import "main.h"
 
 CM_PROTOTYPE(CMColorsManager);
+CM_PROTOTYPE(CMMachineWindowController);
 CM_PROTOTYPE(CMMetamericsController);
 CM_PROTOTYPE(CMThreeDeeController);
 
@@ -42,6 +43,7 @@ extern size_t bordercount;
 
   CMColorsManager* colorsManager;
 
+  CMMachineWindowController* machineWindowController2;
   CMMetamericsController* metamericsController;
   CMThreeDeeController* threeDeeController;
 

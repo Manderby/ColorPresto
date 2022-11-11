@@ -2,6 +2,7 @@
 #include "CMDesign.h"
 
 #include "CMColorsManager.h"
+#include "CMMachineWindowController.h"
 #include "CMMetamericsController.h"
 #include "CMTranslations.h"
 #include "CMThreeDeeController.h"
@@ -54,12 +55,13 @@ size_t bordercount;
 //  [notcenter addObserver:colorscontroller selector:@selector(assimilateColor:) name:COLOR_MACHINE_ASSIMILATE_COLOR object:nil];
 
 
+
   GrayColor startingcolor(.5f);
   [self setCurrentColor:&startingcolor];
   [self updateMachine];
   [machinewindowcontroller showWindow:self];
   
-  
+  cmShowMachineWindowController(machineWindowController2);
   
   
   
@@ -101,6 +103,7 @@ size_t bordercount;
 - (void)applicationWillTerminate:(NSApplication *)sender{
   cmDeallocThreeDeeController(threeDeeController);
   cmDeallocMetamericsController(metamericsController);
+  cmDeallocMachineWindowController(machineWindowController2);
 
   cmDeallocColorsController(colorsManager);
 
@@ -121,6 +124,7 @@ size_t bordercount;
 //  CMHSLColorController* hslColorController = [machinewindowcontroller getHSLColorController];
 //  cmSetColorsManagerCurrentColorController(colorsManager, (CMColorController*)hslColorController);
 
+  machineWindowController2 = cmAllocMachineWindowController();
   threeDeeController = cmAllocThreeDeeController();
   metamericsController = cmAllocMetamericsController();
   
@@ -209,6 +213,7 @@ size_t bordercount;
 
 - (void)updateMachine{
   [machinewindowcontroller updateMachine];
+  cmUpdateMachineWindowController(machineWindowController2);
   [self updateMetamerics];
   cmUpdateThreeDeeController(threeDeeController);
   [colorscontroller updateColor];
