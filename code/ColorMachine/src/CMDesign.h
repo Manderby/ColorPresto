@@ -55,8 +55,10 @@ static const int colorWell2DSize = 100;
 static const int colorWell1DSize = 100;
 static const float colorWell1DMarginLeft = 210;
 static const double colorWell1DHeight = 13.;
+static const double colorWell1DOffset = 6.;
 static const float colorComponentWidth = 25.;
 static const float colorComponentMarginH = -5.;
+static const NABezel4 colorWellBezel = {10, 5, colorWell2DSize + 20, 5};
 
 void cmStartupDesign(void);
 void cmShutdownDesign(void);
@@ -119,6 +121,7 @@ void cmBeginUILayout(NASpace* space, NABezel4 margin);
 void cmAddUIPos(double x, double y);
 void cmAddUIRow(void* child, double rowHeight);
 void cmAddUICol(void* child, double marginLeft);
+void cmAddUIColV(void* child, double marginLeft, double vOffset);
 void cmEndUILayout(void);
 
 #ifdef __cplusplus

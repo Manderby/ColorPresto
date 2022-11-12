@@ -91,24 +91,25 @@ CMRGBColorController* cmAllocRGBColorController(void){
   
   con->labelNum = cmNewColorComponentLabel("#");
   con->textFieldHex = cmNewValueTextBox(cmRGBValueEdited, con);
-  con->textFieldDec = cmNewValueTextBox(cmRGBValueEdited, con);
   con->textFieldDec = cmNewBigValueTextBox(cmRGBValueEdited, con);
 
 
-  NABezel4 colorWellBezel = {20 + colorWell1DSize, 5, colorWell2DSize + 15, 5};
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, 10);
   cmAddUIRow(con->labelR, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldR, colorComponentMarginH);
+  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DR), 10, colorWell1DOffset);
   cmAddUIRow(con->labelG, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldG, colorComponentMarginH);
+  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DG), 10, colorWell1DOffset);
   cmAddUIRow(con->labelB, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldB, colorComponentMarginH);
+  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DB), 10, colorWell1DOffset);
 
   cmAddUIPos(0, 10);
   cmAddUIRow(con->labelNum, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldHex, colorComponentMarginH);
-  cmAddUICol(con->textFieldDec, 5);
+  cmAddUICol(con->textFieldDec, 10);
 
   cmEndUILayout();
   
@@ -116,19 +117,6 @@ CMRGBColorController* cmAllocRGBColorController(void){
     con->baseController.space,
     cmGetColorWell2DUIElement(con->colorWell2D),
     naMakePos(10, 5));
-
-  naAddSpaceChild(
-    con->baseController.space,
-    cmGetColorWell1DUIElement(con->colorWell1DR),
-    naMakePos(colorWell1DMarginLeft, 80));
-  naAddSpaceChild(
-    con->baseController.space,
-    cmGetColorWell1DUIElement(con->colorWell1DG),
-    naMakePos(colorWell1DMarginLeft, 60));
-  naAddSpaceChild(
-    con->baseController.space,
-    cmGetColorWell1DUIElement(con->colorWell1DB),
-    naMakePos(colorWell1DMarginLeft, 40));
   
   return con;
 }

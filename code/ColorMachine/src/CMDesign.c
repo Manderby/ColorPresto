@@ -101,9 +101,9 @@ void cmAddUIPos(double x, double y){
   curDesignPos.y -= y;
 }
 
-void cm_AddLayoutRowPlain(void* child, NASize size){
+void cm_AddLayoutRowPlain(void* child, NASize size, double vOffset){
   if(curDesignRowHeightFixed){
-    naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - curDesignRowHeight));
+    naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - curDesignRowHeight + vOffset));
   }else{
     naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - size.height));
     curDesignRowHeight = naMax(curDesignRowHeight, size.height);
@@ -127,7 +127,7 @@ void cmAddUIRow(void* child, double rowHeight){
     curDesignRowHeightFixed = NA_FALSE;
     curDesignRowHeight = size.height;
   }
-  cm_AddLayoutRowPlain(child, size);
+  cm_AddLayoutRowPlain(child, size, 0.);
 }
 
 void cmAddUICol(void* child, double marginLeft){
@@ -137,7 +137,17 @@ void cmAddUICol(void* child, double marginLeft){
   #endif
   NASize size = naGetUIElementRect(child, NA_NULL, NA_FALSE).size;
   curDesignPos.x += marginLeft;
-  cm_AddLayoutRowPlain(child, size);
+  cm_AddLayoutRowPlain(child, size, 0.);
+}
+
+void cmAddUIColV(void* child, double marginLeft, double vOffset){
+  #if NA_DEBUG
+    if(!curDesignSpace)
+      naError("No space defined for design. Use cmBeginUILayout");
+  #endif
+  NASize size = naGetUIElementRect(child, NA_NULL, NA_FALSE).size;
+  curDesignPos.x += marginLeft;
+  cm_AddLayoutRowPlain(child, size, vOffset);
 }
 
 void cmEndUILayout(){

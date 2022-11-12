@@ -36,8 +36,7 @@ CMMachineController* cmAllocMachineController(void){
   CMMachineController* con = naAlloc(CMMachineController);
   naZeron(con, sizeof(CMMachineController));
 
-  con->space = naNewSpace(naMakeSize(400, 600));
-  naSetSpaceAlternateBackground(con->space, NA_TRUE);
+  con->space = naNewSpace(naMakeSize(1, 1));
 
   con->observerTitleLabel = naNewLabel("Observer", 100);
   con->observerPopupButton = naNewPopupButton(200);

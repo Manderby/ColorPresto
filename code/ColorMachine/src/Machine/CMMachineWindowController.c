@@ -1,7 +1,19 @@
 
 #include "CMMachineWindowController.h"
 
+#include "CMColorController.h"
 #include "CMMachineController.h"
+#include "CMDesign.h"
+
+#include "CMHSLColorController.h"
+#include "CMHSVColorController.h"
+#include "CMLabColorController.h"
+#include "CMLuvColorController.h"
+#include "CMRGBColorController.h"
+#include "CMXYZColorController.h"
+#include "CMYCbCrColorController.h"
+#include "CMYuvColorController.h"
+#include "CMYxyColorController.h"
 
 #include "NAApp.h"
 
@@ -13,8 +25,18 @@ struct CMMachineWindowController{
   CMMachineController* machineController;
   
   NASpace* radiometricColorsSpace;
-  NASpace* perceptiveColrosSpace;
+  NASpace* perceptiveColorsSpace;
   NASpace* RGBColorsSpace;
+  
+  CMHSLColorController* hslColorController;
+  CMHSVColorController* hsvColorController;
+  CMLabColorController* labColorController;
+  CMLuvColorController* luvColorController;
+  CMRGBColorController* rgbColorController;
+  CMXYZColorController* xyzColorController;
+  CMYCbCrColorController* ycbcrColorController;
+  CMYuvColorController* yuvColorController;
+  CMYxyColorController* yxyColorController;
   
 };
 
@@ -26,24 +48,51 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
 
   con->window = naNewWindow(
     "Color Machine",
-    naMakeRectS(400, 500, 1000, 600),
+    naMakeRectS(400, 500, 1, 1),
     0,
     0);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 
   con->machineController = cmAllocMachineController();
 
-  con->radiometricColorsSpace = naNewSpace(naMakeSize(200, 500));
-  con->perceptiveColrosSpace = naNewSpace(naMakeSize(200, 500));
-  con->RGBColorsSpace = naNewSpace(naMakeSize(200, 500));
+  con->radiometricColorsSpace = naNewSpace(naMakeSize(1, 1));
+  con->perceptiveColorsSpace = naNewSpace(naMakeSize(1, 1));
+  con->RGBColorsSpace = naNewSpace(naMakeSize(1, 1));
 
-  naSetSpaceAlternateBackground(con->radiometricColorsSpace, NA_TRUE);
-  naSetSpaceAlternateBackground(con->RGBColorsSpace, NA_TRUE);
+  con->hslColorController = cmAllocHSLColorController();
+  con->hsvColorController = cmAllocHSVColorController();
+  con->labColorController = cmAllocLabColorController();
+  con->luvColorController = cmAllocLuvColorController();
+  con->rgbColorController = cmAllocRGBColorController();
+  con->xyzColorController = cmAllocXYZColorController();
+  con->yuvColorController = cmAllocYuvColorController();
+  con->ycbcrColorController = cmAllocYCbCrColorController();
+  con->yxyColorController = cmAllocYxyColorController();
 
-  naAddSpaceChild(contentSpace, cmGetMachineUIElement(con->machineController), naMakePos(0,0));
-  naAddSpaceChild(contentSpace, con->radiometricColorsSpace, naMakePos(400,0));
-  naAddSpaceChild(contentSpace, con->perceptiveColrosSpace, naMakePos(600,0));
-  naAddSpaceChild(contentSpace, con->RGBColorsSpace, naMakePos(800,0));
+  cmBeginUILayout(con->radiometricColorsSpace, naMakeBezel4Zero());
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->xyzColorController), 0);
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yxyColorController), 0);
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yuvColorController), 0);
+  cmEndUILayout();
+
+  cmBeginUILayout(con->perceptiveColorsSpace, naMakeBezel4Zero());
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->labColorController), 0);
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvColorController), 0);
+  cmEndUILayout();
+  
+  cmBeginUILayout(con->RGBColorsSpace, naMakeBezel4(10, 0, 0, 0));
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->rgbColorController), 0);
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hsvColorController), 0);
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hslColorController), 0);
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->ycbcrColorController), 0);
+  cmEndUILayout();
+
+  cmBeginUILayout(contentSpace, naMakeBezel4Zero());
+  cmAddUIRow(cmGetMachineUIElement(con->machineController), 0);
+  cmAddUICol(con->radiometricColorsSpace, 0);
+  cmAddUICol(con->perceptiveColorsSpace, 0);
+  cmAddUICol(con->RGBColorsSpace, 0);
+  cmEndUILayout();
 
   return con;
 }
@@ -64,4 +113,24 @@ void cmShowMachineWindowController(CMMachineWindowController* con){
 
 void cmUpdateMachineWindowController(CMMachineWindowController* con){
   cmUpdateMachineController(con->machineController);
+  
+  cmSetColorControllerActive((CMColorController*)con->rgbColorController, cmGetCurrentColorController() == (CMColorController*)con->rgbColorController);
+  cmSetColorControllerActive((CMColorController*)con->hslColorController, cmGetCurrentColorController() == (CMColorController*)con->hslColorController);
+  cmSetColorControllerActive((CMColorController*)con->hsvColorController, cmGetCurrentColorController() == (CMColorController*)con->hsvColorController);
+  cmSetColorControllerActive((CMColorController*)con->labColorController, cmGetCurrentColorController() == (CMColorController*)con->labColorController);
+  cmSetColorControllerActive((CMColorController*)con->luvColorController, cmGetCurrentColorController() == (CMColorController*)con->luvColorController);
+  cmSetColorControllerActive((CMColorController*)con->xyzColorController, cmGetCurrentColorController() == (CMColorController*)con->xyzColorController);
+  cmSetColorControllerActive((CMColorController*)con->ycbcrColorController, cmGetCurrentColorController() == (CMColorController*)con->ycbcrColorController);
+  cmSetColorControllerActive((CMColorController*)con->yxyColorController, cmGetCurrentColorController() == (CMColorController*)con->yxyColorController);
+  cmSetColorControllerActive((CMColorController*)con->yuvColorController, cmGetCurrentColorController() == (CMColorController*)con->yuvColorController);
+
+  cmUpdateHSLColorController(con->hslColorController);
+  cmUpdateHSVColorController(con->hsvColorController);
+  cmUpdateLabColorController(con->labColorController);
+  cmUpdateLuvColorController(con->luvColorController);
+  cmUpdateRGBColorController(con->rgbColorController);
+  cmUpdateXYZColorController(con->xyzColorController);
+  cmUpdateYCbCrColorController(con->ycbcrColorController);
+  cmUpdateYuvColorController(con->yuvColorController);
+  cmUpdateYxyColorController(con->yxyColorController);
 }

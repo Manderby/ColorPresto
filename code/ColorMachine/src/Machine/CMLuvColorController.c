@@ -68,15 +68,17 @@ CMLuvColorController* cmAllocLuvColorController(void){
   con->colorWell1Du = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 1);
   con->colorWell1Dv = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 2);
 
-  NABezel4 colorWellBezel = {20 + colorWell1DSize, 5, colorWell2DSize + 15, 5};
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelL, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldL, colorComponentMarginH);
+  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DL), 10, colorWell1DOffset);
   cmAddUIRow(con->labelu, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldu, colorComponentMarginH);
+  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1Du), 10, colorWell1DOffset);
   cmAddUIRow(con->labelv, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldv, colorComponentMarginH);
+  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1Dv), 10, colorWell1DOffset);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmEndUILayout();
   
@@ -84,19 +86,6 @@ CMLuvColorController* cmAllocLuvColorController(void){
     con->baseController.space,
     cmGetColorWell2DUIElement(con->colorWell2D),
     naMakePos(10, 5));
-
-  naAddSpaceChild(
-    con->baseController.space,
-    cmGetColorWell1DUIElement(con->colorWell1DL),
-    naMakePos(colorWell1DMarginLeft, 70));
-  naAddSpaceChild(
-    con->baseController.space,
-    cmGetColorWell1DUIElement(con->colorWell1Du),
-    naMakePos(colorWell1DMarginLeft, 50));
-  naAddSpaceChild(
-    con->baseController.space,
-    cmGetColorWell1DUIElement(con->colorWell1Dv),
-    naMakePos(colorWell1DMarginLeft, 30));
 
   return con;
 }
