@@ -16,6 +16,9 @@ CM_PROTOTYPE(CMHSLColorController);
 #include "NABase.h"
 
 
+void showThreeDee(void);
+void showMetamerics(void);
+
 CMLColorMachine* cmGetCurrentColorMachine(void);
 CMLColorMachine* cmGetCurrentScreenMachine(void);
 

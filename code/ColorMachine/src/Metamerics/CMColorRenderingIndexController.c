@@ -244,7 +244,7 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
   
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
-  const CMLFunction* illuminationSpec = cmlGetReferenceIlluminationSpectrum(cm);
+  const CMLFunction* illuminationSpec = cmlGetIlluminationSpectrum(cm);
 
   CMLIntegration integration = cmlMakeDefaultIntegration();
 

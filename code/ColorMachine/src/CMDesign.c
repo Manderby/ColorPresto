@@ -57,7 +57,7 @@ NALabel* cmNewThreeValueLabel(){
 
 
 
-NATextField* cmNewValueTextBox(NAReactionHandler reactionHandler, void* con){
+NATextField* cmNewValueTextField(NAReactionHandler reactionHandler, void* con){
   NATextField* textField = naNewTextField(textFieldValueWidth);
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_TEXT_ALIGNMENT_RIGHT);
@@ -65,7 +65,7 @@ NATextField* cmNewValueTextBox(NAReactionHandler reactionHandler, void* con){
   return textField;
 }
 
-NATextField* cmNewBigValueTextBox(NAReactionHandler reactionHandler, void* con){
+NATextField* cmNewBigValueTextField(NAReactionHandler reactionHandler, void* con){
   NATextField* textField = naNewTextField(colorWell1DSize);
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_TEXT_ALIGNMENT_RIGHT);

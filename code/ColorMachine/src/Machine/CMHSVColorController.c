@@ -61,9 +61,9 @@ CMHSVColorController* cmAllocHSVColorController(void){
   con->labelH = cmNewColorComponentLabel("H");
   con->labelS = cmNewColorComponentLabel("S");
   con->labelV = cmNewColorComponentLabel("V");
-  con->textFieldH = cmNewValueTextBox(cmHSVValueEdited, con);
-  con->textFieldS = cmNewValueTextBox(cmHSVValueEdited, con);
-  con->textFieldV = cmNewValueTextBox(cmHSVValueEdited, con);
+  con->textFieldH = cmNewValueTextField(cmHSVValueEdited, con);
+  con->textFieldS = cmNewValueTextField(cmHSVValueEdited, con);
+  con->textFieldV = cmNewValueTextField(cmHSVValueEdited, con);
   con->colorWell1DH = cmAllocColorWell1D(&(con->baseController), CML_COLOR_HSV, con->hsvColor, 0);
   con->colorWell1DS = cmAllocColorWell1D(&(con->baseController), CML_COLOR_HSV, con->hsvColor, 1);
   con->colorWell1DV = cmAllocColorWell1D(&(con->baseController), CML_COLOR_HSV, con->hsvColor, 2);

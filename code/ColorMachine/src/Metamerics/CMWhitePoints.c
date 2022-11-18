@@ -13,7 +13,7 @@ void CMFillChromaticAdaptationMatrix(CMLMat33 adaptationMatrix, const CMLVec3 wh
   // reasons and is not in the ISO-standard at all. The differences between
   // the colors can be seen better when using the 10 deg observer. That's all.
   CMLVec3 screenWhitePoint;
-  cmlCpy3(screenWhitePoint, cmlGetReferenceWhitePointYxy(sm));
+  cmlCpy3(screenWhitePoint, cmlGetWhitePointYxy(sm));
   screenWhitePoint[0] = 1.f;
   cmlFillChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, whitePointYxy10);
 }

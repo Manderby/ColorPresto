@@ -321,7 +321,7 @@ CMVisMetamericColors cmComputeVisMetamericColors(
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
   CMLIntegration integration = cmlMakeDefaultIntegration();
-  const CMLFunction* illuminationSpec = cmlGetReferenceIlluminationSpectrum(cm);
+  const CMLFunction* illuminationSpec = cmlGetIlluminationSpectrum(cm);
 
   const float* standardData[5] = {standard1Data, standard2Data, standard3Data, standard4Data, standard5Data};
   const float* specimenData[5];

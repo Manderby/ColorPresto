@@ -40,7 +40,7 @@ CMGrayColorController* cmAllocGrayColorController(void){
   cmInitColorController(&(con->baseController), CML_COLOR_Gray);
   
   con->labelGray = cmNewColorComponentLabel("Gray");
-  con->textFieldGray = cmNewValueTextBox(cmGrayValueEdited, con);
+  con->textFieldGray = cmNewValueTextField(cmGrayValueEdited, con);
   con->colorWell1DGray = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Gray, &(con->grayColor), 0);
 
   cmBeginUILayout(con->baseController.space, colorWellBezel);

@@ -226,10 +226,10 @@
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   CMLIlluminationType newIllum = (CMLIlluminationType)[sender indexOfSelectedItem];
   if(newIllum == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
-    CMLVec3 wpyxy;
-    cmlCpy3(wpyxy, cmlGetReferenceWhitePointYxy(cm));
-    wpyxy[0] = 1.f;
-    cmlSetReferenceWhitePointYxy(cm, wpyxy);
+    CMLVec3 whitePointYxy;
+    cmlCpy3(whitePointYxy, cmlGetWhitePointYxy(cm));
+//    wpyxy[0] = 1.f;
+    cmlSetReferenceWhitePointYxy(cm, whitePointYxy);
   }else{
     cmlSetIlluminationType(cm, newIllum);
   }
@@ -246,7 +246,7 @@
 - (IBAction)whitePointChange:(NSControl*)sender{
   CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
   CMLVec3 curwhite;
-  cmlCpy3(curwhite, cmlGetReferenceWhitePointYxy(cm));
+  cmlCpy3(curwhite, cmlGetWhitePointYxy(cm));
   curwhite[0] = 1.f;
   if(sender == whitePointx){
     curwhite[1] = [sender floatValue];
@@ -524,7 +524,7 @@
 
   uint32 selectedItem;
 
-  CMLIlluminationType illuminationType = cmlGetReferenceIlluminationType(cm);
+  CMLIlluminationType illuminationType = cmlGetIlluminationType(cm);
 
   [observerSelect             selectItemAtIndex:(int)cmlGetObserverType(cm)];
   [illuminationSelect         selectItemAtIndex:(int)illuminationType];
@@ -593,7 +593,7 @@
   float temp = cmlGetIlluminationTemperature(cm);
   if(temp == 0.f){
     CMLVec3 whitePointYuv;
-    cmlYupvpToYuv(cm, whitePointYuv, cmlGetReferenceWhitePointYupvp(cm), 1);
+    cmlYupvpToYuv(cm, whitePointYuv, cmlGetWhitePointYupvp(cm), 1);
     temp = cmlGetCorrelatedColorTemperature(whitePointYuv);
   }
   
@@ -603,7 +603,7 @@
   [sliderT setFloatValue:slidervalue];
   [textFieldT setStringValue:[NSString stringWithFormat:@"%5.01f", temp]];
 
-  const float* whitePointYxy = cmlGetReferenceWhitePointYxy(cm);
+  const float* whitePointYxy = cmlGetWhitePointYxy(cm);
   [whitePointY setStringValue:[NSString stringWithFormat:@"%1.01f", whitePointYxy[0]]];
   [whitePointx setStringValue:[NSString stringWithFormat:@"%1.05f", whitePointYxy[1]]];
   [whitePointy setStringValue:[NSString stringWithFormat:@"%1.05f", whitePointYxy[2]]];

@@ -153,7 +153,7 @@
 
   // Draw the illumination
   CGColorRef lightlinecolor = CGColorCreateGenericRGB(1.f, 1.f, 1.f, 1.f);
-  const CMLFunction* lightspectrum = cmlGetReferenceIlluminationSpectrum(cm);
+  const CMLFunction* lightspectrum = cmlGetIlluminationSpectrum(cm);
   if(lightspectrum){
     SpectralColor lightcolor(cmlDuplicateFunction(lightspectrum), false);
     [(ColorMachineApplication*)NSApp drawColor:&lightcolor fillBack:NO linecolor:lightlinecolor context:context inRect:NSRectToCGRect([self bounds])];

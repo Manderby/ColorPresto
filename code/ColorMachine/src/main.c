@@ -13,9 +13,9 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
 //  float* RGBbuffer = new float[3 * count];
   float* XYZbuffer = naMalloc(3 * count * sizeof(float));
   
-  cmlCpy3(cmWhitePointYxy, cmlGetReferenceWhitePointYxy(cm));
+  cmlCpy3(cmWhitePointYxy, cmlGetWhitePointYxy(cm));
   cmWhitePointYxy[0] = 1.f;
-  cmlCpy3(smWhitePointYxy, cmlGetReferenceWhitePointYxy(sm));
+  cmlCpy3(smWhitePointYxy, cmlGetWhitePointYxy(sm));
   smWhitePointYxy[0] = 1.f;
   
   normedConverter(colorBuffer, inputData, count);

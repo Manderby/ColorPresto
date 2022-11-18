@@ -61,9 +61,9 @@ CMXYZColorController* cmAllocXYZColorController(void){
   con->labelX = cmNewColorComponentLabel("X");
   con->labelY = cmNewColorComponentLabel("Y");
   con->labelZ = cmNewColorComponentLabel("Z");
-  con->textFieldX = cmNewValueTextBox(cmXYZValueEdited, con);
-  con->textFieldY = cmNewValueTextBox(cmXYZValueEdited, con);
-  con->textFieldZ = cmNewValueTextBox(cmXYZValueEdited, con);
+  con->textFieldX = cmNewValueTextField(cmXYZValueEdited, con);
+  con->textFieldY = cmNewValueTextField(cmXYZValueEdited, con);
+  con->textFieldZ = cmNewValueTextField(cmXYZValueEdited, con);
   con->colorWell1DX = cmAllocColorWell1D(&(con->baseController), CML_COLOR_XYZ, con->XYZColor, 0);
   con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), CML_COLOR_XYZ, con->XYZColor, 1);
   con->colorWell1DZ = cmAllocColorWell1D(&(con->baseController), CML_COLOR_XYZ, con->XYZColor, 2);

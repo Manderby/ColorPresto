@@ -61,9 +61,9 @@ CMLuvColorController* cmAllocLuvColorController(void){
   con->labelL = cmNewColorComponentLabel("L*");
   con->labelu = cmNewColorComponentLabel("u*");
   con->labelv = cmNewColorComponentLabel("v*");
-  con->textFieldL = cmNewValueTextBox(cmLuvValueEdited, con);
-  con->textFieldu = cmNewValueTextBox(cmLuvValueEdited, con);
-  con->textFieldv = cmNewValueTextBox(cmLuvValueEdited, con);
+  con->textFieldL = cmNewValueTextField(cmLuvValueEdited, con);
+  con->textFieldu = cmNewValueTextField(cmLuvValueEdited, con);
+  con->textFieldv = cmNewValueTextField(cmLuvValueEdited, con);
   con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 0);
   con->colorWell1Du = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 1);
   con->colorWell1Dv = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 2);

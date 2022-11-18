@@ -15,6 +15,14 @@
 
 
 
+void showThreeDee(){
+  [(ColorMachineApplication*)NSApp showThreeDee:nil];
+}
+
+void showMetamerics(){
+  [(ColorMachineApplication*)NSApp showMetamerics:nil];
+}
+
 CMLColorMachine* cmGetCurrentColorMachine(){
   return [(ColorMachineApplication*)NSApp getCurrentMachine];
 }

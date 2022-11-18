@@ -235,7 +235,7 @@ CMUVMetamericColors cmComputeUVMetamericColors(
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
   CMLIntegration integration = cmlMakeDefaultIntegration();
-  const CMLFunction* illuminationSpec = cmlGetReferenceIlluminationSpectrum(cm);
+  const CMLFunction* illuminationSpec = cmlGetIlluminationSpectrum(cm);
 
   CMLArrayFunctionInput inputFluorescent = {
     fluorescentRemissionData,
@@ -380,7 +380,7 @@ CMUVMetamericColors cmComputeUVMetamericColors(
   // the colors can be seen better when using the 10 deg observer. That's all.
   CMLMat33 adaptationMatrix;
   CMLVec3 screenWhitePoint;
-  cmlCpy3(screenWhitePoint, cmlGetReferenceWhitePointYxy(sm));
+  cmlCpy3(screenWhitePoint, cmlGetWhitePointYxy(sm));
   screenWhitePoint[0] = 1.f;
   cmlFillChromaticAdaptationMatrix(adaptationMatrix, CML_CHROMATIC_ADAPTATION_BRADFORD, screenWhitePoint, illWhitePoint10->Yxy);
 

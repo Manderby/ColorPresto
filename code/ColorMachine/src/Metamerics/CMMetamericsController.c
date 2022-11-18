@@ -145,7 +145,7 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
   cmlCreateSpecDistFunctions(observer10Funcs, CML_DEFAULT_10DEG_OBSERVER);
   CMLFunction* observer2Funcs[3];
   cmlCreateSpecDistFunctions(observer2Funcs, CML_DEFAULT_2DEG_OBSERVER);
-  const CMLFunction* illuminationSpec = cmlGetReferenceIlluminationSpectrum(cm);
+  const CMLFunction* illuminationSpec = cmlGetIlluminationSpectrum(cm);
   CMReferenceIlluminationType referenceIlluminationType = cmGetReferenceIlluminationType(con->whitePointsController);
 
   const CMLFunction* ref;
@@ -171,11 +171,11 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
 
   CMWhitePoints illWhitePoint10 = CMGetWhitePoints(
     illuminationSpec,
-    cmlGetReferenceWhitePointYxy(cm),
+    cmlGetWhitePointYxy(cm),
     observer10Funcs);
   CMWhitePoints illWhitePoint2 = CMGetWhitePoints(
     illuminationSpec,
-    cmlGetReferenceWhitePointYxy(cm),
+    cmlGetWhitePointYxy(cm),
     observer2Funcs);
   CMWhitePoints refWhitePoint10 = CMGetWhitePoints(
     ref,
@@ -193,7 +193,7 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
 
   cmUpdateWhitePointsController(
     con->whitePointsController,
-    cmlGetIlluminationTypeString(cmlGetReferenceIlluminationType(cm)),
+    cmlGetIlluminationTypeString(cmlGetIlluminationType(cm)),
     &illWhitePoint10,
     &illWhitePoint2,
     &refWhitePoint10,

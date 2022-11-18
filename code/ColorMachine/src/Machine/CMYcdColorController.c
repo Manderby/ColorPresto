@@ -60,9 +60,9 @@ CMYcdColorController* cmAllocYcdColorController(void){
   con->labelY = cmNewColorComponentLabel("Y");
   con->labelc = cmNewColorComponentLabel("c");
   con->labeld = cmNewColorComponentLabel("d");
-  con->textFieldY = cmNewValueTextBox(cmYcdValueEdited, con);
-  con->textFieldc = cmNewValueTextBox(cmYcdValueEdited, con);
-  con->textFieldd = cmNewValueTextBox(cmYcdValueEdited, con);
+  con->textFieldY = cmNewValueTextField(cmYcdValueEdited, con);
+  con->textFieldc = cmNewValueTextField(cmYcdValueEdited, con);
+  con->textFieldd = cmNewValueTextField(cmYcdValueEdited, con);
   con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Ycd, con->ycdColor, 0);
   con->colorWell1Dc = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Ycd, con->ycdColor, 1);
   con->colorWell1Dd = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Ycd, con->ycdColor, 2);

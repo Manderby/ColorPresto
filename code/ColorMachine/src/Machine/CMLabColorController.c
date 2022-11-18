@@ -70,11 +70,11 @@ CMLabColorController* cmAllocLabColorController(void){
   con->labelb = cmNewColorComponentLabel("b");
   con->labelc = cmNewColorComponentLabel("c");
   con->labelh = cmNewColorComponentLabel("h");
-  con->textFieldL = cmNewValueTextBox(cmLabValueEdited, con);
-  con->textFielda = cmNewValueTextBox(cmLabValueEdited, con);
-  con->textFieldb = cmNewValueTextBox(cmLabValueEdited, con);
-  con->textFieldc = cmNewValueTextBox(cmLabValueEdited, con);
-  con->textFieldh = cmNewValueTextBox(cmLabValueEdited, con);
+  con->textFieldL = cmNewValueTextField(cmLabValueEdited, con);
+  con->textFielda = cmNewValueTextField(cmLabValueEdited, con);
+  con->textFieldb = cmNewValueTextField(cmLabValueEdited, con);
+  con->textFieldc = cmNewValueTextField(cmLabValueEdited, con);
+  con->textFieldh = cmNewValueTextField(cmLabValueEdited, con);
   con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lab, con->labColor, 0);
   con->colorWell1Da = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lab, con->labColor, 1);
   con->colorWell1Db = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lab, con->labColor, 2);

@@ -49,7 +49,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
 
   con->window = naNewWindow(
     "Color Machine",
-    naMakeRectS(400, 500, 1, 1),
+    naMakeRectS(300, 500, 1, 1),
     0,
     0);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);

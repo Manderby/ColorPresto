@@ -70,11 +70,11 @@ CMYuvColorController* cmAllocYuvColorController(void){
   con->labelvp = cmNewColorComponentLabel("v'");
   con->labelu = cmNewColorComponentLabel("u");
   con->labelv = cmNewColorComponentLabel("v");
-  con->textFieldY = cmNewValueTextBox(cmYuvValueEdited, con);
-  con->textFieldup = cmNewValueTextBox(cmYuvValueEdited, con);
-  con->textFieldvp = cmNewValueTextBox(cmYuvValueEdited, con);
-  con->textFieldu = cmNewValueTextBox(cmYuvValueEdited, con);
-  con->textFieldv = cmNewValueTextBox(cmYuvValueEdited, con);
+  con->textFieldY = cmNewValueTextField(cmYuvValueEdited, con);
+  con->textFieldup = cmNewValueTextField(cmYuvValueEdited, con);
+  con->textFieldvp = cmNewValueTextField(cmYuvValueEdited, con);
+  con->textFieldu = cmNewValueTextField(cmYuvValueEdited, con);
+  con->textFieldv = cmNewValueTextField(cmYuvValueEdited, con);
   con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yupvp, con->yupvpColor, 0);
   con->colorWell1Dup = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yupvp, con->yupvpColor, 1);
   con->colorWell1Dvp = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yupvp, con->yupvpColor, 2);
