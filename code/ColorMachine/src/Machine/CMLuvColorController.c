@@ -68,6 +68,10 @@ CMLuvColorController* cmAllocLuvColorController(void){
   con->colorWell1Du = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 1);
   con->colorWell1Dv = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 2);
 
+  naSetUIElementNextTabElement(con->textFieldL, con->textFieldu);
+  naSetUIElementNextTabElement(con->textFieldu, con->textFieldv);
+  naSetUIElementNextTabElement(con->textFieldv, con->textFieldL);
+
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelL, colorValueCondensedRowHeight);

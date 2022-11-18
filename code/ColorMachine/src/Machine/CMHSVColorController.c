@@ -68,6 +68,10 @@ CMHSVColorController* cmAllocHSVColorController(void){
   con->colorWell1DS = cmAllocColorWell1D(&(con->baseController), CML_COLOR_HSV, con->hsvColor, 1);
   con->colorWell1DV = cmAllocColorWell1D(&(con->baseController), CML_COLOR_HSV, con->hsvColor, 2);
 
+  naSetUIElementNextTabElement(con->textFieldH, con->textFieldS);
+  naSetUIElementNextTabElement(con->textFieldS, con->textFieldV);
+  naSetUIElementNextTabElement(con->textFieldV, con->textFieldH);
+
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelH, colorValueCondensedRowHeight);

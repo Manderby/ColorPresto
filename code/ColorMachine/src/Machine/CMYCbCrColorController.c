@@ -68,6 +68,10 @@ CMYCbCrColorController* cmAllocYCbCrColorController(void){
   con->colorWell1DCb = cmAllocColorWell1D(&(con->baseController), CML_COLOR_YCbCr, con->ycbcrColor, 1);
   con->colorWell1DCr = cmAllocColorWell1D(&(con->baseController), CML_COLOR_YCbCr, con->ycbcrColor, 2);
 
+  naSetUIElementNextTabElement(con->textFieldY, con->textFieldCb);
+  naSetUIElementNextTabElement(con->textFieldCb, con->textFieldCr);
+  naSetUIElementNextTabElement(con->textFieldCr, con->textFieldY);
+
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelY, colorValueCondensedRowHeight);

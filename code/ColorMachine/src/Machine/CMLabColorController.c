@@ -81,6 +81,12 @@ CMLabColorController* cmAllocLabColorController(void){
   con->colorWell1Dc = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lch, con->lchColor, 1);
   con->colorWell1Dh = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lch, con->lchColor, 2);
 
+  naSetUIElementNextTabElement(con->textFieldL, con->textFielda);
+  naSetUIElementNextTabElement(con->textFielda, con->textFieldb);
+  naSetUIElementNextTabElement(con->textFieldb, con->textFieldc);
+  naSetUIElementNextTabElement(con->textFieldc, con->textFieldh);
+  naSetUIElementNextTabElement(con->textFieldh, con->textFieldL);
+
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIRow(con->labelL, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldL, colorComponentMarginH);

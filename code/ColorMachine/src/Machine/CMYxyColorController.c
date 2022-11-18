@@ -68,6 +68,10 @@ CMYxyColorController* cmAllocYxyColorController(void){
   con->colorWell1Dx = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yxy, con->yxyColor, 1);
   con->colorWell1Dy = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yxy, con->yxyColor, 2);
 
+  naSetUIElementNextTabElement(con->textFieldY, con->textFieldx);
+  naSetUIElementNextTabElement(con->textFieldx, con->textFieldy);
+  naSetUIElementNextTabElement(con->textFieldy, con->textFieldY);
+
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmAddUIRow(con->labelY, colorValueCondensedRowHeight);

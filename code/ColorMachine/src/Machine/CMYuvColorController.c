@@ -81,6 +81,12 @@ CMYuvColorController* cmAllocYuvColorController(void){
   con->colorWell1Du = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yuv, con->yuvColor, 1);
   con->colorWell1Dv = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yuv, con->yuvColor, 2);
 
+  naSetUIElementNextTabElement(con->textFieldY, con->textFieldup);
+  naSetUIElementNextTabElement(con->textFieldup, con->textFieldvp);
+  naSetUIElementNextTabElement(con->textFieldvp, con->textFieldu);
+  naSetUIElementNextTabElement(con->textFieldu, con->textFieldv);
+  naSetUIElementNextTabElement(con->textFieldv, con->textFieldY);
+
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIRow(con->labelY, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldY, colorComponentMarginH);
