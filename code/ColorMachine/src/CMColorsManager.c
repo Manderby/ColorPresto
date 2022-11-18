@@ -16,7 +16,7 @@ CMColorsManager* cmAllocColorsController(){
   
   colorsManager->fallbackColor = .5f;
   colorsManager->currentColor = &(colorsManager->fallbackColor);
-  colorsManager->currentType = CML_COLOR_GRAY;
+  colorsManager->currentType = CML_COLOR_Gray;
   colorsManager->currentController = NA_NULL;
   
   return colorsManager;
@@ -39,7 +39,7 @@ void cmSetColorsManagerCurrentColorController(CMColorsManager* colorsManager, co
   colorsManager->currentColor = cmGetColorControllerColorData(con);
   if(colorsManager->currentController == NA_NULL || colorsManager->currentColor == NA_NULL){
     colorsManager->currentColor = &(colorsManager->fallbackColor);
-    colorsManager->currentType = CML_COLOR_GRAY;
+    colorsManager->currentType = CML_COLOR_Gray;
   }else{
     colorsManager->currentType = cmGetColorControllerColorType(con);
   }

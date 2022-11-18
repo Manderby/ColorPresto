@@ -5,6 +5,7 @@
 #include "CMMachineController.h"
 #include "CMDesign.h"
 
+#include "CMGrayColorController.h"
 #include "CMHSLColorController.h"
 #include "CMHSVColorController.h"
 #include "CMLabColorController.h"
@@ -28,6 +29,7 @@ struct CMMachineWindowController{
   NASpace* perceptiveColorsSpace;
   NASpace* RGBColorsSpace;
   
+  CMGrayColorController* grayColorController;
   CMHSLColorController* hslColorController;
   CMHSVColorController* hsvColorController;
   CMLabColorController* labColorController;
@@ -37,7 +39,6 @@ struct CMMachineWindowController{
   CMYCbCrColorController* ycbcrColorController;
   CMYuvColorController* yuvColorController;
   CMYxyColorController* yxyColorController;
-  
 };
 
 
@@ -59,6 +60,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   con->perceptiveColorsSpace = naNewSpace(naMakeSize(1, 1));
   con->RGBColorsSpace = naNewSpace(naMakeSize(1, 1));
 
+  con->grayColorController = cmAllocGrayColorController();
   con->hslColorController = cmAllocHSLColorController();
   con->hsvColorController = cmAllocHSVColorController();
   con->labColorController = cmAllocLabColorController();
@@ -76,6 +78,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   cmEndUILayout();
 
   cmBeginUILayout(con->perceptiveColorsSpace, naMakeBezel4Zero());
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->grayColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->labColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvColorController), 0);
   cmEndUILayout();
@@ -114,6 +117,7 @@ void cmShowMachineWindowController(CMMachineWindowController* con){
 void cmUpdateMachineWindowController(CMMachineWindowController* con){
   cmUpdateMachineController(con->machineController);
   
+  cmSetColorControllerActive((CMColorController*)con->grayColorController, cmGetCurrentColorController() == (CMColorController*)con->grayColorController);
   cmSetColorControllerActive((CMColorController*)con->rgbColorController, cmGetCurrentColorController() == (CMColorController*)con->rgbColorController);
   cmSetColorControllerActive((CMColorController*)con->hslColorController, cmGetCurrentColorController() == (CMColorController*)con->hslColorController);
   cmSetColorControllerActive((CMColorController*)con->hsvColorController, cmGetCurrentColorController() == (CMColorController*)con->hsvColorController);
@@ -124,6 +128,7 @@ void cmUpdateMachineWindowController(CMMachineWindowController* con){
   cmSetColorControllerActive((CMColorController*)con->yxyColorController, cmGetCurrentColorController() == (CMColorController*)con->yxyColorController);
   cmSetColorControllerActive((CMColorController*)con->yuvColorController, cmGetCurrentColorController() == (CMColorController*)con->yuvColorController);
 
+  cmUpdateGrayColorController(con->grayColorController);
   cmUpdateHSLColorController(con->hslColorController);
   cmUpdateHSVColorController(con->hsvColorController);
   cmUpdateLabColorController(con->labColorController);

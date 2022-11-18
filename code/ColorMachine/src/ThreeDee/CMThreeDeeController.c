@@ -122,7 +122,7 @@ struct CMThreeDeeController{
 CMLColorType cmGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
   CMLColorType retValue = CML_COLOR_COUNT;
   switch(colorSpaceType){
-  case COLOR_SPACE_GRAY:  retValue = CML_COLOR_GRAY; break;
+  case COLOR_SPACE_GRAY:  retValue = CML_COLOR_Gray; break;
   case COLOR_SPACE_HSL:   retValue = CML_COLOR_HSL; break;
   case COLOR_SPACE_HSV:   retValue = CML_COLOR_HSV; break;
   case COLOR_SPACE_Lab:   retValue = CML_COLOR_Lab; break;

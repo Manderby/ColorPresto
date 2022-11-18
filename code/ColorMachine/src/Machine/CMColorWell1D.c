@@ -100,32 +100,44 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   
   float variableValue;
   
-  switch(well->variableIndex){
-  case 0:
-    for(int x = 0; x < colorWell1DSize; ++x){
-      variableValue = normedColorValues[0];
-      float xValue = (float)x / (float)colorWell1DSize;
-      *inputPtr++ = xValue;
-      *inputPtr++ = normedColorValues[1];
-      *inputPtr++ = normedColorValues[2];
-    }
-    break;
+  switch(cmlGetNumChannels(well->colorType)){
   case 1:
-    for(int x = 0; x < colorWell1DSize; ++x){
-      variableValue = normedColorValues[1];
-      float xValue = (float)x / (float)colorWell1DSize;
-      *inputPtr++ = normedColorValues[0];
-      *inputPtr++ = xValue;
-      *inputPtr++ = normedColorValues[2];
-    }
+      for(int x = 0; x < colorWell1DSize; ++x){
+        variableValue = normedColorValues[0];
+        float xValue = (float)x / (float)colorWell1DSize;
+        *inputPtr++ = xValue;
+      }
     break;
-  case 2:
-    for(int x = 0; x < colorWell1DSize; ++x){
-      variableValue = normedColorValues[2];
-      float xValue = (float)x / (float)colorWell1DSize;
-      *inputPtr++ = normedColorValues[0];
-      *inputPtr++ = normedColorValues[1];
-      *inputPtr++ = xValue;
+
+  case 3:
+    switch(well->variableIndex){
+    case 0:
+      for(int x = 0; x < colorWell1DSize; ++x){
+        variableValue = normedColorValues[0];
+        float xValue = (float)x / (float)colorWell1DSize;
+        *inputPtr++ = xValue;
+        *inputPtr++ = normedColorValues[1];
+        *inputPtr++ = normedColorValues[2];
+      }
+      break;
+    case 1:
+      for(int x = 0; x < colorWell1DSize; ++x){
+        variableValue = normedColorValues[1];
+        float xValue = (float)x / (float)colorWell1DSize;
+        *inputPtr++ = normedColorValues[0];
+        *inputPtr++ = xValue;
+        *inputPtr++ = normedColorValues[2];
+      }
+      break;
+    case 2:
+      for(int x = 0; x < colorWell1DSize; ++x){
+        variableValue = normedColorValues[2];
+        float xValue = (float)x / (float)colorWell1DSize;
+        *inputPtr++ = normedColorValues[0];
+        *inputPtr++ = normedColorValues[1];
+        *inputPtr++ = xValue;
+      }
+      break;
     }
     break;
   }

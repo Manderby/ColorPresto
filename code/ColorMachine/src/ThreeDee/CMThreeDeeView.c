@@ -118,7 +118,7 @@ void cmDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
 
   CMLVec4UInt steps;
   switch(space3D){
-  case CML_COLOR_GRAY:  cmlSet4UInt(steps, 2 * steps3D, 1, 1, 1); break;
+  case CML_COLOR_Gray:  cmlSet4UInt(steps, 2 * steps3D, 1, 1, 1); break;
   case CML_COLOR_XYZ:   cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
   case CML_COLOR_Yxy:   cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
   case CML_COLOR_Yuv:   cmlSet4UInt(steps, steps3D, steps3D, steps3D, 1); break;
@@ -196,7 +196,7 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
   CMLVec4* axis1s = NULL;
   CMLVec4* axis2s = NULL;
   switch(space3D){
-  case CML_COLOR_GRAY:  surfaceCount = 0; break;
+  case CML_COLOR_Gray:  surfaceCount = 0; break;
   case CML_COLOR_XYZ:   surfaceCount = 6; break;
   case CML_COLOR_Yxy:   surfaceCount = 4; break;
   case CML_COLOR_Yuv:   surfaceCount = 4; break;
@@ -224,7 +224,7 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
     float** normedSystemCoords = naMalloc(surfaceCount * sizeof(float*));
     
     switch(space3D){
-    case CML_COLOR_GRAY: break;
+    case CML_COLOR_Gray: break;
     case CML_COLOR_XYZ:
       cmlSet4UInt(surfaceSteps[0], steps3D, steps3D, 1, 1);
       cmlSet4(origins[0], 0.f, 0.f, 0.f, 0.f);

@@ -1,5 +1,6 @@
 
 #include "CMColorController.h"
+#include "CMGrayColorController.h"
 #include "CMHSLColorController.h"
 #include "CMHSVColorController.h"
 #include "CMLabColorController.h"
@@ -53,6 +54,7 @@ CMLColorType cmGetColorControllerColorType(const CMColorController* con){
 
 const void* cmGetColorControllerColorData(const CMColorController* con){
   switch(con->colorType){
+  case CML_COLOR_Gray: return cmGetGrayColorControllerColorData((const CMGrayColorController*)con); 
   case CML_COLOR_HSL: return cmGetHSLColorControllerColorData((const CMHSLColorController*)con); 
   case CML_COLOR_HSV: return cmGetHSVColorControllerColorData((const CMHSVColorController*)con);
   case CML_COLOR_Lab: return cmGetLabColorControllerColorData((const CMLabColorController*)con);
@@ -71,6 +73,7 @@ const void* cmGetColorControllerColorData(const CMColorController* con){
 
 void cmSetColorControllerColorData(CMColorController* con, const void* data){
   switch(con->colorType){
+  case CML_COLOR_Gray: cmSetGrayColorControllerColorData((CMGrayColorController*)con, data); break; 
   case CML_COLOR_HSL: cmSetHSLColorControllerColorData((CMHSLColorController*)con, data); break; 
   case CML_COLOR_HSV: cmSetHSVColorControllerColorData((CMHSVColorController*)con, data); break;
   case CML_COLOR_Lab: cmSetLabColorControllerColorData((CMLabColorController*)con, data); break;

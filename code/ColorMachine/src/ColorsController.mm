@@ -59,7 +59,7 @@
       case CML_COLOR_CMYK:
         title = [NSString stringWithFormat:@"%s %1.02f, %1.02f, %1.02f, %1.02f", colorname, (*color)[0], (*color)[1], (*color)[2], (*color)[3]];
         break;
-      case CML_COLOR_GRAY:
+      case CML_COLOR_Gray:
         title = [NSString stringWithFormat:@"%s %1.04f", colorname, (*color)[0]];
         break;
       case CML_COLOR_HSL:
@@ -512,7 +512,7 @@
 
   ColorController* workingcolorcontroller;
   switch(color->getColorType()){
-  case CML_COLOR_GRAY:  workingcolorcontroller = (ColorController*)graycolorcontroller; break;
+  case CML_COLOR_Gray:  workingcolorcontroller = (ColorController*)graycolorcontroller; break;
   case CML_COLOR_XYZ:   workingcolorcontroller = (ColorController*)xyzcolorcontroller; break;
   case CML_COLOR_Yxy:   workingcolorcontroller = (ColorController*)yxycolorcontroller; break;
   case CML_COLOR_Yuv:   workingcolorcontroller = (ColorController*)yuvcolorcontroller; break;
