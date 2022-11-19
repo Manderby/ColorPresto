@@ -289,7 +289,7 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
       // CIE 1960 UCS. This also corresponds to the fact that UVW is based on
       // UCS. In CML, this is Yuv.
       cmlConvertYupvpToYuv(metamerRefYuv, metamerRefYupvp);
-      convertYuvtoUVW(metamerRefUVW, metamerRefYuv, refWhitePoint2->Yuv);
+      cmlConvertYuvToUVW(metamerRefUVW, metamerRefYuv, refWhitePoint2->Yuv);
       cmlReleaseFunction(metamerRefRemission);
     }else{
       cmlSet3(metamerRefXYZptr, 0.f, 0.f, 0.f);
@@ -315,7 +315,7 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
       cmlConvertYuvToYcd(metamerIllYcd, metamerIllYuv);
       CMLVec3 metamerIllaYuv;
       convertYcdtoadaptedYuv(metamerIllaYuv, metamerIllYcd, illWhitePoint2->Ycd, refWhitePoint2->Ycd);
-      convertYuvtoUVW(metamerIllUVW, metamerIllaYuv, refWhitePoint2->Yuv);
+      cmlConvertYuvToUVW(metamerIllUVW, metamerIllaYuv, refWhitePoint2->Yuv);
       cmlReleaseFunction(metamerIllRemission);
     }else{
       cmlSet3(metamerIllXYZptr, 0.f, 0.f, 0.f);

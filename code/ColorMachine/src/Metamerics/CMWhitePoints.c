@@ -48,7 +48,7 @@ CMWhitePoints CMGetWhitePoints(const CMLFunction* spec, const float* wpYxy, CMLF
   cmlConvertYxyToYupvp(wp.Yupvp, wp.Yxy, CML_NULL);
   cmlConvertYupvpToYuv(wp.Yuv, wp.Yupvp);
   cmlConvertYuvToYcd(wp.Ycd, wp.Yuv);
-  convertYuvtoUVW(wp.UVW, wp.Yuv, wp.Yuv);
+  cmlConvertYuvToUVW(wp.UVW, wp.Yuv, wp.Yuv);
 
   return wp;
 }

@@ -96,11 +96,11 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
   glOrtho(0, rect.size.width, 0, rect.size.height, -1., 1.);
 
   glColor3f(0., 0., 0.);
-  naDrawASCIICharacters(well->fontId, "Color", 12, 90, 0);
-  naDrawASCIICharacters(well->fontId, "Gray", 65, 90, 0);
+  naDrawASCIICharacters(well->fontId, "Color", 12, 85, 0);
+  naDrawASCIICharacters(well->fontId, "Gray", 65, 85, 0);
   glColor3f(1., 1., 1.);
-  naDrawASCIICharacters(well->fontId, "Color", 11, 91, 0);
-  naDrawASCIICharacters(well->fontId, "Gray", 64, 91, 0);
+  naDrawASCIICharacters(well->fontId, "Color", 11, 86, 0);
+  naDrawASCIICharacters(well->fontId, "Gray", 64, 86, 0);
 
   glMatrixMode(GL_PROJECTION);
   glPopMatrix();
