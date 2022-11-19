@@ -30,17 +30,11 @@ NABool cmYxyValueEdited(NAReaction reaction){
   CMYxyColorController* con = (CMYxyColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldY){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldY);
-    con->yxyColor[0] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->yxyColor[0] = naGetTextFieldDouble(con->textFieldY);
   }else if(reaction.uiElement == con->textFieldx){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldx);
-    con->yxyColor[1] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->yxyColor[1] = naGetTextFieldDouble(con->textFieldx);
   }else if(reaction.uiElement == con->textFieldy){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldy);
-    con->yxyColor[2] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->yxyColor[2] = naGetTextFieldDouble(con->textFieldy);
   }
   
   cmSetCurrentColorController(&(con->baseController));

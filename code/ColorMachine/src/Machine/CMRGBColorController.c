@@ -35,17 +35,11 @@ NABool cmRGBValueEdited(NAReaction reaction){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
 
   if(reaction.uiElement == con->textFieldR){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldR);
-    con->rgbColor[0] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->rgbColor[0] = naGetTextFieldDouble(con->textFieldR);
   }else if(reaction.uiElement == con->textFieldG){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldG);
-    con->rgbColor[1] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->rgbColor[1] = naGetTextFieldDouble(con->textFieldG);
   }else if(reaction.uiElement == con->textFieldB){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldB);
-    con->rgbColor[2] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->rgbColor[2] = naGetTextFieldDouble(con->textFieldB);
   }else if(reaction.uiElement == con->textFieldHex){
     NAString* string = naNewStringWithTextFieldText(con->textFieldHex);
     int rgbbuf[3];

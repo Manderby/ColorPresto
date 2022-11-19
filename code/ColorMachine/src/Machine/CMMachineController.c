@@ -73,9 +73,7 @@ NABool cmSetIlluminationTemperature(NAReaction reaction){
 
   double temperature = 0.;
   if(reaction.uiElement == con->illuminationTemperatureTextField){
-    NAString* temperatureString = naNewStringWithTextFieldText(con->illuminationTemperatureTextField);
-    temperature = atof(naGetStringUTF8Pointer(temperatureString));
-    naDelete(temperatureString);
+    temperature = naGetTextFieldDouble(con->illuminationTemperatureTextField);
   }else if(reaction.uiElement == con->illuminationTemperatureSlider){
     double sliderValue = naGetSliderValue(con->illuminationTemperatureSlider);
     temperature = (sliderValue == 1.f)

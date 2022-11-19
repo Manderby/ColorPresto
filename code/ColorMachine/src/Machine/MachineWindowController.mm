@@ -36,89 +36,89 @@
   [[self window] setDelegate:self];
   
   
-  hslColorController = cmAllocHSLColorController();
-  hsvColorController = cmAllocHSVColorController();
-  labColorController = cmAllocLabColorController();
-  luvColorController = cmAllocLuvColorController();
-  rgbColorController = cmAllocRGBColorController();
-  xyzColorController = cmAllocXYZColorController();
-  ycbcrColorController = cmAllocYCbCrColorController();
-  ycdColorController = cmAllocYcdColorController();
-  yuvColorController = cmAllocYuvColorController();
-  yxyColorController = cmAllocYxyColorController();
+//  hslColorController = cmAllocHSLColorController();
+//  hsvColorController = cmAllocHSVColorController();
+//  labColorController = cmAllocLabColorController();
+//  luvColorController = cmAllocLuvColorController();
+//  rgbColorController = cmAllocRGBColorController();
+//  xyzColorController = cmAllocXYZColorController();
+//  ycbcrColorController = cmAllocYCbCrColorController();
+//  ycdColorController = cmAllocYcdColorController();
+//  yuvColorController = cmAllocYuvColorController();
+//  yxyColorController = cmAllocYxyColorController();
 
   NSView* childView;
   NSRect frame;
 
-  NASpace* xyzSpace = cmGetColorControllerUIElement((CMColorController*)xyzColorController);
-  childView = (NSView*)naGetUIElementNativePtr(xyzSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(300, 230);
-  [childView setFrame: frame];
-
-  NASpace* yxySpace = cmGetColorControllerUIElement((CMColorController*)yxyColorController);
-  childView = (NSView*)naGetUIElementNativePtr(yxySpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(300, 120);
-  [childView setFrame: frame];
-
-  NASpace* yuvSpace = cmGetColorControllerUIElement((CMColorController*)yuvColorController);
-  childView = (NSView*)naGetUIElementNativePtr(yuvSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(300, 10);
-  [childView setFrame: frame];
-
-  NASpace* ycdSpace = cmGetColorControllerUIElement((CMColorController*)ycdColorController);
-  childView = (NSView*)naGetUIElementNativePtr(ycdSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(620, 10);
-  [childView setFrame: frame];
-
-  NASpace* luvSpace = cmGetColorControllerUIElement((CMColorController*)luvColorController);
-  childView = (NSView*)naGetUIElementNativePtr(luvSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(620, 230);
-  [childView setFrame: frame];
-
-  NASpace* labSpace = cmGetColorControllerUIElement((CMColorController*)labColorController);
-  childView = (NSView*)naGetUIElementNativePtr(labSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(620, 120);
-  [childView setFrame: frame];
-
-  NASpace* rgbSpace = cmGetColorControllerUIElement((CMColorController*)rgbColorController);
-  childView = (NSView*)naGetUIElementNativePtr(rgbSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(940, 340);
-  [childView setFrame: frame];
-    
-  NASpace* hsvSpace = cmGetColorControllerUIElement((CMColorController*)hsvColorController);
-  childView = (NSView*)naGetUIElementNativePtr(hsvSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(940, 230);
-  [childView setFrame: frame];
-    
-  NASpace* hslSpace = cmGetColorControllerUIElement((CMColorController*)hslColorController);
-  childView = (NSView*)naGetUIElementNativePtr(hslSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(940, 120);
-  [childView setFrame: frame];
-
-  NASpace* ycbcrSpace = cmGetColorControllerUIElement((CMColorController*)ycbcrColorController);
-  childView = (NSView*)naGetUIElementNativePtr(ycbcrSpace);
-  [[[self window] contentView] addSubview:childView];
-  frame = [childView frame];
-  frame.origin = NSMakePoint(940, 10);
-  [childView setFrame: frame];
+//  NASpace* xyzSpace = cmGetColorControllerUIElement((CMColorController*)xyzColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(xyzSpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(300, 230);
+//  [childView setFrame: frame];
+//
+//  NASpace* yxySpace = cmGetColorControllerUIElement((CMColorController*)yxyColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(yxySpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(300, 120);
+//  [childView setFrame: frame];
+//
+//  NASpace* yuvSpace = cmGetColorControllerUIElement((CMColorController*)yuvColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(yuvSpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(300, 10);
+//  [childView setFrame: frame];
+//
+//  NASpace* ycdSpace = cmGetColorControllerUIElement((CMColorController*)ycdColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(ycdSpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(620, 10);
+//  [childView setFrame: frame];
+//
+//  NASpace* luvSpace = cmGetColorControllerUIElement((CMColorController*)luvColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(luvSpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(620, 230);
+//  [childView setFrame: frame];
+//
+//  NASpace* labSpace = cmGetColorControllerUIElement((CMColorController*)labColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(labSpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(620, 120);
+//  [childView setFrame: frame];
+//
+//  NASpace* rgbSpace = cmGetColorControllerUIElement((CMColorController*)rgbColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(rgbSpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(940, 340);
+//  [childView setFrame: frame];
+//    
+//  NASpace* hsvSpace = cmGetColorControllerUIElement((CMColorController*)hsvColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(hsvSpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(940, 230);
+//  [childView setFrame: frame];
+//    
+//  NASpace* hslSpace = cmGetColorControllerUIElement((CMColorController*)hslColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(hslSpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(940, 120);
+//  [childView setFrame: frame];
+//
+//  NASpace* ycbcrSpace = cmGetColorControllerUIElement((CMColorController*)ycbcrColorController);
+//  childView = (NSView*)naGetUIElementNativePtr(ycbcrSpace);
+//  [[[self window] contentView] addSubview:childView];
+//  frame = [childView frame];
+//  frame.origin = NSMakePoint(940, 10);
+//  [childView setFrame: frame];
   
 //  NSScreen* screen = [[self window] screen];
 //  NSNumber* screenID = (NSNumber*)[screendict objectForKey:@"NSScreenNumber"];
@@ -753,27 +753,27 @@
 //  }
 
   
-  cmSetColorControllerActive((CMColorController*)rgbColorController, cmGetCurrentColorController() == (CMColorController*)rgbColorController);
-  cmSetColorControllerActive((CMColorController*)hslColorController, cmGetCurrentColorController() == (CMColorController*)hslColorController);
-  cmSetColorControllerActive((CMColorController*)hsvColorController, cmGetCurrentColorController() == (CMColorController*)hsvColorController);
-  cmSetColorControllerActive((CMColorController*)labColorController, cmGetCurrentColorController() == (CMColorController*)labColorController);
-  cmSetColorControllerActive((CMColorController*)luvColorController, cmGetCurrentColorController() == (CMColorController*)luvColorController);
-  cmSetColorControllerActive((CMColorController*)xyzColorController, cmGetCurrentColorController() == (CMColorController*)xyzColorController);
-  cmSetColorControllerActive((CMColorController*)ycbcrColorController, cmGetCurrentColorController() == (CMColorController*)ycbcrColorController);
-  cmSetColorControllerActive((CMColorController*)ycdColorController, cmGetCurrentColorController() == (CMColorController*)ycdColorController);
-  cmSetColorControllerActive((CMColorController*)yxyColorController, cmGetCurrentColorController() == (CMColorController*)yxyColorController);
-  cmSetColorControllerActive((CMColorController*)yuvColorController, cmGetCurrentColorController() == (CMColorController*)yuvColorController);
-
-  cmUpdateRGBColorController(rgbColorController);
-  cmUpdateHSLColorController(hslColorController);
-  cmUpdateHSVColorController(hsvColorController);
-  cmUpdateLabColorController(labColorController);
-  cmUpdateLuvColorController(luvColorController);
-  cmUpdateXYZColorController(xyzColorController);
-  cmUpdateYCbCrColorController(ycbcrColorController);
-  cmUpdateYcdColorController(ycdColorController);
-  cmUpdateYuvColorController(yuvColorController);
-  cmUpdateYxyColorController(yxyColorController);
+//  cmSetColorControllerActive((CMColorController*)rgbColorController, cmGetCurrentColorController() == (CMColorController*)rgbColorController);
+//  cmSetColorControllerActive((CMColorController*)hslColorController, cmGetCurrentColorController() == (CMColorController*)hslColorController);
+//  cmSetColorControllerActive((CMColorController*)hsvColorController, cmGetCurrentColorController() == (CMColorController*)hsvColorController);
+//  cmSetColorControllerActive((CMColorController*)labColorController, cmGetCurrentColorController() == (CMColorController*)labColorController);
+//  cmSetColorControllerActive((CMColorController*)luvColorController, cmGetCurrentColorController() == (CMColorController*)luvColorController);
+//  cmSetColorControllerActive((CMColorController*)xyzColorController, cmGetCurrentColorController() == (CMColorController*)xyzColorController);
+//  cmSetColorControllerActive((CMColorController*)ycbcrColorController, cmGetCurrentColorController() == (CMColorController*)ycbcrColorController);
+//  cmSetColorControllerActive((CMColorController*)ycdColorController, cmGetCurrentColorController() == (CMColorController*)ycdColorController);
+//  cmSetColorControllerActive((CMColorController*)yxyColorController, cmGetCurrentColorController() == (CMColorController*)yxyColorController);
+//  cmSetColorControllerActive((CMColorController*)yuvColorController, cmGetCurrentColorController() == (CMColorController*)yuvColorController);
+//
+//  cmUpdateRGBColorController(rgbColorController);
+//  cmUpdateHSLColorController(hslColorController);
+//  cmUpdateHSVColorController(hsvColorController);
+//  cmUpdateLabColorController(labColorController);
+//  cmUpdateLuvColorController(luvColorController);
+//  cmUpdateXYZColorController(xyzColorController);
+//  cmUpdateYCbCrColorController(ycbcrColorController);
+//  cmUpdateYcdColorController(ycdColorController);
+//  cmUpdateYuvColorController(yuvColorController);
+//  cmUpdateYxyColorController(yxyColorController);
 }
 
 

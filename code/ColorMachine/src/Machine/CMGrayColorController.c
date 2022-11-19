@@ -2,11 +2,14 @@
 #include "CMColorController.h"
 #include "CMColorWell1D.h"
 #include "CMGrayColorController.h"
+#include "CMGrayColorWell.h"
 #include "NAApp.h"
 #include "CMDesign.h"
 
 struct CMGrayColorController{
   CMColorController baseController;
+  
+  CMGrayColorWell* display;
   
   NALabel* labelGray;
   NATextField* textFieldGray;
@@ -21,9 +24,7 @@ NABool cmGrayValueEdited(NAReaction reaction){
   CMGrayColorController* con = (CMGrayColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldGray){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldGray);
-    con->grayColor = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->grayColor = naGetTextFieldDouble(con->textFieldGray);
   }
   
   cmSetCurrentColorController(&(con->baseController));
@@ -39,6 +40,8 @@ CMGrayColorController* cmAllocGrayColorController(void){
   
   cmInitColorController(&(con->baseController), CML_COLOR_Gray);
   
+  con->display = cmAllocGrayColorWell(&(con->baseController));
+  
   con->labelGray = cmNewColorComponentLabel("Gray");
   con->textFieldGray = cmNewValueTextField(cmGrayValueEdited, con);
   con->colorWell1DGray = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Gray, &(con->grayColor), 0);
@@ -51,10 +54,10 @@ CMGrayColorController* cmAllocGrayColorController(void){
   cmAddUIPos(0, 2 * colorValueCondensedRowHeight);
   cmEndUILayout();
   
-//  naAddSpaceChild(
-//    con->baseController.space,
-//    cmGetColorWell2DUIElement(con->colorWell2D),
-//    naMakePos(10, 5));
+  naAddSpaceChild(
+    con->baseController.space,
+    cmGetGrayColorWellUIElement(con->display),
+    naMakePos(10, 5));
 
   return con;
 }
@@ -93,5 +96,6 @@ void cmUpdateGrayColorController(CMGrayColorController* con){
     con->textFieldGray,
     naAllocSprintf(NA_TRUE, "%1.05f", con->grayColor));
 
+  cmUpdateGrayColorWell(con->display);
   cmUpdateColorWell1D(con->colorWell1DGray);
 }

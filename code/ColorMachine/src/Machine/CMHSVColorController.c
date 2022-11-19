@@ -30,17 +30,11 @@ NABool cmHSVValueEdited(NAReaction reaction){
   CMHSVColorController* con = (CMHSVColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldH){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldH);
-    con->hsvColor[0] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->hsvColor[0] = naGetTextFieldDouble(con->textFieldH);
   }else if(reaction.uiElement == con->textFieldS){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldS);
-    con->hsvColor[1] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->hsvColor[1] = naGetTextFieldDouble(con->textFieldS);
   }else if(reaction.uiElement == con->textFieldV){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldV);
-    con->hsvColor[2] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->hsvColor[2] = naGetTextFieldDouble(con->textFieldV);
   }
   
   cmSetCurrentColorController(&(con->baseController));

@@ -30,17 +30,11 @@ NABool cmXYZValueEdited(NAReaction reaction){
   CMXYZColorController* con = (CMXYZColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldX){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldX);
-    con->XYZColor[0] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->XYZColor[0] = naGetTextFieldDouble(con->textFieldX);
   }else if(reaction.uiElement == con->textFieldY){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldY);
-    con->XYZColor[1] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->XYZColor[1] = naGetTextFieldDouble(con->textFieldY);
   }else if(reaction.uiElement == con->textFieldZ){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldZ);
-    con->XYZColor[2] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->XYZColor[2] = naGetTextFieldDouble(con->textFieldZ);
   }
   
   cmSetCurrentColorController(&(con->baseController));

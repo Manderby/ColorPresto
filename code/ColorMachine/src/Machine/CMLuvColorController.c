@@ -30,17 +30,11 @@ NABool cmLuvValueEdited(NAReaction reaction){
   CMLuvColorController* con = (CMLuvColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldL){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldL);
-    con->luvColor[0] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->luvColor[0] = naGetTextFieldDouble(con->textFieldL);
   }else if(reaction.uiElement == con->textFieldu){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldu);
-    con->luvColor[1] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->luvColor[1] = naGetTextFieldDouble(con->textFieldu);
   }else if(reaction.uiElement == con->textFieldv){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldv);
-    con->luvColor[2] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->luvColor[2] = naGetTextFieldDouble(con->textFieldv);
   }
   
   cmSetCurrentColorController(&(con->baseController));

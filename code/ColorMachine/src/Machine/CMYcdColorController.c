@@ -30,17 +30,11 @@ NABool cmYcdValueEdited(NAReaction reaction){
   CMYcdColorController* con = (CMYcdColorController*)reaction.controller;
 
   if(reaction.uiElement == con->textFieldY){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldY);
-    con->ycdColor[0] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->ycdColor[0] = naGetTextFieldDouble(con->textFieldY);
   }else if(reaction.uiElement == con->textFieldc){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldc);
-    con->ycdColor[1] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->ycdColor[1] = naGetTextFieldDouble(con->textFieldc);
   }else if(reaction.uiElement == con->textFieldd){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldd);
-    con->ycdColor[2] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->ycdColor[2] = naGetTextFieldDouble(con->textFieldd);
   }
   
   cmSetCurrentColorController(&(con->baseController));

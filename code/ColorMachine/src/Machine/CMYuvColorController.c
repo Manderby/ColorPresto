@@ -37,17 +37,11 @@ NABool cmYuvValueEdited(NAReaction reaction){
   CMYuvColorController* con = (CMYuvColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldY){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldY);
-    con->yupvpColor[0] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->yupvpColor[0] = naGetTextFieldDouble(con->textFieldY);
   }else if(reaction.uiElement == con->textFieldup){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldup);
-    con->yupvpColor[1] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->yupvpColor[1] = naGetTextFieldDouble(con->textFieldup);
   }else if(reaction.uiElement == con->textFieldvp){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldvp);
-    con->yupvpColor[2] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->yupvpColor[2] = naGetTextFieldDouble(con->textFieldvp);
   }
   
   cmSetCurrentColorController(&(con->baseController));

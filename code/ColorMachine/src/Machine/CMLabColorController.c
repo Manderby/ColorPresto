@@ -37,17 +37,17 @@ NABool cmLabValueEdited(NAReaction reaction){
   CMLabColorController* con = (CMLabColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldL){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldL);
-    con->labColor[0] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->labColor[0] = naGetTextFieldDouble(con->textFieldL);
   }else if(reaction.uiElement == con->textFielda){
-    NAString* string = naNewStringWithTextFieldText(con->textFielda);
-    con->labColor[1] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->labColor[1] = naGetTextFieldDouble(con->textFielda);
   }else if(reaction.uiElement == con->textFieldb){
-    NAString* string = naNewStringWithTextFieldText(con->textFieldb);
-    con->labColor[2] = atof(naGetStringUTF8Pointer(string));
-    naDelete(string);
+    con->labColor[2] = naGetTextFieldDouble(con->textFieldb);
+  }else if(reaction.uiElement == con->textFieldc){
+    con->lchColor[1] = naGetTextFieldDouble(con->textFieldc);
+    cmlConvertLchToLab(con->labColor, con->lchColor);
+  }else if(reaction.uiElement == con->textFieldh){
+    con->lchColor[2] = naGetTextFieldDouble(con->textFieldh);
+    cmlConvertLchToLab(con->labColor, con->lchColor);
   }
   
   cmSetCurrentColorController(&(con->baseController));
