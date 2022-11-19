@@ -47,8 +47,8 @@
 //  yuvColorController = cmAllocYuvColorController();
 //  yxyColorController = cmAllocYxyColorController();
 
-  NSView* childView;
-  NSRect frame;
+//  NSView* childView;
+//  NSRect frame;
 
 //  NASpace* xyzSpace = cmGetColorControllerUIElement((CMColorController*)xyzColorController);
 //  childView = (NSView*)naGetUIElementNativePtr(xyzSpace);

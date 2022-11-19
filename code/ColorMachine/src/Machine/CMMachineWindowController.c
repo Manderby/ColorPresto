@@ -11,6 +11,7 @@
 #include "CMLabColorController.h"
 #include "CMLuvColorController.h"
 #include "CMRGBColorController.h"
+#include "CMUVWColorController.h"
 #include "CMXYZColorController.h"
 #include "CMYCbCrColorController.h"
 #include "CMYuvColorController.h"
@@ -35,6 +36,7 @@ struct CMMachineWindowController{
   CMLabColorController* labColorController;
   CMLuvColorController* luvColorController;
   CMRGBColorController* rgbColorController;
+  CMUVWColorController* uvwColorController;
   CMXYZColorController* xyzColorController;
   CMYCbCrColorController* ycbcrColorController;
   CMYuvColorController* yuvColorController;
@@ -66,6 +68,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   con->labColorController = cmAllocLabColorController();
   con->luvColorController = cmAllocLuvColorController();
   con->rgbColorController = cmAllocRGBColorController();
+  con->uvwColorController = cmAllocUVWColorController();
   con->xyzColorController = cmAllocXYZColorController();
   con->yuvColorController = cmAllocYuvColorController();
   con->ycbcrColorController = cmAllocYCbCrColorController();
@@ -81,6 +84,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->grayColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->labColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvColorController), 0);
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->uvwColorController), 0);
   cmEndUILayout();
   
   cmBeginUILayout(con->RGBColorsSpace, naMakeBezel4(10, 0, 0, 0));
@@ -134,6 +138,7 @@ void cmUpdateMachineWindowController(CMMachineWindowController* con){
   cmUpdateLabColorController(con->labColorController);
   cmUpdateLuvColorController(con->luvColorController);
   cmUpdateRGBColorController(con->rgbColorController);
+  cmUpdateUVWColorController(con->uvwColorController);
   cmUpdateXYZColorController(con->xyzColorController);
   cmUpdateYCbCrColorController(con->ycbcrColorController);
   cmUpdateYuvColorController(con->yuvColorController);

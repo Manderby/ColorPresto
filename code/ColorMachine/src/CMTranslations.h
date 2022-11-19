@@ -19,19 +19,19 @@ enum{
   CMObserverDegree10,
 
   // Colorspaces
-  CMColorSpaceXYZ,
-  CMColorSpaceYxy,
-  CMColorSpaceYupvp,
-  CMColorSpaceYuv,
-  CMColorSpaceYcd,
-  CMColorSpaceUVW,
+  CMColorSpaceHSL,
+  CMColorSpaceHSV,
   CMColorSpaceLab,
   CMColorSpaceLch,
   CMColorSpaceLuv,
   CMColorSpaceRGB,
+  CMColorSpaceUVW,
+  CMColorSpaceXYZ,
   CMColorSpaceYCbCr,
-  CMColorSpaceHSV,
-  CMColorSpaceHSL,
+  CMColorSpaceYcd,
+  CMColorSpaceYupvp,
+  CMColorSpaceYuv,
+  CMColorSpaceYxy,
 
   // Strings for Whitepoint and Metamerics window
   CMWhitepointsAndMetamerics,

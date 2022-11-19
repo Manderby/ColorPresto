@@ -25,6 +25,7 @@ typedef enum{
   COLOR_SPACE_Lch,
   COLOR_SPACE_Luv,
   COLOR_SPACE_RGB,
+  COLOR_SPACE_UVW,
   COLOR_SPACE_XYZ,
   COLOR_SPACE_YCbCr,
   COLOR_SPACE_Ycd,
@@ -42,6 +43,7 @@ typedef enum{
   COORD_SYS_Lch_CARTESIAN,
   COORD_SYS_Luv,
   COORD_SYS_RGB,
+  COORD_SYS_UVW,
   COORD_SYS_XYZ,
   COORD_SYS_Ycbcr,
   COORD_SYS_Ycd,
@@ -129,6 +131,7 @@ CMLColorType cmGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
   case COLOR_SPACE_Lch:   retValue = CML_COLOR_Lch; break;
   case COLOR_SPACE_Luv:   retValue = CML_COLOR_Luv; break;
   case COLOR_SPACE_RGB:   retValue = CML_COLOR_RGB; break;
+  case COLOR_SPACE_UVW:   retValue = CML_COLOR_UVW; break;
   case COLOR_SPACE_XYZ:   retValue = CML_COLOR_XYZ; break;
   case COLOR_SPACE_YCbCr: retValue = CML_COLOR_YCbCr; break;
   case COLOR_SPACE_Ycd:   retValue = CML_COLOR_Ycd; break;
@@ -156,6 +159,7 @@ const NAUTF8Char* cmGetCoordSysName(CoordSysType coordSysType){
   case COORD_SYS_Lch_CARTESIAN: retValue = cmTranslate(CMColorSpaceLch); break;
   case COORD_SYS_Luv: retValue = cmTranslate(CMColorSpaceLuv); break;
   case COORD_SYS_RGB: retValue = cmTranslate(CMColorSpaceRGB); break;
+  case COORD_SYS_UVW: retValue = cmTranslate(CMColorSpaceUVW); break;
   case COORD_SYS_XYZ: retValue = cmTranslate(CMColorSpaceXYZ); break;
   case COORD_SYS_Ycbcr: retValue = cmTranslate(CMColorSpaceYCbCr); break;
   case COORD_SYS_Ycd: retValue = cmTranslate(CMColorSpaceYcd); break;
@@ -355,6 +359,15 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     labels[1] = "G";
     labels[2] = "B";
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
+    break;
+  case COORD_SYS_UVW:
+    coordSpace = CML_COLOR_UVW;
+    primeAxis = 2;
+    naFillV3d(scale, 2., 1., 1.);
+    labels[0] = "U*";
+    labels[1] = "V*";
+    labels[2] = "W*";
+    normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_UVW);
     break;
   case COORD_SYS_XYZ:
     coordSpace = CML_COLOR_XYZ;

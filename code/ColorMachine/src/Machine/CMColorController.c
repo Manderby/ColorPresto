@@ -6,6 +6,7 @@
 #include "CMLabColorController.h"
 #include "CMLuvColorController.h"
 #include "CMRGBColorController.h"
+#include "CMUVWColorController.h"
 #include "CMXYZColorController.h"
 #include "CMYCbCrColorController.h"
 #include "CMYcdColorController.h"
@@ -60,6 +61,7 @@ const void* cmGetColorControllerColorData(const CMColorController* con){
   case CML_COLOR_Lab: return cmGetLabColorControllerColorData((const CMLabColorController*)con);
   case CML_COLOR_Luv: return cmGetLuvColorControllerColorData((const CMLuvColorController*)con);
   case CML_COLOR_RGB: return cmGetRGBColorControllerColorData((const CMRGBColorController*)con);
+  case CML_COLOR_UVW: return cmGetUVWColorControllerColorData((const CMUVWColorController*)con);
   case CML_COLOR_XYZ: return cmGetXYZColorControllerColorData((const CMXYZColorController*)con);
   case CML_COLOR_YCbCr: return cmGetYCbCrColorControllerColorData((const CMYCbCrColorController*)con);
   case CML_COLOR_Ycd: return cmGetYcdColorControllerColorData((const CMYcdColorController*)con);
@@ -79,6 +81,7 @@ void cmSetColorControllerColorData(CMColorController* con, const void* data){
   case CML_COLOR_Lab: cmSetLabColorControllerColorData((CMLabColorController*)con, data); break;
   case CML_COLOR_Luv: cmSetLuvColorControllerColorData((CMLuvColorController*)con, data); break;
   case CML_COLOR_RGB: cmSetRGBColorControllerColorData((CMRGBColorController*)con, data); break;
+  case CML_COLOR_UVW: cmSetUVWColorControllerColorData((CMUVWColorController*)con, data); break;
   case CML_COLOR_XYZ: cmSetXYZColorControllerColorData((CMXYZColorController*)con, data); break;
   case CML_COLOR_YCbCr: cmSetYCbCrColorControllerColorData((CMYCbCrColorController*)con, data); break;
   case CML_COLOR_Ycd: cmSetYcdColorControllerColorData((CMYcdColorController*)con, data); break;
