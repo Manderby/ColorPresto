@@ -1,4 +1,12 @@
 
+Version 2.0
+-----------
+- Rewrite of the whole application in C.
+- Redesign of the various windows
+- Removing Screen Resolution window
+- Removing FD-7 Support
+- Added UVW colorspace
+
 Version 1.3.8
 -------------
 X Discontinuation of support.

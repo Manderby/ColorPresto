@@ -298,17 +298,14 @@
 		90B8EDDE2886143D005825BF /* NACoord.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8ECEC2886143D005825BF /* NACoord.h */; };
 		90B8EDE028861472005825BF /* NALib.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EDDF28861472005825BF /* NALib.h */; };
 		90BF5129274AB29E001FDE2A /* ColorMachine.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50C3274AB29D001FDE2A /* ColorMachine.xib */; };
-		90BF512C274AB29E001FDE2A /* ScreenResolution.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50C9274AB29D001FDE2A /* ScreenResolution.xib */; };
 		90BF5137274AB29E001FDE2A /* ColorMachineChangelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50E2274AB29D001FDE2A /* ColorMachineChangelog.txt */; };
 		90BF513C274AB29E001FDE2A /* ColorMachineApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50E9274AB29D001FDE2A /* ColorMachineApplication.mm */; };
 		90BF513E274AB29E001FDE2A /* ColorsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50EC274AB29D001FDE2A /* ColorsController.mm */; };
-		90BF513F274AB29E001FDE2A /* ScreenResolutionWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50EF274AB29D001FDE2A /* ScreenResolutionWindowController.mm */; };
 		90BF5140274AB29E001FDE2A /* AboutWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50F1274AB29D001FDE2A /* AboutWindowController.mm */; };
 		90BF5141274AB29E001FDE2A /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50F3274AB29D001FDE2A /* main.mm */; };
 		90BF5146274AB29E001FDE2A /* MachineWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50FE274AB29D001FDE2A /* MachineWindowController.mm */; };
 		90BF5147274AB29E001FDE2A /* ColorController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF5101274AB29D001FDE2A /* ColorController.mm */; };
 		90BF514B274AB29E001FDE2A /* GrayColorController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF5109274AB29D001FDE2A /* GrayColorController.mm */; };
-		90BF514C274AB29E001FDE2A /* SpectralColorController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF510B274AB29D001FDE2A /* SpectralColorController.mm */; };
 		90BF5152274AB29E001FDE2A /* ColorMachineOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF511B274AB29D001FDE2A /* ColorMachineOpenGLView.mm */; };
 		90BF5162274ABA51001FDE2A /* ColorMachine.icns in Resources */ = {isa = PBXBuildFile; fileRef = 90BF5161274ABA50001FDE2A /* ColorMachine.icns */; };
 		90BF915A2752667B001EA32C /* CMLEnvironment.h in Headers */ = {isa = PBXBuildFile; fileRef = 90BF91072752667A001EA32C /* CMLEnvironment.h */; };
@@ -757,15 +754,12 @@
 		90B8EDDF28861472005825BF /* NALib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NALib.h; sourceTree = "<group>"; };
 		90BAE43B28AACDFB00863696 /* mainC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mainC.h; sourceTree = "<group>"; };
 		90BF50C4274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ColorMachine.xib; sourceTree = "<group>"; };
-		90BF50CA274AB29D001FDE2A /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ScreenResolution.xib; sourceTree = "<group>"; };
 		90BF50E2274AB29D001FDE2A /* ColorMachineChangelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ColorMachineChangelog.txt; sourceTree = "<group>"; };
 		90BF50E4274AB29D001FDE2A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90BF50E8274AB29D001FDE2A /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
 		90BF50E9274AB29D001FDE2A /* ColorMachineApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorMachineApplication.mm; sourceTree = "<group>"; };
 		90BF50EA274AB29D001FDE2A /* ColorMachineApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMachineApplication.h; sourceTree = "<group>"; };
 		90BF50EC274AB29D001FDE2A /* ColorsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorsController.mm; sourceTree = "<group>"; };
-		90BF50EE274AB29D001FDE2A /* ScreenResolutionWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScreenResolutionWindowController.h; sourceTree = "<group>"; };
-		90BF50EF274AB29D001FDE2A /* ScreenResolutionWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ScreenResolutionWindowController.mm; sourceTree = "<group>"; };
 		90BF50F1274AB29D001FDE2A /* AboutWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AboutWindowController.mm; sourceTree = "<group>"; };
 		90BF50F2274AB29D001FDE2A /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
 		90BF50F3274AB29D001FDE2A /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
@@ -775,8 +769,6 @@
 		90BF5102274AB29D001FDE2A /* MachineWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MachineWindowController.h; sourceTree = "<group>"; };
 		90BF5109274AB29D001FDE2A /* GrayColorController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GrayColorController.mm; sourceTree = "<group>"; };
 		90BF510A274AB29D001FDE2A /* GrayColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GrayColorController.h; sourceTree = "<group>"; };
-		90BF510B274AB29D001FDE2A /* SpectralColorController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SpectralColorController.mm; sourceTree = "<group>"; };
-		90BF510F274AB29D001FDE2A /* SpectralColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpectralColorController.h; sourceTree = "<group>"; };
 		90BF5112274AB29D001FDE2A /* ColorsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorsController.h; sourceTree = "<group>"; };
 		90BF5113274AB29D001FDE2A /* ColorMachineOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMachineOpenGLView.h; sourceTree = "<group>"; };
 		90BF511B274AB29D001FDE2A /* ColorMachineOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorMachineOpenGLView.mm; sourceTree = "<group>"; };
@@ -1478,7 +1470,6 @@
 				90280FD328D51A03005BD46A /* ColorMachineStrings_jpn.h */,
 				90BF50E4274AB29D001FDE2A /* Info.plist */,
 				90B6FD6728A99E6900EE6F32 /* InfoPlist.strings */,
-				90BF50C9274AB29D001FDE2A /* ScreenResolution.xib */,
 			);
 			path = res;
 			sourceTree = "<group>";
@@ -1505,19 +1496,9 @@
 				90BF50F3274AB29D001FDE2A /* main.mm */,
 				90BAE43B28AACDFB00863696 /* mainC.h */,
 				90BF5114274AB29D001FDE2A /* Metamerics */,
-				90BF50ED274AB29D001FDE2A /* ScreenResolution */,
 				90BF5118274AB29D001FDE2A /* ThreeDee */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		90BF50ED274AB29D001FDE2A /* ScreenResolution */ = {
-			isa = PBXGroup;
-			children = (
-				90BF50EE274AB29D001FDE2A /* ScreenResolutionWindowController.h */,
-				90BF50EF274AB29D001FDE2A /* ScreenResolutionWindowController.mm */,
-			);
-			path = ScreenResolution;
 			sourceTree = "<group>";
 		};
 		90BF50F0274AB29D001FDE2A /* About */ = {
@@ -1580,8 +1561,6 @@
 				90BF50FE274AB29D001FDE2A /* MachineWindowController.mm */,
 				902323782916D80700EFAF01 /* RGBColorController.h */,
 				902323772916D80700EFAF01 /* RGBColorController.mm */,
-				90BF510F274AB29D001FDE2A /* SpectralColorController.h */,
-				90BF510B274AB29D001FDE2A /* SpectralColorController.mm */,
 			);
 			path = Machine;
 			sourceTree = "<group>";
@@ -2097,7 +2076,6 @@
 				90BF5137274AB29E001FDE2A /* ColorMachineChangelog.txt in Resources */,
 				90B6FD6228A99A2F00EE6F32 /* ManderApp.vcxproj in Resources */,
 				90BF5129274AB29E001FDE2A /* ColorMachine.xib in Resources */,
-				90BF512C274AB29E001FDE2A /* ScreenResolution.xib in Resources */,
 				90B6FD6928A99E6900EE6F32 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2168,14 +2146,12 @@
 				906A393E2913F2BD00167195 /* CMHSVColorController.c in Sources */,
 				906E2CC329183AE600ECB147 /* CMYuvColorController.c in Sources */,
 				908894462922F2AD0040E733 /* CMGrayColorController.c in Sources */,
-				90BF513F274AB29E001FDE2A /* ScreenResolutionWindowController.mm in Sources */,
 				900B8EEE28B2E075007A137C /* main.c in Sources */,
 				9023237C2916F79F00EFAF01 /* CMLabColorController.c in Sources */,
 				90B6FD6C28A99FEE00EE6F32 /* CMTranslations.c in Sources */,
 				906E2CBA291831CE00ECB147 /* CMLuvColorController.c in Sources */,
 				9079616A29059E4100D1D9D7 /* CMTotalMetamericIndexController.c in Sources */,
 				906E2CC0291836CD00ECB147 /* CMYxyColorController.c in Sources */,
-				90BF514C274AB29E001FDE2A /* SpectralColorController.mm in Sources */,
 				90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */,
 				90BF5146274AB29E001FDE2A /* MachineWindowController.mm in Sources */,
 				902323762916D0CC00EFAF01 /* CMRGBColorController.c in Sources */,
@@ -2339,14 +2315,6 @@
 				90BF50C4274AB29D001FDE2A /* English */,
 			);
 			name = ColorMachine.xib;
-			sourceTree = "<group>";
-		};
-		90BF50C9274AB29D001FDE2A /* ScreenResolution.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				90BF50CA274AB29D001FDE2A /* English */,
-			);
-			name = ScreenResolution.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

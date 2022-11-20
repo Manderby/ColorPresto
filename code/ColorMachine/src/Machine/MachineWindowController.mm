@@ -3,7 +3,6 @@
 
 #import "MachineWindowController.h"
 #import "GrayColorController.h"
-#import "SpectralColorController.h"
 
 #include "CMColorController.h"
 #include "CMHSLColorController.h"

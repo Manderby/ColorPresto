@@ -14,7 +14,6 @@
 #import "ColorsController.h"
 #import "GrayColorController.h"
 #import "MachineWindowController.h"
-#import "ScreenResolutionWindowController.h"
 
 #include <NADateTime.h>
 #include "NAApp.h"
@@ -161,13 +160,6 @@ size_t bordercount;
 - (IBAction)showHelp:(NSMenuItem*)sender{
   NA_UNUSED(sender);
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:cmTranslate(CMApplicationHelpURL)]]];
-}
-
-- (IBAction)showScreenResolution:(id)sender{
-  if(!screenresolutionwindowcontroller){
-    naLoadNib("ScreenResolution", NSApp);
-  }
-  [screenresolutionwindowcontroller showDialog];
 }
 
 - (IBAction)showThreeDee:(id)sender{

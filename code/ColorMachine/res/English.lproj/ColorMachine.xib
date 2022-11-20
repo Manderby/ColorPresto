@@ -156,12 +156,6 @@
                                     <action selector="showThreeDee:" target="-3" id="2642"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Screen Resolution" id="2372">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <connections>
-                                    <action selector="showScreenResolution:" target="-3" id="2640"/>
-                                </connections>
-                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -651,19 +645,6 @@
                         <rect key="frame" x="-11" y="316" width="290" height="5"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </box>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4127" customClass="SpectralColorController">
-                        <rect key="frame" x="288" y="342" width="344" height="120"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4160" customClass="SpectralDisplay">
-                                <rect key="frame" x="10" y="8" width="314" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </customView>
-                        </subviews>
-                        <connections>
-                            <outlet property="colordisplay" destination="4160" id="4581"/>
-                        </connections>
-                    </customView>
                     <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4927">
                         <rect key="frame" x="970" y="18" width="20" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -965,7 +946,6 @@
             <connections>
                 <outlet property="colorsoutlineview" destination="4977" id="4985"/>
                 <outlet property="graycolorcontroller" destination="4494" id="4987"/>
-                <outlet property="spectralcolorcontroller" destination="4127" id="4993"/>
             </connections>
         </customObject>
     </objects>

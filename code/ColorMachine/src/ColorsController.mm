@@ -4,7 +4,6 @@
 #import "ColorMachineApplication.h"
 #import "MachineWindowController.h"
 #import "GrayColorController.h"
-#import "SpectralColorController.h"
 #include "NAUICocoaLegacy.h"
 
 

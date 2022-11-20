@@ -10,7 +10,6 @@ CM_PROTOTYPE(CMHSLColorController);
 
 @class MachineWindowController;
 @class AboutWindowController;
-@class ScreenResolutionWindowController;
 @class ThreeDeeWindowController;
 
 @class ColorController;
@@ -49,7 +48,6 @@ extern size_t bordercount;
 
   IBOutlet AboutWindowController* aboutwindowcontroller;
   IBOutlet MachineWindowController* machinewindowcontroller;
-  IBOutlet ScreenResolutionWindowController* screenresolutionwindowcontroller;
   
   IBOutlet ColorsController* colorscontroller;
   
@@ -67,7 +65,6 @@ extern size_t bordercount;
 - (IBAction)showAbout:(id)sender;
 - (IBAction)showHelp:(NSMenuItem*)sender;
 //- (IBAction)showScreensTool:(id)sender;
-- (IBAction)showScreenResolution:(id)sender;
 - (IBAction)showThreeDee:(id)sender;
 - (IBAction)showMetamerics:(id)sender;
 
