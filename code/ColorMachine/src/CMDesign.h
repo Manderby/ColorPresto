@@ -38,6 +38,10 @@ static const NABezel4 threeDeeBezel = {
   spaceMarginLeft3D,
   spaceMarginBottom};
 
+static const double threeDeeRotationLabelWidth = 55.;
+static const double threeDeeLabelWidth = 110.;
+static const double threeDeeControlWidth = 140.;
+
 static const double degreeWidth = 35;
 static const double spaceMarginDegreeLeft = spaceMarginLeft + degreeWidth;
 
