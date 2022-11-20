@@ -653,10 +653,6 @@
                             <font key="font" metaFont="systemBold" size="12"/>
                         </buttonCell>
                     </button>
-                    <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2478" customClass="GammaDisplay">
-                        <rect key="frame" x="8" y="107" width="84" height="84"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    </customView>
                     <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1607">
                         <rect key="frame" x="8" y="12" width="100" height="14"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -907,7 +903,6 @@
                 <outlet property="bluePrimaryY" destination="1750" id="2144"/>
                 <outlet property="bluePrimaryx" destination="1749" id="2143"/>
                 <outlet property="bluePrimaryy" destination="1748" id="2145"/>
-                <outlet property="gammaDisplay" destination="2478" id="4698"/>
                 <outlet property="grayComputationSelect" destination="1608" id="3662"/>
                 <outlet property="greenPrimaryY" destination="1742" id="2148"/>
                 <outlet property="greenPrimaryx" destination="1741" id="2146"/>

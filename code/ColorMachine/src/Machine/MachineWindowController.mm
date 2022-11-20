@@ -627,8 +627,6 @@
   [bluePrimaryx setStringValue:[NSString stringWithFormat:@"%1.05f", primaries[2][1]]];
   [bluePrimaryy setStringValue:[NSString stringWithFormat:@"%1.05f", primaries[2][2]]];
 
-  [gammaDisplay setNeedsDisplay:YES];
-  
   CMLRGBColorSpaceType type = cmlGetRGBColorSpaceType(cm);
   CMLResponseCurveType responseTypes[3];
   cmlGetRGBResponseTypes(cm, responseTypes);

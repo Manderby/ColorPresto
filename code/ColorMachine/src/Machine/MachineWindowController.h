@@ -12,10 +12,6 @@ CM_PROTOTYPE(CMYcdColorController);
 CM_PROTOTYPE(CMYuvColorController);
 CM_PROTOTYPE(CMYxyColorController);
 
-@class GammaDisplay;
-
-@class ThreeDeeWindowController;
-
 @interface MachineWindowController : NSWindowController <NSWindowDelegate> {
 
   IBOutlet NSButton *maskState;
@@ -41,7 +37,6 @@ CM_PROTOTYPE(CMYxyColorController);
   IBOutlet NSSlider *sliderLinScaleRGB;
   IBOutlet NSSlider *sliderSplitRGB;
   IBOutlet NSSlider *sliderGammaL;
-  IBOutlet GammaDisplay *gammaDisplay;
 
   IBOutlet NSTextField *textFieldT;
   IBOutlet NSTextField *textL;

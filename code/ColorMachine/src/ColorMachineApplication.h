@@ -9,7 +9,6 @@ CM_PROTOTYPE(CMThreeDeeController);
 CM_PROTOTYPE(CMHSLColorController);
 
 @class MachineWindowController;
-@class ThreeDeeWindowController;
 
 @class ColorController;
 @class ColorsController;

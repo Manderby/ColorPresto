@@ -1,5 +1,6 @@
 
 #include "CMMachineController.h"
+#include "CMGammaDisplayController.h"
 
 #include "NAApp.h"
 #include "CMDesign.h"
@@ -23,6 +24,8 @@ struct CMMachineController{
   NATextField* whitePointYTextField;
   NATextField* whitePointxTextField;
   NATextField* whitePointyTextField;
+
+  CMGammaDisplayController* gammaDisplayController;
 
   NAButton* threeDeeButton;
   NAButton* metamericsButton;
@@ -163,6 +166,8 @@ CMMachineController* cmAllocMachineController(void){
   con->whitePointxTextField = cmNewValueTextField(cmSetWhitePoint, con);
   con->whitePointyTextField = cmNewValueTextField(cmSetWhitePoint, con);
 
+  con->gammaDisplayController = cmAllocGammaDisplayController();
+
   con->threeDeeButton = naNewTextButton("3D View", 120, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
   con->metamericsButton = naNewTextButton("Metamerics", 120, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
   naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
@@ -196,6 +201,11 @@ CMMachineController* cmAllocMachineController(void){
   cmAddUICol(con->metamericsButton, marginH);
 
   cmEndUILayout();
+
+//  naAddSpaceChild(
+//    con->space,
+//    cmGetGammaDisplayControllerUIElement(con->gammaDisplayController),
+//    naMakePos(10, 50));
 
   return con;
 }
@@ -262,4 +272,6 @@ void cmUpdateMachineController(CMMachineController* con){
   naSetTextFieldEnabled(con->whitePointYTextField, NA_FALSE);
   naSetTextFieldEnabled(con->whitePointxTextField, whitePointActive);
   naSetTextFieldEnabled(con->whitePointyTextField, whitePointActive);
+
+  cmUpdateGammaDisplayController(con->gammaDisplayController);
 }
