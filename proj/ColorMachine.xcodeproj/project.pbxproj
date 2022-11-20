@@ -301,7 +301,6 @@
 		90BF5137274AB29E001FDE2A /* ColorMachineChangelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90BF50E2274AB29D001FDE2A /* ColorMachineChangelog.txt */; };
 		90BF513C274AB29E001FDE2A /* ColorMachineApplication.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50E9274AB29D001FDE2A /* ColorMachineApplication.mm */; };
 		90BF513E274AB29E001FDE2A /* ColorsController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50EC274AB29D001FDE2A /* ColorsController.mm */; };
-		90BF5140274AB29E001FDE2A /* AboutWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50F1274AB29D001FDE2A /* AboutWindowController.mm */; };
 		90BF5141274AB29E001FDE2A /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50F3274AB29D001FDE2A /* main.mm */; };
 		90BF5146274AB29E001FDE2A /* MachineWindowController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF50FE274AB29D001FDE2A /* MachineWindowController.mm */; };
 		90BF5147274AB29E001FDE2A /* ColorController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 90BF5101274AB29D001FDE2A /* ColorController.mm */; };
@@ -760,8 +759,6 @@
 		90BF50E9274AB29D001FDE2A /* ColorMachineApplication.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorMachineApplication.mm; sourceTree = "<group>"; };
 		90BF50EA274AB29D001FDE2A /* ColorMachineApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorMachineApplication.h; sourceTree = "<group>"; };
 		90BF50EC274AB29D001FDE2A /* ColorsController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ColorsController.mm; sourceTree = "<group>"; };
-		90BF50F1274AB29D001FDE2A /* AboutWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AboutWindowController.mm; sourceTree = "<group>"; };
-		90BF50F2274AB29D001FDE2A /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
 		90BF50F3274AB29D001FDE2A /* main.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
 		90BF50FA274AB29D001FDE2A /* ColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorController.h; sourceTree = "<group>"; };
 		90BF50FE274AB29D001FDE2A /* MachineWindowController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MachineWindowController.mm; sourceTree = "<group>"; };
@@ -1477,7 +1474,6 @@
 		90BF50E7274AB29D001FDE2A /* src */ = {
 			isa = PBXGroup;
 			children = (
-				90BF50F0274AB29D001FDE2A /* About */,
 				90E68D0C2913142C007FFF9C /* CMColorsManager.c */,
 				90E68D0B2913142C007FFF9C /* CMColorsManager.h */,
 				907961632905330700D1D9D7 /* CMDesign.c */,
@@ -1499,15 +1495,6 @@
 				90BF5118274AB29D001FDE2A /* ThreeDee */,
 			);
 			path = src;
-			sourceTree = "<group>";
-		};
-		90BF50F0274AB29D001FDE2A /* About */ = {
-			isa = PBXGroup;
-			children = (
-				90BF50F1274AB29D001FDE2A /* AboutWindowController.mm */,
-				90BF50F2274AB29D001FDE2A /* AboutWindowController.h */,
-			);
-			path = About;
 			sourceTree = "<group>";
 		};
 		90BF50F7274AB29D001FDE2A /* Machine */ = {
@@ -2157,7 +2144,6 @@
 				902323762916D0CC00EFAF01 /* CMRGBColorController.c in Sources */,
 				907961642905330700D1D9D7 /* CMDesign.c in Sources */,
 				90B6FD7128A9A51000EE6F32 /* CMThreeDeeController.c in Sources */,
-				90BF5140274AB29E001FDE2A /* AboutWindowController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

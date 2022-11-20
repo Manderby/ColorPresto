@@ -10,7 +10,6 @@
 #include "CMHSLColorController.h"
 
 #import "ColorMachineApplication.h"
-#import "AboutWindowController.h"
 #import "ColorsController.h"
 #import "GrayColorController.h"
 #import "MachineWindowController.h"
@@ -150,11 +149,6 @@ size_t bordercount;
 
 - (IBAction)showAbout:(id)sender{
   mandShowAboutController();
-  
-//  if(!aboutwindowcontroller){
-//    naLoadNib("AboutWindow", NSApp);
-//  }
-//  [aboutwindowcontroller showDialog];
 }
 
 - (IBAction)showHelp:(NSMenuItem*)sender{

@@ -9,7 +9,6 @@ CM_PROTOTYPE(CMThreeDeeController);
 CM_PROTOTYPE(CMHSLColorController);
 
 @class MachineWindowController;
-@class AboutWindowController;
 @class ThreeDeeWindowController;
 
 @class ColorController;
@@ -46,7 +45,6 @@ extern size_t bordercount;
   CMMetamericsController* metamericsController;
   CMThreeDeeController* threeDeeController;
 
-  IBOutlet AboutWindowController* aboutwindowcontroller;
   IBOutlet MachineWindowController* machinewindowcontroller;
   
   IBOutlet ColorsController* colorscontroller;
