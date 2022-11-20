@@ -83,14 +83,15 @@ CMRGBColorController* cmAllocRGBColorController(void){
   con->colorWell1DG = cmAllocColorWell1D(&(con->baseController), CML_COLOR_RGB, con->rgbColor, 1);
   con->colorWell1DB = cmAllocColorWell1D(&(con->baseController), CML_COLOR_RGB, con->rgbColor, 2);
   
-  naSetUIElementNextTabElement(con->textFieldR, con->textFieldG);
-  naSetUIElementNextTabElement(con->textFieldG, con->textFieldB);
-  naSetUIElementNextTabElement(con->textFieldB, con->textFieldR);
-
   con->labelNum = cmNewColorComponentLabel("#");
   con->textFieldHex = cmNewValueTextField(cmRGBValueEdited, con);
   con->textFieldDec = cmNewBigValueTextField(cmRGBValueEdited, con);
 
+  naSetUIElementNextTabElement(con->textFieldR, con->textFieldG);
+  naSetUIElementNextTabElement(con->textFieldG, con->textFieldB);
+  naSetUIElementNextTabElement(con->textFieldB, con->textFieldR);
+  naSetUIElementNextTabElement(con->textFieldHex, con->textFieldDec);
+  naSetUIElementNextTabElement(con->textFieldDec, con->textFieldHex);
 
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, 10);

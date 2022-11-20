@@ -62,9 +62,9 @@ CMUVWColorController* cmAllocUVWColorController(void){
   con->colorWell1DV = cmAllocColorWell1D(&(con->baseController), CML_COLOR_UVW, con->uvwColor, 1);
   con->colorWell1DW = cmAllocColorWell1D(&(con->baseController), CML_COLOR_UVW, con->uvwColor, 2);
 
-  naSetUIElementNextTabElement(con->textFieldU, con->textFieldU);
-  naSetUIElementNextTabElement(con->textFieldV, con->textFieldV);
-  naSetUIElementNextTabElement(con->textFieldW, con->textFieldW);
+  naSetUIElementNextTabElement(con->textFieldU, con->textFieldV);
+  naSetUIElementNextTabElement(con->textFieldV, con->textFieldW);
+  naSetUIElementNextTabElement(con->textFieldW, con->textFieldU);
 
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIPos(0, colorValueCondensedRowHeight);

@@ -35,17 +35,17 @@ void cmInitColorWell2D(void* data){
 
 NABool cmDragColorWell2D(NAReaction reaction){
   CMColorWell2D* well = (CMColorWell2D*)reaction.controller;
-
-  CMLColorType colorType = cmGetColorControllerColorType(well->colorController);
-  CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
-  CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
-  CMLColorMutator clamper = cmlGetClamper(colorType);
-
-  CMLVec3 normedColorValues;
-  outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
-  
+ 
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
   if(mouseStatus->leftPressed){
+    CMLColorType colorType = cmGetColorControllerColorType(well->colorController);
+    CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
+    CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
+    CMLColorMutator clamper = cmlGetClamper(colorType);
+
+    CMLVec3 normedColorValues;
+    outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
+
     NARect displayRect = naGetUIElementRect(well->display, naGetApplication(), NA_FALSE);
     switch(well->fixedIndex){
     case 0:
@@ -61,16 +61,19 @@ NABool cmDragColorWell2D(NAReaction reaction){
       normedColorValues[1] = (mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height;
       break;
     }
+
+    CMLVec3 newColorValues;
+    inputConverter(newColorValues, normedColorValues, 1);
+    clamper(newColorValues, 1);
+    
+    cmSetColorControllerColorData(well->colorController, newColorValues);
+    cmSetCurrentColorController(well->colorController);
+    cmUpdateColor();
+
+    return NA_TRUE;
   }
   
-  CMLVec3 newColorValues;
-  inputConverter(newColorValues, normedColorValues, 1);
-  clamper(newColorValues, 1);
-  
-  cmSetColorControllerColorData(well->colorController, newColorValues);
-  cmUpdateColor();
-
-  return NA_TRUE;
+  return NA_FALSE;
 }
 
 
@@ -182,8 +185,6 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     CMLColorConverter coordConverter = cmlGetColorConverter(colorType, CML_COLOR_XYZ);
     CMLNormedConverter normedConverter = cmlGetNormedOutputConverter(colorType);
 
-//    NABool firstPointFound = NA_FALSE;
-//    CMLVec3 prevCoords;
     glBegin(GL_LINE_STRIP);
     for(int32 iStep = 0; iStep <= intervals; iStep++){
       float l = imin + (((imax - imin) * iStep) / intervals);
@@ -243,6 +244,7 @@ CMColorWell2D* cmAllocColorWell2D(CMColorController* colorController, size_t fix
   
   well->display = naNewOpenGLSpace(naMakeSize(colorWell2DSize, colorWell2DSize), cmInitColorWell2D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_REDRAW, cmDrawColorWell2D, well);
+  naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_DOWN, cmDragColorWell2D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_MOVED, cmDragColorWell2D, well);
   
   well->colorController = colorController;

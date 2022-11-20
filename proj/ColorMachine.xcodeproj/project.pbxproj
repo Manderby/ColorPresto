@@ -392,6 +392,8 @@
 		90E68D1029131CA6007FFF9C /* CMHSLColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E68D0E29131CA6007FFF9C /* CMHSLColorController.c */; };
 		90ED439C28FF431F004E8A54 /* CMWhitePoints.c in Sources */ = {isa = PBXBuildFile; fileRef = 90ED439A28FF431F004E8A54 /* CMWhitePoints.c */; };
 		90ED439D28FF431F004E8A54 /* CMUVMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90ED439B28FF431F004E8A54 /* CMUVMetamericIndexController.c */; };
+		90F3014A292A333E00603F29 /* CMSpectralColorWell.c in Sources */ = {isa = PBXBuildFile; fileRef = 90F30148292A333E00603F29 /* CMSpectralColorWell.c */; };
+		90F3014C292A334600603F29 /* CMSpectralColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90F3014B292A334600603F29 /* CMSpectralColorController.c */; };
 		B96AA9A21767414B00F041A3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96AA9A11767414B00F041A3 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
@@ -869,6 +871,10 @@
 		90ED439928FF431F004E8A54 /* CMWhitePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMWhitePoints.h; sourceTree = "<group>"; };
 		90ED439A28FF431F004E8A54 /* CMWhitePoints.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMWhitePoints.c; sourceTree = "<group>"; };
 		90ED439B28FF431F004E8A54 /* CMUVMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMUVMetamericIndexController.c; sourceTree = "<group>"; };
+		90F30146292A329F00603F29 /* CMSpectralColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSpectralColorController.h; sourceTree = "<group>"; };
+		90F30148292A333E00603F29 /* CMSpectralColorWell.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMSpectralColorWell.c; sourceTree = "<group>"; };
+		90F30149292A333E00603F29 /* CMSpectralColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMSpectralColorWell.h; sourceTree = "<group>"; };
+		90F3014B292A334600603F29 /* CMSpectralColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMSpectralColorController.c; sourceTree = "<group>"; };
 		B96AA9A11767414B00F041A3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		B9917CB115C9AA9E00F0140B /* libcml.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcml.dylib; path = /usr/local/lib/libcml.dylib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -1550,6 +1556,10 @@
 				902CC627291EE9B4007CAF88 /* CMMachineWindowController.h */,
 				902323752916D0CC00EFAF01 /* CMRGBColorController.c */,
 				902323742916D0CC00EFAF01 /* CMRGBColorController.h */,
+				90F3014B292A334600603F29 /* CMSpectralColorController.c */,
+				90F30146292A329F00603F29 /* CMSpectralColorController.h */,
+				90F30148292A333E00603F29 /* CMSpectralColorWell.c */,
+				90F30149292A333E00603F29 /* CMSpectralColorWell.h */,
 				904F634B29290AA800EDC882 /* CMUVWColorController.c */,
 				904F634A29290AA800EDC882 /* CMUVWColorController.h */,
 				906E2CBC291834AC00ECB147 /* CMXYZColorController.c */,
@@ -2123,6 +2133,7 @@
 			files = (
 				90BF5141274AB29E001FDE2A /* main.mm in Sources */,
 				906848CF2904682900C59002 /* CMColorConversionsYcdUVW.c in Sources */,
+				90F3014A292A333E00603F29 /* CMSpectralColorWell.c in Sources */,
 				90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */,
 				9099F4FD28F2145300C18D81 /* CMTwoColorController.c in Sources */,
 				909541AD28B155D800346AB2 /* CMThreeDeeView.c in Sources */,
@@ -2146,6 +2157,7 @@
 				90827D08291594E30045A1F7 /* CMColorWell1D.c in Sources */,
 				90ED439C28FF431F004E8A54 /* CMWhitePoints.c in Sources */,
 				904F634C29290AA800EDC882 /* CMUVWColorController.c in Sources */,
+				90F3014C292A334600603F29 /* CMSpectralColorController.c in Sources */,
 				90C6C9B3290094AE00F350A4 /* CMVisMetamericIndexController.c in Sources */,
 				902CC628291EE9B4007CAF88 /* CMMachineWindowController.c in Sources */,
 				90ED439D28FF431F004E8A54 /* CMUVMetamericIndexController.c in Sources */,

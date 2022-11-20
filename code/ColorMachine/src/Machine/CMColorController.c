@@ -6,6 +6,7 @@
 #include "CMLabColorController.h"
 #include "CMLuvColorController.h"
 #include "CMRGBColorController.h"
+#include "CMSpectralColorController.h"
 #include "CMUVWColorController.h"
 #include "CMXYZColorController.h"
 #include "CMYCbCrColorController.h"
@@ -28,7 +29,7 @@ NABool cmColorControllerMouseDown(NAReaction reaction){
 
 void cmInitColorController(CMColorController* con, CMLColorType colorType){
   con->space = naNewSpace(naMakeSize(300, 100));
-  naAddUIReaction(con->space, NA_UI_COMMAND_MOUSE_DOWN, cmColorControllerMouseDown, con);
+  //naAddUIReaction(con->space, NA_UI_COMMAND_MOUSE_DOWN, cmColorControllerMouseDown, con);
   
   con->active = NA_FALSE;
   con->colorType = colorType;
@@ -61,6 +62,7 @@ const void* cmGetColorControllerColorData(const CMColorController* con){
   case CML_COLOR_Lab: return cmGetLabColorControllerColorData((const CMLabColorController*)con);
   case CML_COLOR_Luv: return cmGetLuvColorControllerColorData((const CMLuvColorController*)con);
   case CML_COLOR_RGB: return cmGetRGBColorControllerColorData((const CMRGBColorController*)con);
+  case CML_COLOR_SPECTRUM_ILLUMINATION: return cmGetSpectralColorControllerColorData((const CMSpectralColorController*)con);
   case CML_COLOR_UVW: return cmGetUVWColorControllerColorData((const CMUVWColorController*)con);
   case CML_COLOR_XYZ: return cmGetXYZColorControllerColorData((const CMXYZColorController*)con);
   case CML_COLOR_YCbCr: return cmGetYCbCrColorControllerColorData((const CMYCbCrColorController*)con);
@@ -81,6 +83,7 @@ void cmSetColorControllerColorData(CMColorController* con, const void* data){
   case CML_COLOR_Lab: cmSetLabColorControllerColorData((CMLabColorController*)con, data); break;
   case CML_COLOR_Luv: cmSetLuvColorControllerColorData((CMLuvColorController*)con, data); break;
   case CML_COLOR_RGB: cmSetRGBColorControllerColorData((CMRGBColorController*)con, data); break;
+  case CML_COLOR_SPECTRUM_ILLUMINATION: cmSetSpectralColorControllerColorData((CMSpectralColorController*)con, data); break;
   case CML_COLOR_UVW: cmSetUVWColorControllerColorData((CMUVWColorController*)con, data); break;
   case CML_COLOR_XYZ: cmSetXYZColorControllerColorData((CMXYZColorController*)con, data); break;
   case CML_COLOR_YCbCr: cmSetYCbCrColorControllerColorData((CMYCbCrColorController*)con, data); break;
