@@ -49,7 +49,6 @@ struct CMMachineWindowController{
 
 CMMachineWindowController* cmAllocMachineWindowController(void){
   CMMachineWindowController* con = naAlloc(CMMachineWindowController);
-  naZeron(con, sizeof(CMMachineWindowController));
 
   con->window = naNewWindow(
     "Color Machine",
@@ -111,6 +110,18 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
 
 
 void cmDeallocMachineWindowController(CMMachineWindowController* con){
+  cmDeallocGrayColorController(con->grayColorController);
+  cmDeallocHSLColorController(con->hslColorController);
+  cmDeallocHSVColorController(con->hsvColorController);
+  cmDeallocLabColorController(con->labColorController);
+  cmDeallocLuvColorController(con->luvColorController);
+  cmDeallocRGBColorController(con->rgbColorController);
+  cmDeallocSpectralColorController(con->spectralColorController);
+  cmDeallocUVWColorController(con->uvwColorController);
+  cmDeallocXYZColorController(con->xyzColorController);
+  cmDeallocYuvColorController(con->yuvColorController);
+  cmDeallocYCbCrColorController(con->ycbcrColorController);
+  cmDeallocYxyColorController(con->yxyColorController);
   naFree(con);
 }
 

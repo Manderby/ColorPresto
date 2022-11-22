@@ -50,6 +50,7 @@ CMSpectralColorController* cmAllocSpectralColorController(void){
 
 
 void cmDeallocSpectralColorController(CMSpectralColorController* con){
+  cmDeallocSpectralColorWell(con->display);
   cmClearColorController(&(con->baseController));
   naFree(con);
 }

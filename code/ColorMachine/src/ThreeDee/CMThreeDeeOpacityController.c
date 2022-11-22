@@ -1,5 +1,5 @@
 
-#include "CMOpacityController.h"
+#include "CMThreeDeeOpacityController.h"
 
 #include "CMDesign.h"
 #include "CMTranslations.h"
@@ -11,8 +11,9 @@
 #include "NAUtility/NAMemory.h"
 #include "NAUtility/NAString.h"
 
-struct CMOpacityController{
+struct CMThreeDeeOpacityController{
   NASpace* space;
+  CMThreeDeeController* parent;
 
   NALabel* pointsOpacityLabel;
   NASlider* pointsOpacitySlider;
@@ -25,8 +26,6 @@ struct CMOpacityController{
   NALabel* bodySolidLabel;
   NACheckBox* bodySolidCheckBox;
 
-  CMThreeDeeController* parentController;
-
   double pointsOpacity;
   double gridAlpha;
   double gridTint;
@@ -37,22 +36,22 @@ struct CMOpacityController{
 
 
 
-NABool cmPressOpacityButton(NAReaction reaction){
-  CMOpacityController* con = (CMOpacityController*)reaction.controller;
+NABool cmPressThreeDeeOpacityButton(NAReaction reaction){
+  CMThreeDeeOpacityController* con = (CMThreeDeeOpacityController*)reaction.controller;
 
   if(reaction.uiElement == con->bodySolidCheckBox){
     con->bodySolid = naGetCheckBoxState(con->bodySolidCheckBox);
   }
 
-  cmUpdateThreeDeeController(con->parentController);
+  cmUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
 
 
 
-NABool cmChangeOpacitySlider(NAReaction reaction){
-  CMOpacityController* con = (CMOpacityController*)reaction.controller;
+NABool cmChangeThreeDeeOpacitySlider(NAReaction reaction){
+  CMThreeDeeOpacityController* con = (CMThreeDeeOpacityController*)reaction.controller;
 
   if(reaction.uiElement == con->pointsOpacitySlider){
     con->pointsOpacity = naGetSliderValue(con->pointsOpacitySlider);
@@ -64,18 +63,17 @@ NABool cmChangeOpacitySlider(NAReaction reaction){
     con->bodyAlpha = naGetSliderValue(con->bodyAlphaSlider);
   }
   
-  cmUpdateThreeDeeController(con->parentController);
+  cmUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
 
 
 
-CMOpacityController* cmAllocOpacityController(CMThreeDeeController* parentController){
-  CMOpacityController* con = naAlloc(CMOpacityController);
-  naZeron(con, sizeof(CMOpacityController));
+CMThreeDeeOpacityController* cmAllocThreeDeeOpacityController(CMThreeDeeController* parent){
+  CMThreeDeeOpacityController* con = naAlloc(CMThreeDeeOpacityController);
 
-  con->parentController = parentController;
+  con->parent = parent;
 
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
@@ -83,26 +81,26 @@ CMOpacityController* cmAllocOpacityController(CMThreeDeeController* parentContro
   con->pointsOpacityLabel = naNewLabel(cmTranslate(CMPointsOpacity), threeDeeLabelWidth);
   con->pointsOpacitySlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->pointsOpacitySlider, 0., 1., 0);
-  naAddUIReaction(con->pointsOpacitySlider, NA_UI_COMMAND_EDITED, cmChangeOpacitySlider, con);
+  naAddUIReaction(con->pointsOpacitySlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeOpacitySlider, con);
 
   con->gridAlphaLabel = naNewLabel(cmTranslate(CMGridOpacity), threeDeeLabelWidth);
   con->gridAlphaSlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->gridAlphaSlider, 0., 1., 0);
-  naAddUIReaction(con->gridAlphaSlider, NA_UI_COMMAND_EDITED, cmChangeOpacitySlider, con);
+  naAddUIReaction(con->gridAlphaSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeOpacitySlider, con);
 
   con->gridTintLabel = naNewLabel(cmTranslate(CMGridTint), threeDeeLabelWidth);
   con->gridTintSlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->gridTintSlider, 0., 1., 0);
-  naAddUIReaction(con->gridTintSlider, NA_UI_COMMAND_EDITED, cmChangeOpacitySlider, con);
+  naAddUIReaction(con->gridTintSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeOpacitySlider, con);
 
   con->bodyAlphaLabel = naNewLabel(cmTranslate(CMBodyTint), threeDeeLabelWidth);
   con->bodyAlphaSlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->bodyAlphaSlider, 0., 1., 0);
-  naAddUIReaction(con->bodyAlphaSlider, NA_UI_COMMAND_EDITED, cmChangeOpacitySlider, con);
+  naAddUIReaction(con->bodyAlphaSlider, NA_UI_COMMAND_EDITED, cmChangeThreeDeeOpacitySlider, con);
 
   con->bodySolidLabel = naNewLabel(cmTranslate(CMSolid), threeDeeLabelWidth);
   con->bodySolidCheckBox = naNewCheckBox("", 30);
-  naAddUIReaction(con->bodySolidCheckBox, NA_UI_COMMAND_PRESSED, cmPressOpacityButton, con);
+  naAddUIReaction(con->bodySolidCheckBox, NA_UI_COMMAND_PRESSED, cmPressThreeDeeOpacityButton, con);
 
   // layout
 
@@ -138,35 +136,35 @@ CMOpacityController* cmAllocOpacityController(CMThreeDeeController* parentContro
 
 
 
-void cmDeallocOpacityController(CMOpacityController* con){
+void cmDeallocThreeDeeOpacityController(CMThreeDeeOpacityController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetOpacityUIElement(CMOpacityController* con){
+NASpace* cmGetThreeDeeOpacityControllerUIElement(CMThreeDeeOpacityController* con){
   return con->space;
 }
 
 
-NABool cmGetOpacityBodySolid(CMOpacityController* con){
+NABool cmGetThreeDeeOpacityControllerBodySolid(CMThreeDeeOpacityController* con){
   return con->bodySolid;
 }
-double cmGetOpacityPointsOpacity(CMOpacityController* con){
+double cmGetThreeDeeOpacityControllerPointsOpacity(CMThreeDeeOpacityController* con){
   return con->pointsOpacity;
 }
-double cmGetOpacityBodyAlpha(CMOpacityController* con){
+double cmGetThreeDeeOpacityControllerBodyAlpha(CMThreeDeeOpacityController* con){
   return con->bodyAlpha;
 }
-double cmGetOpacityGridAlpha(CMOpacityController* con){
+double cmGetThreeDeeOpacityControllerGridAlpha(CMThreeDeeOpacityController* con){
   return con->gridAlpha;
 }
-double cmGetOpacityGridTint(CMOpacityController* con){
+double cmGetThreeDeeOpacityControllerGridTint(CMThreeDeeOpacityController* con){
   return con->gridTint;
 }
 
 
-void cmUpdateOpacityController(CMOpacityController* con)
+void cmUpdateThreeDeeOpacityController(CMThreeDeeOpacityController* con)
 {
   naSetSliderValue(con->pointsOpacitySlider, con->pointsOpacity);
   naSetSliderValue(con->gridAlphaSlider, con->gridAlpha);

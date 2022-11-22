@@ -1,5 +1,5 @@
 
-#include "CMOptionsController.h"
+#include "CMThreeDeeOptionsController.h"
 
 #include "CMDesign.h"
 #include "CMTranslations.h"
@@ -11,8 +11,9 @@
 #include "NAUtility/NAMemory.h"
 #include "NAUtility/NAString.h"
 
-struct CMOptionsController{
+struct CMThreeDeeOptionsController{
   NASpace* space;
+  CMThreeDeeController* parent;
 
   NALabel* axisLabel;
   NACheckBox* axisCheckBox;
@@ -23,8 +24,6 @@ struct CMOptionsController{
   NALabel* fovyLabel;
   NASlider* fovySlider;
 
-  CMThreeDeeController* parentController;
-
   NABool showSpectrum;
   NABool showAxis;
   double backgroundGray;
@@ -34,7 +33,7 @@ struct CMOptionsController{
 
 
 NABool cmPressOptionsButton(NAReaction reaction){
-  CMOptionsController* con = (CMOptionsController*)reaction.controller;
+  CMThreeDeeOptionsController* con = (CMThreeDeeOptionsController*)reaction.controller;
 
   if(reaction.uiElement == con->spectrumCheckBox){
     con->showSpectrum = naGetCheckBoxState(con->spectrumCheckBox);
@@ -42,7 +41,7 @@ NABool cmPressOptionsButton(NAReaction reaction){
     con->showAxis = naGetCheckBoxState(con->axisCheckBox);
   }
 
-  cmUpdateThreeDeeController(con->parentController);
+  cmUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
@@ -50,7 +49,7 @@ NABool cmPressOptionsButton(NAReaction reaction){
 
 
 NABool cmChangeOptionsSlider(NAReaction reaction){
-  CMOptionsController* con = (CMOptionsController*)reaction.controller;
+  CMThreeDeeOptionsController* con = (CMThreeDeeOptionsController*)reaction.controller;
 
   if(reaction.uiElement == con->backgroundSlider){
     con->backgroundGray = naGetSliderValue(con->backgroundSlider);
@@ -59,18 +58,17 @@ NABool cmChangeOptionsSlider(NAReaction reaction){
     if(con->fovy < 15.f){con->fovy = 0.f;}
   }
   
-  cmUpdateThreeDeeController(con->parentController);
+  cmUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
 
 
 
-CMOptionsController* cmAllocOptionsController(CMThreeDeeController* parentController){
-  CMOptionsController* con = naAlloc(CMOptionsController);
-  naZeron(con, sizeof(CMOptionsController));
+CMThreeDeeOptionsController* cmAllocThreeDeeOptionsController(CMThreeDeeController* parent){
+  CMThreeDeeOptionsController* con = naAlloc(CMThreeDeeOptionsController);
 
-  con->parentController = parentController;
+  con->parent = parent;
 
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
@@ -94,7 +92,6 @@ CMOptionsController* cmAllocOptionsController(CMThreeDeeController* parentContro
   naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cmChangeOptionsSlider, con);
 
   // layout
-
   cmBeginUILayout(con->space, threeDeeBezel);
   
   cmAddUIRow(con->axisLabel, uiElemHeight);
@@ -112,7 +109,6 @@ CMOptionsController* cmAllocOptionsController(CMThreeDeeController* parentContro
   cmEndUILayout();
 
   // initial values
-
   con->showSpectrum = NA_FALSE;
   con->showAxis = NA_TRUE;
   con->backgroundGray = 0.3;
@@ -123,38 +119,39 @@ CMOptionsController* cmAllocOptionsController(CMThreeDeeController* parentContro
 
 
 
-void cmDeallocOptionsController(CMOptionsController* con){
+void cmDeallocThreeDeeOptionsController(CMThreeDeeOptionsController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetOptionsUIElement(CMOptionsController* con){
+NASpace* cmGetThreeDeeOptionsControllerUIElement(CMThreeDeeOptionsController* con){
   return con->space;
 }
 
 
 
-double cmGetOptionsAxisGray(CMOptionsController* con){
+double cmGetThreeDeeOptionsControllerAxisGray(CMThreeDeeOptionsController* con){
   float axisGray = con->backgroundGray + .5f;
   if(axisGray > 1.f){axisGray -= 1.f;}
   return axisGray;
 }
-double cmGetOptionsBackgroundGray(CMOptionsController* con){
+double cmGetThreeDeeOptionsControllerBackgroundGray(CMThreeDeeOptionsController* con){
   return con->backgroundGray;
 }
-double cmGetOptionsFovy(CMOptionsController* con){
+double cmGetThreeDeeOptionsControllerFovy(CMThreeDeeOptionsController* con){
   return con->fovy;
 }
-NABool cmGetOptionsShowAxis(CMOptionsController* con){
+NABool cmGetThreeDeeOptionsControllerShowAxis(CMThreeDeeOptionsController* con){
   return con->showAxis;
 }
-NABool cmGetOptionsShowSpectrum(CMOptionsController* con){
+NABool cmGetThreeDeeOptionsControllerShowSpectrum(CMThreeDeeOptionsController* con){
   return con->showSpectrum;
 }
 
 
-void cmUpdateOptionsController(CMOptionsController* con)
+
+void cmUpdateThreeDeeOptionsController(CMThreeDeeOptionsController* con)
 {
   naSetCheckBoxState(con->spectrumCheckBox, con->showSpectrum);
   naSetCheckBoxState(con->axisCheckBox, con->showAxis);

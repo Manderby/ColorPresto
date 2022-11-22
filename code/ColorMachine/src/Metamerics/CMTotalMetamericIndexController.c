@@ -21,7 +21,6 @@ struct CMTotalMetamericIndexController{
 
 CMTotalMetamericIndexController* cmAllocTotalMetamericIndexController(void){
   CMTotalMetamericIndexController* con = naAlloc(CMTotalMetamericIndexController);
-  naZeron(con, sizeof(CMTotalMetamericIndexController));
 
   con->space = naNewSpace(naMakeSize(1, 1));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);

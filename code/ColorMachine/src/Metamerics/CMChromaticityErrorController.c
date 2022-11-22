@@ -22,7 +22,6 @@ struct CMChromaticityErrorController{
 
 CMChromaticityErrorController* cmAllocChromaticityErrorController(void){
   CMChromaticityErrorController* con = naAlloc(CMChromaticityErrorController);
-  naZeron(con, sizeof(CMChromaticityErrorController));
 
   con->space = naNewSpace(naMakeSize(1, 1));
 

@@ -473,7 +473,6 @@ CMVisMetamericColors cmComputeVisMetamericColors(
 
 CMVisMetamericIndexController* cmAllocVisMetamericIndexController(void){
   CMVisMetamericIndexController* con = naAlloc(CMVisMetamericIndexController);
-  naZeron(con, sizeof(CMVisMetamericIndexController));
 
   con->space = naNewSpace(naMakeSize(1, 1));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);

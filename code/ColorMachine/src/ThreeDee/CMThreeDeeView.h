@@ -9,6 +9,9 @@
 CM_PROTOTYPE(NAOpenGLSpace);
 
 
+typedef struct CMThreeDeeView CMThreeDeeView;
+
+
 
 void cmInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace);
 

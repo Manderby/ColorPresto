@@ -65,6 +65,8 @@ CMGrayColorController* cmAllocGrayColorController(void){
 
 
 void cmDeallocGrayColorController(CMGrayColorController* con){
+  cmDeallocGrayColorWell(con->display);
+  cmDeallocColorWell1D(con->colorWell1DGray);
   cmClearColorController(&(con->baseController));
   naFree(con);
 }

@@ -91,6 +91,10 @@ CMUVWColorController* cmAllocUVWColorController(void){
 
 
 void cmDeallocUVWColorController(CMUVWColorController* con){
+  cmDeallocColorWell2D(con->colorWell2D);
+  cmDeallocColorWell1D(con->colorWell1DU);
+  cmDeallocColorWell1D(con->colorWell1DV);
+  cmDeallocColorWell1D(con->colorWell1DW);
   cmClearColorController(&(con->baseController));
   naFree(con);
 }

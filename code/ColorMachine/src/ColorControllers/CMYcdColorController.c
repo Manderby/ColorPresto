@@ -91,6 +91,10 @@ CMYcdColorController* cmAllocYcdColorController(void){
 
 
 void cmDeallocYcdColorController(CMYcdColorController* con){
+  cmDeallocColorWell2D(con->colorWell2D);
+  cmDeallocColorWell1D(con->colorWell1DY);
+  cmDeallocColorWell1D(con->colorWell1Dc);
+  cmDeallocColorWell1D(con->colorWell1Dd);
   cmClearColorController(&(con->baseController));
   naFree(con);
 }

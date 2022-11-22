@@ -358,7 +358,6 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
 
 CMColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
   CMColorRenderingIndexController* con = naAlloc(CMColorRenderingIndexController);
-  naZeron(con, sizeof(CMColorRenderingIndexController));
 
   con->space = naNewSpace(naMakeSize(1, 1));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);

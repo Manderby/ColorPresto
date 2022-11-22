@@ -123,6 +123,10 @@ CMRGBColorController* cmAllocRGBColorController(void){
 
 
 void cmDeallocRGBColorController(CMRGBColorController* con){
+  cmDeallocColorWell2D(con->colorWell2D);
+  cmDeallocColorWell1D(con->colorWell1DR);
+  cmDeallocColorWell1D(con->colorWell1DG);
+  cmDeallocColorWell1D(con->colorWell1DB);
   cmClearColorController(&(con->baseController));
   naFree(con);
 }

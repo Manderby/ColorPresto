@@ -7,7 +7,7 @@
 
 
 struct CMSpectralColorWell{
-  NAOpenGLSpace* display;
+  NAOpenGLSpace* openGLSpace;
   NAInt fontId;
 
   GLuint wellTex;
@@ -23,8 +23,8 @@ NABool cmDragSpectralColorWell(NAReaction reaction){
     CMSpectralColorWell* well = (CMSpectralColorWell*)reaction.controller;
     CMLColorMachine* cm = cmGetCurrentColorMachine();
 
-    NARect displayRect = naGetUIElementRect(well->display, naGetApplication(), NA_FALSE);
-    double mouseX = (mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width;
+    NARect spaceRect = naGetUIElementRect(well->openGLSpace, naGetApplication(), NA_FALSE);
+    double mouseX = (mouseStatus->pos.x - spaceRect.pos.x) / spaceRect.size.width;
     if(mouseX < 0.f){mouseX = 0.f;}
     if(mouseX > 1.f){mouseX = 1.f;}
 
@@ -99,7 +99,7 @@ NABool cmDrawSpectralColorWell(NAReaction reaction){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
 //  CMLColorMachine* sm = cmGetCurrentScreenMachine();
 
-  NASize viewSize = naGetUIElementRect(well->display, NA_NULL, NA_FALSE).size;
+  NASize viewSize = naGetUIElementRect(well->openGLSpace, NA_NULL, NA_FALSE).size;
   glViewport(0, 0, (GLsizei)viewSize.width, (GLsizei)viewSize.height);
 
   glClear(GL_DEPTH_BUFFER_BIT);
@@ -234,7 +234,7 @@ NABool cmDrawSpectralColorWell(NAReaction reaction){
   glMatrixMode(GL_PROJECTION);
   glPopMatrix();
 
-  naSwapOpenGLSpaceBuffer(well->display);
+  naSwapOpenGLSpaceBuffer(well->openGLSpace);
 
   return NA_TRUE;
 }
@@ -244,10 +244,10 @@ NABool cmDrawSpectralColorWell(NAReaction reaction){
 CMSpectralColorWell* cmAllocSpectralColorWell(CMColorController* colorController){
   CMSpectralColorWell* well = naAlloc(CMSpectralColorWell);
   
-  well->display = naNewOpenGLSpace(naMakeSize(spectralWellSize, colorWell2DSize), cmInitSpectralColorWell, well);
-  naAddUIReaction(well->display, NA_UI_COMMAND_REDRAW, cmDrawSpectralColorWell, well);
-  naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_DOWN, cmDragSpectralColorWell, well);
-  naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_MOVED, cmDragSpectralColorWell, well);
+  well->openGLSpace = naNewOpenGLSpace(naMakeSize(spectralWellSize, colorWell2DSize), cmInitSpectralColorWell, well);
+  naAddUIReaction(well->openGLSpace, NA_UI_COMMAND_REDRAW, cmDrawSpectralColorWell, well);
+  naAddUIReaction(well->openGLSpace, NA_UI_COMMAND_MOUSE_DOWN, cmDragSpectralColorWell, well);
+  naAddUIReaction(well->openGLSpace, NA_UI_COMMAND_MOUSE_MOVED, cmDragSpectralColorWell, well);
   
   well->colorController = colorController;
   
@@ -263,11 +263,11 @@ void cmDeallocSpectralColorWell(CMSpectralColorWell* well){
 
 
 NAOpenGLSpace* cmGetSpectralColorWellUIElement(CMSpectralColorWell* well){
-  return well->display;
+  return well->openGLSpace;
 }
 
 
 
 void cmUpdateSpectralColorWell(CMSpectralColorWell* well){
-  naRefreshUIElement(well->display, 0.);
+  naRefreshUIElement(well->openGLSpace, 0.);
 }

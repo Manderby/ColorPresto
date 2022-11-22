@@ -90,6 +90,10 @@ CMHSLColorController* cmAllocHSLColorController(void){
 
 
 void cmDeallocHSLColorController(CMHSLColorController* con){
+  cmDeallocColorWell2D(con->colorWell2D);
+  cmDeallocColorWell1D(con->colorWell1DH);
+  cmDeallocColorWell1D(con->colorWell1DS);
+  cmDeallocColorWell1D(con->colorWell1DL);
   cmClearColorController(&(con->baseController));
   naFree(con);
 }

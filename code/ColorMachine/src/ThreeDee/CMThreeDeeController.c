@@ -3,10 +3,10 @@
 #include "NAVectorAlgebra.h"
 #include "NA3DHelper.h"
 
-#include "CMCoordinateController.h"
-#include "CMOpacityController.h"
-#include "CMOptionsController.h"
-#include "CMRotationController.h"
+#include "CMThreeDeeCoordinateController.h"
+#include "CMThreeDeeOpacityController.h"
+#include "CMThreeDeeOptionsController.h"
+#include "CMThreeDeePerspectiveController.h"
 #include "CMTranslations.h"
 
 #include "mainC.h"
@@ -23,10 +23,10 @@ struct CMThreeDeeController{
   NAOpenGLSpace* display;
   NASpace* controlSpace;
 
-  CMCoordinateController* coordinateController;
-  CMOpacityController* opacityController;
-  CMOptionsController* optionsController;
-  CMRotationController* rotationController;
+  CMThreeDeeCoordinateController* coordinateController;
+  CMThreeDeeOpacityController* opacityController;
+  CMThreeDeeOptionsController* optionsController;
+  CMThreeDeePerspectiveController* perspectiveController;
     
   NAInt fontId;
   
@@ -67,7 +67,7 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
   naSetOpenGLSpaceInnerRect(con->display, openGLRect);
   naSetSpaceRect(con->controlSpace, controlRect);
 
-  cmSetRotationZoom(con->rotationController, cmGetRotationZoom(con->rotationController) / (openGLRect.size.height / oldOpenGLRect.size.height));
+  cmSetThreeDeePerspectiveControllerZoom(con->perspectiveController, cmGetThreeDeePerspectiveControllerZoom(con->perspectiveController) / (openGLRect.size.height / oldOpenGLRect.size.height));
 
   return NA_TRUE;
 }
@@ -85,8 +85,8 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   double scale[3];
   const NAUTF8Char* labels[3];
   CMLNormedConverter normedOutputConverter;
-  CoordSysType coordSysType = cmGetCoordinateCoordSysType(con->coordinateController);
-  CMLColorType colorType = cmGetCoordinateColorSpaceType(con->coordinateController);
+  CoordSysType coordSysType = cmGetThreeDeeCoordinateControllerCoordSysType(con->coordinateController);
+  CMLColorType colorType = cmGetThreeDeeCoordinateControllerColorSpaceType(con->coordinateController);
 
   switch(coordSysType){
   case COORD_SYS_HSL:
@@ -242,12 +242,12 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 
   CMLVec3 backgroundRGB;
   CMLVec3 axisRGB;
-  double axisGray = cmGetOptionsAxisGray(con->optionsController);
-  double backgroundGray = cmGetOptionsBackgroundGray(con->optionsController);
-  NABool showAxis = cmGetOptionsShowAxis(con->optionsController);
-  NABool showSpectrum = cmGetOptionsShowSpectrum(con->optionsController);
-  double fovy = cmGetOptionsFovy(con->optionsController);
-  double zoom = cmGetRotationZoom(con->rotationController);
+  double axisGray = cmGetThreeDeeOptionsControllerAxisGray(con->optionsController);
+  double backgroundGray = cmGetThreeDeeOptionsControllerBackgroundGray(con->optionsController);
+  NABool showAxis = cmGetThreeDeeOptionsControllerShowAxis(con->optionsController);
+  NABool showSpectrum = cmGetThreeDeeOptionsControllerShowSpectrum(con->optionsController);
+  double fovy = cmGetThreeDeeOptionsControllerFovy(con->optionsController);
+  double zoom = cmGetThreeDeePerspectiveControllerZoom(con->perspectiveController);
   double curZoom;
   
   cmlSet3(backgroundRGB, backgroundGray, backgroundGray, backgroundGray);
@@ -276,9 +276,9 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     primeAxis,
     scale,
     curZoom,
-    cmGetRotationViewPol(con->rotationController),
-    cmGetRotationViewEqu(con->rotationController));
-  NAInt steps3D = cmGetCoordinateSteps3D(con->coordinateController);
+    cmGetThreeDeePerspectiveControllerRotationAnglePol(con->perspectiveController),
+    cmGetThreeDeePerspectiveControllerRotationAngleEqu(con->perspectiveController));
+  NAInt steps3D = cmGetThreeDeeCoordinateControllerSteps3D(con->coordinateController);
 
   if(1){
     cmDrawThreeDeeSurfaces(
@@ -286,10 +286,10 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
       sm,
       backgroundRGB,
       axisRGB,
-      cmGetOpacityBodySolid(con->opacityController),
-      cmGetOpacityBodyAlpha(con->opacityController),
-      cmGetOpacityGridAlpha(con->opacityController),
-      cmGetOpacityGridTint(con->opacityController),
+      cmGetThreeDeeOpacityControllerBodySolid(con->opacityController),
+      cmGetThreeDeeOpacityControllerBodyAlpha(con->opacityController),
+      cmGetThreeDeeOpacityControllerGridAlpha(con->opacityController),
+      cmGetThreeDeeOpacityControllerGridTint(con->opacityController),
       colorType,
       steps3D,
       normedInputConverter,
@@ -299,7 +299,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   }
   
   const NABool isGrayColorSpace = colorType == CML_COLOR_Gray;
-  double pointsOpacity = cmGetOpacityPointsOpacity(con->opacityController);
+  double pointsOpacity = cmGetThreeDeeOpacityControllerPointsOpacity(con->opacityController);
   if(pointsOpacity > 0.f || isGrayColorSpace){
     cmDrawThreeDeePointCloud(
       cm,
@@ -340,12 +340,11 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 
 CMThreeDeeController* cmAllocThreeDeeController(void){
   CMThreeDeeController* con = naAlloc(CMThreeDeeController);
-  naZeron(con, sizeof(CMThreeDeeController));
   
-  con->coordinateController = cmAllocCoordinateController(con);
-  con->rotationController = cmAllocRotationController(con);
-  con->opacityController = cmAllocOpacityController(con);
-  con->optionsController = cmAllocOptionsController(con);
+  con->coordinateController = cmAllocThreeDeeCoordinateController(con);
+  con->perspectiveController = cmAllocThreeDeePerspectiveController(con);
+  con->opacityController = cmAllocThreeDeeOpacityController(con);
+  con->optionsController = cmAllocThreeDeeOptionsController(con);
 
   // The window
   con->window = naNewWindow(cmTranslate(CM3DView), naMakeRectS(40, 30, 1, 1), NA_WINDOW_RESIZEABLE, 0);
@@ -354,24 +353,21 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   // The 3D space
   con->display = naNewOpenGLSpace(naMakeSize(initial3DDisplayWidth, initial3DDisplayWidth), cmInitThreeDeeOpenGL, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cmUpdateThreeDeeDisplay, con);
-  naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cmMoveRotationMouse, con->rotationController);
-  naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cmScrollRotation, con->rotationController);
+  naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cmMoveRotationMouse, con->perspectiveController);
+  naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cmScrollRotation, con->perspectiveController);
   
   // The control space
   con->controlSpace = naNewSpace(naMakeSize(fullControlWidth, 1));
     
   // layout
-
   cmBeginUILayout(con->controlSpace, naMakeBezel4Zero());
-  cmAddUIRow(cmGetCoordinateUIElement(con->coordinateController), 0);
-  cmAddUIRow(cmGetRotationUIElement(con->rotationController), 0);
-  cmAddUIRow(cmGetOpacityUIElement(con->opacityController), 0);
-  cmAddUIRow(cmGetOptionsUIElement(con->optionsController), 0);
+  cmAddUIRow(cmGetThreeDeeCoordinateControllerUIElement(con->coordinateController), 0);
+  cmAddUIRow(cmGetThreeDeePerspectiveControllerUIElement(con->perspectiveController), 0);
+  cmAddUIRow(cmGetThreeDeeOpacityControllerUIElement(con->opacityController), 0);
+  cmAddUIRow(cmGetThreeDeeOptionsControllerUIElement(con->optionsController), 0);
   cmEndUILayout();
 
-  // Add window childs
   NASpace* content = naGetWindowContentSpace(con->window);
-
   cmBeginUILayout(content, naMakeBezel4Zero());
   cmAddUIRow(con->display, 0);
   cmAddUICol(con->controlSpace, 0);
@@ -396,10 +392,10 @@ void cmShowThreeDeeController(CMThreeDeeController* con){
 
 
 void cmUpdateThreeDeeController(CMThreeDeeController* con){
-  cmUpdateCoordinateController(con->coordinateController);
-  cmUpdateRotationController(con->rotationController);
-  cmUpdateOpacityController(con->opacityController);
-  cmUpdateOptionsController(con->optionsController);
+  cmUpdateThreeDeeCoordinateController(con->coordinateController);
+  cmUpdateThreeDeePerspectiveController(con->perspectiveController);
+  cmUpdateThreeDeeOpacityController(con->opacityController);
+  cmUpdateThreeDeeOptionsController(con->optionsController);
 
   naRefreshUIElement(con->display, 0.);
 }

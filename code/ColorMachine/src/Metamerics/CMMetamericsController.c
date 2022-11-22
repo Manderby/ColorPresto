@@ -38,7 +38,6 @@ struct CMMetamericsController{
 
 CMMetamericsController* cmAllocMetamericsController(void){
   CMMetamericsController* con = naAlloc(CMMetamericsController);
-  naZeron(con, sizeof(CMMetamericsController));
 
   con->chromaticityErrorController = cmAllocChromaticityErrorController();
   con->whitePointsController = cmAllocWhitePointsController();

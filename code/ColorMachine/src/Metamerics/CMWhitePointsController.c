@@ -90,7 +90,6 @@ NABool cmSelectRefSpectrum(NAReaction reaction){
 
 CMWhitePointsController* cmAllocWhitePointsController(void){
   CMWhitePointsController* con = naAlloc(CMWhitePointsController);
-  naZeron(con, sizeof(CMWhitePointsController));
 
   con->space = naNewSpace(naMakeSize(1, 1));
 

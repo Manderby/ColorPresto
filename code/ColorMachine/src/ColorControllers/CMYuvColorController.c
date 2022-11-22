@@ -110,6 +110,12 @@ CMYuvColorController* cmAllocYuvColorController(void){
 
 
 void cmDeallocYuvColorController(CMYuvColorController* con){
+  cmDeallocColorWell2D(con->colorWell2D);
+  cmDeallocColorWell1D(con->colorWell1DY);
+  cmDeallocColorWell1D(con->colorWell1Dup);
+  cmDeallocColorWell1D(con->colorWell1Dvp);
+  cmDeallocColorWell1D(con->colorWell1Du);
+  cmDeallocColorWell1D(con->colorWell1Dv);
   cmClearColorController(&(con->baseController));
   naFree(con);
 }

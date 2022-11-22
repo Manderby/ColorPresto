@@ -131,7 +131,6 @@ NABool cmPressMachineButton(NAReaction reaction){
 
 CMMachineController* cmAllocMachineController(void){
   CMMachineController* con = naAlloc(CMMachineController);
-  naZeron(con, sizeof(CMMachineController));
 
   con->space = naNewSpace(naMakeSize(1, 1));
 

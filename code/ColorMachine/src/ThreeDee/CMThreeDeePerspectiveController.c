@@ -1,5 +1,5 @@
 
-#include "CMRotationController.h"
+#include "CMThreeDeePerspectiveController.h"
 
 #include "CMDesign.h"
 #include "CMTranslations.h"
@@ -11,42 +11,42 @@
 #include "NAUtility/NAMemory.h"
 #include "NAUtility/NAString.h"
 
-struct CMRotationController{
+struct CMThreeDeePerspectiveController{
   NASpace* space;
+  CMThreeDeeController* parent;
 
   NALabel* rotationLabel;
   NAButton* rotationButton;
   NASlider* rotationSlider;
 
-  CMThreeDeeController* parentController;
-
   double rotationStep;
-  double viewPol;
-  double viewEqu;
+  double anglePol;
+  double angleEqu;
   double zoom;
 };
 
 
 
 void cmStepRotation(void* data){
-  CMRotationController* con = (CMRotationController*)data;
+  CMThreeDeePerspectiveController* con = (CMThreeDeePerspectiveController*)data;
+  
   if(con->rotationStep != 0.){
-    con->viewEqu -= con->rotationStep * .015;
+    con->angleEqu -= con->rotationStep * .015;
     naCallApplicationFunctionInSeconds(cmStepRotation, data, 1/60.);
-    cmUpdateThreeDeeController(con->parentController);
+    cmUpdateThreeDeeController(con->parent);
   }
 }
 
 
 
 NABool cmPressRotationButton(NAReaction reaction){
-  CMRotationController* con = (CMRotationController*)reaction.controller;
+  CMThreeDeePerspectiveController* con = (CMThreeDeePerspectiveController*)reaction.controller;
 
   if(reaction.uiElement == con->rotationButton){
     con->rotationStep = 0.;
   }
 
-  cmUpdateThreeDeeController(con->parentController);
+  cmUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
@@ -54,7 +54,7 @@ NABool cmPressRotationButton(NAReaction reaction){
 
 
 NABool cmChangeRotationSlider(NAReaction reaction){
-  CMRotationController* con = (CMRotationController*)reaction.controller;
+  CMThreeDeePerspectiveController* con = (CMThreeDeePerspectiveController*)reaction.controller;
 
   if(reaction.uiElement == con->rotationSlider){
     NABool needsRotationStart = (con->rotationStep == 0.);
@@ -63,26 +63,26 @@ NABool cmChangeRotationSlider(NAReaction reaction){
     if(needsRotationStart){cmStepRotation(con);}
   }
   
-  cmUpdateThreeDeeController(con->parentController);
+  cmUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
 
 
 
-void cmFixThreeDeeViewParameters(CMRotationController* con){
+void cmFixThreeDeeViewParameters(CMThreeDeePerspectiveController* con){
   if(con->zoom <= .025f){con->zoom = .025f;}
   if(con->zoom >= 2.f){con->zoom = 2.f;}
-  if(con->viewEqu < -NA_PIf){con->viewEqu += NA_PI2f;}
-  if(con->viewEqu > NA_PIf){con->viewEqu -= NA_PI2f;}
-  if(con->viewPol <= NA_SINGULARITYf){con->viewPol = NA_SINGULARITYf;}
-  if(con->viewPol >= NA_PIf - NA_SINGULARITYf){con->viewPol = NA_PIf - NA_SINGULARITYf;}
+  if(con->angleEqu < -NA_PIf){con->angleEqu += NA_PI2f;}
+  if(con->angleEqu > NA_PIf){con->angleEqu -= NA_PI2f;}
+  if(con->anglePol <= NA_SINGULARITYf){con->anglePol = NA_SINGULARITYf;}
+  if(con->anglePol >= NA_PIf - NA_SINGULARITYf){con->anglePol = NA_PIf - NA_SINGULARITYf;}
 }
 
 
 
 NABool cmMoveRotationMouse(NAReaction reaction){
-  CMRotationController* con = (CMRotationController*)reaction.controller;
+  CMThreeDeePerspectiveController* con = (CMThreeDeePerspectiveController*)reaction.controller;
 
   const NAMouseStatus* status = naGetMouseStatus();
   if(status->leftPressed){
@@ -90,11 +90,11 @@ NABool cmMoveRotationMouse(NAReaction reaction){
     NAPos mouseDiff = naMakePos(status->pos.x - status->prevPos.x, status->pos.y - status->prevPos.y);
     double scaleFactor = cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
 
-    con->viewEqu -= mouseDiff.x * .01f * scaleFactor;
-    con->viewPol += mouseDiff.y * .01f * scaleFactor;
+    con->angleEqu -= mouseDiff.x * .01f * scaleFactor;
+    con->anglePol += mouseDiff.y * .01f * scaleFactor;
 
     cmFixThreeDeeViewParameters(con);
-    cmRefreshThreeDeeDisplay(con->parentController);
+    cmRefreshThreeDeeDisplay(con->parent);
   }
   return NA_TRUE;
 }
@@ -102,24 +102,23 @@ NABool cmMoveRotationMouse(NAReaction reaction){
 
 
 NABool cmScrollRotation(NAReaction reaction){
-  CMRotationController* con = (CMRotationController*)reaction.controller;
+  CMThreeDeePerspectiveController* con = (CMThreeDeePerspectiveController*)reaction.controller;
 
   const NAMouseStatus* status = naGetMouseStatus();
   
   con->zoom *= 1. + (status->pos.y - status->prevPos.y) * .01;
   cmFixThreeDeeViewParameters(con);
-  cmRefreshThreeDeeDisplay(con->parentController);
+  cmRefreshThreeDeeDisplay(con->parent);
 
   return NA_TRUE;
 }
 
 
 
-CMRotationController* cmAllocRotationController(CMThreeDeeController* parentController){
-  CMRotationController* con = naAlloc(CMRotationController);
-  naZeron(con, sizeof(CMRotationController));
+CMThreeDeePerspectiveController* cmAllocThreeDeePerspectiveController(CMThreeDeeController* parent){
+  CMThreeDeePerspectiveController* con = naAlloc(CMThreeDeePerspectiveController);
 
-  con->parentController = parentController;
+  con->parent = parent;
 
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
@@ -145,8 +144,8 @@ CMRotationController* cmAllocRotationController(CMThreeDeeController* parentCont
   double scaleFactor = cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
 
   con->rotationStep = 0.;
-  con->viewPol = 1.3f;
-  con->viewEqu = NA_PIf / 4.f;
+  con->anglePol = 1.3f;
+  con->angleEqu = NA_PIf / 4.f;
   con->zoom = 1. / scaleFactor;
 
   return con;
@@ -154,37 +153,37 @@ CMRotationController* cmAllocRotationController(CMThreeDeeController* parentCont
 
 
 
-void cmDeallocRotationController(CMRotationController* con){
+void cmDeallocThreeDeePerspectiveController(CMThreeDeePerspectiveController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetRotationUIElement(CMRotationController* con){
+NASpace* cmGetThreeDeePerspectiveControllerUIElement(CMThreeDeePerspectiveController* con){
   return con->space;
 }
 
 
 
-double cmGetRotationStep(CMRotationController* con){
+double cmGetThreeDeePerspectiveControllerRotationStep(CMThreeDeePerspectiveController* con){
   return con->rotationStep;
 }
-double cmGetRotationViewPol(CMRotationController* con){
-  return con->viewPol;
+double cmGetThreeDeePerspectiveControllerRotationAnglePol(CMThreeDeePerspectiveController* con){
+  return con->anglePol;
 }
-double cmGetRotationViewEqu(CMRotationController* con){
-  return con->viewEqu;
+double cmGetThreeDeePerspectiveControllerRotationAngleEqu(CMThreeDeePerspectiveController* con){
+  return con->angleEqu;
 }
-double cmGetRotationZoom(CMRotationController* con){
+double cmGetThreeDeePerspectiveControllerZoom(CMThreeDeePerspectiveController* con){
   return con->zoom;
 }
-void cmSetRotationZoom(CMRotationController* con, double zoom){
+void cmSetThreeDeePerspectiveControllerZoom(CMThreeDeePerspectiveController* con, double zoom){
   con->zoom = zoom;
 }
 
 
 
-void cmUpdateRotationController(CMRotationController* con)
+void cmUpdateThreeDeePerspectiveController(CMThreeDeePerspectiveController* con)
 {
   naSetSliderValue(con->rotationSlider, con->rotationStep);
 }

@@ -426,7 +426,6 @@ CMUVMetamericColors cmComputeUVMetamericColors(
 
 CMUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
   CMUVMetamericIndexController* con = naAlloc(CMUVMetamericIndexController);
-  naZeron(con, sizeof(CMUVMetamericIndexController));
 
   con->space = naNewSpace(naMakeSize(1, 1));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);

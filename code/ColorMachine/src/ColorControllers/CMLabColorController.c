@@ -116,6 +116,12 @@ CMLabColorController* cmAllocLabColorController(void){
 
 
 void cmDeallocLabColorController(CMLabColorController* con){
+  cmDeallocColorWell2D(con->colorWell2D);
+  cmDeallocColorWell1D(con->colorWell1DL);
+  cmDeallocColorWell1D(con->colorWell1Da);
+  cmDeallocColorWell1D(con->colorWell1Db);
+  cmDeallocColorWell1D(con->colorWell1Dc);
+  cmDeallocColorWell1D(con->colorWell1Dh);
   cmClearColorController(&(con->baseController));
   naFree(con);
 }
