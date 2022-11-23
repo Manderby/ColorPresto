@@ -1,0 +1,143 @@
+private CMThreeDeeOptionsController = NASpace {
+  space NASpace;
+  parent CMThreeDeeController share;
+
+  axisLabel NALabel;
+  axisCheckBox NACheckBox;
+  spectrumLabel NALabel;
+  spectrumCheckBox NACheckBox;
+  backgroundLabel NALabel;
+  backgroundSlider NASlider;
+  fovyLabel NALabel;
+  fovySlider NASlider;
+
+  showSpectrum = false;
+  showAxis = true;
+  backgroundGray = 0.3;
+  fovy = 50.;
+};
+
+
+
+private
+pressOptionsButton(this CMThreeDeeOptionsController mutable, reaction NAReaction) bool{
+  this = [reaction.controller];
+
+  if(reaction.uiElement == spectrumCheckBox){
+    showSpectrum = spectrumCheckBox.getState();
+  }else if(reaction.uiElement == axisCheckBox){
+    showAxis = axisCheckBox.getState();
+  }
+
+  parent.update();
+
+  return true;
+}
+
+
+
+// private
+// changeOptionsSlider(this CMThreeDeeOptionsController mutable, reaction NAReaction) bool{
+
+private mutable
+CMThreeDeeOptionsController.changeOptionsSlider = (reaction NAReaction) bool{
+  this = [reaction.controller];
+
+  if(reaction.uiElement == backgroundSlider){
+    backgroundGray = backgroundSlider.getValue();
+  }else if(reaction.uiElement == fovySlider){
+    fovy = fovySlider.getValue();
+    if(fovy < 15.f){fovy = 0.f;}
+  }
+  
+  parent.update();
+
+  return true;
+}
+
+
+
+public
+constructor(
+  this CMThreeDeeOptionsController mutable,
+  parent CMThreeDeeController)
+{
+  .parent = parent;
+  space = new NASpace(naMakeSize(1, 1));
+  space.setSpaceAlternateBackground(false);
+
+  axisLabel = new NALabel(cmTranslate(CMAxis), threeDeeLabelWidth);
+  axisCheckBox = new NACheckBox("", 30);
+  axisCheckBox.addUIReaction(NA_UI_COMMAND_PRESSED, pressOptionsButton, this);
+
+  spectrumLabel = new NALabel(cmTranslate(CMSpectrum), threeDeeLabelWidth);
+  spectrumCheckBox = new NACheckBox("", 30);
+  spectrumCheckBox.addUIReaction(NA_UI_COMMAND_PRESSED, pressOptionsButton, this);
+
+  backgroundLabel = new NALabel(cmTranslate(CMBackground), threeDeeLabelWidth);
+  backgroundSlider = new NASlider(threeDeeControlWidth);
+  backgroundSlider.setRange(0., 1., 0);
+  backgroundSlider.addUIReaction(NA_UI_COMMAND_EDITED, changeOptionsSlider, this);
+
+  fovyLabel = new NALabel(cmTranslate(CMFovy), threeDeeLabelWidth);
+  fovySlider = new NASlider(threeDeeControlWidth);
+  fovySlider.setRange(90., 0., 0);
+  fovySlider.addUIReaction(NA_UI_COMMAND_EDITED, changeOptionsSlider, this);
+
+  // layout
+  cmBeginUILayout(space, threeDeeBezel);
+  
+  cmAddUIRow(axisLabel, uiElemHeight);
+  cmAddUICol(axisCheckBox, marginH);
+
+  cmAddUIRow(spectrumLabel, uiElemHeight);
+  cmAddUICol(spectrumCheckBox, marginH);
+
+  cmAddUIRow(backgroundLabel, uiElemHeight);
+  cmAddUICol(backgroundSlider, marginH);
+
+  cmAddUIRow(fovyLabel, uiElemHeight);
+  cmAddUICol(fovySlider, marginH);
+
+  cmEndUILayout();
+}
+
+
+
+public
+getAxisGray(this CMThreeDeeOptionsController) f64{
+  axisGray = backgroundGray + .5;
+  if(axisGray > 1.f){axisGray -= 1.f;}
+  return axisGray;
+}
+
+public
+getBackgroundGray(this CMThreeDeeOptionsController) f64{
+  return backgroundGray;
+}
+
+public
+getFovy(this CMThreeDeeOptionsController) f64{
+  return fovy;
+}
+
+public
+getShowAxis(this CMThreeDeeOptionsController) f64{
+  return showAxis;
+}
+
+public
+getShowSpectrum(this CMThreeDeeOptionsController) f64{
+  return showSpectrum;
+}
+
+
+
+public
+update(this CMThreeDeeOptionsController){
+{
+  spectrumCheckBox.setState(showSpectrum);
+  axisCheckBox.setState(showAxis);
+  backgroundSlider.setValue(backgroundGray);
+  fovySlider.setValue(fovy);
+}
