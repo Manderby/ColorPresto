@@ -56,6 +56,8 @@
 		907961672905623F00D1D9D7 /* CMWhitePointsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 907961652905623F00D1D9D7 /* CMWhitePointsController.c */; };
 		9079616A29059E4100D1D9D7 /* CMTotalMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 9079616829059E4100D1D9D7 /* CMTotalMetamericIndexController.c */; };
 		907DA4C229300884009D09C9 /* CMMachineRGBController.c in Sources */ = {isa = PBXBuildFile; fileRef = 907DA4C129300884009D09C9 /* CMMachineRGBController.c */; };
+		907DA4C529301D7C009D09C9 /* CMMachineLabController.c in Sources */ = {isa = PBXBuildFile; fileRef = 907DA4C329301D7C009D09C9 /* CMMachineLabController.c */; };
+		907DA4C82930219D009D09C9 /* CMMachineGrayController.c in Sources */ = {isa = PBXBuildFile; fileRef = 907DA4C62930219D009D09C9 /* CMMachineGrayController.c */; };
 		907E8402292A936F00E724E3 /* CMGammaDisplayController.c in Sources */ = {isa = PBXBuildFile; fileRef = 907E8401292A936F00E724E3 /* CMGammaDisplayController.c */; };
 		907E8407292A9BAE00E724E3 /* CMThreeDeeCoordinateController.c in Sources */ = {isa = PBXBuildFile; fileRef = 907E8406292A9BAE00E724E3 /* CMThreeDeeCoordinateController.c */; };
 		907E840A292AA3C200E724E3 /* CMThreeDeePerspectiveController.c in Sources */ = {isa = PBXBuildFile; fileRef = 907E8408292AA3C200E724E3 /* CMThreeDeePerspectiveController.c */; };
@@ -503,6 +505,10 @@
 		9079616929059E4100D1D9D7 /* CMTotalMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMTotalMetamericIndexController.h; sourceTree = "<group>"; };
 		907DA4C029300884009D09C9 /* CMMachineRGBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMachineRGBController.h; sourceTree = "<group>"; };
 		907DA4C129300884009D09C9 /* CMMachineRGBController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMMachineRGBController.c; sourceTree = "<group>"; };
+		907DA4C329301D7C009D09C9 /* CMMachineLabController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMMachineLabController.c; sourceTree = "<group>"; };
+		907DA4C429301D7C009D09C9 /* CMMachineLabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMachineLabController.h; sourceTree = "<group>"; };
+		907DA4C62930219D009D09C9 /* CMMachineGrayController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMMachineGrayController.c; sourceTree = "<group>"; };
+		907DA4C72930219D009D09C9 /* CMMachineGrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMMachineGrayController.h; sourceTree = "<group>"; };
 		907E8400292A936F00E724E3 /* CMGammaDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMGammaDisplayController.h; sourceTree = "<group>"; };
 		907E8401292A936F00E724E3 /* CMGammaDisplayController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMGammaDisplayController.c; sourceTree = "<group>"; };
 		907E8405292A9BAE00E724E3 /* CMThreeDeeCoordinateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMThreeDeeCoordinateController.h; sourceTree = "<group>"; };
@@ -1004,8 +1010,12 @@
 				9096A064292EAB7F001EA401 /* CMMachineButtonsController.h */,
 				902CC62A291EEEE8007CAF88 /* CMMachineController.c */,
 				902CC629291EEEE8007CAF88 /* CMMachineController.h */,
+				907DA4C62930219D009D09C9 /* CMMachineGrayController.c */,
+				907DA4C72930219D009D09C9 /* CMMachineGrayController.h */,
 				9096A061292EA9A7001EA401 /* CMMachineIlluminationController.c */,
 				9096A060292EA9A7001EA401 /* CMMachineIlluminationController.h */,
+				907DA4C329301D7C009D09C9 /* CMMachineLabController.c */,
+				907DA4C429301D7C009D09C9 /* CMMachineLabController.h */,
 				9096A05D292EA7F4001EA401 /* CMMachineObserverController.c */,
 				9096A05E292EA7F4001EA401 /* CMMachineObserverController.h */,
 				907DA4C129300884009D09C9 /* CMMachineRGBController.c */,
@@ -2169,6 +2179,7 @@
 				9096A062292EA9A7001EA401 /* CMMachineIlluminationController.c in Sources */,
 				90BF5152274AB29E001FDE2A /* ColorMachineOpenGLView.mm in Sources */,
 				909C538D29141D4C002C157C /* CMColorWell2D.c in Sources */,
+				907DA4C529301D7C009D09C9 /* CMMachineLabController.c in Sources */,
 				90E68D0D2913142C007FFF9C /* CMColorsManager.c in Sources */,
 				907E8402292A936F00E724E3 /* CMGammaDisplayController.c in Sources */,
 				902CC62B291EEEE8007CAF88 /* CMMachineController.c in Sources */,
@@ -2199,6 +2210,7 @@
 				907E840A292AA3C200E724E3 /* CMThreeDeePerspectiveController.c in Sources */,
 				908894462922F2AD0040E733 /* CMGrayColorController.c in Sources */,
 				900B8EEE28B2E075007A137C /* main.c in Sources */,
+				907DA4C82930219D009D09C9 /* CMMachineGrayController.c in Sources */,
 				9023237C2916F79F00EFAF01 /* CMLabColorController.c in Sources */,
 				90B6FD6C28A99FEE00EE6F32 /* CMTranslations.c in Sources */,
 				906E2CBA291831CE00ECB147 /* CMLuvColorController.c in Sources */,

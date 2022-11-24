@@ -1,7 +1,6 @@
 
 #include "mainC.h"
 
-CM_PROTOTYPE(CMWhitePoints);
 CM_PROTOTYPE(NASpace);
 
 

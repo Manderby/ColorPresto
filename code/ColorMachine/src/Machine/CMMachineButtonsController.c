@@ -32,10 +32,10 @@ CMMachineButtonsController* cmAllocMachineButtonsController(void){
   CMMachineButtonsController* con = naAlloc(CMMachineButtonsController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
-  naSetSpaceAlternateBackground(con->space, NA_FALSE);
+  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->threeDeeButton = naNewTextButton("3D View", 120, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
-  con->metamericsButton = naNewTextButton("Metamerics", 120, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  con->threeDeeButton = naNewTextButton("3D View", 150, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  con->metamericsButton = naNewTextButton("Metamerics", 150, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
   naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
   naAddUIReaction(con->metamericsButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
 

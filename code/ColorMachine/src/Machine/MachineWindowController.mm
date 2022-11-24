@@ -178,7 +178,7 @@
   uint32 curindex = 0;
   for(uint32 i=0; i<CML_LAB_COUNT; ++i){
     if(i == CML_LAB_CUSTOM_L){continue;}
-    [labSpaceSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetLabSpaceTypeString((CMLLabColorSpaceType)i)] atIndex:curindex];
+    [labSpaceSelect insertItemWithTitle:[NSString stringWithUTF8String:cmlGetLabColorSpaceTypeString((CMLLabColorSpaceType)i)] atIndex:curindex];
     curindex++;
   }
   [responseLSelect removeAllItems];

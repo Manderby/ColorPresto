@@ -2,7 +2,9 @@
 #include "CMMachineController.h"
 
 #include "CMMachineButtonsController.h"
+#include "CMMachineGrayController.h"
 #include "CMMachineIlluminationController.h"
+#include "CMMachineLabController.h"
 #include "CMMachineObserverController.h"
 #include "CMMachineRGBController.h"
 #include "CMGammaDisplayController.h"
@@ -15,7 +17,9 @@ struct CMMachineController{
   NASpace* space;
 
   CMMachineButtonsController* buttonsController;
+  CMMachineGrayController* grayController;
   CMMachineIlluminationController* illuminationController;
+  CMMachineLabController* labController;
   CMMachineObserverController* observerController;
   CMMachineRGBController* rgbController;
 
@@ -32,6 +36,8 @@ CMMachineController* cmAllocMachineController(void){
   con->observerController = cmAllocMachineObserverController();
   con->illuminationController = cmAllocMachineIlluminationController();
   con->rgbController = cmAllocMachineRGBController();
+  con->labController = cmAllocMachineLabController();
+  con->grayController = cmAllocMachineGrayController();
   con->buttonsController = cmAllocMachineButtonsController();
 
   con->gammaDisplayController = cmAllocGammaDisplayController();
@@ -41,6 +47,8 @@ CMMachineController* cmAllocMachineController(void){
   cmAddUIRow(cmGetMachineObserverControllerUIElement(con->observerController), 0);
   cmAddUIRow(cmGetMachineIlluminationControllerUIElement(con->illuminationController), 0);
   cmAddUIRow(cmGetMachineRGBControllerUIElement(con->rgbController), 0);
+  cmAddUIRow(cmGetMachineLabControllerUIElement(con->labController), 0);
+  cmAddUIRow(cmGetMachineGrayControllerUIElement(con->grayController), 0);
   cmAddUIRow(cmGetMachineButtonsControllerUIElement(con->buttonsController), 0);
 
   cmEndUILayout();
@@ -66,6 +74,8 @@ void cmUpdateMachineController(CMMachineController* con){
   cmUpdateMachineObserverController(con->observerController);
   cmUpdateMachineIlluminationController(con->illuminationController);
   cmUpdateMachineRGBController(con->rgbController);
+  cmUpdateMachineLabController(con->labController);
+  cmUpdateMachineGrayController(con->grayController);
   cmUpdateMachineButtonsController(con->buttonsController);
 
   cmUpdateGammaDisplayController(con->gammaDisplayController);
