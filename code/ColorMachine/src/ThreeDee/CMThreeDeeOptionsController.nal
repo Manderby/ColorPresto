@@ -1,5 +1,4 @@
 private CMThreeDeeOptionsController = NASpace {
-  space NASpace;
   parent CMThreeDeeController share;
 
   axisLabel NALabel;
@@ -11,7 +10,7 @@ private CMThreeDeeOptionsController = NASpace {
   fovyLabel NALabel;
   fovySlider NASlider;
 
-  showSpectrum = false;
+  showSpectrum = bool(false);
   showAxis = true;
   backgroundGray = 0.3;
   fovy = 50.;
@@ -64,7 +63,7 @@ constructor(
 {
   .parent = parent;
   space = new NASpace(naMakeSize(1, 1));
-  space.setSpaceAlternateBackground(false);
+  space.setAlternateBackground(false);
 
   axisLabel = new NALabel(cmTranslate(CMAxis), threeDeeLabelWidth);
   axisCheckBox = new NACheckBox("", 30);
@@ -130,6 +129,10 @@ public
 getShowSpectrum(this CMThreeDeeOptionsController) f64{
   return showSpectrum;
 }
+
+// how about something like:
+// needs lots of thinking.
+//CMThreeDeeOptionsController.{getShowSpectrum}[showSpectrum];
 
 
 

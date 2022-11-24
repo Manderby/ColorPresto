@@ -1,10 +1,6 @@
 
 #include "CMMachineButtonsController.h"
 
-#include "CMMachineIlluminationController.h"
-#include "CMMachineObserverController.h"
-#include "CMGammaDisplayController.h"
-
 #include "NAApp.h"
 #include "CMDesign.h"
 

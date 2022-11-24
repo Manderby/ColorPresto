@@ -176,8 +176,8 @@ NABool cmDrawColorWell1D(NAReaction reaction){
     glVertex2i(+1., +1.);
   glEnd();
 
-  const float whiteR = 2. * 3. / (float)colorWell1DSize;
-  const float blackR = 2. * 4. / (float)colorWell1DSize;
+  const float whiteR = 2. * 4. / (float)colorWell1DSize;
+  const float blackR = 2. * 5. / (float)colorWell1DSize;
   const int subdivisions = 16;
   const float yDivisor = colorWell1DSize / colorWell1DHeight;
 

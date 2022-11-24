@@ -83,7 +83,7 @@ NABool cmDrawGammaDisplayController(NAReaction reaction){
 CMGammaDisplayController* cmAllocGammaDisplayController(){
   CMGammaDisplayController* con = naAlloc(CMGammaDisplayController);
   
-  con->display = naNewOpenGLSpace(naMakeSize(colorWell2DSize, colorWell2DSize), cmInitGammaDisplayController, con);
+  con->display = naNewOpenGLSpace(naMakeSize(gammaDisplaySize, gammaDisplaySize), cmInitGammaDisplayController, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cmDrawGammaDisplayController, con);
   
   return con;

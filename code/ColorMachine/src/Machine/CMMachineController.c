@@ -4,6 +4,7 @@
 #include "CMMachineButtonsController.h"
 #include "CMMachineIlluminationController.h"
 #include "CMMachineObserverController.h"
+#include "CMMachineRGBController.h"
 #include "CMGammaDisplayController.h"
 
 #include "NAApp.h"
@@ -16,6 +17,7 @@ struct CMMachineController{
   CMMachineButtonsController* buttonsController;
   CMMachineIlluminationController* illuminationController;
   CMMachineObserverController* observerController;
+  CMMachineRGBController* rgbController;
 
   CMGammaDisplayController* gammaDisplayController;
 };
@@ -29,6 +31,7 @@ CMMachineController* cmAllocMachineController(void){
 
   con->observerController = cmAllocMachineObserverController();
   con->illuminationController = cmAllocMachineIlluminationController();
+  con->rgbController = cmAllocMachineRGBController();
   con->buttonsController = cmAllocMachineButtonsController();
 
   con->gammaDisplayController = cmAllocGammaDisplayController();
@@ -37,14 +40,10 @@ CMMachineController* cmAllocMachineController(void){
   cmBeginUILayout(con->space, naMakeBezel4Zero());
   cmAddUIRow(cmGetMachineObserverControllerUIElement(con->observerController), 0);
   cmAddUIRow(cmGetMachineIlluminationControllerUIElement(con->illuminationController), 0);
+  cmAddUIRow(cmGetMachineRGBControllerUIElement(con->rgbController), 0);
   cmAddUIRow(cmGetMachineButtonsControllerUIElement(con->buttonsController), 0);
 
   cmEndUILayout();
-
-//  naAddSpaceChild(
-//    con->space,
-//    cmGetGammaDisplayControllerUIElement(con->gammaDisplayController),
-//    naMakePos(10, 50));
 
   return con;
 }
@@ -66,6 +65,7 @@ NASpace* cmGetMachineUIElement(CMMachineController* con){
 void cmUpdateMachineController(CMMachineController* con){
   cmUpdateMachineObserverController(con->observerController);
   cmUpdateMachineIlluminationController(con->illuminationController);
+  cmUpdateMachineRGBController(con->rgbController);
   cmUpdateMachineButtonsController(con->buttonsController);
 
   cmUpdateGammaDisplayController(con->gammaDisplayController);

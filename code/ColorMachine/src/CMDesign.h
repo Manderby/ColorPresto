@@ -27,7 +27,7 @@ static const double marginH = 15.;
 
 static const double initial3DDisplayWidth = 500.;
 
-static const double labelValueWidth = 55.;
+static const double labelValueWidth = 60.;
 static const double textFieldValueWidth = 65.;
 static const double threeValueHeight = 55.;
 static const double threeValueHeightMargin = 10.;
@@ -54,13 +54,16 @@ static const double valueMargin = 10.;
 
 static const float greyColor[3] = {.5f, .5f, .5f};
 
-static const float colorValueCondensedRowHeight = 20.;
-static const int colorWell2DSize = 100;
-static const int colorWell1DSize = 100;
+static const double machineLabelWidth = 110.;
+
+static const float colorValueCondensedRowHeight = 25.;
+static const int gammaDisplaySize = 80;
+static const int colorWell2DSize = 125;
+static const int colorWell1DSize = 125;
 static const int spectralWellSize = 300;
 static const float colorWell1DMarginLeft = 210;
-static const double colorWell1DHeight = 13.;
-static const double colorWell1DOffset = 6.;
+static const double colorWell1DHeight = 15.;
+static const double colorWell1DOffset = 5.;
 static const float colorComponentWidth = 25.;
 static const float colorComponentMarginH = -5.;
 static const NABezel4 colorWellBezel = {10, 5, colorWell2DSize + 20, 5};

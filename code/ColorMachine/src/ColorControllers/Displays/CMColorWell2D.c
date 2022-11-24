@@ -169,8 +169,8 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     glVertex2i(+1., +1.);
   glEnd();
 
-  const float whiteR = 2. * 3. / (float)colorWell2DSize;
-  const float blackR = 2. * 4. / (float)colorWell2DSize;
+  const float whiteR = 2. * 4. / (float)colorWell2DSize;
+  const float blackR = 2. * 5. / (float)colorWell2DSize;
   const int subdivisions = 16;
 
   glDisable(GL_TEXTURE_2D);
