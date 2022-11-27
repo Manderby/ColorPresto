@@ -17,14 +17,14 @@ struct CMMachineGrayController{
 
 
 NABool cmSelectGrayColorSpace(NAReaction reaction){
-//  CMMachineRGBController* con = (CMMachineRGBController*)reaction.controller;
-//  CMLColorMachine* cm = cmGetCurrentColorMachine();
-//
-//  size_t index = naGetPopupButtonItemIndex(con->rgbColorSpacePopupButton, reaction.uiElement);
-//  CMLRGBColorSpaceType rgbColorSpaceType = (CMLRGBColorSpaceType)index;
-//  cmlSetRGBColorSpaceType(cm, rgbColorSpaceType);
-//  
-//  cmUpdateMachine();
+  CMMachineGrayController* con = (CMMachineGrayController*)reaction.controller;
+  CMLColorMachine* cm = cmGetCurrentColorMachine();
+
+  size_t index = naGetPopupButtonItemIndex(con->grayColorSpacePopupButton, reaction.uiElement);
+  CMLGrayComputationType grayComputationType = (CMLGrayComputationType)index;
+  cmlSetGrayComputationType(cm, grayComputationType);
+  
+  cmUpdateMachine();
 
   return NA_TRUE;
 }
@@ -39,7 +39,7 @@ CMMachineGrayController* cmAllocMachineGrayController(void){
 
   con->grayColorSpaceLabel = naNewLabel("Gray Colorspace", machineLabelWidth);
   con->grayColorSpacePopupButton = naNewPopupButton(200);
-  for(size_t i = 0; i < CML_LAB_COUNT; ++i){
+  for(size_t i = 0; i < CML_GRAY_COUNT; ++i){
     CMLGrayComputationType grayComputationType = (CMLGrayComputationType)i;
     NAMenuItem* item = naNewMenuItem(cmlGetGrayComputationTypeString(grayComputationType));
     naAddPopupButtonMenuItem(con->grayColorSpacePopupButton, item, NA_NULL);
@@ -70,6 +70,8 @@ NASpace* cmGetMachineGrayControllerUIElement(CMMachineGrayController* con){
 
 
 void cmUpdateMachineGrayController(CMMachineGrayController* con){
-//  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cmGetCurrentColorMachine();
 
+  CMLGrayComputationType grayComputationType = cmlGetGrayComputationType(cm);
+  naSetPopupButtonIndexSelected(con->grayColorSpacePopupButton, grayComputationType);
 }

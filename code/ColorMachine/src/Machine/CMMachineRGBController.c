@@ -174,16 +174,16 @@ CMMachineRGBController* cmAllocMachineRGBController(void){
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectRGBResponse, con);
   }
 
-  con->responseLinearTitleLabel = naNewLabel("Linear", 60);
+  con->responseLinearTitleLabel = naNewLabel("Linear", machineLabelWidth);
   con->responseLinearTextField = cmNewValueTextField(cmSetResponseValue, con);
   con->responseLinearSlider = naNewSlider(60);
-  con->responseSplitTitleLabel = naNewLabel("Split", 60);
+  con->responseSplitTitleLabel = naNewLabel("Split", machineLabelWidth);
   con->responseSplitTextField = cmNewValueTextField(cmSetResponseValue, con);
   con->responseSplitSlider = naNewSlider(60);
-  con->responseGammaTitleLabel = naNewLabel("Gamma", 60);
+  con->responseGammaTitleLabel = naNewLabel("Gamma", machineLabelWidth);
   con->responseGammaTextField = cmNewValueTextField(cmSetResponseValue, con);
   con->responseGammaSlider = naNewSlider(60);
-  con->responseOffsetTitleLabel = naNewLabel("Offset", 60);
+  con->responseOffsetTitleLabel = naNewLabel("Offset", machineLabelWidth);
   con->responseOffsetTextField = cmNewValueTextField(cmSetResponseValue, con);
   con->responseOffsetSlider = naNewSlider(60);
 
@@ -228,7 +228,7 @@ CMMachineRGBController* cmAllocMachineRGBController(void){
   naAddSpaceChild(
     con->space,
     cmGetGammaDisplayControllerUIElement(con->gammaDisplayController),
-    naMakePos(250, 10));
+    naMakePos(270, 10));
 
   return con;
 }
