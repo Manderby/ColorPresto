@@ -297,142 +297,142 @@
 }
 
 - (IBAction)rgbResponseChange:(NSPopUpButton*)sender{
-  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-
-  if(sender == responseRGBSelect){
-    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
-    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
-    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA){
-      const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
-      cmlInitResponseCurveWithCustomGamma(newResponse, inputParams->gamma);
-    }else if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
-      cmlInitResponseCurveWithCustomGammaLinear(newResponse, inputParams->gamma, inputParams->offset, inputParams->linScale, inputParams->split);
-    }else{
-      cmlInitResponseCurveWithType(newResponse, selectedItem);
-    }
-
-    switch(lastSelectedChannel){
-    case 0: cmlSetResponseRGB(cm, newResponse); break;
-    case 1: cmlSetResponseR(cm, newResponse); break;
-    case 2: cmlSetResponseG(cm, newResponse); break;
-    case 3: cmlSetResponseB(cm, newResponse); break;
-    }
-
-    cmlClearResponseCurve(newResponse);
-    free(newResponse);
-  }
-  [(ColorMachineApplication*)NSApp updateMachine];
+//  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+//
+//  if(sender == responseRGBSelect){
+//    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
+//    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
+//    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA){
+//      const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
+//      cmlInitResponseCurveWithCustomGamma(newResponse, inputParams->gamma);
+//    }else if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+//      const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
+//      cmlInitResponseCurveWithCustomGammaLinear(newResponse, inputParams->gamma, inputParams->offset, inputParams->linScale, inputParams->split);
+//    }else{
+//      cmlInitResponseCurveWithType(newResponse, selectedItem);
+//    }
+//
+//    switch(lastSelectedChannel){
+//    case 0: cmlSetResponseRGB(cm, newResponse); break;
+//    case 1: cmlSetResponseR(cm, newResponse); break;
+//    case 2: cmlSetResponseG(cm, newResponse); break;
+//    case 3: cmlSetResponseB(cm, newResponse); break;
+//    }
+//
+//    cmlClearResponseCurve(newResponse);
+//    free(newResponse);
+//  }
+//  [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 - (IBAction)rgbGammaChange:(NSControl*)sender{
-  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-  if((sender == sliderGammaRGB) || (sender == textFieldGammaRGB)){
-    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
-    float gamma = [sender floatValue];
-    
-    GammaLinearInputParameters inputParams = {gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
-    cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
-
-    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
-    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA){
-      cmlInitResponseCurveWithCustomGamma(newResponse, gamma);
-    }else if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      cmlInitResponseCurveWithCustomGammaLinear(newResponse, gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
-    }
-
-    switch(lastSelectedChannel){
-    case 0: cmlSetResponseRGB(cm, newResponse); break;
-    case 1: cmlSetResponseR(cm, newResponse); break;
-    case 2: cmlSetResponseG(cm, newResponse); break;
-    case 3: cmlSetResponseB(cm, newResponse); break;
-    }
-
-    cmlClearResponseCurve(newResponse);
-    free(newResponse);
-  }
-  [(ColorMachineApplication*)NSApp updateMachine];
+//  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+//  if((sender == sliderGammaRGB) || (sender == textFieldGammaRGB)){
+//    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
+//    float gamma = [sender floatValue];
+//    
+//    GammaLinearInputParameters inputParams = {gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
+//    //cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
+//
+//    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
+//    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA){
+//      cmlInitResponseCurveWithCustomGamma(newResponse, gamma);
+//    }else if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+//      cmlInitResponseCurveWithCustomGammaLinear(newResponse, gamma, [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
+//    }
+//
+//    switch(lastSelectedChannel){
+//    case 0: cmlSetResponseRGB(cm, newResponse); break;
+//    case 1: cmlSetResponseR(cm, newResponse); break;
+//    case 2: cmlSetResponseG(cm, newResponse); break;
+//    case 3: cmlSetResponseB(cm, newResponse); break;
+//    }
+//
+//    cmlClearResponseCurve(newResponse);
+//    free(newResponse);
+//  }
+//  [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 - (IBAction)rgbOffsetChange:(NSControl*)sender{
-  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-  if((sender == sliderOffsetRGB) || (sender == textFieldOffsetRGB)){
-    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
-    float offset = [sender floatValue];
-    
-    GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
-    cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
-
-    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
-    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
-    }
-
-    switch(lastSelectedChannel){
-    case 0: cmlSetResponseRGB(cm, newResponse); break;
-    case 1: cmlSetResponseR(cm, newResponse); break;
-    case 2: cmlSetResponseG(cm, newResponse); break;
-    case 3: cmlSetResponseB(cm, newResponse); break;
-    }
-
-    cmlClearResponseCurve(newResponse);
-    free(newResponse);
-  }
-  [(ColorMachineApplication*)NSApp updateMachine];
+//  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+//  if((sender == sliderOffsetRGB) || (sender == textFieldOffsetRGB)){
+//    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
+//    float offset = [sender floatValue];
+//    
+//    GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]};
+//    //cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
+//
+//    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
+//    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+//      cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], offset, [textFieldLinScaleRGB floatValue], [textFieldSplitRGB floatValue]);
+//    }
+//
+//    switch(lastSelectedChannel){
+//    case 0: cmlSetResponseRGB(cm, newResponse); break;
+//    case 1: cmlSetResponseR(cm, newResponse); break;
+//    case 2: cmlSetResponseG(cm, newResponse); break;
+//    case 3: cmlSetResponseB(cm, newResponse); break;
+//    }
+//
+//    cmlClearResponseCurve(newResponse);
+//    free(newResponse);
+//  }
+//  [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 - (IBAction)rgbLinScaleChange:(NSControl*)sender{
-  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-  if((sender == sliderLinScaleRGB) || (sender == textFieldLinScaleRGB)){
-    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
-    float scale = [sender floatValue];
-    
-    GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]};
-    cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
-
-    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
-    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]);
-    }
-
-    switch(lastSelectedChannel){
-    case 0: cmlSetResponseRGB(cm, newResponse); break;
-    case 1: cmlSetResponseR(cm, newResponse); break;
-    case 2: cmlSetResponseG(cm, newResponse); break;
-    case 3: cmlSetResponseB(cm, newResponse); break;
-    }
-
-    cmlClearResponseCurve(newResponse);
-    free(newResponse);
-  }
-  [(ColorMachineApplication*)NSApp updateMachine];
+//  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+//  if((sender == sliderLinScaleRGB) || (sender == textFieldLinScaleRGB)){
+//    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
+//    float scale = [sender floatValue];
+//    
+//    GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]};
+//    //cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
+//
+//    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
+//    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+//      cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], scale, [textFieldSplitRGB floatValue]);
+//    }
+//
+//    switch(lastSelectedChannel){
+//    case 0: cmlSetResponseRGB(cm, newResponse); break;
+//    case 1: cmlSetResponseR(cm, newResponse); break;
+//    case 2: cmlSetResponseG(cm, newResponse); break;
+//    case 3: cmlSetResponseB(cm, newResponse); break;
+//    }
+//
+//    cmlClearResponseCurve(newResponse);
+//    free(newResponse);
+//  }
+//  [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 - (IBAction)rgbSplitChange:(NSControl*)sender{
-  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
-  if((sender == sliderSplitRGB) || (sender == textFieldSplitRGB)){
-    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
-    float split = [sender floatValue];
-    
-    GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split};
-    cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
-
-    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
-    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
-      cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split);
-    }
-
-    switch(lastSelectedChannel){
-    case 0: cmlSetResponseRGB(cm, newResponse); break;
-    case 1: cmlSetResponseR(cm, newResponse); break;
-    case 2: cmlSetResponseG(cm, newResponse); break;
-    case 3: cmlSetResponseB(cm, newResponse); break;
-    }
-
-    cmlClearResponseCurve(newResponse);
-    free(newResponse);
-  }
-  [(ColorMachineApplication*)NSApp updateMachine];
+//  CMLColorMachine* cm = [(ColorMachineApplication*)NSApp getCurrentMachine];
+//  if((sender == sliderSplitRGB) || (sender == textFieldSplitRGB)){
+//    CMLResponseCurveType selectedItem = (CMLResponseCurveType)([responseRGBSelect indexOfSelectedItem] + 1);  // zero would be the undefined type.
+//    float split = [sender floatValue];
+//    
+//    GammaLinearInputParameters inputParams = {[textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split};
+//    //cmlSetCustomGammaLinearParametersRGB(cm, &inputParams);
+//
+//    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
+//    if(selectedItem == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+//      cmlInitResponseCurveWithCustomGammaLinear(newResponse, [textFieldGammaRGB floatValue], [textFieldOffsetRGB floatValue], [textFieldLinScaleRGB floatValue], split);
+//    }
+//
+//    switch(lastSelectedChannel){
+//    case 0: cmlSetResponseRGB(cm, newResponse); break;
+//    case 1: cmlSetResponseR(cm, newResponse); break;
+//    case 2: cmlSetResponseG(cm, newResponse); break;
+//    case 3: cmlSetResponseB(cm, newResponse); break;
+//    }
+//
+//    cmlClearResponseCurve(newResponse);
+//    free(newResponse);
+//  }
+//  [(ColorMachineApplication*)NSApp updateMachine];
 }
 
 - (IBAction)graycomputationChange:(NSPopUpButton*)sender {

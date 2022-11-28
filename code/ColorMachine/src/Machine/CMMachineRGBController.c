@@ -45,6 +45,8 @@ struct CMMachineRGBController{
   NASlider* responseOffsetSlider;
   
   CMGammaDisplayController* gammaDisplayController;
+
+  size_t lastSelectedChannel;
 };
 
 
@@ -93,17 +95,61 @@ NABool cmSetRGBYxy(NAReaction reaction){
 
 
 
-NABool cmSelectRGBResponse(NAReaction reaction){
-  // CML_RESPONSE_UNDEFINED must be overjumped
+NABool cmSelectRGBChannel(NAReaction reaction){
+  CMMachineRGBController* con = (CMMachineRGBController*)reaction.controller;
+  CMLColorMachine* cm = cmGetCurrentColorMachine();
 
-//  CMMachineRGBController* con = (CMMachineRGBController*)reaction.controller;
-//  CMLColorMachine* cm = cmGetCurrentColorMachine();
-//
-//  size_t index = naGetPopupButtonItemIndex(con->rgbColorSpacePopupButton, reaction.uiElement);
-//  CMLResponseCurveType rgbResponse = (CMLResponseCurveType)index;
-//  cmlSetResponseRGB(cm, rgbResponse);
-//  
-//  cmUpdateMachine();
+  size_t newSelectedChannel = naGetPopupButtonItemIndex(con->rgbResponseChannelsPopupButton, reaction.uiElement);
+
+  if(con->lastSelectedChannel > 0 && newSelectedChannel == 0){
+    CMLResponseCurve* newResponse = cmlAllocResponseCurve();
+    switch(con->lastSelectedChannel){
+    case 0: break;
+    case 1: cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseR(cm)); break;
+    case 2: cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseG(cm)); break;
+    case 3: cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseB(cm)); break;
+    }
+    cmlSetResponseRGB(cm, newResponse);
+  }
+  con->lastSelectedChannel = newSelectedChannel;
+  
+  cmUpdateMachine();
+
+  return NA_TRUE;
+}
+
+
+
+NABool cmSelectRGBResponse(NAReaction reaction){
+  CMMachineRGBController* con = (CMMachineRGBController*)reaction.controller;
+  CMLColorMachine* cm = cmGetCurrentColorMachine();
+
+  size_t index = naGetPopupButtonItemIndex(con->rgbResponsePopupButton, reaction.uiElement);
+  // CML_RESPONSE_UNDEFINED must be overjumped
+  CMLResponseCurveType rgbResponse = (CMLResponseCurveType)(index + 1);
+
+  CMLResponseCurve* newResponse = cmlAllocResponseCurve();
+  if(rgbResponse == CML_RESPONSE_CUSTOM_GAMMA){
+    const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
+    cmlInitResponseCurveWithCustomGamma(newResponse, inputParams->gamma);
+  }else if(rgbResponse == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+    const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
+    cmlInitResponseCurveWithCustomGammaLinear(newResponse, inputParams->gamma, inputParams->offset, inputParams->linScale, inputParams->split);
+  }else{
+    cmlInitResponseCurveWithType(newResponse, rgbResponse);
+  }
+
+  switch(con->lastSelectedChannel){
+  case 0: cmlSetResponseRGB(cm, newResponse); break;
+  case 1: cmlSetResponseR(cm, newResponse); break;
+  case 2: cmlSetResponseG(cm, newResponse); break;
+  case 3: cmlSetResponseB(cm, newResponse); break;
+  }
+
+  cmlClearResponseCurve(newResponse);
+  free(newResponse);
+  
+  cmUpdateMachine();
 
   return NA_TRUE;
 }
@@ -111,14 +157,65 @@ NABool cmSelectRGBResponse(NAReaction reaction){
 
 
 NABool cmSetResponseValue(NAReaction reaction){
-//  CMMachineRGBController* con = (CMMachineRGBController*)reaction.controller;
-//  CMLColorMachine* cm = cmGetCurrentColorMachine();
-//
-//  size_t index = naGetPopupButtonItemIndex(con->rgbColorSpacePopupButton, reaction.uiElement);
-//  CMLResponseCurveType rgbResponse = (CMLResponseCurveType)index;
-//  cmlSetResponseRGB(cm, rgbResponse);
-//  
-//  cmUpdateMachine();
+  CMMachineRGBController* con = (CMMachineRGBController*)reaction.controller;
+  CMLColorMachine* cm = cmGetCurrentColorMachine();
+
+  size_t colorIndex = con->lastSelectedChannel;
+  if(colorIndex > 0){ colorIndex--; }
+
+  CMLResponseCurveType rgbResponseTypes[3];
+  cmlGetRGBResponseTypes(cm, rgbResponseTypes);
+
+  GammaLinearInputParameters params[3];
+  cmlGetCustomGammaLinearParametersRGB(cm, params);
+  if(reaction.uiElement == con->responseLinearTextField){
+    params[colorIndex].linScale = naGetTextFieldDouble(con->responseLinearTextField);
+  }else if(reaction.uiElement == con->responseLinearSlider){
+    params[colorIndex].linScale = naGetSliderValue(con->responseLinearSlider);
+  }else if(reaction.uiElement == con->responseSplitTextField){
+    params[colorIndex].split = naGetTextFieldDouble(con->responseSplitTextField);
+  }else if(reaction.uiElement == con->responseSplitSlider){
+    params[colorIndex].split = naGetSliderValue(con->responseSplitSlider);
+  }else if(reaction.uiElement == con->responseGammaTextField){
+    params[colorIndex].gamma = naGetTextFieldDouble(con->responseGammaTextField);
+  }else if(reaction.uiElement == con->responseGammaSlider){
+    params[colorIndex].gamma = naGetSliderValue(con->responseGammaSlider);
+  }else if(reaction.uiElement == con->responseOffsetTextField){
+    params[colorIndex].offset = naGetTextFieldDouble(con->responseOffsetTextField);
+  }else if(reaction.uiElement == con->responseOffsetSlider){
+    params[colorIndex].offset = naGetSliderValue(con->responseOffsetSlider);
+  }
+
+  if(con->lastSelectedChannel == 0){
+    params[1] = params[0];
+    params[2] = params[0];
+  }
+
+  cmlSetCustomGammaLinearParametersRGB(cm, params);
+
+  CMLResponseCurve* newResponseR = cmlAllocResponseCurve();
+  CMLResponseCurve* newResponseG = cmlAllocResponseCurve();
+  CMLResponseCurve* newResponseB = cmlAllocResponseCurve();
+  if(rgbResponseTypes[0] == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+    cmlInitResponseCurveWithCustomGammaLinear(newResponseR, params[0].gamma, params[0].offset, params[0].linScale, params[0].split);
+    cmlInitResponseCurveWithCustomGammaLinear(newResponseG, params[1].gamma, params[1].offset, params[1].linScale, params[1].split);
+    cmlInitResponseCurveWithCustomGammaLinear(newResponseB, params[2].gamma, params[2].offset, params[2].linScale, params[2].split);
+  }else{
+    cmlInitResponseCurveWithCustomGamma(newResponseR, params[0].gamma);
+    cmlInitResponseCurveWithCustomGamma(newResponseG, params[1].gamma);
+    cmlInitResponseCurveWithCustomGamma(newResponseB, params[2].gamma);
+  }
+  cmlSetResponseR(cm, newResponseR);
+  cmlSetResponseG(cm, newResponseG);
+  cmlSetResponseB(cm, newResponseB);
+  cmlClearResponseCurve(newResponseR);
+  cmlClearResponseCurve(newResponseG);
+  cmlClearResponseCurve(newResponseB);
+  free(newResponseR);
+  free(newResponseG);
+  free(newResponseB);
+
+  cmUpdateMachine();
 
   return NA_TRUE;
 }
@@ -159,12 +256,19 @@ CMMachineRGBController* cmAllocMachineRGBController(void){
 
   con->rgbResponseTitleLabel = naNewLabel("Response", machineLabelWidth);
   con->rgbResponseChannelsPopupButton = naNewPopupButton(80);
-  for(size_t i = 0; i < CML_RGB_COUNT; ++i){
-//    CMLRGBColorSpaceType rgbColorSpaceType = (CMLRGBColorSpaceType)i;
-//    NAMenuItem* item = naNewMenuItem(cmlGetRGBColorSpaceTypeString(rgbColorSpaceType));
-//    naAddPopupButtonMenuItem(con->rgbColorSpacePopupButton, item, NA_NULL);
-//    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectRGBColorSpace, con);
-  }
+  NAMenuItem* rgbMenuItem = naNewMenuItem("R+G+B");
+  naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, rgbMenuItem, NA_NULL);
+  naAddUIReaction(rgbMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
+  NAMenuItem* rMenuItem = naNewMenuItem("R");
+  naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, rMenuItem, NA_NULL);
+  naAddUIReaction(rMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
+  NAMenuItem* gMenuItem = naNewMenuItem("G");
+  naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, gMenuItem, NA_NULL);
+  naAddUIReaction(gMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
+  NAMenuItem* bMenuItem = naNewMenuItem("B");
+  naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, bMenuItem, NA_NULL);
+  naAddUIReaction(bMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
+
   con->rgbResponsePopupButton = naNewPopupButton(100);
   for(size_t i = 0; i < CML_RESPONSE_COUNT; ++i){
     CMLResponseCurveType responseCurveType = (CMLResponseCurveType)i;
@@ -177,15 +281,26 @@ CMMachineRGBController* cmAllocMachineRGBController(void){
   con->responseLinearTitleLabel = naNewLabel("Linear", machineLabelWidth);
   con->responseLinearTextField = cmNewValueTextField(cmSetResponseValue, con);
   con->responseLinearSlider = naNewSlider(60);
+  naSetSliderRange(con->responseLinearSlider, 1., 10., 0);
+  naAddUIReaction(con->responseLinearSlider, NA_UI_COMMAND_EDITED, cmSetResponseValue, con);
+  
   con->responseSplitTitleLabel = naNewLabel("Split", machineLabelWidth);
   con->responseSplitTextField = cmNewValueTextField(cmSetResponseValue, con);
   con->responseSplitSlider = naNewSlider(60);
+  naSetSliderRange(con->responseSplitSlider, 0., 1., 0);
+  naAddUIReaction(con->responseSplitSlider, NA_UI_COMMAND_EDITED, cmSetResponseValue, con);
+  
   con->responseGammaTitleLabel = naNewLabel("Gamma", machineLabelWidth);
   con->responseGammaTextField = cmNewValueTextField(cmSetResponseValue, con);
   con->responseGammaSlider = naNewSlider(60);
+  naSetSliderRange(con->responseGammaSlider, 1., 4., 0);
+  naAddUIReaction(con->responseGammaSlider, NA_UI_COMMAND_EDITED, cmSetResponseValue, con);
+  
   con->responseOffsetTitleLabel = naNewLabel("Offset", machineLabelWidth);
   con->responseOffsetTextField = cmNewValueTextField(cmSetResponseValue, con);
   con->responseOffsetSlider = naNewSlider(60);
+  naSetSliderRange(con->responseOffsetSlider, 0., 1., 0);
+  naAddUIReaction(con->responseOffsetSlider, NA_UI_COMMAND_EDITED, cmSetResponseValue, con);
 
   con->gammaDisplayController = cmAllocGammaDisplayController();
 
@@ -230,6 +345,10 @@ CMMachineRGBController* cmAllocMachineRGBController(void){
     cmGetGammaDisplayControllerUIElement(con->gammaDisplayController),
     naMakePos(270, 10));
 
+  // Initialization
+
+  con->lastSelectedChannel = 0;
+  
   return con;
 }
 
@@ -249,7 +368,7 @@ NASpace* cmGetMachineRGBControllerUIElement(CMMachineRGBController* con){
 
 void cmUpdateMachineRGBController(CMMachineRGBController* con){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
-
+  
   CMLRGBColorSpaceType rgbColorSpaceType = cmlGetRGBColorSpaceType(cm);
   naSetPopupButtonIndexSelected(con->rgbColorSpacePopupButton, rgbColorSpaceType);
   
@@ -292,7 +411,107 @@ void cmUpdateMachineRGBController(CMMachineRGBController* con){
   naSetTextFieldEnabled(con->bluePointxTextField, isCustomRGB);
   naSetTextFieldEnabled(con->bluePointyTextField, isCustomRGB);
 
+  naSetPopupButtonIndexSelected(con->rgbResponseChannelsPopupButton, con->lastSelectedChannel);
+  naSetPopupButtonEnabled(con->rgbResponseChannelsPopupButton, isCustomRGB);
+  
+  size_t colorIndex = con->lastSelectedChannel;
+  if(colorIndex > 0){ colorIndex--; }
+
   CMLResponseCurveType rgbResponseTypes[3];
   cmlGetRGBResponseTypes(cm, rgbResponseTypes);
-  naSetPopupButtonIndexSelected(con->rgbResponsePopupButton, rgbResponseTypes[0]);
+  naSetPopupButtonIndexSelected(con->rgbResponsePopupButton, rgbResponseTypes[colorIndex] - 1);
+  naSetPopupButtonEnabled(con->rgbResponsePopupButton, isCustomRGB);
+  
+  NABool customAllEnabled = rgbResponseTypes[colorIndex] == CML_RESPONSE_CUSTOM_GAMMA_LINEAR;
+  NABool customGammaEnabled = rgbResponseTypes[colorIndex] == CML_RESPONSE_CUSTOM_GAMMA || customAllEnabled;
+  
+  GammaLinearInputParameters params[3];
+  cmlGetCustomGammaLinearParametersRGB(cm, params);
+
+  float gamma = -1.;
+  float offset = -1.;
+  float linScale = -1.;
+  float split = -1.;
+
+  switch(rgbResponseTypes[colorIndex]){
+  case CML_RESPONSE_LINEAR:
+    gamma = 1.0;
+    break;
+  case CML_RESPONSE_GAMMA_1_8:
+    gamma = 1.8;
+    break;
+  case CML_RESPONSE_GAMMA_1_9:
+    gamma = 1.9;
+    break;
+  case CML_RESPONSE_GAMMA_2_0:
+    gamma = 2.0;
+    break;
+  case CML_RESPONSE_GAMMA_ADOBE_98:
+    gamma = 2.f + 51.f / 256.f;
+    break;
+  case CML_RESPONSE_GAMMA_2_2:
+    gamma = 2.2;
+    break;
+  case CML_RESPONSE_GAMMA_LINEAR_REC_BT_10BIT:
+    gamma = 1.f / 0.45f;
+    offset = 0.099f;
+    linScale = 4.5f;
+    split = 0.018f;
+    break;
+  case CML_RESPONSE_GAMMA_LINEAR_REC_BT_12BIT:
+    gamma = 1.f / 0.45f;
+    offset = 0.0993f;
+    linScale = 4.5f;
+    split = 0.0181f;
+    break;
+  case CML_RESPONSE_SRGB:
+    break;
+  case CML_RESPONSE_LSTAR:
+    break;
+  case CML_RESPONSE_LSTAR_STANDARD:
+    break;
+  case CML_RESPONSE_CUSTOM_GAMMA: {
+    gamma = params[colorIndex].gamma;
+    break; }
+  case CML_RESPONSE_CUSTOM_GAMMA_LINEAR: {
+    gamma = params[colorIndex].gamma;
+    offset = params[colorIndex].offset;
+    linScale = params[colorIndex].linScale;
+    split = params[colorIndex].split;
+    break; }
+  default:
+    break;
+  }
+
+  naSetTextFieldText(
+    con->responseLinearTextField,
+    linScale == -1 ? "" : naAllocSprintf(NA_TRUE, "%1.05f", linScale));
+  naSetSliderValue(con->responseLinearSlider, linScale == -1 ? 0 : linScale);
+  naSetTextFieldText(
+    con->responseSplitTextField,
+    split == -1 ? "" : naAllocSprintf(NA_TRUE, "%1.05f", split));
+  naSetSliderValue(con->responseSplitSlider, split == -1 ? 0 : split);
+  naSetTextFieldText(
+    con->responseGammaTextField,
+    gamma == -1 ? "" : naAllocSprintf(NA_TRUE, "%1.05f", gamma));
+  naSetSliderValue(con->responseGammaSlider, gamma == -1 ? 0 : gamma);
+  naSetTextFieldText(
+    con->responseOffsetTextField,
+    offset == -1 ? "" : naAllocSprintf(NA_TRUE, "%1.05f", offset));
+  naSetSliderValue(con->responseOffsetSlider, offset == -1 ? 0 : offset);
+
+  naSetLabelEnabled(con->responseLinearTitleLabel, customAllEnabled);
+  naSetTextFieldEnabled(con->responseLinearTextField, customAllEnabled);
+  naSetSliderEnabled(con->responseLinearSlider, customAllEnabled);
+  naSetLabelEnabled(con->responseSplitTitleLabel, customAllEnabled);
+  naSetTextFieldEnabled(con->responseSplitTextField, customAllEnabled);
+  naSetSliderEnabled(con->responseSplitSlider, customAllEnabled);
+  naSetLabelEnabled(con->responseGammaTitleLabel, customGammaEnabled);
+  naSetTextFieldEnabled(con->responseGammaTextField, customGammaEnabled);
+  naSetSliderEnabled(con->responseGammaSlider, customGammaEnabled);
+  naSetLabelEnabled(con->responseOffsetTitleLabel, customAllEnabled);
+  naSetTextFieldEnabled(con->responseOffsetTextField, customAllEnabled);
+  naSetSliderEnabled(con->responseOffsetSlider, customAllEnabled);
+
+  cmUpdateGammaDisplayController(con->gammaDisplayController);
 }

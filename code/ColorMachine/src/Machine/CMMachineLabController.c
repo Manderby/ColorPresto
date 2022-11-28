@@ -144,6 +144,8 @@ void cmUpdateMachineLabController(CMMachineLabController* con){
     showCoefficients ? naAllocSprintf(NA_TRUE, "%1.03f", ke) : "");
   naSetSliderValue(con->valuekeSlider, ke);
   
+  naSetLabelEnabled(con->valueKTitleLabel, enableCoefficients);
+  naSetLabelEnabled(con->valuekeTitleLabel, enableCoefficients);
   naSetTextFieldEnabled(con->valueKTextField, enableCoefficients);
   naSetTextFieldEnabled(con->valuekeTextField, enableCoefficients);
   naSetSliderEnabled(con->valueKSlider, enableCoefficients);
