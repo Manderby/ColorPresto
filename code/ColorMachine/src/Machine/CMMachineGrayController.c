@@ -1,6 +1,7 @@
 
 #include "CMMachineGrayController.h"
 
+#include "CMColorMachineApplication.h"
 #include "CMMachineObserverController.h"
 
 #include "NAApp.h"

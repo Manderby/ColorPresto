@@ -1,4 +1,5 @@
 
+#include "CMColorMachineApplication.h"
 #include "CMMachineButtonsController.h"
 
 #include "NAApp.h"
@@ -18,9 +19,9 @@ NABool cmPressMachineButton(NAReaction reaction){
   CMMachineButtonsController* con = (CMMachineButtonsController*)reaction.controller;
   
   if(reaction.uiElement == con->threeDeeButton){
-    showThreeDee();
+    cmShowThreeDee();
   }else if(reaction.uiElement == con->metamericsButton){
-    showMetamerics();
+    cmShowMetamerics();
   }
 
   return NA_TRUE;

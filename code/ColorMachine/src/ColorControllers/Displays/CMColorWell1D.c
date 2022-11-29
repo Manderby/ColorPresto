@@ -1,5 +1,6 @@
 
 #include "CMColorController.h"
+#include "CMColorMachineApplication.h"
 #include "CMColorWell1D.h"
 #include "CMDesign.h"
 #include "NAApp.h"
@@ -158,9 +159,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
     inputValues,
     well->colorType,
     inputConverter,
-    colorWell1DSize,
-    NA_FALSE,
-    NA_FALSE);
+    colorWell1DSize);
 
   glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, colorWell1DSize, 0, GL_RGB, GL_FLOAT, rgbValues);
 

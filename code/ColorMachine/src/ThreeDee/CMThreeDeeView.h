@@ -1,8 +1,4 @@
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 #include "mainC.h"
 #include "CML.h"
 
@@ -71,8 +67,3 @@ void cmDrawThreeDeeAxis(
   const CMLVec3 axisRGB,
   NAInt fontId);
 
-
-
-#ifdef __cplusplus
-  }
-#endif

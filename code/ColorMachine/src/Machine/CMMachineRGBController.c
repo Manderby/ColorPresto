@@ -1,6 +1,7 @@
 
 #include "CMMachineRGBController.h"
 
+#include "CMColorMachineApplication.h"
 #include "CMMachineObserverController.h"
 #include "CMGammaDisplayController.h"
 

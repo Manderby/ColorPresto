@@ -1,8 +1,4 @@
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 #include "mainC.h"
 
 
@@ -30,6 +26,3 @@ void cmSetColorControllerColorData(CMColorController* con, const void* data);
 NASpace* cmGetColorControllerUIElement(CMColorController* con);
 void cmUpdateColorController(CMColorController* con);
 
-#ifdef __cplusplus
-  }
-#endif

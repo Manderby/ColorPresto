@@ -1,5 +1,6 @@
 
 #include "CMColorController.h"
+#include "CMColorMachineApplication.h"
 #include "CMGammaDisplayController.h"
 #include "CMDesign.h"
 #include "NAApp.h"

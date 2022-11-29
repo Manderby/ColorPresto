@@ -1,8 +1,4 @@
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 #include "mainC.h"
 
 
@@ -18,7 +14,3 @@ const void* cmGetYuvColorControllerColorData(const CMYuvColorController* con);
 void cmSetYuvColorControllerColorData(CMYuvColorController* con, const void* data);
 
 void cmUpdateYuvColorController(CMYuvColorController* con);
-
-#ifdef __cplusplus
-  }
-#endif

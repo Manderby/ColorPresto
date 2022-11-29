@@ -5,9 +5,11 @@
 
 #include "CMHSLColorController.h"
 
-#import "main.h"
-#import "mainC.h"
+#include "mainC.h"
+#import <Cocoa/Cocoa.h>
+
 #import "ColorMachineApplication.h"
+#include "CMColorMachineApplication.h"
 
 #include "ManderAppAbout.h"
 #include "ManderAppTranslations.h"
@@ -15,52 +17,25 @@
 
 
 
-void showThreeDee(){
-  [(ColorMachineApplication*)NSApp showThreeDee:nil];
-}
+CMColorMachineApplication* app;
 
-void showMetamerics(){
-  [(ColorMachineApplication*)NSApp showMetamerics:nil];
-}
 
-CMLColorMachine* cmGetCurrentColorMachine(){
-  return [(ColorMachineApplication*)NSApp getCurrentMachine];
-}
-
-CMLColorMachine* cmGetCurrentScreenMachine(){
-  return [(ColorMachineApplication*)NSApp getCurrentScreenMachine];
-}
-
-void cmUpdateColor(){
-  [(ColorMachineApplication*)NSApp updateMachine];
-}
-
-void cmUpdateMachine(){
-  [(ColorMachineApplication*)NSApp updateMachine];
-}
 
 void cmSetCurrentColorController(const CMColorController* con){
-  cmSetColorsManagerCurrentColorController(
-    [(ColorMachineApplication*)NSApp getColorsManager],
-    con);
-  [(ColorMachineApplication*)NSApp updateMachine];
+  cmSetColorsManagerCurrentColorController(cmGetColorsManager(), con);
+  cmUpdateMachine();
 }
 
 const CMColorController* cmGetCurrentColorController(){
-  return cmGetColorsManagerCurrentColorController(
-    [(ColorMachineApplication*)NSApp getColorsManager]);
+  return cmGetColorsManagerCurrentColorController(cmGetColorsManager());
 }
 
 const float* cmGetCurrentColorData(){
-  return cmGetColorsManagerCurrentColorData([(ColorMachineApplication*)NSApp getColorsManager]);
+  return cmGetColorsManagerCurrentColorData(cmGetColorsManager());
 }
 
 CMLColorType cmGetCurrentColorType(){
-  return cmGetColorsManagerCurrentColorType([(ColorMachineApplication*)NSApp getColorsManager]);
-}
-
-void cmUpdateMetamerics(void){
-  [(ColorMachineApplication*)NSApp updateMetamerics];
+  return cmGetColorsManagerCurrentColorType(cmGetColorsManager());
 }
 
 
@@ -71,7 +46,6 @@ double cmGetUIScaleFactorForWindow(void* nativeWindowPtr){
 
 
 void preStartup(void* arg){
-  // here come translations.
   mandInitManderAppTranslations();
   initTranslations();
 }

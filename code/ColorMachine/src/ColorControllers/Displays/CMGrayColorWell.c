@@ -1,5 +1,6 @@
 
 #include "CMColorController.h"
+#include "CMColorMachineApplication.h"
 #include "CMGrayColorWell.h"
 #include "CMDesign.h"
 #include "NAApp.h"
@@ -53,9 +54,7 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
     normedColorRGB,
     CML_COLOR_RGB,
     rgbInputConverter,
-    1,
-    NA_FALSE,
-    NA_FALSE);
+    1);
 
   CMLColorConverter grayConverter = cmlGetColorConverter(CML_COLOR_RGB, CML_COLOR_Gray);
   const void* gray = cmGetColorControllerColorData(well->colorController);
@@ -72,9 +71,7 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
     normedGrayRGB,
     CML_COLOR_RGB,
     rgbInputConverter,
-    1,
-    NA_FALSE,
-    NA_FALSE);
+    1);
 
   glBegin(GL_TRIANGLE_STRIP);
     glColor3fv(colorRGB);

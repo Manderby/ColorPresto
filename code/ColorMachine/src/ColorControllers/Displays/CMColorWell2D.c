@@ -1,5 +1,6 @@
 
 #include "CMColorController.h"
+#include "CMColorMachineApplication.h"
 #include "CMColorWell2D.h"
 #include "CMDesign.h"
 #include "NAApp.h"
@@ -151,9 +152,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     inputValues,
     colorType,
     inputConverter,
-    colorWell2DSize * colorWell2DSize,
-    NA_FALSE,
-    NA_FALSE);
+    colorWell2DSize * colorWell2DSize);
 
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, rgbValues);
 

@@ -1,5 +1,6 @@
 
 #include "CMColorController.h"
+#include "CMColorMachineApplication.h"
 #include "CMSpectralColorWell.h"
 #include "CMDesign.h"
 #include "NAApp.h"
@@ -85,9 +86,7 @@ void cmInitSpectralColorWell(void* data){
     rgbInputValues,
     CML_COLOR_RGB,
     cmlGetNormedInputConverter(CML_COLOR_RGB),
-    spectralWellSize,
-    NA_FALSE,
-    NA_FALSE);
+    spectralWellSize);
 
   glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, spectralWellSize, 0, GL_RGB, GL_FLOAT, rgbValues);
 }

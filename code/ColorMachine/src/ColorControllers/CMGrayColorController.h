@@ -1,8 +1,4 @@
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 #include "mainC.h"
 
 
@@ -19,6 +15,4 @@ void cmSetGrayColorControllerColorData(CMGrayColorController* con, const void* d
 
 void cmUpdateGrayColorController(CMGrayColorController* con);
 
-#ifdef __cplusplus
-  }
-#endif
+

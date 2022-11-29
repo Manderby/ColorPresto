@@ -1,8 +1,4 @@
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 #include "mainC.h"
 
 
@@ -19,6 +15,3 @@ void cmSetRGBColorControllerColorData(CMRGBColorController* con, const void* dat
 
 void cmUpdateRGBColorController(CMRGBColorController* con);
 
-#ifdef __cplusplus
-  }
-#endif

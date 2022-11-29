@@ -1,8 +1,4 @@
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 #include "mainC.h"
 
 CM_PROTOTYPE(NAOpenGLSpace);
@@ -21,7 +17,3 @@ NAOpenGLSpace* cmGetGammaDisplayControllerUIElement(CMGammaDisplayController* we
 
 void cmUpdateGammaDisplayController(CMGammaDisplayController* well);
 
-
-#ifdef __cplusplus
-  }
-#endif

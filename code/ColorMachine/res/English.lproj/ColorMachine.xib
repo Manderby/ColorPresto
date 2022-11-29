@@ -144,12 +144,6 @@
                                     <action selector="performMiniaturize:" target="-1" id="1375"/>
                                 </connections>
                             </menuItem>
-                            <menuItem isSeparatorItem="YES" id="4849"/>
-                            <menuItem title="3D View" keyEquivalent="3" id="2603">
-                                <connections>
-                                    <action selector="showThreeDee:" target="-3" id="2642"/>
-                                </connections>
-                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>

@@ -2,6 +2,7 @@
 #include "CMColorRenderingIndexController.h"
 
 #include "CMColorConversionsYcdUVW.h"
+#include "CMColorMachineApplication.h"
 #include "CMDesign.h"
 #include "CMTranslations.h"
 #include "CMTwoColorController.h"
@@ -336,9 +337,7 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
     metamerRefXYZ,
     CML_COLOR_XYZ,
     cmlGetNormedInputConverter(CML_COLOR_XYZ),
-    14,
-    NA_FALSE,
-    NA_FALSE);
+    14);
   
   fillRGBFloatArrayWithArray(
     cm,
@@ -347,9 +346,7 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
     metamerIllXYZ,
     CML_COLOR_XYZ,
     cmlGetNormedInputConverter(CML_COLOR_XYZ),
-    14,
-    NA_FALSE,
-    NA_FALSE);
+    14);
   
   return colors;
 }

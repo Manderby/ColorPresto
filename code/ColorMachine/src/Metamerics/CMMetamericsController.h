@@ -1,10 +1,6 @@
 #ifndef CM_METAMERICS_CONTROLLER_INCLUDED
 #define CM_METAMERICS_CONTROLLER_INCLUDED
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 
 
 typedef struct CMMetamericsController CMMetamericsController;
@@ -16,9 +12,5 @@ void cmShowMetamericsController(CMMetamericsController* con);
 void cmUpdateMetamericsController(CMMetamericsController* con);
 
 
-
-#ifdef __cplusplus
-  }
-#endif
 
 #endif // CM_METAMERICS_CONTROLLER_INCLUDED

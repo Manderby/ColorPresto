@@ -1,6 +1,8 @@
 
 #include "CMWhitePoints.h"
+
 #include "CMColorConversionsYcdUVW.h"
+#include "CMColorMachineApplication.h"
 #include "mainC.h"
 
 

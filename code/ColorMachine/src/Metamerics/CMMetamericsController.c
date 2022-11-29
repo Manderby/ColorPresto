@@ -2,6 +2,7 @@
 #include "CMMetamericsController.h"
 
 #include "CMChromaticityErrorController.h"
+#include "CMColorMachineApplication.h"
 #include "CMWhitePointsController.h"
 
 #include "CMColorConversionsYcdUVW.h"

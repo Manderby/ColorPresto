@@ -1,8 +1,4 @@
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 #include "mainC.h"
 
 
@@ -19,6 +15,3 @@ void cmSetYCbCrColorControllerColorData(CMYCbCrColorController* con, const void*
 
 void cmUpdateYCbCrColorController(CMYCbCrColorController* con);
 
-#ifdef __cplusplus
-  }
-#endif

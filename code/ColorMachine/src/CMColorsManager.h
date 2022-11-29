@@ -1,8 +1,4 @@
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 #include "CML.h"
 #include "mainC.h"
 
@@ -28,6 +24,3 @@ void cmSetColorsManagerCurrentColorController(
 const CMColorController* cmGetColorsManagerCurrentColorController(
   CMColorsManager* colorsManager);
 
-#ifdef __cplusplus
-  }
-#endif

@@ -3,6 +3,7 @@
 #include "NAVectorAlgebra.h"
 #include "NA3DHelper.h"
 
+#include "CMColorMachineApplication.h"
 #include "CMThreeDeeCoordinateController.h"
 #include "CMThreeDeeOpacityController.h"
 #include "CMThreeDeeOptionsController.h"

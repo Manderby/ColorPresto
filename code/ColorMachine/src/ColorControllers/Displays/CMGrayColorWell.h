@@ -1,8 +1,4 @@
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 #include "mainC.h"
 
 CM_PROTOTYPE(NAOpenGLSpace);
@@ -23,6 +19,3 @@ NAOpenGLSpace* cmGetGrayColorWellUIElement(CMGrayColorWell* well);
 void cmUpdateGrayColorWell(CMGrayColorWell* well);
 
 
-#ifdef __cplusplus
-  }
-#endif

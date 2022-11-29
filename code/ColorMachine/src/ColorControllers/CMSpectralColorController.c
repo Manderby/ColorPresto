@@ -1,5 +1,6 @@
 
 #include "CMColorController.h"
+#include "CMColorMachineApplication.h"
 #include "CMColorWell1D.h"
 #include "CMSpectralColorController.h"
 #include "CMSpectralColorWell.h"

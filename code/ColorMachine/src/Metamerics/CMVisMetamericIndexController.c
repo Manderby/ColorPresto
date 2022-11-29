@@ -1,6 +1,7 @@
 
 #include "CMVisMetamericIndexController.h"
 
+#include "CMColorMachineApplication.h"
 #include "CMDesign.h"
 #include "CMTranslations.h"
 #include "CMTwoColorController.h"
@@ -438,9 +439,7 @@ CMVisMetamericColors cmComputeVisMetamericColors(
     standardAdaptedXYZData,
     CML_COLOR_XYZ,
     cmlGetNormedInputConverter(CML_COLOR_XYZ),
-    5,
-    NA_FALSE,
-    NA_FALSE);
+    5);
   
   float specimenAptedXYZData[5 * 3];
   cmlConvertXYZToChromaticAdaptedXYZ(&(specimenAptedXYZData[0]), &(specimenXYZ[0]), adaptationMatrix);
@@ -455,9 +454,7 @@ CMVisMetamericColors cmComputeVisMetamericColors(
     specimenAptedXYZData,
     CML_COLOR_XYZ,
     cmlGetNormedInputConverter(CML_COLOR_XYZ),
-    5,
-    NA_FALSE,
-    NA_FALSE);
+    5);
 
   metamericColors.avg5 = metamericColors.metamericIndex[0]
     + metamericColors.metamericIndex[1]

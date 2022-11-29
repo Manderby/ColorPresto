@@ -1,8 +1,10 @@
 
 #include "CMMachineObserverController.h"
 
-#include "NAApp.h"
+#include "CMColorMachineApplication.h"
 #include "CMDesign.h"
+
+#include "NAApp.h"
 
 
 struct CMMachineObserverController{

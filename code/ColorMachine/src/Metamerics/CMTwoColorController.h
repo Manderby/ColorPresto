@@ -1,6 +1,3 @@
-#ifdef __cplusplus
-  extern "C"{
-#endif
 
 #include "NAMath/NAVectorAlgebra.h"
 #include "mainC.h"
@@ -24,6 +21,3 @@ void cmUpdateTwoColorController(
   
   
 
-#ifdef __cplusplus
-  }
-#endif

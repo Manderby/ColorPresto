@@ -1,6 +1,7 @@
 
 #include "CMUVMetamericIndexController.h"
 
+#include "CMColorMachineApplication.h"
 #include "CMDesign.h"
 #include "CMTwoColorController.h"
 #include "CMMetamericsController.h"
@@ -395,9 +396,7 @@ CMUVMetamericColors cmComputeUVMetamericColors(
     uvStandardAdaptedXYZData,
     CML_COLOR_XYZ,
     cmlGetNormedInputConverter(CML_COLOR_XYZ),
-    3,
-    NA_FALSE,
-    NA_FALSE);
+    3);
   
   float uvMetamerAdaptedXYZData[3 * 3];
   cmlConvertXYZToChromaticAdaptedXYZ(&(uvMetamerAdaptedXYZData[0]), &(uvMetamerXYZ[0]), adaptationMatrix);
@@ -410,9 +409,7 @@ CMUVMetamericColors cmComputeUVMetamericColors(
     uvMetamerAdaptedXYZData,
     CML_COLOR_XYZ,
     cmlGetNormedInputConverter(CML_COLOR_XYZ),
-    3,
-    NA_FALSE,
-    NA_FALSE);
+    3);
 
   metamericColors.avg3 = metamericColors.metamericIndex[0]
     + metamericColors.metamericIndex[1]

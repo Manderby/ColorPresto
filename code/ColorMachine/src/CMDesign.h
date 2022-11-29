@@ -2,10 +2,6 @@
 #ifndef CM_DESIGN_INCLUDED
 #define CM_DESIGN_INCLUDED
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 
 
 #include "NAApp.h"
@@ -131,9 +127,5 @@ void cmAddUIRow(void* child, double rowHeight);
 void cmAddUICol(void* child, double marginLeft);
 void cmAddUIColV(void* child, double marginLeft, double vOffset);
 void cmEndUILayout(void);
-
-#ifdef __cplusplus
-  }
-#endif
 
 #endif // CM_DESIGN_INCLUDED

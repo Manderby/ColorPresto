@@ -1,10 +1,6 @@
 
 #include "NATranslator.h"
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 
 
 enum{
@@ -67,6 +63,3 @@ enum{
 const NAUTF8Char* cmTranslate(NAInt id);
 void initTranslations(void);
 
-#ifdef __cplusplus
-  }
-#endif

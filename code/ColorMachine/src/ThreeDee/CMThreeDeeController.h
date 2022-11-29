@@ -2,10 +2,6 @@
 #ifndef THREE_DEE_CONTROLLER_DEFINED
 #define THREE_DEE_CONTROLLER_DEFINED
 
-#ifdef __cplusplus
-  extern "C"{
-#endif
-
 
 
 typedef enum{
@@ -57,9 +53,5 @@ void cmShowThreeDeeController(CMThreeDeeController* con);
 void cmUpdateThreeDeeController(CMThreeDeeController* con);
 
 
-
-#ifdef __cplusplus
-  }
-#endif
 
 #endif // THREE_DEE_CONTROLLER_DEFINED

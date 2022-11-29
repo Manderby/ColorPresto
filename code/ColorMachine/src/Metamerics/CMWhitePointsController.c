@@ -1,6 +1,7 @@
 
 #include "CMWhitePointsController.h"
 
+#include "CMColorMachineApplication.h"
 #include "CMDesign.h"
 #include "CMMetamericsController.h"
 #include "CMTranslations.h"

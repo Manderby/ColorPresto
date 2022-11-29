@@ -153,9 +153,7 @@ void cmDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
     cloudNormedColorCoords,
     space3D,
     normedInputConverter,
-    totalCloudCount,
-    NA_FALSE,
-    NA_FALSE);
+    totalCloudCount);
 
   glDisable(GL_DEPTH_TEST);
   
@@ -516,9 +514,7 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
         normedColorCoords[s],
         space3D,
         normedInputConverter,
-        totalCount,
-        NA_FALSE,
-        NA_FALSE);
+        totalCount);
     }
 
     // ////////////////////
