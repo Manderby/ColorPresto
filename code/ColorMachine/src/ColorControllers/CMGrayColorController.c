@@ -59,6 +59,8 @@ CMGrayColorController* cmAllocGrayColorController(void){
     cmGetGrayColorWellUIElement(con->display),
     naMakePos(10, 5));
 
+  con->grayColor = .5;
+
   return con;
 }
 

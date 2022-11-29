@@ -57,7 +57,7 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 static const double machineLabelWidth = 110.;
 
 static const float colorValueCondensedRowHeight = 25.;
-static const int gammaDisplaySize = 80;
+static const int gammaDisplaySize = 50;
 static const int colorWell2DSize = 125;
 static const int colorWell1DSize = 125;
 static const int spectralWellSize = 300;

@@ -133,6 +133,12 @@ void cmShowMachineWindowController(CMMachineWindowController* con){
 
 
 
+CMColorController* cmGetInitialColorController(CMMachineWindowController* con){
+  return (CMColorController*)con->grayColorController;
+}
+
+
+
 void cmUpdateMachineWindowController(CMMachineWindowController* con){
   cmUpdateMachineController(con->machineController);
   

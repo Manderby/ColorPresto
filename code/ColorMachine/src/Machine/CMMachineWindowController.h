@@ -6,6 +6,10 @@
 #endif
 
 
+#include "mainC.h"
+CM_PROTOTYPE(CMColorController);
+
+
 
 typedef struct CMMachineWindowController CMMachineWindowController;
 
@@ -13,6 +17,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void);
 void cmDeallocMachineWindowController(CMMachineWindowController* con);
 
 void cmShowMachineWindowController(CMMachineWindowController* con);
+CMColorController* cmGetInitialColorController(CMMachineWindowController* con);
 void cmUpdateMachineWindowController(CMMachineWindowController* con);
 
 

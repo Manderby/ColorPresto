@@ -8,11 +8,11 @@ CM_PROTOTYPE(CMThreeDeeController);
 
 CM_PROTOTYPE(CMHSLColorController);
 
-@class MachineWindowController;
+//@class MachineWindowController;
 
-@class ColorController;
-@class ColorsController;
-@class GrayColorController;
+//@class ColorController;
+//@class ColorsController;
+//@class GrayColorController;
 @class ColorMachineOutlineView;
 
 @class OutlineViewItem;
@@ -44,9 +44,9 @@ extern size_t bordercount;
   CMMetamericsController* metamericsController;
   CMThreeDeeController* threeDeeController;
 
-  IBOutlet MachineWindowController* machinewindowcontroller;
+//  IBOutlet MachineWindowController* machinewindowcontroller;
   
-  IBOutlet ColorsController* colorscontroller;
+//  IBOutlet ColorsController* colorscontroller;
   
   NSTimeInterval sleepinterval;
 }
@@ -65,14 +65,14 @@ extern size_t bordercount;
 - (IBAction)showThreeDee:(id)sender;
 - (IBAction)showMetamerics:(id)sender;
 
-- (void)setCurrentColor:(const Color*)color;
-- (const Color*)getCurrentColor;
-- (void)colorHasChanged;
-- (void)setWorkingColorController:(ColorController*) workingcolorcontroller;
+//- (void)setCurrentColor:(const Color*)color;
+//- (const Color*)getCurrentColor;
+//- (void)colorHasChanged;
+//- (void)setWorkingColorController:(ColorController*) workingcolorcontroller;
 - (CMLColorMachine*)getCurrentMachine;
 - (CMLColorMachine*)getCurrentScreenMachine;
-- (MachineWindowController*)getMachineWindowController;
-- (ColorsController*)getColorsController;
+//- (MachineWindowController*)getMachineWindowController;
+//- (ColorsController*)getColorsController;
 - (CMColorsManager*)getColorsManager;
 - (void)updateMachine;
 - (void)updateColor;

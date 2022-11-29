@@ -102,17 +102,37 @@ NABool cmSelectRGBChannel(NAReaction reaction){
   size_t newSelectedChannel = naGetPopupButtonItemIndex(con->rgbResponseChannelsPopupButton, reaction.uiElement);
 
   if(con->lastSelectedChannel > 0 && newSelectedChannel == 0){
+    GammaLinearInputParameters params[3];
+    cmlGetCustomGammaLinearParametersRGB(cm, params);
+    size_t prevIndex = 0;
+    
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
     switch(con->lastSelectedChannel){
-    case 0: break;
-    case 1: cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseR(cm)); break;
-    case 2: cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseG(cm)); break;
-    case 3: cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseB(cm)); break;
+    case 0:
+      cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseR(cm));
+      prevIndex = 0;
+      break;
+    case 1:
+      cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseR(cm));
+      prevIndex = 0;
+      break;
+    case 2:
+      cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseG(cm));
+      prevIndex = 1;
+      break;
+    case 3:
+      cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseB(cm));
+      prevIndex = 2;
+      break;
     }
     cmlSetResponseRGB(cm, newResponse);
+    params[0] = params[prevIndex];
+    params[1] = params[prevIndex];
+    params[2] = params[prevIndex];
+    cmlSetCustomGammaLinearParametersRGB(cm, params);
   }
   con->lastSelectedChannel = newSelectedChannel;
-  
+    
   cmUpdateMachine();
 
   return NA_TRUE;
@@ -343,7 +363,7 @@ CMMachineRGBController* cmAllocMachineRGBController(void){
   naAddSpaceChild(
     con->space,
     cmGetGammaDisplayControllerUIElement(con->gammaDisplayController),
-    naMakePos(270, 10));
+    naMakePos(300, 37));
 
   // Initialization
 
@@ -355,6 +375,7 @@ CMMachineRGBController* cmAllocMachineRGBController(void){
 
 
 void cmDeallocMachineRGBController(CMMachineRGBController* con){
+  cmDeallocGammaDisplayController(con->gammaDisplayController);
   naFree(con);
 }
 

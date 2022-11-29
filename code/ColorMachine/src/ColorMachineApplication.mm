@@ -10,9 +10,9 @@
 #include "CMHSLColorController.h"
 
 #import "ColorMachineApplication.h"
-#import "ColorsController.h"
-#import "GrayColorController.h"
-#import "MachineWindowController.h"
+//#import "ColorsController.h"
+//#import "GrayColorController.h"
+//#import "MachineWindowController.h"
 
 #include <NADateTime.h>
 #include "NAApp.h"
@@ -54,11 +54,21 @@ size_t bordercount;
 
 
 
-  GrayColor startingcolor(.5f);
-  [self setCurrentColor:&startingcolor];
-  [self updateMachine];
-  [machinewindowcontroller showWindow:self];
+//  GrayColor startingcolor(.5f);
+//  [self setCurrentColor:&startingcolor];
+//  [self updateMachine];
+//  [machinewindowcontroller showWindow:self];
   
+  machineWindowController2 = cmAllocMachineWindowController();
+
+  threeDeeController = cmAllocThreeDeeController();
+  metamericsController = cmAllocMetamericsController();
+  
+//  cmUpdateMetamericsController(metamericsController);
+//  cmUpdateThreeDeeController(threeDeeController);
+
+  cmSetCurrentColorController(cmGetInitialColorController(machineWindowController2));
+
   cmShowMachineWindowController(machineWindowController2);
   
   
@@ -122,12 +132,6 @@ size_t bordercount;
 //  CMHSLColorController* hslColorController = [machinewindowcontroller getHSLColorController];
 //  cmSetColorsManagerCurrentColorController(colorsManager, (CMColorController*)hslColorController);
 
-  machineWindowController2 = cmAllocMachineWindowController();
-  threeDeeController = cmAllocThreeDeeController();
-  metamericsController = cmAllocMetamericsController();
-  
-  cmUpdateMetamericsController(metamericsController);
-  cmUpdateThreeDeeController(threeDeeController);
 }
 
 - (id)init{
@@ -164,20 +168,20 @@ size_t bordercount;
   cmShowMetamericsController(metamericsController);
 }
 
-- (void)setCurrentColor:(const Color*)color{
-  [colorscontroller setCurrentColor:color];
-}
+//- (void)setCurrentColor:(const Color*)color{
+//  [colorscontroller setCurrentColor:color];
+//}
 
-- (const Color*)getCurrentColor{
-  return [colorscontroller currentColor];
-}
-- (void)colorHasChanged{
-  [colorscontroller colorHasChanged];
-}
+//- (const Color*)getCurrentColor{
+//  return [colorscontroller currentColor];
+//}
+//- (void)colorHasChanged{
+//  [colorscontroller colorHasChanged];
+//}
 
-- (void)setWorkingColorController:(ColorController*) workingcolorcontroller{
-  [colorscontroller setWorkingColorController:workingcolorcontroller];
-}
+//- (void)setWorkingColorController:(ColorController*) workingcolorcontroller{
+//  [colorscontroller setWorkingColorController:workingcolorcontroller];
+//}
 
 
 - (CMLColorMachine*)getCurrentMachine{
@@ -186,27 +190,27 @@ size_t bordercount;
 - (CMLColorMachine*)getCurrentScreenMachine{
   return sm;
 }
-- (MachineWindowController*)getMachineWindowController{
-  return machinewindowcontroller;
-}
-- (ColorsController*)getColorsController{
-  return colorscontroller;
-}
+//- (MachineWindowController*)getMachineWindowController{
+//  return machinewindowcontroller;
+//}
+//- (ColorsController*)getColorsController{
+//  return colorscontroller;
+//}
 - (CMColorsManager*)getColorsManager{
   return colorsManager;
 }
 
 
 - (void)updateMachine{
-  [machinewindowcontroller updateMachine];
+//  [machinewindowcontroller updateMachine];
   cmUpdateMachineWindowController(machineWindowController2);
   [self updateMetamerics];
   cmUpdateThreeDeeController(threeDeeController);
-  [colorscontroller updateColor];
+//  [colorscontroller updateColor];
 }
 
 - (void)updateColor{
-  [colorscontroller updateColor];
+//  [colorscontroller updateColor];
   [self updateMetamerics];
   cmUpdateThreeDeeController(threeDeeController);
 }
@@ -228,32 +232,32 @@ size_t bordercount;
 }
 
 - (IBAction)setCurrentColorAsWhitepoint:(id)sender{
-  float yxybuf[3];
-  [colorscontroller currentColor]->toYxyBuffer(yxybuf);
-  cmlSetReferenceWhitePointYxy(cm, yxybuf);
-  [self updateMachine];
+//  float yxybuf[3];
+//  [colorscontroller currentColor]->toYxyBuffer(yxybuf);
+//  cmlSetReferenceWhitePointYxy(cm, yxybuf);
+//  [self updateMachine];
 }
 
 - (IBAction)setCurrentColorAsRedPrimary:(id)sender{
-  CMLVec3 primaries[3];
-  cmlGetRGBPrimariesYxy(cm, primaries);
-  [colorscontroller currentColor]->toYxyBuffer(primaries[0]);
-  cmlSetRGBPrimariesYxy(cm, primaries);
-  [self updateMachine];
+//  CMLVec3 primaries[3];
+//  cmlGetRGBPrimariesYxy(cm, primaries);
+//  [colorscontroller currentColor]->toYxyBuffer(primaries[0]);
+//  cmlSetRGBPrimariesYxy(cm, primaries);
+//  [self updateMachine];
 }
 - (IBAction)setCurrentColorAsGreenPrimary:(id)sender{
-  CMLVec3 primaries[3];
-  cmlGetRGBPrimariesYxy(cm, primaries);
-  [colorscontroller currentColor]->toYxyBuffer(primaries[1]);
-  cmlSetRGBPrimariesYxy(cm, primaries);
-  [self updateMachine];
+//  CMLVec3 primaries[3];
+//  cmlGetRGBPrimariesYxy(cm, primaries);
+//  [colorscontroller currentColor]->toYxyBuffer(primaries[1]);
+//  cmlSetRGBPrimariesYxy(cm, primaries);
+//  [self updateMachine];
 }
 - (IBAction)setCurrentColorAsBluePrimary:(id)sender{
-  CMLVec3 primaries[3];
-  cmlGetRGBPrimariesYxy(cm, primaries);
-  [colorscontroller currentColor]->toYxyBuffer(primaries[2]);
-  cmlSetRGBPrimariesYxy(cm, primaries);
-  [self updateMachine];
+//  CMLVec3 primaries[3];
+//  cmlGetRGBPrimariesYxy(cm, primaries);
+//  [colorscontroller currentColor]->toYxyBuffer(primaries[2]);
+//  cmlSetRGBPrimariesYxy(cm, primaries);
+//  [self updateMachine];
 }
 
 
