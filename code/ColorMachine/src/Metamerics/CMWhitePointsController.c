@@ -106,28 +106,28 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
   con->illYxyTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYxy), labelValueWidth);
   con->illYupvpTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYupvp), labelValueWidth);
   con->illYuvTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYuv), labelValueWidth);
-  con->illYcdTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYcd), labelValueWidth);
-  con->illUVWTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceUVW), labelValueWidth);
+//  con->illYcdTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYcd), labelValueWidth);
+//  con->illUVWTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceUVW), labelValueWidth);
   naSetLabelTextAlignment(con->illXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYuvTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelTextAlignment(con->illYcdTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelTextAlignment(con->illUVWTitle, NA_TEXT_ALIGNMENT_CENTER);
+//  naSetLabelTextAlignment(con->illYcdTitle, NA_TEXT_ALIGNMENT_CENTER);
+//  naSetLabelTextAlignment(con->illUVWTitle, NA_TEXT_ALIGNMENT_CENTER);
 
   con->illXYZ10Label = cmNewThreeValueLabel();
   con->illYxy10Label = cmNewThreeValueLabel();
   con->illYupvp10Label = cmNewThreeValueLabel();
   con->illYuv10Label = cmNewThreeValueLabel();
-  con->illYcd10Label = cmNewThreeValueLabel();
-  con->illUVW10Label = cmNewThreeValueLabel();
+//  con->illYcd10Label = cmNewThreeValueLabel();
+//  con->illUVW10Label = cmNewThreeValueLabel();
   
   con->illXYZ2Label = cmNewThreeValueLabel();
   con->illYxy2Label = cmNewThreeValueLabel();
   con->illYupvp2Label = cmNewThreeValueLabel();
   con->illYuv2Label = cmNewThreeValueLabel();
-  con->illYcd2Label = cmNewThreeValueLabel();
-  con->illUVW2Label = cmNewThreeValueLabel();
+//  con->illYcd2Label = cmNewThreeValueLabel();
+//  con->illUVW2Label = cmNewThreeValueLabel();
 
   // Reference whitepoint
 

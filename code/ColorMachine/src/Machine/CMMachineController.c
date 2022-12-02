@@ -22,8 +22,6 @@ struct CMMachineController{
   CMMachineLabController* labController;
   CMMachineObserverController* observerController;
   CMMachineRGBController* rgbController;
-
-  CMGammaDisplayController* gammaDisplayController;
 };
 
 
@@ -39,8 +37,6 @@ CMMachineController* cmAllocMachineController(void){
   con->labController = cmAllocMachineLabController();
   con->grayController = cmAllocMachineGrayController();
   con->buttonsController = cmAllocMachineButtonsController();
-
-  con->gammaDisplayController = cmAllocGammaDisplayController();
 
   // layout
   cmBeginUILayout(con->space, naMakeBezel4Zero());
@@ -77,6 +73,4 @@ void cmUpdateMachineController(CMMachineController* con){
   cmUpdateMachineLabController(con->labController);
   cmUpdateMachineGrayController(con->grayController);
   cmUpdateMachineButtonsController(con->buttonsController);
-
-  cmUpdateGammaDisplayController(con->gammaDisplayController);
 }
