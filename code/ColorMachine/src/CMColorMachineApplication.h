@@ -12,8 +12,9 @@ CM_PROTOTYPE(CMColorsManager);
 
 
 
-void cmStartupColorMachineApplication();
-void cmShutdownColorMachineApplication();
+void cmStartupColorMachineApplication(void);
+void cmStartupColorMachineApplicationUI(void);
+void cmShutdownColorMachineApplication(void);
 
 CMLColorMachine* cmGetCurrentColorMachine(void);
 CMLColorMachine* cmGetCurrentScreenMachine(void);

@@ -27,7 +27,11 @@ void cmStartupColorMachineApplication(){
   app->cm = cmlCreateColorMachine();
   app->sm = cmlCreateColorMachine();
   app->colorsManager = cmAllocColorsController();
+}
 
+
+
+void cmStartupColorMachineApplicationUI(){
   cmStartupDesign();
 
   app->machineWindowController = cmAllocMachineWindowController();
@@ -86,4 +90,23 @@ void cmUpdateMachine(){
   cmUpdateMachineWindowController(app->machineWindowController);
   cmUpdateMetamerics();
   cmUpdateThreeDeeController(app->threeDeeController);
+}
+
+
+
+void cmSetCurrentColorController(const CMColorController* con){
+  cmSetColorsManagerCurrentColorController(cmGetColorsManager(), con);
+  cmUpdateMachine();
+}
+
+const CMColorController* cmGetCurrentColorController(){
+  return cmGetColorsManagerCurrentColorController(cmGetColorsManager());
+}
+
+const float* cmGetCurrentColorData(){
+  return cmGetColorsManagerCurrentColorData(cmGetColorsManager());
+}
+
+CMLColorType cmGetCurrentColorType(){
+  return cmGetColorsManagerCurrentColorType(cmGetColorsManager());
 }

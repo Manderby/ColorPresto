@@ -1,14 +1,7 @@
 
 #import "ColorMachineApplication.h"
 #include "CMColorMachineApplication.h"
-
-#include "CMDesign.h"
-
-#include "CMColorsManager.h"
-#include "CMMachineWindowController.h"
-#include "CMMetamericsController.h"
 #include "CMTranslations.h"
-#include "CMThreeDeeController.h"
 
 #include "NAApp.h"
 #include "NAUICocoaLegacy.h"
@@ -30,14 +23,12 @@
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification{  
-  cmStartupColorMachineApplication();
 }
 
 - (void)applicationWillTerminate:(NSApplication *)sender{
-  cmShutdownColorMachineApplication(app);
-
+  cmShutdownColorMachineApplication();
   naDelete(naGetApplication());
-
+  naStopApplication();
   naStopRuntime();
 }
 
@@ -90,6 +81,9 @@
 }
 
 
+double cmGetUIScaleFactorForWindow(void* nativeWindowPtr){
+  return [ColorMachineApplication getUIScaleFactorForWindow: (NSWindow*)nativeWindowPtr];
+}
 
 + (CGFloat) getUIScaleFactorForWindow:(NSWindow*)window{
   return naGetWindowBackingScaleFactor(window);
