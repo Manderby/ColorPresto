@@ -3,6 +3,7 @@
 
 #include "CMColorMachineApplication.h"
 #include "CMDesign.h"
+#include "CMTranslations.h"
 
 #include "NAApp.h"
 
@@ -38,7 +39,7 @@ CMMachineObserverController* cmAllocMachineObserverController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
 naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->observerTitleLabel = naNewLabel("Observer", machineLabelWidth);
+  con->observerTitleLabel = naNewLabel(cmTranslate(CMObserverTitle), machineLabelWidth);
   con->observerPopupButton = naNewPopupButton(200);
   for(size_t i = 0; i < CML_OBSERVER_COUNT; ++i){
     CMLObserverType observerType = (CMLObserverType)i;
@@ -47,8 +48,8 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
     naAddPopupButtonMenuItem(con->observerPopupButton, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectObserver, con);
   }
-  con->observerStepsTitleLabel = naNewLabel("Steps:", machineLabelWidth);
-  con->observerStepsLabel = naNewLabel("10nm", 100);
+  con->observerStepsTitleLabel = naNewLabel(cmTranslate(CMObserverSteps), machineLabelWidth);
+  con->observerStepsLabel = naNewLabel("", 100);
   
   // layout
   cmBeginUILayout(con->space, spaceBezel);

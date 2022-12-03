@@ -4,6 +4,7 @@
 #include "CMColorController.h"
 #include "CMMachineController.h"
 #include "CMDesign.h"
+#include "CMTranslations.h"
 
 #include "CMGrayColorController.h"
 #include "CMHSLColorController.h"
@@ -51,7 +52,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   CMMachineWindowController* con = naAlloc(CMMachineWindowController);
 
   con->window = naNewWindow(
-    "Color Machine",
+    cmTranslate(CMApplicationName),
     naMakeRectS(200, 500, 1, 1),
     0,
     0);

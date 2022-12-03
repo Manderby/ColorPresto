@@ -8,14 +8,50 @@ NA_LOC(CMApplicationDescription, "Frontend für Farbumwandlungen basierend auf\n
 NA_LOC(CMApplicationHelpURL, "https://manderc.com/apps/colormachine/help/index.php");
 
 // General things.
-NA_LOC(CMAverage, "Ø:");  // do not translate
+NA_LOC(CMApplicationName, "Color Machine");  // do not translate
+NA_LOC(CMAverage, "Ø:");                     // do not translate
 
 // Observer Strings
+NA_LOC(CMObserverTitle, "Beobachter");
+NA_LOC(CMObserverSteps, "Schrittweite");
 NA_LOC(CMObserverDegree2, "2°");
 NA_LOC(CMObserverDegree10, "10°");
 
+// Observer Strings
+NA_LOC(CMIlluminationTitle, "Beleuchtung");
+NA_LOC(CMIlluminationTemperature, "Temperatur");
+NA_LOC(CMIlluminationKelvin, "K"); // do not translate
+NA_LOC(CMIlluminationWhitePoint, "Weisspunkt Yxy");
+
+// RGB Colorspace Strings
+NA_LOC(CMRGBColorSpaceTitle, "RGB Farbraum");
+NA_LOC(CMRGBColorSpaceRed, "Rot");
+NA_LOC(CMRGBColorSpaceGreen, "Grün");
+NA_LOC(CMRGBColorSpaceBlue, "Blau");
+NA_LOC(CMRGBColorResponse, "Helligkeitskurve"),
+NA_LOC(CMRGBColorChannelRGB, "R+G+B"), // do not translate
+NA_LOC(CMRGBColorChannelR, "R"),       // do not translate
+NA_LOC(CMRGBColorChannelG, "G"),       // do not translate
+NA_LOC(CMRGBColorChannelB, "B"),       // do not translate
+NA_LOC(CMRGBColorChannelLinear, "Linear"),
+NA_LOC(CMRGBColorChannelSplit, "Split"),
+NA_LOC(CMRGBColorChannelGamma, "Gamma"),
+NA_LOC(CMRGBColorChannelOffset, "Offset"),
+
+// Lab Colorspace Strings
+NA_LOC(CMLabColorSpaceTitle, "Lab Farbraum");
+NA_LOC(CMLabColorSpaceK, "K");    // do not translate
+NA_LOC(CMLabColorSpaceke, "ke");  // do not translate
+
+// Gray Colorspace Strings
+NA_LOC(CMGrayColorSpace, "Grau Farbraum");
+
+// Buttons Strings
+NA_LOC(CMThreeDeeButton, "3D Ansicht");
+NA_LOC(CMMetamericsButton, "Metamerie");
+
 // The different color spaces
-NA_LOC(CMColorSpace, "Farbraum");     // do translate
+NA_LOC(CMColorSpace, "Farbraum");     // DO translate
 NA_LOC(CMColorSpaceHSL,   "HSL");     // do not translate
 NA_LOC(CMColorSpaceHSV,   "HSV");     // do not translate
 NA_LOC(CMColorSpaceLab,   "Lab");     // do not translate

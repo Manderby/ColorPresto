@@ -6,6 +6,7 @@
 
 #include "NAApp.h"
 #include "CMDesign.h"
+#include "CMTranslations.h"
 
 
 struct CMMachineIlluminationController{
@@ -99,7 +100,7 @@ CMMachineIlluminationController* cmAllocMachineIlluminationController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->illuminationTitleLabel = naNewLabel("Illumination", machineLabelWidth);
+  con->illuminationTitleLabel = naNewLabel(cmTranslate(CMIlluminationTitle), machineLabelWidth);
   con->illuminationPopupButton = naNewPopupButton(200);
   for(size_t i = 0; i < CML_ILLUMINATION_COUNT; ++i){
     CMLIlluminationType illuminationType = (CMLIlluminationType)i;
@@ -108,12 +109,12 @@ CMMachineIlluminationController* cmAllocMachineIlluminationController(void){
     naAddPopupButtonMenuItem(con->illuminationPopupButton, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectIllumination, con);
   }
-  con->illuminationTemperatureTitleLabel = naNewLabel("Temperature", machineLabelWidth);
+  con->illuminationTemperatureTitleLabel = naNewLabel(cmTranslate(CMIlluminationTemperature), machineLabelWidth);
   con->illuminationTemperatureTextField = cmNewValueTextField(cmSetIlluminationTemperature, con);
-  con->illuminationKelvinLabel = naNewLabel("K", 20);
+  con->illuminationKelvinLabel = naNewLabel(cmTranslate(CMIlluminationKelvin), 20);
   con->illuminationTemperatureSlider = naNewSlider(100);
   naAddUIReaction(con->illuminationTemperatureSlider, NA_UI_COMMAND_EDITED, cmSetIlluminationTemperature, con);
-  con->whitePointTitleLabel = naNewLabel("White Point Yxy", machineLabelWidth);
+  con->whitePointTitleLabel = naNewLabel(cmTranslate(CMIlluminationWhitePoint), machineLabelWidth);
   con->whitePointYTextField = cmNewValueTextField(cmSetWhitePoint, con);
   con->whitePointxTextField = cmNewValueTextField(cmSetWhitePoint, con);
   con->whitePointyTextField = cmNewValueTextField(cmSetWhitePoint, con);

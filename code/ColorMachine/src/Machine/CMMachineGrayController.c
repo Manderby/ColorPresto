@@ -6,6 +6,7 @@
 
 #include "NAApp.h"
 #include "CMDesign.h"
+#include "CMTranslations.h"
 
 
 struct CMMachineGrayController{
@@ -38,7 +39,7 @@ CMMachineGrayController* cmAllocMachineGrayController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->grayColorSpaceLabel = naNewLabel("Gray Colorspace", machineLabelWidth);
+  con->grayColorSpaceLabel = naNewLabel(cmTranslate(CMGrayColorSpace), machineLabelWidth);
   con->grayColorSpacePopupButton = naNewPopupButton(200);
   for(size_t i = 0; i < CML_GRAY_COUNT; ++i){
     CMLGrayComputationType grayComputationType = (CMLGrayComputationType)i;

@@ -6,6 +6,7 @@
 
 #include "NAApp.h"
 #include "CMDesign.h"
+#include "CMTranslations.h"
 
 
 struct CMMachineLabController{
@@ -72,7 +73,7 @@ CMMachineLabController* cmAllocMachineLabController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->labColorSpaceLabel = naNewLabel("Lab Colorspace", machineLabelWidth);
+  con->labColorSpaceLabel = naNewLabel(cmTranslate(CMLabColorSpaceTitle), machineLabelWidth);
   con->labColorSpacePopupButton = naNewPopupButton(200);
   for(size_t i = 0; i < CML_LAB_COUNT; ++i){
     CMLLabColorSpaceType labColorSpaceType = (CMLLabColorSpaceType)i;
@@ -82,13 +83,13 @@ CMMachineLabController* cmAllocMachineLabController(void){
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectLabColorSpace, con);
   }
 
-  con->valueKTitleLabel = naNewLabel("K", machineLabelWidth);
+  con->valueKTitleLabel = naNewLabel(cmTranslate(CMLabColorSpaceK), machineLabelWidth);
   con->valueKTextField = cmNewValueTextField(cmSetLabValue, con);
   con->valueKSlider = naNewSlider(60);
   naSetSliderRange(con->valueKSlider, 1., 2., 0);
   naAddUIReaction(con->valueKSlider, NA_UI_COMMAND_EDITED, cmSetLabValue, con);
   
-  con->valuekeTitleLabel = naNewLabel("ke", machineLabelWidth);
+  con->valuekeTitleLabel = naNewLabel(cmTranslate(CMLabColorSpaceke), machineLabelWidth);
   con->valuekeTextField = cmNewValueTextField(cmSetLabValue, con);
   con->valuekeSlider = naNewSlider(60);
   naSetSliderRange(con->valuekeSlider, .1, 1., 0);

@@ -4,6 +4,7 @@
 
 #include "NAApp.h"
 #include "CMDesign.h"
+#include "CMTranslations.h"
 
 
 struct CMMachineButtonsController{
@@ -35,8 +36,8 @@ CMMachineButtonsController* cmAllocMachineButtonsController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->threeDeeButton = naNewTextButton("3D View", 150, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
-  con->metamericsButton = naNewTextButton("Metamerics", 150, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  con->threeDeeButton = naNewTextButton(cmTranslate(CMThreeDeeButton), 150, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  con->metamericsButton = naNewTextButton(cmTranslate(CMMetamericsButton), 150, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
   naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
   naAddUIReaction(con->metamericsButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
 

@@ -8,11 +8,47 @@ enum{
   CMApplicationHelpURL,
 
   // General things
+  CMApplicationName,
   CMAverage,
 
   // Observer strings
+  CMObserverTitle,
+  CMObserverSteps,
   CMObserverDegree2,
   CMObserverDegree10,
+
+  // Illumination strings
+  CMIlluminationTitle,
+  CMIlluminationTemperature,
+  CMIlluminationKelvin,
+  CMIlluminationWhitePoint,
+
+  // RGB colorspace
+  CMRGBColorSpaceTitle,
+  CMRGBColorSpaceRed,
+  CMRGBColorSpaceGreen,
+  CMRGBColorSpaceBlue,
+  CMRGBColorResponse,
+  CMRGBColorChannelRGB,
+  CMRGBColorChannelR,
+  CMRGBColorChannelG,
+  CMRGBColorChannelB,
+  CMRGBColorChannelLinear,
+  CMRGBColorChannelSplit,
+  CMRGBColorChannelGamma,
+  CMRGBColorChannelOffset,
+
+  // Lab Colorspace
+  CMLabColorSpaceTitle,
+  CMLabColorSpaceK,
+  CMLabColorSpaceke,
+
+  // Gray Colorspace
+  CMGrayColorSpace,
+
+  // Buttons
+  CMThreeDeeButton,
+  CMMetamericsButton,
 
   // Colorspaces
   CMColorSpaceHSL,
