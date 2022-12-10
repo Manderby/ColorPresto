@@ -4,7 +4,7 @@
 #include "NAMath.h"
 #include "NAVisual.h"
 #include "CMThreeDeeView.h"
-#include "CMDesign.h"
+#include "../CMDesign.h"
 
 
 

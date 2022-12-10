@@ -1,12 +1,12 @@
 
 #include "CMMachineLabController.h"
 
-#include "CMColorMachineApplication.h"
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "CMMachineObserverController.h"
 
 #include "NAApp.h"
-#include "CMDesign.h"
-#include "CMTranslations.h"
 
 
 struct CMMachineLabController{
@@ -50,13 +50,13 @@ NABool cmSetLabValue(NAReaction reaction){
   cmlGetAdamsChromaticityValenceParameters(cm, &K, &ke);
 
   if(reaction.uiElement == con->valueKTextField){
-    K = naGetTextFieldDouble(con->valueKTextField);
+    K = (float)naGetTextFieldDouble(con->valueKTextField);
   }else if(reaction.uiElement == con->valueKSlider){
-    K = naGetSliderValue(con->valueKSlider);
+    K = (float)naGetSliderValue(con->valueKSlider);
   }else if(reaction.uiElement == con->valuekeTextField){
-    ke = naGetTextFieldDouble(con->valuekeTextField);
+    ke = (float)naGetTextFieldDouble(con->valuekeTextField);
   }else if(reaction.uiElement == con->valuekeSlider){
-    ke = naGetSliderValue(con->valuekeSlider);
+    ke = (float)naGetSliderValue(con->valuekeSlider);
   }
   cmlSetAdamsChromaticityValenceParameters(cm, K, ke);
   

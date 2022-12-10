@@ -3,7 +3,7 @@
 
 #include "NAApp.h"
 
-#include "CMDesign.h"
+#include "../CMDesign.h"
 
 struct CMTwoColorController{
   NAOpenGLSpace* space;

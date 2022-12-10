@@ -2,7 +2,7 @@
 #include "CMColorConversionsYcdUVW.h"
 #include "CMMetamericsController.h"
 
-#include "mainC.h"
+#include "../mainC.h"
 
 CM_PROTOTYPE(CMLFunction);
 CM_PROTOTYPE(CMWhitePoints);

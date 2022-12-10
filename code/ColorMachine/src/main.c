@@ -1,6 +1,7 @@
 
 #include "mainC.h"
-#include "NAMemory.h"
+
+#include "NAUtility/NAMemory.h"
 
 
 void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* outData, const float* inputData, CMLColorType inputColorType, CMLNormedConverter normedConverter, size_t count){

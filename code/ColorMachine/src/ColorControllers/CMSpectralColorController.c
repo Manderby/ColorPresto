@@ -1,11 +1,13 @@
 
 #include "CMColorController.h"
-#include "CMColorMachineApplication.h"
-#include "CMColorWell1D.h"
+
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "Displays/CMColorWell1D.h"
+#include "Displays/CMSpectralColorWell.h"
 #include "CMSpectralColorController.h"
-#include "CMSpectralColorWell.h"
+
 #include "NAApp.h"
-#include "CMDesign.h"
 
 struct CMSpectralColorController{
   CMColorController baseController;

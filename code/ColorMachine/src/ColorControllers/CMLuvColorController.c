@@ -1,11 +1,13 @@
 
 #include "CMColorController.h"
-#include "CMColorMachineApplication.h"
-#include "CMColorWell1D.h"
-#include "CMColorWell2D.h"
+
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "Displays/CMColorWell1D.h"
+#include "Displays/CMColorWell2D.h"
 #include "CMLuvColorController.h"
+
 #include "NAApp.h"
-#include "CMDesign.h"
 
 struct CMLuvColorController{
   CMColorController baseController;
@@ -31,11 +33,11 @@ NABool cmLuvValueEdited(NAReaction reaction){
   CMLuvColorController* con = (CMLuvColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldL){
-    con->luvColor[0] = naGetTextFieldDouble(con->textFieldL);
+    con->luvColor[0] = (float)naGetTextFieldDouble(con->textFieldL);
   }else if(reaction.uiElement == con->textFieldu){
-    con->luvColor[1] = naGetTextFieldDouble(con->textFieldu);
+    con->luvColor[1] = (float)naGetTextFieldDouble(con->textFieldu);
   }else if(reaction.uiElement == con->textFieldv){
-    con->luvColor[2] = naGetTextFieldDouble(con->textFieldv);
+    con->luvColor[2] = (float)naGetTextFieldDouble(con->textFieldv);
   }
   
   cmSetCurrentColorController(&(con->baseController));

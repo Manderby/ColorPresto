@@ -1,11 +1,13 @@
 
 #include "CMColorController.h"
-#include "CMColorMachineApplication.h"
-#include "CMColorWell1D.h"
+
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
 #include "CMGrayColorController.h"
-#include "CMGrayColorWell.h"
+#include "Displays/CMColorWell1D.h"
+#include "Displays/CMGrayColorWell.h"
+
 #include "NAApp.h"
-#include "CMDesign.h"
 
 struct CMGrayColorController{
   CMColorController baseController;
@@ -25,7 +27,7 @@ NABool cmGrayValueEdited(NAReaction reaction){
   CMGrayColorController* con = (CMGrayColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldGray){
-    con->grayColor = naGetTextFieldDouble(con->textFieldGray);
+    con->grayColor = (float)naGetTextFieldDouble(con->textFieldGray);
   }
   
   cmSetCurrentColorController(&(con->baseController));

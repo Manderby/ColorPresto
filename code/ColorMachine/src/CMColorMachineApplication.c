@@ -3,9 +3,9 @@
 
 #include "CMColorsManager.h"
 #include "CMDesign.h"
-#include "CMMachineWindowController.h"
-#include "CMMetamericsController.h"
-#include "CMThreeDeeController.h"
+#include "Machine/CMMachineWindowController.h"
+#include "Metamerics/CMMetamericsController.h"
+#include "ThreeDee/CMThreeDeeController.h"
 
 #include "NAUtility/NAMemory.h"
 

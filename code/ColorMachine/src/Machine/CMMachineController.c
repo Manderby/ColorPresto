@@ -7,10 +7,10 @@
 #include "CMMachineLabController.h"
 #include "CMMachineObserverController.h"
 #include "CMMachineRGBController.h"
-#include "CMGammaDisplayController.h"
+#include "../ColorControllers/Displays/CMGammaDisplayController.h"
+#include "../CMDesign.h"
 
 #include "NAApp.h"
-#include "CMDesign.h"
 
 
 struct CMMachineController{

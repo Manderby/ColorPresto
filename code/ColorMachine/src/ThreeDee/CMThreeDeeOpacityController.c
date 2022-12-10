@@ -1,9 +1,8 @@
 
 #include "CMThreeDeeOpacityController.h"
 
-#include "CMDesign.h"
-#include "CMTranslations.h"
-#include "CMWhitePoints.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 
 #include "CML.h"
 

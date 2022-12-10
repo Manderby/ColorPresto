@@ -1,23 +1,23 @@
 
 #include "NAApp.h"
-#include "NAVectorAlgebra.h"
-#include "NA3DHelper.h"
+#include "NAMath/NAVectorAlgebra.h"
+#include "NAVisual/NA3DHelper.h"
 
-#include "CMColorMachineApplication.h"
+#include "../CMColorMachineApplication.h"
+#include "../mainC.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "CMThreeDeeCoordinateController.h"
 #include "CMThreeDeeOpacityController.h"
 #include "CMThreeDeeOptionsController.h"
 #include "CMThreeDeePerspectiveController.h"
-#include "CMTranslations.h"
-
-#include "mainC.h"
-#include "CMDesign.h"
 #include "CMThreeDeeController.h"
 #include "CMThreeDeeView.h"
+
 #include <CML.h>
 
-static const double marginHMiddle = spaceMarginLeft3D + threeDeeLabelWidth + marginH;
-static const double fullControlWidth = marginHMiddle + threeDeeControlWidth + spaceMarginRight;
+#define marginHMiddle (spaceMarginLeft3D + threeDeeLabelWidth + marginH)
+#define fullControlWidth (marginHMiddle + threeDeeControlWidth + spaceMarginRight)
 
 struct CMThreeDeeController{
   NAWindow* window;
@@ -84,7 +84,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   CMLColorType coordSpace;
   int primeAxis;
   double scale[3];
-  const NAUTF8Char* labels[3];
+  const NAUTF8Char* labels[3] = {0};
   CMLNormedConverter normedOutputConverter;
   CoordSysType coordSysType = cmGetThreeDeeCoordinateControllerCoordSysType(con->coordinateController);
   CMLColorType colorType = cmGetThreeDeeCoordinateControllerColorSpaceType(con->coordinateController);

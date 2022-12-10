@@ -1,10 +1,11 @@
 
-#include "CMColorMachineApplication.h"
 #include "CMMachineButtonsController.h"
 
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
+
 #include "NAApp.h"
-#include "CMDesign.h"
-#include "CMTranslations.h"
 
 
 struct CMMachineButtonsController{

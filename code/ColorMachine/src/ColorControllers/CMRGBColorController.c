@@ -1,11 +1,13 @@
 
 #include "CMColorController.h"
-#include "CMColorMachineApplication.h"
-#include "CMColorWell1D.h"
-#include "CMColorWell2D.h"
+
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "Displays/CMColorWell1D.h"
+#include "Displays/CMColorWell2D.h"
 #include "CMRGBColorController.h"
+
 #include "NAApp.h"
-#include "CMDesign.h"
 
 struct CMRGBColorController{
   CMColorController baseController;
@@ -36,24 +38,24 @@ NABool cmRGBValueEdited(NAReaction reaction){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
 
   if(reaction.uiElement == con->textFieldR){
-    con->rgbColor[0] = naGetTextFieldDouble(con->textFieldR);
+    con->rgbColor[0] = (float)naGetTextFieldDouble(con->textFieldR);
   }else if(reaction.uiElement == con->textFieldG){
-    con->rgbColor[1] = naGetTextFieldDouble(con->textFieldG);
+    con->rgbColor[1] = (float)naGetTextFieldDouble(con->textFieldG);
   }else if(reaction.uiElement == con->textFieldB){
-    con->rgbColor[2] = naGetTextFieldDouble(con->textFieldB);
+    con->rgbColor[2] = (float)naGetTextFieldDouble(con->textFieldB);
   }else if(reaction.uiElement == con->textFieldHex){
     NAString* string = naNewStringWithTextFieldText(con->textFieldHex);
-    int rgbbuf[3];
-    sscanf(naGetStringUTF8Pointer(string), "%02x%02x%02x", &(rgbbuf[0]), &(rgbbuf[1]), &(rgbbuf[2]));
+    int rgbbuf[3] = {0, 0, 0};
+    sscanf_s(naGetStringUTF8Pointer(string), "%02x%02x%02x", &(rgbbuf[0]), &(rgbbuf[1]), &(rgbbuf[2]));
     uint8 rgbbuf2[3] = {rgbbuf[0], rgbbuf[1], rgbbuf[2]};
     cmlData8ToRGB(cm, con->rgbColor, rgbbuf2, 1);
     naDelete(string);
   }else if(reaction.uiElement == con->textFieldDec){
     NAString* string = naNewStringWithTextFieldText(con->textFieldDec);
-    int rgbbuf[3];
-    int assigned = sscanf(naGetStringUTF8Pointer(string), "%d, %d, %d", &(rgbbuf[0]), &(rgbbuf[1]), &(rgbbuf[2]));
+    int rgbbuf[3] = {0, 0, 0};
+    int assigned = sscanf_s(naGetStringUTF8Pointer(string), "%d, %d, %d", &(rgbbuf[0]), &(rgbbuf[1]), &(rgbbuf[2]));
     if(assigned < 3){
-      sscanf(naGetStringUTF8Pointer(string), "%d %d %d", &(rgbbuf[0]), &(rgbbuf[1]), &(rgbbuf[2]));
+      sscanf_s(naGetStringUTF8Pointer(string), "%d %d %d", &(rgbbuf[0]), &(rgbbuf[1]), &(rgbbuf[2]));
     }
     uint8 rgbbuf2[3] = {rgbbuf[0], rgbbuf[1], rgbbuf[2]};
     cmlData8ToRGB(cm, con->rgbColor, rgbbuf2, 1);
@@ -170,7 +172,7 @@ void cmUpdateRGBColorController(CMRGBColorController* con){
   CMLVec3 clamped;
   cmlCpy3(clamped, con->rgbColor);
   cmlClampRGB(clamped, 1);
-  uint8 rgbbuf[3];
+  uint8 rgbbuf[3] = {0, 0, 0};
   cmlRGBToData8(cm, rgbbuf, clamped, 1);
   naSetTextFieldText(
     con->textFieldHex,

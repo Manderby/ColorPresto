@@ -2,8 +2,8 @@
 #include "CMWhitePoints.h"
 
 #include "CMColorConversionsYcdUVW.h"
-#include "CMColorMachineApplication.h"
-#include "mainC.h"
+#include "../CMColorMachineApplication.h"
+#include "../mainC.h"
 
 
 
@@ -25,7 +25,7 @@ void CMFillChromaticAdaptationMatrix(CMLMat33 adaptationMatrix, const CMLVec3 wh
 CMWhitePoints CMGetWhitePoints(const CMLFunction* spec, const float* wpYxy, CMLFunction** observerFuncs)
 {
   CMLIntegration integration = cmlMakeDefaultIntegration();
-  CMWhitePoints wp;
+  CMWhitePoints wp = {0};
   
   if(spec){
     cmlSet3(

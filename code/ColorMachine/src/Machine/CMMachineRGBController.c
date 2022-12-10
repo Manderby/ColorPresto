@@ -1,13 +1,13 @@
 
 #include "CMMachineRGBController.h"
 
-#include "CMColorMachineApplication.h"
+#include "../CMColorMachineApplication.h"
 #include "CMMachineObserverController.h"
-#include "CMGammaDisplayController.h"
+#include "../ColorControllers/Displays/CMGammaDisplayController.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 
 #include "NAApp.h"
-#include "CMDesign.h"
-#include "CMTranslations.h"
 
 
 struct CMMachineRGBController{
@@ -76,17 +76,17 @@ NABool cmSetRGBYxy(NAReaction reaction){
   cmlGetRGBPrimariesYxy(cm, primaries);
 
   if(reaction.uiElement == con->redPointxTextField){
-    primaries[0][1] = naGetTextFieldDouble(con->redPointxTextField);
+    primaries[0][1] = (float)naGetTextFieldDouble(con->redPointxTextField);
   }else if(reaction.uiElement == con->redPointyTextField){
-    primaries[0][2] = naGetTextFieldDouble(con->redPointyTextField);
+    primaries[0][2] = (float)naGetTextFieldDouble(con->redPointyTextField);
   }else if(reaction.uiElement == con->greenPointxTextField){
-    primaries[1][1] = naGetTextFieldDouble(con->greenPointxTextField);
+    primaries[1][1] = (float)naGetTextFieldDouble(con->greenPointxTextField);
   }else if(reaction.uiElement == con->greenPointyTextField){
-    primaries[1][2] = naGetTextFieldDouble(con->greenPointyTextField);
+    primaries[1][2] = (float)naGetTextFieldDouble(con->greenPointyTextField);
   }else if(reaction.uiElement == con->bluePointxTextField){
-    primaries[2][1] = naGetTextFieldDouble(con->bluePointxTextField);
+    primaries[2][1] = (float)naGetTextFieldDouble(con->bluePointxTextField);
   }else if(reaction.uiElement == con->bluePointyTextField){
-    primaries[2][2] = naGetTextFieldDouble(con->bluePointyTextField);
+    primaries[2][2] = (float)naGetTextFieldDouble(con->bluePointyTextField);
   }
   cmlSetRGBPrimariesYxy(cm, primaries);
   
@@ -191,21 +191,21 @@ NABool cmSetResponseValue(NAReaction reaction){
   GammaLinearInputParameters params[3];
   cmlGetCustomGammaLinearParametersRGB(cm, params);
   if(reaction.uiElement == con->responseLinearTextField){
-    params[colorIndex].linScale = naGetTextFieldDouble(con->responseLinearTextField);
+    params[colorIndex].linScale = (float)naGetTextFieldDouble(con->responseLinearTextField);
   }else if(reaction.uiElement == con->responseLinearSlider){
-    params[colorIndex].linScale = naGetSliderValue(con->responseLinearSlider);
+    params[colorIndex].linScale = (float)naGetSliderValue(con->responseLinearSlider);
   }else if(reaction.uiElement == con->responseSplitTextField){
-    params[colorIndex].split = naGetTextFieldDouble(con->responseSplitTextField);
+    params[colorIndex].split = (float)naGetTextFieldDouble(con->responseSplitTextField);
   }else if(reaction.uiElement == con->responseSplitSlider){
-    params[colorIndex].split = naGetSliderValue(con->responseSplitSlider);
+    params[colorIndex].split = (float)naGetSliderValue(con->responseSplitSlider);
   }else if(reaction.uiElement == con->responseGammaTextField){
-    params[colorIndex].gamma = naGetTextFieldDouble(con->responseGammaTextField);
+    params[colorIndex].gamma = (float)naGetTextFieldDouble(con->responseGammaTextField);
   }else if(reaction.uiElement == con->responseGammaSlider){
-    params[colorIndex].gamma = naGetSliderValue(con->responseGammaSlider);
+    params[colorIndex].gamma = (float)naGetSliderValue(con->responseGammaSlider);
   }else if(reaction.uiElement == con->responseOffsetTextField){
-    params[colorIndex].offset = naGetTextFieldDouble(con->responseOffsetTextField);
+    params[colorIndex].offset = (float)naGetTextFieldDouble(con->responseOffsetTextField);
   }else if(reaction.uiElement == con->responseOffsetSlider){
-    params[colorIndex].offset = naGetSliderValue(con->responseOffsetSlider);
+    params[colorIndex].offset = (float)naGetSliderValue(con->responseOffsetSlider);
   }
 
   if(con->lastSelectedChannel == 0){
@@ -458,22 +458,22 @@ void cmUpdateMachineRGBController(CMMachineRGBController* con){
 
   switch(rgbResponseTypes[colorIndex]){
   case CML_RESPONSE_LINEAR:
-    gamma = 1.0;
+    gamma = 1.0f;
     break;
   case CML_RESPONSE_GAMMA_1_8:
-    gamma = 1.8;
+    gamma = 1.8f;
     break;
   case CML_RESPONSE_GAMMA_1_9:
-    gamma = 1.9;
+    gamma = 1.9f;
     break;
   case CML_RESPONSE_GAMMA_2_0:
-    gamma = 2.0;
+    gamma = 2.0f;
     break;
   case CML_RESPONSE_GAMMA_ADOBE_98:
     gamma = 2.f + 51.f / 256.f;
     break;
   case CML_RESPONSE_GAMMA_2_2:
-    gamma = 2.2;
+    gamma = 2.2f;
     break;
   case CML_RESPONSE_GAMMA_LINEAR_REC_BT_10BIT:
     gamma = 1.f / 0.45f;

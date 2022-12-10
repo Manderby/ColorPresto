@@ -1,5 +1,5 @@
 
-#include "CMColorController.h"
+#include "ColorControllers/CMColorController.h"
 #include "CMColorsManager.h"
 #include "mainC.h"
 #include "NAUtility/NAMemory.h"
