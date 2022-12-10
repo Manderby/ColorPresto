@@ -3,65 +3,65 @@
 #define CM_DESIGN_INCLUDED
 
 
-
 #include "NAApp.h"
+#include "NAMath/NACoord.h"
 
-static const double uiElemHeight = 25.;
+#define uiElemHeight 25.
 
-static const double spaceMarginLeft = 15.;
-static const double spaceMarginRight = 15.;
-static const double spaceMarginBottom = 15.;
-static const double spaceMarginTop = spaceMarginBottom - 3.;
+#define spaceMarginLeft 15.
+#define spaceMarginRight 15.
+#define spaceMarginBottom 15.
+#define spaceMarginTop (spaceMarginBottom - 3.)
 static const NABezel4 spaceBezel = {
   spaceMarginRight,
   spaceMarginTop,
   spaceMarginLeft,
   spaceMarginBottom};
-static const double spaceMarginV = spaceMarginTop + spaceMarginBottom;
+#define spaceMarginV (spaceMarginTop + spaceMarginBottom)
 
-static const double marginH = 15.;
+#define marginH 15.
 
-static const double initial3DDisplayWidth = 500.;
+#define initial3DDisplayWidth 500.
 
-static const double labelValueWidth = 60.;
-static const double textFieldValueWidth = 65.;
-static const double threeValueHeight = 55.;
-static const double threeValueHeightMargin = 10.;
-static const double spaceMarginLeft3D = 10.;
+#define labelValueWidth 60.
+#define textFieldValueWidth 65.
+#define threeValueHeight 55.
+#define threeValueHeightMargin 10.
+#define spaceMarginLeft3D 10.
 static const NABezel4 threeDeeBezel = {
   spaceMarginRight,
   spaceMarginTop,
   spaceMarginLeft3D,
   spaceMarginBottom};
 
-static const double threeDeeRotationLabelWidth = 55.;
-static const double threeDeeLabelWidth = 110.;
-static const double threeDeeControlWidth = 140.;
+#define threeDeeRotationLabelWidth 55.
+#define threeDeeLabelWidth 110.
+#define threeDeeControlWidth 140.
 
-static const double degreeWidth = 35;
-static const double spaceMarginDegreeLeft = spaceMarginLeft + degreeWidth;
+#define degreeWidth 35
+#define spaceMarginDegreeLeft (spaceMarginLeft + degreeWidth)
 
-static const double indexWidth = 25.;
-static const double twoColorWidth = 150.;
-static const double twoColorHeight = 21.;
+#define indexWidth 25.
+#define twoColorWidth 150.
+#define twoColorHeight 21.
 
-static const double indexMargin = 0.;
-static const double valueMargin = 10.;
+#define indexMargin 0.
+#define valueMargin 10.
 
 static const float greyColor[3] = {.5f, .5f, .5f};
 
-static const double machineLabelWidth = 110.;
+#define machineLabelWidth 110.
 
-static const float colorValueCondensedRowHeight = 25.;
-static const int gammaDisplaySize = 50;
-static const int colorWell2DSize = 125;
-static const int colorWell1DSize = 125;
-static const int spectralWellSize = 300;
-static const float colorWell1DMarginLeft = 210;
-static const double colorWell1DHeight = 15.;
-static const double colorWell1DOffset = 5.;
-static const float colorComponentWidth = 25.;
-static const float colorComponentMarginH = -5.;
+#define colorValueCondensedRowHeight 25.
+#define gammaDisplaySize 50
+#define colorWell2DSize 125
+#define colorWell1DSize 125
+#define spectralWellSize 300
+#define colorWell1DMarginLeft 210
+#define colorWell1DHeight 15.
+#define colorWell1DOffset 5.
+#define colorComponentWidth 25.
+#define colorComponentMarginH -5.
 static const NABezel4 colorWellBezel = {10, 5, colorWell2DSize + 20, 5};
 
 void cmStartupDesign(void);
