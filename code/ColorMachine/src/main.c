@@ -76,6 +76,8 @@ double cmGetUIScaleFactorForWindow(void* nativeWindowPtr){
 
 int main()
 {
+  naStartRuntime();
+  naStartApplication(preStartup, postStartup, NA_NULL);
   return 0;
 }
 
