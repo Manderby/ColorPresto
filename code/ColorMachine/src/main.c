@@ -2,6 +2,12 @@
 #include "mainC.h"
 
 #include "NAUtility/NAMemory.h"
+#include "CMColorMachineApplication.h"
+//#include "ManderAppTranslations.h"
+
+
+CMColorMachineApplication* app;
+
 
 
 void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* outData, const float* inputData, CMLColorType inputColorType, CMLNormedConverter normedConverter, size_t count){
@@ -36,3 +42,41 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
 }
 
 
+
+void preStartup(void* arg){
+  //mandInitManderAppTranslations();
+  initTranslations();
+
+  cmStartupColorMachineApplication();
+}
+
+
+
+void postStartup(void* arg){
+  //naLoadNib("ColorMachine", NA_NULL);
+
+  // ManderApp
+  //mandCreateAboutController();
+  //mandSetAboutDescriptionAndHelpURL(
+  //  cmTranslate(CMApplicationDescription),
+  //  cmTranslate(CMApplicationHelpURL));
+
+  // Color Machine
+  cmStartupColorMachineApplicationUI();
+}
+
+
+
+
+#if NA_OS == NA_OS_WINDOWS
+
+double cmGetUIScaleFactorForWindow(void* nativeWindowPtr){
+  return 1.;
+}
+
+int main()
+{
+  return 0;
+}
+
+#endif // NA_OS == NA_OS_WINDOWS

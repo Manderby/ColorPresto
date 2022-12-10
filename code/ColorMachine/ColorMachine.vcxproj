@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{2F5F9E55-014B-4F0F-91F1-31F7D4C8DA7B}</ProjectGuid>
+    <RootNamespace>ColorMachine</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.22000.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(SolutionDir)\NAConfiguration.props" Condition="Exists('$(SolutionDir)\NAConfiguration.props')" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(ProjectDir)..\..\bin\$(ProjectName)_$(Configuration)_$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\build\$(ProjectName)_$(Configuration)_$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(ProjectDir)..\..\bin\$(ProjectName)_$(Configuration)_$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\build\$(ProjectName)_$(Configuration)_$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(ProjectDir)..\..\bin\$(ProjectName)_$(Configuration)_$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\build\$(ProjectName)_$(Configuration)_$(Platform)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(ProjectDir)..\..\bin\$(ProjectName)_$(Configuration)_$(Platform)\</OutDir>
+    <IntDir>$(ProjectDir)..\..\build\$(ProjectName)_$(Configuration)_$(Platform)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\NALib\code\NALib\src;$(ProjectDir)..\..\lib\CML\code\CML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\NALib\code\NALib\src;$(ProjectDir)..\..\lib\CML\code\CML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\NALib\code\NALib\src;$(ProjectDir)..\..\lib\CML\code\CML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\..\lib\NALib\code\NALib\src;$(ProjectDir)..\..\lib\CML\code\CML\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="res\ColorMachineStrings_deu.h" />
+    <ClInclude Include="res\ColorMachineStrings_eng.h" />
+    <ClInclude Include="res\ColorMachineStrings_jpn.h" />
+    <ClInclude Include="src\CMColorMachineApplication.h" />
+    <ClInclude Include="src\CMColorsManager.h" />
+    <ClInclude Include="src\CMDesign.h" />
+    <ClInclude Include="src\CMTranslations.h" />
+    <ClInclude Include="src\ColorControllers\CMColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMGrayColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMHSLColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMHSVColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMLabColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMLuvColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMRGBColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMSpectralColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMUVWColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMXYZColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMYCbCrColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMYcdColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMYuvColorController.h" />
+    <ClInclude Include="src\ColorControllers\CMYxyColorController.h" />
+    <ClInclude Include="src\ColorControllers\Displays\CMColorWell1D.h" />
+    <ClInclude Include="src\ColorControllers\Displays\CMColorWell2D.h" />
+    <ClInclude Include="src\ColorControllers\Displays\CMGammaDisplayController.h" />
+    <ClInclude Include="src\ColorControllers\Displays\CMGrayColorWell.h" />
+    <ClInclude Include="src\ColorControllers\Displays\CMSpectralColorWell.h" />
+    <ClInclude Include="src\ColorMachineApplication.h" />
+    <ClInclude Include="src\Machine\CMMachineButtonsController.h" />
+    <ClInclude Include="src\Machine\CMMachineController.h" />
+    <ClInclude Include="src\Machine\CMMachineGrayController.h" />
+    <ClInclude Include="src\Machine\CMMachineIlluminationController.h" />
+    <ClInclude Include="src\Machine\CMMachineLabController.h" />
+    <ClInclude Include="src\Machine\CMMachineObserverController.h" />
+    <ClInclude Include="src\Machine\CMMachineRGBController.h" />
+    <ClInclude Include="src\Machine\CMMachineWindowController.h" />
+    <ClInclude Include="src\mainC.h" />
+    <ClInclude Include="src\Metamerics\CMChromaticityErrorController.h" />
+    <ClInclude Include="src\Metamerics\CMColorConversionsYcdUVW.h" />
+    <ClInclude Include="src\Metamerics\CMColorRenderingIndexController.h" />
+    <ClInclude Include="src\Metamerics\CMMetamericsController.h" />
+    <ClInclude Include="src\Metamerics\CMTotalMetamericIndexController.h" />
+    <ClInclude Include="src\Metamerics\CMTwoColorController.h" />
+    <ClInclude Include="src\Metamerics\CMUVMetamericIndexController.h" />
+    <ClInclude Include="src\Metamerics\CMVisMetamericIndexController.h" />
+    <ClInclude Include="src\Metamerics\CMWhitePoints.h" />
+    <ClInclude Include="src\Metamerics\CMWhitePointsController.h" />
+    <ClInclude Include="src\ThreeDee\CMThreeDeeController.h" />
+    <ClInclude Include="src\ThreeDee\CMThreeDeeCoordinateController.h" />
+    <ClInclude Include="src\ThreeDee\CMThreeDeeOpacityController.h" />
+    <ClInclude Include="src\ThreeDee\CMThreeDeeOptionsController.h" />
+    <ClInclude Include="src\ThreeDee\CMThreeDeePerspectiveController.h" />
+    <ClInclude Include="src\ThreeDee\CMThreeDeeView.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ColorMachine.icns" />
+    <None Include="res\Info.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="res\ColorMachineChangelog.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\CMColorMachineApplication.c" />
+    <ClCompile Include="src\CMColorsManager.c" />
+    <ClCompile Include="src\CMDesign.c" />
+    <ClCompile Include="src\CMTranslations.c" />
+    <ClCompile Include="src\ColorControllers\CMColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMGrayColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMHSLColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMHSVColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMLabColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMLuvColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMRGBColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMSpectralColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMUVWColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMXYZColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMYCbCrColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMYcdColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMYuvColorController.c" />
+    <ClCompile Include="src\ColorControllers\CMYxyColorController.c" />
+    <ClCompile Include="src\ColorControllers\Displays\CMColorWell1D.c" />
+    <ClCompile Include="src\ColorControllers\Displays\CMColorWell2D.c" />
+    <ClCompile Include="src\ColorControllers\Displays\CMGammaDisplayController.c" />
+    <ClCompile Include="src\ColorControllers\Displays\CMGrayColorWell.c" />
+    <ClCompile Include="src\ColorControllers\Displays\CMSpectralColorWell.c" />
+    <ClCompile Include="src\Machine\CMMachineButtonsController.c" />
+    <ClCompile Include="src\Machine\CMMachineController.c" />
+    <ClCompile Include="src\Machine\CMMachineGrayController.c" />
+    <ClCompile Include="src\Machine\CMMachineIlluminationController.c" />
+    <ClCompile Include="src\Machine\CMMachineLabController.c" />
+    <ClCompile Include="src\Machine\CMMachineObserverController.c" />
+    <ClCompile Include="src\Machine\CMMachineRGBController.c" />
+    <ClCompile Include="src\Machine\CMMachineWindowController.c" />
+    <ClCompile Include="src\main.c" />
+    <ClCompile Include="src\Metamerics\CMChromaticityErrorController.c" />
+    <ClCompile Include="src\Metamerics\CMColorConversionsYcdUVW.c" />
+    <ClCompile Include="src\Metamerics\CMColorRenderingIndexController.c" />
+    <ClCompile Include="src\Metamerics\CMMetamericsController.c" />
+    <ClCompile Include="src\Metamerics\CMTotalMetamericIndexController.c" />
+    <ClCompile Include="src\Metamerics\CMTwoColorController.c" />
+    <ClCompile Include="src\Metamerics\CMUVMetamericIndexController.c" />
+    <ClCompile Include="src\Metamerics\CMVisMetamericIndexController.c" />
+    <ClCompile Include="src\Metamerics\CMWhitePoints.c" />
+    <ClCompile Include="src\Metamerics\CMWhitePointsController.c" />
+    <ClCompile Include="src\ThreeDee\CMThreeDeeController.c" />
+    <ClCompile Include="src\ThreeDee\CMThreeDeeCoordinateController.c" />
+    <ClCompile Include="src\ThreeDee\CMThreeDeeOpacityController.c" />
+    <ClCompile Include="src\ThreeDee\CMThreeDeeOptionsController.c" />
+    <ClCompile Include="src\ThreeDee\CMThreeDeePerspectiveController.c" />
+    <ClCompile Include="src\ThreeDee\CMThreeDeeView.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\lib\CML\code\CML\CML.vcxproj">
+      <Project>{29073bb4-4b45-4493-ac94-392606e2dd13}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\lib\NALib\code\NALib\NALib.vcxproj">
+      <Project>{d03034cf-5ce8-4e68-8fd9-d5820e2745ba}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

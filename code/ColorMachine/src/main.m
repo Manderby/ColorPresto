@@ -5,12 +5,10 @@
 #include "CMTranslations.h"
 
 #include "ManderAppAbout.h"
-#include "ManderAppTranslations.h"
 #include "NAApp.h"
 
-
-
-CMColorMachineApplication* app;
+void preStartup(void* arg);
+void postStartup(void* arg);
 
 
 
