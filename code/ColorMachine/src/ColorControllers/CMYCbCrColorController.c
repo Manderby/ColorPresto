@@ -33,11 +33,11 @@ NABool cmYCbCrValueEdited(NAReaction reaction){
   CMYCbCrColorController* con = (CMYCbCrColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldY){
-    con->ycbcrColor[0] = naGetTextFieldDouble(con->textFieldY);
+    con->ycbcrColor[0] = (float)naGetTextFieldDouble(con->textFieldY);
   }else if(reaction.uiElement == con->textFieldCb){
-    con->ycbcrColor[1] = naGetTextFieldDouble(con->textFieldCb);
+    con->ycbcrColor[1] = (float)naGetTextFieldDouble(con->textFieldCb);
   }else if(reaction.uiElement == con->textFieldCr){
-    con->ycbcrColor[2] = naGetTextFieldDouble(con->textFieldCr);
+    con->ycbcrColor[2] = (float)naGetTextFieldDouble(con->textFieldCr);
   }
   
   cmSetCurrentColorController(&(con->baseController));

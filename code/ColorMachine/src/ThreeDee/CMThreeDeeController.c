@@ -243,8 +243,8 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 
   CMLVec3 backgroundRGB;
   CMLVec3 axisRGB;
-  double axisGray = cmGetThreeDeeOptionsControllerAxisGray(con->optionsController);
-  double backgroundGray = cmGetThreeDeeOptionsControllerBackgroundGray(con->optionsController);
+  float axisGray = (float)cmGetThreeDeeOptionsControllerAxisGray(con->optionsController);
+  float backgroundGray = (float)cmGetThreeDeeOptionsControllerBackgroundGray(con->optionsController);
   NABool showAxis = cmGetThreeDeeOptionsControllerShowAxis(con->optionsController);
   NABool showSpectrum = cmGetThreeDeeOptionsControllerShowSpectrum(con->optionsController);
   double fovy = cmGetThreeDeeOptionsControllerFovy(con->optionsController);
@@ -257,7 +257,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   if(fovy == 0){
     curZoom = zoom;
   }else{
-    curZoom = (viewSize.width / initial3DDisplayWidth) * zoom / (2. * (viewSize.width / viewSize.height) * tan(.5 * naDegToRad(fovy)));
+    curZoom = (viewSize.width / initial3DDisplayWidth) * zoom / (2. * (viewSize.width / viewSize.height) * naTan(.5 * naDegToRad(fovy)));
   }
 
   NAInt hueIndex = -1;
@@ -300,12 +300,12 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   }
   
   const NABool isGrayColorSpace = colorType == CML_COLOR_Gray;
-  double pointsOpacity = cmGetThreeDeeOpacityControllerPointsOpacity(con->opacityController);
+  float pointsOpacity = cmGetThreeDeeOpacityControllerPointsOpacity(con->opacityController);
   if(pointsOpacity > 0.f || isGrayColorSpace){
     cmDrawThreeDeePointCloud(
       cm,
       sm,
-      isGrayColorSpace ? 1. : pointsOpacity,
+      isGrayColorSpace ? 1.f : pointsOpacity,
       colorType,
       steps3D,
       normedInputConverter,

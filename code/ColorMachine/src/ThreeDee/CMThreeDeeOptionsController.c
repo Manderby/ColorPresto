@@ -25,8 +25,8 @@ struct CMThreeDeeOptionsController{
 
   NABool showSpectrum;
   NABool showAxis;
-  double backgroundGray;
-  double fovy;
+  float backgroundGray;
+  float fovy;
 };
 
 
@@ -51,9 +51,9 @@ NABool cmChangeOptionsSlider(NAReaction reaction){
   CMThreeDeeOptionsController* con = (CMThreeDeeOptionsController*)reaction.controller;
 
   if(reaction.uiElement == con->backgroundSlider){
-    con->backgroundGray = naGetSliderValue(con->backgroundSlider);
+    con->backgroundGray = (float)naGetSliderValue(con->backgroundSlider);
   }else if(reaction.uiElement == con->fovySlider){
-    con->fovy = naGetSliderValue(con->fovySlider);
+    con->fovy = (float)naGetSliderValue(con->fovySlider);
     if(con->fovy < 15.f){con->fovy = 0.f;}
   }
   
@@ -110,8 +110,8 @@ CMThreeDeeOptionsController* cmAllocThreeDeeOptionsController(CMThreeDeeControll
   // initial values
   con->showSpectrum = NA_FALSE;
   con->showAxis = NA_TRUE;
-  con->backgroundGray = 0.3;
-  con->fovy = 50.;
+  con->backgroundGray = 0.3f;
+  con->fovy = 50.f;
 
   return con;
 }
@@ -130,15 +130,15 @@ NASpace* cmGetThreeDeeOptionsControllerUIElement(CMThreeDeeOptionsController* co
 
 
 
-double cmGetThreeDeeOptionsControllerAxisGray(CMThreeDeeOptionsController* con){
+float cmGetThreeDeeOptionsControllerAxisGray(CMThreeDeeOptionsController* con){
   float axisGray = con->backgroundGray + .5f;
   if(axisGray > 1.f){axisGray -= 1.f;}
   return axisGray;
 }
-double cmGetThreeDeeOptionsControllerBackgroundGray(CMThreeDeeOptionsController* con){
+float cmGetThreeDeeOptionsControllerBackgroundGray(CMThreeDeeOptionsController* con){
   return con->backgroundGray;
 }
-double cmGetThreeDeeOptionsControllerFovy(CMThreeDeeOptionsController* con){
+float cmGetThreeDeeOptionsControllerFovy(CMThreeDeeOptionsController* con){
   return con->fovy;
 }
 NABool cmGetThreeDeeOptionsControllerShowAxis(CMThreeDeeOptionsController* con){

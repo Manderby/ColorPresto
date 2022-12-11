@@ -16,9 +16,9 @@ void cmDeallocThreeDeeOpacityController(CMThreeDeeOpacityController* con);
 NASpace* cmGetThreeDeeOpacityControllerUIElement(CMThreeDeeOpacityController* con);
 
 NABool cmGetThreeDeeOpacityControllerBodySolid(CMThreeDeeOpacityController* con);
-double cmGetThreeDeeOpacityControllerPointsOpacity(CMThreeDeeOpacityController* con);
-double cmGetThreeDeeOpacityControllerBodyAlpha(CMThreeDeeOpacityController* con);
-double cmGetThreeDeeOpacityControllerGridAlpha(CMThreeDeeOpacityController* con);
-double cmGetThreeDeeOpacityControllerGridTint(CMThreeDeeOpacityController* con);
+float cmGetThreeDeeOpacityControllerPointsOpacity(CMThreeDeeOpacityController* con);
+float cmGetThreeDeeOpacityControllerBodyAlpha(CMThreeDeeOpacityController* con);
+float cmGetThreeDeeOpacityControllerGridAlpha(CMThreeDeeOpacityController* con);
+float cmGetThreeDeeOpacityControllerGridTint(CMThreeDeeOpacityController* con);
 
 void cmUpdateThreeDeeOpacityController(CMThreeDeeOpacityController* con);

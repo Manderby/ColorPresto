@@ -55,7 +55,7 @@ NABool cmSetIlluminationTemperature(NAReaction reaction){
 
   float temperature = 0.f;
   if(reaction.uiElement == con->illuminationTemperatureTextField){
-    temperature = naGetTextFieldDouble(con->illuminationTemperatureTextField);
+    temperature = (float)naGetTextFieldDouble(con->illuminationTemperatureTextField);
   }else if(reaction.uiElement == con->illuminationTemperatureSlider){
     double sliderValue = naGetSliderValue(con->illuminationTemperatureSlider);
     temperature = (sliderValue == 1.f)
@@ -79,11 +79,11 @@ NABool cmSetWhitePoint(NAReaction reaction){
   cmlCpy3(whitePointYxy, cmlGetWhitePointYxy(cm));
   
   if(reaction.uiElement == con->whitePointYTextField){
-    whitePointYxy[0] = naGetTextFieldDouble(con->whitePointYTextField);
+    whitePointYxy[0] = (float)naGetTextFieldDouble(con->whitePointYTextField);
   }else if(reaction.uiElement == con->whitePointxTextField){
-    whitePointYxy[1] = naGetTextFieldDouble(con->whitePointxTextField);
+    whitePointYxy[1] = (float)naGetTextFieldDouble(con->whitePointxTextField);
   }else if(reaction.uiElement == con->whitePointyTextField){
-    whitePointYxy[2] = naGetTextFieldDouble(con->whitePointyTextField);
+    whitePointYxy[2] = (float)naGetTextFieldDouble(con->whitePointyTextField);
   }
   cmlSetReferenceWhitePointYxy(cm, whitePointYxy);
   

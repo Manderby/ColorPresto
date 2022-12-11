@@ -33,11 +33,11 @@ NABool cmXYZValueEdited(NAReaction reaction){
   CMXYZColorController* con = (CMXYZColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldX){
-    con->XYZColor[0] = naGetTextFieldDouble(con->textFieldX);
+    con->XYZColor[0] = (float)naGetTextFieldDouble(con->textFieldX);
   }else if(reaction.uiElement == con->textFieldY){
-    con->XYZColor[1] = naGetTextFieldDouble(con->textFieldY);
+    con->XYZColor[1] = (float)naGetTextFieldDouble(con->textFieldY);
   }else if(reaction.uiElement == con->textFieldZ){
-    con->XYZColor[2] = naGetTextFieldDouble(con->textFieldZ);
+    con->XYZColor[2] = (float)naGetTextFieldDouble(con->textFieldZ);
   }
   
   cmSetCurrentColorController(&(con->baseController));

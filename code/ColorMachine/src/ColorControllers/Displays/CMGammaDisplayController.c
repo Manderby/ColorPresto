@@ -48,7 +48,7 @@ NABool cmDrawGammaDisplayController(NAReaction reaction){
   glBegin(GL_LINE_STRIP);
     glColor3f(1.f, .5f, .5f);
     for(uint32 x = 0; x < viewSize.width; ++x){
-      float curX = (float)x / viewSize.width;
+      float curX = (float)x / (float)viewSize.width;
       float y = cmlEval(responses[0], curX);
       float z = sinf(stripes * (curX * NA_PI2f + (0.f/3.f) * NA_PI2f));
       glVertex3f(curX, y, z);
@@ -57,7 +57,7 @@ NABool cmDrawGammaDisplayController(NAReaction reaction){
   glBegin(GL_LINE_STRIP);
     glColor3f(.5f, 1.f, .5f);
     for(uint32 x = 0; x < viewSize.width; ++x){
-      float curX = (float)x / viewSize.width;
+      float curX = (float)x / (float)viewSize.width;
       float y = cmlEval(responses[1], curX);
       float z = sinf(stripes * (curX * NA_PI2f + (1.f/3.f) * NA_PI2f));
       glVertex3f(curX, y, z);
@@ -66,7 +66,7 @@ NABool cmDrawGammaDisplayController(NAReaction reaction){
   glBegin(GL_LINE_STRIP);
     glColor3f(.5f, .5f, 1.f);
     for(uint32 x = 0; x < viewSize.width; ++x){
-      float curX = (float)x / viewSize.width;
+      float curX = (float)x / (float)viewSize.width;
       float y = cmlEval(responses[2], curX);
       float z = sinf(stripes * (curX * NA_PI2f + (2.f/3.f) * NA_PI2f));
       glVertex3f(curX, y, z);
