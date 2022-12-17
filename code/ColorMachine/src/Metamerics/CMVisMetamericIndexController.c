@@ -1,9 +1,9 @@
 
 #include "CMVisMetamericIndexController.h"
 
-#include "CMColorMachineApplication.h"
-#include "CMDesign.h"
-#include "CMTranslations.h"
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "CMTwoColorController.h"
 #include "CMWhitePoints.h"
 

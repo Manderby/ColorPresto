@@ -1,8 +1,10 @@
 
-#include "CMColorController.h"
-#include "CMColorMachineApplication.h"
 #include "CMColorWell2D.h"
-#include "CMDesign.h"
+
+#include "../../CMColorMachineApplication.h"
+#include "../../CMDesign.h"
+#include "../CMColorController.h"
+
 #include "NAApp.h"
 #include "NAMath/NAVectorAlgebra.h"
 
@@ -44,26 +46,26 @@ NABool cmDragColorWell2D(NAReaction reaction){
     CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
     CMLColorMutator clamper = cmlGetClamper(colorType);
 
-    CMLVec3 normedColorValues;
+    CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
     outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
 
     NARect displayRect = naGetUIElementRect(well->display, naGetApplication(), NA_FALSE);
     switch(well->fixedIndex){
     case 0:
-      normedColorValues[1] = (mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width;
-      normedColorValues[2] = (mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height;
+      normedColorValues[1] = (float)((mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width);
+      normedColorValues[2] = (float)((mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height);
       break;
     case 1:
-      normedColorValues[0] = (mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width;
-      normedColorValues[2] = (mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height;
+      normedColorValues[0] = (float)((mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width);
+      normedColorValues[2] = (float)((mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height);
       break;
     case 2:
-      normedColorValues[0] = (mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width;
-      normedColorValues[1] = (mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height;
+      normedColorValues[0] = (float)((mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width);
+      normedColorValues[1] = (float)((mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height);
       break;
     }
 
-    CMLVec3 newColorValues;
+    CMLVec3 newColorValues = {0.f, 0.f, 0.f};
     inputConverter(newColorValues, normedColorValues, 1);
     clamper(newColorValues, 1);
     
@@ -93,9 +95,9 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
   CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
 
-  float inputValues[colorWell2DSize * colorWell2DSize * 3];
+  float inputValues[colorWell2DSize * colorWell2DSize * 3] = {0};
   float* inputPtr = inputValues;
-  CMLVec3 normedColorValues;
+  CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
   outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
   
   float fixedValueA;
@@ -163,13 +165,13 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     glTexCoord2f(0., 1.);
     glVertex2f(-1., +1.);
     glTexCoord2f(1., 0.);
-    glVertex2i(+1., -1.);
+    glVertex2f(+1., -1.);
     glTexCoord2f(1., 1.);
-    glVertex2i(+1., +1.);
+    glVertex2f(+1., +1.);
   glEnd();
 
-  const float whiteR = 2. * 4. / (float)colorWell2DSize;
-  const float blackR = 2. * 5. / (float)colorWell2DSize;
+  const float whiteR = 2.f * 4.f / (float)colorWell2DSize;
+  const float blackR = 2.f * 5.f / (float)colorWell2DSize;
   const int subdivisions = 16;
 
   glDisable(GL_TEXTURE_2D);
@@ -191,9 +193,9 @@ NABool cmDrawColorWell2D(NAReaction reaction){
       cmlGetSpectralXYZColor(cm, curXYZ, l);
       if(curXYZ[1] > 0.f){
 
-        CMLVec3 curRGB;
-        CMLVec3 curcoords;
-        CMLVec3 curNormedCoords;
+        CMLVec3 curRGB = {0.f, 0.f, 0.f};
+        CMLVec3 curcoords = {0.f, 0.f, 0.f};
+        CMLVec3 curNormedCoords = {0.f, 0.f, 0.f};
         coordConverter(cm, curcoords, curXYZ, 1);
         normedConverter(curNormedCoords, curcoords, 1);
         cmlXYZToRGB(cm, curRGB, curXYZ, 1);
@@ -204,13 +206,13 @@ NABool cmDrawColorWell2D(NAReaction reaction){
 
         switch(well->fixedIndex){
         case 0:
-          glVertex2f(curNormedCoords[1] * 2. - 1., curNormedCoords[2] * 2. - 1.);
+          glVertex2d(curNormedCoords[1] * 2. - 1., curNormedCoords[2] * 2. - 1.);
           break;
         case 1:
-          glVertex2f(curNormedCoords[0] * 2. - 1., curNormedCoords[2] * 2. - 1.);
+          glVertex2d(curNormedCoords[0] * 2. - 1., curNormedCoords[2] * 2. - 1.);
           break;
         case 2:
-          glVertex2f(curNormedCoords[0] * 2. - 1., curNormedCoords[1] * 2. - 1.);
+          glVertex2d(curNormedCoords[0] * 2. - 1., curNormedCoords[1] * 2. - 1.);
           break;
         }
       }
@@ -221,13 +223,13 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   glBegin(GL_LINE_LOOP);
     glColor4f(1., 1., 1., 1.);
     for(int i = 0; i < subdivisions; ++i){
-      float ang = NA_PI2 * (float)i / (float)subdivisions;
-      glVertex2f(fixedValueA * 2. - 1. + whiteR * naCos(ang), fixedValueB * 2. - 1. + whiteR * naSin(ang));
+      float ang = NA_PI2f * (float)i / (float)subdivisions;
+      glVertex2d(fixedValueA * 2. - 1. + whiteR * naCos(ang), fixedValueB * 2. - 1. + whiteR * naSin(ang));
     }
     glColor4f(0., 0., 0., 1.);
     for(int i = 0; i < subdivisions; ++i){
-      float ang = NA_PI2 * (float)i / (float)subdivisions;
-      glVertex2f(fixedValueA * 2. - 1. + blackR * naCos(ang), fixedValueB * 2. - 1. + blackR * naSin(ang));
+      float ang = NA_PI2f * (float)i / (float)subdivisions;
+      glVertex2d(fixedValueA * 2. - 1. + blackR * naCos(ang), fixedValueB * 2. - 1. + blackR * naSin(ang));
     }
   glEnd();
 

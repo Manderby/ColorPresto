@@ -1,5 +1,5 @@
 
-#include "mainC.h"
+#include "../mainC.h"
 #include "NAApp.h"
 #include "CMThreeDeeController.h"
 
@@ -15,9 +15,9 @@ void cmDeallocThreeDeeOptionsController(CMThreeDeeOptionsController* con);
 
 NASpace* cmGetThreeDeeOptionsControllerUIElement(CMThreeDeeOptionsController* con);
 
-double cmGetThreeDeeOptionsControllerAxisGray(CMThreeDeeOptionsController* con);
-double cmGetThreeDeeOptionsControllerBackgroundGray(CMThreeDeeOptionsController* con);
-double cmGetThreeDeeOptionsControllerFovy(CMThreeDeeOptionsController* con);
+float cmGetThreeDeeOptionsControllerAxisGray(CMThreeDeeOptionsController* con);
+float cmGetThreeDeeOptionsControllerBackgroundGray(CMThreeDeeOptionsController* con);
+float cmGetThreeDeeOptionsControllerFovy(CMThreeDeeOptionsController* con);
 NABool cmGetThreeDeeOptionsControllerShowAxis(CMThreeDeeOptionsController* con);
 NABool cmGetThreeDeeOptionsControllerShowSpectrum(CMThreeDeeOptionsController* con);
 

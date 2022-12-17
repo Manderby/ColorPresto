@@ -1,6 +1,6 @@
 
 #include "CMColorConversionsYcdUVW.h"
-#include "mainC.h"
+#include "../mainC.h"
 
 
 // todo: add conversions to main window or even CML.

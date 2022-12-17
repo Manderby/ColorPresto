@@ -3,7 +3,7 @@
 
 #include "NAApp.h"
 
-#include "CMDesign.h"
+#include "../CMDesign.h"
 
 struct CMTwoColorController{
   NAOpenGLSpace* space;
@@ -39,7 +39,7 @@ NABool cmRedrawTwoColorController(NAReaction reaction){
 
   NABabyColor color;
   naFillDefaultTextColorWithSkin(color, naGetSkinForCurrentAppearance());
-  color[3] = .2;
+  color[3] = .2f;
 
   glLineWidth(2);
   glBegin(GL_LINE_STRIP);

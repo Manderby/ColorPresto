@@ -1,8 +1,10 @@
 
-#include "CMColorController.h"
-#include "CMColorMachineApplication.h"
 #include "CMColorWell1D.h"
-#include "CMDesign.h"
+
+#include "../../CMColorMachineApplication.h"
+#include "../../CMDesign.h"
+#include "../CMColorController.h"
+
 #include "NAApp.h"
 #include "NAMath/NAVectorAlgebra.h"
 
@@ -47,11 +49,11 @@ NABool cmDragColorWell1D(NAReaction reaction){
     CMLNormedConverter inputConverter = cmlGetNormedInputConverter(well->colorType);
     CMLColorMutator clamper = cmlGetClamper(well->colorType);
 
-    CMLVec3 normedColorValues;
+    CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
     outputConverter(normedColorValues, well->colorData, 1);
 
     NARect displayRect = naGetUIElementRect(well->display, naGetApplication(), NA_FALSE);
-    double mouseX = (mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width;
+    float mouseX = (float)((mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width);
     if(mouseX < 0.f){mouseX = 0.f;}
     if(mouseX > 1.f){mouseX = 1.f;}
 
@@ -67,14 +69,14 @@ NABool cmDragColorWell1D(NAReaction reaction){
       break;
     }
     
-    CMLVec3 newColorValues;
+    CMLVec3 newColorValues = {0.f, 0.f, 0.f};
     inputConverter(newColorValues, normedColorValues, 1);
     clamper(newColorValues, 1);
     
     CMLColorConverter converter = cmlGetColorConverter(
       cmGetColorControllerColorType(well->colorController),
       well->colorType);
-    CMLVec3 convertedColorValues;
+    CMLVec3 convertedColorValues = {0.f, 0.f, 0.f};
     converter(cm, convertedColorValues, newColorValues, 1);
 
     cmSetColorControllerColorData(well->colorController, convertedColorValues);
@@ -101,9 +103,9 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(well->colorType);
   CMLNormedConverter inputConverter = cmlGetNormedInputConverter(well->colorType);
 
-  float inputValues[colorWell1DSize * 3];
+  float inputValues[colorWell1DSize * 3] = {0};
   float* inputPtr = inputValues;
-  CMLVec3 normedColorValues;
+  CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
   outputConverter(normedColorValues, well->colorData, 1);
   
   float variableValue;
@@ -170,15 +172,15 @@ NABool cmDrawColorWell1D(NAReaction reaction){
     glTexCoord2f(0., 1.);
     glVertex2f(-1., +1.);
     glTexCoord2f(1., 0.);
-    glVertex2i(+1., -1.);
+    glVertex2f(+1., -1.);
     glTexCoord2f(1., 1.);
-    glVertex2i(+1., +1.);
+    glVertex2f(+1., +1.);
   glEnd();
 
-  const float whiteR = 2. * 4. / (float)colorWell1DSize;
-  const float blackR = 2. * 5. / (float)colorWell1DSize;
+  const float whiteR = 2.f * 4.f / (float)colorWell1DSize;
+  const float blackR = 2.f * 5.f / (float)colorWell1DSize;
   const int subdivisions = 16;
-  const float yDivisor = colorWell1DSize / colorWell1DHeight;
+  const float yDivisor = colorWell1DSize / (float)colorWell1DHeight;
 
   glDisable(GL_TEXTURE_1D);
   glDisable(GL_DEPTH);
@@ -186,16 +188,16 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   glColor4f(1., 1., 1., 1.);
   glBegin(GL_LINE_LOOP);
     for(int i = 0; i < subdivisions; ++i){
-      float ang = NA_PI2 * (float)i / (float)subdivisions;
-      glVertex2f(variableValue * 2. - 1. + whiteR * naCos(ang), whiteR * naSin(ang) * yDivisor);
+      float ang = NA_PI2f * (float)i / (float)subdivisions;
+      glVertex2d(variableValue * 2. - 1. + whiteR * naCos(ang), whiteR * naSin(ang) * yDivisor);
     }
   glEnd();
 
   glColor4f(0., 0., 0., 1.);
   glBegin(GL_LINE_LOOP);
     for(int i = 0; i < subdivisions; ++i){
-      float ang = NA_PI2 * (float)i / (float)subdivisions;
-      glVertex2f(variableValue * 2. - 1. + blackR * naCos(ang), blackR * naSin(ang) * yDivisor);
+      float ang = NA_PI2f * (float)i / (float)subdivisions;
+      glVertex2d(variableValue * 2. - 1. + blackR * naCos(ang), blackR * naSin(ang) * yDivisor);
     }
   glEnd();
 

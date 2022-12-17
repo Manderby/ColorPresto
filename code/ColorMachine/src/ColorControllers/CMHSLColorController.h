@@ -1,6 +1,6 @@
 
 
-#include "mainC.h"
+#include "../mainC.h"
 
 
 

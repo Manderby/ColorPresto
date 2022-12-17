@@ -1,9 +1,8 @@
 
 #include "CMThreeDeePerspectiveController.h"
 
-#include "CMDesign.h"
-#include "CMTranslations.h"
-#include "CMWhitePoints.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 
 #include "CML.h"
 
@@ -31,8 +30,8 @@ void cmStepRotation(void* data){
   CMThreeDeePerspectiveController* con = (CMThreeDeePerspectiveController*)data;
   
   if(con->rotationStep != 0.){
-    con->angleEqu -= con->rotationStep * .015;
-    naCallApplicationFunctionInSeconds(cmStepRotation, data, 1/60.);
+    con->angleEqu -= con->rotationStep * .015f;
+    naCallApplicationFunctionInSeconds(cmStepRotation, data, 1./60.);
     cmUpdateThreeDeeController(con->parent);
   }
 }
@@ -58,7 +57,7 @@ NABool cmChangeRotationSlider(NAReaction reaction){
 
   if(reaction.uiElement == con->rotationSlider){
     NABool needsRotationStart = (con->rotationStep == 0.);
-    con->rotationStep = naGetSliderValue(con->rotationSlider);
+    con->rotationStep = (float)naGetSliderValue(con->rotationSlider);
     if(con->rotationStep < .1 && con->rotationStep > -.1){con->rotationStep = 0.;}
     if(needsRotationStart){cmStepRotation(con);}
   }
@@ -90,8 +89,8 @@ NABool cmMoveRotationMouse(NAReaction reaction){
     NAPos mouseDiff = naMakePos(status->pos.x - status->prevPos.x, status->pos.y - status->prevPos.y);
     double scaleFactor = cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
 
-    con->angleEqu -= mouseDiff.x * .01f * scaleFactor;
-    con->anglePol += mouseDiff.y * .01f * scaleFactor;
+    con->angleEqu -= (float)(mouseDiff.x * .01 * scaleFactor);
+    con->anglePol += (float)(mouseDiff.y * .01 * scaleFactor);
 
     cmFixThreeDeeViewParameters(con);
     cmRefreshThreeDeeDisplay(con->parent);
@@ -106,7 +105,7 @@ NABool cmScrollRotation(NAReaction reaction){
 
   const NAMouseStatus* status = naGetMouseStatus();
   
-  con->zoom *= 1. + (status->pos.y - status->prevPos.y) * .01;
+  con->zoom *= 1.f + (float)(status->pos.y - status->prevPos.y) * .01f;
   cmFixThreeDeeViewParameters(con);
   cmRefreshThreeDeeDisplay(con->parent);
 
@@ -141,12 +140,12 @@ CMThreeDeePerspectiveController* cmAllocThreeDeePerspectiveController(CMThreeDee
   cmEndUILayout();
 
   // initial values
-  double scaleFactor = cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
+  float scaleFactor = (float)cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
 
   con->rotationStep = 0.;
   con->anglePol = 1.3f;
   con->angleEqu = NA_PIf / 4.f;
-  con->zoom = 1. / scaleFactor;
+  con->zoom = 1.f / scaleFactor;
 
   return con;
 }

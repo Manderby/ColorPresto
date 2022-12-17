@@ -1,9 +1,9 @@
 
 #include "CMMachineObserverController.h"
 
-#include "CMColorMachineApplication.h"
-#include "CMDesign.h"
-#include "CMTranslations.h"
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 
 #include "NAApp.h"
 

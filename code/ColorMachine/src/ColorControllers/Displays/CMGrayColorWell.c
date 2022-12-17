@@ -1,8 +1,10 @@
 
-#include "CMColorController.h"
-#include "CMColorMachineApplication.h"
 #include "CMGrayColorWell.h"
-#include "CMDesign.h"
+
+#include "../../CMColorMachineApplication.h"
+#include "../../CMDesign.h"
+#include "../CMColorController.h"
+
 #include "NAApp.h"
 
 
@@ -41,9 +43,9 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
   CMLColorType colorType = cmGetCurrentColorType();
   CMLColorConverter colorConverter = cmlGetColorConverter(CML_COLOR_RGB, colorType);
   const void* color = cmGetCurrentColorData();
-  float originalColorRGB[3];
+  float originalColorRGB[3] = {0.f, 0.f, 0.f};
   colorConverter(cm, originalColorRGB, color, 1);
-  float normedColorRGB[3];
+  float normedColorRGB[3] = {0.f, 0.f, 0.f};
   rgbOutputConverter(normedColorRGB, originalColorRGB, 1);
   
   float colorRGB[3];
@@ -58,9 +60,9 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
 
   CMLColorConverter grayConverter = cmlGetColorConverter(CML_COLOR_RGB, CML_COLOR_Gray);
   const void* gray = cmGetColorControllerColorData(well->colorController);
-  float originalGrayRGB[3];
+  float originalGrayRGB[3] = {0.f, 0.f, 0.f};
   grayConverter(cm, originalGrayRGB, gray, 1);
-  float normedGrayRGB[3];
+  float normedGrayRGB[3] = {0.f, 0.f, 0.f};
   rgbOutputConverter(normedGrayRGB, originalGrayRGB, 1);
   
   float grayRGB[3];
@@ -77,13 +79,13 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
     glColor3fv(colorRGB);
     glVertex2f(-1., -1.);
     glVertex2f(-1., +1.);
-    glVertex2i(+0., -1.);
-    glVertex2i(+0., +1.);
+    glVertex2f(+0., -1.);
+    glVertex2f(+0., +1.);
     glColor3fv(grayRGB);
     glVertex2f(-0., -1.);
     glVertex2f(-0., +1.);
-    glVertex2i(+1., -1.);
-    glVertex2i(+1., +1.);
+    glVertex2f(+1., -1.);
+    glVertex2f(+1., +1.);
   glEnd();
 
   NARect rect = naGetUIElementRect(well->display, NA_NULL, NA_FALSE);

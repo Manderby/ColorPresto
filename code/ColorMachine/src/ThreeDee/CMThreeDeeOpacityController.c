@@ -1,9 +1,8 @@
 
 #include "CMThreeDeeOpacityController.h"
 
-#include "CMDesign.h"
-#include "CMTranslations.h"
-#include "CMWhitePoints.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 
 #include "CML.h"
 
@@ -26,10 +25,10 @@ struct CMThreeDeeOpacityController{
   NALabel* bodySolidLabel;
   NACheckBox* bodySolidCheckBox;
 
-  double pointsOpacity;
-  double gridAlpha;
-  double gridTint;
-  double bodyAlpha;
+  float pointsOpacity;
+  float gridAlpha;
+  float gridTint;
+  float bodyAlpha;
   NABool bodySolid;
 
 };
@@ -54,13 +53,13 @@ NABool cmChangeThreeDeeOpacitySlider(NAReaction reaction){
   CMThreeDeeOpacityController* con = (CMThreeDeeOpacityController*)reaction.controller;
 
   if(reaction.uiElement == con->pointsOpacitySlider){
-    con->pointsOpacity = naGetSliderValue(con->pointsOpacitySlider);
+    con->pointsOpacity = (float)naGetSliderValue(con->pointsOpacitySlider);
   }else if(reaction.uiElement == con->gridAlphaSlider){
-    con->gridAlpha = naGetSliderValue(con->gridAlphaSlider);
+    con->gridAlpha = (float)naGetSliderValue(con->gridAlphaSlider);
   }else if(reaction.uiElement == con->gridTintSlider){
-    con->gridTint = naGetSliderValue(con->gridTintSlider);
+    con->gridTint = (float)naGetSliderValue(con->gridTintSlider);
   }else if(reaction.uiElement == con->bodyAlphaSlider){
-    con->bodyAlpha = naGetSliderValue(con->bodyAlphaSlider);
+    con->bodyAlpha = (float)naGetSliderValue(con->bodyAlphaSlider);
   }
   
   cmUpdateThreeDeeController(con->parent);
@@ -125,11 +124,11 @@ CMThreeDeeOpacityController* cmAllocThreeDeeOpacityController(CMThreeDeeControll
 
   // initial values
 
-  con->pointsOpacity = 0.;
+  con->pointsOpacity = 0.f;
   con->bodySolid = NA_TRUE;
-  con->bodyAlpha = .2;
-  con->gridAlpha = 1.;
-  con->gridTint = .5;
+  con->bodyAlpha = .2f;
+  con->gridAlpha = 1.f;
+  con->gridTint = .5f;
 
   return con;
 }
@@ -150,16 +149,16 @@ NASpace* cmGetThreeDeeOpacityControllerUIElement(CMThreeDeeOpacityController* co
 NABool cmGetThreeDeeOpacityControllerBodySolid(CMThreeDeeOpacityController* con){
   return con->bodySolid;
 }
-double cmGetThreeDeeOpacityControllerPointsOpacity(CMThreeDeeOpacityController* con){
+float cmGetThreeDeeOpacityControllerPointsOpacity(CMThreeDeeOpacityController* con){
   return con->pointsOpacity;
 }
-double cmGetThreeDeeOpacityControllerBodyAlpha(CMThreeDeeOpacityController* con){
+float cmGetThreeDeeOpacityControllerBodyAlpha(CMThreeDeeOpacityController* con){
   return con->bodyAlpha;
 }
-double cmGetThreeDeeOpacityControllerGridAlpha(CMThreeDeeOpacityController* con){
+float cmGetThreeDeeOpacityControllerGridAlpha(CMThreeDeeOpacityController* con){
   return con->gridAlpha;
 }
-double cmGetThreeDeeOpacityControllerGridTint(CMThreeDeeOpacityController* con){
+float cmGetThreeDeeOpacityControllerGridTint(CMThreeDeeOpacityController* con){
   return con->gridTint;
 }
 

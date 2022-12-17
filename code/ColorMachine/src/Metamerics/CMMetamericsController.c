@@ -1,22 +1,23 @@
 
 #include "CMMetamericsController.h"
 
-#include "CMChromaticityErrorController.h"
-#include "CMColorMachineApplication.h"
-#include "CMWhitePointsController.h"
+#include "../CMColorMachineApplication.h"
+#include "../CMTranslations.h"
+#include "../mainC.h"
+#include "../CMDesign.h"
 
+#include "CMChromaticityErrorController.h"
+#include "CMWhitePointsController.h"
 #include "CMColorConversionsYcdUVW.h"
 #include "CMColorRenderingIndexController.h"
-#include "CMTranslations.h"
 #include "CMTwoColorController.h"
 #include "CMTotalMetamericIndexController.h"
 #include "CMUVMetamericIndexController.h"
 #include "CMVisMetamericIndexController.h"
 #include "CMWhitePoints.h"
-#include "NAApp.h"
 #include "CML.h"
-#include "mainC.h"
-#include "CMDesign.h"
+
+#include "NAApp.h"
 
 
 

@@ -1,11 +1,13 @@
 
 #include "CMColorController.h"
-#include "CMColorMachineApplication.h"
-#include "CMColorWell1D.h"
-#include "CMColorWell2D.h"
+
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "Displays/CMColorWell1D.h"
+#include "Displays/CMColorWell2D.h"
 #include "CMLabColorController.h"
+
 #include "NAApp.h"
-#include "CMDesign.h"
 
 struct CMLabColorController{
   CMColorController baseController;
@@ -38,16 +40,16 @@ NABool cmLabValueEdited(NAReaction reaction){
   CMLabColorController* con = (CMLabColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldL){
-    con->labColor[0] = naGetTextFieldDouble(con->textFieldL);
+    con->labColor[0] = (float)naGetTextFieldDouble(con->textFieldL);
   }else if(reaction.uiElement == con->textFielda){
-    con->labColor[1] = naGetTextFieldDouble(con->textFielda);
+    con->labColor[1] = (float)naGetTextFieldDouble(con->textFielda);
   }else if(reaction.uiElement == con->textFieldb){
-    con->labColor[2] = naGetTextFieldDouble(con->textFieldb);
+    con->labColor[2] = (float)naGetTextFieldDouble(con->textFieldb);
   }else if(reaction.uiElement == con->textFieldc){
-    con->lchColor[1] = naGetTextFieldDouble(con->textFieldc);
+    con->lchColor[1] = (float)naGetTextFieldDouble(con->textFieldc);
     cmlConvertLchToLab(con->labColor, con->lchColor);
   }else if(reaction.uiElement == con->textFieldh){
-    con->lchColor[2] = naGetTextFieldDouble(con->textFieldh);
+    con->lchColor[2] = (float)naGetTextFieldDouble(con->textFieldh);
     cmlConvertLchToLab(con->labColor, con->lchColor);
   }
   

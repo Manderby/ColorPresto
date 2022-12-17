@@ -1,5 +1,5 @@
 
-#include "mainC.h"
+#include "../mainC.h"
 #include "CMColorConversionsYcdUVW.h"
 
 CM_PROTOTYPE(CMWhitePoints);

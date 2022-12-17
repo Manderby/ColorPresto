@@ -1,8 +1,8 @@
 
 #include "CMChromaticityErrorController.h"
 
-#include "CMDesign.h"
-#include "CMTranslations.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "CMWhitePoints.h"
 
 #include "NAApp.h"

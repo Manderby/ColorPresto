@@ -1,12 +1,12 @@
 
 #include "CMMachineGrayController.h"
 
-#include "CMColorMachineApplication.h"
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "CMMachineObserverController.h"
 
 #include "NAApp.h"
-#include "CMDesign.h"
-#include "CMTranslations.h"
 
 
 struct CMMachineGrayController{

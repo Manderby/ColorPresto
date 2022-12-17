@@ -1,11 +1,13 @@
 
 #include "CMColorController.h"
-#include "CMColorMachineApplication.h"
-#include "CMColorWell1D.h"
-#include "CMColorWell2D.h"
+
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "Displays/CMColorWell1D.h"
+#include "Displays/CMColorWell2D.h"
 #include "CMYuvColorController.h"
+
 #include "NAApp.h"
-#include "CMDesign.h"
 
 struct CMYuvColorController{
   CMColorController baseController;
@@ -38,11 +40,11 @@ NABool cmYuvValueEdited(NAReaction reaction){
   CMYuvColorController* con = (CMYuvColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldY){
-    con->yupvpColor[0] = naGetTextFieldDouble(con->textFieldY);
+    con->yupvpColor[0] = (float)naGetTextFieldDouble(con->textFieldY);
   }else if(reaction.uiElement == con->textFieldup){
-    con->yupvpColor[1] = naGetTextFieldDouble(con->textFieldup);
+    con->yupvpColor[1] = (float)naGetTextFieldDouble(con->textFieldup);
   }else if(reaction.uiElement == con->textFieldvp){
-    con->yupvpColor[2] = naGetTextFieldDouble(con->textFieldvp);
+    con->yupvpColor[2] = (float)naGetTextFieldDouble(con->textFieldvp);
   }
   
   cmSetCurrentColorController(&(con->baseController));

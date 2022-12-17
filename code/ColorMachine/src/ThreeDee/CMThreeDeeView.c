@@ -4,7 +4,7 @@
 #include "NAMath.h"
 #include "NAVisual.h"
 #include "CMThreeDeeView.h"
-#include "CMDesign.h"
+#include "../CMDesign.h"
 
 
 
@@ -83,26 +83,26 @@ void cmSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom
   switch(primeAxis){
   case 0:
     naFillMatrixLookAt(matrix,
-      vShift * scale[0] + curZoom * 3 * naCosf(viewPol),
-      .5f * scale[1] + curZoom * 3 * naCosf(viewEqu) * naSinf(viewPol),
-      .5f * scale[2] + curZoom * 3 * naSinf(viewEqu) * naSinf(viewPol),
-      vShift * scale[0], .5f * scale[1], .5f * scale[2],
+      vShift * scale[0] + curZoom * 3 * naCos(viewPol),
+      .5 * scale[1] + curZoom * 3 * naCos(viewEqu) * naSin(viewPol),
+      .5 * scale[2] + curZoom * 3 * naSin(viewEqu) * naSin(viewPol),
+      vShift * scale[0], .5 * scale[1], .5 * scale[2],
       1, 0, 0);
     break;
   case 1:
     naFillMatrixLookAt(matrix,
-      .5f * scale[0] + curZoom * 3 * naSinf(viewEqu) * naSinf(viewPol),
-      vShift * scale[1] + curZoom * 3 * naCosf(viewPol),
-      .5f * scale[2] + curZoom * 3 * naCosf(viewEqu) * naSinf(viewPol),
-      .5f * scale[0], vShift * scale[1], .5f * scale[2],
+      .5 * scale[0] + curZoom * 3 * naSin(viewEqu) * naSin(viewPol),
+      vShift * scale[1] + curZoom * 3 * naCos(viewPol),
+      .5 * scale[2] + curZoom * 3 * naCos(viewEqu) * naSin(viewPol),
+      .5 * scale[0], vShift * scale[1], .5 * scale[2],
       0, 1, 0);
     break;
   case 2:
     naFillMatrixLookAt(matrix,
-      .5f * scale[0] + curZoom * 3 * naCosf(viewEqu) * naSinf(viewPol),
-      .5f * scale[1] + curZoom * 3 * naSinf(viewEqu) * naSinf(viewPol),
-      vShift * scale[2] + curZoom * 3 * naCosf(viewPol),
-      .5f * scale[0], .5f * scale[1], vShift * scale[2],
+      .5 * scale[0] + curZoom * 3 * naCos(viewEqu) * naSin(viewPol),
+      .5 * scale[1] + curZoom * 3 * naSin(viewEqu) * naSin(viewPol),
+      vShift * scale[2] + curZoom * 3 * naCos(viewPol),
+      .5 * scale[0], .5 * scale[1], vShift * scale[2],
       0, 0, 1);
     break;
   }
@@ -157,10 +157,10 @@ void cmDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
 
   glDisable(GL_DEPTH_TEST);
   
-  glPointSize((2.f / numChannels) / zoom);
+  glPointSize((2.f / numChannels) / (float)zoom);
   glBegin(GL_POINTS);
   for(size_t i = 0; i < totalCloudCount; ++i){
-    glColor4f(cloudRGBFloatValues[i * 3 + 0], cloudRGBFloatValues[i * 3 + 1], cloudRGBFloatValues[i * 3 + 2], pointsAlpha);
+    glColor4f(cloudRGBFloatValues[i * 3 + 0], cloudRGBFloatValues[i * 3 + 1], cloudRGBFloatValues[i * 3 + 2], (float)pointsAlpha);
     glVertex3fv(&(cloudNormedSystemCoords[i * 3]));
   }
   glEnd();
@@ -533,10 +533,11 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
           size_t index2 = (ax1 + 1) * surfaceSteps[s][0] * 3 + (ax2 + 1) * 3;
           size_t index3 = (ax1 + 1) * surfaceSteps[s][0] * 3 + (ax2 + 0) * 3;
 
-          glColor4f(rgbFloatValues[s][index3 + 0] * bodyAlpha + backgroundRGB[0] * (1.f - bodyAlpha),
-                    rgbFloatValues[s][index3 + 1] * bodyAlpha + backgroundRGB[1] * (1.f - bodyAlpha),
-                    rgbFloatValues[s][index3 + 2] * bodyAlpha + backgroundRGB[2] * (1.f - bodyAlpha),
-                    1.f);
+          glColor4f(
+            rgbFloatValues[s][index3 + 0] * (float)bodyAlpha + backgroundRGB[0] * (1.f - (float)bodyAlpha),
+            rgbFloatValues[s][index3 + 1] * (float)bodyAlpha + backgroundRGB[1] * (1.f - (float)bodyAlpha),
+            rgbFloatValues[s][index3 + 2] * (float)bodyAlpha + backgroundRGB[2] * (1.f - (float)bodyAlpha),
+            1.f);
 
           if(hueIndex >= 0){
             if(    (fabsf(normedSystemCoords[s][index0 + hueIndex] - normedSystemCoords[s][index1 + hueIndex]) > .5f)
@@ -583,25 +584,25 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
               }
             }
             glBegin(GL_LINE_STRIP);
-            glColor4f( rgbFloatValues[s][index0 + 0] * gridTint + axisRGB[0] * (1.f - gridTint),
-                        rgbFloatValues[s][index0 + 1] * gridTint + axisRGB[1] * (1.f - gridTint),
-                        rgbFloatValues[s][index0 + 2] * gridTint + axisRGB[2] * (1.f - gridTint), gridAlpha);
+            glColor4f( rgbFloatValues[s][index0 + 0] * (float)gridTint + axisRGB[0] * (1.f - (float)gridTint),
+                        rgbFloatValues[s][index0 + 1] * (float)gridTint + axisRGB[1] * (1.f - (float)gridTint),
+                        rgbFloatValues[s][index0 + 2] * (float)gridTint + axisRGB[2] * (1.f - (float)gridTint), (float)gridAlpha);
             glVertex3fv(&(normedSystemCoords[s][index0]));
-            glColor4f( rgbFloatValues[s][index1 + 0] * gridTint + axisRGB[0] * (1.f - gridTint),
-                        rgbFloatValues[s][index1 + 1] * gridTint + axisRGB[1] * (1.f - gridTint),
-                        rgbFloatValues[s][index1 + 2] * gridTint + axisRGB[2] * (1.f - gridTint), gridAlpha);
+            glColor4f( rgbFloatValues[s][index1 + 0] * (float)gridTint + axisRGB[0] * (1.f - (float)gridTint),
+                        rgbFloatValues[s][index1 + 1] * (float)gridTint + axisRGB[1] * (1.f - (float)gridTint),
+                        rgbFloatValues[s][index1 + 2] * (float)gridTint + axisRGB[2] * (1.f - (float)gridTint), (float)gridAlpha);
             glVertex3fv(&(normedSystemCoords[s][index1]));
-            glColor4f( rgbFloatValues[s][index2 + 0] * gridTint + axisRGB[0] * (1.f - gridTint),
-                        rgbFloatValues[s][index2 + 1] * gridTint + axisRGB[1] * (1.f - gridTint),
-                        rgbFloatValues[s][index2 + 2] * gridTint + axisRGB[2] * (1.f - gridTint), gridAlpha);
+            glColor4f( rgbFloatValues[s][index2 + 0] * (float)gridTint + axisRGB[0] * (1.f - (float)gridTint),
+                        rgbFloatValues[s][index2 + 1] * (float)gridTint + axisRGB[1] * (1.f - (float)gridTint),
+                        rgbFloatValues[s][index2 + 2] * (float)gridTint + axisRGB[2] * (1.f - (float)gridTint), (float)gridAlpha);
             glVertex3fv(&(normedSystemCoords[s][index2]));
-            glColor4f( rgbFloatValues[s][index3 + 0] * gridTint + axisRGB[0] * (1.f - gridTint),
-                        rgbFloatValues[s][index3 + 1] * gridTint + axisRGB[1] * (1.f - gridTint),
-                        rgbFloatValues[s][index3 + 2] * gridTint + axisRGB[2] * (1.f - gridTint), gridAlpha);
+            glColor4f( rgbFloatValues[s][index3 + 0] * (float)gridTint + axisRGB[0] * (1.f -(float) gridTint),
+                        rgbFloatValues[s][index3 + 1] * (float)gridTint + axisRGB[1] * (1.f - (float)gridTint),
+                        rgbFloatValues[s][index3 + 2] * (float)gridTint + axisRGB[2] * (1.f - (float)gridTint), (float)gridAlpha);
             glVertex3fv(&(normedSystemCoords[s][index3]));
-            glColor4f( rgbFloatValues[s][index0 + 0] * gridTint + axisRGB[0] * (1.f - gridTint),
-                        rgbFloatValues[s][index0 + 1] * gridTint + axisRGB[1] * (1.f - gridTint),
-                        rgbFloatValues[s][index0 + 2] * gridTint + axisRGB[2] * (1.f - gridTint), gridAlpha);
+            glColor4f( rgbFloatValues[s][index0 + 0] * (float)gridTint + axisRGB[0] * (1.f - (float)gridTint),
+                        rgbFloatValues[s][index0 + 1] * (float)gridTint + axisRGB[1] * (1.f - (float)gridTint),
+                        rgbFloatValues[s][index0 + 2] * (float)gridTint + axisRGB[2] * (1.f - (float)gridTint), (float)gridAlpha);
             glVertex3fv(&(normedSystemCoords[s][index0]));
 
             glEnd();
@@ -649,9 +650,9 @@ void cmDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normed
       cmlGetSpectralXYZColor(cm, curXYZ, l);
       
       if(curXYZ[1] > 0.f){
-        CMLVec3 curRGB;
-        CMLVec3 curCoords;
-        CMLVec3 curNormedCoords;
+        CMLVec3 curRGB = {0.f, 0.f, 0.f};
+        CMLVec3 curCoords = {0.f, 0.f, 0.f};
+        CMLVec3 curNormedCoords = {0.f, 0.f, 0.f};
         xyzConverter(cm, curCoords, curXYZ, 1);
         normedCoordConverter(curNormedCoords, curCoords, 1);
         
@@ -684,7 +685,7 @@ void cmDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* mi
   glColor3fv(axisRGB);
 
   float pos[3] = {0.f, 0.f, 0.f};
-  float normedPos[3];
+  float normedPos[3] = {0.f, 0.f, 0.f};
   
   glBegin(GL_LINES);
     // draw a line from -x to +x

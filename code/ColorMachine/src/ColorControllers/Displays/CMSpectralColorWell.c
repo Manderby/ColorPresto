@@ -1,8 +1,10 @@
 
-#include "CMColorController.h"
-#include "CMColorMachineApplication.h"
 #include "CMSpectralColorWell.h"
-#include "CMDesign.h"
+
+#include "../../CMColorMachineApplication.h"
+#include "../../CMDesign.h"
+#include "../CMColorController.h"
+
 #include "NAApp.h"
 
 
@@ -29,7 +31,7 @@ NABool cmDragSpectralColorWell(NAReaction reaction){
     if(mouseX < 0.f){mouseX = 0.f;}
     if(mouseX > 1.f){mouseX = 1.f;}
 
-    float lambda = CML_DEFAULT_INTEGRATION_MIN + (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * mouseX;
+    float lambda = CML_DEFAULT_INTEGRATION_MIN + (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * (float)mouseX;
 
     CMLFunction* dirac = cmlCreateDiracFilter(lambda);
     CMLFunction* illumDirac = cmlCreateFunctionMulScalar(dirac, cmlInverse(cmlGetRadiometricScale(cm)));
@@ -65,7 +67,7 @@ void cmInitSpectralColorWell(void* data){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
 
-  float rgbInputValues[spectralWellSize * 3];
+  float rgbInputValues[spectralWellSize * 3] = {0};
   for(size_t x = 0; x < spectralWellSize; ++x){
     float lambda = CML_DEFAULT_INTEGRATION_MIN + ((float)x / spectralWellSize) * (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN);
     CMLVec3 xyz;
@@ -111,9 +113,9 @@ NABool cmDrawSpectralColorWell(NAReaction reaction){
     glTexCoord2f(0., 1.);
     glVertex2f(-1., +1.);
     glTexCoord2f(1., 0.);
-    glVertex2i(+1., -1.);
+    glVertex2f(+1., -1.);
     glTexCoord2f(1., 1.);
-    glVertex2i(+1., +1.);
+    glVertex2f(+1., +1.);
   glEnd();
 
   // Draw the Grid

@@ -1,12 +1,12 @@
 
 #include "CMMachineIlluminationController.h"
 
-#include "CMColorMachineApplication.h"
+#include "../CMColorMachineApplication.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "CMMachineObserverController.h"
 
 #include "NAApp.h"
-#include "CMDesign.h"
-#include "CMTranslations.h"
 
 
 struct CMMachineIlluminationController{
@@ -53,14 +53,14 @@ NABool cmSetIlluminationTemperature(NAReaction reaction){
   CMMachineIlluminationController* con = (CMMachineIlluminationController*)reaction.controller;
   CMLColorMachine* cm = cmGetCurrentColorMachine();
 
-  double temperature = 0.;
+  float temperature = 0.f;
   if(reaction.uiElement == con->illuminationTemperatureTextField){
-    temperature = naGetTextFieldDouble(con->illuminationTemperatureTextField);
+    temperature = (float)naGetTextFieldDouble(con->illuminationTemperatureTextField);
   }else if(reaction.uiElement == con->illuminationTemperatureSlider){
     double sliderValue = naGetSliderValue(con->illuminationTemperatureSlider);
     temperature = (sliderValue == 1.f)
       ? CML_INFINITY
-      : (2000.f + 6000.f * (-logf(1.f - sliderValue)));
+      : (2000.f + 6000.f * (-logf(1.f - (float)sliderValue)));
   }
   cmlSetIlluminationTemperature(cm, temperature);
   
@@ -79,11 +79,11 @@ NABool cmSetWhitePoint(NAReaction reaction){
   cmlCpy3(whitePointYxy, cmlGetWhitePointYxy(cm));
   
   if(reaction.uiElement == con->whitePointYTextField){
-    whitePointYxy[0] = naGetTextFieldDouble(con->whitePointYTextField);
+    whitePointYxy[0] = (float)naGetTextFieldDouble(con->whitePointYTextField);
   }else if(reaction.uiElement == con->whitePointxTextField){
-    whitePointYxy[1] = naGetTextFieldDouble(con->whitePointxTextField);
+    whitePointYxy[1] = (float)naGetTextFieldDouble(con->whitePointxTextField);
   }else if(reaction.uiElement == con->whitePointyTextField){
-    whitePointYxy[2] = naGetTextFieldDouble(con->whitePointyTextField);
+    whitePointYxy[2] = (float)naGetTextFieldDouble(con->whitePointyTextField);
   }
   cmlSetReferenceWhitePointYxy(cm, whitePointYxy);
   
@@ -156,7 +156,7 @@ void cmUpdateMachineIlluminationController(CMMachineIlluminationController* con)
   CMLIlluminationType illuminationType = cmlGetIlluminationType(cm);
   double temperature = cmlGetIlluminationTemperature(cm);
   if(temperature == 0.f){
-    CMLVec3 whitePointYuv;
+    CMLVec3 whitePointYuv = {0.f, 0.f, 0.f};
     cmlYupvpToYuv(cm, whitePointYuv, cmlGetWhitePointYupvp(cm), 1);
     temperature = cmlGetCorrelatedColorTemperature(whitePointYuv);
   }

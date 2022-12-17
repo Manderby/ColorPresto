@@ -1,5 +1,5 @@
 
-#include "mainC.h"
+#include "../mainC.h"
 #include "CMThreeDeeController.h"
 
 CM_PROTOTYPE(CMWhitePoints);

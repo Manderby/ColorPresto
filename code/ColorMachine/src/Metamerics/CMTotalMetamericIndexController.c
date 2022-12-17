@@ -2,8 +2,8 @@
 #include "CMTotalMetamericIndexController.h"
 
 #include "CMColorConversionsYcdUVW.h"
-#include "CMDesign.h"
-#include "CMTranslations.h"
+#include "../CMDesign.h"
+#include "../CMTranslations.h"
 
 #include "NAApp.h"
 

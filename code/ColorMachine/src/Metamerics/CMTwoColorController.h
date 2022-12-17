@@ -1,6 +1,6 @@
 
 #include "NAMath/NAVectorAlgebra.h"
-#include "mainC.h"
+#include "../mainC.h"
 
 CM_PROTOTYPE(NASpace);
 CM_PROTOTYPE(NAOpenGLSpace);
