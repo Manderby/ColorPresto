@@ -43,7 +43,7 @@ CMGrayColorController* cmAllocGrayColorController(void){
   
   con->display = cmAllocGrayColorWell(&(con->baseController));
   
-  con->labelGray = cmNewColorComponentLabel("Gray");
+  con->labelGray = cmNewColorComponentLabel("Gr");
   con->textFieldGray = cmNewValueTextField(cmGrayValueEdited, con);
   con->colorWell1DGray = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Gray, &(con->grayColor), 0);
 
