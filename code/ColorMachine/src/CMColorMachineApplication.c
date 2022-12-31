@@ -64,6 +64,11 @@ CMLColorMachine* cmGetCurrentColorMachine(){
   return app->cm;
 }
 
+void cmResetColorMachine(){
+  cmlReleaseColorMachine(app->cm);
+  app->cm = cmlCreateColorMachine();
+}
+
 CMLColorMachine* cmGetCurrentScreenMachine(){
   return app->sm;
 }

@@ -25,12 +25,6 @@ CM_PROTOTYPE(CMThreeDeeController);
 - (IBAction)showAbout:(id)sender;
 - (IBAction)showHelp:(NSMenuItem*)sender;
 
-- (IBAction)resetMachine:(id)sender;
-- (IBAction)setCurrentColorAsWhitepoint:(id)sender;
-- (IBAction)setCurrentColorAsRedPrimary:(id)sender;
-- (IBAction)setCurrentColorAsGreenPrimary:(id)sender;
-- (IBAction)setCurrentColorAsBluePrimary:(id)sender;
-
 + (CGFloat) getUIScaleFactorForWindow:(NSWindow*)window;
 
 @end

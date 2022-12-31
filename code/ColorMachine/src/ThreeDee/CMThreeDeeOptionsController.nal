@@ -1,28 +1,36 @@
 
-CMThreeDeeOptionsController = NASpace {
-  share CMThreeDeeController parent;
+define myPI = 3.14159;
+typedef myType = f32;
+typedef myFunctionType = bool (i32);
 
-  NALabel axisLabel;
-  NACheckBox axisCheckBox;
-  NALabel spectrumLabel;
-  NACheckBox spectrumCheckBox;
-  NALabel backgroundLabel;
-  NASlider backgroundSlider;
-  NALabel fovyLabel;
-  NASlider fovySlider;
+module CMThreeDeeOptionsController : NASpace;
 
-  showSpectrum = false;
-  showAxis = true;
-  backgroundGray = 0.3f;
-  fovy = 50.f;
-};
+.parent           = share CMThreeDeeController;
+
+.axisLabel        = NALabel;
+.axisCheckBox     = NACheckBox;
+.spectrumLabel    = NALabel;
+.spectrumCheckBox = NACheckBox;
+.backgroundLabel  = NALabel;
+.backgroundSlider = NASlider;
+.fovyLabel        = NALabel;
+.fovySlider       = NASlider;
+
+.showSpectrum     = false;
+.showAxis         = true;
+.backgroundGray   = 0.3f;
+.fovy             = 50.f;
 
 
 
-pressOptionsButton = bool(
-  mutable CMThreeDeeOptionsController this,
-  NAReaction reaction)
-{
+myNormalFunction        = bool (i32 myParameter) {return true;}
+.myPublicStaticFunction = bool (i32 myParameter) {return true;}
+myPrivateMethod         = bool (this, i32 myParameter) {return true;}
+.myPublicMethod         = bool (this, i32 myParameter) {return true;}
+
+
+
+pressOptionsButton = bool (NAReaction reaction) {
   this = [reaction.controller];
 
   if(reaction.uiElement == spectrumCheckBox){
@@ -38,8 +46,8 @@ pressOptionsButton = bool(
 
 
 
-changeOptionsSlider = bool(NAReactionreaction){
-  mutable CMThreeDeeOptionsController this = [reaction.controller];
+changeOptionsSlider = bool (NAReaction reaction) {
+  mutable this = [reaction.controller];
 
   if(reaction.uiElement == backgroundSlider){
     backgroundGray = backgroundSlider.getValue();
@@ -55,7 +63,10 @@ changeOptionsSlider = bool(NAReactionreaction){
 
 
 
-CMThreeDeeOptionsController.constructor = mutable (parent CMThreeDeeController){
+.constructor = (
+  mutable this,
+  parent CMThreeDeeController)
+{
   .parent = parent;
   space = new NASpace(naMakeSize(1, 1));
   space.setAlternateBackground(false);
@@ -98,34 +109,20 @@ CMThreeDeeOptionsController.constructor = mutable (parent CMThreeDeeController){
 
 
 
-CMThreeDeeOptionsController.getAxisGray = () f64{
+.getAxisGray = f64 (this) {
   axisGray = backgroundGray + .5;
   if(axisGray > 1.f){axisGray -= 1.f;}
   return axisGray;
 }
 
-CMThreeDeeOptionsController.getBackgroundGray = () f64{
-  return backgroundGray;
-}
+.getBackgroundGray = f64 (this) {return backgroundGray;}
+.getFovy           = f64 (this) {return fovy;}
+.getShowAxis       = f64 (this) {return showAxis;}
+.getShowSpectrum   = f64 (this) {return showSpectrum;}
 
-CMThreeDeeOptionsController.getFovy = () f64{
-  return fovy;
-}
 
-CMThreeDeeOptionsController.getShowAxis = () f64{
-  return showAxis;
-}
 
-CMThreeDeeOptionsController.getShowSpectrum = () f64{
-  return showSpectrum;
-}
-
-// predicates:
-// how about something like:
-// needs lots of thinking.
-// CMThreeDeeOptionsController.getShowSpectrum = showSpectrum;
-
-CMThreeDeeOptionsController.update = (){
+.update = (this) {
   spectrumCheckBox.setState(showSpectrum);
   axisCheckBox.setState(showAxis);
   backgroundSlider.setValue(backgroundGray);

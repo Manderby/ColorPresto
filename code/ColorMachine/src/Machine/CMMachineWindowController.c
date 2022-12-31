@@ -1,23 +1,23 @@
 
 #include "CMMachineWindowController.h"
 
-#include "../ColorCOntrollers/CMColorController.h"
 #include "CMMachineController.h"
+#include "../ColorControllers/CMColorController.h"
 #include "../CMDesign.h"
 #include "../CMTranslations.h"
 
-#include "../ColorCOntrollers/CMGrayColorController.h"
-#include "../ColorCOntrollers/CMHSLColorController.h"
-#include "../ColorCOntrollers/CMHSVColorController.h"
-#include "../ColorCOntrollers/CMLabColorController.h"
-#include "../ColorCOntrollers/CMLuvColorController.h"
-#include "../ColorCOntrollers/CMRGBColorController.h"
-#include "../ColorCOntrollers/CMSpectralColorController.h"
-#include "../ColorCOntrollers/CMUVWColorController.h"
-#include "../ColorCOntrollers/CMXYZColorController.h"
-#include "../ColorCOntrollers/CMYCbCrColorController.h"
-#include "../ColorCOntrollers/CMYuvColorController.h"
-#include "../ColorCOntrollers/CMYxyColorController.h"
+#include "../ColorControllers/CMGrayColorController.h"
+#include "../ColorControllers/CMHSLColorController.h"
+#include "../ColorControllers/CMHSVColorController.h"
+#include "../ColorControllers/CMLabColorController.h"
+#include "../ColorControllers/CMLuvColorController.h"
+#include "../ColorControllers/CMRGBColorController.h"
+#include "../ColorControllers/CMSpectralColorController.h"
+#include "../ColorControllers/CMUVWColorController.h"
+#include "../ColorControllers/CMXYZColorController.h"
+#include "../ColorControllers/CMYCbCrColorController.h"
+#include "../ColorControllers/CMYuvColorController.h"
+#include "../ColorControllers/CMYxyColorController.h"
 
 #include "NAApp.h"
 
@@ -28,6 +28,7 @@ struct CMMachineWindowController{
   
   CMMachineController* machineController;
   
+  NASpace* rightSpace;
   NASpace* radiometricColorsSpace;
   NASpace* perceptiveColorsSpace;
   NASpace* RGBColorsSpace;
@@ -59,6 +60,8 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 
   con->machineController = cmAllocMachineController();
+
+  con->rightSpace = naNewSpace(naMakeSize(1, 1));
 
   con->radiometricColorsSpace = naNewSpace(naMakeSize(1, 1));
   con->perceptiveColorsSpace = naNewSpace(naMakeSize(1, 1));
@@ -98,11 +101,15 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->ycbcrColorController), 0);
   cmEndUILayout();
 
-  cmBeginUILayout(contentSpace, naMakeBezel4Zero());
-  cmAddUIRow(cmGetMachineUIElement(con->machineController), 0);
-  cmAddUICol(con->radiometricColorsSpace, 0);
+  cmBeginUILayout(con->rightSpace, naMakeBezel4Zero());
+  cmAddUIRow(con->radiometricColorsSpace, 0);
   cmAddUICol(con->perceptiveColorsSpace, 0);
   cmAddUICol(con->RGBColorsSpace, 0);
+  cmEndUILayout();
+
+  cmBeginUILayout(contentSpace, naMakeBezel4Zero());
+  cmAddUIRow(cmGetMachineUIElement(con->machineController), 0);
+  cmAddUICol(con->rightSpace, 0);
   cmEndUILayout();
 
   return con;

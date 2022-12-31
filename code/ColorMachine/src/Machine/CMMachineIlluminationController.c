@@ -19,6 +19,7 @@ struct CMMachineIlluminationController{
   NALabel* illuminationKelvinLabel;
   NASlider* illuminationTemperatureSlider;
   NALabel* whitePointTitleLabel;
+  NAButton* setWhitePointButton;
   NATextField* whitePointYTextField;
   NATextField* whitePointxTextField;
   NATextField* whitePointyTextField;
@@ -78,7 +79,10 @@ NABool cmSetWhitePoint(NAReaction reaction){
   CMLVec3 whitePointYxy;
   cmlCpy3(whitePointYxy, cmlGetWhitePointYxy(cm));
   
-  if(reaction.uiElement == con->whitePointYTextField){
+  if(reaction.uiElement == con->setWhitePointButton){
+    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cmGetCurrentColorType());
+    converter(cm, whitePointYxy, cmGetCurrentColorData(), 1);
+  }else if(reaction.uiElement == con->whitePointYTextField){
     whitePointYxy[0] = (float)naGetTextFieldDouble(con->whitePointYTextField);
   }else if(reaction.uiElement == con->whitePointxTextField){
     whitePointYxy[1] = (float)naGetTextFieldDouble(con->whitePointxTextField);
@@ -114,7 +118,9 @@ CMMachineIlluminationController* cmAllocMachineIlluminationController(void){
   con->illuminationKelvinLabel = naNewLabel(cmTranslate(CMIlluminationKelvin), 20);
   con->illuminationTemperatureSlider = naNewSlider(100);
   naAddUIReaction(con->illuminationTemperatureSlider, NA_UI_COMMAND_EDITED, cmSetIlluminationTemperature, con);
-  con->whitePointTitleLabel = naNewLabel(cmTranslate(CMIlluminationWhitePoint), machineLabelWidth);
+  con->whitePointTitleLabel = naNewLabel(cmTranslate(CMIlluminationWhitePoint), machineLabelWidth - setButtonWidth + marginH);
+  con->setWhitePointButton = naNewTextButton("Set", setButtonWidth, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  naAddUIReaction(con->setWhitePointButton, NA_UI_COMMAND_PRESSED, cmSetWhitePoint, con);
   con->whitePointYTextField = cmNewValueTextField(cmSetWhitePoint, con);
   con->whitePointxTextField = cmNewValueTextField(cmSetWhitePoint, con);
   con->whitePointyTextField = cmNewValueTextField(cmSetWhitePoint, con);
@@ -128,7 +134,8 @@ CMMachineIlluminationController* cmAllocMachineIlluminationController(void){
   cmAddUICol(con->illuminationKelvinLabel, 0);
   cmAddUICol(con->illuminationTemperatureSlider, marginH);
   cmAddUIRow(con->whitePointTitleLabel, uiElemHeight);
-  cmAddUICol(con->whitePointYTextField, marginH);
+  cmAddUICol(con->setWhitePointButton, 0);
+  cmAddUICol(con->whitePointYTextField, 0);
   cmAddUICol(con->whitePointxTextField, 0);
   cmAddUICol(con->whitePointyTextField, 0);
   cmEndUILayout();

@@ -11,8 +11,9 @@
 struct CMMachineButtonsController{
   NASpace* space;
 
-  NAButton* threeDeeButton;
+  NAButton* resetMachineButton;
   NAButton* metamericsButton;
+  NAButton* threeDeeButton;
 };
 
 
@@ -20,10 +21,13 @@ struct CMMachineButtonsController{
 NABool cmPressMachineButton(NAReaction reaction){
   CMMachineButtonsController* con = (CMMachineButtonsController*)reaction.controller;
   
-  if(reaction.uiElement == con->threeDeeButton){
-    cmShowThreeDee();
+  if(reaction.uiElement == con->resetMachineButton){
+    cmResetColorMachine();
+    cmUpdateMachine();
   }else if(reaction.uiElement == con->metamericsButton){
     cmShowMetamerics();
+  }else if(reaction.uiElement == con->threeDeeButton){
+    cmShowThreeDee();
   }
 
   return NA_TRUE;
@@ -37,15 +41,18 @@ CMMachineButtonsController* cmAllocMachineButtonsController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->threeDeeButton = naNewTextButton(cmTranslate(CMThreeDeeButton), 150, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
-  con->metamericsButton = naNewTextButton(cmTranslate(CMMetamericsButton), 150, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
-  naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
+  con->resetMachineButton = naNewTextButton("Reset", 110, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  con->metamericsButton = naNewTextButton(cmTranslate(CMMetamericsButton), 110, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  con->threeDeeButton = naNewTextButton(cmTranslate(CMThreeDeeButton), 110, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  naAddUIReaction(con->resetMachineButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
   naAddUIReaction(con->metamericsButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
+  naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
 
   // layout
   cmBeginUILayout(con->space, spaceBezel);
-  cmAddUIRow(con->threeDeeButton, uiElemHeight);
-  cmAddUICol(con->metamericsButton, marginH);
+  cmAddUIRow(con->resetMachineButton, uiElemHeight);
+  cmAddUICol(con->metamericsButton, 0);
+  cmAddUICol(con->threeDeeButton, 0);
   cmEndUILayout();
 
   return con;

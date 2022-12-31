@@ -5,6 +5,7 @@
 #include "CMTranslations.h"
 
 #include "ManderAppAbout.h"
+#include "ManderAppTranslations.h"
 #include "NAApp.h"
 
 void preStartup(void* arg);
@@ -12,27 +13,27 @@ void postStartup(void* arg);
 
 
 
-void preStartup(void* arg){
-  mandInitManderAppTranslations();
-  initTranslations();
-  
-  cmStartupColorMachineApplication();
-}
-
-
-
-void postStartup(void* arg){
-  naLoadNib("ColorMachine", NA_NULL);
-  
-  // ManderApp
-  mandCreateAboutController();
-  mandSetAboutDescriptionAndHelpURL(
-    cmTranslate(CMApplicationDescription),
-    cmTranslate(CMApplicationHelpURL));
-
-  // Color Machine
-  cmStartupColorMachineApplicationUI();
-}
+//void preStartup(void* arg){
+//  mandInitManderAppTranslations();
+//  initTranslations();
+//  cmsscanf
+//  cmStartupColorMachineApplication();
+//}
+//
+//
+//
+//void postStartup(void* arg){
+//  naLoadNib("ColorMachine", NA_NULL);
+//  
+//  // ManderApp
+//  mandCreateAboutController();
+//  mandSetAboutDescriptionAndHelpURL(
+//    cmTranslate(CMApplicationDescription),
+//    cmTranslate(CMApplicationHelpURL));
+//
+//  // Color Machine
+//  cmStartupColorMachineApplicationUI();
+//}
 
 
 

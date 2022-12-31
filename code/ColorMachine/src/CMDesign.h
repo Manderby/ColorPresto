@@ -50,8 +50,9 @@ static const NABezel4 threeDeeBezel = {
 
 static const float greyColor[3] = {.5f, .5f, .5f};
 
-#define machineLabelWidth 110.
+#define machineLabelWidth 120.
 
+#define setButtonWidth 50.
 #define colorValueCondensedRowHeight 25.
 #define gammaDisplaySize 50
 #define colorWell2DSize 125
@@ -62,7 +63,7 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 #define colorWell1DOffset 5.
 #define colorComponentWidth 25.
 #define colorComponentMarginH -5.
-static const NABezel4 colorWellBezel = {10, 5, colorWell2DSize + 20, 5};
+static const NABezel4 colorWellBezel = {10, 15, colorWell2DSize + 20, 15};
 
 void cmStartupDesign(void);
 void cmShutdownDesign(void);
