@@ -46,7 +46,6 @@ CMMachineController* cmAllocMachineController(void){
   cmAddUIRow(cmGetMachineLabControllerUIElement(con->labController), 0);
   cmAddUIRow(cmGetMachineGrayControllerUIElement(con->grayController), 0);
   cmAddUIRow(cmGetMachineButtonsControllerUIElement(con->buttonsController), 0);
-
   cmEndUILayout();
 
   return con;

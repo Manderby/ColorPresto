@@ -53,7 +53,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
 
   con->window = naNewWindow(
     cmTranslate(CMApplicationName),
-    naMakeRectS(200, 500, 1, 1),
+    naMakeRectS(200, 500, 500, 500),
     0,
     0);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
