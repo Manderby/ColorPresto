@@ -17,14 +17,17 @@ struct CMMachineRGBController{
   NAPopupButton* rgbColorSpacePopupButton;
 
   NALabel* redPointTitleLabel;
+  NAButton* setPrimaryRButton;
   NATextField* redPointYTextField;
   NATextField* redPointxTextField;
   NATextField* redPointyTextField;
   NALabel* greenPointTitleLabel;
+  NAButton* setPrimaryGButton;
   NATextField* greenPointYTextField;
   NATextField* greenPointxTextField;
   NATextField* greenPointyTextField;
   NALabel* bluePointTitleLabel;
+  NAButton* setPrimaryBButton;
   NATextField* bluePointYTextField;
   NATextField* bluePointxTextField;
   NATextField* bluePointyTextField;
@@ -75,14 +78,23 @@ NABool cmSetRGBYxy(NAReaction reaction){
   CMLVec3 primaries[3];
   cmlGetRGBPrimariesYxy(cm, primaries);
 
-  if(reaction.uiElement == con->redPointxTextField){
+  if(reaction.uiElement == con->setPrimaryRButton){
+    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cmGetCurrentColorType());
+    converter(cm, primaries[0], cmGetCurrentColorData(), 1);
+  }else if(reaction.uiElement == con->redPointxTextField){
     primaries[0][1] = (float)naGetTextFieldDouble(con->redPointxTextField);
   }else if(reaction.uiElement == con->redPointyTextField){
     primaries[0][2] = (float)naGetTextFieldDouble(con->redPointyTextField);
+  }else if(reaction.uiElement == con->setPrimaryGButton){
+    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cmGetCurrentColorType());
+    converter(cm, primaries[1], cmGetCurrentColorData(), 1);
   }else if(reaction.uiElement == con->greenPointxTextField){
     primaries[1][1] = (float)naGetTextFieldDouble(con->greenPointxTextField);
   }else if(reaction.uiElement == con->greenPointyTextField){
     primaries[1][2] = (float)naGetTextFieldDouble(con->greenPointyTextField);
+  }else if(reaction.uiElement == con->setPrimaryBButton){
+    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cmGetCurrentColorType());
+    converter(cm, primaries[2], cmGetCurrentColorData(), 1);
   }else if(reaction.uiElement == con->bluePointxTextField){
     primaries[2][1] = (float)naGetTextFieldDouble(con->bluePointxTextField);
   }else if(reaction.uiElement == con->bluePointyTextField){
@@ -259,15 +271,21 @@ CMMachineRGBController* cmAllocMachineRGBController(void){
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectRGBColorSpace, con);
   }
 
-  con->redPointTitleLabel = naNewLabel(cmTranslate(CMRGBColorSpaceRed), machineLabelWidth);
+  con->redPointTitleLabel = naNewLabel(cmTranslate(CMRGBColorSpaceRed), machineLabelWidth - setButtonWidth + marginH);
+  con->setPrimaryRButton = naNewTextButton("Set", setButtonWidth, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  naAddUIReaction(con->setPrimaryRButton, NA_UI_COMMAND_PRESSED, cmSetRGBYxy, con);
   con->redPointYTextField = cmNewValueTextField(cmSetRGBYxy, con);
   con->redPointxTextField = cmNewValueTextField(cmSetRGBYxy, con);
   con->redPointyTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->greenPointTitleLabel = naNewLabel(cmTranslate(CMRGBColorSpaceGreen), machineLabelWidth);
+  con->greenPointTitleLabel = naNewLabel(cmTranslate(CMRGBColorSpaceGreen), machineLabelWidth - setButtonWidth + marginH);
+  con->setPrimaryGButton = naNewTextButton("Set", setButtonWidth, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  naAddUIReaction(con->setPrimaryGButton, NA_UI_COMMAND_PRESSED, cmSetRGBYxy, con);
   con->greenPointYTextField = cmNewValueTextField(cmSetRGBYxy, con);
   con->greenPointxTextField = cmNewValueTextField(cmSetRGBYxy, con);
   con->greenPointyTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->bluePointTitleLabel = naNewLabel(cmTranslate(CMRGBColorSpaceBlue), machineLabelWidth);
+  con->bluePointTitleLabel = naNewLabel(cmTranslate(CMRGBColorSpaceBlue), machineLabelWidth - setButtonWidth + marginH);
+  con->setPrimaryBButton = naNewTextButton("Set", setButtonWidth, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  naAddUIReaction(con->setPrimaryBButton, NA_UI_COMMAND_PRESSED, cmSetRGBYxy, con);
   con->bluePointYTextField = cmNewValueTextField(cmSetRGBYxy, con);
   con->bluePointxTextField = cmNewValueTextField(cmSetRGBYxy, con);
   con->bluePointyTextField = cmNewValueTextField(cmSetRGBYxy, con);
@@ -332,15 +350,18 @@ CMMachineRGBController* cmAllocMachineRGBController(void){
   cmAddUICol(con->rgbColorSpacePopupButton, marginH);
 
   cmAddUIRow(con->redPointTitleLabel, uiElemHeight);
-  cmAddUICol(con->redPointYTextField, marginH);
+  cmAddUICol(con->setPrimaryRButton, 0);
+  cmAddUICol(con->redPointYTextField, 0);
   cmAddUICol(con->redPointxTextField, 0);
   cmAddUICol(con->redPointyTextField, 0);
   cmAddUIRow(con->greenPointTitleLabel, uiElemHeight);
-  cmAddUICol(con->greenPointYTextField, marginH);
+  cmAddUICol(con->setPrimaryGButton, 0);
+  cmAddUICol(con->greenPointYTextField, 0);
   cmAddUICol(con->greenPointxTextField, 0);
   cmAddUICol(con->greenPointyTextField, 0);
   cmAddUIRow(con->bluePointTitleLabel, uiElemHeight);
-  cmAddUICol(con->bluePointYTextField, marginH);
+  cmAddUICol(con->setPrimaryBButton, 0);
+  cmAddUICol(con->bluePointYTextField, 0);
   cmAddUICol(con->bluePointxTextField, 0);
   cmAddUICol(con->bluePointyTextField, 0);
 

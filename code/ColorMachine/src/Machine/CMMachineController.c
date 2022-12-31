@@ -16,12 +16,13 @@
 struct CMMachineController{
   NASpace* space;
 
-  CMMachineButtonsController* buttonsController;
   CMMachineGrayController* grayController;
   CMMachineIlluminationController* illuminationController;
   CMMachineLabController* labController;
   CMMachineObserverController* observerController;
   CMMachineRGBController* rgbController;
+
+  CMMachineButtonsController* buttonsController;
 };
 
 
@@ -36,6 +37,7 @@ CMMachineController* cmAllocMachineController(void){
   con->rgbController = cmAllocMachineRGBController();
   con->labController = cmAllocMachineLabController();
   con->grayController = cmAllocMachineGrayController();
+
   con->buttonsController = cmAllocMachineButtonsController();
 
   // layout

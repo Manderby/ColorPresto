@@ -224,7 +224,7 @@ NABool cmDrawSpectralColorWell(NAReaction reaction){
         glBegin(GL_LINE_STRIP);
           for(int32 iStep = 0; iStep <= intervals; iStep++){
             float lambda = CML_DEFAULT_INTEGRATION_MIN + (((CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * iStep) / intervals);
-            float y = cmlEval(illuminationSpectrum, lambda);
+            float y = cmlEval(colorSpectrum, lambda);
             glVertex2f(lambda, viewOffset + y / colorMax * viewRange);
           }
         glEnd();

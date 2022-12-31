@@ -17,6 +17,7 @@ void cmStartupColorMachineApplicationUI(void);
 void cmShutdownColorMachineApplication(void);
 
 CMLColorMachine* cmGetCurrentColorMachine(void);
+void cmResetColorMachine(void);
 CMLColorMachine* cmGetCurrentScreenMachine(void);
 CMColorsManager* cmGetColorsManager(void);
 
