@@ -137,10 +137,10 @@ CMWhitePointsController* cmAllocWhitePointsController(void){
   con->refTitle = cmNewTitleLabel(cmTranslate(CMReferenceIllumination), 80);
 
   con->refPopupButton = naNewPopupButton(70);
-  con->refD50MenuItem = naNewMenuItem("D50");
-  con->refD55MenuItem = naNewMenuItem("D55");
-  con->refD65MenuItem = naNewMenuItem("D65");
-  con->refD75MenuItem = naNewMenuItem("D75");
+  con->refD50MenuItem = naNewMenuItem(cmTranslate(CMD50));
+  con->refD55MenuItem = naNewMenuItem(cmTranslate(CMD55));
+  con->refD65MenuItem = naNewMenuItem(cmTranslate(CMD65));
+  con->refD75MenuItem = naNewMenuItem(cmTranslate(CMD75));
   naAddPopupButtonMenuItem(con->refPopupButton, con->refD50MenuItem, NA_NULL);
   naAddPopupButtonMenuItem(con->refPopupButton, con->refD55MenuItem, NA_NULL);
   naAddPopupButtonMenuItem(con->refPopupButton, con->refD65MenuItem, NA_NULL);

@@ -48,7 +48,7 @@ CMLColorType cmGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
   case COLOR_SPACE_Yxy:   retValue = CML_COLOR_Yxy; break;
   default:
     #if NA_DEBUG
-      naError("Unknown colorspace.");
+      cmError("Unknown colorspace.");
     #endif
     break;
   }

@@ -3,6 +3,7 @@
 
 #include "../CMColorMachineApplication.h"
 #include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "Displays/CMColorWell1D.h"
 #include "Displays/CMColorWell2D.h"
 #include "CMUVWColorController.h"
@@ -55,9 +56,9 @@ CMUVWColorController* cmAllocUVWColorController(void){
   
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 2);
 
-  con->labelU = cmNewColorComponentLabel("U*");
-  con->labelV = cmNewColorComponentLabel("V*");
-  con->labelW = cmNewColorComponentLabel("W*");
+  con->labelU = cmNewColorComponentLabel(cmTranslate(CMUVWColorChannelU));
+  con->labelV = cmNewColorComponentLabel(cmTranslate(CMUVWColorChannelV));
+  con->labelW = cmNewColorComponentLabel(cmTranslate(CMUVWColorChannelW));
   con->textFieldU = cmNewValueTextField(cmUVWValueEdited, con);
   con->textFieldV = cmNewValueTextField(cmUVWValueEdited, con);
   con->textFieldW = cmNewValueTextField(cmUVWValueEdited, con);

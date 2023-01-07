@@ -169,7 +169,7 @@ void cmUpdateMetamericsController(CMMetamericsController* con){
     break;
   default:
     #if NA_DEBUG
-      naError("This shoud not happen.");
+      cmError("This shoud not happen.");
     #endif
     ref = cmlCreateIlluminationSpectrum(CML_ILLUMINATION_D50, 0.f);
   }

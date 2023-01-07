@@ -43,7 +43,7 @@ CMWhitePoints CMGetWhitePoints(const CMLFunction* spec, const float* wpYxy, CMLF
     cmlCpy3(wp.XYZunnorm, wp.XYZ);
   }else{
     #if NA_DEBUG
-      naError("Neither spectrum nor whitepoint given.");
+      cmError("Neither spectrum nor whitepoint given.");
     #endif
   }
 

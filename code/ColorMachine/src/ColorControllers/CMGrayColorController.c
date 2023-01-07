@@ -3,6 +3,7 @@
 
 #include "../CMColorMachineApplication.h"
 #include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "CMGrayColorController.h"
 #include "Displays/CMColorWell1D.h"
 #include "Displays/CMGrayColorWell.h"
@@ -45,7 +46,7 @@ CMGrayColorController* cmAllocGrayColorController(void){
   
   con->display = cmAllocGrayColorWell(&(con->baseController));
   
-  con->labelGray = cmNewColorComponentLabel("Gr");
+  con->labelGray = cmNewColorComponentLabel(cmTranslate(CMGrayColorChannelGr));
   con->textFieldGray = cmNewValueTextField(cmGrayValueEdited, con);
   con->colorWell1DGray = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Gray, &(con->grayColor), 0);
 

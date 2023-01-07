@@ -3,6 +3,7 @@
 
 #include "../CMColorMachineApplication.h"
 #include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "Displays/CMColorWell1D.h"
 #include "Displays/CMColorWell2D.h"
 #include "CMYxyColorController.h"
@@ -55,9 +56,9 @@ CMYxyColorController* cmAllocYxyColorController(void){
   
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
 
-  con->labelY = cmNewColorComponentLabel("Y");
-  con->labelx = cmNewColorComponentLabel("x");
-  con->labely = cmNewColorComponentLabel("y");
+  con->labelY = cmNewColorComponentLabel(cmTranslate(CMYxyColorChannelY));
+  con->labelx = cmNewColorComponentLabel(cmTranslate(CMYxyColorChannelx));
+  con->labely = cmNewColorComponentLabel(cmTranslate(CMYxyColorChannely));
   con->textFieldY = cmNewValueTextField(cmYxyValueEdited, con);
   con->textFieldx = cmNewValueTextField(cmYxyValueEdited, con);
   con->textFieldy = cmNewValueTextField(cmYxyValueEdited, con);

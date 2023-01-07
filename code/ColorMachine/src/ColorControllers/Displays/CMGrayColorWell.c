@@ -3,6 +3,7 @@
 
 #include "../../CMColorMachineApplication.h"
 #include "../../CMDesign.h"
+#include "../../CMTranslations.h"
 #include "../CMColorController.h"
 
 #include "NAApp.h"
@@ -95,11 +96,11 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
   glOrtho(0, rect.size.width, 0, rect.size.height, -1., 1.);
 
   glColor3f(0., 0., 0.);
-  naDrawASCIICharacters(well->fontId, "Color", 12, 85, 0);
-  naDrawASCIICharacters(well->fontId, "Gray", 65, 85, 0);
+  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayColor), 12, 85, 0);
+  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayGray), 65, 85, 0);
   glColor3f(1., 1., 1.);
-  naDrawASCIICharacters(well->fontId, "Color", 11, 86, 0);
-  naDrawASCIICharacters(well->fontId, "Gray", 64, 86, 0);
+  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayColor), 11, 86, 0);
+  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayGray), 64, 86, 0);
 
   glMatrixMode(GL_PROJECTION);
   glPopMatrix();

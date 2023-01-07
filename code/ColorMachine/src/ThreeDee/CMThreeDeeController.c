@@ -95,17 +95,17 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     primeAxis = 2;
     naFillV3d(scale, 2., 2., 1.);
     labels[0] = "";
-    labels[1] = "S";
-    labels[2] = "L";
+    labels[1] = cmTranslate(CMHSLColorChannelS);
+    labels[2] = cmTranslate(CMHSLColorChannelL);
     normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSL);
     break;
   case COORD_SYS_HSL_CARTESIAN:
     coordSpace = CML_COLOR_HSL;
     primeAxis = 2;
     naFillV3d(scale, 3.60, -1., 1.);
-    labels[0] = "H";
-    labels[1] = "S";
-    labels[2] = "L";
+    labels[0] = cmTranslate(CMHSLColorChannelH);
+    labels[1] = cmTranslate(CMHSLColorChannelS);
+    labels[2] = cmTranslate(CMHSLColorChannelL);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSL);
     break;
   case COORD_SYS_HSV:
@@ -113,116 +113,116 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     primeAxis = 2;
     naFillV3d(scale, 2., 2., 1.);
     labels[0] = "";
-    labels[1] = "S";
-    labels[2] = "V";
+    labels[1] = cmTranslate(CMHSVColorChannelS);
+    labels[2] = cmTranslate(CMHSVColorChannelV);
     normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV);
     break;
   case COORD_SYS_HSV_CARTESIAN:
     coordSpace = CML_COLOR_HSV;
     primeAxis = 2;
     naFillV3d(scale, 3.60, -1., 1.);
-    labels[0] = "H";
-    labels[1] = "S";
-    labels[2] = "V";
+    labels[0] = cmTranslate(CMHSVColorChannelH);
+    labels[1] = cmTranslate(CMHSVColorChannelS);
+    labels[2] = cmTranslate(CMHSVColorChannelV);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSV);
     break;
   case COORD_SYS_Lab:
     coordSpace = CML_COLOR_Lab;
     primeAxis = 0;
     naFillV3d(scale, 1., 2.56, 2.56);
-    labels[0] = "L";
-    labels[1] = "a";
-    labels[2] = "b";
+    labels[0] = cmTranslate(CMLabColorChannelL);
+    labels[1] = cmTranslate(CMLabColorChannela);
+    labels[2] = cmTranslate(CMLabColorChannelb);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Lab);
     break;
   case COORD_SYS_Lch_CARTESIAN:
     coordSpace = CML_COLOR_Lch;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 3.60);
-    labels[0] = "L";
-    labels[1] = "c";
-    labels[2] = "h";
+    labels[0] = cmTranslate(CMLabColorChannelL);
+    labels[1] = cmTranslate(CMLchColorChannelc);
+    labels[2] = cmTranslate(CMLchColorChannelh);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Lch);
     break;
   case COORD_SYS_Luv:
     coordSpace = CML_COLOR_Luv;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "L";
-    labels[1] = "u";
-    labels[2] = "v";
+    labels[0] = cmTranslate(CMLuvColorChannelL);
+    labels[1] = cmTranslate(CMLuvColorChannelu);
+    labels[2] = cmTranslate(CMLuvColorChannelv);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Luv);
     break;
   case COORD_SYS_RGB:
     coordSpace = CML_COLOR_RGB;
     primeAxis = 1;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "R";
-    labels[1] = "G";
-    labels[2] = "B";
+    labels[0] = cmTranslate(CMRGBColorChannelR);
+    labels[1] = cmTranslate(CMRGBColorChannelG);
+    labels[2] = cmTranslate(CMRGBColorChannelB);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
     break;
   case COORD_SYS_UVW:
     coordSpace = CML_COLOR_UVW;
     primeAxis = 2;
     naFillV3d(scale, 2., 1., 1.);
-    labels[0] = "U*";
-    labels[1] = "V*";
-    labels[2] = "W*";
+    labels[0] = cmTranslate(CMUVWColorChannelU);
+    labels[1] = cmTranslate(CMUVWColorChannelV);
+    labels[2] = cmTranslate(CMUVWColorChannelW);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_UVW);
     break;
   case COORD_SYS_XYZ:
     coordSpace = CML_COLOR_XYZ;
     primeAxis = 1;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "X";
-    labels[1] = "Y";
-    labels[2] = "Z";
+    labels[0] = cmTranslate(CMXYZColorChannelX);
+    labels[1] = cmTranslate(CMXYZColorChannelY);
+    labels[2] = cmTranslate(CMXYZColorChannelZ);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
     break;
   case COORD_SYS_Ycbcr:
     coordSpace = CML_COLOR_YCbCr;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "Y";
-    labels[1] = "Cb";
-    labels[2] = "Cr";
+    labels[0] = cmTranslate(CMYCbCrColorChannelY);
+    labels[1] = cmTranslate(CMYCbCrColorChannelCb);
+    labels[2] = cmTranslate(CMYCbCrColorChannelCr);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
     break;
   case COORD_SYS_Ycd:
     coordSpace = CML_COLOR_Ycd;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "Y";
-    labels[1] = "c";
-    labels[2] = "d";
+    labels[0] = cmTranslate(CMYcdColorChannelY);
+    labels[1] = cmTranslate(CMYcdColorChannelc);
+    labels[2] = cmTranslate(CMYcdColorChanneld);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Ycd);
     break;
   case COORD_SYS_Yupvp:
     coordSpace = CML_COLOR_Yupvp;
     primeAxis = 0;
     naFillV3d(scale, 1., (2.f / 3.f), (2.f / 3.f));
-    labels[0] = "Y";
-    labels[1] = "u'";
-    labels[2] = "v'";
+    labels[0] = cmTranslate(CMYuvColorChannelY);
+    labels[1] = cmTranslate(CMYuvColorChannelup);
+    labels[2] = cmTranslate(CMYuvColorChannelvp);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yupvp);
     break;
   case COORD_SYS_Yuv:
     coordSpace = CML_COLOR_Yuv;
     primeAxis = 0;
     naFillV3d(scale, 1., (2.f / 3.f), (4.f / 9.f));
-    labels[0] = "Y";
-    labels[1] = "u";
-    labels[2] = "v";
+    labels[0] = cmTranslate(CMYuvColorChannelY);
+    labels[1] = cmTranslate(CMYuvColorChannelu);
+    labels[2] = cmTranslate(CMYuvColorChannelv);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
     break;
   case COORD_SYS_Yxy:
     coordSpace = CML_COLOR_Yxy;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = "Y";
-    labels[1] = "x";
-    labels[2] = "y";
+    labels[0] = cmTranslate(CMYxyColorChannelY);
+    labels[1] = cmTranslate(CMYxyColorChannelx);
+    labels[2] = cmTranslate(CMYxyColorChannely);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
     break;
   default:

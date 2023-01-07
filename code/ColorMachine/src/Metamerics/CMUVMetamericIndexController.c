@@ -431,15 +431,15 @@ CMUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
 
   con->title = cmNewTitleLabel(cmTranslate(CMUVMetamericIndex), 250);
 
-  con->metamerics6IndexLabel = naNewLabel("6:", indexWidth);
+  con->metamerics6IndexLabel = naNewLabel(cmTranslate(CMColorIndex6), indexWidth);
   con->metamerics6Label = cmNewValueLabel();
   con->metamerics6Display = cmAllocTwoColorController();
 
-  con->metamerics7IndexLabel = naNewLabel("7:", indexWidth);
+  con->metamerics7IndexLabel = naNewLabel(cmTranslate(CMColorIndex7), indexWidth);
   con->metamerics7Label = cmNewValueLabel();
   con->metamerics7Display = cmAllocTwoColorController();
 
-  con->metamerics8IndexLabel = naNewLabel("8:", indexWidth);
+  con->metamerics8IndexLabel = naNewLabel(cmTranslate(CMColorIndex8), indexWidth);
   con->metamerics8Label = cmNewValueLabel();
   con->metamerics8Display = cmAllocTwoColorController();
 

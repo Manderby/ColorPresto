@@ -119,7 +119,8 @@ CMMachineIlluminationController* cmAllocMachineIlluminationController(void){
   con->illuminationTemperatureSlider = naNewSlider(100);
   naAddUIReaction(con->illuminationTemperatureSlider, NA_UI_COMMAND_EDITED, cmSetIlluminationTemperature, con);
   con->whitePointTitleLabel = naNewLabel(cmTranslate(CMIlluminationWhitePoint), machineLabelWidth - setButtonWidth + marginH);
-  con->setWhitePointButton = naNewTextButton("Set", setButtonWidth, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+
+  con->setWhitePointButton = naNewTextButton(cmTranslate(CMSetButton), setButtonWidth, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
   naAddUIReaction(con->setWhitePointButton, NA_UI_COMMAND_PRESSED, cmSetWhitePoint, con);
   con->whitePointYTextField = cmNewValueTextField(cmSetWhitePoint, con);
   con->whitePointxTextField = cmNewValueTextField(cmSetWhitePoint, con);
