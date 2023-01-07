@@ -50,21 +50,22 @@ void cmSetupThreeDeeProjection(NASize viewSize, double fovy, double zoom){
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
+  double aspect = viewSize.width / viewSize.height;
   NAMat44d projectionMatrix;
   if(fovy == 0){
     naFillMatrixOrtho(
       projectionMatrix,
-      -zoom * 3. * .5,
-      zoom * 3. * .5,
-      -zoom * 3. * .5,
-      zoom * 3. * .5,
+      -viewSize.width / initial3DDisplayWidth * zoom * 1.5,
+      viewSize.width / initial3DDisplayWidth * zoom * 1.5,
+      -viewSize.height / initial3DDisplayWidth * zoom * 1.5,
+       viewSize.height / initial3DDisplayWidth * zoom * 1.5,
       .1,
       50);
   }else{
     naFillMatrixPerspective(
       projectionMatrix,
       fovy,
-      viewSize.width / viewSize.height,
+      aspect,
       .1,
       50.);
   }
