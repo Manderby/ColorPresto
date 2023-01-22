@@ -40,7 +40,7 @@ CMSpectralColorController* cmAllocSpectralColorController(void){
   con->display = cmAllocSpectralColorWell(&(con->baseController));
   
   NARect spaceRect = naMakeRectS(0, 0, 325, colorWell2DSize + (2 * 5));
-  naSetSpaceRect(con->baseController.space, spaceRect);
+  naSetUIElementRect(con->baseController.space, spaceRect);
 
   naAddSpaceChild(
     con->baseController.space,

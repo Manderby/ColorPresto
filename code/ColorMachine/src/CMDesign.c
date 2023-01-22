@@ -157,7 +157,6 @@ void cmEndUILayout(){
   spaceRect.size.width = maxDesignWidth + curDesignMargin.right;
   double newHeight = spaceRect.size.height - (curDesignPos.y - curDesignRowHeight) + curDesignMargin.bottom;
   spaceRect.size.height = newHeight;
-  //naSetSpaceRect(curDesignSpace, spaceRect);
   naSetUIElementRect(curDesignSpace, spaceRect);
 
   naShiftSpaceChilds(curDesignSpace, naMakePos(0, spaceRect.size.height - prevHeight));

@@ -31,7 +31,6 @@ CMMachineController* cmAllocMachineController(void){
   CMMachineController* con = naAlloc(CMMachineController);
 
   con->space = naNewSpace(naMakeSize(500, 300));
-  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
   con->observerController = cmAllocMachineObserverController();
   con->illuminationController = cmAllocMachineIlluminationController();
@@ -46,9 +45,9 @@ CMMachineController* cmAllocMachineController(void){
   cmAddUIRow(cmGetMachineObserverControllerUIElement(con->observerController), 0);
   cmAddUIRow(cmGetMachineIlluminationControllerUIElement(con->illuminationController), 0);
   cmAddUIRow(cmGetMachineRGBControllerUIElement(con->rgbController), 0);
-  //cmAddUIRow(cmGetMachineLabControllerUIElement(con->labController), 0);
-  //cmAddUIRow(cmGetMachineGrayControllerUIElement(con->grayController), 0);
-  //cmAddUIRow(cmGetMachineButtonsControllerUIElement(con->buttonsController), 0);
+  cmAddUIRow(cmGetMachineLabControllerUIElement(con->labController), 0);
+  cmAddUIRow(cmGetMachineGrayControllerUIElement(con->grayController), 0);
+  cmAddUIRow(cmGetMachineButtonsControllerUIElement(con->buttonsController), 0);
   cmEndUILayout();
 
   return con;

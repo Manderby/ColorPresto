@@ -65,8 +65,7 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
     windowRect.size.height - controlHeight,
     fullControlWidth,
     controlHeight);
-  naSetOpenGLSpaceInnerRect(con->display, openGLRect);
-  naSetSpaceRect(con->controlSpace, controlRect);
+  naSetUIElementRect(con->controlSpace, controlRect);
 
   cmSetThreeDeePerspectiveControllerZoom(con->perspectiveController, cmGetThreeDeePerspectiveControllerZoom(con->perspectiveController) / (openGLRect.size.height / oldOpenGLRect.size.height));
 
