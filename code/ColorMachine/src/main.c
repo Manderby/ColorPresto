@@ -5,7 +5,6 @@
 #include "CMColorMachineApplication.h"
 #include "CMTranslations.h"
 #include "NAApp.h"
-//#include "ManderAppTranslations.h"
 
 
 CMColorMachineApplication* app;

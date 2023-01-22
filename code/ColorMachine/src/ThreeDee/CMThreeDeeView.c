@@ -50,21 +50,22 @@ void cmSetupThreeDeeProjection(NASize viewSize, double fovy, double zoom){
   glMatrixMode(GL_PROJECTION);
   glLoadIdentity();
 
+  double aspect = viewSize.width / viewSize.height;
   NAMat44d projectionMatrix;
   if(fovy == 0){
     naFillMatrixOrtho(
       projectionMatrix,
-      -zoom * 3. * .5,
-      zoom * 3. * .5,
-      -zoom * 3. * .5,
-      zoom * 3. * .5,
-      .1,
+      -viewSize.width / initial3DDisplayWidth * zoom * 1.5,
+      viewSize.width / initial3DDisplayWidth * zoom * 1.5,
+      -viewSize.height / initial3DDisplayWidth * zoom * 1.5,
+       viewSize.height / initial3DDisplayWidth * zoom * 1.5,
+      -50,
       50);
   }else{
     naFillMatrixPerspective(
       projectionMatrix,
       fovy,
-      viewSize.width / viewSize.height,
+      aspect,
       .1,
       50.);
   }
@@ -339,12 +340,12 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
       break;
     case CML_COLOR_UVW:
       cmlSet4UInt(surfaceSteps[0], steps3D, steps3D, 1, 1);
-      cmlSet4(origins[0], 0.f, 0.f, .3f, 0.f);
+      cmlSet4(origins[0], 0.f, 0.f, 0.f, 0.f);
       cmlSet4(axis1s[0], 0.f, 1.f, 0.f, 0.f);
-      cmlSet4(axis2s[0], 0.f, 0.f, .7f, 0.f);
+      cmlSet4(axis2s[0], 0.f, 0.f, 1.f, 0.f);
       cmlSet4UInt(surfaceSteps[1], steps3D, steps3D, 1, 1);
-      cmlSet4(origins[1], 0.f, 0.f, .3f, 0.f);
-      cmlSet4(axis1s[1], 0.f, 0.f, .7f, 0.f);
+      cmlSet4(origins[1], 0.f, 0.f, 0.f, 0.f);
+      cmlSet4(axis1s[1], 0.f, 0.f, 1.f, 0.f);
       cmlSet4(axis2s[1], 1.f, 0.f, 0.f, 0.f);
       cmlSet4UInt(surfaceSteps[2], steps3D, steps3D, 1, 1);
       cmlSet4(origins[2], 1.f, 1.f, 1.f, 1.f);
@@ -353,7 +354,7 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
       cmlSet4UInt(surfaceSteps[3], steps3D, steps3D, 1, 1);
       cmlSet4(origins[3], 1.f, 1.f, 1.f, 1.f);
       cmlSet4(axis1s[3], 0.f, -1.f, 0.f, 0.f);
-      cmlSet4(axis2s[3], 0.f, 0.f, -.7f, 0.f);
+      cmlSet4(axis2s[3], 0.f, 0.f, -1.f, 0.f);
       cmlSet4UInt(surfaceSteps[4], steps3D, steps3D, 1, 1);
       cmlSet4(origins[4], 1.f, 1.f, 1.f, 1.f);
       cmlSet4(axis1s[4], 0.f, 0.f, -1.f, 0.f);

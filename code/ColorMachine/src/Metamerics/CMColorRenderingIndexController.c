@@ -361,50 +361,50 @@ CMColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
 
   con->title = cmNewTitleLabel(cmTranslate(CMColorRenderingIndex), 200);
 
-  con->color1IndexLabel = naNewLabel("1:", indexWidth);
+  con->color1IndexLabel = naNewLabel(cmTranslate(CMColorIndex1), indexWidth);
   con->color1Label = cmNewValueLabel();
   con->color1Display = cmAllocTwoColorController();
-  con->color2IndexLabel = naNewLabel("2:", indexWidth);
+  con->color2IndexLabel = naNewLabel(cmTranslate(CMColorIndex2), indexWidth);
   con->color2Label = cmNewValueLabel();
   con->color2Display = cmAllocTwoColorController();
-  con->color3IndexLabel = naNewLabel("3:", indexWidth);
+  con->color3IndexLabel = naNewLabel(cmTranslate(CMColorIndex3), indexWidth);
   con->color3Label = cmNewValueLabel();
   con->color3Display = cmAllocTwoColorController();
-  con->color4IndexLabel = naNewLabel("4:", indexWidth);
+  con->color4IndexLabel = naNewLabel(cmTranslate(CMColorIndex4), indexWidth);
   con->color4Label = cmNewValueLabel();
   con->color4Display = cmAllocTwoColorController();
-  con->color5IndexLabel = naNewLabel("5:", indexWidth);
+  con->color5IndexLabel = naNewLabel(cmTranslate(CMColorIndex5), indexWidth);
   con->color5Label = cmNewValueLabel();
   con->color5Display = cmAllocTwoColorController();
-  con->color6IndexLabel = naNewLabel("6:", indexWidth);
+  con->color6IndexLabel = naNewLabel(cmTranslate(CMColorIndex6), indexWidth);
   con->color6Label = cmNewValueLabel();
   con->color6Display = cmAllocTwoColorController();
-  con->color7IndexLabel = naNewLabel("7:", indexWidth);
+  con->color7IndexLabel = naNewLabel(cmTranslate(CMColorIndex7), indexWidth);
   con->color7Label = cmNewValueLabel();
   con->color7Display = cmAllocTwoColorController();
-  con->color8IndexLabel = naNewLabel("8:", indexWidth);
+  con->color8IndexLabel = naNewLabel(cmTranslate(CMColorIndex8), indexWidth);
   con->color8Label = cmNewValueLabel();
   con->color8Display = cmAllocTwoColorController();
 
   con->colorAverageLabel = naNewLabel(cmTranslate(CMAverage), indexWidth);
   con->colorLabel = cmNewValueLabel();
 
-  con->color9IndexLabel = naNewLabel("9:", indexWidth);
+  con->color9IndexLabel = naNewLabel(cmTranslate(CMColorIndex9), indexWidth);
   con->color9Label = cmNewValueLabel();
   con->color9Display = cmAllocTwoColorController();
-  con->color10IndexLabel = naNewLabel("10:", indexWidth);
+  con->color10IndexLabel = naNewLabel(cmTranslate(CMColorIndex10), indexWidth);
   con->color10Label = cmNewValueLabel();
   con->color10Display = cmAllocTwoColorController();
-  con->color11IndexLabel = naNewLabel("11:", indexWidth);
+  con->color11IndexLabel = naNewLabel(cmTranslate(CMColorIndex11), indexWidth);
   con->color11Label = cmNewValueLabel();
   con->color11Display = cmAllocTwoColorController();
-  con->color12IndexLabel = naNewLabel("12:", indexWidth);
+  con->color12IndexLabel = naNewLabel(cmTranslate(CMColorIndex12), indexWidth);
   con->color12Label = cmNewValueLabel();
   con->color12Display = cmAllocTwoColorController();
-  con->color13IndexLabel = naNewLabel("13:", indexWidth);
+  con->color13IndexLabel = naNewLabel(cmTranslate(CMColorIndex13), indexWidth);
   con->color13Label = cmNewValueLabel();
   con->color13Display = cmAllocTwoColorController();
-  con->color14IndexLabel = naNewLabel("14:", indexWidth);
+  con->color14IndexLabel = naNewLabel(cmTranslate(CMColorIndex14), indexWidth);
   con->color14Label = cmNewValueLabel();
   con->color14Display = cmAllocTwoColorController();
 

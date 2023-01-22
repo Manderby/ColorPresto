@@ -3,6 +3,7 @@
 
 #include "../CMColorMachineApplication.h"
 #include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "Displays/CMColorWell1D.h"
 #include "Displays/CMColorWell2D.h"
 #include "CMYuvColorController.h"
@@ -62,11 +63,11 @@ CMYuvColorController* cmAllocYuvColorController(void){
   
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
 
-  con->labelY = cmNewColorComponentLabel("Y");
-  con->labelup = cmNewColorComponentLabel("u'");
-  con->labelvp = cmNewColorComponentLabel("v'");
-  con->labelu = cmNewColorComponentLabel("u");
-  con->labelv = cmNewColorComponentLabel("v");
+  con->labelY = cmNewColorComponentLabel(cmTranslate(CMYuvColorChannelY));
+  con->labelup = cmNewColorComponentLabel(cmTranslate(CMYuvColorChannelup));
+  con->labelvp = cmNewColorComponentLabel(cmTranslate(CMYuvColorChannelvp));
+  con->labelu = cmNewColorComponentLabel(cmTranslate(CMYuvColorChannelu));
+  con->labelv = cmNewColorComponentLabel(cmTranslate(CMYuvColorChannelv));
   con->textFieldY = cmNewValueTextField(cmYuvValueEdited, con);
   con->textFieldup = cmNewValueTextField(cmYuvValueEdited, con);
   con->textFieldvp = cmNewValueTextField(cmYuvValueEdited, con);

@@ -3,6 +3,7 @@
 
 #include "../CMColorMachineApplication.h"
 #include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "Displays/CMColorWell1D.h"
 #include "Displays/CMColorWell2D.h"
 #include "CMRGBColorController.h"
@@ -82,9 +83,9 @@ CMRGBColorController* cmAllocRGBColorController(void){
   
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 1);
   
-  con->labelR = cmNewColorComponentLabel("R");
-  con->labelG = cmNewColorComponentLabel("G");
-  con->labelB = cmNewColorComponentLabel("B");
+  con->labelR = cmNewColorComponentLabel(cmTranslate(CMRGBColorChannelR));
+  con->labelG = cmNewColorComponentLabel(cmTranslate(CMRGBColorChannelG));
+  con->labelB = cmNewColorComponentLabel(cmTranslate(CMRGBColorChannelB));
   con->textFieldR = cmNewValueTextField(cmRGBValueEdited, con);
   con->textFieldG = cmNewValueTextField(cmRGBValueEdited, con);
   con->textFieldB = cmNewValueTextField(cmRGBValueEdited, con);
@@ -92,7 +93,7 @@ CMRGBColorController* cmAllocRGBColorController(void){
   con->colorWell1DG = cmAllocColorWell1D(&(con->baseController), CML_COLOR_RGB, con->rgbColor, 1);
   con->colorWell1DB = cmAllocColorWell1D(&(con->baseController), CML_COLOR_RGB, con->rgbColor, 2);
   
-  con->labelNum = cmNewColorComponentLabel("#");
+  con->labelNum = cmNewColorComponentLabel(cmTranslate(CMRGBColorChannelNum));
   con->textFieldHex = cmNewValueTextField(cmRGBValueEdited, con);
   con->textFieldDec = cmNewBigValueTextField(cmRGBValueEdited, con);
 

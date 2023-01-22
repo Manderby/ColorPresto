@@ -88,5 +88,5 @@ void cmUpdateMachineObserverController(CMMachineObserverController* con){
   naSetPopupButtonIndexSelected(con->observerPopupButton, observerType);
   naSetLabelText(
     con->observerStepsLabel,
-    naAllocSprintf(NA_TRUE, "%d nm", (int)defRange.stepSize));
+    naAllocSprintf(NA_TRUE, cmTranslate(CMObserverNanoMeterSteps), (int)defRange.stepSize));
 }

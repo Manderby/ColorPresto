@@ -476,23 +476,23 @@ CMVisMetamericIndexController* cmAllocVisMetamericIndexController(void){
 
   con->title = cmNewTitleLabel(cmTranslate(CMVisMetamericIndex), 250);
   
-  con->metamerics1IndexLabel = naNewLabel("1:", indexWidth);
+  con->metamerics1IndexLabel = naNewLabel(cmTranslate(CMColorIndex1), indexWidth);
   con->metamerics1Label = cmNewValueLabel();
   con->metamerics1Display = cmAllocTwoColorController();
 
-  con->metamerics2IndexLabel = naNewLabel("2:", indexWidth);
+  con->metamerics2IndexLabel = naNewLabel(cmTranslate(CMColorIndex2), indexWidth);
   con->metamerics2Label = cmNewValueLabel();
   con->metamerics2Display = cmAllocTwoColorController();
 
-  con->metamerics3IndexLabel = naNewLabel("3:", indexWidth);
+  con->metamerics3IndexLabel = naNewLabel(cmTranslate(CMColorIndex3), indexWidth);
   con->metamerics3Label = cmNewValueLabel();
   con->metamerics3Display = cmAllocTwoColorController();
 
-  con->metamerics4IndexLabel = naNewLabel("4:", indexWidth);
+  con->metamerics4IndexLabel = naNewLabel(cmTranslate(CMColorIndex4), indexWidth);
   con->metamerics4Label = cmNewValueLabel();
   con->metamerics4Display = cmAllocTwoColorController();
 
-  con->metamerics5IndexLabel = naNewLabel("5:", indexWidth);
+  con->metamerics5IndexLabel = naNewLabel(cmTranslate(CMColorIndex5), indexWidth);
   con->metamerics5Label = cmNewValueLabel();
   con->metamerics5Display = cmAllocTwoColorController();
 

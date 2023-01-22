@@ -3,6 +3,7 @@
 
 #include "../CMColorMachineApplication.h"
 #include "../CMDesign.h"
+#include "../CMTranslations.h"
 #include "Displays/CMColorWell1D.h"
 #include "Displays/CMColorWell2D.h"
 #include "CMLabColorController.h"
@@ -68,11 +69,11 @@ CMLabColorController* cmAllocLabColorController(void){
   
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
 
-  con->labelL = cmNewColorComponentLabel("L");
-  con->labela = cmNewColorComponentLabel("a");
-  con->labelb = cmNewColorComponentLabel("b");
-  con->labelc = cmNewColorComponentLabel("c");
-  con->labelh = cmNewColorComponentLabel("h");
+  con->labelL = cmNewColorComponentLabel("");
+  con->labela = cmNewColorComponentLabel("");
+  con->labelb = cmNewColorComponentLabel("");
+  con->labelc = cmNewColorComponentLabel(cmTranslate(CMLchColorChannelc));
+  con->labelh = cmNewColorComponentLabel(cmTranslate(CMLchColorChannelh));
   con->textFieldL = cmNewValueTextField(cmLabValueEdited, con);
   con->textFielda = cmNewValueTextField(cmLabValueEdited, con);
   con->textFieldb = cmNewValueTextField(cmLabValueEdited, con);
@@ -158,14 +159,14 @@ void cmUpdateLabColorController(CMLabColorController* con){
 
   switch(cmlGetLabColorSpace(cm)){
   case CML_LAB_CIELAB:
-    naSetLabelText(con->labelL, "L*");
-    naSetLabelText(con->labela, "a*");
-    naSetLabelText(con->labelb, "b*");
+    naSetLabelText(con->labelL, cmTranslate(CMLabColorChannelLStar));
+    naSetLabelText(con->labela, cmTranslate(CMLabColorChannelaStar));
+    naSetLabelText(con->labelb, cmTranslate(CMLabColorChannelbStar));
     break;
   default:
-    naSetLabelText(con->labelL, "L");
-    naSetLabelText(con->labela, "a");
-    naSetLabelText(con->labelb, "b");
+    naSetLabelText(con->labelL, cmTranslate(CMLabColorChannelL));
+    naSetLabelText(con->labela, cmTranslate(CMLabColorChannela));
+    naSetLabelText(con->labelb, cmTranslate(CMLabColorChannelb));
   }
 
   naSetTextFieldText(

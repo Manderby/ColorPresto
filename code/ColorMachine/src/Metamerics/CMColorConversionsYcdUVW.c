@@ -1,5 +1,6 @@
 
 #include "CMColorConversionsYcdUVW.h"
+#include "../CMTranslations.h"
 #include "../mainC.h"
 
 
@@ -15,9 +16,9 @@ void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcWhiteP
 }
 
 const NAUTF8Char* getGrade(float value){
-  if(value <= .25f){return "A";}
-  else if(value <= .5f){return "B";}
-  else if(value <= 1.f){return "C";}
-  else if(value <= 2.f){return "D";}
-  return "E";
+  if(value <= .25f){return cmTranslate(CMGradeA);}
+  else if(value <= .5f){return cmTranslate(CMGradeB);}
+  else if(value <= 1.f){return cmTranslate(CMGradeC);}
+  else if(value <= 2.f){return cmTranslate(CMGradeD);}
+  return cmTranslate(CMGradeE);
 }
