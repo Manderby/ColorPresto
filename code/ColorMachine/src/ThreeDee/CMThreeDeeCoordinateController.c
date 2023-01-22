@@ -207,5 +207,5 @@ NAInt cmGetThreeDeeCoordinateControllerSteps3D(CMThreeDeeCoordinateController* c
 void cmUpdateThreeDeeCoordinateController(CMThreeDeeCoordinateController* con){
   naSetPopupButtonIndexSelected(con->colorSpacePopupButton, con->colorSpaceType);
   naSetPopupButtonIndexSelected(con->coordSysPopupButton, con->coordSysType);
-  naSetSliderValue(con->stepsSlider, con->steps3D);
+  naSetSliderValue(con->stepsSlider, (double)con->steps3D);
 }
