@@ -84,7 +84,7 @@ double curDesignRowHeight = 0.;
 NABool curDesignRowHeightFixed = NA_FALSE;
 
 void cmBeginUILayout(NASpace* space, NABezel4 margin){
-  NASize size = naGetUIElementRect(space, NA_NULL, NA_FALSE).size;
+  NASize size = naGetUIElementRect(space).size;
   curDesignSpace = space;
   curDesignMargin = margin;
   curDesignPos = naMakePos(margin.left, size.height - margin.top);
@@ -118,7 +118,7 @@ void cmAddUIRow(void* child, double rowHeight){
     if(!curDesignSpace)
       naError("No space defined for design. Use cmBeginUILayout");
   #endif
-  NASize size = naGetUIElementRect(child, NA_NULL, NA_FALSE).size;
+  NASize size = naGetUIElementRect(child).size;
   curDesignPos.x = curDesignMargin.left;
   curDesignPos.y -= curDesignRowHeight;
   if(rowHeight){
@@ -136,7 +136,7 @@ void cmAddUICol(void* child, double marginLeft){
     if(!curDesignSpace)
       naError("No space defined for design. Use cmBeginUILayout");
   #endif
-  NASize size = naGetUIElementRect(child, NA_NULL, NA_FALSE).size;
+  NASize size = naGetUIElementRect(child).size;
   curDesignPos.x += marginLeft;
   cm_AddLayoutRowPlain(child, size, 0.);
 }
@@ -146,26 +146,30 @@ void cmAddUIColV(void* child, double marginLeft, double vOffset){
     if(!curDesignSpace)
       naError("No space defined for design. Use cmBeginUILayout");
   #endif
-  NASize size = naGetUIElementRect(child, NA_NULL, NA_FALSE).size;
+  NASize size = naGetUIElementRect(child).size;
   curDesignPos.x += marginLeft;
   cm_AddLayoutRowPlain(child, size, vOffset);
 }
 
 void cmEndUILayout(){
-  NARect spaceRect = naGetUIElementRect(curDesignSpace, NA_NULL, NA_FALSE);
+  NARect spaceRect = naGetUIElementRect(curDesignSpace);
+  double prevHeight = spaceRect.size.height;
   spaceRect.size.width = maxDesignWidth + curDesignMargin.right;
   double newHeight = spaceRect.size.height - (curDesignPos.y - curDesignRowHeight) + curDesignMargin.bottom;
-  naShiftSpaceChilds(curDesignSpace, naMakePos(0, newHeight - spaceRect.size.height));
   spaceRect.size.height = newHeight;
+  naSetSpaceRect(curDesignSpace, spaceRect);
+
+  naShiftSpaceChilds(curDesignSpace, naMakePos(0, spaceRect.size.height - prevHeight));
+
   NAWindow* window = naGetUIElementWindow(curDesignSpace);
   if(window){
     NASpace* contentSpace = naGetWindowContentSpace(window);
     if(contentSpace == curDesignSpace){
-      NARect windowRect = naGetUIElementRect(window, NA_NULL, NA_FALSE);
+      NARect windowRect = naGetUIElementRect(window);
       windowRect.size = spaceRect.size;
       naSetWindowRect(window, windowRect);
     }
   }
-  naSetSpaceRect(curDesignSpace, spaceRect);
+
   curDesignSpace = NA_NULL;
 }

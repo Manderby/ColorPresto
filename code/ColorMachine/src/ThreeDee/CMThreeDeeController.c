@@ -49,9 +49,9 @@ void cmRefreshThreeDeeDisplay(CMThreeDeeController* con){
 NABool cmReshapeThreeDeeWindow(NAReaction reaction){
   CMThreeDeeController* con = (CMThreeDeeController*)reaction.controller;
 
-  NARect windowRect = naGetUIElementRect(con->window, NA_NULL, NA_FALSE);
-  NARect oldOpenGLRect = naGetUIElementRect(con->display, NA_NULL, NA_FALSE);
-  NARect oldControlRect = naGetUIElementRect(con->controlSpace, NA_NULL, NA_FALSE);
+  NARect windowRect = naGetUIElementRect(con->window);
+  NARect oldOpenGLRect = naGetUIElementRect(con->display);
+  NARect oldControlRect = naGetUIElementRect(con->controlSpace);
 
   double controlHeight = oldControlRect.size.height;
 
@@ -237,7 +237,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   float max[3];
   NASize viewSize;
 
-  viewSize = naGetUIElementRect(con->display, NA_NULL, NA_FALSE).size;
+  viewSize = naGetUIElementRect(con->display).size;
   cmlGetMinBounds(min, coordSpace);
   cmlGetMaxBounds(max, coordSpace);
 

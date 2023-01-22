@@ -55,23 +55,6 @@ CMMetamericsController* cmAllocMetamericsController(void){
   NASpace* uvMetamericIndexSpace = cmGetUVMetamericIndexUIElement(con->uvMetamericIndexController);
   NASpace* totalMetamericIndexSpace = cmGetTotalMetamericIndexUIElement(con->totalMetamericIndexController);
 
-//  NASize whitePointsSize = naGetUIElementRect(whitePointsSpace, NA_NULL, NA_FALSE).size;
-//  NASize chromaticityErrorSize = naGetUIElementRect(chromaticityErrorSpace, NA_NULL, NA_FALSE).size;
-//  NASize colorRenderingIndexSize = naGetUIElementRect(colorRenderingIndexSpace, NA_NULL, NA_FALSE).size;
-//  NASize visMetamericIndexSize = naGetUIElementRect(visMetamericIndexSpace, NA_NULL, NA_FALSE).size;
-//  NASize uvMetamericIndexSize = naGetUIElementRect(uvMetamericIndexSpace, NA_NULL, NA_FALSE).size;
-//  NASize totalMetamericIndexSize = naGetUIElementRect(totalMetamericIndexSpace, NA_NULL, NA_FALSE).size;
-
-//  double column1Height = whitePointsSize.height + chromaticityErrorSize.height;
-//  double column1Width = naMax(whitePointsSize.width, chromaticityErrorSize.width);
-//  double column2Height = colorRenderingIndexSize.height;
-//  double column2Width = colorRenderingIndexSize.width;
-//  double column3Height = visMetamericIndexSize.height + uvMetamericIndexSize.height + totalMetamericIndexSize.height;
-//  double column3Width = naMax(naMax(visMetamericIndexSize.width, uvMetamericIndexSize.width), totalMetamericIndexSize.width);
-
-//  double windowWidth = column1Width + column2Width + column3Width;
-//  double windowHeight = naMax(naMax(column1Height, column2Height), column3Height);
-
   con->window = naNewWindow(
     cmTranslate(CMWhitepointsAndMetamerics),
     naMakeRectS(400, 500, 1, 1),

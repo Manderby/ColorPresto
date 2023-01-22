@@ -32,7 +32,7 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
 
-  NASize viewSize = naGetUIElementRect(well->display, NA_NULL, NA_FALSE).size;
+  NASize viewSize = naGetUIElementRect(well->display).size;
   glViewport(0, 0, (GLsizei)viewSize.width, (GLsizei)viewSize.height);
 
   glClear(GL_DEPTH_BUFFER_BIT);
@@ -88,7 +88,7 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
     glVertex2f(+1., +1.);
   glEnd();
 
-  NARect rect = naGetUIElementRect(well->display, NA_NULL, NA_FALSE);
+  NARect rect = naGetUIElementRect(well->display);
   glMatrixMode(GL_PROJECTION);
   glPushMatrix();
   glLoadIdentity();

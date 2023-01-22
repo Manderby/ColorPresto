@@ -130,14 +130,14 @@ CMMachineIlluminationController* cmAllocMachineIlluminationController(void){
   cmAddUIRow(con->illuminationTitleLabel, uiElemHeight);
   cmAddUICol(con->illuminationPopupButton, marginH);
   cmAddUIRow(con->illuminationTemperatureTitleLabel, uiElemHeight);
-  cmAddUICol(con->illuminationTemperatureTextField, marginH);
+  //cmAddUICol(con->illuminationTemperatureTextField, marginH);
   cmAddUICol(con->illuminationKelvinLabel, 0);
   cmAddUICol(con->illuminationTemperatureSlider, marginH);
   cmAddUIRow(con->whitePointTitleLabel, uiElemHeight);
-  cmAddUICol(con->setWhitePointButton, 0);
-  cmAddUICol(con->whitePointYTextField, 0);
-  cmAddUICol(con->whitePointxTextField, 0);
-  cmAddUICol(con->whitePointyTextField, 0);
+  //cmAddUICol(con->setWhitePointButton, 0);
+  //cmAddUICol(con->whitePointYTextField, 0);
+  //cmAddUICol(con->whitePointxTextField, 0);
+  //cmAddUICol(con->whitePointyTextField, 0);
   cmEndUILayout();
 
   return con;

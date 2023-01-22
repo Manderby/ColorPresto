@@ -52,7 +52,7 @@ NABool cmDragColorWell1D(NAReaction reaction){
     CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
     outputConverter(normedColorValues, well->colorData, 1);
 
-    NARect displayRect = naGetUIElementRect(well->display, naGetApplication(), NA_FALSE);
+    NARect displayRect = naGetUIElementRectAbsolute(well->display);
     float mouseX = (float)((mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width);
     if(mouseX < 0.f){mouseX = 0.f;}
     if(mouseX > 1.f){mouseX = 1.f;}
@@ -95,7 +95,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
   CMLColorMachine* sm = cmGetCurrentScreenMachine();
 
-  NASize viewSize = naGetUIElementRect(well->display, NA_NULL, NA_FALSE).size;
+  NASize viewSize = naGetUIElementRect(well->display).size;
   glViewport(0, 0, (GLsizei)viewSize.width, (GLsizei)viewSize.height);
 
   glClear(GL_DEPTH_BUFFER_BIT);

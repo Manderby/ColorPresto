@@ -26,7 +26,7 @@ NABool cmDragSpectralColorWell(NAReaction reaction){
     CMSpectralColorWell* well = (CMSpectralColorWell*)reaction.controller;
     CMLColorMachine* cm = cmGetCurrentColorMachine();
 
-    NARect spaceRect = naGetUIElementRect(well->openGLSpace, naGetApplication(), NA_FALSE);
+    NARect spaceRect = naGetUIElementRectAbsolute(well->openGLSpace);
     double mouseX = (mouseStatus->pos.x - spaceRect.pos.x) / spaceRect.size.width;
     if(mouseX < 0.f){mouseX = 0.f;}
     if(mouseX > 1.f){mouseX = 1.f;}
@@ -100,7 +100,7 @@ NABool cmDrawSpectralColorWell(NAReaction reaction){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
 //  CMLColorMachine* sm = cmGetCurrentScreenMachine();
 
-  NASize viewSize = naGetUIElementRect(well->openGLSpace, NA_NULL, NA_FALSE).size;
+  NASize viewSize = naGetUIElementRect(well->openGLSpace).size;
   glViewport(0, 0, (GLsizei)viewSize.width, (GLsizei)viewSize.height);
 
   glClear(GL_DEPTH_BUFFER_BIT);
