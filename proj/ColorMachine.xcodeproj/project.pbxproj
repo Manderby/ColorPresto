@@ -163,11 +163,6 @@
 		90384AA22887312E0002D469 /* NA3DHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 90384AA12887312E0002D469 /* NA3DHelper.h */; };
 		90384AA4288731930002D469 /* NA3DHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA3288731930002D469 /* NA3DHelper.c */; };
 		90384AA828873AF10002D469 /* NAMathOperators.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA728873AF10002D469 /* NAMathOperators.c */; };
-		90B6FD6228A99A2F00EE6F32 /* ManderApp.vcxproj in Resources */ = {isa = PBXBuildFile; fileRef = 90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */; };
-		90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5B28A99A2F00EE6F32 /* ManderAppPreferences.c */; };
-		90B6FD6428A99A2F00EE6F32 /* ManderAppAbout.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5C28A99A2F00EE6F32 /* ManderAppAbout.c */; };
-		90B6FD6528A99A2F00EE6F32 /* ManderAppTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5D28A99A2F00EE6F32 /* ManderAppTranslations.c */; };
-		90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */ = {isa = PBXBuildFile; fileRef = 90B6FD5E28A99A2F00EE6F32 /* ManderApp.c */; };
 		90B8ECED2886143D005825BF /* NABase.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE22886143D005825BF /* NABase.h */; };
 		90B8ECEE2886143D005825BF /* NAUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE32886143D005825BF /* NAUtility.h */; };
 		90B8ECEF2886143D005825BF /* NABuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE52886143D005825BF /* NABuffer.h */; };
@@ -397,6 +392,17 @@
 		90B8EDDE2886143D005825BF /* NACoord.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8ECEC2886143D005825BF /* NACoord.h */; };
 		90B8EDE028861472005825BF /* NALib.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EDDF28861472005825BF /* NALib.h */; };
 		90C6FA45293AA54200671DE7 /* libCMLStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C6F9F2293AA4EC00671DE7 /* libCMLStatic.a */; };
+		90F42C7B2981D64D00EC8562 /* ManderApp_deu.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F42C702981D64D00EC8562 /* ManderApp_deu.h */; };
+		90F42C7C2981D64D00EC8562 /* ManderApp_eng.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F42C712981D64D00EC8562 /* ManderApp_eng.h */; };
+		90F42C7D2981D64D00EC8562 /* ManderApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F42C732981D64D00EC8562 /* ManderApp.h */; };
+		90F42C7E2981D64D00EC8562 /* ManderAppPreferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 90F42C742981D64D00EC8562 /* ManderAppPreferences.c */; };
+		90F42C7F2981D64D00EC8562 /* ManderAppAbout.c in Sources */ = {isa = PBXBuildFile; fileRef = 90F42C752981D64D00EC8562 /* ManderAppAbout.c */; };
+		90F42C802981D64D00EC8562 /* ManderAppTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90F42C762981D64D00EC8562 /* ManderAppTranslations.c */; };
+		90F42C812981D64D00EC8562 /* ManderApp.c in Sources */ = {isa = PBXBuildFile; fileRef = 90F42C772981D64D00EC8562 /* ManderApp.c */; };
+		90F42C822981D64D00EC8562 /* ManderAppPreferences.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F42C782981D64D00EC8562 /* ManderAppPreferences.h */; };
+		90F42C832981D64D00EC8562 /* ManderAppAbout.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F42C792981D64D00EC8562 /* ManderAppAbout.h */; };
+		90F42C842981D64D00EC8562 /* ManderAppTranslations.h in Headers */ = {isa = PBXBuildFile; fileRef = 90F42C7A2981D64D00EC8562 /* ManderAppTranslations.h */; };
+		90F42C852981D66500EC8562 /* libManderApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90F42C682981D63B00EC8562 /* libManderApp.a */; };
 		B96AA9A21767414B00F041A3 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B96AA9A11767414B00F041A3 /* GLUT.framework */; };
 /* End PBXBuildFile section */
 
@@ -643,17 +649,6 @@
 		90384AA12887312E0002D469 /* NA3DHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NA3DHelper.h; sourceTree = "<group>"; };
 		90384AA3288731930002D469 /* NA3DHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NA3DHelper.c; sourceTree = "<group>"; };
 		90384AA728873AF10002D469 /* NAMathOperators.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NAMathOperators.c; sourceTree = "<group>"; };
-		90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ManderApp.vcxproj; sourceTree = "<group>"; };
-		90B6FD5728A99A2F00EE6F32 /* ManderApp_deu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_deu.h; sourceTree = "<group>"; };
-		90B6FD5828A99A2F00EE6F32 /* ManderApp_eng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_eng.h; sourceTree = "<group>"; };
-		90B6FD5A28A99A2F00EE6F32 /* ManderApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp.h; sourceTree = "<group>"; };
-		90B6FD5B28A99A2F00EE6F32 /* ManderAppPreferences.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderAppPreferences.c; sourceTree = "<group>"; };
-		90B6FD5C28A99A2F00EE6F32 /* ManderAppAbout.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderAppAbout.c; sourceTree = "<group>"; };
-		90B6FD5D28A99A2F00EE6F32 /* ManderAppTranslations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderAppTranslations.c; sourceTree = "<group>"; };
-		90B6FD5E28A99A2F00EE6F32 /* ManderApp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderApp.c; sourceTree = "<group>"; };
-		90B6FD5F28A99A2F00EE6F32 /* ManderAppPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppPreferences.h; sourceTree = "<group>"; };
-		90B6FD6028A99A2F00EE6F32 /* ManderAppAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppAbout.h; sourceTree = "<group>"; };
-		90B6FD6128A99A2F00EE6F32 /* ManderAppTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppTranslations.h; sourceTree = "<group>"; };
 		90B8EBE02886143D005825BF /* NALib.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NALib.vcxproj; sourceTree = "<group>"; };
 		90B8EBE22886143D005825BF /* NABase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NABase.h; sourceTree = "<group>"; };
 		90B8EBE32886143D005825BF /* NAUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAUtility.h; sourceTree = "<group>"; };
@@ -885,6 +880,18 @@
 		90B8EDDF28861472005825BF /* NALib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NALib.h; sourceTree = "<group>"; };
 		90BF531F274ABD41001FDE2A /* libNALib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNALib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C6F9F2293AA4EC00671DE7 /* libCMLStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCMLStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		90F42C682981D63B00EC8562 /* libManderApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libManderApp.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		90F42C6E2981D64D00EC8562 /* ManderApp.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = ManderApp.vcxproj; sourceTree = "<group>"; };
+		90F42C702981D64D00EC8562 /* ManderApp_deu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_deu.h; sourceTree = "<group>"; };
+		90F42C712981D64D00EC8562 /* ManderApp_eng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp_eng.h; sourceTree = "<group>"; };
+		90F42C732981D64D00EC8562 /* ManderApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderApp.h; sourceTree = "<group>"; };
+		90F42C742981D64D00EC8562 /* ManderAppPreferences.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderAppPreferences.c; sourceTree = "<group>"; };
+		90F42C752981D64D00EC8562 /* ManderAppAbout.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderAppAbout.c; sourceTree = "<group>"; };
+		90F42C762981D64D00EC8562 /* ManderAppTranslations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderAppTranslations.c; sourceTree = "<group>"; };
+		90F42C772981D64D00EC8562 /* ManderApp.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ManderApp.c; sourceTree = "<group>"; };
+		90F42C782981D64D00EC8562 /* ManderAppPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppPreferences.h; sourceTree = "<group>"; };
+		90F42C792981D64D00EC8562 /* ManderAppAbout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppAbout.h; sourceTree = "<group>"; };
+		90F42C7A2981D64D00EC8562 /* ManderAppTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManderAppTranslations.h; sourceTree = "<group>"; };
 		B96AA9A11767414B00F041A3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		B9917CB115C9AA9E00F0140B /* libcml.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcml.dylib; path = /usr/local/lib/libcml.dylib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -894,6 +901,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				90F42C852981D66500EC8562 /* libManderApp.a in Frameworks */,
 				90C6FA45293AA54200671DE7 /* libCMLStatic.a in Frameworks */,
 				902EC1A328D5CAC40077843B /* libNALib.a in Frameworks */,
 				B96AA9A21767414B00F041A3 /* GLUT.framework in Frameworks */,
@@ -910,6 +918,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		90C6F9F0293AA4EC00671DE7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90F42C662981D63B00EC8562 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -943,6 +958,7 @@
 				8D1107320486CEB800E47090 /* Color Machine.app */,
 				90BF531F274ABD41001FDE2A /* libNALib.a */,
 				90C6F9F2293AA4EC00671DE7 /* libCMLStatic.a */,
+				90F42C682981D63B00EC8562 /* libManderApp.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -950,8 +966,8 @@
 		29B97314FDCFA39411CA2CEA /* ColorMachine */ = {
 			isa = PBXGroup;
 			children = (
-				90B6FD5428A99A2F00EE6F32 /* ManderApp */,
 				90B8EBDF2886143D005825BF /* NALib */,
+				90F42C6D2981D64D00EC8562 /* ManderApp */,
 				9007676F294E530100BDD6FD /* CML */,
 				90076618294E522C00BDD6FD /* ColorMachine */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -1292,41 +1308,6 @@
 				90384A9128872FB50002D469 /* NAVectorBaseOperationsII.h */,
 			);
 			path = NAVectorAlgebra;
-			sourceTree = "<group>";
-		};
-		90B6FD5428A99A2F00EE6F32 /* ManderApp */ = {
-			isa = PBXGroup;
-			children = (
-				90B6FD5528A99A2F00EE6F32 /* ManderApp.vcxproj */,
-				90B6FD5628A99A2F00EE6F32 /* res */,
-				90B6FD5928A99A2F00EE6F32 /* src */,
-			);
-			name = ManderApp;
-			path = ../../ManderApp/code/ManderApp;
-			sourceTree = "<group>";
-		};
-		90B6FD5628A99A2F00EE6F32 /* res */ = {
-			isa = PBXGroup;
-			children = (
-				90B6FD5728A99A2F00EE6F32 /* ManderApp_deu.h */,
-				90B6FD5828A99A2F00EE6F32 /* ManderApp_eng.h */,
-			);
-			path = res;
-			sourceTree = "<group>";
-		};
-		90B6FD5928A99A2F00EE6F32 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				90B6FD5A28A99A2F00EE6F32 /* ManderApp.h */,
-				90B6FD5B28A99A2F00EE6F32 /* ManderAppPreferences.c */,
-				90B6FD5C28A99A2F00EE6F32 /* ManderAppAbout.c */,
-				90B6FD5D28A99A2F00EE6F32 /* ManderAppTranslations.c */,
-				90B6FD5E28A99A2F00EE6F32 /* ManderApp.c */,
-				90B6FD5F28A99A2F00EE6F32 /* ManderAppPreferences.h */,
-				90B6FD6028A99A2F00EE6F32 /* ManderAppAbout.h */,
-				90B6FD6128A99A2F00EE6F32 /* ManderAppTranslations.h */,
-			);
-			path = src;
 			sourceTree = "<group>";
 		};
 		90B8EBDF2886143D005825BF /* NALib */ = {
@@ -1770,6 +1751,41 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		90F42C6D2981D64D00EC8562 /* ManderApp */ = {
+			isa = PBXGroup;
+			children = (
+				90F42C6E2981D64D00EC8562 /* ManderApp.vcxproj */,
+				90F42C6F2981D64D00EC8562 /* res */,
+				90F42C722981D64D00EC8562 /* src */,
+			);
+			name = ManderApp;
+			path = ../lib/ManderApp/code/ManderApp;
+			sourceTree = "<group>";
+		};
+		90F42C6F2981D64D00EC8562 /* res */ = {
+			isa = PBXGroup;
+			children = (
+				90F42C702981D64D00EC8562 /* ManderApp_deu.h */,
+				90F42C712981D64D00EC8562 /* ManderApp_eng.h */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		90F42C722981D64D00EC8562 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				90F42C732981D64D00EC8562 /* ManderApp.h */,
+				90F42C742981D64D00EC8562 /* ManderAppPreferences.c */,
+				90F42C752981D64D00EC8562 /* ManderAppAbout.c */,
+				90F42C762981D64D00EC8562 /* ManderAppTranslations.c */,
+				90F42C772981D64D00EC8562 /* ManderApp.c */,
+				90F42C782981D64D00EC8562 /* ManderAppPreferences.h */,
+				90F42C792981D64D00EC8562 /* ManderAppAbout.h */,
+				90F42C7A2981D64D00EC8562 /* ManderAppTranslations.h */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2002,6 +2018,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		90F42C642981D63B00EC8562 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90F42C7C2981D64D00EC8562 /* ManderApp_eng.h in Headers */,
+				90F42C7D2981D64D00EC8562 /* ManderApp.h in Headers */,
+				90F42C822981D64D00EC8562 /* ManderAppPreferences.h in Headers */,
+				90F42C842981D64D00EC8562 /* ManderAppTranslations.h in Headers */,
+				90F42C832981D64D00EC8562 /* ManderAppAbout.h in Headers */,
+				90F42C7B2981D64D00EC8562 /* ManderApp_deu.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -2061,6 +2090,23 @@
 			productReference = 90C6F9F2293AA4EC00671DE7 /* libCMLStatic.a */;
 			productType = "com.apple.product-type.library.static";
 		};
+		90F42C672981D63B00EC8562 /* ManderApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 90F42C692981D63B00EC8562 /* Build configuration list for PBXNativeTarget "ManderApp" */;
+			buildPhases = (
+				90F42C642981D63B00EC8562 /* Headers */,
+				90F42C652981D63B00EC8562 /* Sources */,
+				90F42C662981D63B00EC8562 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ManderApp;
+			productName = ManderApp;
+			productReference = 90F42C682981D63B00EC8562 /* libManderApp.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2079,6 +2125,9 @@
 						ProvisioningStyle = Automatic;
 					};
 					90C6F9F1293AA4EC00671DE7 = {
+						CreatedOnToolsVersion = 14.1;
+					};
+					90F42C672981D63B00EC8562 = {
 						CreatedOnToolsVersion = 14.1;
 					};
 				};
@@ -2101,6 +2150,7 @@
 				8D1107260486CEB800E47090 /* ColorMachine */,
 				90BF531E274ABD41001FDE2A /* NALib */,
 				90C6F9F1293AA4EC00671DE7 /* CMLStatic */,
+				90F42C672981D63B00EC8562 /* ManderApp */,
 			);
 		};
 /* End PBXProject section */
@@ -2114,7 +2164,6 @@
 				90076696294E522C00BDD6FD /* ColorMachine.icns in Resources */,
 				90076690294E522C00BDD6FD /* ColorMachine.vcxproj.user in Resources */,
 				90076692294E522C00BDD6FD /* ColorMachine.xib in Resources */,
-				90B6FD6228A99A2F00EE6F32 /* ManderApp.vcxproj in Resources */,
 				90076691294E522C00BDD6FD /* ColorMachine.vcxproj in Resources */,
 				90076693294E522C00BDD6FD /* InfoPlist.strings in Resources */,
 				90076694294E522C00BDD6FD /* ColorMachineChangelog.txt in Resources */,
@@ -2174,20 +2223,17 @@
 				900766A1294E522C00BDD6FD /* CMColorWell2D.c in Sources */,
 				900766C4294E522C00BDD6FD /* CMThreeDeePerspectiveController.c in Sources */,
 				900766BD294E522C00BDD6FD /* CMWhitePointsController.c in Sources */,
-				90B6FD6328A99A2F00EE6F32 /* ManderAppPreferences.c in Sources */,
 				900766AB294E522C00BDD6FD /* CMLuvColorController.c in Sources */,
 				900766B9294E522C00BDD6FD /* CMColorConversionsYcdUVW.c in Sources */,
 				90076697294E522C00BDD6FD /* CMColorMachineApplication.c in Sources */,
 				900766AD294E522C00BDD6FD /* main.c in Sources */,
 				900766B1294E522C00BDD6FD /* CMMachineLabController.c in Sources */,
 				900766A2294E522C00BDD6FD /* CMGrayColorWell.c in Sources */,
-				90B6FD6528A99A2F00EE6F32 /* ManderAppTranslations.c in Sources */,
 				900766B3294E522C00BDD6FD /* CMMachineController.c in Sources */,
 				900766BE294E522C00BDD6FD /* CMWhitePoints.c in Sources */,
 				900766B7294E522C00BDD6FD /* CMTranslations.c in Sources */,
 				900766B8294E522C00BDD6FD /* CMMetamericsController.c in Sources */,
 				900766A8294E522C00BDD6FD /* CMRGBColorController.c in Sources */,
-				90B6FD6428A99A2F00EE6F32 /* ManderAppAbout.c in Sources */,
 				900766B5294E522C00BDD6FD /* CMMachineObserverController.c in Sources */,
 				900766C1294E522C00BDD6FD /* CMTwoColorController.c in Sources */,
 				900766A7294E522C00BDD6FD /* CMSpectralColorController.c in Sources */,
@@ -2203,7 +2249,6 @@
 				9007669E294E522C00BDD6FD /* CMYcdColorController.c in Sources */,
 				900766AE294E522C00BDD6FD /* main.m in Sources */,
 				900766C0294E522C00BDD6FD /* CMChromaticityErrorController.c in Sources */,
-				90B6FD6628A99A2F00EE6F32 /* ManderApp.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2327,6 +2372,17 @@
 				900767EB294E530100BDD6FD /* CMLIllumination.c in Sources */,
 				900767CF294E530100BDD6FD /* CMLSpectralConversions.c in Sources */,
 				900767E8294E530100BDD6FD /* CMLGrayColorspace.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		90F42C652981D63B00EC8562 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				90F42C812981D64D00EC8562 /* ManderApp.c in Sources */,
+				90F42C802981D64D00EC8562 /* ManderAppTranslations.c in Sources */,
+				90F42C7F2981D64D00EC8562 /* ManderAppAbout.c in Sources */,
+				90F42C7E2981D64D00EC8562 /* ManderAppPreferences.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2609,6 +2665,140 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		90F42C6A2981D63B00EC8562 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = YH3QFD54JB;
+				ENABLE_TESTABILITY = YES;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		90F42C6B2981D63B00EC8562 /* Optimize */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YH3QFD54JB;
+				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Optimize;
+		};
+		90F42C6C2981D63B00EC8562 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = YH3QFD54JB;
+				ENABLE_NS_ASSERTIONS = NO;
+				EXECUTABLE_PREFIX = lib;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2906,6 +3096,16 @@
 				90C6F9F3293AA4EC00671DE7 /* Debug */,
 				90C6F9F4293AA4EC00671DE7 /* Optimize */,
 				90C6F9F5293AA4EC00671DE7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		90F42C692981D63B00EC8562 /* Build configuration list for PBXNativeTarget "ManderApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				90F42C6A2981D63B00EC8562 /* Debug */,
+				90F42C6B2981D63B00EC8562 /* Optimize */,
+				90F42C6C2981D63B00EC8562 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

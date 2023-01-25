@@ -4,3 +4,6 @@
 [submodule "lib/CML"]
 	path = lib/CML
 	url = https://github.com/Manderby/CML.git
+[submodule "lib/ManderApp"]
+	path = lib/ManderApp
+	url = https://github.com/Manderby/ManderApp.git
