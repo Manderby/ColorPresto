@@ -167,7 +167,7 @@ void cmEndUILayout(){
     if(contentSpace == curDesignSpace){
       NARect windowRect = naGetUIElementRect(window);
       windowRect.size = spaceRect.size;
-      naSetWindowRect(window, windowRect);
+      naSetUIElementRect(window, windowRect);
     }
   }
 

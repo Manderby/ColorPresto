@@ -28,8 +28,13 @@ NABool cmDrawGammaDisplayController(NAReaction reaction){
   CMGammaDisplayController* con = (CMGammaDisplayController*)reaction.controller;
   CMLColorMachine* cm = cmGetCurrentColorMachine();
 
-  NASize viewSize = naGetUIElementRect(con->display).size;
-  glViewport(0, 0, (GLsizei)viewSize.width, (GLsizei)viewSize.height);
+  double uiScale = naGetUIElementResolutionFactor(NA_NULL);
+  NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
+  glViewport(
+    0,
+    0,
+    (GLsizei)(viewSize.width * uiScale),
+    (GLsizei)(viewSize.height * uiScale));
 
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 

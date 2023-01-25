@@ -55,12 +55,12 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
 
   double controlHeight = oldControlRect.size.height;
 
-  NARect openGLRect = naMakeRectS(
+  NARect openGLRect = naMakeRectSE(
     0,
     0,
     windowRect.size.width - fullControlWidth,
     windowRect.size.height);
-  NARect controlRect = naMakeRectS(
+  NARect controlRect = naMakeRectSE(
     windowRect.size.width - fullControlWidth,
     windowRect.size.height - controlHeight,
     fullControlWidth,

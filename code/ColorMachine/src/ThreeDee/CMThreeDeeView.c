@@ -43,8 +43,13 @@ void cmEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace){
 
 
 void cmSetupThreeDeeProjection(NASize viewSize, double fovy, double zoom){
-  glViewport(0, 0, (GLsizei)viewSize.width, (GLsizei)viewSize.height);
-  
+  double uiScale = naGetUIElementResolutionFactor(NA_NULL);
+  glViewport(
+    0,
+    0,
+    (GLsizei)(viewSize.width * uiScale),
+    (GLsizei)(viewSize.height * uiScale));
+
 //  float curZoom;
 
   glMatrixMode(GL_PROJECTION);
