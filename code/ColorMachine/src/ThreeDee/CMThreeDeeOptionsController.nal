@@ -1,9 +1,10 @@
 
-define myPI = 3.14159;
-typedef myType = f32;
-typedef myFunctionType = bool (i32);
+//define myPI = 3.14159;
+//typedef myType = f32;
+//typedef myFunctionType = bool (i32);
 
-module CMThreeDeeOptionsController : NASpace;
+CMThreeDeeOptionsController = module : NASpace;
+
 
 .parent           = share CMThreeDeeController;
 
@@ -23,10 +24,10 @@ module CMThreeDeeOptionsController : NASpace;
 
 
 
-myNormalFunction        = bool (i32 myParameter) {return true;}
-.myPublicStaticFunction = bool (i32 myParameter) {return true;}
-myPrivateMethod         = bool (this, i32 myParameter) {return true;}
-.myPublicMethod         = bool (this, i32 myParameter) {return true;}
+//myNormalFunction        = bool (i32 myParameter) {return true;}
+//.myPublicStaticFunction = bool (i32 myParameter) {return true;}
+//myPrivateMethod         = bool (this, i32 myParameter) {return true;}
+//.myPublicMethod         = bool (this, i32 myParameter) {return true;}
 
 
 

@@ -9,6 +9,7 @@ CM_PROTOTYPE(NASpace);
 
 
 typedef struct CMThreeDeeOpacityController CMThreeDeeOpacityController;
+typedef struct CMThreeDeeOpacityController CMThreeDeeOpacityController;
 
 CMThreeDeeOpacityController* cmAllocThreeDeeOpacityController(CMThreeDeeController* parent);
 void cmDeallocThreeDeeOpacityController(CMThreeDeeOpacityController* con);
