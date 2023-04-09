@@ -39,13 +39,9 @@ CMSpectralColorController* cmAllocSpectralColorController(void){
   
   con->display = cmAllocSpectralColorWell(&(con->baseController));
   
-  NARect spaceRect = naMakeRectS(0, 0, 325, colorWell2DSize + (2 * 5));
-  naSetUIElementRect(con->baseController.space, spaceRect);
-
-  naAddSpaceChild(
-    con->baseController.space,
-    cmGetSpectralColorWellUIElement(con->display),
-    naMakePos(10, 5));
+  cmBeginUILayout(con->baseController.space, colorWellBezel);
+  cmAddUIRow(cmGetSpectralColorWellUIElement(con->display), 0);
+  cmEndUILayout();
 
   return con;
 }

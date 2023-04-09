@@ -15,6 +15,7 @@ struct CMGrayColorController{
   
   CMGrayColorWell* display;
   
+  NASpace* channelSpace;
   NALabel* labelGray;
   NATextField* textFieldGray;
   CMColorWell1D* colorWell1DGray;
@@ -46,22 +47,23 @@ CMGrayColorController* cmAllocGrayColorController(void){
   
   con->display = cmAllocGrayColorWell(&(con->baseController));
   
+  con->channelSpace = naNewSpace(naMakeSize(1, 1));
   con->labelGray = cmNewColorComponentLabel(cmTranslate(CMGrayColorChannelGr));
   con->textFieldGray = cmNewValueTextField(cmGrayValueEdited, con);
   con->colorWell1DGray = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Gray, &(con->grayColor), 0);
 
-  cmBeginUILayout(con->baseController.space, colorWellBezel);
-  cmAddUIPos(0, 2 * colorValueCondensedRowHeight);
+  cmBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cmAddUIPos(0, (int)((colorWell2DSize - (1 * 25.)) / 2.)); // center the channels
   cmAddUIRow(con->labelGray, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldGray, colorComponentMarginH);
   cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DGray), 10, colorWell1DOffset);
   cmAddUIPos(0, 2 * colorValueCondensedRowHeight);
   cmEndUILayout();
   
-  naAddSpaceChild(
-    con->baseController.space,
-    cmGetGrayColorWellUIElement(con->display),
-    naMakePos(10, 5));
+  cmBeginUILayout(con->baseController.space, colorWellBezel);
+  cmAddUIRow(cmGetGrayColorWellUIElement(con->display), 0);
+  cmAddUICol(con->channelSpace, 10);
+  cmEndUILayout();
 
   con->grayColor = .5;
 

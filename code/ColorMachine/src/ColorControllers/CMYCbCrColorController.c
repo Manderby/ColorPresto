@@ -15,6 +15,7 @@ struct CMYCbCrColorController{
   
   CMColorWell2D* colorWell2D;
 
+  NASpace* channelSpace;
   NALabel* labelY;
   NALabel* labelCb;
   NALabel* labelCr;
@@ -56,6 +57,7 @@ CMYCbCrColorController* cmAllocYCbCrColorController(void){
   
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
 
+  con->channelSpace = naNewSpace(naMakeSize(1, 1));
   con->labelY = cmNewColorComponentLabel(cmTranslate(CMYCbCrColorChannelY));
   con->labelCb = cmNewColorComponentLabel(cmTranslate(CMYCbCrColorChannelCb));
   con->labelCr = cmNewColorComponentLabel(cmTranslate(CMYCbCrColorChannelCr));
@@ -70,8 +72,8 @@ CMYCbCrColorController* cmAllocYCbCrColorController(void){
   naSetUIElementNextTabElement(con->textFieldCb, con->textFieldCr);
   naSetUIElementNextTabElement(con->textFieldCr, con->textFieldY);
 
-  cmBeginUILayout(con->baseController.space, colorWellBezel);
-  cmAddUIPos(0, colorValueCondensedRowHeight);
+  cmBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cmAddUIPos(0, (int)((colorWell2DSize - (3 * 25.)) / 2.)); // center the channels
   cmAddUIRow(con->labelY, colorValueCondensedRowHeight);
   cmAddUICol(con->textFieldY, colorComponentMarginH);
   cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DY), 10, colorWell1DOffset);
@@ -84,10 +86,10 @@ CMYCbCrColorController* cmAllocYCbCrColorController(void){
   cmAddUIPos(0, colorValueCondensedRowHeight);
   cmEndUILayout();
   
-  naAddSpaceChild(
-    con->baseController.space,
-    cmGetColorWell2DUIElement(con->colorWell2D),
-    naMakePos(10, 5));
+  cmBeginUILayout(con->baseController.space, colorWellBezel);
+  cmAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
+  cmAddUICol(con->channelSpace, 10);
+  cmEndUILayout();
 
   return con;
 }

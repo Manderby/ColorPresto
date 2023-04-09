@@ -94,7 +94,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->uvwColorController), 0);
   cmEndUILayout();
   
-  cmBeginUILayout(con->RGBColorsSpace, naMakeBezel4(10, 0, 0, 0));
+  cmBeginUILayout(con->RGBColorsSpace, naMakeBezel4Zero());
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->rgbColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hsvColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hslColorController), 0);
