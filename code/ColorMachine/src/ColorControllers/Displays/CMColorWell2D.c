@@ -231,6 +231,8 @@ NABool cmDrawColorWell2D(NAReaction reaction){
       float ang = NA_PI2f * (float)i / (float)subdivisions;
       glVertex2d(fixedValueA * 2. - 1. + whiteR * naCos(ang), fixedValueB * 2. - 1. + whiteR * naSin(ang));
     }
+  glEnd();
+  glBegin(GL_LINE_LOOP);
     glColor4f(0., 0., 0., 1.);
     for(int i = 0; i < subdivisions; ++i){
       float ang = NA_PI2f * (float)i / (float)subdivisions;

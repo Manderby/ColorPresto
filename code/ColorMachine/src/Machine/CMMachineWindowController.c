@@ -85,21 +85,38 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->xyzColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yxyColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yuvColorController), 0);
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvColorController), 0);
   cmEndUILayout();
 
   cmBeginUILayout(con->perceptiveColorsSpace, naMakeBezel4Zero());
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->grayColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->labColorController), 0);
-  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvColorController), 0);
-  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->uvwColorController), 0);
-  cmEndUILayout();
-  
-  cmBeginUILayout(con->RGBColorsSpace, naMakeBezel4Zero());
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->rgbColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hsvColorController), 0);
-  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hslColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hslColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->ycbcrColorController), 0);
   cmEndUILayout();
+
+//  cmBeginUILayout(con->radiometricColorsSpace, naMakeBezel4Zero());
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->spectralColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->xyzColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yxyColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yuvColorController), 0);
+//  cmEndUILayout();
+//
+//  cmBeginUILayout(con->perceptiveColorsSpace, naMakeBezel4Zero());
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->grayColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->labColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->uvwColorController), 0);
+//  cmEndUILayout();
+//  
+//  cmBeginUILayout(con->RGBColorsSpace, naMakeBezel4Zero());
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->rgbColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hsvColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hslColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->ycbcrColorController), 0);
+//  cmEndUILayout();
 
   cmBeginUILayout(con->rightSpace, naMakeBezel4Zero());
   cmAddUIRow(con->radiometricColorsSpace, 0);
