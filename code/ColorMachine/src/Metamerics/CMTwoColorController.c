@@ -1,5 +1,6 @@
 
 #include "CMTwoColorController.h"
+#include "CMOpenGLHelper.h"
 
 #include "NAApp.h"
 
@@ -36,19 +37,7 @@ NABool cmRedrawTwoColorController(NAReaction reaction){
   glVertex2d(+1., +1.);
   glEnd();
 
-  NABabyColor color;
-  naFillDefaultTextColorWithSkin(color, naGetSkinForCurrentAppearance());
-  color[3] = .2f;
-
-  glLineWidth(2);
-  glBegin(GL_LINE_STRIP);
-  glColor4fv(color);
-  glVertex2d(-1., -1.);
-  glVertex2d(-1., +1.);
-  glVertex2d(+1., +1.);
-  glVertex2d(+1., -1.);
-  glVertex2d(-1., -1.);
-  glEnd();
+  cmDrawBorder();
   
   naSwapOpenGLSpaceBuffer(con->space);
   

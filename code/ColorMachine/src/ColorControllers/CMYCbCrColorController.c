@@ -88,7 +88,7 @@ CMYCbCrColorController* cmAllocYCbCrColorController(void){
   
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
-  cmAddUICol(con->channelSpace, 10);
+  cmAddUICol(con->channelSpace, colorWell2DRightMargin);
   cmEndUILayout();
 
   return con;

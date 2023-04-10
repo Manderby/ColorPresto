@@ -121,10 +121,11 @@ CMHSVHSLColorController* cmAllocHSVHSLColorController(void){
   naSetUIElementNextTabElement(con->textField2, con->textField0);
 
   cmBeginUILayout(con->channelSpace, naMakeBezel4Zero());
-  cmAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + 10.)) / 2.)); // center the channels
+  cmAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + radioChannelCenteringOffset)) / 2.)); // center the channels
   cmAddUIRowH(con->radioHSV, colorValueCondensedRowHeight, colorComponentWidth + colorComponentMarginH);
   cmAddUICol(con->radioHSL, 10);
-  cmAddUIPos(0, 5);
+  cmAddUIPos(0, radioChannelOffset);
+  
   cmAddUIRow(con->label0, colorValueCondensedRowHeight);
   cmAddUICol(con->textField0, colorComponentMarginH);
   cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
@@ -138,7 +139,7 @@ CMHSVHSLColorController* cmAllocHSVHSLColorController(void){
   
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
-  cmAddUICol(con->channelSpace, 10);
+  cmAddUICol(con->channelSpace, colorWell2DRightMargin);
   cmEndUILayout();
 
   return con;

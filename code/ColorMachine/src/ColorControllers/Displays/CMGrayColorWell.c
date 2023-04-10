@@ -1,5 +1,6 @@
 
 #include "CMGrayColorWell.h"
+#include "CMOpenGLHelper.h"
 
 #include "../../CMColorMachineApplication.h"
 #include "../../CMDesign.h"
@@ -100,15 +101,22 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
   glLoadIdentity();
   glOrtho(0, rect.size.width, 0, rect.size.height, -1., 1.);
 
+  int pixelwidth = 5 + 1;
+  const NAUTF8Char* colorString = cmTranslate(CMGrayDisplayColor);
+  const NAUTF8Char* grayString = cmTranslate(CMGrayDisplayGray);
+  double leftPos = (int)(((colorWell2DSize / 2.) - strlen(colorString) * pixelwidth) / 2.);
+  double rightPos = (int)((colorWell2DSize / 2.) + ((colorWell2DSize / 2.) - strlen(grayString) * pixelwidth) / 2.);
   glColor3f(0., 0., 0.);
-  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayColor), 12, 85, 0);
-  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayGray), 65, 85, 0);
+  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayColor), leftPos, colorWell2DSize - 15, 0);
+  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayGray), rightPos, colorWell2DSize - 15, 0);
   glColor3f(1., 1., 1.);
-  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayColor), 11, 86, 0);
-  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayGray), 64, 86, 0);
+  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayColor), leftPos - 1, colorWell2DSize - 14, 0);
+  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayGray), rightPos - 1, colorWell2DSize - 14, 0);
 
   glMatrixMode(GL_PROJECTION);
   glPopMatrix();
+
+  cmDrawBorder();
 
   naSwapOpenGLSpaceBuffer(well->display);
 

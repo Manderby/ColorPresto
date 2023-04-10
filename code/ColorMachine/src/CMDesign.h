@@ -56,6 +56,7 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 #define setButtonWidth 50.
 #define colorValueCondensedRowHeight 25.
 #define gammaDisplaySize 50
+#define colorWell2DRightMargin 2.
 #define colorWell2DSize 125
 #define colorWell1DSize 125
 #define spectralWellSize 355
@@ -63,7 +64,9 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 #define colorWell1DHeight 15.
 #define colorWell1DOffset 5.
 #define colorComponentWidth 25.
-#define colorComponentMarginH -5.
+#define colorComponentMarginH 3.
+#define radioChannelOffset 2.
+#define radioChannelCenteringOffset 15.
 static const NABezel4 colorWellBezel = {10, 10, 10, 10};
 
 void cmStartupDesign(void);

@@ -1,5 +1,6 @@
 
 #include "CMColorWell1D.h"
+#include "CMOpenGLHelper.h"
 
 #include "../../CMColorMachineApplication.h"
 #include "../../CMDesign.h"
@@ -191,6 +192,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   glDisable(GL_TEXTURE_1D);
   glDisable(GL_DEPTH);
 
+  glLineWidth(1);
   glColor4f(1., 1., 1., 1.);
   glBegin(GL_LINE_LOOP);
     for(int i = 0; i < subdivisions; ++i){
@@ -206,6 +208,8 @@ NABool cmDrawColorWell1D(NAReaction reaction){
       glVertex2d(variableValue * 2. - 1. + blackR * naCos(ang), blackR * naSin(ang) * yDivisor);
     }
   glEnd();
+
+  cmDrawBorder();
 
   naSwapOpenGLSpaceBuffer(well->display);
 

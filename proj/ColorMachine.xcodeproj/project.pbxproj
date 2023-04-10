@@ -161,6 +161,7 @@
 		90384AA4288731930002D469 /* NA3DHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA3288731930002D469 /* NA3DHelper.c */; };
 		90384AA828873AF10002D469 /* NAMathOperators.c in Sources */ = {isa = PBXBuildFile; fileRef = 90384AA728873AF10002D469 /* NAMathOperators.c */; };
 		9088784229E3F85700524812 /* CMPreferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 9088784129E3F85700524812 /* CMPreferences.c */; };
+		9088784529E4629000524812 /* CMOpenGLHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 9088784329E4629000524812 /* CMOpenGLHelper.c */; };
 		90B8ECED2886143D005825BF /* NABase.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE22886143D005825BF /* NABase.h */; };
 		90B8ECEE2886143D005825BF /* NAUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE32886143D005825BF /* NAUtility.h */; };
 		90B8ECEF2886143D005825BF /* NABuffer.h in Headers */ = {isa = PBXBuildFile; fileRef = 90B8EBE52886143D005825BF /* NABuffer.h */; };
@@ -643,6 +644,8 @@
 		90384AA728873AF10002D469 /* NAMathOperators.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NAMathOperators.c; sourceTree = "<group>"; };
 		9088784029E3F74E00524812 /* CMPreferences.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CMPreferences.h; sourceTree = "<group>"; };
 		9088784129E3F85700524812 /* CMPreferences.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMPreferences.c; sourceTree = "<group>"; };
+		9088784329E4629000524812 /* CMOpenGLHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CMOpenGLHelper.c; sourceTree = "<group>"; };
+		9088784429E4629000524812 /* CMOpenGLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMOpenGLHelper.h; sourceTree = "<group>"; };
 		90B8EBE02886143D005825BF /* NALib.vcxproj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = NALib.vcxproj; sourceTree = "<group>"; };
 		90B8EBE22886143D005825BF /* NABase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NABase.h; sourceTree = "<group>"; };
 		90B8EBE32886143D005825BF /* NAUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAUtility.h; sourceTree = "<group>"; };
@@ -1015,6 +1018,8 @@
 				90076627294E522C00BDD6FD /* CMColorsManager.h */,
 				9007668F294E522C00BDD6FD /* CMDesign.c */,
 				9007662B294E522C00BDD6FD /* CMDesign.h */,
+				9088784329E4629000524812 /* CMOpenGLHelper.c */,
+				9088784429E4629000524812 /* CMOpenGLHelper.h */,
 				9088784129E3F85700524812 /* CMPreferences.c */,
 				9088784029E3F74E00524812 /* CMPreferences.h */,
 				9007666A294E522C00BDD6FD /* CMTranslations.c */,
@@ -2197,6 +2202,7 @@
 				90076699294E522C00BDD6FD /* CMColorsManager.c in Sources */,
 				9007669C294E522C00BDD6FD /* CMHSVHSLColorController.c in Sources */,
 				900766AA294E522C00BDD6FD /* CMYxyColorController.c in Sources */,
+				9088784529E4629000524812 /* CMOpenGLHelper.c in Sources */,
 				900766B2294E522C00BDD6FD /* CMMachineGrayController.c in Sources */,
 				900766A5294E522C00BDD6FD /* CMColorController.c in Sources */,
 				900766C9294E522C00BDD6FD /* CMDesign.c in Sources */,

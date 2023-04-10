@@ -62,7 +62,7 @@ CMGrayColorController* cmAllocGrayColorController(void){
   
   cmBeginUILayout(con->baseController.space, colorWellBezel);
   cmAddUIRow(cmGetGrayColorWellUIElement(con->display), 0);
-  cmAddUICol(con->channelSpace, 10);
+  cmAddUICol(con->channelSpace, colorWell2DRightMargin);
   cmEndUILayout();
 
   con->grayColor = .5;

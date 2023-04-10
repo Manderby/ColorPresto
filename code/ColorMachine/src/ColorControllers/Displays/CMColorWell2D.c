@@ -1,5 +1,6 @@
 
 #include "CMColorWell2D.h"
+#include "CMOpenGLHelper.h"
 
 #include "../../CMColorMachineApplication.h"
 #include "../../CMDesign.h"
@@ -184,6 +185,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
 
   // Draw the spectrum
   if((colorType == CML_COLOR_Yupvp) || (colorType == CML_COLOR_Yxy)){
+    glLineWidth(1);
     float imin = CML_DEFAULT_INTEGRATION_MIN;
     float imax = CML_DEFAULT_INTEGRATION_MAX;
     int32 intervals = (int32)((imax - imin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
@@ -225,6 +227,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     glEnd();
   }
 
+  glLineWidth(1);
   glBegin(GL_LINE_LOOP);
     glColor4f(1., 1., 1., 1.);
     for(int i = 0; i < subdivisions; ++i){
@@ -239,6 +242,8 @@ NABool cmDrawColorWell2D(NAReaction reaction){
       glVertex2d(fixedValueA * 2. - 1. + blackR * naCos(ang), fixedValueB * 2. - 1. + blackR * naSin(ang));
     }
   glEnd();
+
+  cmDrawBorder();
 
   naSwapOpenGLSpaceBuffer(well->display);
 
