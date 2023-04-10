@@ -1,17 +1,14 @@
 
 #include "CMColorController.h"
 #include "CMGrayColorController.h"
-#include "CMHSLColorController.h"
 #include "CMHSVHSLColorController.h"
 #include "CMLabLchColorController.h"
 #include "CMLuvUVWColorController.h"
 #include "CMRGBColorController.h"
 #include "CMSpectralColorController.h"
-#include "CMUVWColorController.h"
 #include "CMXYZColorController.h"
 #include "CMYCbCrColorController.h"
-#include "CMYcdColorController.h"
-#include "CMYuvColorController.h"
+#include "CMYuvYupvpColorController.h"
 #include "CMYxyColorController.h"
 #include "NAApp.h"
 
@@ -73,8 +70,8 @@ const void* cmGetColorControllerColorData(const CMColorController* con){
   case CML_COLOR_UVW: return cmGetLuvUVWColorControllerColorData((const CMLuvUVWColorController*)con);
   case CML_COLOR_XYZ: return cmGetXYZColorControllerColorData((const CMXYZColorController*)con);
   case CML_COLOR_YCbCr: return cmGetYCbCrColorControllerColorData((const CMYCbCrColorController*)con);
-  case CML_COLOR_Ycd: return cmGetYcdColorControllerColorData((const CMYcdColorController*)con);
-  case CML_COLOR_Yupvp: return cmGetYuvColorControllerColorData((const CMYuvColorController*)con);
+  case CML_COLOR_Yupvp: return cmGetYuvColorControllerColorData((const CMYuvYupvpColorController*)con);
+  case CML_COLOR_Yuv: return cmGetYuvColorControllerColorData((const CMYuvYupvpColorController*)con);
   case CML_COLOR_Yxy: return cmGetYxyColorControllerColorData((const CMYxyColorController*)con);
   default: return NA_NULL;
   }
@@ -95,8 +92,8 @@ void cmSetColorControllerColorData(CMColorController* con, const void* data){
   case CML_COLOR_UVW: cmSetLuvUVWColorControllerColorData((CMLuvUVWColorController*)con, data); break;
   case CML_COLOR_XYZ: cmSetXYZColorControllerColorData((CMXYZColorController*)con, data); break;
   case CML_COLOR_YCbCr: cmSetYCbCrColorControllerColorData((CMYCbCrColorController*)con, data); break;
-  case CML_COLOR_Ycd: cmSetYcdColorControllerColorData((CMYcdColorController*)con, data); break;
-  case CML_COLOR_Yupvp: cmSetYuvColorControllerColorData((CMYuvColorController*)con, data); break;
+  case CML_COLOR_Yupvp: cmSetYuvColorControllerColorData((CMYuvYupvpColorController*)con, data); break;
+  case CML_COLOR_Yuv: cmSetYuvColorControllerColorData((CMYuvYupvpColorController*)con, data); break;
   case CML_COLOR_Yxy: cmSetYxyColorControllerColorData((CMYxyColorController*)con, data); break;
   default: break;
   }
