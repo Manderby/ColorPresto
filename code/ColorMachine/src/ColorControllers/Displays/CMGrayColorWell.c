@@ -1,9 +1,9 @@
 
 #include "CMGrayColorWell.h"
-#include "CMOpenGLHelper.h"
 
 #include "../../CMColorMachineApplication.h"
 #include "../../CMDesign.h"
+#include "../../CMOpenGLHelper.h"
 #include "../../CMTranslations.h"
 #include "../CMColorController.h"
 

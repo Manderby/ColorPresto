@@ -1,6 +1,6 @@
 
 #include "CMTwoColorController.h"
-#include "CMOpenGLHelper.h"
+#include "../CMOpenGLHelper.h"
 
 #include "NAApp.h"
 
