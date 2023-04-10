@@ -3,7 +3,7 @@
 #include "CMGrayColorController.h"
 #include "CMHSLColorController.h"
 #include "CMHSVHSLColorController.h"
-#include "CMLabColorController.h"
+#include "CMLabLchColorController.h"
 #include "CMLuvUVWColorController.h"
 #include "CMRGBColorController.h"
 #include "CMSpectralColorController.h"
@@ -65,7 +65,8 @@ const void* cmGetColorControllerColorData(const CMColorController* con){
   case CML_COLOR_Gray: return cmGetGrayColorControllerColorData((const CMGrayColorController*)con); 
   case CML_COLOR_HSL: return cmGetHSVHSLColorControllerColorData((const CMHSVHSLColorController*)con); 
   case CML_COLOR_HSV: return cmGetHSVHSLColorControllerColorData((const CMHSVHSLColorController*)con);
-  case CML_COLOR_Lab: return cmGetLabColorControllerColorData((const CMLabColorController*)con);
+  case CML_COLOR_Lab: return cmGetLabLchColorControllerColorData((const CMLabLchColorController*)con);
+  case CML_COLOR_Lch: return cmGetLabLchColorControllerColorData((const CMLabLchColorController*)con);
   case CML_COLOR_Luv: return cmGetLuvUVWColorControllerColorData((const CMLuvUVWColorController*)con);
   case CML_COLOR_RGB: return cmGetRGBColorControllerColorData((const CMRGBColorController*)con);
   case CML_COLOR_SPECTRUM_ILLUMINATION: return cmGetSpectralColorControllerColorData((const CMSpectralColorController*)con);
@@ -86,7 +87,8 @@ void cmSetColorControllerColorData(CMColorController* con, const void* data){
   case CML_COLOR_Gray: cmSetGrayColorControllerColorData((CMGrayColorController*)con, data); break; 
   case CML_COLOR_HSL: cmSetHSVHSLColorControllerColorData((CMHSVHSLColorController*)con, data); break; 
   case CML_COLOR_HSV: cmSetHSVHSLColorControllerColorData((CMHSVHSLColorController*)con, data); break;
-  case CML_COLOR_Lab: cmSetLabColorControllerColorData((CMLabColorController*)con, data); break;
+  case CML_COLOR_Lab: cmSetLabLchColorControllerColorData((CMLabLchColorController*)con, data); break;
+  case CML_COLOR_Lch: cmSetLabLchColorControllerColorData((CMLabLchColorController*)con, data); break;
   case CML_COLOR_Luv: cmSetLuvUVWColorControllerColorData((CMLuvUVWColorController*)con, data); break;
   case CML_COLOR_RGB: cmSetRGBColorControllerColorData((CMRGBColorController*)con, data); break;
   case CML_COLOR_SPECTRUM_ILLUMINATION: cmSetSpectralColorControllerColorData((CMSpectralColorController*)con, data); break;

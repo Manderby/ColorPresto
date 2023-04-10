@@ -9,7 +9,7 @@
 #include "../ColorControllers/CMGrayColorController.h"
 #include "../ColorControllers/CMHSLColorController.h"
 #include "../ColorControllers/CMHSVHSLColorController.h"
-#include "../ColorControllers/CMLabColorController.h"
+#include "../ColorControllers/CMLabLchColorController.h"
 #include "../ColorControllers/CMLuvUVWColorController.h"
 #include "../ColorControllers/CMRGBColorController.h"
 #include "../ColorControllers/CMSpectralColorController.h"
@@ -36,7 +36,7 @@ struct CMMachineWindowController{
   CMGrayColorController* grayColorController;
 //  CMHSLColorController* hslColorController;
   CMHSVHSLColorController* hsvhslColorController;
-  CMLabColorController* labColorController;
+  CMLabLchColorController* lablchColorController;
   CMLuvUVWColorController* luvuvwColorController;
   CMRGBColorController* rgbColorController;
   CMSpectralColorController* spectralColorController;
@@ -70,7 +70,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   con->grayColorController = cmAllocGrayColorController();
 //  con->hslColorController = cmAllocHSLColorController();
   con->hsvhslColorController = cmAllocHSVHSLColorController();
-  con->labColorController = cmAllocLabColorController();
+  con->lablchColorController = cmAllocLabLchColorController();
   con->luvuvwColorController = cmAllocLuvUVWColorController();
   con->rgbColorController = cmAllocRGBColorController();
   con->spectralColorController = cmAllocSpectralColorController();
@@ -80,43 +80,43 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
   con->ycbcrColorController = cmAllocYCbCrColorController();
   con->yxyColorController = cmAllocYxyColorController();
 
-//  cmBeginUILayout(con->radiometricColorsSpace, naMakeBezel4Zero());
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->spectralColorController), 0);
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->xyzColorController), 0);
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yxyColorController), 0);
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yuvColorController), 0);
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvColorController), 0);
-//  cmEndUILayout();
-//
-//  cmBeginUILayout(con->perceptiveColorsSpace, naMakeBezel4Zero());
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->grayColorController), 0);
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->labColorController), 0);
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->rgbColorController), 0);
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hsvhslColorController), 0);
-////  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hslColorController), 0);
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->ycbcrColorController), 0);
-//  cmEndUILayout();
-
   cmBeginUILayout(con->radiometricColorsSpace, naMakeBezel4Zero());
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->spectralColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->xyzColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yxyColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yuvColorController), 0);
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvuvwColorController), 0);
   cmEndUILayout();
 
   cmBeginUILayout(con->perceptiveColorsSpace, naMakeBezel4Zero());
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->grayColorController), 0);
-  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->labColorController), 0);
-  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvuvwColorController), 0);
-//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->uvwColorController), 0);
-  cmEndUILayout();
-  
-  cmBeginUILayout(con->RGBColorsSpace, naMakeBezel4Zero());
+  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->lablchColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->rgbColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hsvhslColorController), 0);
 //  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hslColorController), 0);
   cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->ycbcrColorController), 0);
   cmEndUILayout();
+
+//  cmBeginUILayout(con->radiometricColorsSpace, naMakeBezel4Zero());
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->spectralColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->xyzColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yxyColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->yuvColorController), 0);
+//  cmEndUILayout();
+//
+//  cmBeginUILayout(con->perceptiveColorsSpace, naMakeBezel4Zero());
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->grayColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->labColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->luvuvwColorController), 0);
+////  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->uvwColorController), 0);
+//  cmEndUILayout();
+//  
+//  cmBeginUILayout(con->RGBColorsSpace, naMakeBezel4Zero());
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->rgbColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hsvhslColorController), 0);
+////  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->hslColorController), 0);
+//  cmAddUIRow(cmGetColorControllerUIElement((CMColorController*)con->ycbcrColorController), 0);
+//  cmEndUILayout();
 
   cmBeginUILayout(con->rightSpace, naMakeBezel4Zero());
   cmAddUIRow(con->radiometricColorsSpace, 0);
@@ -138,7 +138,7 @@ void cmDeallocMachineWindowController(CMMachineWindowController* con){
   cmDeallocGrayColorController(con->grayColorController);
 //  cmDeallocHSLColorController(con->hslColorController);
   cmDeallocHSVHSLColorController(con->hsvhslColorController);
-  cmDeallocLabColorController(con->labColorController);
+  cmDeallocLabLchColorController(con->lablchColorController);
   cmDeallocLuvUVWColorController(con->luvuvwColorController);
   cmDeallocRGBColorController(con->rgbColorController);
   cmDeallocSpectralColorController(con->spectralColorController);
@@ -170,7 +170,7 @@ void cmUpdateMachineWindowController(CMMachineWindowController* con){
   cmSetColorControllerActive((CMColorController*)con->grayColorController, cmGetCurrentColorController() == (CMColorController*)con->grayColorController);
 //  cmSetColorControllerActive((CMColorController*)con->hslColorController, cmGetCurrentColorController() == (CMColorController*)con->hslColorController);
   cmSetColorControllerActive((CMColorController*)con->hsvhslColorController, cmGetCurrentColorController() == (CMColorController*)con->hsvhslColorController);
-  cmSetColorControllerActive((CMColorController*)con->labColorController, cmGetCurrentColorController() == (CMColorController*)con->labColorController);
+  cmSetColorControllerActive((CMColorController*)con->lablchColorController, cmGetCurrentColorController() == (CMColorController*)con->lablchColorController);
   cmSetColorControllerActive((CMColorController*)con->luvuvwColorController, cmGetCurrentColorController() == (CMColorController*)con->luvuvwColorController);
   cmSetColorControllerActive((CMColorController*)con->rgbColorController, cmGetCurrentColorController() == (CMColorController*)con->rgbColorController);
   cmSetColorControllerActive((CMColorController*)con->spectralColorController, cmGetCurrentColorController() == (CMColorController*)con->spectralColorController);
@@ -183,7 +183,7 @@ void cmUpdateMachineWindowController(CMMachineWindowController* con){
   cmUpdateGrayColorController(con->grayColorController);
 //  cmUpdateHSLColorController(con->hslColorController);
   cmUpdateHSVHSLColorController(con->hsvhslColorController);
-  cmUpdateLabColorController(con->labColorController);
+  cmUpdateLabLchColorController(con->lablchColorController);
   cmUpdateLuvUVWColorController(con->luvuvwColorController);
   cmUpdateRGBColorController(con->rgbColorController);
   cmUpdateSpectralColorController(con->spectralColorController);

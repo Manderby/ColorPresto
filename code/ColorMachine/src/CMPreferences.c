@@ -4,5 +4,6 @@
 const char* cmPrefs[CMPrefCount] = {
   "HSVHSLSelect",
   "LuvUVWSelect",
+  "LabLchSelect",
 };
 
