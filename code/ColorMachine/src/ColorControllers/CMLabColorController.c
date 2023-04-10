@@ -81,11 +81,11 @@ CMLabColorController* cmAllocLabColorController(void){
   con->textFieldb = cmNewValueTextField(cmLabValueEdited, con);
   con->textFieldc = cmNewValueTextField(cmLabValueEdited, con);
   con->textFieldh = cmNewValueTextField(cmLabValueEdited, con);
-  con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lab, con->labColor, 0);
-  con->colorWell1Da = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lab, con->labColor, 1);
-  con->colorWell1Db = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lab, con->labColor, 2);
-  con->colorWell1Dc = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lch, con->lchColor, 1);
-  con->colorWell1Dh = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Lch, con->lchColor, 2);
+  con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), con->labColor, 0);
+  con->colorWell1Da = cmAllocColorWell1D(&(con->baseController), con->labColor, 1);
+  con->colorWell1Db = cmAllocColorWell1D(&(con->baseController), con->labColor, 2);
+  con->colorWell1Dc = cmAllocColorWell1D(&(con->baseController), con->lchColor, 1);
+  con->colorWell1Dh = cmAllocColorWell1D(&(con->baseController), con->lchColor, 2);
 
   naSetUIElementNextTabElement(con->textFieldL, con->textFielda);
   naSetUIElementNextTabElement(con->textFielda, con->textFieldb);

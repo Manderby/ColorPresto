@@ -64,9 +64,9 @@ CMLuvColorController* cmAllocLuvColorController(void){
   con->textFieldL = cmNewValueTextField(cmLuvValueEdited, con);
   con->textFieldu = cmNewValueTextField(cmLuvValueEdited, con);
   con->textFieldv = cmNewValueTextField(cmLuvValueEdited, con);
-  con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 0);
-  con->colorWell1Du = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 1);
-  con->colorWell1Dv = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Luv, con->luvColor, 2);
+  con->colorWell1DL = cmAllocColorWell1D(&(con->baseController), con->luvColor, 0);
+  con->colorWell1Du = cmAllocColorWell1D(&(con->baseController), con->luvColor, 1);
+  con->colorWell1Dv = cmAllocColorWell1D(&(con->baseController), con->luvColor, 2);
 
   naSetUIElementNextTabElement(con->textFieldL, con->textFieldu);
   naSetUIElementNextTabElement(con->textFieldu, con->textFieldv);

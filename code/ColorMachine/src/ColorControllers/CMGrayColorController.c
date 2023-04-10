@@ -50,7 +50,7 @@ CMGrayColorController* cmAllocGrayColorController(void){
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
   con->labelGray = cmNewColorComponentLabel(cmTranslate(CMGrayColorChannelGr));
   con->textFieldGray = cmNewValueTextField(cmGrayValueEdited, con);
-  con->colorWell1DGray = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Gray, &(con->grayColor), 0);
+  con->colorWell1DGray = cmAllocColorWell1D(&(con->baseController), &(con->grayColor), 0);
 
   cmBeginUILayout(con->channelSpace, naMakeBezel4Zero());
   cmAddUIPos(0, (int)((colorWell2DSize - (1 * 25.)) / 2.)); // center the channels

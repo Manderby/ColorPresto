@@ -23,6 +23,7 @@ static const NABezel4 spaceBezel = {
 
 #define initial3DDisplayWidth 500.
 
+#define radioSelectWidth 50.
 #define labelValueWidth 60.
 #define textFieldValueWidth 65.
 #define threeValueHeight 55.
@@ -125,6 +126,7 @@ NATextField* cmNewBigValueTextField(NAReactionHandler reactionHandler, void* con
 void cmBeginUILayout(NASpace* space, NABezel4 margin);
 void cmAddUIPos(double x, double y);
 void cmAddUIRow(void* child, double rowHeight);
+void cmAddUIRowH(void* child, double rowHeight, double hOffset);
 void cmAddUICol(void* child, double marginLeft);
 void cmAddUIColV(void* child, double marginLeft, double vOffset);
 void cmEndUILayout(void);

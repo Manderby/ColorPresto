@@ -75,11 +75,11 @@ CMYuvColorController* cmAllocYuvColorController(void){
   con->textFieldvp = cmNewValueTextField(cmYuvValueEdited, con);
   con->textFieldu = cmNewValueTextField(cmYuvValueEdited, con);
   con->textFieldv = cmNewValueTextField(cmYuvValueEdited, con);
-  con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yupvp, con->yupvpColor, 0);
-  con->colorWell1Dup = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yupvp, con->yupvpColor, 1);
-  con->colorWell1Dvp = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yupvp, con->yupvpColor, 2);
-  con->colorWell1Du = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yuv, con->yuvColor, 1);
-  con->colorWell1Dv = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Yuv, con->yuvColor, 2);
+  con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), con->yupvpColor, 0);
+  con->colorWell1Dup = cmAllocColorWell1D(&(con->baseController), con->yupvpColor, 1);
+  con->colorWell1Dvp = cmAllocColorWell1D(&(con->baseController), con->yupvpColor, 2);
+  con->colorWell1Du = cmAllocColorWell1D(&(con->baseController), con->yuvColor, 1);
+  con->colorWell1Dv = cmAllocColorWell1D(&(con->baseController), con->yuvColor, 2);
 
   naSetUIElementNextTabElement(con->textFieldY, con->textFieldup);
   naSetUIElementNextTabElement(con->textFieldup, con->textFieldvp);

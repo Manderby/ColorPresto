@@ -91,9 +91,9 @@ CMRGBColorController* cmAllocRGBColorController(void){
   con->textFieldR = cmNewValueTextField(cmRGBValueEdited, con);
   con->textFieldG = cmNewValueTextField(cmRGBValueEdited, con);
   con->textFieldB = cmNewValueTextField(cmRGBValueEdited, con);
-  con->colorWell1DR = cmAllocColorWell1D(&(con->baseController), CML_COLOR_RGB, con->rgbColor, 0);
-  con->colorWell1DG = cmAllocColorWell1D(&(con->baseController), CML_COLOR_RGB, con->rgbColor, 1);
-  con->colorWell1DB = cmAllocColorWell1D(&(con->baseController), CML_COLOR_RGB, con->rgbColor, 2);
+  con->colorWell1DR = cmAllocColorWell1D(&(con->baseController), con->rgbColor, 0);
+  con->colorWell1DG = cmAllocColorWell1D(&(con->baseController), con->rgbColor, 1);
+  con->colorWell1DB = cmAllocColorWell1D(&(con->baseController), con->rgbColor, 2);
   
   con->labelNum = cmNewColorComponentLabel(cmTranslate(CMRGBColorChannelNum));
   con->textFieldHex = cmNewValueTextField(cmRGBValueEdited, con);

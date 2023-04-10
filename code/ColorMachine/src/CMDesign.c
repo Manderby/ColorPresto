@@ -131,6 +131,25 @@ void cmAddUIRow(void* child, double rowHeight){
   cm_AddLayoutRowPlain(child, size, 0.);
 }
 
+void cmAddUIRowH(void* child, double rowHeight, double hOffset){
+  #if NA_DEBUG
+    if(!curDesignSpace)
+      naError("No space defined for design. Use cmBeginUILayout");
+  #endif
+  curDesignPos.x += hOffset;
+  NASize size = naGetUIElementRect(child).size;
+  curDesignPos.x = hOffset + curDesignMargin.left;
+  curDesignPos.y -= curDesignRowHeight;
+  if(rowHeight){
+    curDesignRowHeightFixed = NA_TRUE;
+    curDesignRowHeight = rowHeight;
+  }else{
+    curDesignRowHeightFixed = NA_FALSE;
+    curDesignRowHeight = size.height;
+  }
+  cm_AddLayoutRowPlain(child, size, 0.);
+}
+
 void cmAddUICol(void* child, double marginLeft){
   #if NA_DEBUG
     if(!curDesignSpace)

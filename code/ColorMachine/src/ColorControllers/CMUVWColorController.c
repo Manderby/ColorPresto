@@ -64,9 +64,9 @@ CMUVWColorController* cmAllocUVWColorController(void){
   con->textFieldU = cmNewValueTextField(cmUVWValueEdited, con);
   con->textFieldV = cmNewValueTextField(cmUVWValueEdited, con);
   con->textFieldW = cmNewValueTextField(cmUVWValueEdited, con);
-  con->colorWell1DU = cmAllocColorWell1D(&(con->baseController), CML_COLOR_UVW, con->uvwColor, 0);
-  con->colorWell1DV = cmAllocColorWell1D(&(con->baseController), CML_COLOR_UVW, con->uvwColor, 1);
-  con->colorWell1DW = cmAllocColorWell1D(&(con->baseController), CML_COLOR_UVW, con->uvwColor, 2);
+  con->colorWell1DU = cmAllocColorWell1D(&(con->baseController), con->uvwColor, 0);
+  con->colorWell1DV = cmAllocColorWell1D(&(con->baseController), con->uvwColor, 1);
+  con->colorWell1DW = cmAllocColorWell1D(&(con->baseController), con->uvwColor, 2);
 
   naSetUIElementNextTabElement(con->textFieldU, con->textFieldV);
   naSetUIElementNextTabElement(con->textFieldV, con->textFieldW);

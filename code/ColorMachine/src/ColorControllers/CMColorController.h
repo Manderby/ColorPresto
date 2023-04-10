@@ -17,6 +17,8 @@ void cmInitColorController(
   CMLColorType colorType);
 void cmClearColorController(CMColorController* con);
 
+void cmSetColorControllerColorType(CMColorController* con, CMLColorType colorType);
+
 void cmSetColorControllerActive(CMColorController* con, NABool active);
 
 CMLColorType cmGetColorControllerColorType(const CMColorController* con);

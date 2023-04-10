@@ -63,9 +63,9 @@ CMYcdColorController* cmAllocYcdColorController(void){
   con->textFieldY = cmNewValueTextField(cmYcdValueEdited, con);
   con->textFieldc = cmNewValueTextField(cmYcdValueEdited, con);
   con->textFieldd = cmNewValueTextField(cmYcdValueEdited, con);
-  con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Ycd, con->ycdColor, 0);
-  con->colorWell1Dc = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Ycd, con->ycdColor, 1);
-  con->colorWell1Dd = cmAllocColorWell1D(&(con->baseController), CML_COLOR_Ycd, con->ycdColor, 2);
+  con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), con->ycdColor, 0);
+  con->colorWell1Dc = cmAllocColorWell1D(&(con->baseController), con->ycdColor, 1);
+  con->colorWell1Dd = cmAllocColorWell1D(&(con->baseController), con->ycdColor, 2);
   
   naSetUIElementNextTabElement(con->textFieldY, con->textFieldc);
   naSetUIElementNextTabElement(con->textFieldc, con->textFieldd);
