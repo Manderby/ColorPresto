@@ -269,6 +269,12 @@ void cmDeallocColorWell2D(CMColorWell2D* well){
 
 
 
+void cmSetColorWell2DFixedIndex(CMColorWell2D* well, size_t fixedIndex){
+  well->fixedIndex = fixedIndex;
+}
+
+
+
 NAOpenGLSpace* cmGetColorWell2DUIElement(CMColorWell2D* well){
   return well->display;
 }

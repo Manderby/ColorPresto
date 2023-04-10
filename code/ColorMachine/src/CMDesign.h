@@ -23,7 +23,7 @@ static const NABezel4 spaceBezel = {
 
 #define initial3DDisplayWidth 500.
 
-#define radioSelectWidth 50.
+#define radioSelectWidth 55.
 #define labelValueWidth 60.
 #define textFieldValueWidth 65.
 #define threeValueHeight 55.

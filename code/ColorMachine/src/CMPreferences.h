@@ -4,6 +4,7 @@
 
 enum{
   CMHSVHSLSelect,
+  CMLuvUVWSelect,
   
   CMPrefCount
 };
