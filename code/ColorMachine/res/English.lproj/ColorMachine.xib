@@ -22,10 +22,6 @@
                             <menuItem isSeparatorItem="YES" id="236">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Preferences…" keyEquivalent="," id="129" userLabel="121"/>
-                            <menuItem isSeparatorItem="YES" id="143">
-                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                            </menuItem>
                             <menuItem title="Services" id="131">
                                 <menu key="submenu" title="Services" systemMenu="services" id="130"/>
                             </menuItem>
@@ -94,38 +90,6 @@
                             <menuItem title="Select All" keyEquivalent="a" id="198">
                                 <connections>
                                     <action selector="selectAll:" target="-1" id="232"/>
-                                </connections>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem title="State" id="4829">
-                    <menu key="submenu" title="State" id="4830">
-                        <items>
-                            <menuItem title="Reset Machine" keyEquivalent="r" id="4831">
-                                <connections>
-                                    <action selector="resetMachine:" target="-3" id="4848"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem isSeparatorItem="YES" id="4837"/>
-                            <menuItem title="Set current color as whitePoint" keyEquivalent="W" id="4835">
-                                <connections>
-                                    <action selector="setCurrentColorAsWhitepoint:" target="-3" id="4844"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Set current color as red primary" keyEquivalent="R" id="4838">
-                                <connections>
-                                    <action selector="setCurrentColorAsRedPrimary:" target="-3" id="4847"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Set current color as green primary" keyEquivalent="G" id="4842">
-                                <connections>
-                                    <action selector="setCurrentColorAsGreenPrimary:" target="-3" id="4846"/>
-                                </connections>
-                            </menuItem>
-                            <menuItem title="Set current color as blue primary" keyEquivalent="B" id="4840">
-                                <connections>
-                                    <action selector="setCurrentColorAsBluePrimary:" target="-3" id="4845"/>
                                 </connections>
                             </menuItem>
                         </items>

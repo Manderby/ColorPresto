@@ -35,7 +35,7 @@
 
 
 - (IBAction)showAbout:(id)sender{
-  //mandShowAboutController();
+  mandShowAboutController();
 }
 
 - (IBAction)showHelp:(NSMenuItem*)sender{

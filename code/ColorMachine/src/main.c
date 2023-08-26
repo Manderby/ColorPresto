@@ -5,6 +5,8 @@
 #include "CMColorMachineApplication.h"
 #include "CMTranslations.h"
 #include "NAApp.h"
+#include "ManderAppTranslations.h"
+#include "ManderAppAbout.h"
 
 
 CMColorMachineApplication* app;
@@ -45,7 +47,7 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
 
 
 void preStartup(void* arg){
-  //mandInitManderAppTranslations();
+  mandInitManderAppTranslations();
   initTranslations();
 
   cmStartupColorMachineApplication();
@@ -54,13 +56,13 @@ void preStartup(void* arg){
 
 
 void postStartup(void* arg){
-  //naLoadNib("ColorMachine", NA_NULL);
+  naLoadNib("ColorMachine", NA_NULL);
 
   // ManderApp
-  //mandCreateAboutController();
-  //mandSetAboutDescriptionAndHelpURL(
-  //  cmTranslate(CMApplicationDescription),
-  //  cmTranslate(CMApplicationHelpURL));
+  mandCreateAboutController();
+  mandSetAboutDescriptionAndHelpURL(
+    cmTranslate(CMApplicationDescription),
+    cmTranslate(CMApplicationHelpURL));
 
   // Color Machine
   cmStartupColorMachineApplicationUI();
