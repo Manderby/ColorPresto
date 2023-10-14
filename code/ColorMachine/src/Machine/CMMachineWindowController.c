@@ -20,6 +20,8 @@
 #include "NAApp.h"
 
 
+#define CM_MACHINE_WINDOW_STORAGE_TAG 1
+
 
 struct CMMachineWindowController{
   NAWindow* window;
@@ -52,7 +54,7 @@ CMMachineWindowController* cmAllocMachineWindowController(void){
     cmTranslate(CMApplicationName),
     naMakeRectS(200, 200, 500, 500),
     0,
-    0);
+    CM_MACHINE_WINDOW_STORAGE_TAG);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 
   con->machineController = cmAllocMachineController();

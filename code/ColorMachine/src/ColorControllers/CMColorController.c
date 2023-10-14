@@ -26,7 +26,7 @@ NABool cmColorControllerMouseDown(NAReaction reaction){
 
 void cmInitColorController(CMColorController* con, CMLColorType colorType){
   con->space = naNewSpace(naMakeSize(300, 100));
-  //naAddUIReaction(con->space, NA_UI_COMMAND_MOUSE_DOWN, cmColorControllerMouseDown, con);
+  naAddUIReaction(con->space, NA_UI_COMMAND_MOUSE_DOWN, cmColorControllerMouseDown, con);
   
   con->active = NA_FALSE;
   con->colorType = colorType;
@@ -108,5 +108,12 @@ NASpace* cmGetColorControllerUIElement(CMColorController* con){
 
 
 void cmUpdateColorController(CMColorController* con){
-  naSetSpaceAlternateBackground(con->space, con->active);
+  if(con->active){
+    NABabyColor highlightColor;
+    naFillDefaultTextColorWithSkin(highlightColor, naGetSkinForCurrentAppearance());
+    highlightColor[3] = .2;
+    naSetSpaceBackgroundColor(con->space, highlightColor);
+  }else{
+    naSetSpaceBackgroundColor(con->space, NA_NULL);
+  }
 }

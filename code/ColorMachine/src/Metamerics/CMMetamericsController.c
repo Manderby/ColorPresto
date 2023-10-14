@@ -20,6 +20,8 @@
 #include "NAApp.h"
 
 
+#define CM_METAMERICS_WINDOW_STORAGE_TAG 2
+
 
 struct CMMetamericsController{
   NAWindow* window;
@@ -59,14 +61,14 @@ CMMetamericsController* cmAllocMetamericsController(void){
     cmTranslate(CMWhitepointsAndMetamerics),
     naMakeRectS(400, 500, 1, 1),
     0,
-    0);
+    CM_METAMERICS_WINDOW_STORAGE_TAG);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 //  NABabyColor babyBackground = {
 //    naLinearizeColorValue(.25),
 //    naLinearizeColorValue(.25),
 //    naLinearizeColorValue(.25),
 //    1.};
-//  naSetSpaceBackgroundColor(contentSpace, &babyBackground);
+//  naSetSpaceBackgroundColor(contentSpace, babyBackground);
 
 //  con->column1Space = naNewSpace(naMakeSize(column1Width, column1Height));
 //  con->column2Space = naNewSpace(naMakeSize(column2Width, column2Height));

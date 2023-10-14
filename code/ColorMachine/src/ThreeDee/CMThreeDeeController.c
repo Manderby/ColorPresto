@@ -16,6 +16,10 @@
 
 #include <CML.h>
 
+
+#define CM_THREEDEE_WINDOW_STORAGE_TAG 3
+
+
 #define marginHMiddle (spaceMarginLeft3D + threeDeeLabelWidth + marginH)
 #define fullControlWidth (marginHMiddle + threeDeeControlWidth + spaceMarginRight)
 
@@ -349,7 +353,11 @@ CMThreeDeeController* cmAllocThreeDeeController(void){
   con->optionsController = cmAllocThreeDeeOptionsController(con);
 
   // The window
-  con->window = naNewWindow(cmTranslate(CM3DView), naMakeRectS(40, 30, 1, 1), NA_WINDOW_RESIZEABLE, 0);
+  con->window = naNewWindow(
+    cmTranslate(CM3DView),
+    naMakeRectS(40, 30, 1, 1),
+    NA_WINDOW_RESIZEABLE,
+    CM_THREEDEE_WINDOW_STORAGE_TAG);
   naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cmReshapeThreeDeeWindow, con);
 
   // The 3D space
