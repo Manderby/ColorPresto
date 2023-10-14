@@ -42,8 +42,8 @@ void cmEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace){
 
 
 
-void cmSetupThreeDeeProjection(NASize viewSize, double fovy, double zoom){
-  double uiScale = naGetUIElementResolutionFactor(NA_NULL);
+void cmSetupThreeDeeProjection(NAOpenGLSpace* openGLSpace, NASize viewSize, double fovy, double zoom){
+  double uiScale = naGetUIElementResolutionFactor(openGLSpace);
   glViewport(
     0,
     0,

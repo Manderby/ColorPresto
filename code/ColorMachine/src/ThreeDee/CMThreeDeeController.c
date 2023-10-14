@@ -270,6 +270,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   cmBeginThreeDeeDrawing(backgroundRGB);
 
   cmSetupThreeDeeProjection(
+    con->display,
     viewSize,
     fovy,
     curZoom);

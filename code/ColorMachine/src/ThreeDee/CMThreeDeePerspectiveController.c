@@ -124,7 +124,7 @@ CMThreeDeePerspectiveController* cmAllocThreeDeePerspectiveController(CMThreeDee
 
   con->rotationLabel = naNewLabel(cmTranslate(CMRotation), threeDeeRotationLabelWidth);
   con->rotationSlider = naNewSlider(threeDeeControlWidth);
-  con->rotationButton = naNewTextButton(cmTranslate(CMStop), 70, NA_BUTTON_PUSH | NA_BUTTON_BORDERED);
+  con->rotationButton = naNewTextPushButton(cmTranslate(CMStop), 70);
   naSetSliderRange(con->rotationSlider, -1., +1., 0);
   naAddUIReaction(con->rotationButton, NA_UI_COMMAND_PRESSED, cmPressRotationButton, con);
   naAddUIReaction(con->rotationSlider, NA_UI_COMMAND_EDITED, cmChangeRotationSlider, con);

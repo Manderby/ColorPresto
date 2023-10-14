@@ -40,7 +40,7 @@ void postStartup(void* arg);
 int main(int argc, char *argv[]){
   naStartRuntime();
   [ColorMachineApplication sharedApplication];
-  naStartApplication(preStartup, postStartup, NA_NULL);
+  naStartApplication(preStartup, postStartup, NA_NULL, NA_NULL);
   return 0;
 }
 

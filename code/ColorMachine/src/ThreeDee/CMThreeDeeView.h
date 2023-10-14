@@ -15,6 +15,7 @@ void cmBeginThreeDeeDrawing(const CMLVec3 axisRGB);
 void cmEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace);
 
 void cmSetupThreeDeeProjection(
+  NAOpenGLSpace* openGLSpace,
   NASize viewSize,
   double fovy,
   double zoom);
