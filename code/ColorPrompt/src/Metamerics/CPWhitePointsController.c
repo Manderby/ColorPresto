@@ -47,7 +47,7 @@ struct CPWhitePointsController{
   NALabel* ref2DegLabel;
 
   NALabel* refTitle;
-  NAPopupButton* refPopupButton;
+  NASelect* refSelect;
   NAMenuItem* refD50MenuItem;
   NAMenuItem* refD55MenuItem;
   NAMenuItem* refD65MenuItem;
@@ -136,15 +136,15 @@ CPWhitePointsController* cpAllocWhitePointsController(void){
 
   con->refTitle = cpNewTitleLabel(cpTranslate(CPReferenceIllumination), 80);
 
-  con->refPopupButton = naNewPopupButton(70);
+  con->refSelect = naNewSelect(70);
   con->refD50MenuItem = naNewMenuItem(cpTranslate(CPD50));
   con->refD55MenuItem = naNewMenuItem(cpTranslate(CPD55));
   con->refD65MenuItem = naNewMenuItem(cpTranslate(CPD65));
   con->refD75MenuItem = naNewMenuItem(cpTranslate(CPD75));
-  naAddPopupButtonMenuItem(con->refPopupButton, con->refD50MenuItem, NA_NULL);
-  naAddPopupButtonMenuItem(con->refPopupButton, con->refD55MenuItem, NA_NULL);
-  naAddPopupButtonMenuItem(con->refPopupButton, con->refD65MenuItem, NA_NULL);
-  naAddPopupButtonMenuItem(con->refPopupButton, con->refD75MenuItem, NA_NULL);
+  naAddSelectMenuItem(con->refSelect, con->refD50MenuItem, NA_NULL);
+  naAddSelectMenuItem(con->refSelect, con->refD55MenuItem, NA_NULL);
+  naAddSelectMenuItem(con->refSelect, con->refD65MenuItem, NA_NULL);
+  naAddSelectMenuItem(con->refSelect, con->refD75MenuItem, NA_NULL);
   naAddUIReaction(con->refD50MenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRefSpectrum, con);
   naAddUIReaction(con->refD55MenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRefSpectrum, con);
   naAddUIReaction(con->refD65MenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRefSpectrum, con);
@@ -193,7 +193,7 @@ CPWhitePointsController* cpAllocWhitePointsController(void){
   cpAddUIPos(0, spaceMarginV);
   
   cpAddUIRow(con->refTitle, uiElemHeight);
-  cpAddUICol(con->refPopupButton, 5.);
+  cpAddUICol(con->refSelect, 5.);
 
   cpAddUIPos(0, threeValueHeightMargin);
   cpAddUIRow(con->refXYZ10Label, threeValueHeight);

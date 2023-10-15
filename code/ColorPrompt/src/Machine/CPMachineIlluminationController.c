@@ -13,7 +13,7 @@ struct CPMachineIlluminationController{
   NASpace* space;
 
   NALabel* illuminationTitleLabel;
-  NAPopupButton* illuminationPopupButton;
+  NASelect* illuminationSelect;
   NALabel* illuminationTemperatureTitleLabel;
   NATextField* illuminationTemperatureTextField;
   NALabel* illuminationKelvinLabel;
@@ -31,7 +31,7 @@ NABool cp_SelectIllumination(NAReaction reaction){
   CPMachineIlluminationController* con = (CPMachineIlluminationController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
-  size_t index = naGetPopupButtonItemIndex(con->illuminationPopupButton, reaction.uiElement);
+  size_t index = naGetSelectItemIndex(con->illuminationSelect, reaction.uiElement);
   CMLIlluminationType illuminationType = (CMLIlluminationType)index;
   
   if(illuminationType == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
@@ -105,12 +105,12 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
   con->illuminationTitleLabel = naNewLabel(cpTranslate(CPIlluminationTitle), machineLabelWidth);
-  con->illuminationPopupButton = naNewPopupButton(200);
+  con->illuminationSelect = naNewSelect(200);
   for(size_t i = 0; i < CML_ILLUMINATION_COUNT; ++i){
     CMLIlluminationType illuminationType = (CMLIlluminationType)i;
     if(illuminationType == CML_ILLUMINATION_CUSTOM_SPECTRUM) {continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetIlluminationTypeString(illuminationType));
-    naAddPopupButtonMenuItem(con->illuminationPopupButton, item, NA_NULL);
+    naAddSelectMenuItem(con->illuminationSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectIllumination, con);
   }
   con->illuminationTemperatureTitleLabel = naNewLabel(cpTranslate(CPIlluminationTemperature), machineLabelWidth);
@@ -129,7 +129,7 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
   // layout
   cpBeginUILayout(con->space, spaceBezel);
   cpAddUIRow(con->illuminationTitleLabel, uiElemHeight);
-  cpAddUICol(con->illuminationPopupButton, marginH);
+  cpAddUICol(con->illuminationSelect, marginH);
   cpAddUIRow(con->illuminationTemperatureTitleLabel, uiElemHeight);
   cpAddUICol(con->illuminationTemperatureTextField, marginH);
   cpAddUICol(con->illuminationKelvinLabel, 0);
@@ -175,7 +175,7 @@ void cpUpdateMachineIlluminationController(CPMachineIlluminationController* con)
   NABool whitePointActive = (illuminationType == CML_ILLUMINATION_CUSTOM_WHITEPOINT);
   const float* whitePointYxy = cmlGetWhitePointYxy(cm);
   
-  naSetPopupButtonIndexSelected(con->illuminationPopupButton, illuminationType);
+  naSetSelectIndexSelected(con->illuminationSelect, illuminationType);
   naSetTextFieldText(
     con->illuminationTemperatureTextField,
     naAllocSprintf(NA_TRUE, "%5.01f", temperature));

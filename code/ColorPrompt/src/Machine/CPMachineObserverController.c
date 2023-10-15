@@ -12,7 +12,7 @@ struct CPMachineObserverController{
   NASpace* space;
 
   NALabel* observerTitleLabel;
-  NAPopupButton* observerPopupButton;
+  NASelect* observerSelect;
   NALabel* observerStepsTitleLabel;
   NALabel* observerStepsLabel;
 };
@@ -23,7 +23,7 @@ NABool cp_SelectObserver(NAReaction reaction){
   CPMachineObserverController* con = (CPMachineObserverController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
-  size_t index = naGetPopupButtonItemIndex(con->observerPopupButton, reaction.uiElement);
+  size_t index = naGetSelectItemIndex(con->observerSelect, reaction.uiElement);
   cmlSetObserverType(cm, (CMLObserverType)index);
   
   cpUpdateMachine();
@@ -40,12 +40,12 @@ CPMachineObserverController* cpAllocMachineObserverController(void){
 naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
   con->observerTitleLabel = naNewLabel(cpTranslate(CPObserverTitle), machineLabelWidth);
-  con->observerPopupButton = naNewPopupButton(200);
+  con->observerSelect = naNewSelect(200);
   for(size_t i = 0; i < CML_OBSERVER_COUNT; ++i){
     CMLObserverType observerType = (CMLObserverType)i;
     if(observerType == CML_OBSERVER_CUSTOM) {continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetObserverTypeString(observerType));
-    naAddPopupButtonMenuItem(con->observerPopupButton, item, NA_NULL);
+    naAddSelectMenuItem(con->observerSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectObserver, con);
   }
   con->observerStepsTitleLabel = naNewLabel(cpTranslate(CPObserverSteps), machineLabelWidth);
@@ -54,7 +54,7 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
   // layout
   cpBeginUILayout(con->space, spaceBezel);
   cpAddUIRow(con->observerTitleLabel, uiElemHeight);
-  cpAddUICol(con->observerPopupButton, marginH);
+  cpAddUICol(con->observerSelect, marginH);
   cpAddUIRow(con->observerStepsTitleLabel, uiElemHeight);
   cpAddUICol(con->observerStepsLabel, marginH);
   cpEndUILayout();
@@ -85,7 +85,7 @@ void cpUpdateMachineObserverController(CPMachineObserverController* con){
   cmlCreateSpecDistFunctions(specDistFunctions, observerType);
   cmlGetFunctionDefinitionRange(specDistFunctions[0], &defRange);
 
-  naSetPopupButtonIndexSelected(con->observerPopupButton, observerType);
+  naSetSelectIndexSelected(con->observerSelect, observerType);
   naSetLabelText(
     con->observerStepsLabel,
     naAllocSprintf(NA_TRUE, cpTranslate(CPObserverNanoMeterSteps), (int)defRange.stepSize));
