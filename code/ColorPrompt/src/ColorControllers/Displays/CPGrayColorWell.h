@@ -1,7 +1,7 @@
 
 #include "../../mainC.h"
 
-CM_PROTOTYPE(NAOpenGLSpace);
+CP_PROTOTYPE(NAOpenGLSpace);
 
 
 

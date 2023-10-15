@@ -1,6 +1,6 @@
 
-#ifndef CM_WHITE_POINTS_DEFINED
-#define CM_WHITE_POINTS_DEFINED
+#ifndef CP_WHITE_POINTS_DEFINED
+#define CP_WHITE_POINTS_DEFINED
 
 #include "CML.h"
 
@@ -28,4 +28,4 @@ CPWhitePoints CMGetWhitePoints(
   const float* wpYxy,
   CMLFunction** observerFuncs);
 
-#endif // CM_WHITE_POINTS_DEFINED
+#endif // CP_WHITE_POINTS_DEFINED

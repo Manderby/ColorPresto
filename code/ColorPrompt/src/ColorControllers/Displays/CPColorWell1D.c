@@ -43,9 +43,9 @@ NABool cmDragColorWell1D(NAReaction reaction){
  
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
   if(mouseStatus->leftPressed){
-    CMLColorMachine* cm = cmGetCurrentColorMachine();
+    CMLColorMachine* cm = cpGetCurrentColorMachine();
 
-    CMLColorType colorType = cmGetColorControllerColorType(well->colorController);
+    CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
     CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
     CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
     CMLColorMutator clamper = cmlGetClamper(colorType);
@@ -75,14 +75,14 @@ NABool cmDragColorWell1D(NAReaction reaction){
     clamper(newColorValues, 1);
     
     CMLColorConverter converter = cmlGetColorConverter(
-      cmGetColorControllerColorType(well->colorController),
+      cpGetColorControllerColorType(well->colorController),
       colorType);
     CMLVec3 convertedColorValues = {0.f, 0.f, 0.f};
     converter(cm, convertedColorValues, newColorValues, 1);
 
     cmSetColorControllerColorData(well->colorController, convertedColorValues);
-    cmSetCurrentColorController(well->colorController);
-    cmUpdateColor();
+    cpSetCurrentColorController(well->colorController);
+    cpUpdateColor();
     return NA_TRUE;
   }
 
@@ -93,8 +93,8 @@ NABool cmDragColorWell1D(NAReaction reaction){
 
 NABool cmDrawColorWell1D(NAReaction reaction){
   CPColorWell1D* well = (CPColorWell1D*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorMachine* sm = cmGetCurrentScreenMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
   double uiScale = naGetUIElementResolutionFactor(well->display);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
@@ -106,7 +106,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
 
   glClear(GL_DEPTH_BUFFER_BIT);
 
-  CMLColorType colorType = cmGetColorControllerColorType(well->colorController);
+  CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
   CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
   CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
 
@@ -209,7 +209,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
     }
   glEnd();
 
-  cmDrawBorder();
+  cpDrawBorder();
 
   naSwapOpenGLSpaceBuffer(well->display);
 
@@ -247,6 +247,6 @@ NAOpenGLSpace* cmGetColorWell1DUIElement(CPColorWell1D* well){
 
 
 
-void cmUpdateColorWell1D(CPColorWell1D* well){
+void cpUpdateColorWell1D(CPColorWell1D* well){
   naRefreshUIElement(well->display, 0.);
 }

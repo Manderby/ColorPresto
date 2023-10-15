@@ -42,13 +42,13 @@ NABool cmDragColorWell2D(NAReaction reaction){
  
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
   if(mouseStatus->leftPressed){
-    CMLColorType colorType = cmGetColorControllerColorType(well->colorController);
+    CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
     CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
     CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
     CMLColorMutator clamper = cmlGetClamper(colorType);
 
     CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
-    outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
+    outputConverter(normedColorValues, cpGetColorControllerColorData(well->colorController), 1);
 
     NARect displayRect = naGetUIElementRectAbsolute(well->display);
     switch(well->fixedIndex){
@@ -71,8 +71,8 @@ NABool cmDragColorWell2D(NAReaction reaction){
     clamper(newColorValues, 1);
     
     cmSetColorControllerColorData(well->colorController, newColorValues);
-    cmSetCurrentColorController(well->colorController);
-    cmUpdateColor();
+    cpSetCurrentColorController(well->colorController);
+    cpUpdateColor();
 
     return NA_TRUE;
   }
@@ -84,8 +84,8 @@ NABool cmDragColorWell2D(NAReaction reaction){
 
 NABool cmDrawColorWell2D(NAReaction reaction){
   CPColorWell2D* well = (CPColorWell2D*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorMachine* sm = cmGetCurrentScreenMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
   double uiScale = naGetUIElementResolutionFactor(well->display);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
@@ -97,14 +97,14 @@ NABool cmDrawColorWell2D(NAReaction reaction){
 
   glClear(GL_DEPTH_BUFFER_BIT);
 
-  CMLColorType colorType = cmGetColorControllerColorType(well->colorController);
+  CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
   CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
   CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
 
   float inputValues[colorWell2DSize * colorWell2DSize * 3] = {0};
   float* inputPtr = inputValues;
   CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
-  outputConverter(normedColorValues, cmGetColorControllerColorData(well->colorController), 1);
+  outputConverter(normedColorValues, cpGetColorControllerColorData(well->colorController), 1);
   
   float fixedValueA = 0.f;
   float fixedValueB = 0.f;
@@ -243,7 +243,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     }
   glEnd();
 
-  cmDrawBorder();
+  cpDrawBorder();
 
   naSwapOpenGLSpaceBuffer(well->display);
 
@@ -286,6 +286,6 @@ NAOpenGLSpace* cmGetColorWell2DUIElement(CPColorWell2D* well){
 
 
 
-void cmUpdateColorWell2D(CPColorWell2D* well){
+void cpUpdateColorWell2D(CPColorWell2D* well){
   naRefreshUIElement(well->display, 0.);
 }

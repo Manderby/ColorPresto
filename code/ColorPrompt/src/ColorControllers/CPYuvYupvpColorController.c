@@ -44,25 +44,25 @@ typedef enum {
 NABool cmYuvYupvpSelectionChanged(NAReaction reaction){
   CPYuvYupvpColorController* con = (CPYuvYupvpColorController*)reaction.controller;
   
-  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naGetPreferencesEnum(cmPrefs[CMYuvYupvpSelect]);
+  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naGetPreferencesEnum(cpPrefs[CPYuvYupvpSelect]);
   CMLColorType oldColorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
   CMLColorType newColorType = oldColorType;
 
   if(reaction.uiElement == con->radioYuv){
-    naSetPreferencesEnum(cmPrefs[CMYuvYupvpSelect], Yuv);
+    naSetPreferencesEnum(cpPrefs[CPYuvYupvpSelect], Yuv);
     newColorType = CML_COLOR_Yuv;
   }else if(reaction.uiElement == con->radioYupvp){
-    naSetPreferencesEnum(cmPrefs[CMYuvYupvpSelect], Yupvp);
+    naSetPreferencesEnum(cpPrefs[CPYuvYupvpSelect], Yupvp);
     newColorType = CML_COLOR_Yupvp;
   }
 
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorConverter converter = cmlGetColorConverter(newColorType, oldColorType);
   converter(cm, con->color, con->color, 1);
 
   cmSetColorControllerColorType(&(con->baseController), newColorType);
-  cmSetCurrentColorController(&(con->baseController));
-  cmUpdateColor();
+  cpSetCurrentColorController(&(con->baseController));
+  cpUpdateColor();
   
   return NA_TRUE;
 }
@@ -80,8 +80,8 @@ NABool cmYuvValueEdited(NAReaction reaction){
     con->color[2] = (float)naGetTextFieldDouble(con->textField2);
   }
   
-  cmSetCurrentColorController(&(con->baseController));
-  cmUpdateColor();
+  cpSetCurrentColorController(&(con->baseController));
+  cpUpdateColor();
   
   return NA_TRUE;
 }
@@ -89,7 +89,7 @@ NABool cmYuvValueEdited(NAReaction reaction){
 
 
 CPYuvYupvpColorController* cmAllocYuvColorController(void){
-  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naInitPreferencesEnum(cmPrefs[CMYuvYupvpSelect], Yupvp);
+  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naInitPreferencesEnum(cpPrefs[CPYuvYupvpSelect], Yupvp);
   CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
 
   CPYuvYupvpColorController* con = naAlloc(CPYuvYupvpColorController);
@@ -99,17 +99,17 @@ CPYuvYupvpColorController* cmAllocYuvColorController(void){
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
 
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
-  con->radioYuv = naNewRadio(cmTranslate(CMColorSpaceYuv), radioSelectWidth);
-  con->radioYupvp = naNewRadio(cmTranslate(CMColorSpaceYupvp), radioSelectWidth);
+  con->radioYuv = naNewRadio(cpTranslate(CPColorSpaceYuv), radioSelectWidth);
+  con->radioYupvp = naNewRadio(cpTranslate(CPColorSpaceYupvp), radioSelectWidth);
   naAddUIReaction(con->radioYuv, NA_UI_COMMAND_PRESSED, cmYuvYupvpSelectionChanged, con);
   naAddUIReaction(con->radioYupvp, NA_UI_COMMAND_PRESSED, cmYuvYupvpSelectionChanged, con);
 
-  con->label0 = cmNewColorComponentLabel(cmTranslate(CMYuvColorChannelY));
-  con->label1 = cmNewColorComponentLabel(cmTranslate(CMYuvColorChannelup));
-  con->label2 = cmNewColorComponentLabel(cmTranslate(CMYuvColorChannelvp));
-  con->textField0 = cmNewValueTextField(cmYuvValueEdited, con);
-  con->textField1 = cmNewValueTextField(cmYuvValueEdited, con);
-  con->textField2 = cmNewValueTextField(cmYuvValueEdited, con);
+  con->label0 = cpNewColorComponentLabel(cpTranslate(CPYuvColorChannelY));
+  con->label1 = cpNewColorComponentLabel(cpTranslate(CPYuvColorChannelup));
+  con->label2 = cpNewColorComponentLabel(cpTranslate(CPYuvColorChannelvp));
+  con->textField0 = cpNewValueTextField(cmYuvValueEdited, con);
+  con->textField1 = cpNewValueTextField(cmYuvValueEdited, con);
+  con->textField2 = cpNewValueTextField(cmYuvValueEdited, con);
   con->colorWell1D0 = cmAllocColorWell1D(&(con->baseController), con->color, 0);
   con->colorWell1D1 = cmAllocColorWell1D(&(con->baseController), con->color, 1);
   con->colorWell1D2 = cmAllocColorWell1D(&(con->baseController), con->color, 2);
@@ -118,27 +118,27 @@ CPYuvYupvpColorController* cmAllocYuvColorController(void){
   naSetUIElementNextTabElement(con->textField1, con->textField2);
   naSetUIElementNextTabElement(con->textField2, con->textField0);
 
-  cmBeginUILayout(con->channelSpace, naMakeBezel4Zero());
-  cmAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + radioChannelCenteringOffset)) / 2.)); // center the channels
-  cmAddUIRowH(con->radioYuv, colorValueCondensedRowHeight, colorComponentWidth + colorComponentMarginH);
-  cmAddUICol(con->radioYupvp, 10);
-  cmAddUIPos(0, radioChannelOffset);
+  cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cpAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + radioChannelCenteringOffset)) / 2.)); // center the channels
+  cpAddUIRowH(con->radioYuv, colorValueCondensedRowHeight, colorComponentWidth + colorComponentMarginH);
+  cpAddUICol(con->radioYupvp, 10);
+  cpAddUIPos(0, radioChannelOffset);
   
-  cmAddUIRow(con->label0, colorValueCondensedRowHeight);
-  cmAddUICol(con->textField0, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
-  cmAddUIRow(con->label1, colorValueCondensedRowHeight);
-  cmAddUICol(con->textField1, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
-  cmAddUIRow(con->label2, colorValueCondensedRowHeight);
-  cmAddUICol(con->textField2, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
-  cmEndUILayout();
+  cpAddUIRow(con->label0, colorValueCondensedRowHeight);
+  cpAddUICol(con->textField0, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
+  cpAddUIRow(con->label1, colorValueCondensedRowHeight);
+  cpAddUICol(con->textField1, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
+  cpAddUIRow(con->label2, colorValueCondensedRowHeight);
+  cpAddUICol(con->textField2, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
+  cpEndUILayout();
   
-  cmBeginUILayout(con->baseController.space, colorWellBezel);
-  cmAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
-  cmAddUICol(con->channelSpace, colorWell2DRightMargin);
-  cmEndUILayout();
+  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
+  cpAddUICol(con->channelSpace, colorWell2DRightMargin);
+  cpEndUILayout();
 
   return con;
 }
@@ -169,31 +169,31 @@ void cmSetYuvColorControllerColorData(CPYuvYupvpColorController* con, const void
 
 
 void cmUpdateYuvColorController(CPYuvYupvpColorController* con){
-  cmUpdateColorController(&(con->baseController));
+  cpUpdateColorController(&(con->baseController));
 
-  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naGetPreferencesEnum(cmPrefs[CMYuvYupvpSelect]);
+  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naGetPreferencesEnum(cpPrefs[CPYuvYupvpSelect]);
   CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
   
   naSetRadioState(con->radioYuv, yuvyupvpSelect == Yuv);
   naSetRadioState(con->radioYupvp, yuvyupvpSelect == Yupvp);
   
   if(yuvyupvpSelect == Yuv){
-    naSetLabelText(con->label0, cmTranslate(CMYuvColorChannelY));
-    naSetLabelText(con->label1, cmTranslate(CMYuvColorChannelu));
-    naSetLabelText(con->label2, cmTranslate(CMYuvColorChannelv));
+    naSetLabelText(con->label0, cpTranslate(CPYuvColorChannelY));
+    naSetLabelText(con->label1, cpTranslate(CPYuvColorChannelu));
+    naSetLabelText(con->label2, cpTranslate(CPYuvColorChannelv));
   }else{
-    naSetLabelText(con->label0, cmTranslate(CMYuvColorChannelY));
-    naSetLabelText(con->label1, cmTranslate(CMYuvColorChannelup));
-    naSetLabelText(con->label2, cmTranslate(CMYuvColorChannelvp));
+    naSetLabelText(con->label0, cpTranslate(CPYuvColorChannelY));
+    naSetLabelText(con->label1, cpTranslate(CPYuvColorChannelup));
+    naSetLabelText(con->label2, cpTranslate(CPYuvColorChannelvp));
   }
 
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorType currentColorType = cmGetCurrentColorType();
-  const float* currentColorData = cmGetCurrentColorData();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorType currentColorType = cpGetCurrentColorType();
+  const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
   converter(cm, con->color, currentColorData, 1);
 
-  cmUpdateColorWell2D(con->colorWell2D);
+  cpUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(
     con->textField0,
@@ -205,7 +205,7 @@ void cmUpdateYuvColorController(CPYuvYupvpColorController* con){
     con->textField2,
     naAllocSprintf(NA_TRUE, "%1.05f", con->color[2]));
 
-  cmUpdateColorWell1D(con->colorWell1D0);
-  cmUpdateColorWell1D(con->colorWell1D1);
-  cmUpdateColorWell1D(con->colorWell1D2);
+  cpUpdateColorWell1D(con->colorWell1D0);
+  cpUpdateColorWell1D(con->colorWell1D1);
+  cpUpdateColorWell1D(con->colorWell1D2);
 }

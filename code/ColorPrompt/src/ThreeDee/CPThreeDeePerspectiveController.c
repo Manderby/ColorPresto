@@ -32,7 +32,7 @@ void cmStepRotation(void* data){
   if(con->rotationStep != 0.){
     con->angleEqu -= con->rotationStep * .015f;
     naCallApplicationFunctionInSeconds(cmStepRotation, data, 1./60.);
-    cmUpdateThreeDeeController(con->parent);
+    cpUpdateThreeDeeController(con->parent);
   }
 }
 
@@ -45,7 +45,7 @@ NABool cmPressRotationButton(NAReaction reaction){
     con->rotationStep = 0.;
   }
 
-  cmUpdateThreeDeeController(con->parent);
+  cpUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
@@ -62,7 +62,7 @@ NABool cmChangeRotationSlider(NAReaction reaction){
     if(needsRotationStart){cmStepRotation(con);}
   }
   
-  cmUpdateThreeDeeController(con->parent);
+  cpUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
@@ -87,7 +87,7 @@ NABool cmMoveRotationMouse(NAReaction reaction){
   if(status->leftPressed){
     
     NAPos mouseDiff = naMakePos(status->pos.x - status->prevPos.x, status->pos.y - status->prevPos.y);
-    double scaleFactor = cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
+    double scaleFactor = cpGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
 
     con->angleEqu -= (float)(mouseDiff.x * .01 * scaleFactor);
     con->anglePol += (float)(mouseDiff.y * .01 * scaleFactor);
@@ -122,25 +122,25 @@ CPThreeDeePerspectiveController* cmAllocThreeDeePerspectiveController(CPThreeDee
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->rotationLabel = naNewLabel(cmTranslate(CMRotation), threeDeeRotationLabelWidth);
+  con->rotationLabel = naNewLabel(cpTranslate(CPRotation), threeDeeRotationLabelWidth);
   con->rotationSlider = naNewSlider(threeDeeControlWidth);
-  con->rotationButton = naNewTextPushButton(cmTranslate(CMStop), 70);
+  con->rotationButton = naNewTextPushButton(cpTranslate(CPStop), 70);
   naSetSliderRange(con->rotationSlider, -1., +1., 0);
   naAddUIReaction(con->rotationButton, NA_UI_COMMAND_PRESSED, cmPressRotationButton, con);
   naAddUIReaction(con->rotationSlider, NA_UI_COMMAND_EDITED, cmChangeRotationSlider, con);
 
   // layout
 
-  cmBeginUILayout(con->space, threeDeeBezel);
+  cpBeginUILayout(con->space, threeDeeBezel);
   
-  cmAddUIRow(con->rotationLabel, uiElemHeight);
-  cmAddUICol(con->rotationButton, 0.);
-  cmAddUICol(con->rotationSlider, 0.);
+  cpAddUIRow(con->rotationLabel, uiElemHeight);
+  cpAddUICol(con->rotationButton, 0.);
+  cpAddUICol(con->rotationSlider, 0.);
 
-  cmEndUILayout();
+  cpEndUILayout();
 
   // initial values
-  float scaleFactor = (float)cmGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
+  float scaleFactor = (float)cpGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
 
   con->rotationStep = 0.;
   con->anglePol = 1.3f;

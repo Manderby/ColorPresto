@@ -4,9 +4,9 @@
 
 #include "../mainC.h"
 
-CM_PROTOTYPE(CMLFunction);
-CM_PROTOTYPE(CPWhitePoints);
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(CMLFunction);
+CP_PROTOTYPE(CPWhitePoints);
+CP_PROTOTYPE(NASpace);
 
 
 
@@ -26,5 +26,5 @@ void cmUpdateUVMetamericIndexController(
   CPUVMetamericIndexController* con,
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,
-  CMReferenceIlluminationType referenceIlluminationType,
+  CPReferenceIlluminationType referenceIlluminationType,
   NABool valid);

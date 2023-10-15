@@ -58,13 +58,13 @@ struct CPMachineRGBController{
 
 NABool cmSelectRGBColorSpace(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t index = naGetPopupButtonItemIndex(con->rgbColorSpacePopupButton, reaction.uiElement);
   CMLRGBColorSpaceType rgbColorSpaceType = (CMLRGBColorSpaceType)index;
   cmlSetRGBColorSpaceType(cm, rgbColorSpaceType);
   
-  cmUpdateMachine();
+  cpUpdateMachine();
 
   return NA_TRUE;
 }
@@ -73,28 +73,28 @@ NABool cmSelectRGBColorSpace(NAReaction reaction){
 
 NABool cmSetRGBYxy(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLVec3 primaries[3];
   cmlGetRGBPrimariesYxy(cm, primaries);
 
   if(reaction.uiElement == con->setPrimaryRButton){
-    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cmGetCurrentColorType());
-    converter(cm, primaries[0], cmGetCurrentColorData(), 1);
+    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cpGetCurrentColorType());
+    converter(cm, primaries[0], cpGetCurrentColorData(), 1);
   }else if(reaction.uiElement == con->redPointxTextField){
     primaries[0][1] = (float)naGetTextFieldDouble(con->redPointxTextField);
   }else if(reaction.uiElement == con->redPointyTextField){
     primaries[0][2] = (float)naGetTextFieldDouble(con->redPointyTextField);
   }else if(reaction.uiElement == con->setPrimaryGButton){
-    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cmGetCurrentColorType());
-    converter(cm, primaries[1], cmGetCurrentColorData(), 1);
+    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cpGetCurrentColorType());
+    converter(cm, primaries[1], cpGetCurrentColorData(), 1);
   }else if(reaction.uiElement == con->greenPointxTextField){
     primaries[1][1] = (float)naGetTextFieldDouble(con->greenPointxTextField);
   }else if(reaction.uiElement == con->greenPointyTextField){
     primaries[1][2] = (float)naGetTextFieldDouble(con->greenPointyTextField);
   }else if(reaction.uiElement == con->setPrimaryBButton){
-    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cmGetCurrentColorType());
-    converter(cm, primaries[2], cmGetCurrentColorData(), 1);
+    CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cpGetCurrentColorType());
+    converter(cm, primaries[2], cpGetCurrentColorData(), 1);
   }else if(reaction.uiElement == con->bluePointxTextField){
     primaries[2][1] = (float)naGetTextFieldDouble(con->bluePointxTextField);
   }else if(reaction.uiElement == con->bluePointyTextField){
@@ -102,7 +102,7 @@ NABool cmSetRGBYxy(NAReaction reaction){
   }
   cmlSetRGBPrimariesYxy(cm, primaries);
   
-  cmUpdateMachine();
+  cpUpdateMachine();
 
   return NA_TRUE;
 }
@@ -111,7 +111,7 @@ NABool cmSetRGBYxy(NAReaction reaction){
 
 NABool cmSelectRGBChannel(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t newSelectedChannel = naGetPopupButtonItemIndex(con->rgbResponseChannelsPopupButton, reaction.uiElement);
 
@@ -147,7 +147,7 @@ NABool cmSelectRGBChannel(NAReaction reaction){
   }
   con->lastSelectedChannel = newSelectedChannel;
     
-  cmUpdateMachine();
+  cpUpdateMachine();
 
   return NA_TRUE;
 }
@@ -156,7 +156,7 @@ NABool cmSelectRGBChannel(NAReaction reaction){
 
 NABool cmSelectRGBResponse(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t index = naGetPopupButtonItemIndex(con->rgbResponsePopupButton, reaction.uiElement);
   // CML_RESPONSE_UNDEFINED must be overjumped
@@ -183,7 +183,7 @@ NABool cmSelectRGBResponse(NAReaction reaction){
   cmlClearResponseCurve(newResponse);
   free(newResponse);
   
-  cmUpdateMachine();
+  cpUpdateMachine();
 
   return NA_TRUE;
 }
@@ -192,7 +192,7 @@ NABool cmSelectRGBResponse(NAReaction reaction){
 
 NABool cmSetResponseValue(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t colorIndex = con->lastSelectedChannel;
   if(colorIndex > 0){ colorIndex--; }
@@ -249,7 +249,7 @@ NABool cmSetResponseValue(NAReaction reaction){
   free(newResponseG);
   free(newResponseB);
 
-  cmUpdateMachine();
+  cpUpdateMachine();
 
   return NA_TRUE;
 }
@@ -262,7 +262,7 @@ CPMachineRGBController* cmAllocMachineRGBController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->rgbColorSpaceLabel = naNewLabel(cmTranslate(CMRGBColorSpaceTitle), machineLabelWidth);
+  con->rgbColorSpaceLabel = naNewLabel(cpTranslate(CPRGBColorSpaceTitle), machineLabelWidth);
   con->rgbColorSpacePopupButton = naNewPopupButton(200);
   for(size_t i = 0; i < CML_RGB_COUNT; ++i){
     CMLRGBColorSpaceType rgbColorSpaceType = (CMLRGBColorSpaceType)i;
@@ -271,44 +271,44 @@ CPMachineRGBController* cmAllocMachineRGBController(void){
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectRGBColorSpace, con);
   }
 
-  con->redPointTitleLabel = naNewLabel(cmTranslate(CMRGBColorSpaceRed), machineLabelWidth - setButtonWidth + marginH);
+  con->redPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceRed), machineLabelWidth - setButtonWidth + marginH);
 
-  con->setPrimaryRButton = naNewTextPushButton(cmTranslate(CMSetButton), setButtonWidth);
+  con->setPrimaryRButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setPrimaryRButton, NA_UI_COMMAND_PRESSED, cmSetRGBYxy, con);
-  con->redPointYTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->redPointxTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->redPointyTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->greenPointTitleLabel = naNewLabel(cmTranslate(CMRGBColorSpaceGreen), machineLabelWidth - setButtonWidth + marginH);
+  con->redPointYTextField = cpNewValueTextField(cmSetRGBYxy, con);
+  con->redPointxTextField = cpNewValueTextField(cmSetRGBYxy, con);
+  con->redPointyTextField = cpNewValueTextField(cmSetRGBYxy, con);
+  con->greenPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceGreen), machineLabelWidth - setButtonWidth + marginH);
 
-  con->setPrimaryGButton = naNewTextPushButton(cmTranslate(CMSetButton), setButtonWidth);
+  con->setPrimaryGButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setPrimaryGButton, NA_UI_COMMAND_PRESSED, cmSetRGBYxy, con);
-  con->greenPointYTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->greenPointxTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->greenPointyTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->bluePointTitleLabel = naNewLabel(cmTranslate(CMRGBColorSpaceBlue), machineLabelWidth - setButtonWidth + marginH);
+  con->greenPointYTextField = cpNewValueTextField(cmSetRGBYxy, con);
+  con->greenPointxTextField = cpNewValueTextField(cmSetRGBYxy, con);
+  con->greenPointyTextField = cpNewValueTextField(cmSetRGBYxy, con);
+  con->bluePointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceBlue), machineLabelWidth - setButtonWidth + marginH);
 
-  con->setPrimaryBButton = naNewTextPushButton(cmTranslate(CMSetButton), setButtonWidth);
+  con->setPrimaryBButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setPrimaryBButton, NA_UI_COMMAND_PRESSED, cmSetRGBYxy, con);
-  con->bluePointYTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->bluePointxTextField = cmNewValueTextField(cmSetRGBYxy, con);
-  con->bluePointyTextField = cmNewValueTextField(cmSetRGBYxy, con);
+  con->bluePointYTextField = cpNewValueTextField(cmSetRGBYxy, con);
+  con->bluePointxTextField = cpNewValueTextField(cmSetRGBYxy, con);
+  con->bluePointyTextField = cpNewValueTextField(cmSetRGBYxy, con);
 
   naSetTextFieldEnabled(con->redPointYTextField, NA_FALSE);
   naSetTextFieldEnabled(con->greenPointYTextField, NA_FALSE);
   naSetTextFieldEnabled(con->bluePointYTextField, NA_FALSE);
 
-  con->rgbResponseTitleLabel = naNewLabel(cmTranslate(CMRGBColorResponse), machineLabelWidth);
+  con->rgbResponseTitleLabel = naNewLabel(cpTranslate(CPRGBColorResponse), machineLabelWidth);
   con->rgbResponseChannelsPopupButton = naNewPopupButton(80);
-  NAMenuItem* rgbMenuItem = naNewMenuItem(cmTranslate(CMRGBColorChannelRGB));
+  NAMenuItem* rgbMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelRGB));
   naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, rgbMenuItem, NA_NULL);
   naAddUIReaction(rgbMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
-  NAMenuItem* rMenuItem = naNewMenuItem(cmTranslate(CMRGBColorChannelR));
+  NAMenuItem* rMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelR));
   naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, rMenuItem, NA_NULL);
   naAddUIReaction(rMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
-  NAMenuItem* gMenuItem = naNewMenuItem(cmTranslate(CMRGBColorChannelG));
+  NAMenuItem* gMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelG));
   naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, gMenuItem, NA_NULL);
   naAddUIReaction(gMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
-  NAMenuItem* bMenuItem = naNewMenuItem(cmTranslate(CMRGBColorChannelB));
+  NAMenuItem* bMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelB));
   naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, bMenuItem, NA_NULL);
   naAddUIReaction(bMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
 
@@ -321,26 +321,26 @@ CPMachineRGBController* cmAllocMachineRGBController(void){
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectRGBResponse, con);
   }
 
-  con->responseLinearTitleLabel = naNewLabel(cmTranslate(CMRGBColorChannelLinear), machineLabelWidth);
-  con->responseLinearTextField = cmNewValueTextField(cmSetResponseValue, con);
+  con->responseLinearTitleLabel = naNewLabel(cpTranslate(CPRGBColorChannelLinear), machineLabelWidth);
+  con->responseLinearTextField = cpNewValueTextField(cmSetResponseValue, con);
   con->responseLinearSlider = naNewSlider(60);
   naSetSliderRange(con->responseLinearSlider, 1., 10., 0);
   naAddUIReaction(con->responseLinearSlider, NA_UI_COMMAND_EDITED, cmSetResponseValue, con);
   
-  con->responseSplitTitleLabel = naNewLabel(cmTranslate(CMRGBColorChannelSplit), machineLabelWidth);
-  con->responseSplitTextField = cmNewValueTextField(cmSetResponseValue, con);
+  con->responseSplitTitleLabel = naNewLabel(cpTranslate(CPRGBColorChannelSplit), machineLabelWidth);
+  con->responseSplitTextField = cpNewValueTextField(cmSetResponseValue, con);
   con->responseSplitSlider = naNewSlider(60);
   naSetSliderRange(con->responseSplitSlider, 0., 1., 0);
   naAddUIReaction(con->responseSplitSlider, NA_UI_COMMAND_EDITED, cmSetResponseValue, con);
   
-  con->responseGammaTitleLabel = naNewLabel(cmTranslate(CMRGBColorChannelGamma), machineLabelWidth);
-  con->responseGammaTextField = cmNewValueTextField(cmSetResponseValue, con);
+  con->responseGammaTitleLabel = naNewLabel(cpTranslate(CPRGBColorChannelGamma), machineLabelWidth);
+  con->responseGammaTextField = cpNewValueTextField(cmSetResponseValue, con);
   con->responseGammaSlider = naNewSlider(60);
   naSetSliderRange(con->responseGammaSlider, 1., 4., 0);
   naAddUIReaction(con->responseGammaSlider, NA_UI_COMMAND_EDITED, cmSetResponseValue, con);
   
-  con->responseOffsetTitleLabel = naNewLabel(cmTranslate(CMRGBColorChannelOffset), machineLabelWidth);
-  con->responseOffsetTextField = cmNewValueTextField(cmSetResponseValue, con);
+  con->responseOffsetTitleLabel = naNewLabel(cpTranslate(CPRGBColorChannelOffset), machineLabelWidth);
+  con->responseOffsetTextField = cpNewValueTextField(cmSetResponseValue, con);
   con->responseOffsetSlider = naNewSlider(60);
   naSetSliderRange(con->responseOffsetSlider, 0., 1., 0);
   naAddUIReaction(con->responseOffsetSlider, NA_UI_COMMAND_EDITED, cmSetResponseValue, con);
@@ -348,43 +348,43 @@ CPMachineRGBController* cmAllocMachineRGBController(void){
   con->gammaDisplayController = cmAllocGammaDisplayController();
 
   // layout
-  cmBeginUILayout(con->space, spaceBezel);
-  cmAddUIRow(con->rgbColorSpaceLabel, uiElemHeight);
-  cmAddUICol(con->rgbColorSpacePopupButton, marginH);
+  cpBeginUILayout(con->space, spaceBezel);
+  cpAddUIRow(con->rgbColorSpaceLabel, uiElemHeight);
+  cpAddUICol(con->rgbColorSpacePopupButton, marginH);
 
-  cmAddUIRow(con->redPointTitleLabel, uiElemHeight);
-  cmAddUICol(con->setPrimaryRButton, 0);
-  cmAddUICol(con->redPointYTextField, 0);
-  cmAddUICol(con->redPointxTextField, 0);
-  cmAddUICol(con->redPointyTextField, 0);
-  cmAddUIRow(con->greenPointTitleLabel, uiElemHeight);
-  cmAddUICol(con->setPrimaryGButton, 0);
-  cmAddUICol(con->greenPointYTextField, 0);
-  cmAddUICol(con->greenPointxTextField, 0);
-  cmAddUICol(con->greenPointyTextField, 0);
-  cmAddUIRow(con->bluePointTitleLabel, uiElemHeight);
-  cmAddUICol(con->setPrimaryBButton, 0);
-  cmAddUICol(con->bluePointYTextField, 0);
-  cmAddUICol(con->bluePointxTextField, 0);
-  cmAddUICol(con->bluePointyTextField, 0);
+  cpAddUIRow(con->redPointTitleLabel, uiElemHeight);
+  cpAddUICol(con->setPrimaryRButton, 0);
+  cpAddUICol(con->redPointYTextField, 0);
+  cpAddUICol(con->redPointxTextField, 0);
+  cpAddUICol(con->redPointyTextField, 0);
+  cpAddUIRow(con->greenPointTitleLabel, uiElemHeight);
+  cpAddUICol(con->setPrimaryGButton, 0);
+  cpAddUICol(con->greenPointYTextField, 0);
+  cpAddUICol(con->greenPointxTextField, 0);
+  cpAddUICol(con->greenPointyTextField, 0);
+  cpAddUIRow(con->bluePointTitleLabel, uiElemHeight);
+  cpAddUICol(con->setPrimaryBButton, 0);
+  cpAddUICol(con->bluePointYTextField, 0);
+  cpAddUICol(con->bluePointxTextField, 0);
+  cpAddUICol(con->bluePointyTextField, 0);
 
-  cmAddUIRow(con->rgbResponseTitleLabel, uiElemHeight);
-  cmAddUICol(con->rgbResponseChannelsPopupButton, marginH);
-  cmAddUICol(con->rgbResponsePopupButton, marginH);
+  cpAddUIRow(con->rgbResponseTitleLabel, uiElemHeight);
+  cpAddUICol(con->rgbResponseChannelsPopupButton, marginH);
+  cpAddUICol(con->rgbResponsePopupButton, marginH);
 
-  cmAddUIRow(con->responseLinearTitleLabel, uiElemHeight);
-  cmAddUICol(con->responseLinearTextField, marginH);
-  cmAddUICol(con->responseLinearSlider, marginH);
-  cmAddUIRow(con->responseSplitTitleLabel, uiElemHeight);
-  cmAddUICol(con->responseSplitTextField, marginH);
-  cmAddUICol(con->responseSplitSlider, marginH);
-  cmAddUIRow(con->responseGammaTitleLabel, uiElemHeight);
-  cmAddUICol(con->responseGammaTextField, marginH);
-  cmAddUICol(con->responseGammaSlider, marginH);
-  cmAddUIRow(con->responseOffsetTitleLabel, uiElemHeight);
-  cmAddUICol(con->responseOffsetTextField, marginH);
-  cmAddUICol(con->responseOffsetSlider, marginH);
-  cmEndUILayout();
+  cpAddUIRow(con->responseLinearTitleLabel, uiElemHeight);
+  cpAddUICol(con->responseLinearTextField, marginH);
+  cpAddUICol(con->responseLinearSlider, marginH);
+  cpAddUIRow(con->responseSplitTitleLabel, uiElemHeight);
+  cpAddUICol(con->responseSplitTextField, marginH);
+  cpAddUICol(con->responseSplitSlider, marginH);
+  cpAddUIRow(con->responseGammaTitleLabel, uiElemHeight);
+  cpAddUICol(con->responseGammaTextField, marginH);
+  cpAddUICol(con->responseGammaSlider, marginH);
+  cpAddUIRow(con->responseOffsetTitleLabel, uiElemHeight);
+  cpAddUICol(con->responseOffsetTextField, marginH);
+  cpAddUICol(con->responseOffsetSlider, marginH);
+  cpEndUILayout();
 
   naAddSpaceChild(
     con->space,
@@ -413,8 +413,8 @@ NASpace* cmGetMachineRGBControllerUIElement(CPMachineRGBController* con){
 
 
 
-void cmUpdateMachineRGBController(CPMachineRGBController* con){
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+void cpUpdateMachineRGBController(CPMachineRGBController* con){
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
   
   CMLRGBColorSpaceType rgbColorSpaceType = cmlGetRGBColorSpaceType(cm);
   naSetPopupButtonIndexSelected(con->rgbColorSpacePopupButton, rgbColorSpaceType);

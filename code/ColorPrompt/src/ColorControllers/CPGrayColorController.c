@@ -32,8 +32,8 @@ NABool cmGrayValueEdited(NAReaction reaction){
     con->grayColor = (float)naGetTextFieldDouble(con->textFieldGray);
   }
   
-  cmSetCurrentColorController(&(con->baseController));
-  cmUpdateColor();
+  cpSetCurrentColorController(&(con->baseController));
+  cpUpdateColor();
   
   return NA_TRUE;
 }
@@ -48,22 +48,22 @@ CPGrayColorController* cmAllocGrayColorController(void){
   con->display = cmAllocGrayColorWell(&(con->baseController));
   
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
-  con->labelGray = cmNewColorComponentLabel(cmTranslate(CMGrayColorChannelGr));
-  con->textFieldGray = cmNewValueTextField(cmGrayValueEdited, con);
+  con->labelGray = cpNewColorComponentLabel(cpTranslate(CPGrayColorChannelGr));
+  con->textFieldGray = cpNewValueTextField(cmGrayValueEdited, con);
   con->colorWell1DGray = cmAllocColorWell1D(&(con->baseController), &(con->grayColor), 0);
 
-  cmBeginUILayout(con->channelSpace, naMakeBezel4Zero());
-  cmAddUIPos(0, (int)((colorWell2DSize - (1 * 25.)) / 2.)); // center the channels
-  cmAddUIRow(con->labelGray, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldGray, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DGray), 10, colorWell1DOffset);
-  cmAddUIPos(0, 2 * colorValueCondensedRowHeight);
-  cmEndUILayout();
+  cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cpAddUIPos(0, (int)((colorWell2DSize - (1 * 25.)) / 2.)); // center the channels
+  cpAddUIRow(con->labelGray, colorValueCondensedRowHeight);
+  cpAddUICol(con->textFieldGray, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DGray), 10, colorWell1DOffset);
+  cpAddUIPos(0, 2 * colorValueCondensedRowHeight);
+  cpEndUILayout();
   
-  cmBeginUILayout(con->baseController.space, colorWellBezel);
-  cmAddUIRow(cmGetGrayColorWellUIElement(con->display), 0);
-  cmAddUICol(con->channelSpace, colorWell2DRightMargin);
-  cmEndUILayout();
+  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpAddUIRow(cmGetGrayColorWellUIElement(con->display), 0);
+  cpAddUICol(con->channelSpace, colorWell2DRightMargin);
+  cpEndUILayout();
 
   con->grayColor = .5;
 
@@ -94,11 +94,11 @@ void cmSetGrayColorControllerColorData(CPGrayColorController* con, const void* d
 
 
 void cmUpdateGrayColorController(CPGrayColorController* con){
-  cmUpdateColorController(&(con->baseController));
+  cpUpdateColorController(&(con->baseController));
 
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorType currentColorType = cmGetCurrentColorType();
-  const float* currentColorData = cmGetCurrentColorData();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorType currentColorType = cpGetCurrentColorType();
+  const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Gray, currentColorType);
   converter(cm, &(con->grayColor), currentColorData, 1);
   
@@ -107,5 +107,5 @@ void cmUpdateGrayColorController(CPGrayColorController* con){
     naAllocSprintf(NA_TRUE, "%1.05f", con->grayColor));
 
   cmUpdateGrayColorWell(con->display);
-  cmUpdateColorWell1D(con->colorWell1DGray);
+  cpUpdateColorWell1D(con->colorWell1DGray);
 }

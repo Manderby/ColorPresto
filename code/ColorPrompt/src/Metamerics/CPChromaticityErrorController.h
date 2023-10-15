@@ -1,8 +1,8 @@
 
 #include "../mainC.h"
 
-CM_PROTOTYPE(CPWhitePoints);
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(CPWhitePoints);
+CP_PROTOTYPE(NASpace);
 
 
 

@@ -1,7 +1,7 @@
 
 #include "../../mainC.h"
 
-CM_PROTOTYPE(NAOpenGLSpace);
+CP_PROTOTYPE(NAOpenGLSpace);
 
 
 
@@ -19,6 +19,6 @@ void cmSetColorWell2DFixedIndex(CPColorWell2D* well, size_t fixedIndex);
 
 NAOpenGLSpace* cmGetColorWell2DUIElement(CPColorWell2D* well);
 
-void cmUpdateColorWell2D(CPColorWell2D* well);
+void cpUpdateColorWell2D(CPColorWell2D* well);
 
 

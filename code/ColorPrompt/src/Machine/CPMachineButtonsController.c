@@ -22,12 +22,12 @@ NABool cmPressMachineButton(NAReaction reaction){
   CPMachineButtonsController* con = (CPMachineButtonsController*)reaction.controller;
   
   if(reaction.uiElement == con->resetMachineButton){
-    cmResetColorMachine();
-    cmUpdateMachine();
+    cpResetColorMachine();
+    cpUpdateMachine();
   }else if(reaction.uiElement == con->metamericsButton){
-    cmShowMetamerics();
+    cpShowMetamerics();
   }else if(reaction.uiElement == con->threeDeeButton){
-    cmShowThreeDee();
+    cpShowThreeDee();
   }
 
   return NA_TRUE;
@@ -41,19 +41,19 @@ CPMachineButtonsController* cmAllocMachineButtonsController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->resetMachineButton = naNewTextPushButton(cmTranslate(CMResetButton), 102);
-  con->metamericsButton = naNewTextPushButton(cmTranslate(CMMetamericsButton), 102);
-  con->threeDeeButton = naNewTextPushButton(cmTranslate(CMThreeDeeButton), 102);
+  con->resetMachineButton = naNewTextPushButton(cpTranslate(CPResetButton), 102);
+  con->metamericsButton = naNewTextPushButton(cpTranslate(CPMetamericsButton), 102);
+  con->threeDeeButton = naNewTextPushButton(cpTranslate(CPThreeDeeButton), 102);
   naAddUIReaction(con->resetMachineButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
   naAddUIReaction(con->metamericsButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
   naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
 
   // layout
-  cmBeginUILayout(con->space, spaceBezel);
-  cmAddUIRow(con->resetMachineButton, uiElemHeight);
-  cmAddUICol(con->metamericsButton, 0);
-  cmAddUICol(con->threeDeeButton, 0);
-  cmEndUILayout();
+  cpBeginUILayout(con->space, spaceBezel);
+  cpAddUIRow(con->resetMachineButton, uiElemHeight);
+  cpAddUICol(con->metamericsButton, 0);
+  cpAddUICol(con->threeDeeButton, 0);
+  cpEndUILayout();
 
   return con;
 }
@@ -72,5 +72,5 @@ NASpace* cmGetMachineButtonsControllerUIElement(CPMachineButtonsController* con)
 
 
 
-void cmUpdateMachineButtonsController(CPMachineButtonsController* con){
+void cpUpdateMachineButtonsController(CPMachineButtonsController* con){
 }

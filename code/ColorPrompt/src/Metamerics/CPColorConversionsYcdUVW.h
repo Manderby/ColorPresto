@@ -1,6 +1,6 @@
 
-#ifndef CM_COLOR_CONVERSION_YCD_UVW_DEFINED
-#define CM_COLOR_CONVERSION_YCD_UVW_DEFINED
+#ifndef CP_COLOR_CONVERSION_YCD_UVW_DEFINED
+#define CP_COLOR_CONVERSION_YCD_UVW_DEFINED
 
 #include "NAUtility/NAString.h"
 
@@ -12,7 +12,7 @@ typedef enum{
   REFERENCE_ILLUMINATION_D65,
   REFERENCE_ILLUMINATION_D75,
   NUMBER_OF_REFERENCE_ILLUMINATIONS
-} CMReferenceIlluminationType;
+} CPReferenceIlluminationType;
 
 
 
@@ -24,5 +24,5 @@ const NAUTF8Char* getGrade(float value);
 
 
 
-#endif // CM_COLOR_CONVERSION_YCD_UVW_DEFINED
+#endif // CP_COLOR_CONVERSION_YCD_UVW_DEFINED
 

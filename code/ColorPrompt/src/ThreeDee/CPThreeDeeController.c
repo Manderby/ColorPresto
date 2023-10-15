@@ -17,7 +17,7 @@
 #include "CML.h"
 
 
-#define CM_THREEDEE_WINDOW_STORAGE_TAG 3
+#define CP_THREEDEE_WINDOW_STORAGE_TAG 3
 
 
 #define marginHMiddle (spaceMarginLeft3D + threeDeeLabelWidth + marginH)
@@ -82,8 +82,8 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
 NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   CPThreeDeeController* con = (CPThreeDeeController*)reaction.controller;
   
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorMachine* sm = cmGetCurrentScreenMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorMachine* sm = cpGetCurrentScreenMachine();
   
   CMLColorType coordSpace;
   int primeAxis;
@@ -99,17 +99,17 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     primeAxis = 2;
     naFillV3d(scale, 2., 2., 1.);
     labels[0] = "";
-    labels[1] = cmTranslate(CMHSLColorChannelS);
-    labels[2] = cmTranslate(CMHSLColorChannelL);
+    labels[1] = cpTranslate(CPHSLColorChannelS);
+    labels[2] = cpTranslate(CPHSLColorChannelL);
     normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSL);
     break;
   case COORD_SYS_HSL_CARTESIAN:
     coordSpace = CML_COLOR_HSL;
     primeAxis = 2;
     naFillV3d(scale, 3.60, -1., 1.);
-    labels[0] = cmTranslate(CMHSLColorChannelH);
-    labels[1] = cmTranslate(CMHSLColorChannelS);
-    labels[2] = cmTranslate(CMHSLColorChannelL);
+    labels[0] = cpTranslate(CPHSLColorChannelH);
+    labels[1] = cpTranslate(CPHSLColorChannelS);
+    labels[2] = cpTranslate(CPHSLColorChannelL);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSL);
     break;
   case COORD_SYS_HSV:
@@ -117,116 +117,116 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
     primeAxis = 2;
     naFillV3d(scale, 2., 2., 1.);
     labels[0] = "";
-    labels[1] = cmTranslate(CMHSVColorChannelS);
-    labels[2] = cmTranslate(CMHSVColorChannelV);
+    labels[1] = cpTranslate(CPHSVColorChannelS);
+    labels[2] = cpTranslate(CPHSVColorChannelV);
     normedOutputConverter = cmlGetNormedCartesianOutputConverter(CML_COLOR_HSV);
     break;
   case COORD_SYS_HSV_CARTESIAN:
     coordSpace = CML_COLOR_HSV;
     primeAxis = 2;
     naFillV3d(scale, 3.60, -1., 1.);
-    labels[0] = cmTranslate(CMHSVColorChannelH);
-    labels[1] = cmTranslate(CMHSVColorChannelS);
-    labels[2] = cmTranslate(CMHSVColorChannelV);
+    labels[0] = cpTranslate(CPHSVColorChannelH);
+    labels[1] = cpTranslate(CPHSVColorChannelS);
+    labels[2] = cpTranslate(CPHSVColorChannelV);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_HSV);
     break;
   case COORD_SYS_Lab:
     coordSpace = CML_COLOR_Lab;
     primeAxis = 0;
     naFillV3d(scale, 1., 2.56, 2.56);
-    labels[0] = cmTranslate(CMLabColorChannelL);
-    labels[1] = cmTranslate(CMLabColorChannela);
-    labels[2] = cmTranslate(CMLabColorChannelb);
+    labels[0] = cpTranslate(CPLabColorChannelL);
+    labels[1] = cpTranslate(CPLabColorChannela);
+    labels[2] = cpTranslate(CPLabColorChannelb);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Lab);
     break;
   case COORD_SYS_Lch_CARTESIAN:
     coordSpace = CML_COLOR_Lch;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 3.60);
-    labels[0] = cmTranslate(CMLabColorChannelL);
-    labels[1] = cmTranslate(CMLchColorChannelc);
-    labels[2] = cmTranslate(CMLchColorChannelh);
+    labels[0] = cpTranslate(CPLabColorChannelL);
+    labels[1] = cpTranslate(CPLchColorChannelc);
+    labels[2] = cpTranslate(CPLchColorChannelh);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Lch);
     break;
   case COORD_SYS_Luv:
     coordSpace = CML_COLOR_Luv;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = cmTranslate(CMLuvColorChannelL);
-    labels[1] = cmTranslate(CMLuvColorChannelu);
-    labels[2] = cmTranslate(CMLuvColorChannelv);
+    labels[0] = cpTranslate(CPLuvColorChannelL);
+    labels[1] = cpTranslate(CPLuvColorChannelu);
+    labels[2] = cpTranslate(CPLuvColorChannelv);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Luv);
     break;
   case COORD_SYS_RGB:
     coordSpace = CML_COLOR_RGB;
     primeAxis = 1;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = cmTranslate(CMRGBColorChannelR);
-    labels[1] = cmTranslate(CMRGBColorChannelG);
-    labels[2] = cmTranslate(CMRGBColorChannelB);
+    labels[0] = cpTranslate(CPRGBColorChannelR);
+    labels[1] = cpTranslate(CPRGBColorChannelG);
+    labels[2] = cpTranslate(CPRGBColorChannelB);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
     break;
   case COORD_SYS_UVW:
     coordSpace = CML_COLOR_UVW;
     primeAxis = 2;
     naFillV3d(scale, 2., 1., 1.);
-    labels[0] = cmTranslate(CMUVWColorChannelU);
-    labels[1] = cmTranslate(CMUVWColorChannelV);
-    labels[2] = cmTranslate(CMUVWColorChannelW);
+    labels[0] = cpTranslate(CPUVWColorChannelU);
+    labels[1] = cpTranslate(CPUVWColorChannelV);
+    labels[2] = cpTranslate(CPUVWColorChannelW);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_UVW);
     break;
   case COORD_SYS_XYZ:
     coordSpace = CML_COLOR_XYZ;
     primeAxis = 1;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = cmTranslate(CMXYZColorChannelX);
-    labels[1] = cmTranslate(CMXYZColorChannelY);
-    labels[2] = cmTranslate(CMXYZColorChannelZ);
+    labels[0] = cpTranslate(CPXYZColorChannelX);
+    labels[1] = cpTranslate(CPXYZColorChannelY);
+    labels[2] = cpTranslate(CPXYZColorChannelZ);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_XYZ);
     break;
   case COORD_SYS_Ycbcr:
     coordSpace = CML_COLOR_YCbCr;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = cmTranslate(CMYCbCrColorChannelY);
-    labels[1] = cmTranslate(CMYCbCrColorChannelCb);
-    labels[2] = cmTranslate(CMYCbCrColorChannelCr);
+    labels[0] = cpTranslate(CPYCbCrColorChannelY);
+    labels[1] = cpTranslate(CPYCbCrColorChannelCb);
+    labels[2] = cpTranslate(CPYCbCrColorChannelCr);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_YCbCr);
     break;
   case COORD_SYS_Ycd:
     coordSpace = CML_COLOR_Ycd;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = cmTranslate(CMYcdColorChannelY);
-    labels[1] = cmTranslate(CMYcdColorChannelc);
-    labels[2] = cmTranslate(CMYcdColorChanneld);
+    labels[0] = cpTranslate(CPYcdColorChannelY);
+    labels[1] = cpTranslate(CPYcdColorChannelc);
+    labels[2] = cpTranslate(CPYcdColorChanneld);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Ycd);
     break;
   case COORD_SYS_Yupvp:
     coordSpace = CML_COLOR_Yupvp;
     primeAxis = 0;
     naFillV3d(scale, 1., (2.f / 3.f), (2.f / 3.f));
-    labels[0] = cmTranslate(CMYuvColorChannelY);
-    labels[1] = cmTranslate(CMYuvColorChannelup);
-    labels[2] = cmTranslate(CMYuvColorChannelvp);
+    labels[0] = cpTranslate(CPYuvColorChannelY);
+    labels[1] = cpTranslate(CPYuvColorChannelup);
+    labels[2] = cpTranslate(CPYuvColorChannelvp);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yupvp);
     break;
   case COORD_SYS_Yuv:
     coordSpace = CML_COLOR_Yuv;
     primeAxis = 0;
     naFillV3d(scale, 1., (2.f / 3.f), (4.f / 9.f));
-    labels[0] = cmTranslate(CMYuvColorChannelY);
-    labels[1] = cmTranslate(CMYuvColorChannelu);
-    labels[2] = cmTranslate(CMYuvColorChannelv);
+    labels[0] = cpTranslate(CPYuvColorChannelY);
+    labels[1] = cpTranslate(CPYuvColorChannelu);
+    labels[2] = cpTranslate(CPYuvColorChannelv);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yuv);
     break;
   case COORD_SYS_Yxy:
     coordSpace = CML_COLOR_Yxy;
     primeAxis = 0;
     naFillV3d(scale, 1., 1., 1.);
-    labels[0] = cmTranslate(CMYxyColorChannelY);
-    labels[1] = cmTranslate(CMYxyColorChannelx);
-    labels[2] = cmTranslate(CMYxyColorChannely);
+    labels[0] = cpTranslate(CPYxyColorChannelY);
+    labels[1] = cpTranslate(CPYxyColorChannelx);
+    labels[2] = cpTranslate(CPYxyColorChannely);
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
     break;
   default:
@@ -344,7 +344,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 
 
 
-CPThreeDeeController* cmAllocThreeDeeController(void){
+CPThreeDeeController* cpAllocThreeDeeController(void){
   CPThreeDeeController* con = naAlloc(CPThreeDeeController);
   
   con->coordinateController = cmAllocThreeDeeCoordinateController(con);
@@ -354,10 +354,10 @@ CPThreeDeeController* cmAllocThreeDeeController(void){
 
   // The window
   con->window = naNewWindow(
-    cmTranslate(CM3DView),
+    cpTranslate(CP3DView),
     naMakeRectS(40, 30, 1, 1),
     NA_WINDOW_RESIZEABLE,
-    CM_THREEDEE_WINDOW_STORAGE_TAG);
+    CP_THREEDEE_WINDOW_STORAGE_TAG);
   naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cmReshapeThreeDeeWindow, con);
 
   // The 3D space
@@ -370,38 +370,38 @@ CPThreeDeeController* cmAllocThreeDeeController(void){
   con->controlSpace = naNewSpace(naMakeSize(fullControlWidth, 1));
     
   // layout
-  cmBeginUILayout(con->controlSpace, naMakeBezel4Zero());
-  cmAddUIRow(cmGetThreeDeeCoordinateControllerUIElement(con->coordinateController), 0);
-  cmAddUIRow(cmGetThreeDeePerspectiveControllerUIElement(con->perspectiveController), 0);
-  cmAddUIRow(cmGetThreeDeeOpacityControllerUIElement(con->opacityController), 0);
-  cmAddUIRow(cmGetThreeDeeOptionsControllerUIElement(con->optionsController), 0);
-  cmEndUILayout();
+  cpBeginUILayout(con->controlSpace, naMakeBezel4Zero());
+  cpAddUIRow(cmGetThreeDeeCoordinateControllerUIElement(con->coordinateController), 0);
+  cpAddUIRow(cmGetThreeDeePerspectiveControllerUIElement(con->perspectiveController), 0);
+  cpAddUIRow(cmGetThreeDeeOpacityControllerUIElement(con->opacityController), 0);
+  cpAddUIRow(cmGetThreeDeeOptionsControllerUIElement(con->optionsController), 0);
+  cpEndUILayout();
 
   NASpace* content = naGetWindowContentSpace(con->window);
-  cmBeginUILayout(content, naMakeBezel4Zero());
-  cmAddUIRow(con->display, 0);
-  cmAddUICol(con->controlSpace, 0);
-  cmEndUILayout();
+  cpBeginUILayout(content, naMakeBezel4Zero());
+  cpAddUIRow(con->display, 0);
+  cpAddUICol(con->controlSpace, 0);
+  cpEndUILayout();
   
   return con;
 }
 
 
 
-void cmDeallocThreeDeeController(CPThreeDeeController* con){
+void cpDeallocThreeDeeController(CPThreeDeeController* con){
   naShutdownPixelFont(con->fontId);
   naFree(con);
 }
 
 
 
-void cmShowThreeDeeController(CPThreeDeeController* con){
+void cpShowThreeDeeController(CPThreeDeeController* con){
   naShowWindow(con->window);
 }
 
 
 
-void cmUpdateThreeDeeController(CPThreeDeeController* con){
+void cpUpdateThreeDeeController(CPThreeDeeController* con){
   cmUpdateThreeDeeCoordinateController(con->coordinateController);
   cmUpdateThreeDeePerspectiveController(con->perspectiveController);
   cmUpdateThreeDeeOpacityController(con->opacityController);

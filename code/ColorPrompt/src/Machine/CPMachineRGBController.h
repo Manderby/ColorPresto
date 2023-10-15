@@ -1,7 +1,7 @@
 
 #include "../mainC.h"
 
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(NASpace);
 
 
 
@@ -12,4 +12,4 @@ void cmDeallocMachineRGBController(CPMachineRGBController* con);
 
 NASpace* cmGetMachineRGBControllerUIElement(CPMachineRGBController* con);
 
-void cmUpdateMachineRGBController(CPMachineRGBController* con);
+void cpUpdateMachineRGBController(CPMachineRGBController* con);

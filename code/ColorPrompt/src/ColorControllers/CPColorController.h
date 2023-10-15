@@ -3,7 +3,7 @@
 
 
 
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(NASpace);
 
 typedef struct CPColorController CPColorController;
 struct CPColorController{
@@ -21,10 +21,10 @@ void cmSetColorControllerColorType(CPColorController* con, CMLColorType colorTyp
 
 void cmSetColorControllerActive(CPColorController* con, NABool active);
 
-CMLColorType cmGetColorControllerColorType(const CPColorController* con);
-const void* cmGetColorControllerColorData(const CPColorController* con);
+CMLColorType cpGetColorControllerColorType(const CPColorController* con);
+const void* cpGetColorControllerColorData(const CPColorController* con);
 void cmSetColorControllerColorData(CPColorController* con, const void* data);
 
 NASpace* cmGetColorControllerUIElement(CPColorController* con);
-void cmUpdateColorController(CPColorController* con);
+void cpUpdateColorController(CPColorController* con);
 

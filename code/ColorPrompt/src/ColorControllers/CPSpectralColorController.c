@@ -22,8 +22,8 @@ struct CPSpectralColorController{
 NABool cmSpectralValueEdited(NAReaction reaction){
   CPSpectralColorController* con = (CPSpectralColorController*)reaction.controller;
   
-  cmSetCurrentColorController(&(con->baseController));
-  cmUpdateColor();
+  cpSetCurrentColorController(&(con->baseController));
+  cpUpdateColor();
   
   return NA_TRUE;
 }
@@ -39,9 +39,9 @@ CPSpectralColorController* cmAllocSpectralColorController(void){
   
   con->display = cmAllocSpectralColorWell(&(con->baseController));
   
-  cmBeginUILayout(con->baseController.space, colorWellBezel);
-  cmAddUIRow(cmGetSpectralColorWellUIElement(con->display), 0);
-  cmEndUILayout();
+  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpAddUIRow(cmGetSpectralColorWellUIElement(con->display), 0);
+  cpEndUILayout();
 
   return con;
 }
@@ -70,9 +70,9 @@ void cmSetSpectralColorControllerColorData(CPSpectralColorController* con, const
 
 
 void cmUpdateSpectralColorController(CPSpectralColorController* con){
-  cmUpdateColorController(&(con->baseController));
+  cpUpdateColorController(&(con->baseController));
 
-  CMLColorType currentColorType = cmGetCurrentColorType();
+  CMLColorType currentColorType = cpGetCurrentColorType();
   if(currentColorType != CML_COLOR_SPECTRUM_ILLUMINATION){
     cmlReleaseFunction(con->spectralColor);
     con->spectralColor = cmlCreateConstFilter(0.f);

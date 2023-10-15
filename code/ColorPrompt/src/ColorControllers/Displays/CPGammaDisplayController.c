@@ -26,7 +26,7 @@ void cmInitGammaDisplayController(void* data){
 
 NABool cmDrawGammaDisplayController(NAReaction reaction){
   CPGammaDisplayController* con = (CPGammaDisplayController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   double uiScale = naGetUIElementResolutionFactor(con->display);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;

@@ -1,7 +1,7 @@
 
 #include "../../mainC.h"
 
-CM_PROTOTYPE(NAOpenGLSpace);
+CP_PROTOTYPE(NAOpenGLSpace);
 
 
 
@@ -18,6 +18,6 @@ void cmDeallocColorWell1D(CPColorWell1D* well);
 
 NAOpenGLSpace* cmGetColorWell1DUIElement(CPColorWell1D* well);
 
-void cmUpdateColorWell1D(CPColorWell1D* well);
+void cpUpdateColorWell1D(CPColorWell1D* well);
 
 

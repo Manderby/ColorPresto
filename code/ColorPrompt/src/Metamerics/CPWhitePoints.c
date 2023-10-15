@@ -9,7 +9,7 @@
 
 void CMFillChromaticAdaptationMatrix(CMLMat33 adaptationMatrix, const CMLVec3 whitePointYxy10)
 {
-  CMLColorMachine* sm = cmGetCurrentScreenMachine();
+  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
   // Note that the use of a chromatic adaptation is purely for displaying
   // reasons and is not in the ISO-standard at all. The differences between
@@ -43,7 +43,7 @@ CPWhitePoints CMGetWhitePoints(const CMLFunction* spec, const float* wpYxy, CMLF
     cmlCpy3(wp.XYZunnorm, wp.XYZ);
   }else{
     #if NA_DEBUG
-      cmError("Neither spectrum nor whitepoint given.");
+      cpError("Neither spectrum nor whitepoint given.");
     #endif
   }
 

@@ -11,7 +11,7 @@ struct CPColorsManager{
   const CPColorController* currentController;
 };
 
-CPColorsManager* cmAllocColorsController(){
+CPColorsManager* cpAllocColorsController(){
   CPColorsManager* colorsManager = naAlloc(CPColorsManager);
   
   colorsManager->fallbackColor = .5f;
@@ -22,29 +22,29 @@ CPColorsManager* cmAllocColorsController(){
   return colorsManager;
 }
 
-void cmDeallocColorsController(CPColorsManager* colorsManager){
+void cpDeallocColorsController(CPColorsManager* colorsManager){
   free(colorsManager);
 }
 
-const float* cmGetColorsManagerCurrentColorData(const CPColorsManager* colorsManager){
+const float* cpGetColorsManagerCurrentColorData(const CPColorsManager* colorsManager){
   return colorsManager->currentColor;
 }
 
-CMLColorType cmGetColorsManagerCurrentColorType(const CPColorsManager* colorsManager){
+CMLColorType cpGetColorsManagerCurrentColorType(const CPColorsManager* colorsManager){
   return colorsManager->currentType;
 }
 
-void cmSetColorsManagerCurrentColorController(CPColorsManager* colorsManager, const CPColorController* con){
+void cpSetColorsManagerCurrentColorController(CPColorsManager* colorsManager, const CPColorController* con){
   colorsManager->currentController = con;
-  colorsManager->currentColor = cmGetColorControllerColorData(con);
+  colorsManager->currentColor = cpGetColorControllerColorData(con);
   if(colorsManager->currentController == NA_NULL || colorsManager->currentColor == NA_NULL){
     colorsManager->currentColor = &(colorsManager->fallbackColor);
     colorsManager->currentType = CML_COLOR_Gray;
   }else{
-    colorsManager->currentType = cmGetColorControllerColorType(con);
+    colorsManager->currentType = cpGetColorControllerColorType(con);
   }
 }
 
-const CPColorController* cmGetColorsManagerCurrentColorController(CPColorsManager* colorsManager){
+const CPColorController* cpGetColorsManagerCurrentColorController(CPColorsManager* colorsManager){
   return colorsManager->currentController;
 }

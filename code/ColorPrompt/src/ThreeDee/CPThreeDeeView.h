@@ -2,7 +2,7 @@
 #include "../mainC.h"
 #include "CML.h"
 
-CM_PROTOTYPE(NAOpenGLSpace);
+CP_PROTOTYPE(NAOpenGLSpace);
 
 
 typedef struct CPThreeDeeView CPThreeDeeView;

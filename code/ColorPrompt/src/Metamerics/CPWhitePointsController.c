@@ -63,7 +63,7 @@ struct CPWhitePointsController{
   NALabel* refYupvp2Label;
   NALabel* refYuv2Label;
 
-  CMReferenceIlluminationType referenceIlluminationType;
+  CPReferenceIlluminationType referenceIlluminationType;
 };
 
 static const double fourValuesWidth = 4 * labelValueWidth + 3 * marginH;
@@ -82,7 +82,7 @@ NABool cmSelectRefSpectrum(NAReaction reaction){
     con->referenceIlluminationType = REFERENCE_ILLUMINATION_D75;
   }
 
-  cmUpdateMetamerics();
+  cpUpdateMetamerics();
 
   return NA_TRUE;
 }
@@ -96,18 +96,18 @@ CPWhitePointsController* cmAllocWhitePointsController(void){
 
   // Illumination whitepoint
   
-  con->ill10DegLabel = cmNewTitleLabel(cmTranslate(CMObserverDegree10), degreeWidth);
-  con->ill2DegLabel = cmNewTitleLabel(cmTranslate(CMObserverDegree2), degreeWidth);
+  con->ill10DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree10), degreeWidth);
+  con->ill2DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree2), degreeWidth);
 
-  con->illTitle = cmNewTitleLabel("", fourValuesWidth);
+  con->illTitle = cpNewTitleLabel("", fourValuesWidth);
 //  naSetLabelTextAlignment(con->illTitle, NA_TEXT_ALIGNMENT_CENTER);
 
-  con->illXYZTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceXYZ), labelValueWidth);
-  con->illYxyTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYxy), labelValueWidth);
-  con->illYupvpTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYupvp), labelValueWidth);
-  con->illYuvTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYuv), labelValueWidth);
-//  con->illYcdTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceYcd), labelValueWidth);
-//  con->illUVWTitle = cmNewTitleLabel(cmTranslate(CMColorSpaceUVW), labelValueWidth);
+  con->illXYZTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceXYZ), labelValueWidth);
+  con->illYxyTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYxy), labelValueWidth);
+  con->illYupvpTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYupvp), labelValueWidth);
+  con->illYuvTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYuv), labelValueWidth);
+//  con->illYcdTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYcd), labelValueWidth);
+//  con->illUVWTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceUVW), labelValueWidth);
   naSetLabelTextAlignment(con->illXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
@@ -115,32 +115,32 @@ CPWhitePointsController* cmAllocWhitePointsController(void){
 //  naSetLabelTextAlignment(con->illYcdTitle, NA_TEXT_ALIGNMENT_CENTER);
 //  naSetLabelTextAlignment(con->illUVWTitle, NA_TEXT_ALIGNMENT_CENTER);
 
-  con->illXYZ10Label = cmNewThreeValueLabel();
-  con->illYxy10Label = cmNewThreeValueLabel();
-  con->illYupvp10Label = cmNewThreeValueLabel();
-  con->illYuv10Label = cmNewThreeValueLabel();
-//  con->illYcd10Label = cmNewThreeValueLabel();
-//  con->illUVW10Label = cmNewThreeValueLabel();
+  con->illXYZ10Label = cpNewThreeValueLabel();
+  con->illYxy10Label = cpNewThreeValueLabel();
+  con->illYupvp10Label = cpNewThreeValueLabel();
+  con->illYuv10Label = cpNewThreeValueLabel();
+//  con->illYcd10Label = cpNewThreeValueLabel();
+//  con->illUVW10Label = cpNewThreeValueLabel();
   
-  con->illXYZ2Label = cmNewThreeValueLabel();
-  con->illYxy2Label = cmNewThreeValueLabel();
-  con->illYupvp2Label = cmNewThreeValueLabel();
-  con->illYuv2Label = cmNewThreeValueLabel();
-//  con->illYcd2Label = cmNewThreeValueLabel();
-//  con->illUVW2Label = cmNewThreeValueLabel();
+  con->illXYZ2Label = cpNewThreeValueLabel();
+  con->illYxy2Label = cpNewThreeValueLabel();
+  con->illYupvp2Label = cpNewThreeValueLabel();
+  con->illYuv2Label = cpNewThreeValueLabel();
+//  con->illYcd2Label = cpNewThreeValueLabel();
+//  con->illUVW2Label = cpNewThreeValueLabel();
 
   // Reference whitepoint
 
-  con->ref10DegLabel = cmNewTitleLabel(cmTranslate(CMObserverDegree10), degreeWidth);
-  con->ref2DegLabel = cmNewTitleLabel(cmTranslate(CMObserverDegree2), degreeWidth);
+  con->ref10DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree10), degreeWidth);
+  con->ref2DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree2), degreeWidth);
 
-  con->refTitle = cmNewTitleLabel(cmTranslate(CMReferenceIllumination), 80);
+  con->refTitle = cpNewTitleLabel(cpTranslate(CPReferenceIllumination), 80);
 
   con->refPopupButton = naNewPopupButton(70);
-  con->refD50MenuItem = naNewMenuItem(cmTranslate(CMD50));
-  con->refD55MenuItem = naNewMenuItem(cmTranslate(CMD55));
-  con->refD65MenuItem = naNewMenuItem(cmTranslate(CMD65));
-  con->refD75MenuItem = naNewMenuItem(cmTranslate(CMD75));
+  con->refD50MenuItem = naNewMenuItem(cpTranslate(CPD50));
+  con->refD55MenuItem = naNewMenuItem(cpTranslate(CPD55));
+  con->refD65MenuItem = naNewMenuItem(cpTranslate(CPD65));
+  con->refD75MenuItem = naNewMenuItem(cpTranslate(CPD75));
   naAddPopupButtonMenuItem(con->refPopupButton, con->refD50MenuItem, NA_NULL);
   naAddPopupButtonMenuItem(con->refPopupButton, con->refD55MenuItem, NA_NULL);
   naAddPopupButtonMenuItem(con->refPopupButton, con->refD65MenuItem, NA_NULL);
@@ -150,64 +150,64 @@ CPWhitePointsController* cmAllocWhitePointsController(void){
   naAddUIReaction(con->refD65MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
   naAddUIReaction(con->refD75MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
 
-  con->refXYZ10Label = cmNewThreeValueLabel();
-  con->refYxy10Label = cmNewThreeValueLabel();
-  con->refYupvp10Label = cmNewThreeValueLabel();
-  con->refYuv10Label = cmNewThreeValueLabel();
+  con->refXYZ10Label = cpNewThreeValueLabel();
+  con->refYxy10Label = cpNewThreeValueLabel();
+  con->refYupvp10Label = cpNewThreeValueLabel();
+  con->refYuv10Label = cpNewThreeValueLabel();
   
-  con->refXYZ2Label = cmNewThreeValueLabel();
-  con->refYxy2Label = cmNewThreeValueLabel();
-  con->refYupvp2Label = cmNewThreeValueLabel();
-  con->refYuv2Label = cmNewThreeValueLabel();
+  con->refXYZ2Label = cpNewThreeValueLabel();
+  con->refYxy2Label = cpNewThreeValueLabel();
+  con->refYupvp2Label = cpNewThreeValueLabel();
+  con->refYuv2Label = cpNewThreeValueLabel();
 
 
 
   // Adding elements to the space
 
-  cmBeginUILayout(con->space, naMakeBezel4(spaceMarginRight, spaceMarginTop, spaceMarginDegreeLeft, spaceMarginBottom));
-  cmAddUIRow(con->illTitle, uiElemHeight);
+  cpBeginUILayout(con->space, naMakeBezel4(spaceMarginRight, spaceMarginTop, spaceMarginDegreeLeft, spaceMarginBottom));
+  cpAddUIRow(con->illTitle, uiElemHeight);
   
-  cmAddUIRow(con->illXYZTitle, uiElemHeight);
-  cmAddUICol(con->illYxyTitle, marginH);
-  cmAddUICol(con->illYupvpTitle, marginH);
-  cmAddUICol(con->illYuvTitle, marginH);
-//  cmAddUICol(con->illYcdTitle, marginH);
-//  cmAddUICol(con->illUVWTitle, marginH);
+  cpAddUIRow(con->illXYZTitle, uiElemHeight);
+  cpAddUICol(con->illYxyTitle, marginH);
+  cpAddUICol(con->illYupvpTitle, marginH);
+  cpAddUICol(con->illYuvTitle, marginH);
+//  cpAddUICol(con->illYcdTitle, marginH);
+//  cpAddUICol(con->illUVWTitle, marginH);
 
-  cmAddUIPos(0, threeValueHeightMargin);
-  cmAddUIRow(con->illXYZ10Label, threeValueHeight);
-  cmAddUICol(con->illYxy10Label, marginH);
-  cmAddUICol(con->illYupvp10Label, marginH);
-  cmAddUICol(con->illYuv10Label, marginH);
-//  cmAddUICol(con->illYcd10Label, marginH);
-//  cmAddUICol(con->illUVW10Label, marginH);
+  cpAddUIPos(0, threeValueHeightMargin);
+  cpAddUIRow(con->illXYZ10Label, threeValueHeight);
+  cpAddUICol(con->illYxy10Label, marginH);
+  cpAddUICol(con->illYupvp10Label, marginH);
+  cpAddUICol(con->illYuv10Label, marginH);
+//  cpAddUICol(con->illYcd10Label, marginH);
+//  cpAddUICol(con->illUVW10Label, marginH);
 
-  cmAddUIPos(0, threeValueHeightMargin);
-  cmAddUIRow(con->illXYZ2Label, 0);
-  cmAddUICol(con->illYxy2Label, marginH);
-  cmAddUICol(con->illYupvp2Label, marginH);
-  cmAddUICol(con->illYuv2Label, marginH);
-//  cmAddUICol(con->illYcd2Label, marginH);
-//  cmAddUICol(con->illUVW2Label, marginH);
+  cpAddUIPos(0, threeValueHeightMargin);
+  cpAddUIRow(con->illXYZ2Label, 0);
+  cpAddUICol(con->illYxy2Label, marginH);
+  cpAddUICol(con->illYupvp2Label, marginH);
+  cpAddUICol(con->illYuv2Label, marginH);
+//  cpAddUICol(con->illYcd2Label, marginH);
+//  cpAddUICol(con->illUVW2Label, marginH);
 
-  cmAddUIPos(0, spaceMarginV);
+  cpAddUIPos(0, spaceMarginV);
   
-  cmAddUIRow(con->refTitle, uiElemHeight);
-  cmAddUICol(con->refPopupButton, 5.);
+  cpAddUIRow(con->refTitle, uiElemHeight);
+  cpAddUICol(con->refPopupButton, 5.);
 
-  cmAddUIPos(0, threeValueHeightMargin);
-  cmAddUIRow(con->refXYZ10Label, threeValueHeight);
-  cmAddUICol(con->refYxy10Label, marginH);
-  cmAddUICol(con->refYupvp10Label, marginH);
-  cmAddUICol(con->refYuv10Label, marginH);
+  cpAddUIPos(0, threeValueHeightMargin);
+  cpAddUIRow(con->refXYZ10Label, threeValueHeight);
+  cpAddUICol(con->refYxy10Label, marginH);
+  cpAddUICol(con->refYupvp10Label, marginH);
+  cpAddUICol(con->refYuv10Label, marginH);
 
-  cmAddUIPos(0, threeValueHeightMargin);
-  cmAddUIRow(con->refXYZ2Label, 0);
-  cmAddUICol(con->refYxy2Label, marginH);
-  cmAddUICol(con->refYupvp2Label, marginH);
-  cmAddUICol(con->refYuv2Label, marginH);
+  cpAddUIPos(0, threeValueHeightMargin);
+  cpAddUIRow(con->refXYZ2Label, 0);
+  cpAddUICol(con->refYxy2Label, marginH);
+  cpAddUICol(con->refYupvp2Label, marginH);
+  cpAddUICol(con->refYuv2Label, marginH);
 
-  cmEndUILayout();
+  cpEndUILayout();
 
   naAddSpaceChild(con->space, con->ill10DegLabel, naMakePos(spaceMarginLeft, 286));
   naAddSpaceChild(con->space, con->ill2DegLabel, naMakePos(spaceMarginLeft, 221));
@@ -232,7 +232,7 @@ NASpace* cmGetWhitePointsUIElement(CPWhitePointsController* con){
   return con->space;
 }
 
-CMReferenceIlluminationType cmGetReferenceIlluminationType(CPWhitePointsController* con){
+CPReferenceIlluminationType cmGetReferenceIlluminationType(CPWhitePointsController* con){
   return con->referenceIlluminationType;
 }
 
@@ -249,7 +249,7 @@ void cmUpdateWhitePointsController(
   // current whitepoint
   naSetLabelText(
     con->illTitle,
-    naAllocSprintf(NA_TRUE, cmTranslate(CMCurrentIllumination), illuminationName));
+    naAllocSprintf(NA_TRUE, cpTranslate(CPCurrentIllumination), illuminationName));
 
   naSetLabelText(
     con->illXYZ10Label,

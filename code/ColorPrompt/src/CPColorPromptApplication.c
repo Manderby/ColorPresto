@@ -21,37 +21,37 @@ struct CPColorPromptApplication{
 
 
 
-void cmStartupColorPromptApplication(){
+void cpStartupColorPromptApplication(){
   app = naAlloc(CPColorPromptApplication);
   
   app->cm = cmlCreateColorMachine();
   app->sm = cmlCreateColorMachine();
-  app->colorsManager = cmAllocColorsController();
+  app->colorsManager = cpAllocColorsController();
 }
 
 
 
-void cmStartupColorPromptApplicationUI(){
-  cmStartupDesign();
+void cpStartupColorPromptApplicationUI(){
+  cpStartupDesign();
 
-  app->machineWindowController = cmAllocMachineWindowController();
-  app->threeDeeController      = cmAllocThreeDeeController();
-  app->metamericsController    = cmAllocMetamericsController();
+  app->machineWindowController = cpAllocMachineWindowController();
+  app->threeDeeController      = cpAllocThreeDeeController();
+  app->metamericsController    = cpAllocMetamericsController();
 
-  cmSetCurrentColorController(cmGetInitialColorController(app->machineWindowController));
-  cmShowMachineWindowController(app->machineWindowController);
+  cpSetCurrentColorController(cpGetInitialColorController(app->machineWindowController));
+  cpShowMachineWindowController(app->machineWindowController);
 }
 
 
 
-void cmShutdownColorPromptApplication(){
-  cmDeallocMetamericsController(app->metamericsController);
-  cmDeallocThreeDeeController(app->threeDeeController);
-  cmDeallocMachineWindowController(app->machineWindowController);
+void cpShutdownColorPromptApplication(){
+  cpDeallocMetamericsController(app->metamericsController);
+  cpDeallocThreeDeeController(app->threeDeeController);
+  cpDeallocMachineWindowController(app->machineWindowController);
 
-  cmShutdownDesign();
+  cpShutdownDesign();
 
-  cmDeallocColorsController(app->colorsManager);
+  cpDeallocColorsController(app->colorsManager);
   cmlReleaseColorMachine(app->sm);
   cmlReleaseColorMachine(app->cm);
 
@@ -60,58 +60,58 @@ void cmShutdownColorPromptApplication(){
 
 
 
-CMLColorMachine* cmGetCurrentColorMachine(){
+CMLColorMachine* cpGetCurrentColorMachine(){
   return app->cm;
 }
 
-void cmResetColorMachine(){
+void cpResetColorMachine(){
   cmlReleaseColorMachine(app->cm);
   app->cm = cmlCreateColorMachine();
 }
 
-CMLColorMachine* cmGetCurrentScreenMachine(){
+CMLColorMachine* cpGetCurrentScreenMachine(){
   return app->sm;
 }
 
-CPColorsManager* cmGetColorsManager(){
+CPColorsManager* cpGetColorsManager(){
   return app->colorsManager;
 }
 
-void cmUpdateMetamerics(){
-  cmUpdateMetamericsController(app->metamericsController);
+void cpUpdateMetamerics(){
+  cpUpdateMetamericsController(app->metamericsController);
 }
-void cmShowMetamerics(){
-  cmShowMetamericsController(app->metamericsController);
+void cpShowMetamerics(){
+  cpShowMetamericsController(app->metamericsController);
 }
-void cmShowThreeDee(){
-  cmShowThreeDeeController(app->threeDeeController);
-}
-
-void cmUpdateColor(){
-  cmUpdateMetamerics();
-  cmUpdateThreeDeeController(app->threeDeeController);
-}
-void cmUpdateMachine(){
-  cmUpdateMachineWindowController(app->machineWindowController);
-  cmUpdateMetamerics();
-  cmUpdateThreeDeeController(app->threeDeeController);
+void cpShowThreeDee(){
+  cpShowThreeDeeController(app->threeDeeController);
 }
 
-
-
-void cmSetCurrentColorController(const CPColorController* con){
-  cmSetColorsManagerCurrentColorController(cmGetColorsManager(), con);
-  cmUpdateMachine();
+void cpUpdateColor(){
+  cpUpdateMetamerics();
+  cpUpdateThreeDeeController(app->threeDeeController);
+}
+void cpUpdateMachine(){
+  cpUpdateMachineWindowController(app->machineWindowController);
+  cpUpdateMetamerics();
+  cpUpdateThreeDeeController(app->threeDeeController);
 }
 
-const CPColorController* cmGetCurrentColorController(){
-  return cmGetColorsManagerCurrentColorController(cmGetColorsManager());
+
+
+void cpSetCurrentColorController(const CPColorController* con){
+  cpSetColorsManagerCurrentColorController(cpGetColorsManager(), con);
+  cpUpdateMachine();
 }
 
-const float* cmGetCurrentColorData(){
-  return cmGetColorsManagerCurrentColorData(cmGetColorsManager());
+const CPColorController* cpGetCurrentColorController(){
+  return cpGetColorsManagerCurrentColorController(cpGetColorsManager());
 }
 
-CMLColorType cmGetCurrentColorType(){
-  return cmGetColorsManagerCurrentColorType(cmGetColorsManager());
+const float* cpGetCurrentColorData(){
+  return cpGetColorsManagerCurrentColorData(cpGetColorsManager());
+}
+
+CMLColorType cpGetCurrentColorType(){
+  return cpGetColorsManagerCurrentColorType(cpGetColorsManager());
 }

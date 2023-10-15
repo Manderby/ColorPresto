@@ -27,14 +27,14 @@ struct CPMachineLabController{
 
 NABool cmSelectLabColorSpace(NAReaction reaction){
   CPMachineLabController* con = (CPMachineLabController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t index = naGetPopupButtonItemIndex(con->labColorSpacePopupButton, reaction.uiElement);
   CMLLabColorSpaceType labColorSpaceType = (CMLLabColorSpaceType)index;
   if(labColorSpaceType >= CML_LAB_CUSTOM_L){++labColorSpaceType;}
   cmlSetLabColorSpace(cm, labColorSpaceType);
   
-  cmUpdateMachine();
+  cpUpdateMachine();
 
   return NA_TRUE;
 }
@@ -43,7 +43,7 @@ NABool cmSelectLabColorSpace(NAReaction reaction){
 
 NABool cmSetLabValue(NAReaction reaction){
   CPMachineLabController* con = (CPMachineLabController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   float K;
   float ke;
@@ -60,7 +60,7 @@ NABool cmSetLabValue(NAReaction reaction){
   }
   cmlSetAdamsChromaticityValenceParameters(cm, K, ke);
   
-  cmUpdateMachine();
+  cpUpdateMachine();
 
   return NA_TRUE;
 }
@@ -73,7 +73,7 @@ CPMachineLabController* cmAllocMachineLabController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->labColorSpaceLabel = naNewLabel(cmTranslate(CMLabColorSpaceTitle), machineLabelWidth);
+  con->labColorSpaceLabel = naNewLabel(cpTranslate(CPLabColorSpaceTitle), machineLabelWidth);
   con->labColorSpacePopupButton = naNewPopupButton(200);
   for(size_t i = 0; i < CML_LAB_COUNT; ++i){
     CMLLabColorSpaceType labColorSpaceType = (CMLLabColorSpaceType)i;
@@ -83,31 +83,31 @@ CPMachineLabController* cmAllocMachineLabController(void){
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectLabColorSpace, con);
   }
 
-  con->valueKTitleLabel = naNewLabel(cmTranslate(CMLabColorSpaceK), machineLabelWidth);
-  con->valueKTextField = cmNewValueTextField(cmSetLabValue, con);
+  con->valueKTitleLabel = naNewLabel(cpTranslate(CPLabColorSpaceK), machineLabelWidth);
+  con->valueKTextField = cpNewValueTextField(cmSetLabValue, con);
   con->valueKSlider = naNewSlider(60);
   naSetSliderRange(con->valueKSlider, 1., 2., 0);
   naAddUIReaction(con->valueKSlider, NA_UI_COMMAND_EDITED, cmSetLabValue, con);
   
-  con->valuekeTitleLabel = naNewLabel(cmTranslate(CMLabColorSpaceke), machineLabelWidth);
-  con->valuekeTextField = cmNewValueTextField(cmSetLabValue, con);
+  con->valuekeTitleLabel = naNewLabel(cpTranslate(CPLabColorSpaceke), machineLabelWidth);
+  con->valuekeTextField = cpNewValueTextField(cmSetLabValue, con);
   con->valuekeSlider = naNewSlider(60);
   naSetSliderRange(con->valuekeSlider, .1, 1., 0);
   naAddUIReaction(con->valuekeSlider, NA_UI_COMMAND_EDITED, cmSetLabValue, con);
 
   // layout
-  cmBeginUILayout(con->space, spaceBezel);
-  cmAddUIRow(con->labColorSpaceLabel, uiElemHeight);
-  cmAddUICol(con->labColorSpacePopupButton, marginH);
+  cpBeginUILayout(con->space, spaceBezel);
+  cpAddUIRow(con->labColorSpaceLabel, uiElemHeight);
+  cpAddUICol(con->labColorSpacePopupButton, marginH);
 
-  cmAddUIRow(con->valueKTitleLabel, uiElemHeight);
-  cmAddUICol(con->valueKTextField, marginH);
-  cmAddUICol(con->valueKSlider, marginH);
+  cpAddUIRow(con->valueKTitleLabel, uiElemHeight);
+  cpAddUICol(con->valueKTextField, marginH);
+  cpAddUICol(con->valueKSlider, marginH);
 
-  cmAddUIRow(con->valuekeTitleLabel, uiElemHeight);
-  cmAddUICol(con->valuekeTextField, marginH);
-  cmAddUICol(con->valuekeSlider, marginH);
-  cmEndUILayout();
+  cpAddUIRow(con->valuekeTitleLabel, uiElemHeight);
+  cpAddUICol(con->valuekeTextField, marginH);
+  cpAddUICol(con->valuekeSlider, marginH);
+  cpEndUILayout();
 
   return con;
 }
@@ -126,8 +126,8 @@ NASpace* cmGetMachineLabControllerUIElement(CPMachineLabController* con){
 
 
 
-void cmUpdateMachineLabController(CPMachineLabController* con){
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+void cpUpdateMachineLabController(CPMachineLabController* con){
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLLabColorSpaceType labColorSpace = cmlGetLabColorSpace(cm);
 

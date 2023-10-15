@@ -3,24 +3,24 @@
 #include "mainC.h"
 
 
-CM_PROTOTYPE(CPColorController);
-CM_PROTOTYPE(CPColorsManager);
+CP_PROTOTYPE(CPColorController);
+CP_PROTOTYPE(CPColorsManager);
 
 typedef struct CPColorsManager CPColorsManager;
 
-CPColorsManager* cmAllocColorsController(void);
-void cmDeallocColorsController(CPColorsManager* colorsManager);
+CPColorsManager* cpAllocColorsController(void);
+void cpDeallocColorsController(CPColorsManager* colorsManager);
 
-const float* cmGetColorsManagerCurrentColorData(
+const float* cpGetColorsManagerCurrentColorData(
   const CPColorsManager* colorsManager);
 
-CMLColorType cmGetColorsManagerCurrentColorType(
+CMLColorType cpGetColorsManagerCurrentColorType(
   const CPColorsManager* colorsManager);
 
-void cmSetColorsManagerCurrentColorController(
+void cpSetColorsManagerCurrentColorController(
   CPColorsManager* colorsManager,
   const CPColorController* con);
 
-const CPColorController* cmGetColorsManagerCurrentColorController(
+const CPColorController* cpGetColorsManagerCurrentColorController(
   CPColorsManager* colorsManager);
 

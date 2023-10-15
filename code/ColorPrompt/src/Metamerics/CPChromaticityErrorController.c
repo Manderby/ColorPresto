@@ -25,16 +25,16 @@ CPChromaticityErrorController* cmAllocChromaticityErrorController(void){
 
   con->space = naNewSpace(naMakeSize(1, 1));
 
-  con->title = cmNewTitleLabel(cmTranslate(CMChromaticityErrorTitle), 160.);
-  con->chromaticityErrorLabel = cmNewValueLabel();
+  con->title = cpNewTitleLabel(cpTranslate(CPChromaticityErrorTitle), 160.);
+  con->chromaticityErrorLabel = cpNewValueLabel();
 
-  cmBeginUILayout(
+  cpBeginUILayout(
     con->space,
     naMakeBezel4(spaceMarginRight, spaceMarginTop, spaceMarginDegreeLeft, spaceMarginBottom));
-  cmAddUIRow(con->title, uiElemHeight);
-  cmAddUICol(con->chromaticityErrorLabel, marginH);
+  cpAddUIRow(con->title, uiElemHeight);
+  cpAddUICol(con->chromaticityErrorLabel, marginH);
   
-  cmEndUILayout();
+  cpEndUILayout();
 
   return con;
 }

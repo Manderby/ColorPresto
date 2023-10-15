@@ -50,7 +50,7 @@ void preStartup(void* arg){
   mandInitManderAppTranslations();
   initTranslations();
 
-  cmStartupColorPromptApplication();
+  cpStartupColorPromptApplication();
 }
 
 
@@ -61,11 +61,11 @@ void postStartup(void* arg){
   // ManderApp
   mandCreateAboutController();
   mandSetAboutDescriptionAndHelpURL(
-    cmTranslate(CMApplicationDescription),
-    cmTranslate(CMApplicationHelpURL));
+    cpTranslate(CPApplicationDescription),
+    cpTranslate(CPApplicationHelpURL));
 
   // Color Machine
-  cmStartupColorPromptApplicationUI();
+  cpStartupColorPromptApplicationUI();
 }
 
 
@@ -73,7 +73,7 @@ void postStartup(void* arg){
 
 #if NA_OS == NA_OS_WINDOWS
 
-double cmGetUIScaleFactorForWindow(void* nativeWindowPtr){
+double cpGetUIScaleFactorForWindow(void* nativeWindowPtr){
   return 1.;
 }
 

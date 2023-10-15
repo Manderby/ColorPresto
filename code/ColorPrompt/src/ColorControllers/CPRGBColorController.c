@@ -43,7 +43,7 @@ struct CPRGBColorController{
 
 NABool cmRGBValueEdited(NAReaction reaction){
   CPRGBColorController* con = (CPRGBColorController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   if(reaction.uiElement == con->textFieldR){
     con->rgbColor[0] = (float)naGetTextFieldDouble(con->textFieldR);
@@ -70,8 +70,8 @@ NABool cmRGBValueEdited(NAReaction reaction){
     naDelete(string);
   }
   
-  cmSetCurrentColorController(&(con->baseController));
-  cmUpdateColor();
+  cpSetCurrentColorController(&(con->baseController));
+  cpUpdateColor();
   
   return NA_TRUE;
 }
@@ -85,19 +85,19 @@ CPRGBColorController* cmAllocRGBColorController(void){
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 1);
   
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
-  con->labelR = cmNewColorComponentLabel(cmTranslate(CMRGBColorChannelR));
-  con->labelG = cmNewColorComponentLabel(cmTranslate(CMRGBColorChannelG));
-  con->labelB = cmNewColorComponentLabel(cmTranslate(CMRGBColorChannelB));
-  con->textFieldR = cmNewValueTextField(cmRGBValueEdited, con);
-  con->textFieldG = cmNewValueTextField(cmRGBValueEdited, con);
-  con->textFieldB = cmNewValueTextField(cmRGBValueEdited, con);
+  con->labelR = cpNewColorComponentLabel(cpTranslate(CPRGBColorChannelR));
+  con->labelG = cpNewColorComponentLabel(cpTranslate(CPRGBColorChannelG));
+  con->labelB = cpNewColorComponentLabel(cpTranslate(CPRGBColorChannelB));
+  con->textFieldR = cpNewValueTextField(cmRGBValueEdited, con);
+  con->textFieldG = cpNewValueTextField(cmRGBValueEdited, con);
+  con->textFieldB = cpNewValueTextField(cmRGBValueEdited, con);
   con->colorWell1DR = cmAllocColorWell1D(&(con->baseController), con->rgbColor, 0);
   con->colorWell1DG = cmAllocColorWell1D(&(con->baseController), con->rgbColor, 1);
   con->colorWell1DB = cmAllocColorWell1D(&(con->baseController), con->rgbColor, 2);
   
-  con->labelNum = cmNewColorComponentLabel(cmTranslate(CMRGBColorChannelNum));
-  con->textFieldHex = cmNewValueTextField(cmRGBValueEdited, con);
-  con->textFieldDec = cmNewBigValueTextField(cmRGBValueEdited, con);
+  con->labelNum = cpNewColorComponentLabel(cpTranslate(CPRGBColorChannelNum));
+  con->textFieldHex = cpNewValueTextField(cmRGBValueEdited, con);
+  con->textFieldDec = cpNewBigValueTextField(cmRGBValueEdited, con);
 
   naSetUIElementNextTabElement(con->textFieldR, con->textFieldG);
   naSetUIElementNextTabElement(con->textFieldG, con->textFieldB);
@@ -105,28 +105,28 @@ CPRGBColorController* cmAllocRGBColorController(void){
   naSetUIElementNextTabElement(con->textFieldHex, con->textFieldDec);
   naSetUIElementNextTabElement(con->textFieldDec, con->textFieldHex);
 
-  cmBeginUILayout(con->channelSpace, naMakeBezel4Zero());
-  cmAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + 10.)) / 2.)); // center the channels
-  cmAddUIRow(con->labelR, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldR, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DR), 10, colorWell1DOffset);
-  cmAddUIRow(con->labelG, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldG, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DG), 10, colorWell1DOffset);
-  cmAddUIRow(con->labelB, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldB, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DB), 10, colorWell1DOffset);
+  cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cpAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + 10.)) / 2.)); // center the channels
+  cpAddUIRow(con->labelR, colorValueCondensedRowHeight);
+  cpAddUICol(con->textFieldR, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DR), 10, colorWell1DOffset);
+  cpAddUIRow(con->labelG, colorValueCondensedRowHeight);
+  cpAddUICol(con->textFieldG, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DG), 10, colorWell1DOffset);
+  cpAddUIRow(con->labelB, colorValueCondensedRowHeight);
+  cpAddUICol(con->textFieldB, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DB), 10, colorWell1DOffset);
 
-  cmAddUIPos(0, 10);
-  cmAddUIRow(con->labelNum, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldHex, colorComponentMarginH);
-  cmAddUICol(con->textFieldDec, 10);
-  cmEndUILayout();
+  cpAddUIPos(0, 10);
+  cpAddUIRow(con->labelNum, colorValueCondensedRowHeight);
+  cpAddUICol(con->textFieldHex, colorComponentMarginH);
+  cpAddUICol(con->textFieldDec, 10);
+  cpEndUILayout();
 
-  cmBeginUILayout(con->baseController.space, colorWellBezel);
-  cmAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
-  cmAddUICol(con->channelSpace, colorWell2DRightMargin);
-  cmEndUILayout();
+  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
+  cpAddUICol(con->channelSpace, colorWell2DRightMargin);
+  cpEndUILayout();
   
   return con;
 }
@@ -157,15 +157,15 @@ void cmSetRGBColorControllerColorData(CPRGBColorController* con, const void* dat
 
 
 void cmUpdateRGBColorController(CPRGBColorController* con){
-  cmUpdateColorController(&(con->baseController));
+  cpUpdateColorController(&(con->baseController));
   
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorType currentColorType = cmGetCurrentColorType();
-  const float* currentColorData = cmGetCurrentColorData();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorType currentColorType = cpGetCurrentColorType();
+  const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_RGB, currentColorType);
   converter(cm, con->rgbColor, currentColorData, 1);
   
-  cmUpdateColorWell2D(con->colorWell2D);
+  cpUpdateColorWell2D(con->colorWell2D);
   
   naSetTextFieldText(
     con->textFieldR,
@@ -189,7 +189,7 @@ void cmUpdateRGBColorController(CPRGBColorController* con){
     con->textFieldDec,
     naAllocSprintf(NA_TRUE, "%d, %d, %d", (int)rgbbuf[0], (int)rgbbuf[1], (int)rgbbuf[2]));
 
-  cmUpdateColorWell1D(con->colorWell1DR);
-  cmUpdateColorWell1D(con->colorWell1DG);
-  cmUpdateColorWell1D(con->colorWell1DB);
+  cpUpdateColorWell1D(con->colorWell1DR);
+  cpUpdateColorWell1D(con->colorWell1DG);
+  cpUpdateColorWell1D(con->colorWell1DB);
 }

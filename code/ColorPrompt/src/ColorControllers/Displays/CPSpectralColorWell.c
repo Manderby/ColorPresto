@@ -24,7 +24,7 @@ NABool cmDragSpectralColorWell(NAReaction reaction){
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
   if(mouseStatus->leftPressed){
     CPSpectralColorWell* well = (CPSpectralColorWell*)reaction.controller;
-    CMLColorMachine* cm = cmGetCurrentColorMachine();
+    CMLColorMachine* cm = cpGetCurrentColorMachine();
 
     NARect spaceRect = naGetUIElementRectAbsolute(well->openGLSpace);
     double mouseX = (mouseStatus->pos.x - spaceRect.pos.x) / spaceRect.size.width;
@@ -37,8 +37,8 @@ NABool cmDragSpectralColorWell(NAReaction reaction){
     CMLFunction* illumDirac = cmlCreateFunctionMulScalar(dirac, cmlInverse(cmlGetRadiometricScale(cm)));
 
     cmSetColorControllerColorData(well->colorController, illumDirac);
-    cmSetCurrentColorController(well->colorController);
-    cmUpdateColor();
+    cpSetCurrentColorController(well->colorController);
+    cpUpdateColor();
 
     cmlReleaseFunction(dirac);
     cmlReleaseFunction(illumDirac);
@@ -64,8 +64,8 @@ void cmInitSpectralColorWell(void* data){
   glTexParameteri(GL_TEXTURE_1D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
   // Draw the background;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorMachine* sm = cmGetCurrentScreenMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
   float rgbInputValues[spectralWellSize * 3] = {0};
   for(size_t x = 0; x < spectralWellSize; ++x){
@@ -97,8 +97,8 @@ void cmInitSpectralColorWell(void* data){
 
 NABool cmDrawSpectralColorWell(NAReaction reaction){
   CPSpectralColorWell* well = (CPSpectralColorWell*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-//  CMLColorMachine* sm = cmGetCurrentScreenMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+//  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
   double uiScale = naGetUIElementResolutionFactor(well->openGLSpace);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
@@ -208,8 +208,8 @@ NABool cmDrawSpectralColorWell(NAReaction reaction){
   }
 
   // Draw the color
-  if(cmGetColorControllerColorType(well->colorController) == CML_COLOR_SPECTRUM_ILLUMINATION){
-    const CMLFunction* colorSpectrum = (const CMLFunction*)cmGetColorControllerColorData(well->colorController);
+  if(cpGetColorControllerColorType(well->colorController) == CML_COLOR_SPECTRUM_ILLUMINATION){
+    const CMLFunction* colorSpectrum = (const CMLFunction*)cpGetColorControllerColorData(well->colorController);
     if(colorSpectrum){
       float colorMax = cmlGetFunctionMaxValue(colorSpectrum, &integration);
       glColor4f(1.f, 1.f, .5f, 1.f);

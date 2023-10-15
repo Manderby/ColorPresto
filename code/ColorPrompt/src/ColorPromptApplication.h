@@ -2,12 +2,12 @@
 #include "mainC.h"
 #import <Cocoa/Cocoa.h>
 
-CM_PROTOTYPE(CPColorPromptApplication);
-CM_PROTOTYPE(CPColorsManager);
-CM_PROTOTYPE(CMHSLColorController);
-CM_PROTOTYPE(CPMachineWindowController);
-CM_PROTOTYPE(CPMetamericsController);
-CM_PROTOTYPE(CPThreeDeeController);
+CP_PROTOTYPE(CPColorPromptApplication);
+CP_PROTOTYPE(CPColorsManager);
+CP_PROTOTYPE(CPHSLColorController);
+CP_PROTOTYPE(CPMachineWindowController);
+CP_PROTOTYPE(CPMetamericsController);
+CP_PROTOTYPE(CPThreeDeeController);
 
 
 

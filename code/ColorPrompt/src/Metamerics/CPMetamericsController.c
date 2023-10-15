@@ -20,7 +20,7 @@
 #include "NAApp.h"
 
 
-#define CM_METAMERICS_WINDOW_STORAGE_TAG 2
+#define CP_METAMERICS_WINDOW_STORAGE_TAG 2
 
 
 struct CPMetamericsController{
@@ -40,7 +40,7 @@ struct CPMetamericsController{
 
 
 
-CPMetamericsController* cmAllocMetamericsController(void){
+CPMetamericsController* cpAllocMetamericsController(void){
   CPMetamericsController* con = naAlloc(CPMetamericsController);
 
   con->chromaticityErrorController = cmAllocChromaticityErrorController();
@@ -58,10 +58,10 @@ CPMetamericsController* cmAllocMetamericsController(void){
   NASpace* totalMetamericIndexSpace = cmGetTotalMetamericIndexUIElement(con->totalMetamericIndexController);
 
   con->window = naNewWindow(
-    cmTranslate(CPWhitePointsAndMetamerics),
+    cpTranslate(CPWhitePointsAndMetamerics),
     naMakeRectS(400, 500, 1, 1),
     0,
-    CM_METAMERICS_WINDOW_STORAGE_TAG);
+    CP_METAMERICS_WINDOW_STORAGE_TAG);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 //  NABabyColor babyBackground = {
 //    naLinearizeColorValue(.25),
@@ -83,33 +83,33 @@ CPMetamericsController* cmAllocMetamericsController(void){
 
   // Placing elements in the window
 
-  cmBeginUILayout(con->column1Space, naMakeBezel4Zero());
-  cmAddUIRow(whitePointsSpace, 0);
-  cmAddUIRow(chromaticityErrorSpace, 0);
-  cmEndUILayout();
+  cpBeginUILayout(con->column1Space, naMakeBezel4Zero());
+  cpAddUIRow(whitePointsSpace, 0);
+  cpAddUIRow(chromaticityErrorSpace, 0);
+  cpEndUILayout();
 
-  cmBeginUILayout(con->column2Space, naMakeBezel4Zero());
-  cmAddUIRow(colorRenderingIndexSpace, 0);
-  cmEndUILayout();
+  cpBeginUILayout(con->column2Space, naMakeBezel4Zero());
+  cpAddUIRow(colorRenderingIndexSpace, 0);
+  cpEndUILayout();
 
-  cmBeginUILayout(con->column3Space, naMakeBezel4Zero());
-  cmAddUIRow(visMetamericIndexSpace, 0);
-  cmAddUIRow(uvMetamericIndexSpace, 0);
-  cmAddUIRow(totalMetamericIndexSpace, 0);
-  cmEndUILayout();
+  cpBeginUILayout(con->column3Space, naMakeBezel4Zero());
+  cpAddUIRow(visMetamericIndexSpace, 0);
+  cpAddUIRow(uvMetamericIndexSpace, 0);
+  cpAddUIRow(totalMetamericIndexSpace, 0);
+  cpEndUILayout();
 
-  cmBeginUILayout(contentSpace, naMakeBezel4Zero());
-  cmAddUICol(con->column1Space, 0);
-  cmAddUICol(con->column2Space, 0);
-  cmAddUICol(con->column3Space, 0);
-  cmEndUILayout();
+  cpBeginUILayout(contentSpace, naMakeBezel4Zero());
+  cpAddUICol(con->column1Space, 0);
+  cpAddUICol(con->column2Space, 0);
+  cpAddUICol(con->column3Space, 0);
+  cpEndUILayout();
 
   return con;
 }
 
 
 
-void cmDeallocMetamericsController(CPMetamericsController* con){
+void cpDeallocMetamericsController(CPMetamericsController* con){
   cmDeallocChromaticityErrorController(con->chromaticityErrorController);
   cmDeallocWhitePointsController(con->whitePointsController);
   cmDeallocColorRenderingIndexController(con->colorRenderingIndexController);
@@ -122,21 +122,21 @@ void cmDeallocMetamericsController(CPMetamericsController* con){
 
 
 
-void cmShowMetamericsController(CPMetamericsController* con){
+void cpShowMetamericsController(CPMetamericsController* con){
   naShowWindow(con->window);
 }
 
 
 
-void cmUpdateMetamericsController(CPMetamericsController* con){
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+void cpUpdateMetamericsController(CPMetamericsController* con){
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLFunction* observer10Funcs[3];
   cmlCreateSpecDistFunctions(observer10Funcs, CML_DEFAULT_10DEG_OBSERVER);
   CMLFunction* observer2Funcs[3];
   cmlCreateSpecDistFunctions(observer2Funcs, CML_DEFAULT_2DEG_OBSERVER);
   const CMLFunction* illuminationSpec = cmlGetIlluminationSpectrum(cm);
-  CMReferenceIlluminationType referenceIlluminationType = cmGetReferenceIlluminationType(con->whitePointsController);
+  CPReferenceIlluminationType referenceIlluminationType = cmGetReferenceIlluminationType(con->whitePointsController);
 
   const CMLFunction* ref;
   switch(referenceIlluminationType){
@@ -154,7 +154,7 @@ void cmUpdateMetamericsController(CPMetamericsController* con){
     break;
   default:
     #if NA_DEBUG
-      cmError("This shoud not happen.");
+      cpError("This shoud not happen.");
     #endif
     ref = cmlCreateIlluminationSpectrum(CML_ILLUMINATION_D50, 0.f);
   }
@@ -194,7 +194,7 @@ void cmUpdateMetamericsController(CPMetamericsController* con){
     &refWhitePoint10,
     &illWhitePoint10);
     
-  cmUpdateColorRenderingIndexController(
+  cpUpdateColorRenderingIndexController(
     con->colorRenderingIndexController,
     observer2Funcs,
     &illWhitePoint2,

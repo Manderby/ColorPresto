@@ -1,7 +1,7 @@
 
 #include "CPPreferences.h"
 
-const char* cmPrefs[CMPrefCount] = {
+const char* cpPrefs[CPPrefCount] = {
   "HSVHSLSelect",
   "LuvUVWSelect",
   "LabLchSelect",

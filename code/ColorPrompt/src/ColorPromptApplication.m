@@ -19,14 +19,14 @@
 
 - (void)applicationDidChangeScreenParameters:(NSNotification *)aNotification{
   // theoretically, needs recomputation of the screen machine. todo.
-  cmUpdateMachine();
+  cpUpdateMachine();
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification{  
 }
 
 - (void)applicationWillTerminate:(NSApplication *)sender{
-  cmShutdownColorPromptApplication();
+  cpShutdownColorPromptApplication();
   naDelete(naGetApplication());
   naStopApplication();
   naStopRuntime();
@@ -40,12 +40,12 @@
 
 - (IBAction)showHelp:(NSMenuItem*)sender{
   NA_UNUSED(sender);
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:cmTranslate(CMApplicationHelpURL)]]];
+  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:cpTranslate(CPApplicationHelpURL)]]];
 }
 
 
 
-double cmGetUIScaleFactorForWindow(void* nativeWindowPtr){
+double cpGetUIScaleFactorForWindow(void* nativeWindowPtr){
   return [ColorPromptApplication getUIScaleFactorForWindow: (NA_COCOA_BRIDGE NSWindow*)nativeWindowPtr];
 }
 

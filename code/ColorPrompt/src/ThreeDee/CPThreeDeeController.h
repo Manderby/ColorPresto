@@ -44,13 +44,13 @@ typedef enum{
 
 typedef struct CPThreeDeeController CPThreeDeeController;
 
-CPThreeDeeController* cmAllocThreeDeeController(void);
-void cmDeallocThreeDeeController(CPThreeDeeController* con);
+CPThreeDeeController* cpAllocThreeDeeController(void);
+void cpDeallocThreeDeeController(CPThreeDeeController* con);
 
 void cmRefreshThreeDeeDisplay(CPThreeDeeController* con);
 
-void cmShowThreeDeeController(CPThreeDeeController* con);
-void cmUpdateThreeDeeController(CPThreeDeeController* con);
+void cpShowThreeDeeController(CPThreeDeeController* con);
+void cpUpdateThreeDeeController(CPThreeDeeController* con);
 
 
 

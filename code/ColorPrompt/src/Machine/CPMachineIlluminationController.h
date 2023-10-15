@@ -1,7 +1,7 @@
 
 #include "../mainC.h"
 
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(NASpace);
 
 
 
@@ -12,4 +12,4 @@ void cmDeallocMachineIlluminationController(CPMachineIlluminationController* con
 
 NASpace* cmGetMachineIlluminationControllerUIElement(CPMachineIlluminationController* con);
 
-void cmUpdateMachineIlluminationController(CPMachineIlluminationController* con);
+void cpUpdateMachineIlluminationController(CPMachineIlluminationController* con);

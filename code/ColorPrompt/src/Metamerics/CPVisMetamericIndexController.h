@@ -4,8 +4,8 @@
 
 #include "../mainC.h"
 
-CM_PROTOTYPE(CPWhitePoints);
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(CPWhitePoints);
+CP_PROTOTYPE(NASpace);
 
 
 
@@ -26,5 +26,5 @@ void cmUpdateVisMetamericIndexController(
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,
   const CMLMat33 adaptationMatrix,
-  CMReferenceIlluminationType referenceIlluminationType,
+  CPReferenceIlluminationType referenceIlluminationType,
   NABool valid);

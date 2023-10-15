@@ -20,13 +20,13 @@ struct CPMachineGrayController{
 
 NABool cmSelectGrayColorSpace(NAReaction reaction){
   CPMachineGrayController* con = (CPMachineGrayController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t index = naGetPopupButtonItemIndex(con->grayColorSpacePopupButton, reaction.uiElement);
   CMLGrayComputationType grayComputationType = (CMLGrayComputationType)index;
   cmlSetGrayComputationType(cm, grayComputationType);
   
-  cmUpdateMachine();
+  cpUpdateMachine();
 
   return NA_TRUE;
 }
@@ -39,7 +39,7 @@ CPMachineGrayController* cmAllocMachineGrayController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->grayColorSpaceLabel = naNewLabel(cmTranslate(CMGrayColorSpace), machineLabelWidth);
+  con->grayColorSpaceLabel = naNewLabel(cpTranslate(CPGrayColorSpace), machineLabelWidth);
   con->grayColorSpacePopupButton = naNewPopupButton(200);
   for(size_t i = 0; i < CML_GRAY_COUNT; ++i){
     CMLGrayComputationType grayComputationType = (CMLGrayComputationType)i;
@@ -49,10 +49,10 @@ CPMachineGrayController* cmAllocMachineGrayController(void){
   }
 
   // layout
-  cmBeginUILayout(con->space, spaceBezel);
-  cmAddUIRow(con->grayColorSpaceLabel, uiElemHeight);
-  cmAddUICol(con->grayColorSpacePopupButton, marginH);
-  cmEndUILayout();
+  cpBeginUILayout(con->space, spaceBezel);
+  cpAddUIRow(con->grayColorSpaceLabel, uiElemHeight);
+  cpAddUICol(con->grayColorSpacePopupButton, marginH);
+  cpEndUILayout();
 
   return con;
 }
@@ -71,8 +71,8 @@ NASpace* cmGetMachineGrayControllerUIElement(CPMachineGrayController* con){
 
 
 
-void cmUpdateMachineGrayController(CPMachineGrayController* con){
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+void cpUpdateMachineGrayController(CPMachineGrayController* con){
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLGrayComputationType grayComputationType = cmlGetGrayComputationType(cm);
   naSetPopupButtonIndexSelected(con->grayColorSpacePopupButton, grayComputationType);

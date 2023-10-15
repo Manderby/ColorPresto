@@ -37,7 +37,7 @@ NABool cmRedrawTwoColorController(NAReaction reaction){
   glVertex2d(+1., +1.);
   glEnd();
 
-  cmDrawBorder();
+  cpDrawBorder();
   
   naSwapOpenGLSpaceBuffer(con->space);
   

@@ -40,7 +40,7 @@ NABool cmPressOptionsButton(NAReaction reaction){
     con->showAxis = naGetCheckBoxState(con->axisCheckBox);
   }
 
-  cmUpdateThreeDeeController(con->parent);
+  cpUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
@@ -57,7 +57,7 @@ NABool cmChangeOptionsSlider(NAReaction reaction){
     if(con->fovy < 15.f){con->fovy = 0.f;}
   }
   
-  cmUpdateThreeDeeController(con->parent);
+  cpUpdateThreeDeeController(con->parent);
 
   return TRUE;
 }
@@ -72,40 +72,40 @@ CPThreeDeeOptionsController* cmAllocThreeDeeOptionsController(CPThreeDeeControll
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->axisLabel = naNewLabel(cmTranslate(CMAxis), threeDeeLabelWidth);
+  con->axisLabel = naNewLabel(cpTranslate(CPAxis), threeDeeLabelWidth);
   con->axisCheckBox = naNewCheckBox("", 30);
   naAddUIReaction(con->axisCheckBox, NA_UI_COMMAND_PRESSED, cmPressOptionsButton, con);
 
-  con->spectrumLabel = naNewLabel(cmTranslate(CMSpectrum), threeDeeLabelWidth);
+  con->spectrumLabel = naNewLabel(cpTranslate(CPSpectrum), threeDeeLabelWidth);
   con->spectrumCheckBox = naNewCheckBox("", 30);
   naAddUIReaction(con->spectrumCheckBox, NA_UI_COMMAND_PRESSED, cmPressOptionsButton, con);
 
-  con->backgroundLabel = naNewLabel(cmTranslate(CMBackground), threeDeeLabelWidth);
+  con->backgroundLabel = naNewLabel(cpTranslate(CPBackground), threeDeeLabelWidth);
   con->backgroundSlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->backgroundSlider, 0., 1., 0);
   naAddUIReaction(con->backgroundSlider, NA_UI_COMMAND_EDITED, cmChangeOptionsSlider, con);
 
-  con->fovyLabel = naNewLabel(cmTranslate(CMFovy), threeDeeLabelWidth);
+  con->fovyLabel = naNewLabel(cpTranslate(CPFovy), threeDeeLabelWidth);
   con->fovySlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->fovySlider, 90., 0., 0);
   naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cmChangeOptionsSlider, con);
 
   // layout
-  cmBeginUILayout(con->space, threeDeeBezel);
+  cpBeginUILayout(con->space, threeDeeBezel);
   
-  cmAddUIRow(con->axisLabel, uiElemHeight);
-  cmAddUICol(con->axisCheckBox, marginH);
+  cpAddUIRow(con->axisLabel, uiElemHeight);
+  cpAddUICol(con->axisCheckBox, marginH);
 
-  cmAddUIRow(con->spectrumLabel, uiElemHeight);
-  cmAddUICol(con->spectrumCheckBox, marginH);
+  cpAddUIRow(con->spectrumLabel, uiElemHeight);
+  cpAddUICol(con->spectrumCheckBox, marginH);
 
-  cmAddUIRow(con->backgroundLabel, uiElemHeight);
-  cmAddUICol(con->backgroundSlider, marginH);
+  cpAddUIRow(con->backgroundLabel, uiElemHeight);
+  cpAddUICol(con->backgroundSlider, marginH);
 
-  cmAddUIRow(con->fovyLabel, uiElemHeight);
-  cmAddUICol(con->fovySlider, marginH);
+  cpAddUIRow(con->fovyLabel, uiElemHeight);
+  cpAddUICol(con->fovySlider, marginH);
 
-  cmEndUILayout();
+  cpEndUILayout();
 
   // initial values
   con->showSpectrum = NA_FALSE;

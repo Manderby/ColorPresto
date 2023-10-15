@@ -1,8 +1,8 @@
 
 #include "../mainC.h"
 
-CM_PROTOTYPE(CPWhitePoints);
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(CPWhitePoints);
+CP_PROTOTYPE(NASpace);
 
 
 
@@ -17,7 +17,7 @@ void cmDeallocColorRenderingIndexController(CPColorRenderingIndexController* con
 
 NASpace* cmGetColorRenderingIndexUIElement(CPColorRenderingIndexController* con);
 
-void cmUpdateColorRenderingIndexController(
+void cpUpdateColorRenderingIndexController(
   CPColorRenderingIndexController* con,
   CMLFunction* observer2Funcs[3],
   const CPWhitePoints* illWhitePoint2,

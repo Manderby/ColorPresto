@@ -48,7 +48,7 @@ CMLColorType cmGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
   case COLOR_SPACE_Yxy:   retValue = CML_COLOR_Yxy; break;
   default:
     #if NA_DEBUG
-      cmError("Unknown colorspace.");
+      cpError("Unknown colorspace.");
     #endif
     break;
   }
@@ -60,28 +60,28 @@ CMLColorType cmGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
 const NAUTF8Char* cmGetCoordSysName(CoordSysType coordSysType){
   const NAUTF8Char* retValue = "";
   switch(coordSysType){
-  case COORD_SYS_HSL: retValue = cmTranslate(CMColorSpaceHSL); break;
-  case COORD_SYS_HSL_CARTESIAN: retValue = cmTranslate(CMColorSpaceHSL); break;
-  case COORD_SYS_HSV: retValue = cmTranslate(CMColorSpaceHSV); break;
-  case COORD_SYS_HSV_CARTESIAN: retValue = cmTranslate(CMColorSpaceHSV); break;
-  case COORD_SYS_Lab: retValue = cmTranslate(CMColorSpaceLab); break;
-  case COORD_SYS_Lch_CARTESIAN: retValue = cmTranslate(CMColorSpaceLch); break;
-  case COORD_SYS_Luv: retValue = cmTranslate(CMColorSpaceLuv); break;
-  case COORD_SYS_RGB: retValue = cmTranslate(CMColorSpaceRGB); break;
-  case COORD_SYS_UVW: retValue = cmTranslate(CMColorSpaceUVW); break;
-  case COORD_SYS_XYZ: retValue = cmTranslate(CMColorSpaceXYZ); break;
-  case COORD_SYS_Ycbcr: retValue = cmTranslate(CMColorSpaceYCbCr); break;
-  case COORD_SYS_Ycd: retValue = cmTranslate(CMColorSpaceYcd); break;
-  case COORD_SYS_Yupvp: retValue = cmTranslate(CMColorSpaceYupvp); break;
-  case COORD_SYS_Yuv: retValue = cmTranslate(CMColorSpaceYuv); break;
-  case COORD_SYS_Yxy: retValue = cmTranslate(CMColorSpaceYxy); break;
+  case COORD_SYS_HSL: retValue = cpTranslate(CPColorSpaceHSL); break;
+  case COORD_SYS_HSL_CARTESIAN: retValue = cpTranslate(CPColorSpaceHSL); break;
+  case COORD_SYS_HSV: retValue = cpTranslate(CPColorSpaceHSV); break;
+  case COORD_SYS_HSV_CARTESIAN: retValue = cpTranslate(CPColorSpaceHSV); break;
+  case COORD_SYS_Lab: retValue = cpTranslate(CPColorSpaceLab); break;
+  case COORD_SYS_Lch_CARTESIAN: retValue = cpTranslate(CPColorSpaceLch); break;
+  case COORD_SYS_Luv: retValue = cpTranslate(CPColorSpaceLuv); break;
+  case COORD_SYS_RGB: retValue = cpTranslate(CPColorSpaceRGB); break;
+  case COORD_SYS_UVW: retValue = cpTranslate(CPColorSpaceUVW); break;
+  case COORD_SYS_XYZ: retValue = cpTranslate(CPColorSpaceXYZ); break;
+  case COORD_SYS_Ycbcr: retValue = cpTranslate(CPColorSpaceYCbCr); break;
+  case COORD_SYS_Ycd: retValue = cpTranslate(CPColorSpaceYcd); break;
+  case COORD_SYS_Yupvp: retValue = cpTranslate(CPColorSpaceYupvp); break;
+  case COORD_SYS_Yuv: retValue = cpTranslate(CPColorSpaceYuv); break;
+  case COORD_SYS_Yxy: retValue = cpTranslate(CPColorSpaceYxy); break;
   default: break;
   }
   if(coordSysType == COORD_SYS_Lch_CARTESIAN
   || coordSysType == COORD_SYS_HSV_CARTESIAN
   || coordSysType == COORD_SYS_HSL_CARTESIAN)
   {
-    retValue = naAllocSprintf(NA_TRUE, cmTranslate(CMCartesian), retValue);
+    retValue = naAllocSprintf(NA_TRUE, cpTranslate(CPCartesian), retValue);
   }
   return retValue;
 }
@@ -94,7 +94,7 @@ NABool cmSelectColorSpace(NAReaction reaction){
   size_t index = naGetPopupButtonItemIndex(con->colorSpacePopupButton, reaction.uiElement);
   con->colorSpaceType = (ColorSpaceType)index;
 
-  cmUpdateThreeDeeController(con->threeDeeController);
+  cpUpdateThreeDeeController(con->threeDeeController);
 
   return TRUE;
 }
@@ -107,7 +107,7 @@ NABool cmSelectCoordSys(NAReaction reaction){
   size_t index = naGetPopupButtonItemIndex(con->coordSysPopupButton, reaction.uiElement);
   con->coordSysType = (CoordSysType)index;
   
-  cmUpdateThreeDeeController(con->threeDeeController);
+  cpUpdateThreeDeeController(con->threeDeeController);
 
   return TRUE;
 }
@@ -121,7 +121,7 @@ NABool cmChangeCoordinateSlider(NAReaction reaction){
     con->steps3D = (NAInt)naGetSliderValue(con->stepsSlider);
   }
   
-  cmUpdateThreeDeeController(con->threeDeeController);
+  cpUpdateThreeDeeController(con->threeDeeController);
 
   return TRUE;
 }
@@ -136,7 +136,7 @@ CPThreeDeeCoordinateController* cmAllocThreeDeeCoordinateController(CPThreeDeeCo
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->colorSpaceLabel = naNewLabel(cmTranslate(CMColorSpace), threeDeeLabelWidth);
+  con->colorSpaceLabel = naNewLabel(cpTranslate(CPColorSpace), threeDeeLabelWidth);
   con->colorSpacePopupButton = naNewPopupButton(threeDeeControlWidth);
   for(size_t i = 0; i < COLOR_SPACE_COUNT; ++i){
     ColorSpaceType colorSpaceType = (ColorSpaceType)i;
@@ -145,7 +145,7 @@ CPThreeDeeCoordinateController* cmAllocThreeDeeCoordinateController(CPThreeDeeCo
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectColorSpace, con);
   }
 
-  con->coordSysLabel = naNewLabel(cmTranslate(CMCoordinates), threeDeeLabelWidth);
+  con->coordSysLabel = naNewLabel(cpTranslate(CPCoordinates), threeDeeLabelWidth);
   con->coordSysPopupButton = naNewPopupButton(threeDeeControlWidth);
   for(size_t i = 0; i < COORD_SYS_COUNT; ++i){
     NAMenuItem* item = naNewMenuItem(cmGetCoordSysName((CoordSysType)i));
@@ -153,24 +153,24 @@ CPThreeDeeCoordinateController* cmAllocThreeDeeCoordinateController(CPThreeDeeCo
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectCoordSys, con);
   }
 
-  con->stepsLabel = naNewLabel(cmTranslate(CMSteps), threeDeeLabelWidth);
+  con->stepsLabel = naNewLabel(cpTranslate(CPSteps), threeDeeLabelWidth);
   con->stepsSlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->stepsSlider, 2., 40., 0);
   naAddUIReaction(con->stepsSlider, NA_UI_COMMAND_EDITED, cmChangeCoordinateSlider, con);
 
   // layout
-  cmBeginUILayout(con->space, threeDeeBezel);
+  cpBeginUILayout(con->space, threeDeeBezel);
   
-  cmAddUIRow(con->colorSpaceLabel, uiElemHeight);
-  cmAddUICol(con->colorSpacePopupButton, marginH);
+  cpAddUIRow(con->colorSpaceLabel, uiElemHeight);
+  cpAddUICol(con->colorSpacePopupButton, marginH);
 
-  cmAddUIRow(con->coordSysLabel, uiElemHeight);
-  cmAddUICol(con->coordSysPopupButton, marginH);
+  cpAddUIRow(con->coordSysLabel, uiElemHeight);
+  cpAddUICol(con->coordSysPopupButton, marginH);
 
-  cmAddUIRow(con->stepsLabel, uiElemHeight);
-  cmAddUICol(con->stepsSlider, marginH);
+  cpAddUIRow(con->stepsLabel, uiElemHeight);
+  cpAddUICol(con->stepsSlider, marginH);
 
-  cmEndUILayout();
+  cpEndUILayout();
 
   // initial values
   con->colorSpaceType = COLOR_SPACE_RGB;

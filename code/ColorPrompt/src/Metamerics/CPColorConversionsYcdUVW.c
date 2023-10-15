@@ -16,9 +16,9 @@ void convertYcdtoadaptedYuv(float* yuv, const float* Ycd, const float* srcWhiteP
 }
 
 const NAUTF8Char* getGrade(float value){
-  if(value <= .25f){return cmTranslate(CMGradeA);}
-  else if(value <= .5f){return cmTranslate(CMGradeB);}
-  else if(value <= 1.f){return cmTranslate(CMGradeC);}
-  else if(value <= 2.f){return cmTranslate(CMGradeD);}
-  return cmTranslate(CMGradeE);
+  if(value <= .25f){return cpTranslate(CPGradeA);}
+  else if(value <= .5f){return cpTranslate(CPGradeB);}
+  else if(value <= 1.f){return cpTranslate(CPGradeC);}
+  else if(value <= 2.f){return cpTranslate(CPGradeD);}
+  return cpTranslate(CPGradeE);
 }

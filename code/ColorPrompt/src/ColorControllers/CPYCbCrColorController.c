@@ -42,8 +42,8 @@ NABool cmYCbCrValueEdited(NAReaction reaction){
     con->ycbcrColor[2] = (float)naGetTextFieldDouble(con->textFieldCr);
   }
   
-  cmSetCurrentColorController(&(con->baseController));
-  cmUpdateColor();
+  cpSetCurrentColorController(&(con->baseController));
+  cpUpdateColor();
   
   return NA_TRUE;
 }
@@ -58,12 +58,12 @@ CPYCbCrColorController* cmAllocYCbCrColorController(void){
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
 
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
-  con->labelY = cmNewColorComponentLabel(cmTranslate(CMYCbCrColorChannelY));
-  con->labelCb = cmNewColorComponentLabel(cmTranslate(CMYCbCrColorChannelCb));
-  con->labelCr = cmNewColorComponentLabel(cmTranslate(CMYCbCrColorChannelCr));
-  con->textFieldY = cmNewValueTextField(cmYCbCrValueEdited, con);
-  con->textFieldCb = cmNewValueTextField(cmYCbCrValueEdited, con);
-  con->textFieldCr = cmNewValueTextField(cmYCbCrValueEdited, con);
+  con->labelY = cpNewColorComponentLabel(cpTranslate(CPYCbCrColorChannelY));
+  con->labelCb = cpNewColorComponentLabel(cpTranslate(CPYCbCrColorChannelCb));
+  con->labelCr = cpNewColorComponentLabel(cpTranslate(CPYCbCrColorChannelCr));
+  con->textFieldY = cpNewValueTextField(cmYCbCrValueEdited, con);
+  con->textFieldCb = cpNewValueTextField(cmYCbCrValueEdited, con);
+  con->textFieldCr = cpNewValueTextField(cmYCbCrValueEdited, con);
   con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), con->ycbcrColor, 0);
   con->colorWell1DCb = cmAllocColorWell1D(&(con->baseController), con->ycbcrColor, 1);
   con->colorWell1DCr = cmAllocColorWell1D(&(con->baseController), con->ycbcrColor, 2);
@@ -72,24 +72,24 @@ CPYCbCrColorController* cmAllocYCbCrColorController(void){
   naSetUIElementNextTabElement(con->textFieldCb, con->textFieldCr);
   naSetUIElementNextTabElement(con->textFieldCr, con->textFieldY);
 
-  cmBeginUILayout(con->channelSpace, naMakeBezel4Zero());
-  cmAddUIPos(0, (int)((colorWell2DSize - (3 * 25.)) / 2.)); // center the channels
-  cmAddUIRow(con->labelY, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldY, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DY), 10, colorWell1DOffset);
-  cmAddUIRow(con->labelCb, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldCb, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DCb), 10, colorWell1DOffset);
-  cmAddUIRow(con->labelCr, colorValueCondensedRowHeight);
-  cmAddUICol(con->textFieldCr, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DCr), 10, colorWell1DOffset);
-  cmAddUIPos(0, colorValueCondensedRowHeight);
-  cmEndUILayout();
+  cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cpAddUIPos(0, (int)((colorWell2DSize - (3 * 25.)) / 2.)); // center the channels
+  cpAddUIRow(con->labelY, colorValueCondensedRowHeight);
+  cpAddUICol(con->textFieldY, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DY), 10, colorWell1DOffset);
+  cpAddUIRow(con->labelCb, colorValueCondensedRowHeight);
+  cpAddUICol(con->textFieldCb, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DCb), 10, colorWell1DOffset);
+  cpAddUIRow(con->labelCr, colorValueCondensedRowHeight);
+  cpAddUICol(con->textFieldCr, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DCr), 10, colorWell1DOffset);
+  cpAddUIPos(0, colorValueCondensedRowHeight);
+  cpEndUILayout();
   
-  cmBeginUILayout(con->baseController.space, colorWellBezel);
-  cmAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
-  cmAddUICol(con->channelSpace, colorWell2DRightMargin);
-  cmEndUILayout();
+  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
+  cpAddUICol(con->channelSpace, colorWell2DRightMargin);
+  cpEndUILayout();
 
   return con;
 }
@@ -120,15 +120,15 @@ void cmSetYCbCrColorControllerColorData(CPYCbCrColorController* con, const void*
 
 
 void cmUpdateYCbCrColorController(CPYCbCrColorController* con){
-  cmUpdateColorController(&(con->baseController));
+  cpUpdateColorController(&(con->baseController));
 
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorType currentColorType = cmGetCurrentColorType();
-  const float* currentColorData = cmGetCurrentColorData();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorType currentColorType = cpGetCurrentColorType();
+  const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_YCbCr, currentColorType);
   converter(cm, con->ycbcrColor, currentColorData, 1);
   
-  cmUpdateColorWell2D(con->colorWell2D);
+  cpUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(
     con->textFieldY,
@@ -140,7 +140,7 @@ void cmUpdateYCbCrColorController(CPYCbCrColorController* con){
     con->textFieldCr,
     naAllocSprintf(NA_TRUE, "%1.04f", con->ycbcrColor[2]));
 
-  cmUpdateColorWell1D(con->colorWell1DY);
-  cmUpdateColorWell1D(con->colorWell1DCb);
-  cmUpdateColorWell1D(con->colorWell1DCr);
+  cpUpdateColorWell1D(con->colorWell1DY);
+  cpUpdateColorWell1D(con->colorWell1DCb);
+  cpUpdateColorWell1D(con->colorWell1DCr);
 }

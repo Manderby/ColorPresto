@@ -3,7 +3,7 @@
 
 
 
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(NASpace);
 
 typedef struct CPXYZColorController CPXYZColorController;
 

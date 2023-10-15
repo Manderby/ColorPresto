@@ -1,12 +1,12 @@
 
-#define CM_PROTOTYPE(type) typedef struct type type
+#define CP_PROTOTYPE(type) typedef struct type type
 
-#define cmError naError
+#define cpError naError
 
-CM_PROTOTYPE(CMLColorMachine);
+CP_PROTOTYPE(CMLColorMachine);
 
-CM_PROTOTYPE(CPColorController);
-CM_PROTOTYPE(CMHSLColorController);
+CP_PROTOTYPE(CPColorController);
+CP_PROTOTYPE(CPHSLColorController);
 
 
 #include "CML.h"
@@ -15,14 +15,14 @@ CM_PROTOTYPE(CMHSLColorController);
 
 
 
-void cmSetCurrentColorController(const CPColorController* con);
-const CPColorController* cmGetCurrentColorController(void);
+void cpSetCurrentColorController(const CPColorController* con);
+const CPColorController* cpGetCurrentColorController(void);
 
-const float* cmGetCurrentColorData(void);
-CMLColorType cmGetCurrentColorType(void);
+const float* cpGetCurrentColorData(void);
+CMLColorType cpGetCurrentColorType(void);
 
 
-double cmGetUIScaleFactorForWindow(void* nativeWindowPtr);
+double cpGetUIScaleFactorForWindow(void* nativeWindowPtr);
 
 void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* texdata, const float* inputarray, CMLColorType inputColorType, CMLNormedConverter normedConverter, size_t count);
 

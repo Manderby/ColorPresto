@@ -1,4 +1,4 @@
 
 #include "mainC.h"
 
-void cmDrawBorder(void);
+void cpDrawBorder(void);

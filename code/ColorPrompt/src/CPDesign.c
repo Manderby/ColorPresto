@@ -8,7 +8,7 @@ NAFont* monoFont;
 
 
 
-void cmStartupDesign(){
+void cpStartupDesign(){
   boldFont = naCreateFontWithPreset(NA_FONT_KIND_TITLE, NA_FONT_SIZE_DEFAULT);
 //  monoFont = naCreateFontWithPreset(NA_FONT_KIND_MONOSPACE, NA_FONT_SIZE_DEFAULT);
 //  monoFont = naCreateFont("Helvetica", 0, 13);
@@ -17,14 +17,14 @@ void cmStartupDesign(){
 
 
 
-void cmShutdownDesign(){
+void cpShutdownDesign(){
   naRelease(boldFont);
   naRelease(monoFont);
 }
 
 
 
-NALabel* cmNewTitleLabel(const NAUTF8Char* text, double width){
+NALabel* cpNewTitleLabel(const NAUTF8Char* text, double width){
   NALabel* label = naNewLabel(text, width);
   naSetLabelFont(label, boldFont);
   return label;
@@ -32,7 +32,7 @@ NALabel* cmNewTitleLabel(const NAUTF8Char* text, double width){
 
 
 
-NALabel* cmNewValueLabel(){
+NALabel* cpNewValueLabel(){
   NALabel* label = naNewLabel("", labelValueWidth);
   naSetLabelTextAlignment(label, NA_TEXT_ALIGNMENT_RIGHT);
   naSetLabelFont(label, monoFont);
@@ -41,7 +41,7 @@ NALabel* cmNewValueLabel(){
 
 
 
-NALabel* cmNewColorComponentLabel(const NAUTF8Char* string){
+NALabel* cpNewColorComponentLabel(const NAUTF8Char* string){
   NALabel* label = naNewLabel(string, colorComponentWidth);
   naSetLabelTextAlignment(label, NA_TEXT_ALIGNMENT_RIGHT);
   return label;
@@ -49,7 +49,7 @@ NALabel* cmNewColorComponentLabel(const NAUTF8Char* string){
 
 
 
-NALabel* cmNewThreeValueLabel(){
+NALabel* cpNewThreeValueLabel(){
   NALabel* label = naNewLabel("", labelValueWidth);
   naSetLabelHeight(label, threeValueHeight);
   naSetLabelFont(label, monoFont);
@@ -59,7 +59,7 @@ NALabel* cmNewThreeValueLabel(){
 
 
 
-NATextField* cmNewValueTextField(NAReactionHandler reactionHandler, void* con){
+NATextField* cpNewValueTextField(NAReactionHandler reactionHandler, void* con){
   NATextField* textField = naNewTextField(textFieldValueWidth);
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_TEXT_ALIGNMENT_RIGHT);
@@ -67,7 +67,7 @@ NATextField* cmNewValueTextField(NAReactionHandler reactionHandler, void* con){
   return textField;
 }
 
-NATextField* cmNewBigValueTextField(NAReactionHandler reactionHandler, void* con){
+NATextField* cpNewBigValueTextField(NAReactionHandler reactionHandler, void* con){
   NATextField* textField = naNewTextField(colorWell1DSize);
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_TEXT_ALIGNMENT_RIGHT);
@@ -84,7 +84,7 @@ double maxDesignWidth = 0.;
 double curDesignRowHeight = 0.;
 NABool curDesignRowHeightFixed = NA_FALSE;
 
-void cmBeginUILayout(NASpace* space, NABezel4 margin){
+void cpBeginUILayout(NASpace* space, NABezel4 margin){
   NASize size = naGetUIElementRect(space).size;
   curDesignSpace = space;
   curDesignMargin = margin;
@@ -94,16 +94,16 @@ void cmBeginUILayout(NASpace* space, NABezel4 margin){
   curDesignRowHeightFixed = NA_FALSE;
 }
 
-void cmAddUIPos(double x, double y){
+void cpAddUIPos(double x, double y){
   #if NA_DEBUG
     if(!curDesignSpace)
-      naError("No space defined for design. Use cmBeginUILayout");
+      naError("No space defined for design. Use cpBeginUILayout");
   #endif
   curDesignPos.x += x;
   curDesignPos.y -= y;
 }
 
-void cm_AddLayoutRowPlain(void* child, NASize size, double vOffset){
+void cp_AddLayoutRowPlain(void* child, NASize size, double vOffset){
   if(curDesignRowHeightFixed){
     naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - curDesignRowHeight + vOffset));
   }else{
@@ -114,10 +114,10 @@ void cm_AddLayoutRowPlain(void* child, NASize size, double vOffset){
   maxDesignWidth = naMax(maxDesignWidth, curDesignPos.x);
 }
 
-void cmAddUIRow(void* child, double rowHeight){
+void cpAddUIRow(void* child, double rowHeight){
   #if NA_DEBUG
     if(!curDesignSpace)
-      naError("No space defined for design. Use cmBeginUILayout");
+      naError("No space defined for design. Use cpBeginUILayout");
   #endif
   NASize size = naGetUIElementRect(child).size;
   curDesignPos.x = curDesignMargin.left;
@@ -129,13 +129,13 @@ void cmAddUIRow(void* child, double rowHeight){
     curDesignRowHeightFixed = NA_FALSE;
     curDesignRowHeight = size.height;
   }
-  cm_AddLayoutRowPlain(child, size, 0.);
+  cp_AddLayoutRowPlain(child, size, 0.);
 }
 
-void cmAddUIRowH(void* child, double rowHeight, double hOffset){
+void cpAddUIRowH(void* child, double rowHeight, double hOffset){
   #if NA_DEBUG
     if(!curDesignSpace)
-      naError("No space defined for design. Use cmBeginUILayout");
+      naError("No space defined for design. Use cpBeginUILayout");
   #endif
   curDesignPos.x += hOffset;
   NASize size = naGetUIElementRect(child).size;
@@ -148,30 +148,30 @@ void cmAddUIRowH(void* child, double rowHeight, double hOffset){
     curDesignRowHeightFixed = NA_FALSE;
     curDesignRowHeight = size.height;
   }
-  cm_AddLayoutRowPlain(child, size, 0.);
+  cp_AddLayoutRowPlain(child, size, 0.);
 }
 
-void cmAddUICol(void* child, double marginLeft){
+void cpAddUICol(void* child, double marginLeft){
   #if NA_DEBUG
     if(!curDesignSpace)
-      naError("No space defined for design. Use cmBeginUILayout");
+      naError("No space defined for design. Use cpBeginUILayout");
   #endif
   NASize size = naGetUIElementRect(child).size;
   curDesignPos.x += marginLeft;
-  cm_AddLayoutRowPlain(child, size, 0.);
+  cp_AddLayoutRowPlain(child, size, 0.);
 }
 
-void cmAddUIColV(void* child, double marginLeft, double vOffset){
+void cpAddUIColV(void* child, double marginLeft, double vOffset){
   #if NA_DEBUG
     if(!curDesignSpace)
-      naError("No space defined for design. Use cmBeginUILayout");
+      naError("No space defined for design. Use cpBeginUILayout");
   #endif
   NASize size = naGetUIElementRect(child).size;
   curDesignPos.x += marginLeft;
-  cm_AddLayoutRowPlain(child, size, vOffset);
+  cp_AddLayoutRowPlain(child, size, vOffset);
 }
 
-void cmEndUILayout(){
+void cpEndUILayout(){
   NARect spaceRect = naGetUIElementRect(curDesignSpace);
   double prevHeight = spaceRect.size.height;
   spaceRect.size.width = maxDesignWidth + curDesignMargin.right;

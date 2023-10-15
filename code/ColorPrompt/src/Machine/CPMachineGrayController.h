@@ -1,7 +1,7 @@
 
 #include "../mainC.h"
 
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(NASpace);
 
 
 
@@ -12,4 +12,4 @@ void cmDeallocMachineGrayController(CPMachineGrayController* con);
 
 NASpace* cmGetMachineGrayControllerUIElement(CPMachineGrayController* con);
 
-void cmUpdateMachineGrayController(CPMachineGrayController* con);
+void cpUpdateMachineGrayController(CPMachineGrayController* con);

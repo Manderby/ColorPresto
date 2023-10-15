@@ -21,12 +21,12 @@ struct CPMachineObserverController{
 
 NABool cmSelectObserver(NAReaction reaction){
   CPMachineObserverController* con = (CPMachineObserverController*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t index = naGetPopupButtonItemIndex(con->observerPopupButton, reaction.uiElement);
   cmlSetObserverType(cm, (CMLObserverType)index);
   
-  cmUpdateMachine();
+  cpUpdateMachine();
 
   return NA_TRUE;
 }
@@ -39,7 +39,7 @@ CPMachineObserverController* cmAllocMachineObserverController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
 naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->observerTitleLabel = naNewLabel(cmTranslate(CMObserverTitle), machineLabelWidth);
+  con->observerTitleLabel = naNewLabel(cpTranslate(CPObserverTitle), machineLabelWidth);
   con->observerPopupButton = naNewPopupButton(200);
   for(size_t i = 0; i < CML_OBSERVER_COUNT; ++i){
     CMLObserverType observerType = (CMLObserverType)i;
@@ -48,16 +48,16 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
     naAddPopupButtonMenuItem(con->observerPopupButton, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectObserver, con);
   }
-  con->observerStepsTitleLabel = naNewLabel(cmTranslate(CMObserverSteps), machineLabelWidth);
+  con->observerStepsTitleLabel = naNewLabel(cpTranslate(CPObserverSteps), machineLabelWidth);
   con->observerStepsLabel = naNewLabel("", 100);
   
   // layout
-  cmBeginUILayout(con->space, spaceBezel);
-  cmAddUIRow(con->observerTitleLabel, uiElemHeight);
-  cmAddUICol(con->observerPopupButton, marginH);
-  cmAddUIRow(con->observerStepsTitleLabel, uiElemHeight);
-  cmAddUICol(con->observerStepsLabel, marginH);
-  cmEndUILayout();
+  cpBeginUILayout(con->space, spaceBezel);
+  cpAddUIRow(con->observerTitleLabel, uiElemHeight);
+  cpAddUICol(con->observerPopupButton, marginH);
+  cpAddUIRow(con->observerStepsTitleLabel, uiElemHeight);
+  cpAddUICol(con->observerStepsLabel, marginH);
+  cpEndUILayout();
 
   return con;
 }
@@ -76,8 +76,8 @@ NASpace* cmGetMachineObserverControllerUIElement(CPMachineObserverController* co
 
 
 
-void cmUpdateMachineObserverController(CPMachineObserverController* con){
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+void cpUpdateMachineObserverController(CPMachineObserverController* con){
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLObserverType observerType = cmlGetObserverType(cm);
   CMLFunction* specDistFunctions[3];
@@ -88,5 +88,5 @@ void cmUpdateMachineObserverController(CPMachineObserverController* con){
   naSetPopupButtonIndexSelected(con->observerPopupButton, observerType);
   naSetLabelText(
     con->observerStepsLabel,
-    naAllocSprintf(NA_TRUE, cmTranslate(CMObserverNanoMeterSteps), (int)defRange.stepSize));
+    naAllocSprintf(NA_TRUE, cpTranslate(CPObserverNanoMeterSteps), (int)defRange.stepSize));
 }

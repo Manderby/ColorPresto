@@ -17,7 +17,7 @@
 NABool CPColorControllerMouseDown(NAReaction reaction){
   CPColorController* con = reaction.controller;
   
-  cmSetCurrentColorController(con);
+  cpSetCurrentColorController(con);
   
   return NA_TRUE;
 }
@@ -51,13 +51,13 @@ void cmSetColorControllerActive(CPColorController* con, NABool active){
 
 
 
-CMLColorType cmGetColorControllerColorType(const CPColorController* con){
+CMLColorType cpGetColorControllerColorType(const CPColorController* con){
   return con->colorType;
 }
 
 
 
-const void* cmGetColorControllerColorData(const CPColorController* con){
+const void* cpGetColorControllerColorData(const CPColorController* con){
   switch(con->colorType){
   case CML_COLOR_Gray: return cmGetGrayColorControllerColorData((const CPGrayColorController*)con); 
   case CML_COLOR_HSL: return cmGetHSVHSLColorControllerColorData((const CPHSVHSLColorController*)con); 
@@ -107,7 +107,7 @@ NASpace* cmGetColorControllerUIElement(CPColorController* con){
 
 
 
-void cmUpdateColorController(CPColorController* con){
+void cpUpdateColorController(CPColorController* con){
   if(con->active){
     NABabyColor highlightColor;
     naFillDefaultTextColorWithSkin(highlightColor, naGetSkinForCurrentAppearance());

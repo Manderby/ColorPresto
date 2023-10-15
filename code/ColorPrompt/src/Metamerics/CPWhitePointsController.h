@@ -2,8 +2,8 @@
 #include "../mainC.h"
 #include "CPColorConversionsYcdUVW.h"
 
-CM_PROTOTYPE(CPWhitePoints);
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(CPWhitePoints);
+CP_PROTOTYPE(NASpace);
 
 
 
@@ -13,7 +13,7 @@ CPWhitePointsController* cmAllocWhitePointsController(void);
 void cmDeallocWhitePointsController(CPWhitePointsController* con);
 
 NASpace* cmGetWhitePointsUIElement(CPWhitePointsController* con);
-CMReferenceIlluminationType cmGetReferenceIlluminationType(CPWhitePointsController* con);
+CPReferenceIlluminationType cmGetReferenceIlluminationType(CPWhitePointsController* con);
 
 void cmUpdateWhitePointsController(
   CPWhitePointsController* con,

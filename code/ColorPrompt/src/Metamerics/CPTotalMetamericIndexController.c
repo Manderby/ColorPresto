@@ -25,23 +25,23 @@ CPTotalMetamericIndexController* cmAllocTotalMetamericIndexController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->title = cmNewTitleLabel(cmTranslate(CMTotalMetamericIndex), 250);
-  con->metamericsAverageLabel = naNewLabel(cmTranslate(CMAverage), indexWidth);
-  con->metamericsLabel = cmNewValueLabel();
+  con->title = cpNewTitleLabel(cpTranslate(CPTotalMetamericIndex), 250);
+  con->metamericsAverageLabel = naNewLabel(cpTranslate(CPAverage), indexWidth);
+  con->metamericsLabel = cpNewValueLabel();
   con->metamericsGradeLabel = naNewLabel("", 120);
 
 
 
   // Placing elements in the space
 
-  cmBeginUILayout(con->space, spaceBezel);
-  cmAddUIRow(con->title, uiElemHeight);
+  cpBeginUILayout(con->space, spaceBezel);
+  cpAddUIRow(con->title, uiElemHeight);
 
-  cmAddUIRow(con->metamericsAverageLabel, uiElemHeight);
-  cmAddUICol(con->metamericsLabel, indexMargin);
-  cmAddUICol(con->metamericsGradeLabel, valueMargin);
+  cpAddUIRow(con->metamericsAverageLabel, uiElemHeight);
+  cpAddUICol(con->metamericsLabel, indexMargin);
+  cpAddUICol(con->metamericsGradeLabel, valueMargin);
 
-  cmEndUILayout();
+  cpEndUILayout();
 
   return con;
 }
@@ -69,7 +69,7 @@ void cmUpdateTotalMetamericIndexController(
   if(valid){
     float avg53 = (avg5 * 5.f + avg3 * 3.f) / 8.f;
     naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", avg53));
-    naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cmTranslate(CMGrade), getGrade(avg53)));
+    naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cpTranslate(CPGrade), getGrade(avg53)));
   }else{
     naSetLabelText(con->metamericsLabel, "");
     naSetLabelText(con->metamericsGradeLabel, "");

@@ -1,6 +1,6 @@
 
-#ifndef CM_COLOR_PROMPT_APPLICATION_DEFINED
-#define CM_COLOR_PROMPT_APPLICATION_DEFINED
+#ifndef CP_COLOR_PROMPT_APPLICATION_DEFINED
+#define CP_COLOR_PROMPT_APPLICATION_DEFINED
 
 #include "mainC.h"
 
@@ -8,24 +8,24 @@ typedef struct CPColorPromptApplication CPColorPromptApplication;
 
 extern CPColorPromptApplication* app;
 
-CM_PROTOTYPE(CPColorsManager);
+CP_PROTOTYPE(CPColorsManager);
 
 
 
-void cmStartupColorPromptApplication(void);
-void cmStartupColorPromptApplicationUI(void);
-void cmShutdownColorPromptApplication(void);
+void cpStartupColorPromptApplication(void);
+void cpStartupColorPromptApplicationUI(void);
+void cpShutdownColorPromptApplication(void);
 
-CMLColorMachine* cmGetCurrentColorMachine(void);
-void cmResetColorMachine(void);
-CMLColorMachine* cmGetCurrentScreenMachine(void);
-CPColorsManager* cmGetColorsManager(void);
+CMLColorMachine* cpGetCurrentColorMachine(void);
+void cpResetColorMachine(void);
+CMLColorMachine* cpGetCurrentScreenMachine(void);
+CPColorsManager* cpGetColorsManager(void);
 
-void cmUpdateMetamerics(void);
-void cmShowMetamerics(void);
-void cmShowThreeDee(void);
+void cpUpdateMetamerics(void);
+void cpShowMetamerics(void);
+void cpShowThreeDee(void);
 
-void cmUpdateColor(void);
-void cmUpdateMachine(void);
+void cpUpdateColor(void);
+void cpUpdateMachine(void);
 
-#endif // CM_COLOR_PROMPT_APPLICATION_DEFINED
+#endif // CP_COLOR_PROMPT_APPLICATION_DEFINED

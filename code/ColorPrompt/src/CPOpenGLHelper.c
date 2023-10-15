@@ -3,7 +3,7 @@
 
 #include "NAApp.h"
 
-void cmDrawBorder(){
+void cpDrawBorder(){
   NABabyColor borderColor;
   naFillDefaultTextColorWithSkin(borderColor, naGetSkinForCurrentAppearance());
   borderColor[3] = .1f;

@@ -315,12 +315,12 @@ CMVisMetamericColors cmComputeVisMetamericColors(
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,
   const CMLMat33 adaptationMatrix,
-  CMReferenceIlluminationType referenceIlluminationType){
+  CPReferenceIlluminationType referenceIlluminationType){
   
   CMVisMetamericColors metamericColors;
   
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorMachine* sm = cmGetCurrentScreenMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorMachine* sm = cpGetCurrentScreenMachine();
   CMLIntegration integration = cmlMakeDefaultIntegration();
   const CMLFunction* illuminationSpec = cmlGetIlluminationSpectrum(cm);
 
@@ -474,64 +474,64 @@ CPVisMetamericIndexController* cmAllocVisMetamericIndexController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->title = cmNewTitleLabel(cmTranslate(CMVisMetamericIndex), 250);
+  con->title = cpNewTitleLabel(cpTranslate(CPVisMetamericIndex), 250);
   
-  con->metamerics1IndexLabel = naNewLabel(cmTranslate(CMColorIndex1), indexWidth);
-  con->metamerics1Label = cmNewValueLabel();
+  con->metamerics1IndexLabel = naNewLabel(cpTranslate(CPColorIndex1), indexWidth);
+  con->metamerics1Label = cpNewValueLabel();
   con->metamerics1Display = cmAllocTwoColorController();
 
-  con->metamerics2IndexLabel = naNewLabel(cmTranslate(CMColorIndex2), indexWidth);
-  con->metamerics2Label = cmNewValueLabel();
+  con->metamerics2IndexLabel = naNewLabel(cpTranslate(CPColorIndex2), indexWidth);
+  con->metamerics2Label = cpNewValueLabel();
   con->metamerics2Display = cmAllocTwoColorController();
 
-  con->metamerics3IndexLabel = naNewLabel(cmTranslate(CMColorIndex3), indexWidth);
-  con->metamerics3Label = cmNewValueLabel();
+  con->metamerics3IndexLabel = naNewLabel(cpTranslate(CPColorIndex3), indexWidth);
+  con->metamerics3Label = cpNewValueLabel();
   con->metamerics3Display = cmAllocTwoColorController();
 
-  con->metamerics4IndexLabel = naNewLabel(cmTranslate(CMColorIndex4), indexWidth);
-  con->metamerics4Label = cmNewValueLabel();
+  con->metamerics4IndexLabel = naNewLabel(cpTranslate(CPColorIndex4), indexWidth);
+  con->metamerics4Label = cpNewValueLabel();
   con->metamerics4Display = cmAllocTwoColorController();
 
-  con->metamerics5IndexLabel = naNewLabel(cmTranslate(CMColorIndex5), indexWidth);
-  con->metamerics5Label = cmNewValueLabel();
+  con->metamerics5IndexLabel = naNewLabel(cpTranslate(CPColorIndex5), indexWidth);
+  con->metamerics5Label = cpNewValueLabel();
   con->metamerics5Display = cmAllocTwoColorController();
 
-  con->metamericsAverageLabel = naNewLabel(cmTranslate(CMAverage), indexWidth);
-  con->metamericsLabel = cmNewValueLabel();
+  con->metamericsAverageLabel = naNewLabel(cpTranslate(CPAverage), indexWidth);
+  con->metamericsLabel = cpNewValueLabel();
   con->metamericsGradeLabel = naNewLabel("", 120);
 
 
 
   // Placing elements in the space
 
-  cmBeginUILayout(con->space, spaceBezel);
-  cmAddUIRow(con->title, uiElemHeight);
+  cpBeginUILayout(con->space, spaceBezel);
+  cpAddUIRow(con->title, uiElemHeight);
 
-  cmAddUIRow(con->metamerics1IndexLabel, uiElemHeight);
-  cmAddUICol(con->metamerics1Label, indexMargin);
-  cmAddUICol(cmGetTwoColorControllerUIElement(con->metamerics1Display), valueMargin);
+  cpAddUIRow(con->metamerics1IndexLabel, uiElemHeight);
+  cpAddUICol(con->metamerics1Label, indexMargin);
+  cpAddUICol(cmGetTwoColorControllerUIElement(con->metamerics1Display), valueMargin);
 
-  cmAddUIRow(con->metamerics2IndexLabel, uiElemHeight);
-  cmAddUICol(con->metamerics2Label, indexMargin);
-  cmAddUICol(cmGetTwoColorControllerUIElement(con->metamerics2Display), valueMargin);
+  cpAddUIRow(con->metamerics2IndexLabel, uiElemHeight);
+  cpAddUICol(con->metamerics2Label, indexMargin);
+  cpAddUICol(cmGetTwoColorControllerUIElement(con->metamerics2Display), valueMargin);
 
-  cmAddUIRow(con->metamerics3IndexLabel, uiElemHeight);
-  cmAddUICol(con->metamerics3Label, indexMargin);
-  cmAddUICol(cmGetTwoColorControllerUIElement(con->metamerics3Display), valueMargin);
+  cpAddUIRow(con->metamerics3IndexLabel, uiElemHeight);
+  cpAddUICol(con->metamerics3Label, indexMargin);
+  cpAddUICol(cmGetTwoColorControllerUIElement(con->metamerics3Display), valueMargin);
 
-  cmAddUIRow(con->metamerics4IndexLabel, uiElemHeight);
-  cmAddUICol(con->metamerics4Label, indexMargin);
-  cmAddUICol(cmGetTwoColorControllerUIElement(con->metamerics4Display), valueMargin);
+  cpAddUIRow(con->metamerics4IndexLabel, uiElemHeight);
+  cpAddUICol(con->metamerics4Label, indexMargin);
+  cpAddUICol(cmGetTwoColorControllerUIElement(con->metamerics4Display), valueMargin);
 
-  cmAddUIRow(con->metamerics5IndexLabel, uiElemHeight);
-  cmAddUICol(con->metamerics5Label, indexMargin);
-  cmAddUICol(cmGetTwoColorControllerUIElement(con->metamerics5Display), valueMargin);
+  cpAddUIRow(con->metamerics5IndexLabel, uiElemHeight);
+  cpAddUICol(con->metamerics5Label, indexMargin);
+  cpAddUICol(cmGetTwoColorControllerUIElement(con->metamerics5Display), valueMargin);
 
-  cmAddUIRow(con->metamericsAverageLabel, uiElemHeight);
-  cmAddUICol(con->metamericsLabel, indexMargin);
-  cmAddUICol(con->metamericsGradeLabel, valueMargin);
+  cpAddUIRow(con->metamericsAverageLabel, uiElemHeight);
+  cpAddUICol(con->metamericsLabel, indexMargin);
+  cpAddUICol(con->metamericsGradeLabel, valueMargin);
 
-  cmEndUILayout();
+  cpEndUILayout();
 
   return con;
 }
@@ -561,7 +561,7 @@ void cmUpdateVisMetamericIndexController(
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,
   const CMLMat33 adaptationMatrix,
-  CMReferenceIlluminationType referenceIlluminationType,
+  CPReferenceIlluminationType referenceIlluminationType,
   NABool valid)
 {
   if(valid){
@@ -612,7 +612,7 @@ void cmUpdateVisMetamericIndexController(
       con->visMetamericColors.visMetamerRGBFloatData[4]);
 
     naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", con->visMetamericColors.avg5));
-    naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cmTranslate(CMGrade), getGrade(con->visMetamericColors.avg5)));
+    naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cpTranslate(CPGrade), getGrade(con->visMetamericColors.avg5)));
   }else{
     naSetLabelText(con->metamerics1Label, "");
     naSetLabelText(con->metamerics2Label, "");

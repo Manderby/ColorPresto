@@ -41,14 +41,14 @@ CPMachineController* cmAllocMachineController(void){
   con->buttonsController = cmAllocMachineButtonsController();
 
   // layout
-  cmBeginUILayout(con->space, naMakeBezel4Zero());
-  cmAddUIRow(cmGetMachineObserverControllerUIElement(con->observerController), 0);
-  cmAddUIRow(cmGetMachineIlluminationControllerUIElement(con->illuminationController), 0);
-  cmAddUIRow(cmGetMachineRGBControllerUIElement(con->rgbController), 0);
-  cmAddUIRow(cmGetMachineLabControllerUIElement(con->labController), 0);
-  cmAddUIRow(cmGetMachineGrayControllerUIElement(con->grayController), 0);
-  cmAddUIRow(cmGetMachineButtonsControllerUIElement(con->buttonsController), 0);
-  cmEndUILayout();
+  cpBeginUILayout(con->space, naMakeBezel4Zero());
+  cpAddUIRow(cmGetMachineObserverControllerUIElement(con->observerController), 0);
+  cpAddUIRow(cmGetMachineIlluminationControllerUIElement(con->illuminationController), 0);
+  cpAddUIRow(cmGetMachineRGBControllerUIElement(con->rgbController), 0);
+  cpAddUIRow(cmGetMachineLabControllerUIElement(con->labController), 0);
+  cpAddUIRow(cmGetMachineGrayControllerUIElement(con->grayController), 0);
+  cpAddUIRow(cmGetMachineButtonsControllerUIElement(con->buttonsController), 0);
+  cpEndUILayout();
 
   return con;
 }
@@ -67,11 +67,11 @@ NASpace* cmGetMachineUIElement(CPMachineController* con){
 
 
 
-void cmUpdateMachineController(CPMachineController* con){
-  cmUpdateMachineObserverController(con->observerController);
-  cmUpdateMachineIlluminationController(con->illuminationController);
-  cmUpdateMachineRGBController(con->rgbController);
-  cmUpdateMachineLabController(con->labController);
-  cmUpdateMachineGrayController(con->grayController);
-  cmUpdateMachineButtonsController(con->buttonsController);
+void cpUpdateMachineController(CPMachineController* con){
+  cpUpdateMachineObserverController(con->observerController);
+  cpUpdateMachineIlluminationController(con->illuminationController);
+  cpUpdateMachineRGBController(con->rgbController);
+  cpUpdateMachineLabController(con->labController);
+  cpUpdateMachineGrayController(con->grayController);
+  cpUpdateMachineButtonsController(con->buttonsController);
 }

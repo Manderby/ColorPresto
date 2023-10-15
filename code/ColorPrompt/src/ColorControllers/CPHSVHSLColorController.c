@@ -46,25 +46,25 @@ typedef enum {
 NABool cmHSVHSLSelectionChanged(NAReaction reaction){
   CPHSVHSLColorController* con = (CPHSVHSLColorController*)reaction.controller;
   
-  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naGetPreferencesEnum(cmPrefs[CMHSVHSLSelect]);
+  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naGetPreferencesEnum(cpPrefs[CPHSVHSLSelect]);
   CMLColorType oldColorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
   CMLColorType newColorType = oldColorType;
 
   if(reaction.uiElement == con->radioHSV){
-    naSetPreferencesEnum(cmPrefs[CMHSVHSLSelect], HSV);
+    naSetPreferencesEnum(cpPrefs[CPHSVHSLSelect], HSV);
     newColorType = CML_COLOR_HSV;
   }else if(reaction.uiElement == con->radioHSL){
-    naSetPreferencesEnum(cmPrefs[CMHSVHSLSelect], HSL);
+    naSetPreferencesEnum(cpPrefs[CPHSVHSLSelect], HSL);
     newColorType = CML_COLOR_HSL;
   }
 
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorConverter converter = cmlGetColorConverter(newColorType, oldColorType);
   converter(cm, con->color, con->color, 1);
 
   cmSetColorControllerColorType(&(con->baseController), newColorType);
-  cmSetCurrentColorController(&(con->baseController));
-  cmUpdateColor();
+  cpSetCurrentColorController(&(con->baseController));
+  cpUpdateColor();
   
   return NA_TRUE;
 }
@@ -82,8 +82,8 @@ NABool cmChannelValueEdited(NAReaction reaction){
     con->color[2] = (float)naGetTextFieldDouble(con->textField2);
   }
   
-  cmSetCurrentColorController(&(con->baseController));
-  cmUpdateColor();
+  cpSetCurrentColorController(&(con->baseController));
+  cpUpdateColor();
   
   return NA_TRUE;
 }
@@ -91,7 +91,7 @@ NABool cmChannelValueEdited(NAReaction reaction){
 
 
 CPHSVHSLColorController* cmAllocHSVHSLColorController(void){
-  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naInitPreferencesEnum(cmPrefs[CMHSVHSLSelect], HSV);
+  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naInitPreferencesEnum(cpPrefs[CPHSVHSLSelect], HSV);
   CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
 
   CPHSVHSLColorController* con = naAlloc(CPHSVHSLColorController);
@@ -101,17 +101,17 @@ CPHSVHSLColorController* cmAllocHSVHSLColorController(void){
   con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 2);
 
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
-  con->radioHSV = naNewRadio(cmTranslate(CMColorSpaceHSV), radioSelectWidth);
-  con->radioHSL = naNewRadio(cmTranslate(CMColorSpaceHSL), radioSelectWidth);
+  con->radioHSV = naNewRadio(cpTranslate(CPColorSpaceHSV), radioSelectWidth);
+  con->radioHSL = naNewRadio(cpTranslate(CPColorSpaceHSL), radioSelectWidth);
   naAddUIReaction(con->radioHSV, NA_UI_COMMAND_PRESSED, cmHSVHSLSelectionChanged, con);
   naAddUIReaction(con->radioHSL, NA_UI_COMMAND_PRESSED, cmHSVHSLSelectionChanged, con);
   
-  con->label0 = cmNewColorComponentLabel("");
-  con->label1 = cmNewColorComponentLabel("");
-  con->label2 = cmNewColorComponentLabel("");
-  con->textField0 = cmNewValueTextField(cmChannelValueEdited, con);
-  con->textField1 = cmNewValueTextField(cmChannelValueEdited, con);
-  con->textField2 = cmNewValueTextField(cmChannelValueEdited, con);
+  con->label0 = cpNewColorComponentLabel("");
+  con->label1 = cpNewColorComponentLabel("");
+  con->label2 = cpNewColorComponentLabel("");
+  con->textField0 = cpNewValueTextField(cmChannelValueEdited, con);
+  con->textField1 = cpNewValueTextField(cmChannelValueEdited, con);
+  con->textField2 = cpNewValueTextField(cmChannelValueEdited, con);
   con->colorWell1D0 = cmAllocColorWell1D(&(con->baseController), con->color, 0);
   con->colorWell1D1 = cmAllocColorWell1D(&(con->baseController), con->color, 1);
   con->colorWell1D2 = cmAllocColorWell1D(&(con->baseController), con->color, 2);
@@ -120,27 +120,27 @@ CPHSVHSLColorController* cmAllocHSVHSLColorController(void){
   naSetUIElementNextTabElement(con->textField1, con->textField2);
   naSetUIElementNextTabElement(con->textField2, con->textField0);
 
-  cmBeginUILayout(con->channelSpace, naMakeBezel4Zero());
-  cmAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + radioChannelCenteringOffset)) / 2.)); // center the channels
-  cmAddUIRowH(con->radioHSV, colorValueCondensedRowHeight, colorComponentWidth + colorComponentMarginH);
-  cmAddUICol(con->radioHSL, 10);
-  cmAddUIPos(0, radioChannelOffset);
+  cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cpAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + radioChannelCenteringOffset)) / 2.)); // center the channels
+  cpAddUIRowH(con->radioHSV, colorValueCondensedRowHeight, colorComponentWidth + colorComponentMarginH);
+  cpAddUICol(con->radioHSL, 10);
+  cpAddUIPos(0, radioChannelOffset);
   
-  cmAddUIRow(con->label0, colorValueCondensedRowHeight);
-  cmAddUICol(con->textField0, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
-  cmAddUIRow(con->label1, colorValueCondensedRowHeight);
-  cmAddUICol(con->textField1, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
-  cmAddUIRow(con->label2, colorValueCondensedRowHeight);
-  cmAddUICol(con->textField2, colorComponentMarginH);
-  cmAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
-  cmEndUILayout();
+  cpAddUIRow(con->label0, colorValueCondensedRowHeight);
+  cpAddUICol(con->textField0, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
+  cpAddUIRow(con->label1, colorValueCondensedRowHeight);
+  cpAddUICol(con->textField1, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
+  cpAddUIRow(con->label2, colorValueCondensedRowHeight);
+  cpAddUICol(con->textField2, colorComponentMarginH);
+  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
+  cpEndUILayout();
   
-  cmBeginUILayout(con->baseController.space, colorWellBezel);
-  cmAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
-  cmAddUICol(con->channelSpace, colorWell2DRightMargin);
-  cmEndUILayout();
+  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
+  cpAddUICol(con->channelSpace, colorWell2DRightMargin);
+  cpEndUILayout();
 
   return con;
 }
@@ -171,31 +171,31 @@ void cmSetHSVHSLColorControllerColorData(CPHSVHSLColorController* con, const voi
 
 
 void cmUpdateHSVHSLColorController(CPHSVHSLColorController* con){
-  cmUpdateColorController(&(con->baseController));
+  cpUpdateColorController(&(con->baseController));
 
-  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naGetPreferencesEnum(cmPrefs[CMHSVHSLSelect]);
+  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naGetPreferencesEnum(cpPrefs[CPHSVHSLSelect]);
   CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
   
   naSetRadioState(con->radioHSV, hsvhslSelect == HSV);
   naSetRadioState(con->radioHSL, hsvhslSelect == HSL);
   
   if(hsvhslSelect == HSV){
-    naSetLabelText(con->label0, cmTranslate(CMHSVColorChannelH));
-    naSetLabelText(con->label1, cmTranslate(CMHSVColorChannelS));
-    naSetLabelText(con->label2, cmTranslate(CMHSVColorChannelV));
+    naSetLabelText(con->label0, cpTranslate(CPHSVColorChannelH));
+    naSetLabelText(con->label1, cpTranslate(CPHSVColorChannelS));
+    naSetLabelText(con->label2, cpTranslate(CPHSVColorChannelV));
   }else{
-    naSetLabelText(con->label0, cmTranslate(CMHSLColorChannelH));
-    naSetLabelText(con->label1, cmTranslate(CMHSLColorChannelS));
-    naSetLabelText(con->label2, cmTranslate(CMHSLColorChannelL));
+    naSetLabelText(con->label0, cpTranslate(CPHSLColorChannelH));
+    naSetLabelText(con->label1, cpTranslate(CPHSLColorChannelS));
+    naSetLabelText(con->label2, cpTranslate(CPHSLColorChannelL));
   }
   
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorType currentColorType = cmGetCurrentColorType();
-  const float* currentColorData = cmGetCurrentColorData();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorType currentColorType = cpGetCurrentColorType();
+  const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
   converter(cm, con->color, currentColorData, 1);
   
-  cmUpdateColorWell2D(con->colorWell2D);
+  cpUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(
     con->textField0,
@@ -207,7 +207,7 @@ void cmUpdateHSVHSLColorController(CPHSVHSLColorController* con){
     con->textField2,
     naAllocSprintf(NA_TRUE, "%1.05f", con->color[2]));
 
-  cmUpdateColorWell1D(con->colorWell1D0);
-  cmUpdateColorWell1D(con->colorWell1D1);
-  cmUpdateColorWell1D(con->colorWell1D2);
+  cpUpdateColorWell1D(con->colorWell1D0);
+  cpUpdateColorWell1D(con->colorWell1D1);
+  cpUpdateColorWell1D(con->colorWell1D2);
 }

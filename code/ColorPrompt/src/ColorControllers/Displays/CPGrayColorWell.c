@@ -31,8 +31,8 @@ void cmInitGrayColorWell(void* data){
 
 NABool cmDrawGrayColorWell(NAReaction reaction){
   CPGrayColorWell* well = (CPGrayColorWell*)reaction.controller;
-  CMLColorMachine* cm = cmGetCurrentColorMachine();
-  CMLColorMachine* sm = cmGetCurrentScreenMachine();
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
   double uiScale = naGetUIElementResolutionFactor(well->display);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
@@ -47,9 +47,9 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
   CMLNormedConverter rgbInputConverter = cmlGetNormedInputConverter(CML_COLOR_RGB);
   CMLNormedConverter rgbOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_RGB);
 
-  CMLColorType colorType = cmGetCurrentColorType();
+  CMLColorType colorType = cpGetCurrentColorType();
   CMLColorConverter colorConverter = cmlGetColorConverter(CML_COLOR_RGB, colorType);
-  const void* color = cmGetCurrentColorData();
+  const void* color = cpGetCurrentColorData();
   float originalColorRGB[3] = {0.f, 0.f, 0.f};
   colorConverter(cm, originalColorRGB, color, 1);
   float normedColorRGB[3] = {0.f, 0.f, 0.f};
@@ -66,7 +66,7 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
     1);
 
   CMLColorConverter grayConverter = cmlGetColorConverter(CML_COLOR_RGB, CML_COLOR_Gray);
-  const void* gray = cmGetColorControllerColorData(well->colorController);
+  const void* gray = cpGetColorControllerColorData(well->colorController);
   float originalGrayRGB[3] = {0.f, 0.f, 0.f};
   grayConverter(cm, originalGrayRGB, gray, 1);
   float normedGrayRGB[3] = {0.f, 0.f, 0.f};
@@ -102,21 +102,21 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
   glOrtho(0, rect.size.width, 0, rect.size.height, -1., 1.);
 
   int pixelwidth = 5 + 1;
-  const NAUTF8Char* colorString = cmTranslate(CMGrayDisplayColor);
-  const NAUTF8Char* grayString = cmTranslate(CMGrayDisplayGray);
+  const NAUTF8Char* colorString = cpTranslate(CPGrayDisplayColor);
+  const NAUTF8Char* grayString = cpTranslate(CPGrayDisplayGray);
   double leftPos = (int)(((colorWell2DSize / 2.) - strlen(colorString) * pixelwidth) / 2.);
   double rightPos = (int)((colorWell2DSize / 2.) + ((colorWell2DSize / 2.) - strlen(grayString) * pixelwidth) / 2.);
   glColor3f(0., 0., 0.);
-  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayColor), leftPos, colorWell2DSize - 15, 0);
-  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayGray), rightPos, colorWell2DSize - 15, 0);
+  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayColor), leftPos, colorWell2DSize - 15, 0);
+  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayGray), rightPos, colorWell2DSize - 15, 0);
   glColor3f(1., 1., 1.);
-  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayColor), leftPos - 1, colorWell2DSize - 14, 0);
-  naDrawASCIICharacters(well->fontId, cmTranslate(CMGrayDisplayGray), rightPos - 1, colorWell2DSize - 14, 0);
+  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayColor), leftPos - 1, colorWell2DSize - 14, 0);
+  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayGray), rightPos - 1, colorWell2DSize - 14, 0);
 
   glMatrixMode(GL_PROJECTION);
   glPopMatrix();
 
-  cmDrawBorder();
+  cpDrawBorder();
 
   naSwapOpenGLSpaceBuffer(well->display);
 

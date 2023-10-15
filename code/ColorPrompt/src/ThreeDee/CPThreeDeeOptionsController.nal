@@ -72,40 +72,40 @@ changeOptionsSlider = bool (NAReaction reaction) {
   space = new NASpace(naMakeSize(1, 1));
   space.setAlternateBackground(false);
 
-  axisLabel = new NALabel(cmTranslate(CMAxis), threeDeeLabelWidth);
+  axisLabel = new NALabel(cpTranslate(CPAxis), threeDeeLabelWidth);
   axisCheckBox = new NACheckBox("", 30);
   axisCheckBox.addUIReaction(NA_UI_COMMAND_PRESSED, pressOptionsButton, this);
 
-  spectrumLabel = new NALabel(cmTranslate(CMSpectrum), threeDeeLabelWidth);
+  spectrumLabel = new NALabel(cpTranslate(CPSpectrum), threeDeeLabelWidth);
   spectrumCheckBox = new NACheckBox("", 30);
   spectrumCheckBox.addUIReaction(NA_UI_COMMAND_PRESSED, pressOptionsButton, this);
 
-  backgroundLabel = new NALabel(cmTranslate(CMBackground), threeDeeLabelWidth);
+  backgroundLabel = new NALabel(cpTranslate(CPBackground), threeDeeLabelWidth);
   backgroundSlider = new NASlider(threeDeeControlWidth);
   backgroundSlider.setRange(0., 1., 0);
   backgroundSlider.addUIReaction(NA_UI_COMMAND_EDITED, changeOptionsSlider, this);
 
-  fovyLabel = new NALabel(cmTranslate(CMFovy), threeDeeLabelWidth);
+  fovyLabel = new NALabel(cpTranslate(CPFovy), threeDeeLabelWidth);
   fovySlider = new NASlider(threeDeeControlWidth);
   fovySlider.setRange(90., 0., 0);
   fovySlider.addUIReaction(NA_UI_COMMAND_EDITED, changeOptionsSlider, this);
 
   // layout
-  cmBeginUILayout(space, threeDeeBezel);
+  cpBeginUILayout(space, threeDeeBezel);
   
-  cmAddUIRow(axisLabel, uiElemHeight);
-  cmAddUICol(axisCheckBox, marginH);
+  cpAddUIRow(axisLabel, uiElemHeight);
+  cpAddUICol(axisCheckBox, marginH);
 
-  cmAddUIRow(spectrumLabel, uiElemHeight);
-  cmAddUICol(spectrumCheckBox, marginH);
+  cpAddUIRow(spectrumLabel, uiElemHeight);
+  cpAddUICol(spectrumCheckBox, marginH);
 
-  cmAddUIRow(backgroundLabel, uiElemHeight);
-  cmAddUICol(backgroundSlider, marginH);
+  cpAddUIRow(backgroundLabel, uiElemHeight);
+  cpAddUICol(backgroundSlider, marginH);
 
-  cmAddUIRow(fovyLabel, uiElemHeight);
-  cmAddUICol(fovySlider, marginH);
+  cpAddUIRow(fovyLabel, uiElemHeight);
+  cpAddUICol(fovySlider, marginH);
 
-  cmEndUILayout();
+  cpEndUILayout();
 }
 
 

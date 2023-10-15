@@ -1,6 +1,6 @@
 
-#ifndef CM_DESIGN_INCLUDED
-#define CM_DESIGN_INCLUDED
+#ifndef CP_DESIGN_INCLUDED
+#define CP_DESIGN_INCLUDED
 
 
 #include "NAApp.h"
@@ -69,29 +69,29 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 #define radioChannelCenteringOffset 15.
 static const NABezel4 colorWellBezel = {10, 10, 10, 10};
 
-void cmStartupDesign(void);
-void cmShutdownDesign(void);
+void cpStartupDesign(void);
+void cpShutdownDesign(void);
 
-NALabel* cmNewTitleLabel(
+NALabel* cpNewTitleLabel(
   const NAUTF8Char* text,
   double width);
-NALabel* cmNewValueLabel(void);
-NALabel* cmNewColorComponentLabel(const NAUTF8Char* string);
-NALabel* cmNewThreeValueLabel(void);
-NATextField* cmNewValueTextField(NAReactionHandler reactionHandler, void* con);
-NATextField* cmNewBigValueTextField(NAReactionHandler reactionHandler, void* con);
+NALabel* cpNewValueLabel(void);
+NALabel* cpNewColorComponentLabel(const NAUTF8Char* string);
+NALabel* cpNewThreeValueLabel(void);
+NATextField* cpNewValueTextField(NAReactionHandler reactionHandler, void* con);
+NATextField* cpNewBigValueTextField(NAReactionHandler reactionHandler, void* con);
 
 // Before constructing a UI layout, you need to define within which NASpace you
-// want the layout to be in. Use cmBeginUILayout for that.
+// want the layout to be in. Use cpBeginUILayout for that.
 //
 // You construct a UI by creating rows containing childs. You start a new row
-// with cmAddUIRow which adds a child to the left. After having started a row,
-// you can add more childs to that row with cmAddUICol, each with a margin to
+// with cpAddUIRow which adds a child to the left. After having started a row,
+// you can add more childs to that row with cpAddUICol, each with a margin to
 // the previous child on the left.
 //
 // If you need a special shift to the right or to the bottom, use naAddUIPos.
 //
-// The rowHeight parameter of cmAddUIRow can be either zero or non-zero:
+// The rowHeight parameter of cpAddUIRow can be either zero or non-zero:
 // 
 // If it is a zero value, the height of the whole row will be determined by
 // the maximum height of all childs and all childs are added to the upper
@@ -126,12 +126,12 @@ NATextField* cmNewBigValueTextField(NAReactionHandler reactionHandler, void* con
 // need to place UIElements on more specialized places, you can always use
 // naAddSpaceChild and set the coordinates manually.
 
-void cmBeginUILayout(NASpace* space, NABezel4 margin);
-void cmAddUIPos(double x, double y);
-void cmAddUIRow(void* child, double rowHeight);
-void cmAddUIRowH(void* child, double rowHeight, double hOffset);
-void cmAddUICol(void* child, double marginLeft);
-void cmAddUIColV(void* child, double marginLeft, double vOffset);
-void cmEndUILayout(void);
+void cpBeginUILayout(NASpace* space, NABezel4 margin);
+void cpAddUIPos(double x, double y);
+void cpAddUIRow(void* child, double rowHeight);
+void cpAddUIRowH(void* child, double rowHeight, double hOffset);
+void cpAddUICol(void* child, double marginLeft);
+void cpAddUIColV(void* child, double marginLeft, double vOffset);
+void cpEndUILayout(void);
 
-#endif // CM_DESIGN_INCLUDED
+#endif // CP_DESIGN_INCLUDED

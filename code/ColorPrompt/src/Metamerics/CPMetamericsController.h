@@ -1,16 +1,16 @@
-#ifndef CM_METAMERICS_CONTROLLER_INCLUDED
-#define CM_METAMERICS_CONTROLLER_INCLUDED
+#ifndef CP_METAMERICS_CONTROLLER_INCLUDED
+#define CP_METAMERICS_CONTROLLER_INCLUDED
 
 
 
 typedef struct CPMetamericsController CPMetamericsController;
 
-CPMetamericsController* cmAllocMetamericsController(void);
-void cmDeallocMetamericsController(CPMetamericsController* con);
+CPMetamericsController* cpAllocMetamericsController(void);
+void cpDeallocMetamericsController(CPMetamericsController* con);
 
-void cmShowMetamericsController(CPMetamericsController* con);
-void cmUpdateMetamericsController(CPMetamericsController* con);
+void cpShowMetamericsController(CPMetamericsController* con);
+void cpUpdateMetamericsController(CPMetamericsController* con);
 
 
 
-#endif // CM_METAMERICS_CONTROLLER_INCLUDED
+#endif // CP_METAMERICS_CONTROLLER_INCLUDED

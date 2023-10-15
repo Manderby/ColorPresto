@@ -3,13 +3,13 @@
 #include "NAApp/NAPreferences.h"
 
 enum{
-  CMHSVHSLSelect,
-  CMLuvUVWSelect,
-  CMLabLchSelect,
-  CMYuvYupvpSelect,
+  CPHSVHSLSelect,
+  CPLuvUVWSelect,
+  CPLabLchSelect,
+  CPYuvYupvpSelect,
   
-  CMPrefCount
+  CPPrefCount
 };
 
-extern const char* cmPrefs[CMPrefCount];
+extern const char* cpPrefs[CPPrefCount];
 

@@ -1,19 +1,19 @@
-#ifndef CM_MACHINE_WINDOW_CONTROLLER_INCLUDED
-#define CM_MACHINE_WINDOW_CONTROLLER_INCLUDED
+#ifndef CP_MACHINE_WINDOW_CONTROLLER_INCLUDED
+#define CP_MACHINE_WINDOW_CONTROLLER_INCLUDED
 
 #include "../mainC.h"
-CM_PROTOTYPE(CPColorController);
+CP_PROTOTYPE(CPColorController);
 
 
 
 typedef struct CPMachineWindowController CPMachineWindowController;
 
-CPMachineWindowController* cmAllocMachineWindowController(void);
-void cmDeallocMachineWindowController(CPMachineWindowController* con);
+CPMachineWindowController* cpAllocMachineWindowController(void);
+void cpDeallocMachineWindowController(CPMachineWindowController* con);
 
-void cmShowMachineWindowController(CPMachineWindowController* con);
-CPColorController* cmGetInitialColorController(CPMachineWindowController* con);
-void cmUpdateMachineWindowController(CPMachineWindowController* con);
+void cpShowMachineWindowController(CPMachineWindowController* con);
+CPColorController* cpGetInitialColorController(CPMachineWindowController* con);
+void cpUpdateMachineWindowController(CPMachineWindowController* con);
 
 
-#endif // CM_MACHINE_WINDOW_CONTROLLER_INCLUDED
+#endif // CP_MACHINE_WINDOW_CONTROLLER_INCLUDED

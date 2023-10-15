@@ -1,7 +1,7 @@
 
 #include "../mainC.h"
 
-CM_PROTOTYPE(NASpace);
+CP_PROTOTYPE(NASpace);
 
 
 
@@ -12,4 +12,4 @@ void cmDeallocMachineLabController(CPMachineLabController* con);
 
 NASpace* cmGetMachineLabControllerUIElement(CPMachineLabController* con);
 
-void cmUpdateMachineLabController(CPMachineLabController* con);
+void cpUpdateMachineLabController(CPMachineLabController* con);
