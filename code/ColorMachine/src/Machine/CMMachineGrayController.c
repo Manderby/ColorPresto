@@ -13,7 +13,7 @@ struct CMMachineGrayController{
   NASpace* space;
 
   NALabel* grayColorSpaceLabel;
-  NAPopupButton* grayColorSpacePopupButton;
+  NASelect* grayColorSpaceSelect;
 };
 
 
@@ -22,7 +22,7 @@ NABool cmSelectGrayColorSpace(NAReaction reaction){
   CMMachineGrayController* con = (CMMachineGrayController*)reaction.controller;
   CMLColorMachine* cm = cmGetCurrentColorMachine();
 
-  size_t index = naGetPopupButtonItemIndex(con->grayColorSpacePopupButton, reaction.uiElement);
+  size_t index = naGetSelectItemIndex(con->grayColorSpaceSelect, reaction.uiElement);
   CMLGrayComputationType grayComputationType = (CMLGrayComputationType)index;
   cmlSetGrayComputationType(cm, grayComputationType);
   
@@ -40,18 +40,18 @@ CMMachineGrayController* cmAllocMachineGrayController(void){
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
   con->grayColorSpaceLabel = naNewLabel(cmTranslate(CMGrayColorSpace), machineLabelWidth);
-  con->grayColorSpacePopupButton = naNewPopupButton(200);
+  con->grayColorSpaceSelect = naNewSelect(200);
   for(size_t i = 0; i < CML_GRAY_COUNT; ++i){
     CMLGrayComputationType grayComputationType = (CMLGrayComputationType)i;
     NAMenuItem* item = naNewMenuItem(cmlGetGrayComputationTypeString(grayComputationType));
-    naAddPopupButtonMenuItem(con->grayColorSpacePopupButton, item, NA_NULL);
+    naAddSelectMenuItem(con->grayColorSpaceSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectGrayColorSpace, con);
   }
 
   // layout
   cmBeginUILayout(con->space, spaceBezel);
   cmAddUIRow(con->grayColorSpaceLabel, uiElemHeight);
-  cmAddUICol(con->grayColorSpacePopupButton, marginH);
+  cmAddUICol(con->grayColorSpaceSelect, marginH);
   cmEndUILayout();
 
   return con;
@@ -75,5 +75,5 @@ void cmUpdateMachineGrayController(CMMachineGrayController* con){
   CMLColorMachine* cm = cmGetCurrentColorMachine();
 
   CMLGrayComputationType grayComputationType = cmlGetGrayComputationType(cm);
-  naSetPopupButtonIndexSelected(con->grayColorSpacePopupButton, grayComputationType);
+  naSetSelectIndexSelected(con->grayColorSpaceSelect, grayComputationType);
 }

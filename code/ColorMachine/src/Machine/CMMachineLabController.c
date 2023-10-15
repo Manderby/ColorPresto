@@ -13,7 +13,7 @@ struct CMMachineLabController{
   NASpace* space;
 
   NALabel* labColorSpaceLabel;
-  NAPopupButton* labColorSpacePopupButton;
+  NASelect* labColorSpaceSelect;
 
   NALabel* valueKTitleLabel;
   NATextField* valueKTextField;
@@ -29,7 +29,7 @@ NABool cmSelectLabColorSpace(NAReaction reaction){
   CMMachineLabController* con = (CMMachineLabController*)reaction.controller;
   CMLColorMachine* cm = cmGetCurrentColorMachine();
 
-  size_t index = naGetPopupButtonItemIndex(con->labColorSpacePopupButton, reaction.uiElement);
+  size_t index = naGetSelectItemIndex(con->labColorSpaceSelect, reaction.uiElement);
   CMLLabColorSpaceType labColorSpaceType = (CMLLabColorSpaceType)index;
   if(labColorSpaceType >= CML_LAB_CUSTOM_L){++labColorSpaceType;}
   cmlSetLabColorSpace(cm, labColorSpaceType);
@@ -74,12 +74,12 @@ CMMachineLabController* cmAllocMachineLabController(void){
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
   con->labColorSpaceLabel = naNewLabel(cmTranslate(CMLabColorSpaceTitle), machineLabelWidth);
-  con->labColorSpacePopupButton = naNewPopupButton(200);
+  con->labColorSpaceSelect = naNewSelect(200);
   for(size_t i = 0; i < CML_LAB_COUNT; ++i){
     CMLLabColorSpaceType labColorSpaceType = (CMLLabColorSpaceType)i;
     if(labColorSpaceType == CML_LAB_CUSTOM_L){continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetLabColorSpaceTypeString(labColorSpaceType));
-    naAddPopupButtonMenuItem(con->labColorSpacePopupButton, item, NA_NULL);
+    naAddSelectMenuItem(con->labColorSpaceSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectLabColorSpace, con);
   }
 
@@ -98,7 +98,7 @@ CMMachineLabController* cmAllocMachineLabController(void){
   // layout
   cmBeginUILayout(con->space, spaceBezel);
   cmAddUIRow(con->labColorSpaceLabel, uiElemHeight);
-  cmAddUICol(con->labColorSpacePopupButton, marginH);
+  cmAddUICol(con->labColorSpaceSelect, marginH);
 
   cmAddUIRow(con->valueKTitleLabel, uiElemHeight);
   cmAddUICol(con->valueKTextField, marginH);
