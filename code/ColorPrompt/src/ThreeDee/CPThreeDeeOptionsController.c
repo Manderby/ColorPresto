@@ -31,7 +31,7 @@ struct CPThreeDeeOptionsController{
 
 
 
-NABool cmPressOptionsButton(NAReaction reaction){
+NABool cp_PressOptionsButton(NAReaction reaction){
   CPThreeDeeOptionsController* con = (CPThreeDeeOptionsController*)reaction.controller;
 
   if(reaction.uiElement == con->spectrumCheckBox){
@@ -47,7 +47,7 @@ NABool cmPressOptionsButton(NAReaction reaction){
 
 
 
-NABool cmChangeOptionsSlider(NAReaction reaction){
+NABool cp_ChangeOptionsSlider(NAReaction reaction){
   CPThreeDeeOptionsController* con = (CPThreeDeeOptionsController*)reaction.controller;
 
   if(reaction.uiElement == con->backgroundSlider){
@@ -74,21 +74,21 @@ CPThreeDeeOptionsController* cpAllocThreeDeeOptionsController(CPThreeDeeControll
 
   con->axisLabel = naNewLabel(cpTranslate(CPAxis), threeDeeLabelWidth);
   con->axisCheckBox = naNewCheckBox("", 30);
-  naAddUIReaction(con->axisCheckBox, NA_UI_COMMAND_PRESSED, cmPressOptionsButton, con);
+  naAddUIReaction(con->axisCheckBox, NA_UI_COMMAND_PRESSED, cp_PressOptionsButton, con);
 
   con->spectrumLabel = naNewLabel(cpTranslate(CPSpectrum), threeDeeLabelWidth);
   con->spectrumCheckBox = naNewCheckBox("", 30);
-  naAddUIReaction(con->spectrumCheckBox, NA_UI_COMMAND_PRESSED, cmPressOptionsButton, con);
+  naAddUIReaction(con->spectrumCheckBox, NA_UI_COMMAND_PRESSED, cp_PressOptionsButton, con);
 
   con->backgroundLabel = naNewLabel(cpTranslate(CPBackground), threeDeeLabelWidth);
   con->backgroundSlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->backgroundSlider, 0., 1., 0);
-  naAddUIReaction(con->backgroundSlider, NA_UI_COMMAND_EDITED, cmChangeOptionsSlider, con);
+  naAddUIReaction(con->backgroundSlider, NA_UI_COMMAND_EDITED, cp_ChangeOptionsSlider, con);
 
   con->fovyLabel = naNewLabel(cpTranslate(CPFovy), threeDeeLabelWidth);
   con->fovySlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->fovySlider, 90., 0., 0);
-  naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cmChangeOptionsSlider, con);
+  naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cp_ChangeOptionsSlider, con);
 
   // layout
   cpBeginUILayout(con->space, threeDeeBezel);

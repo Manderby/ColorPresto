@@ -88,7 +88,7 @@ const NAUTF8Char* cpGetCoordSysName(CoordSysType coordSysType){
 
 
 
-NABool cmSelectColorSpace(NAReaction reaction){
+NABool cp_SelectColorSpace(NAReaction reaction){
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
   size_t index = naGetPopupButtonItemIndex(con->colorSpacePopupButton, reaction.uiElement);
@@ -101,7 +101,7 @@ NABool cmSelectColorSpace(NAReaction reaction){
 
 
 
-NABool cmSelectCoordSys(NAReaction reaction){
+NABool cp_SelectCoordSys(NAReaction reaction){
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
   size_t index = naGetPopupButtonItemIndex(con->coordSysPopupButton, reaction.uiElement);
@@ -114,7 +114,7 @@ NABool cmSelectCoordSys(NAReaction reaction){
 
 
 
-NABool cmChangeCoordinateSlider(NAReaction reaction){
+NABool cp_ChangeCoordinateSlider(NAReaction reaction){
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
   if(reaction.uiElement == con->stepsSlider){
@@ -142,7 +142,7 @@ CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeCo
     ColorSpaceType colorSpaceType = (ColorSpaceType)i;
     NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString(cpGetCMLColorTypeFromColorSpaceType(colorSpaceType)));
     naAddPopupButtonMenuItem(con->colorSpacePopupButton, item, NA_NULL);
-    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectColorSpace, con);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectColorSpace, con);
   }
 
   con->coordSysLabel = naNewLabel(cpTranslate(CPCoordinates), threeDeeLabelWidth);
@@ -150,13 +150,13 @@ CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeCo
   for(size_t i = 0; i < COORD_SYS_COUNT; ++i){
     NAMenuItem* item = naNewMenuItem(cpGetCoordSysName((CoordSysType)i));
     naAddPopupButtonMenuItem(con->coordSysPopupButton, item, NA_NULL);
-    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectCoordSys, con);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectCoordSys, con);
   }
 
   con->stepsLabel = naNewLabel(cpTranslate(CPSteps), threeDeeLabelWidth);
   con->stepsSlider = naNewSlider(threeDeeControlWidth);
   naSetSliderRange(con->stepsSlider, 2., 40., 0);
-  naAddUIReaction(con->stepsSlider, NA_UI_COMMAND_EDITED, cmChangeCoordinateSlider, con);
+  naAddUIReaction(con->stepsSlider, NA_UI_COMMAND_EDITED, cp_ChangeCoordinateSlider, con);
 
   // layout
   cpBeginUILayout(con->space, threeDeeBezel);

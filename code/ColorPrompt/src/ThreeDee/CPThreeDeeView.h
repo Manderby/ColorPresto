@@ -9,10 +9,10 @@ typedef struct CPThreeDeeView CPThreeDeeView;
 
 
 
-void cmInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace);
+void cpInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace);
 
-void cmBeginThreeDeeDrawing(const CMLVec3 axisRGB);
-void cmEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace);
+void cpBeginThreeDeeDrawing(const CMLVec3 axisRGB);
+void cpEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace);
 
 void cpSetupThreeDeeProjection(
   NAOpenGLSpace* openGLSpace,
@@ -27,7 +27,7 @@ void cpSetupThreeDeeModelView(
   double viewPol,
   double viewEqu);
 
-void cmDrawThreeDeePointCloud(
+void cpDrawThreeDeePointCloud(
   const CMLColorMachine* cm,
   const CMLColorMachine* sm,
   double pointsAlpha,
@@ -38,7 +38,7 @@ void cmDrawThreeDeePointCloud(
   CMLNormedConverter normedCoordConverter,
   double zoom);
 
-void cmDrawThreeDeeSurfaces(
+void cpDrawThreeDeeSurfaces(
   const CMLColorMachine* cm,
   const CMLColorMachine* sm,
   const CMLVec3 backgroundRGB,
@@ -54,13 +54,13 @@ void cmDrawThreeDeeSurfaces(
   CMLNormedConverter normedCoordConverter,
   NAInt hueIndex);
 
-void cmDrawThreeDeeSpectrum(
+void cpDrawThreeDeeSpectrum(
   const CMLColorMachine* cm, 
   CMLNormedConverter normedCoordConverter,
   CMLColorType coordSpace,
   NAInt hueIndex);
 
-void cmDrawThreeDeeAxis(
+void cpDrawThreeDeeAxis(
   CMLNormedConverter normedCoordConverter,
   const float* min,
   const float* max,

@@ -47,7 +47,7 @@ typedef struct CPThreeDeeController CPThreeDeeController;
 CPThreeDeeController* cpAllocThreeDeeController(void);
 void cpDeallocThreeDeeController(CPThreeDeeController* con);
 
-void cmRefreshThreeDeeDisplay(CPThreeDeeController* con);
+void cpRefreshThreeDeeDisplay(CPThreeDeeController* con);
 
 void cpShowThreeDeeController(CPThreeDeeController* con);
 void cpUpdateThreeDeeController(CPThreeDeeController* con);

@@ -39,18 +39,18 @@ struct CPThreeDeeController{
 
 
 
-void cmInitThreeDeeOpenGL(void* data){
+void cp_InitThreeDeeOpenGL(void* data){
   CPThreeDeeController* con = (CPThreeDeeController*)data;
   con->fontId = naStartupPixelFont();
-  cmInitThreeDeeDisplay(con->display);
+  cpInitThreeDeeDisplay(con->display);
 }
 
 
-void cmRefreshThreeDeeDisplay(CPThreeDeeController* con){
+void cpRefreshThreeDeeDisplay(CPThreeDeeController* con){
   naRefreshUIElement(con->display, 0.);
 }
 
-NABool cmReshapeThreeDeeWindow(NAReaction reaction){
+NABool cp_ReshapeThreeDeeWindow(NAReaction reaction){
   CPThreeDeeController* con = (CPThreeDeeController*)reaction.controller;
 
   NARect windowRect = naGetUIElementRect(con->window);
@@ -271,7 +271,7 @@ NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
     hueIndex = 2;
   }
 
-  cmBeginThreeDeeDrawing(backgroundRGB);
+  cpBeginThreeDeeDrawing(backgroundRGB);
 
   cpSetupThreeDeeProjection(
     con->display,
@@ -287,7 +287,7 @@ NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
   NAInt steps3D = cpGetThreeDeeCoordinateControllerSteps3D(con->coordinateController);
 
   if(1){
-    cmDrawThreeDeeSurfaces(
+    cpDrawThreeDeeSurfaces(
       cm,
       sm,
       backgroundRGB,
@@ -307,7 +307,7 @@ NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
   const NABool isGrayColorSpace = colorType == CML_COLOR_Gray;
   float pointsOpacity = cpGetThreeDeeOpacityControllerPointsOpacity(con->opacityController);
   if(pointsOpacity > 0.f || isGrayColorSpace){
-    cmDrawThreeDeePointCloud(
+    cpDrawThreeDeePointCloud(
       cm,
       sm,
       isGrayColorSpace ? 1.f : pointsOpacity,
@@ -320,7 +320,7 @@ NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
   }
 
   if(showSpectrum){
-    cmDrawThreeDeeSpectrum(
+    cpDrawThreeDeeSpectrum(
       cm,
       normedOutputConverter,
       coordSpace,
@@ -328,7 +328,7 @@ NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
   }
   
   if(showAxis){
-    cmDrawThreeDeeAxis(
+    cpDrawThreeDeeAxis(
       normedOutputConverter,
       min,
       max,
@@ -337,7 +337,7 @@ NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
       con->fontId);
   }
 
-  cmEndThreeDeeDrawing(con->display);
+  cpEndThreeDeeDrawing(con->display);
     
   return NA_TRUE;
 }
@@ -358,13 +358,13 @@ CPThreeDeeController* cpAllocThreeDeeController(void){
     naMakeRectS(40, 30, 1, 1),
     NA_WINDOW_RESIZEABLE,
     CP_THREEDEE_WINDOW_STORAGE_TAG);
-  naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cmReshapeThreeDeeWindow, con);
+  naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cp_ReshapeThreeDeeWindow, con);
 
   // The 3D space
-  con->display = naNewOpenGLSpace(naMakeSize(initial3DDisplayWidth, initial3DDisplayWidth), cmInitThreeDeeOpenGL, con);
+  con->display = naNewOpenGLSpace(naMakeSize(initial3DDisplayWidth, initial3DDisplayWidth), cp_InitThreeDeeOpenGL, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cpUpdateThreeDeeDisplay, con);
-  naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cmMoveRotationMouse, con->perspectiveController);
-  naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cmScrollRotation, con->perspectiveController);
+  naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cpMoveRotationMouse, con->perspectiveController);
+  naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cpScrollRotation, con->perspectiveController);
   
   // The control space
   con->controlSpace = naNewSpace(naMakeSize(fullControlWidth, 1));

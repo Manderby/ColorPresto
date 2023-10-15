@@ -19,7 +19,7 @@ inline static void cmlSet4UInt(CMLVec4UInt d, size_t a0, size_t a1, size_t a2, s
 
 
 
-void cmInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace){
+void cpInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace){
   NA_UNUSED(openGLSpace);
   glEnable(GL_POINT_SMOOTH);
   glEnable(GL_LINE_SMOOTH);
@@ -29,14 +29,14 @@ void cmInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace){
 
 
 
-void cmBeginThreeDeeDrawing(const CMLVec3 backgroundRGB){
+void cpBeginThreeDeeDrawing(const CMLVec3 backgroundRGB){
   glClearColor(backgroundRGB[0], backgroundRGB[1], backgroundRGB[2], 1.);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 
 
-void cmEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace){
+void cpEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace){
   naSwapOpenGLSpaceBuffer(openGLSpace);
 }
 
@@ -119,7 +119,7 @@ void cpSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom
 
 
 
-void cmDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* sm, double pointsAlpha, CMLColorType space3D, NAInt steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, double zoom){
+void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* sm, double pointsAlpha, CMLColorType space3D, NAInt steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, double zoom){
   size_t numChannels = cmlGetNumChannels(space3D);
 
   CMLVec4UInt steps;
@@ -188,7 +188,7 @@ void cmDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
 
 
 
-void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm, const CMLVec3 backgroundRGB, const CMLVec3 axisRGB, NABool bodySolid, double bodyAlpha, double gridAlpha, double gridTint, CMLColorType space3D, NAInt steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, NAInt hueIndex){
+void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm, const CMLVec3 backgroundRGB, const CMLVec3 axisRGB, NABool bodySolid, double bodyAlpha, double gridAlpha, double gridTint, CMLColorType space3D, NAInt steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, NAInt hueIndex){
   if(!bodySolid){
 //    glClear(GL_DEPTH_BUFFER_BIT);
   }
@@ -641,7 +641,7 @@ void cmDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
 
 
 
-void cmDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normedCoordConverter, CMLColorType coordSpace, NAInt hueIndex){
+void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normedCoordConverter, CMLColorType coordSpace, NAInt hueIndex){
   float iMin = CML_DEFAULT_INTEGRATION_MIN;
   float iMax = CML_DEFAULT_INTEGRATION_MAX;
   NAInt intervals = (int32)((iMax - iMin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
@@ -686,7 +686,7 @@ void cmDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normed
 
 
 
-void cmDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* min, const float* max, const char** labels, const CMLVec3 axisRGB, NAInt fontId){
+void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* min, const float* max, const char** labels, const CMLVec3 axisRGB, NAInt fontId){
   glClear(GL_DEPTH_BUFFER_BIT);
   glColor3fv(axisRGB);
 

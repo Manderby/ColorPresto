@@ -13,8 +13,8 @@ typedef struct CPThreeDeePerspectiveController CPThreeDeePerspectiveController;
 CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDeeController* parent);
 void cpDeallocThreeDeePerspectiveController(CPThreeDeePerspectiveController* con);
 
-NABool cmMoveRotationMouse(NAReaction reaction);
-NABool cmScrollRotation(NAReaction reaction);
+NABool cpMoveRotationMouse(NAReaction reaction);
+NABool cpScrollRotation(NAReaction reaction);
 
 NASpace* cpGetThreeDeePerspectiveControllerUIElement(CPThreeDeePerspectiveController* con);
 
