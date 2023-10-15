@@ -18,7 +18,7 @@ struct CPMachineButtonsController{
 
 
 
-NABool cmPressMachineButton(NAReaction reaction){
+NABool cp_PressMachineButton(NAReaction reaction){
   CPMachineButtonsController* con = (CPMachineButtonsController*)reaction.controller;
   
   if(reaction.uiElement == con->resetMachineButton){
@@ -44,9 +44,9 @@ CPMachineButtonsController* cpAllocMachineButtonsController(void){
   con->resetMachineButton = naNewTextPushButton(cpTranslate(CPResetButton), 102);
   con->metamericsButton = naNewTextPushButton(cpTranslate(CPMetamericsButton), 102);
   con->threeDeeButton = naNewTextPushButton(cpTranslate(CPThreeDeeButton), 102);
-  naAddUIReaction(con->resetMachineButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
-  naAddUIReaction(con->metamericsButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
-  naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cmPressMachineButton, con);
+  naAddUIReaction(con->resetMachineButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
+  naAddUIReaction(con->metamericsButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
+  naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
 
   // layout
   cpBeginUILayout(con->space, spaceBezel);

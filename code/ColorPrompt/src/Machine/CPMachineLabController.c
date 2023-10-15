@@ -25,7 +25,7 @@ struct CPMachineLabController{
 
 
 
-NABool cmSelectLabColorSpace(NAReaction reaction){
+NABool cp_SelectLabColorSpace(NAReaction reaction){
   CPMachineLabController* con = (CPMachineLabController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -80,7 +80,7 @@ CPMachineLabController* cpAllocMachineLabController(void){
     if(labColorSpaceType == CML_LAB_CUSTOM_L){continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetLabColorSpaceTypeString(labColorSpaceType));
     naAddPopupButtonMenuItem(con->labColorSpacePopupButton, item, NA_NULL);
-    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectLabColorSpace, con);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectLabColorSpace, con);
   }
 
   con->valueKTitleLabel = naNewLabel(cpTranslate(CPLabColorSpaceK), machineLabelWidth);

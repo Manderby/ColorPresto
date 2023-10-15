@@ -56,7 +56,7 @@ struct CPMachineRGBController{
 
 
 
-NABool cmSelectRGBColorSpace(NAReaction reaction){
+NABool cp_SelectRGBColorSpace(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -109,7 +109,7 @@ NABool cpSetRGBYxy(NAReaction reaction){
 
 
 
-NABool cmSelectRGBChannel(NAReaction reaction){
+NABool cp_SelectRGBChannel(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -154,7 +154,7 @@ NABool cmSelectRGBChannel(NAReaction reaction){
 
 
 
-NABool cmSelectRGBResponse(NAReaction reaction){
+NABool cp_SelectRGBResponse(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -268,7 +268,7 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
     CMLRGBColorSpaceType rgbColorSpaceType = (CMLRGBColorSpaceType)i;
     NAMenuItem* item = naNewMenuItem(cmlGetRGBColorSpaceTypeString(rgbColorSpaceType));
     naAddPopupButtonMenuItem(con->rgbColorSpacePopupButton, item, NA_NULL);
-    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectRGBColorSpace, con);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectRGBColorSpace, con);
   }
 
   con->redPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceRed), machineLabelWidth - setButtonWidth + marginH);
@@ -301,16 +301,16 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
   con->rgbResponseChannelsPopupButton = naNewPopupButton(80);
   NAMenuItem* rgbMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelRGB));
   naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, rgbMenuItem, NA_NULL);
-  naAddUIReaction(rgbMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
+  naAddUIReaction(rgbMenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRGBChannel, con);
   NAMenuItem* rMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelR));
   naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, rMenuItem, NA_NULL);
-  naAddUIReaction(rMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
+  naAddUIReaction(rMenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRGBChannel, con);
   NAMenuItem* gMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelG));
   naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, gMenuItem, NA_NULL);
-  naAddUIReaction(gMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
+  naAddUIReaction(gMenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRGBChannel, con);
   NAMenuItem* bMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelB));
   naAddPopupButtonMenuItem(con->rgbResponseChannelsPopupButton, bMenuItem, NA_NULL);
-  naAddUIReaction(bMenuItem, NA_UI_COMMAND_PRESSED, cmSelectRGBChannel, con);
+  naAddUIReaction(bMenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRGBChannel, con);
 
   con->rgbResponsePopupButton = naNewPopupButton(100);
   for(size_t i = 0; i < CML_RESPONSE_COUNT; ++i){
@@ -318,7 +318,7 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
     if(responseCurveType == CML_RESPONSE_UNDEFINED){continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetRGBResponseTypeString(responseCurveType));
     naAddPopupButtonMenuItem(con->rgbResponsePopupButton, item, NA_NULL);
-    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectRGBResponse, con);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectRGBResponse, con);
   }
 
   con->responseLinearTitleLabel = naNewLabel(cpTranslate(CPRGBColorChannelLinear), machineLabelWidth);

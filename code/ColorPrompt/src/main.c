@@ -64,7 +64,7 @@ void postStartup(void* arg){
     cpTranslate(CPApplicationDescription),
     cpTranslate(CPApplicationHelpURL));
 
-  // Color Machine
+  // Color Prompt
   cpStartupColorPromptApplicationUI();
 }
 

@@ -8,7 +8,7 @@ NA_LOC(CPApplicationDescription, "Frontend for color conversions based on\nCML: 
 NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colormachine/help/index_eng.php");
 
 // General things.
-NA_LOC(CPApplicationName, "Color Machine");  // do not translate
+NA_LOC(CPApplicationName, "Color Prompt");  // do not translate
 NA_LOC(CPAverage, "Ø:");                     // do not translate
 NA_LOC(CPColorIndex1, "1:");
 NA_LOC(CPColorIndex2, "2:");

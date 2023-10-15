@@ -19,7 +19,7 @@ struct CPMachineObserverController{
 
 
 
-NABool cmSelectObserver(NAReaction reaction){
+NABool cp_SelectObserver(NAReaction reaction){
   CPMachineObserverController* con = (CPMachineObserverController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -46,7 +46,7 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
     if(observerType == CML_OBSERVER_CUSTOM) {continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetObserverTypeString(observerType));
     naAddPopupButtonMenuItem(con->observerPopupButton, item, NA_NULL);
-    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectObserver, con);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectObserver, con);
   }
   con->observerStepsTitleLabel = naNewLabel(cpTranslate(CPObserverSteps), machineLabelWidth);
   con->observerStepsLabel = naNewLabel("", 100);

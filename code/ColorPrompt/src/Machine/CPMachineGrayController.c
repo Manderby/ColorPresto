@@ -18,7 +18,7 @@ struct CPMachineGrayController{
 
 
 
-NABool cmSelectGrayColorSpace(NAReaction reaction){
+NABool cp_SelectGrayColorSpace(NAReaction reaction){
   CPMachineGrayController* con = (CPMachineGrayController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -45,7 +45,7 @@ CPMachineGrayController* cpAllocMachineGrayController(void){
     CMLGrayComputationType grayComputationType = (CMLGrayComputationType)i;
     NAMenuItem* item = naNewMenuItem(cmlGetGrayComputationTypeString(grayComputationType));
     naAddPopupButtonMenuItem(con->grayColorSpacePopupButton, item, NA_NULL);
-    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectGrayColorSpace, con);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectGrayColorSpace, con);
   }
 
   // layout

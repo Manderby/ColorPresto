@@ -27,7 +27,7 @@ struct CPMachineIlluminationController{
 
 
 
-NABool cmSelectIllumination(NAReaction reaction){
+NABool cp_SelectIllumination(NAReaction reaction){
   CPMachineIlluminationController* con = (CPMachineIlluminationController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -111,7 +111,7 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
     if(illuminationType == CML_ILLUMINATION_CUSTOM_SPECTRUM) {continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetIlluminationTypeString(illuminationType));
     naAddPopupButtonMenuItem(con->illuminationPopupButton, item, NA_NULL);
-    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectIllumination, con);
+    naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectIllumination, con);
   }
   con->illuminationTemperatureTitleLabel = naNewLabel(cpTranslate(CPIlluminationTemperature), machineLabelWidth);
   con->illuminationTemperatureTextField = cpNewValueTextField(cpSetIlluminationTemperature, con);
