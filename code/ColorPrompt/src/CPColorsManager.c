@@ -1,5 +1,5 @@
 
-#include "ColorControllers/CMColorController.h"
+#include "ColorControllers/CPColorController.h"
 #include "CPColorsManager.h"
 #include "mainC.h"
 #include "NAUtility/NAMemory.h"
@@ -8,7 +8,7 @@ struct CPColorsManager{
   float fallbackColor;
   const void* currentColor;
   CMLColorType currentType;
-  const CMColorController* currentController;
+  const CPColorController* currentController;
 };
 
 CPColorsManager* cmAllocColorsController(){
@@ -34,7 +34,7 @@ CMLColorType cmGetColorsManagerCurrentColorType(const CPColorsManager* colorsMan
   return colorsManager->currentType;
 }
 
-void cmSetColorsManagerCurrentColorController(CPColorsManager* colorsManager, const CMColorController* con){
+void cmSetColorsManagerCurrentColorController(CPColorsManager* colorsManager, const CPColorController* con){
   colorsManager->currentController = con;
   colorsManager->currentColor = cmGetColorControllerColorData(con);
   if(colorsManager->currentController == NA_NULL || colorsManager->currentColor == NA_NULL){
@@ -45,6 +45,6 @@ void cmSetColorsManagerCurrentColorController(CPColorsManager* colorsManager, co
   }
 }
 
-const CMColorController* cmGetColorsManagerCurrentColorController(CPColorsManager* colorsManager){
+const CPColorController* cmGetColorsManagerCurrentColorController(CPColorsManager* colorsManager){
   return colorsManager->currentController;
 }

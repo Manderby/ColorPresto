@@ -5,9 +5,9 @@
 CM_PROTOTYPE(CPColorPromptApplication);
 CM_PROTOTYPE(CPColorsManager);
 CM_PROTOTYPE(CMHSLColorController);
-CM_PROTOTYPE(CMMachineWindowController);
-CM_PROTOTYPE(CMMetamericsController);
-CM_PROTOTYPE(CMThreeDeeController);
+CM_PROTOTYPE(CPMachineWindowController);
+CM_PROTOTYPE(CPMetamericsController);
+CM_PROTOTYPE(CPThreeDeeController);
 
 
 

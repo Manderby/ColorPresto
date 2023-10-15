@@ -3,7 +3,7 @@
 #include "mainC.h"
 
 
-CM_PROTOTYPE(CMColorController);
+CM_PROTOTYPE(CPColorController);
 CM_PROTOTYPE(CPColorsManager);
 
 typedef struct CPColorsManager CPColorsManager;
@@ -19,8 +19,8 @@ CMLColorType cmGetColorsManagerCurrentColorType(
 
 void cmSetColorsManagerCurrentColorController(
   CPColorsManager* colorsManager,
-  const CMColorController* con);
+  const CPColorController* con);
 
-const CMColorController* cmGetColorsManagerCurrentColorController(
+const CPColorController* cmGetColorsManagerCurrentColorController(
   CPColorsManager* colorsManager);
 

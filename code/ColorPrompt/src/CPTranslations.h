@@ -131,7 +131,7 @@ enum{
   CMColorSpaceYxy,
 
   // Strings for Whitepoint and Metamerics window
-  CMWhitepointsAndMetamerics,
+  CPWhitePointsAndMetamerics,
   CMCurrentIllumination,
   CMReferenceIllumination,
   CMChromaticityErrorTitle,

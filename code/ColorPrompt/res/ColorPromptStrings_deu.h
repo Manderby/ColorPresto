@@ -132,7 +132,7 @@ NA_LOC(CMColorSpaceYuv,   "Yuv");     // do not translate
 NA_LOC(CMColorSpaceYxy,   "Yxy");     // do not translate
 
 // Translations for the Whitepoint and Metamerics Window
-NA_LOC(CMWhitepointsAndMetamerics, "Weisspunkte und Metamerie");
+NA_LOC(CPWhitePointsAndMetamerics, "Weisspunkte und Metamerie");
 // %s is the name of the currently selected illumination.
 NA_LOC(CMCurrentIllumination, "Ausgewählt: %s");
 NA_LOC(CMReferenceIllumination, "Referenz:");

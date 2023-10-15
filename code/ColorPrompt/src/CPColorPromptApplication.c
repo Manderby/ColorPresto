@@ -3,9 +3,9 @@
 
 #include "CPColorsManager.h"
 #include "CPDesign.h"
-#include "Machine/CMMachineWindowController.h"
-#include "Metamerics/CMMetamericsController.h"
-#include "ThreeDee/CMThreeDeeController.h"
+#include "Machine/CPMachineWindowController.h"
+#include "Metamerics/CPMetamericsController.h"
+#include "ThreeDee/CPThreeDeeController.h"
 
 #include "NAUtility/NAMemory.h"
 
@@ -14,9 +14,9 @@ struct CPColorPromptApplication{
   CMLColorMachine* sm; // current ScreenMachine
   CPColorsManager* colorsManager;
 
-  CMMachineWindowController* machineWindowController;
-  CMMetamericsController* metamericsController;
-  CMThreeDeeController* threeDeeController;
+  CPMachineWindowController* machineWindowController;
+  CPMetamericsController* metamericsController;
+  CPThreeDeeController* threeDeeController;
 };
 
 
@@ -99,12 +99,12 @@ void cmUpdateMachine(){
 
 
 
-void cmSetCurrentColorController(const CMColorController* con){
+void cmSetCurrentColorController(const CPColorController* con){
   cmSetColorsManagerCurrentColorController(cmGetColorsManager(), con);
   cmUpdateMachine();
 }
 
-const CMColorController* cmGetCurrentColorController(){
+const CPColorController* cmGetCurrentColorController(){
   return cmGetColorsManagerCurrentColorController(cmGetColorsManager());
 }
 

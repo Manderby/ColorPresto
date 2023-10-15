@@ -5,7 +5,7 @@
 
 CM_PROTOTYPE(CMLColorMachine);
 
-CM_PROTOTYPE(CMColorController);
+CM_PROTOTYPE(CPColorController);
 CM_PROTOTYPE(CMHSLColorController);
 
 
@@ -15,8 +15,8 @@ CM_PROTOTYPE(CMHSLColorController);
 
 
 
-void cmSetCurrentColorController(const CMColorController* con);
-const CMColorController* cmGetCurrentColorController(void);
+void cmSetCurrentColorController(const CPColorController* con);
+const CPColorController* cmGetCurrentColorController(void);
 
 const float* cmGetCurrentColorData(void);
 CMLColorType cmGetCurrentColorType(void);
