@@ -275,8 +275,8 @@ const float specimen5D75Data[] = {
 
 
 
-typedef struct CMVisMetamericColors CMVisMetamericColors;
-struct CMVisMetamericColors{
+typedef struct CPVisMetamericColors CPVisMetamericColors;
+struct CPVisMetamericColors{
   CMLVec3 visStandardRGBFloatData[5];
   CMLVec3 visMetamerRGBFloatData[5];
   float metamericIndex[5];
@@ -306,18 +306,18 @@ struct CPVisMetamericIndexController{
   NALabel* metamericsLabel;
   NALabel* metamericsGradeLabel;
 
-  CMVisMetamericColors visMetamericColors;
+  CPVisMetamericColors visMetamericColors;
 };
 
 
 
-CMVisMetamericColors cmComputeVisMetamericColors(
+CPVisMetamericColors cp_ComputeVisMetamericColors(
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,
   const CMLMat33 adaptationMatrix,
   CPReferenceIlluminationType referenceIlluminationType){
   
-  CMVisMetamericColors metamericColors;
+  CPVisMetamericColors metamericColors;
   
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
@@ -565,7 +565,7 @@ void cpUpdateVisMetamericIndexController(
   NABool valid)
 {
   if(valid){
-    con->visMetamericColors = cmComputeVisMetamericColors(
+    con->visMetamericColors = cp_ComputeVisMetamericColors(
       observer10Funcs,
       illWhitePoint10,
       adaptationMatrix,

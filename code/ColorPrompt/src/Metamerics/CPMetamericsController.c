@@ -159,25 +159,25 @@ void cpUpdateMetamericsController(CPMetamericsController* con){
     ref = cmlCreateIlluminationSpectrum(CML_ILLUMINATION_D50, 0.f);
   }
 
-  CPWhitePoints illWhitePoint10 = CMGetWhitePoints(
+  CPWhitePoints illWhitePoint10 = cpGetWhitePoints(
     illuminationSpec,
     cmlGetWhitePointYxy(cm),
     observer10Funcs);
-  CPWhitePoints illWhitePoint2 = CMGetWhitePoints(
+  CPWhitePoints illWhitePoint2 = cpGetWhitePoints(
     illuminationSpec,
     cmlGetWhitePointYxy(cm),
     observer2Funcs);
-  CPWhitePoints refWhitePoint10 = CMGetWhitePoints(
+  CPWhitePoints refWhitePoint10 = cpGetWhitePoints(
     ref,
     NA_NULL,
     observer10Funcs);
-  CPWhitePoints refWhitePoint2 = CMGetWhitePoints(
+  CPWhitePoints refWhitePoint2 = cpGetWhitePoints(
     ref,
     NA_NULL,
     observer2Funcs);
 
   CMLMat33 adaptationMatrix;
-  CMFillChromaticAdaptationMatrix(adaptationMatrix, illWhitePoint10.Yxy);
+  cp_FillChromaticAdaptationMatrix(adaptationMatrix, illWhitePoint10.Yxy);
 
 
 

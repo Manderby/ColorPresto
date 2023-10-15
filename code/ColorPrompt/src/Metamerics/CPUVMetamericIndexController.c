@@ -196,8 +196,8 @@ const float UVMetamer3D75Data[] = {
 
 
 
-typedef struct CMUVMetamericColors CMUVMetamericColors;
-struct CMUVMetamericColors{
+typedef struct CPUVMetamericColors CPUVMetamericColors;
+struct CPUVMetamericColors{
   CMLVec3 uvStandardRGBFloatData[3];
   CMLVec3 uvMetamerRGBFloatData[3];
   float metamericIndex[3];
@@ -221,17 +221,17 @@ struct CPUVMetamericIndexController{
   NALabel* metamericsLabel;
   NALabel* metamericsGradeLabel;
   
-  CMUVMetamericColors uvMetamericColors;
+  CPUVMetamericColors uvMetamericColors;
 };
 
 
 
-CMUVMetamericColors cmComputeUVMetamericColors(
+CPUVMetamericColors cp_ComputeUVMetamericColors(
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,
   CPReferenceIlluminationType referenceIlluminationType)
 {
-  CMUVMetamericColors metamericColors;
+  CPUVMetamericColors metamericColors;
 
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
@@ -503,7 +503,7 @@ void cpUpdateUVMetamericIndexController(
   NABool valid)
 {
   if(valid){
-    con->uvMetamericColors = cmComputeUVMetamericColors(
+    con->uvMetamericColors = cp_ComputeUVMetamericColors(
       observer10Funcs,
       illWhitePoint10,
       referenceIlluminationType);

@@ -70,7 +70,7 @@ static const double fourValuesWidth = 4 * labelValueWidth + 3 * marginH;
 
 
 
-NABool cmSelectRefSpectrum(NAReaction reaction){
+NABool cp_SelectRefSpectrum(NAReaction reaction){
   CPWhitePointsController* con = (CPWhitePointsController*)reaction.controller;
   if(reaction.uiElement == con->refD50MenuItem){
     con->referenceIlluminationType = REFERENCE_ILLUMINATION_D50;
@@ -145,10 +145,10 @@ CPWhitePointsController* cpAllocWhitePointsController(void){
   naAddPopupButtonMenuItem(con->refPopupButton, con->refD55MenuItem, NA_NULL);
   naAddPopupButtonMenuItem(con->refPopupButton, con->refD65MenuItem, NA_NULL);
   naAddPopupButtonMenuItem(con->refPopupButton, con->refD75MenuItem, NA_NULL);
-  naAddUIReaction(con->refD50MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
-  naAddUIReaction(con->refD55MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
-  naAddUIReaction(con->refD65MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
-  naAddUIReaction(con->refD75MenuItem, NA_UI_COMMAND_PRESSED, cmSelectRefSpectrum, con);
+  naAddUIReaction(con->refD50MenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRefSpectrum, con);
+  naAddUIReaction(con->refD55MenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRefSpectrum, con);
+  naAddUIReaction(con->refD65MenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRefSpectrum, con);
+  naAddUIReaction(con->refD75MenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRefSpectrum, con);
 
   con->refXYZ10Label = cpNewThreeValueLabel();
   con->refYxy10Label = cpNewThreeValueLabel();

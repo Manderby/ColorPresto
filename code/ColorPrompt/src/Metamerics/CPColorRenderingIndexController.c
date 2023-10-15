@@ -230,8 +230,8 @@ struct CPColorRenderingIndexController{
   CPTwoColorController* color14Display;
 };
 
-typedef struct CMColorRenderingColors CMColorRenderingColors;
-struct CMColorRenderingColors{
+typedef struct CPColorRenderingColors CPColorRenderingColors;
+struct CPColorRenderingColors{
   CMLVec3 crReferenceRGBFloatData[14];
   CMLVec3 crMetamerRGBFloatData[14];
   float colorRenderingIndex[14];
@@ -239,9 +239,9 @@ struct CMColorRenderingColors{
 
 
 
-CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs[3], const CPWhitePoints* refWhitePoint2, const CPWhitePoints* illWhitePoint2, const CMLFunction* refSpec){
+CPColorRenderingColors cp_ComputeColorRenderingColors(CMLFunction* observer2Funcs[3], const CPWhitePoints* refWhitePoint2, const CPWhitePoints* illWhitePoint2, const CMLFunction* refSpec){
 
-  CMColorRenderingColors colors;
+  CPColorRenderingColors colors;
   
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
@@ -504,7 +504,7 @@ void cpUpdateColorRenderingIndexController(
   NABool valid)
 {
   if(valid){
-    CMColorRenderingColors colors = cmComputeColorRenderingColors(
+    CPColorRenderingColors colors = cp_ComputeColorRenderingColors(
       observer2Funcs,
       refWhitePoint2,
       illWhitePoint2,

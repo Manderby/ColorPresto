@@ -19,11 +19,11 @@ struct CPWhitePoints{
 
 
 
-void CMFillChromaticAdaptationMatrix(
+void cp_FillChromaticAdaptationMatrix(
   CMLMat33 adaptationMatrix,
   const CMLVec3 whitePointYxy10);
   
-CPWhitePoints CMGetWhitePoints(
+CPWhitePoints cpGetWhitePoints(
   const CMLFunction* spec,
   const float* wpYxy,
   CMLFunction** observerFuncs);

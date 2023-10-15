@@ -7,7 +7,7 @@
 
 
 
-void CMFillChromaticAdaptationMatrix(CMLMat33 adaptationMatrix, const CMLVec3 whitePointYxy10)
+void cp_FillChromaticAdaptationMatrix(CMLMat33 adaptationMatrix, const CMLVec3 whitePointYxy10)
 {
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
@@ -22,7 +22,7 @@ void CMFillChromaticAdaptationMatrix(CMLMat33 adaptationMatrix, const CMLVec3 wh
 
 
 
-CPWhitePoints CMGetWhitePoints(const CMLFunction* spec, const float* wpYxy, CMLFunction** observerFuncs)
+CPWhitePoints cpGetWhitePoints(const CMLFunction* spec, const float* wpYxy, CMLFunction** observerFuncs)
 {
   CMLIntegration integration = cmlMakeDefaultIntegration();
   CPWhitePoints wp = {0};

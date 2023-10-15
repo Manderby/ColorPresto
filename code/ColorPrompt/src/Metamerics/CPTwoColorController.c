@@ -14,7 +14,7 @@ struct CPTwoColorController{
 
 
 
-void cmInitTwoColorDisplay(void* data){
+void cp_InitTwoColorDisplay(void* data){
   NA_UNUSED(data);
   glShadeModel(GL_FLAT);
   glEnable(GL_BLEND);
@@ -23,7 +23,7 @@ void cmInitTwoColorDisplay(void* data){
 
 
 
-NABool cmRedrawTwoColorController(NAReaction reaction){
+NABool cp_RedrawTwoColorController(NAReaction reaction){
   CPTwoColorController* con = (CPTwoColorController*)(reaction.controller);
 
   glBegin(GL_TRIANGLE_STRIP);
@@ -49,8 +49,8 @@ NABool cmRedrawTwoColorController(NAReaction reaction){
 CPTwoColorController* cpAllocTwoColorController(){
   CPTwoColorController* con = naAlloc(CPTwoColorController);
 
-  con->space = naNewOpenGLSpace(naMakeSize(twoColorWidth, twoColorHeight), cmInitTwoColorDisplay, con);
-  naAddUIReaction(con->space, NA_UI_COMMAND_REDRAW, cmRedrawTwoColorController, con);
+  con->space = naNewOpenGLSpace(naMakeSize(twoColorWidth, twoColorHeight), cp_InitTwoColorDisplay, con);
+  naAddUIReaction(con->space, NA_UI_COMMAND_REDRAW, cp_RedrawTwoColorController, con);
   
   return con;
 }
