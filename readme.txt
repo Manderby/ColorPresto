@@ -1,25 +1,21 @@
 Description:
 ------------
 
-Color Machine is a Mac application to showcase the capabilities of the scietific
+Color Prompt is a desktop application to showcase the capabilities of the scietific
 color conversion library CML (Color Machine Library).
-
-The implementation is still under development.
 
 clone including all submodules:
 git clone --recurse-submodules URL
 
 
-Email: colormachine@manderc.com
-Follow on Twitter for latest developments: @Manderby52
+Email: colorprompt@manderc.com
 
 
 
 
 Contribute & License:
 ---------------------
-The implementation is still under development.
-Please be patient and do not contribute.
+Contribution is up for discussion. Just get in contact.
 
 License: Public Domain
 
