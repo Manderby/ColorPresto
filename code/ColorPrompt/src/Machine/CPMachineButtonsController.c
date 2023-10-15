@@ -35,7 +35,7 @@ NABool cmPressMachineButton(NAReaction reaction){
 
 
 
-CPMachineButtonsController* cmAllocMachineButtonsController(void){
+CPMachineButtonsController* cpAllocMachineButtonsController(void){
   CPMachineButtonsController* con = naAlloc(CPMachineButtonsController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -60,13 +60,13 @@ CPMachineButtonsController* cmAllocMachineButtonsController(void){
 
 
 
-void cmDeallocMachineButtonsController(CPMachineButtonsController* con){
+void cpDeallocMachineButtonsController(CPMachineButtonsController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetMachineButtonsControllerUIElement(CPMachineButtonsController* con){
+NASpace* cpGetMachineButtonsControllerUIElement(CPMachineButtonsController* con){
   return con->space;
 }
 

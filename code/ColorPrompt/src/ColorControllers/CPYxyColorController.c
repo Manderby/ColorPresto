@@ -31,7 +31,7 @@ struct CPYxyColorController{
 
 
 
-NABool cmYxyValueEdited(NAReaction reaction){
+NABool cp_YxyValueEdited(NAReaction reaction){
   CPYxyColorController* con = (CPYxyColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldY){
@@ -50,23 +50,23 @@ NABool cmYxyValueEdited(NAReaction reaction){
 
 
 
-CPYxyColorController* cmAllocYxyColorController(void){
+CPYxyColorController* cpAllocYxyColorController(void){
   CPYxyColorController* con = naAlloc(CPYxyColorController);
   
-  cmInitColorController(&(con->baseController), CML_COLOR_Yxy);
+  cpInitColorController(&(con->baseController), CML_COLOR_Yxy);
   
-  con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
+  con->colorWell2D = cpAllocColorWell2D(&(con->baseController), 0);
 
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
   con->labelY = cpNewColorComponentLabel(cpTranslate(CPYxyColorChannelY));
   con->labelx = cpNewColorComponentLabel(cpTranslate(CPYxyColorChannelx));
   con->labely = cpNewColorComponentLabel(cpTranslate(CPYxyColorChannely));
-  con->textFieldY = cpNewValueTextField(cmYxyValueEdited, con);
-  con->textFieldx = cpNewValueTextField(cmYxyValueEdited, con);
-  con->textFieldy = cpNewValueTextField(cmYxyValueEdited, con);
-  con->colorWell1DY = cmAllocColorWell1D(&(con->baseController), con->yxyColor, 0);
-  con->colorWell1Dx = cmAllocColorWell1D(&(con->baseController), con->yxyColor, 1);
-  con->colorWell1Dy = cmAllocColorWell1D(&(con->baseController), con->yxyColor, 2);
+  con->textFieldY = cpNewValueTextField(cp_YxyValueEdited, con);
+  con->textFieldx = cpNewValueTextField(cp_YxyValueEdited, con);
+  con->textFieldy = cpNewValueTextField(cp_YxyValueEdited, con);
+  con->colorWell1DY = cpAllocColorWell1D(&(con->baseController), con->yxyColor, 0);
+  con->colorWell1Dx = cpAllocColorWell1D(&(con->baseController), con->yxyColor, 1);
+  con->colorWell1Dy = cpAllocColorWell1D(&(con->baseController), con->yxyColor, 2);
 
   naSetUIElementNextTabElement(con->textFieldY, con->textFieldx);
   naSetUIElementNextTabElement(con->textFieldx, con->textFieldy);
@@ -76,18 +76,18 @@ CPYxyColorController* cmAllocYxyColorController(void){
   cpAddUIPos(0, (int)((colorWell2DSize - (3 * 25.)) / 2.)); // center the channels
   cpAddUIRow(con->labelY, colorValueCondensedRowHeight);
   cpAddUICol(con->textFieldY, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DY), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1DY), 10, colorWell1DOffset);
   cpAddUIRow(con->labelx, colorValueCondensedRowHeight);
   cpAddUICol(con->textFieldx, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1Dx), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1Dx), 10, colorWell1DOffset);
   cpAddUIRow(con->labely, colorValueCondensedRowHeight);
   cpAddUICol(con->textFieldy, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1Dy), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1Dy), 10, colorWell1DOffset);
   cpAddUIPos(0, colorValueCondensedRowHeight);
   cpEndUILayout();
   
   cpBeginUILayout(con->baseController.space, colorWellBezel);
-  cpAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
+  cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
   cpAddUICol(con->channelSpace, colorWell2DRightMargin);
   cpEndUILayout();
 
@@ -96,30 +96,30 @@ CPYxyColorController* cmAllocYxyColorController(void){
 
 
 
-void cmDeallocYxyColorController(CPYxyColorController* con){
-  cmDeallocColorWell2D(con->colorWell2D);
-  cmDeallocColorWell1D(con->colorWell1DY);
-  cmDeallocColorWell1D(con->colorWell1Dx);
-  cmDeallocColorWell1D(con->colorWell1Dy);
-  cmClearColorController(&(con->baseController));
+void cpDeallocYxyColorController(CPYxyColorController* con){
+  cpDeallocColorWell2D(con->colorWell2D);
+  cpDeallocColorWell1D(con->colorWell1DY);
+  cpDeallocColorWell1D(con->colorWell1Dx);
+  cpDeallocColorWell1D(con->colorWell1Dy);
+  cpClearColorController(&(con->baseController));
   naFree(con);
 }
 
 
 
-const void* cmGetYxyColorControllerColorData(const CPYxyColorController* con){
+const void* cpGetYxyColorControllerColorData(const CPYxyColorController* con){
   return &(con->yxyColor);
 }
 
 
 
-void cmSetYxyColorControllerColorData(CPYxyColorController* con, const void* data){
+void cpSetYxyColorControllerColorData(CPYxyColorController* con, const void* data){
   cmlCpy3(con->yxyColor, data);
 }
 
 
 
-void cmUpdateYxyColorController(CPYxyColorController* con){
+void cpUpdateYxyColorController(CPYxyColorController* con){
   cpUpdateColorController(&(con->baseController));
 
   CMLColorMachine* cm = cpGetCurrentColorMachine();

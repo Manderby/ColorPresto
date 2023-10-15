@@ -7,9 +7,9 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPMachineLabController CPMachineLabController;
 
-CPMachineLabController* cmAllocMachineLabController(void);
-void cmDeallocMachineLabController(CPMachineLabController* con);
+CPMachineLabController* cpAllocMachineLabController(void);
+void cpDeallocMachineLabController(CPMachineLabController* con);
 
-NASpace* cmGetMachineLabControllerUIElement(CPMachineLabController* con);
+NASpace* cpGetMachineLabControllerUIElement(CPMachineLabController* con);
 
 void cpUpdateMachineLabController(CPMachineLabController* con);

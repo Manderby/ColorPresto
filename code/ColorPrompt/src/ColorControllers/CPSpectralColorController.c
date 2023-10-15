@@ -19,7 +19,7 @@ struct CPSpectralColorController{
 
 
 
-NABool cmSpectralValueEdited(NAReaction reaction){
+NABool cp_SpectralValueEdited(NAReaction reaction){
   CPSpectralColorController* con = (CPSpectralColorController*)reaction.controller;
   
   cpSetCurrentColorController(&(con->baseController));
@@ -30,17 +30,17 @@ NABool cmSpectralValueEdited(NAReaction reaction){
 
 
 
-CPSpectralColorController* cmAllocSpectralColorController(void){
+CPSpectralColorController* cpAllocSpectralColorController(void){
   CPSpectralColorController* con = naAlloc(CPSpectralColorController);
   
-  cmInitColorController(&(con->baseController), CML_COLOR_SPECTRUM_ILLUMINATION);
+  cpInitColorController(&(con->baseController), CML_COLOR_SPECTRUM_ILLUMINATION);
   
   con->spectralColor = cmlCreateConstFilter(0.f);
   
-  con->display = cmAllocSpectralColorWell(&(con->baseController));
+  con->display = cpAllocSpectralColorWell(&(con->baseController));
   
   cpBeginUILayout(con->baseController.space, colorWellBezel);
-  cpAddUIRow(cmGetSpectralColorWellUIElement(con->display), 0);
+  cpAddUIRow(cpGetSpectralColorWellUIElement(con->display), 0);
   cpEndUILayout();
 
   return con;
@@ -48,28 +48,28 @@ CPSpectralColorController* cmAllocSpectralColorController(void){
 
 
 
-void cmDeallocSpectralColorController(CPSpectralColorController* con){
-  cmDeallocSpectralColorWell(con->display);
-  cmClearColorController(&(con->baseController));
+void cpDeallocSpectralColorController(CPSpectralColorController* con){
+  cpDeallocSpectralColorWell(con->display);
+  cpClearColorController(&(con->baseController));
   naFree(con);
 }
 
 
 
-const void* cmGetSpectralColorControllerColorData(const CPSpectralColorController* con){
+const void* cpGetSpectralColorControllerColorData(const CPSpectralColorController* con){
   return con->spectralColor;
 }
 
 
 
-void cmSetSpectralColorControllerColorData(CPSpectralColorController* con, const void* data){
+void cpSetSpectralColorControllerColorData(CPSpectralColorController* con, const void* data){
   cmlReleaseFunction(con->spectralColor);
   con->spectralColor = cmlDuplicateFunction((CMLFunction*)data);
 }
 
 
 
-void cmUpdateSpectralColorController(CPSpectralColorController* con){
+void cpUpdateSpectralColorController(CPSpectralColorController* con){
   cpUpdateColorController(&(con->baseController));
 
   CMLColorType currentColorType = cpGetCurrentColorType();
@@ -78,5 +78,5 @@ void cmUpdateSpectralColorController(CPSpectralColorController* con){
     con->spectralColor = cmlCreateConstFilter(0.f);
   }
   
-  cmUpdateSpectralColorWell(con->display);
+  cpUpdateSpectralColorWell(con->display);
 }

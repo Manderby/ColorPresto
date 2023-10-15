@@ -19,7 +19,7 @@ struct CPTotalMetamericIndexController{
 
 
 
-CPTotalMetamericIndexController* cmAllocTotalMetamericIndexController(void){
+CPTotalMetamericIndexController* cpAllocTotalMetamericIndexController(void){
   CPTotalMetamericIndexController* con = naAlloc(CPTotalMetamericIndexController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -48,19 +48,19 @@ CPTotalMetamericIndexController* cmAllocTotalMetamericIndexController(void){
 
 
 
-void cmDeallocTotalMetamericIndexController(CPTotalMetamericIndexController* con){
+void cpDeallocTotalMetamericIndexController(CPTotalMetamericIndexController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetTotalMetamericIndexUIElement(CPTotalMetamericIndexController* con){
+NASpace* cpGetTotalMetamericIndexUIElement(CPTotalMetamericIndexController* con){
   return con->space;
 }
 
 
 
-void cmUpdateTotalMetamericIndexController(
+void cpUpdateTotalMetamericIndexController(
   CPTotalMetamericIndexController* con,
   float avg5,
   float avg3,

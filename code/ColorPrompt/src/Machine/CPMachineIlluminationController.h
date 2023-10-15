@@ -7,9 +7,9 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPMachineIlluminationController CPMachineIlluminationController;
 
-CPMachineIlluminationController* cmAllocMachineIlluminationController(void);
-void cmDeallocMachineIlluminationController(CPMachineIlluminationController* con);
+CPMachineIlluminationController* cpAllocMachineIlluminationController(void);
+void cpDeallocMachineIlluminationController(CPMachineIlluminationController* con);
 
-NASpace* cmGetMachineIlluminationControllerUIElement(CPMachineIlluminationController* con);
+NASpace* cpGetMachineIlluminationControllerUIElement(CPMachineIlluminationController* con);
 
 void cpUpdateMachineIlluminationController(CPMachineIlluminationController* con);

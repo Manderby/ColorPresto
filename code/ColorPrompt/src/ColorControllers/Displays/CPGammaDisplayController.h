@@ -9,11 +9,11 @@ typedef struct CPGammaDisplayController CPGammaDisplayController;
 
 
 
-CPGammaDisplayController* cmAllocGammaDisplayController(void);
+CPGammaDisplayController* cpAllocGammaDisplayController(void);
   
-void cmDeallocGammaDisplayController(CPGammaDisplayController* well);
+void cpDeallocGammaDisplayController(CPGammaDisplayController* well);
 
-NAOpenGLSpace* cmGetGammaDisplayControllerUIElement(CPGammaDisplayController* well);
+NAOpenGLSpace* cpGetGammaDisplayControllerUIElement(CPGammaDisplayController* well);
 
-void cmUpdateGammaDisplayController(CPGammaDisplayController* well);
+void cpUpdateGammaDisplayController(CPGammaDisplayController* well);
 

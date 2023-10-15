@@ -24,7 +24,7 @@ NABool CPColorControllerMouseDown(NAReaction reaction){
 
 
 
-void cmInitColorController(CPColorController* con, CMLColorType colorType){
+void cpInitColorController(CPColorController* con, CMLColorType colorType){
   con->space = naNewSpace(naMakeSize(300, 100));
   naAddUIReaction(con->space, NA_UI_COMMAND_MOUSE_DOWN, CPColorControllerMouseDown, con);
   
@@ -34,18 +34,18 @@ void cmInitColorController(CPColorController* con, CMLColorType colorType){
 
 
 
-void cmClearColorController(CPColorController* con){
+void cpClearColorController(CPColorController* con){
 }
 
 
 
-void cmSetColorControllerColorType(CPColorController* con, CMLColorType colorType){
+void cpSetColorControllerColorType(CPColorController* con, CMLColorType colorType){
   con->colorType = colorType;
 }
 
 
 
-void cmSetColorControllerActive(CPColorController* con, NABool active){
+void cpSetColorControllerActive(CPColorController* con, NABool active){
   con->active = active;
 }
 
@@ -59,49 +59,49 @@ CMLColorType cpGetColorControllerColorType(const CPColorController* con){
 
 const void* cpGetColorControllerColorData(const CPColorController* con){
   switch(con->colorType){
-  case CML_COLOR_Gray: return cmGetGrayColorControllerColorData((const CPGrayColorController*)con); 
-  case CML_COLOR_HSL: return cmGetHSVHSLColorControllerColorData((const CPHSVHSLColorController*)con); 
-  case CML_COLOR_HSV: return cmGetHSVHSLColorControllerColorData((const CPHSVHSLColorController*)con);
-  case CML_COLOR_Lab: return cmGetLabLchColorControllerColorData((const CPLabLchColorController*)con);
-  case CML_COLOR_Lch: return cmGetLabLchColorControllerColorData((const CPLabLchColorController*)con);
-  case CML_COLOR_Luv: return cmGetLuvUVWColorControllerColorData((const CPLuvUVWColorController*)con);
-  case CML_COLOR_RGB: return cmGetRGBColorControllerColorData((const CPRGBColorController*)con);
-  case CML_COLOR_SPECTRUM_ILLUMINATION: return cmGetSpectralColorControllerColorData((const CPSpectralColorController*)con);
-  case CML_COLOR_UVW: return cmGetLuvUVWColorControllerColorData((const CPLuvUVWColorController*)con);
-  case CML_COLOR_XYZ: return cmGetXYZColorControllerColorData((const CPXYZColorController*)con);
-  case CML_COLOR_YCbCr: return cmGetYCbCrColorControllerColorData((const CPYCbCrColorController*)con);
-  case CML_COLOR_Yupvp: return cmGetYuvColorControllerColorData((const CPYuvYupvpColorController*)con);
-  case CML_COLOR_Yuv: return cmGetYuvColorControllerColorData((const CPYuvYupvpColorController*)con);
-  case CML_COLOR_Yxy: return cmGetYxyColorControllerColorData((const CPYxyColorController*)con);
+  case CML_COLOR_Gray: return cpGetGrayColorControllerColorData((const CPGrayColorController*)con); 
+  case CML_COLOR_HSL: return cpGetHSVHSLColorControllerColorData((const CPHSVHSLColorController*)con); 
+  case CML_COLOR_HSV: return cpGetHSVHSLColorControllerColorData((const CPHSVHSLColorController*)con);
+  case CML_COLOR_Lab: return cpGetLabLchColorControllerColorData((const CPLabLchColorController*)con);
+  case CML_COLOR_Lch: return cpGetLabLchColorControllerColorData((const CPLabLchColorController*)con);
+  case CML_COLOR_Luv: return cpGetLuvUVWColorControllerColorData((const CPLuvUVWColorController*)con);
+  case CML_COLOR_RGB: return cpGetRGBColorControllerColorData((const CPRGBColorController*)con);
+  case CML_COLOR_SPECTRUM_ILLUMINATION: return cpGetSpectralColorControllerColorData((const CPSpectralColorController*)con);
+  case CML_COLOR_UVW: return cpGetLuvUVWColorControllerColorData((const CPLuvUVWColorController*)con);
+  case CML_COLOR_XYZ: return cpGetXYZColorControllerColorData((const CPXYZColorController*)con);
+  case CML_COLOR_YCbCr: return cpGetYCbCrColorControllerColorData((const CPYCbCrColorController*)con);
+  case CML_COLOR_Yupvp: return cpGetYuvColorControllerColorData((const CPYuvYupvpColorController*)con);
+  case CML_COLOR_Yuv: return cpGetYuvColorControllerColorData((const CPYuvYupvpColorController*)con);
+  case CML_COLOR_Yxy: return cpGetYxyColorControllerColorData((const CPYxyColorController*)con);
   default: return NA_NULL;
   }
 }
 
 
 
-void cmSetColorControllerColorData(CPColorController* con, const void* data){
+void cpSetColorControllerColorData(CPColorController* con, const void* data){
   switch(con->colorType){
-  case CML_COLOR_Gray: cmSetGrayColorControllerColorData((CPGrayColorController*)con, data); break; 
-  case CML_COLOR_HSL: cmSetHSVHSLColorControllerColorData((CPHSVHSLColorController*)con, data); break; 
-  case CML_COLOR_HSV: cmSetHSVHSLColorControllerColorData((CPHSVHSLColorController*)con, data); break;
-  case CML_COLOR_Lab: cmSetLabLchColorControllerColorData((CPLabLchColorController*)con, data); break;
-  case CML_COLOR_Lch: cmSetLabLchColorControllerColorData((CPLabLchColorController*)con, data); break;
-  case CML_COLOR_Luv: cmSetLuvUVWColorControllerColorData((CPLuvUVWColorController*)con, data); break;
-  case CML_COLOR_RGB: cmSetRGBColorControllerColorData((CPRGBColorController*)con, data); break;
-  case CML_COLOR_SPECTRUM_ILLUMINATION: cmSetSpectralColorControllerColorData((CPSpectralColorController*)con, data); break;
-  case CML_COLOR_UVW: cmSetLuvUVWColorControllerColorData((CPLuvUVWColorController*)con, data); break;
-  case CML_COLOR_XYZ: cmSetXYZColorControllerColorData((CPXYZColorController*)con, data); break;
-  case CML_COLOR_YCbCr: cmSetYCbCrColorControllerColorData((CPYCbCrColorController*)con, data); break;
-  case CML_COLOR_Yupvp: cmSetYuvColorControllerColorData((CPYuvYupvpColorController*)con, data); break;
-  case CML_COLOR_Yuv: cmSetYuvColorControllerColorData((CPYuvYupvpColorController*)con, data); break;
-  case CML_COLOR_Yxy: cmSetYxyColorControllerColorData((CPYxyColorController*)con, data); break;
+  case CML_COLOR_Gray: cpSetGrayColorControllerColorData((CPGrayColorController*)con, data); break; 
+  case CML_COLOR_HSL: cpSetHSVHSLColorControllerColorData((CPHSVHSLColorController*)con, data); break; 
+  case CML_COLOR_HSV: cpSetHSVHSLColorControllerColorData((CPHSVHSLColorController*)con, data); break;
+  case CML_COLOR_Lab: cpSetLabLchColorControllerColorData((CPLabLchColorController*)con, data); break;
+  case CML_COLOR_Lch: cpSetLabLchColorControllerColorData((CPLabLchColorController*)con, data); break;
+  case CML_COLOR_Luv: cpSetLuvUVWColorControllerColorData((CPLuvUVWColorController*)con, data); break;
+  case CML_COLOR_RGB: cpSetRGBColorControllerColorData((CPRGBColorController*)con, data); break;
+  case CML_COLOR_SPECTRUM_ILLUMINATION: cpSetSpectralColorControllerColorData((CPSpectralColorController*)con, data); break;
+  case CML_COLOR_UVW: cpSetLuvUVWColorControllerColorData((CPLuvUVWColorController*)con, data); break;
+  case CML_COLOR_XYZ: cpSetXYZColorControllerColorData((CPXYZColorController*)con, data); break;
+  case CML_COLOR_YCbCr: cpSetYCbCrColorControllerColorData((CPYCbCrColorController*)con, data); break;
+  case CML_COLOR_Yupvp: cpSetYuvColorControllerColorData((CPYuvYupvpColorController*)con, data); break;
+  case CML_COLOR_Yuv: cpSetYuvColorControllerColorData((CPYuvYupvpColorController*)con, data); break;
+  case CML_COLOR_Yxy: cpSetYxyColorControllerColorData((CPYxyColorController*)con, data); break;
   default: break;
   }
 }
 
 
 
-NASpace* cmGetColorControllerUIElement(CPColorController* con){
+NASpace* cpGetColorControllerUIElement(CPColorController* con){
   return con->space;
 }
 

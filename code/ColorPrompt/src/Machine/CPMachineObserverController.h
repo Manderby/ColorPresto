@@ -7,9 +7,9 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPMachineObserverController CPMachineObserverController;
 
-CPMachineObserverController* cmAllocMachineObserverController(void);
-void cmDeallocMachineObserverController(CPMachineObserverController* con);
+CPMachineObserverController* cpAllocMachineObserverController(void);
+void cpDeallocMachineObserverController(CPMachineObserverController* con);
 
-NASpace* cmGetMachineObserverControllerUIElement(CPMachineObserverController* con);
+NASpace* cpGetMachineObserverControllerUIElement(CPMachineObserverController* con);
 
 void cpUpdateMachineObserverController(CPMachineObserverController* con);

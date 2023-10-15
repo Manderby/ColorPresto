@@ -421,7 +421,7 @@ CMUVMetamericColors cmComputeUVMetamericColors(
 
 
 
-CPUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
+CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void){
   CPUVMetamericIndexController* con = naAlloc(CPUVMetamericIndexController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -433,15 +433,15 @@ CPUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
 
   con->metamerics6IndexLabel = naNewLabel(cpTranslate(CPColorIndex6), indexWidth);
   con->metamerics6Label = cpNewValueLabel();
-  con->metamerics6Display = cmAllocTwoColorController();
+  con->metamerics6Display = cpAllocTwoColorController();
 
   con->metamerics7IndexLabel = naNewLabel(cpTranslate(CPColorIndex7), indexWidth);
   con->metamerics7Label = cpNewValueLabel();
-  con->metamerics7Display = cmAllocTwoColorController();
+  con->metamerics7Display = cpAllocTwoColorController();
 
   con->metamerics8IndexLabel = naNewLabel(cpTranslate(CPColorIndex8), indexWidth);
   con->metamerics8Label = cpNewValueLabel();
-  con->metamerics8Display = cmAllocTwoColorController();
+  con->metamerics8Display = cpAllocTwoColorController();
 
   con->metamericsAverageLabel = naNewLabel(cpTranslate(CPAverage), indexWidth);
   con->metamericsLabel = cpNewValueLabel();
@@ -456,15 +456,15 @@ CPUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
 
   cpAddUIRow(con->metamerics6IndexLabel, uiElemHeight);
   cpAddUICol(con->metamerics6Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->metamerics6Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->metamerics6Display), valueMargin);
 
   cpAddUIRow(con->metamerics7IndexLabel, uiElemHeight);
   cpAddUICol(con->metamerics7Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->metamerics7Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->metamerics7Display), valueMargin);
 
   cpAddUIRow(con->metamerics8IndexLabel, uiElemHeight);
   cpAddUICol(con->metamerics8Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->metamerics8Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->metamerics8Display), valueMargin);
 
   cpAddUIRow(con->metamericsAverageLabel, uiElemHeight);
   cpAddUICol(con->metamericsLabel, indexMargin);
@@ -477,25 +477,25 @@ CPUVMetamericIndexController* cmAllocUVMetamericIndexController(void){
 
 
 
-void cmDeallocUVMetamericIndexController(CPUVMetamericIndexController* con){
+void cpDeallocUVMetamericIndexController(CPUVMetamericIndexController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetUVMetamericIndexUIElement(CPUVMetamericIndexController* con){
+NASpace* cpGetUVMetamericIndexUIElement(CPUVMetamericIndexController* con){
   return con->space;
 }
 
 
 
-float cmGetUVMetamericIndexAverage(CPUVMetamericIndexController* con){
+float cpGetUVMetamericIndexAverage(CPUVMetamericIndexController* con){
   return con->uvMetamericColors.avg3;
 }
 
 
 
-void cmUpdateUVMetamericIndexController(
+void cpUpdateUVMetamericIndexController(
   CPUVMetamericIndexController* con,
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,
@@ -511,7 +511,7 @@ void cmUpdateUVMetamericIndexController(
     naSetLabelText(
       con->metamerics6Label,
       naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.metamericIndex[0]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->metamerics6Display,
       con->uvMetamericColors.uvStandardRGBFloatData[0],
       con->uvMetamericColors.uvMetamerRGBFloatData[0]);
@@ -519,7 +519,7 @@ void cmUpdateUVMetamericIndexController(
     naSetLabelText(
       con->metamerics7Label,
       naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.metamericIndex[1]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->metamerics7Display,
       con->uvMetamericColors.uvStandardRGBFloatData[1],
       con->uvMetamericColors.uvMetamerRGBFloatData[1]);
@@ -527,7 +527,7 @@ void cmUpdateUVMetamericIndexController(
     naSetLabelText(
       con->metamerics8Label,
       naAllocSprintf(NA_TRUE, "%1.04f", con->uvMetamericColors.metamericIndex[2]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->metamerics8Display,
       con->uvMetamericColors.uvStandardRGBFloatData[2],
       con->uvMetamericColors.uvMetamerRGBFloatData[2]);
@@ -538,9 +538,9 @@ void cmUpdateUVMetamericIndexController(
     naSetLabelText(con->metamerics6Label, "");
     naSetLabelText(con->metamerics7Label, "");
     naSetLabelText(con->metamerics8Label, "");
-    cmUpdateTwoColorController(con->metamerics6Display, greyColor, greyColor);
-    cmUpdateTwoColorController(con->metamerics7Display, greyColor, greyColor);
-    cmUpdateTwoColorController(con->metamerics8Display, greyColor, greyColor);
+    cpUpdateTwoColorController(con->metamerics6Display, greyColor, greyColor);
+    cpUpdateTwoColorController(con->metamerics7Display, greyColor, greyColor);
+    cpUpdateTwoColorController(con->metamerics8Display, greyColor, greyColor);
     naSetLabelText(con->metamericsLabel, "");
     naSetLabelText(con->metamericsGradeLabel, "");
   }

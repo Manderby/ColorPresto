@@ -41,7 +41,7 @@ typedef enum {
 
 
 
-NABool cmLabLchSelectionChanged(NAReaction reaction){
+NABool cp_LabLchSelectionChanged(NAReaction reaction){
   CPLabLchColorController* con = (CPLabLchColorController*)reaction.controller;
   
   LabLchSelect lablchSelect = (LabLchSelect)naGetPreferencesEnum(cpPrefs[CPLabLchSelect]);
@@ -60,7 +60,7 @@ NABool cmLabLchSelectionChanged(NAReaction reaction){
   CMLColorConverter converter = cmlGetColorConverter(newColorType, oldColorType);
   converter(cm, con->color, con->color, 1);
 
-  cmSetColorControllerColorType(&(con->baseController), newColorType);
+  cpSetColorControllerColorType(&(con->baseController), newColorType);
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
   
@@ -69,7 +69,7 @@ NABool cmLabLchSelectionChanged(NAReaction reaction){
 
 
 
-NABool cmLabValueEdited(NAReaction reaction){
+NABool cp_LabValueEdited(NAReaction reaction){
   CPLabLchColorController* con = (CPLabLchColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textField0){
@@ -88,31 +88,31 @@ NABool cmLabValueEdited(NAReaction reaction){
 
 
 
-CPLabLchColorController* cmAllocLabLchColorController(void){
+CPLabLchColorController* cpAllocLabLchColorController(void){
   LabLchSelect lablchSelect = (LabLchSelect)naInitPreferencesEnum(cpPrefs[CPLabLchSelect], Lab);
   CMLColorType colorType = (lablchSelect == Lab) ? CML_COLOR_Lab : CML_COLOR_Lch;
 
   CPLabLchColorController* con = naAlloc(CPLabLchColorController);
   
-  cmInitColorController(&(con->baseController), colorType);
+  cpInitColorController(&(con->baseController), colorType);
   
-  con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
+  con->colorWell2D = cpAllocColorWell2D(&(con->baseController), 0);
 
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
   con->radioLab = naNewRadio(cpTranslate(CPColorSpaceLab), radioSelectWidth);
   con->radioLch = naNewRadio(cpTranslate(CPColorSpaceLch), radioSelectWidth);
-  naAddUIReaction(con->radioLab, NA_UI_COMMAND_PRESSED, cmLabLchSelectionChanged, con);
-  naAddUIReaction(con->radioLch, NA_UI_COMMAND_PRESSED, cmLabLchSelectionChanged, con);
+  naAddUIReaction(con->radioLab, NA_UI_COMMAND_PRESSED, cp_LabLchSelectionChanged, con);
+  naAddUIReaction(con->radioLch, NA_UI_COMMAND_PRESSED, cp_LabLchSelectionChanged, con);
 
   con->label0 = cpNewColorComponentLabel("");
   con->label1 = cpNewColorComponentLabel("");
   con->label2 = cpNewColorComponentLabel("");
-  con->textField0 = cpNewValueTextField(cmLabValueEdited, con);
-  con->textField1 = cpNewValueTextField(cmLabValueEdited, con);
-  con->textField2 = cpNewValueTextField(cmLabValueEdited, con);
-  con->colorWell1D0 = cmAllocColorWell1D(&(con->baseController), con->color, 0);
-  con->colorWell1D1 = cmAllocColorWell1D(&(con->baseController), con->color, 1);
-  con->colorWell1D2 = cmAllocColorWell1D(&(con->baseController), con->color, 2);
+  con->textField0 = cpNewValueTextField(cp_LabValueEdited, con);
+  con->textField1 = cpNewValueTextField(cp_LabValueEdited, con);
+  con->textField2 = cpNewValueTextField(cp_LabValueEdited, con);
+  con->colorWell1D0 = cpAllocColorWell1D(&(con->baseController), con->color, 0);
+  con->colorWell1D1 = cpAllocColorWell1D(&(con->baseController), con->color, 1);
+  con->colorWell1D2 = cpAllocColorWell1D(&(con->baseController), con->color, 2);
 
   naSetUIElementNextTabElement(con->textField0, con->textField1);
   naSetUIElementNextTabElement(con->textField1, con->textField2);
@@ -126,17 +126,17 @@ CPLabLchColorController* cmAllocLabLchColorController(void){
   
   cpAddUIRow(con->label0, colorValueCondensedRowHeight);
   cpAddUICol(con->textField0, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
   cpAddUIRow(con->label1, colorValueCondensedRowHeight);
   cpAddUICol(con->textField1, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
   cpAddUIRow(con->label2, colorValueCondensedRowHeight);
   cpAddUICol(con->textField2, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
   cpEndUILayout();
   
   cpBeginUILayout(con->baseController.space, colorWellBezel);
-  cpAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
+  cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
   cpAddUICol(con->channelSpace, colorWell2DRightMargin);
   cpEndUILayout();
 
@@ -145,30 +145,30 @@ CPLabLchColorController* cmAllocLabLchColorController(void){
 
 
 
-void cmDeallocLabLchColorController(CPLabLchColorController* con){
-  cmDeallocColorWell2D(con->colorWell2D);
-  cmDeallocColorWell1D(con->colorWell1D0);
-  cmDeallocColorWell1D(con->colorWell1D1);
-  cmDeallocColorWell1D(con->colorWell1D2);
-  cmClearColorController(&(con->baseController));
+void cpDeallocLabLchColorController(CPLabLchColorController* con){
+  cpDeallocColorWell2D(con->colorWell2D);
+  cpDeallocColorWell1D(con->colorWell1D0);
+  cpDeallocColorWell1D(con->colorWell1D1);
+  cpDeallocColorWell1D(con->colorWell1D2);
+  cpClearColorController(&(con->baseController));
   naFree(con);
 }
 
 
 
-const void* cmGetLabLchColorControllerColorData(const CPLabLchColorController* con){
+const void* cpGetLabLchColorControllerColorData(const CPLabLchColorController* con){
   return &(con->color);
 }
 
 
 
-void cmSetLabLchColorControllerColorData(CPLabLchColorController* con, const void* data){
+void cpSetLabLchColorControllerColorData(CPLabLchColorController* con, const void* data){
   cmlCpy3(con->color, data);
 }
 
 
 
-void cmUpdateLabLchColorController(CPLabLchColorController* con){
+void cpUpdateLabLchColorController(CPLabLchColorController* con){
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   cpUpdateColorController(&(con->baseController));
 

@@ -15,13 +15,13 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPVisMetamericIndexController CPVisMetamericIndexController;
 
-CPVisMetamericIndexController* cmAllocVisMetamericIndexController(void);
-void cmDeallocVisMetamericIndexController(CPVisMetamericIndexController* con);
+CPVisMetamericIndexController* cpAllocVisMetamericIndexController(void);
+void cpDeallocVisMetamericIndexController(CPVisMetamericIndexController* con);
 
-NASpace* cmGetVisMetamericIndexUIElement(CPVisMetamericIndexController* con);
-float cmGetVisMetamericIndexAverage(CPVisMetamericIndexController* con);
+NASpace* cpGetVisMetamericIndexUIElement(CPVisMetamericIndexController* con);
+float cpGetVisMetamericIndexAverage(CPVisMetamericIndexController* con);
 
-void cmUpdateVisMetamericIndexController(
+void cpUpdateVisMetamericIndexController(
   CPVisMetamericIndexController* con,
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,

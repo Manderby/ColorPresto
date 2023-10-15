@@ -36,7 +36,7 @@ NABool cmDragSpectralColorWell(NAReaction reaction){
     CMLFunction* dirac = cmlCreateDiracFilter(lambda);
     CMLFunction* illumDirac = cmlCreateFunctionMulScalar(dirac, cmlInverse(cmlGetRadiometricScale(cm)));
 
-    cmSetColorControllerColorData(well->colorController, illumDirac);
+    cpSetColorControllerColorData(well->colorController, illumDirac);
     cpSetCurrentColorController(well->colorController);
     cpUpdateColor();
 
@@ -247,7 +247,7 @@ NABool cmDrawSpectralColorWell(NAReaction reaction){
 
 
 
-CPSpectralColorWell* cmAllocSpectralColorWell(CPColorController* colorController){
+CPSpectralColorWell* cpAllocSpectralColorWell(CPColorController* colorController){
   CPSpectralColorWell* well = naAlloc(CPSpectralColorWell);
   
   well->openGLSpace = naNewOpenGLSpace(naMakeSize(spectralWellSize, colorWell2DSize), cmInitSpectralColorWell, well);
@@ -262,18 +262,18 @@ CPSpectralColorWell* cmAllocSpectralColorWell(CPColorController* colorController
 
 
 
-void cmDeallocSpectralColorWell(CPSpectralColorWell* well){
+void cpDeallocSpectralColorWell(CPSpectralColorWell* well){
   glDeleteTextures(1, &(well->wellTex));
 }
 
 
 
-NAOpenGLSpace* cmGetSpectralColorWellUIElement(CPSpectralColorWell* well){
+NAOpenGLSpace* cpGetSpectralColorWellUIElement(CPSpectralColorWell* well){
   return well->openGLSpace;
 }
 
 
 
-void cmUpdateSpectralColorWell(CPSpectralColorWell* well){
+void cpUpdateSpectralColorWell(CPSpectralColorWell* well){
   naRefreshUIElement(well->openGLSpace, 0.);
 }

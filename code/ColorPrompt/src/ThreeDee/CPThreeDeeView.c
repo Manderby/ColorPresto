@@ -42,7 +42,7 @@ void cmEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace){
 
 
 
-void cmSetupThreeDeeProjection(NAOpenGLSpace* openGLSpace, NASize viewSize, double fovy, double zoom){
+void cpSetupThreeDeeProjection(NAOpenGLSpace* openGLSpace, NASize viewSize, double fovy, double zoom){
   double uiScale = naGetUIElementResolutionFactor(openGLSpace);
   glViewport(
     0,
@@ -79,7 +79,7 @@ void cmSetupThreeDeeProjection(NAOpenGLSpace* openGLSpace, NASize viewSize, doub
 
 
 
-void cmSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom, double viewPol, double viewEqu){
+void cpSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom, double viewPol, double viewEqu){
   float vShift = .2f;
   NAMat44d matrix;
 

@@ -1158,6 +1158,7 @@
 				904F30E42ADBCFE200423098 /* CPHSVHSLColorController.h */,
 				904F30E32ADBCFE200423098 /* CPLabLchColorController.c */,
 				904F30CC2ADBCFE200423098 /* CPLabLchColorController.h */,
+				904F30CA2ADBCFE200423098 /* CPLuvUVWColorController.c */,
 				904F30E52ADBCFE200423098 /* CPLuvUVWColorController.h */,
 				904F30E62ADBCFE200423098 /* CPRGBColorController.c */,
 				904F30D02ADBCFE200423098 /* CPRGBColorController.h */,
@@ -1171,7 +1172,6 @@
 				904F30DF2ADBCFE200423098 /* CPYuvYupvpColorController.h */,
 				904F30E82ADBCFE200423098 /* CPYxyColorController.c */,
 				904F30D12ADBCFE200423098 /* CPYxyColorController.h */,
-				904F30CA2ADBCFE200423098 /* CPLuvUVWColorController.c */,
 				904F30D32ADBCFE200423098 /* Displays */,
 			);
 			path = ColorControllers;

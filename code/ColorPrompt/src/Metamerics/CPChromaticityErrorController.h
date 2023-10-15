@@ -12,12 +12,12 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPChromaticityErrorController CPChromaticityErrorController;
 
-CPChromaticityErrorController* cmAllocChromaticityErrorController(void);
-void cmDeallocChromaticityErrorController(CPChromaticityErrorController* con);
+CPChromaticityErrorController* cpAllocChromaticityErrorController(void);
+void cpDeallocChromaticityErrorController(CPChromaticityErrorController* con);
 
-NASpace* cmGetChromaticityErrorUIElement(CPChromaticityErrorController* con);
+NASpace* cpGetChromaticityErrorUIElement(CPChromaticityErrorController* con);
 
-void cmUpdateChromaticityErrorController(
+void cpUpdateChromaticityErrorController(
   CPChromaticityErrorController* con,
   const CPWhitePoints* refWhitePoint10,
   const CPWhitePoints* illWhitePoint10);

@@ -353,7 +353,7 @@ CMColorRenderingColors cmComputeColorRenderingColors(CMLFunction* observer2Funcs
 
 
 
-CPColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
+CPColorRenderingIndexController* cpAllocColorRenderingIndexController(void){
   CPColorRenderingIndexController* con = naAlloc(CPColorRenderingIndexController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -363,50 +363,50 @@ CPColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
 
   con->color1IndexLabel = naNewLabel(cpTranslate(CPColorIndex1), indexWidth);
   con->color1Label = cpNewValueLabel();
-  con->color1Display = cmAllocTwoColorController();
+  con->color1Display = cpAllocTwoColorController();
   con->color2IndexLabel = naNewLabel(cpTranslate(CPColorIndex2), indexWidth);
   con->color2Label = cpNewValueLabel();
-  con->color2Display = cmAllocTwoColorController();
+  con->color2Display = cpAllocTwoColorController();
   con->color3IndexLabel = naNewLabel(cpTranslate(CPColorIndex3), indexWidth);
   con->color3Label = cpNewValueLabel();
-  con->color3Display = cmAllocTwoColorController();
+  con->color3Display = cpAllocTwoColorController();
   con->color4IndexLabel = naNewLabel(cpTranslate(CPColorIndex4), indexWidth);
   con->color4Label = cpNewValueLabel();
-  con->color4Display = cmAllocTwoColorController();
+  con->color4Display = cpAllocTwoColorController();
   con->color5IndexLabel = naNewLabel(cpTranslate(CPColorIndex5), indexWidth);
   con->color5Label = cpNewValueLabel();
-  con->color5Display = cmAllocTwoColorController();
+  con->color5Display = cpAllocTwoColorController();
   con->color6IndexLabel = naNewLabel(cpTranslate(CPColorIndex6), indexWidth);
   con->color6Label = cpNewValueLabel();
-  con->color6Display = cmAllocTwoColorController();
+  con->color6Display = cpAllocTwoColorController();
   con->color7IndexLabel = naNewLabel(cpTranslate(CPColorIndex7), indexWidth);
   con->color7Label = cpNewValueLabel();
-  con->color7Display = cmAllocTwoColorController();
+  con->color7Display = cpAllocTwoColorController();
   con->color8IndexLabel = naNewLabel(cpTranslate(CPColorIndex8), indexWidth);
   con->color8Label = cpNewValueLabel();
-  con->color8Display = cmAllocTwoColorController();
+  con->color8Display = cpAllocTwoColorController();
 
   con->colorAverageLabel = naNewLabel(cpTranslate(CPAverage), indexWidth);
   con->colorLabel = cpNewValueLabel();
 
   con->color9IndexLabel = naNewLabel(cpTranslate(CPColorIndex9), indexWidth);
   con->color9Label = cpNewValueLabel();
-  con->color9Display = cmAllocTwoColorController();
+  con->color9Display = cpAllocTwoColorController();
   con->color10IndexLabel = naNewLabel(cpTranslate(CPColorIndex10), indexWidth);
   con->color10Label = cpNewValueLabel();
-  con->color10Display = cmAllocTwoColorController();
+  con->color10Display = cpAllocTwoColorController();
   con->color11IndexLabel = naNewLabel(cpTranslate(CPColorIndex11), indexWidth);
   con->color11Label = cpNewValueLabel();
-  con->color11Display = cmAllocTwoColorController();
+  con->color11Display = cpAllocTwoColorController();
   con->color12IndexLabel = naNewLabel(cpTranslate(CPColorIndex12), indexWidth);
   con->color12Label = cpNewValueLabel();
-  con->color12Display = cmAllocTwoColorController();
+  con->color12Display = cpAllocTwoColorController();
   con->color13IndexLabel = naNewLabel(cpTranslate(CPColorIndex13), indexWidth);
   con->color13Label = cpNewValueLabel();
-  con->color13Display = cmAllocTwoColorController();
+  con->color13Display = cpAllocTwoColorController();
   con->color14IndexLabel = naNewLabel(cpTranslate(CPColorIndex14), indexWidth);
   con->color14Label = cpNewValueLabel();
-  con->color14Display = cmAllocTwoColorController();
+  con->color14Display = cpAllocTwoColorController();
 
 
 
@@ -417,35 +417,35 @@ CPColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
 
   cpAddUIRow(con->color1IndexLabel, uiElemHeight);
   cpAddUICol(con->color1Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color1Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color1Display), valueMargin);
 
   cpAddUIRow(con->color2IndexLabel, uiElemHeight);
   cpAddUICol(con->color2Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color2Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color2Display), valueMargin);
 
   cpAddUIRow(con->color3IndexLabel, uiElemHeight);
   cpAddUICol(con->color3Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color3Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color3Display), valueMargin);
 
   cpAddUIRow(con->color4IndexLabel, uiElemHeight);
   cpAddUICol(con->color4Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color4Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color4Display), valueMargin);
 
   cpAddUIRow(con->color5IndexLabel, uiElemHeight);
   cpAddUICol(con->color5Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color5Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color5Display), valueMargin);
 
   cpAddUIRow(con->color6IndexLabel, uiElemHeight);
   cpAddUICol(con->color6Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color6Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color6Display), valueMargin);
 
   cpAddUIRow(con->color7IndexLabel, uiElemHeight);
   cpAddUICol(con->color7Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color7Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color7Display), valueMargin);
 
   cpAddUIRow(con->color8IndexLabel, uiElemHeight);
   cpAddUICol(con->color8Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color8Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color8Display), valueMargin);
 
   cpAddUIRow(con->colorAverageLabel, uiElemHeight);
   cpAddUICol(con->colorLabel, indexMargin);
@@ -454,27 +454,27 @@ CPColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
 
   cpAddUIRow(con->color9IndexLabel, uiElemHeight);
   cpAddUICol(con->color9Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color9Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color9Display), valueMargin);
 
   cpAddUIRow(con->color10IndexLabel, uiElemHeight);
   cpAddUICol(con->color10Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color10Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color10Display), valueMargin);
 
   cpAddUIRow(con->color11IndexLabel, uiElemHeight);
   cpAddUICol(con->color11Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color11Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color11Display), valueMargin);
 
   cpAddUIRow(con->color12IndexLabel, uiElemHeight);
   cpAddUICol(con->color12Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color12Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color12Display), valueMargin);
 
   cpAddUIRow(con->color13IndexLabel, uiElemHeight);
   cpAddUICol(con->color13Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color13Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color13Display), valueMargin);
 
   cpAddUIRow(con->color14IndexLabel, uiElemHeight);
   cpAddUICol(con->color14Label, indexMargin);
-  cpAddUICol(cmGetTwoColorControllerUIElement(con->color14Display), valueMargin);
+  cpAddUICol(cpGetTwoColorControllerUIElement(con->color14Display), valueMargin);
 
   cpEndUILayout();
 
@@ -483,13 +483,13 @@ CPColorRenderingIndexController* cmAllocColorRenderingIndexController(void){
 
 
 
-void cmDeallocColorRenderingIndexController(CPColorRenderingIndexController* con){
+void cpDeallocColorRenderingIndexController(CPColorRenderingIndexController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetColorRenderingIndexUIElement(CPColorRenderingIndexController* con){
+NASpace* cpGetColorRenderingIndexUIElement(CPColorRenderingIndexController* con){
   return con->space;
 }
 
@@ -513,56 +513,56 @@ void cpUpdateColorRenderingIndexController(
     naSetLabelText(
       con->color1Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[0]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color1Display,
       colors.crMetamerRGBFloatData[0],
       colors.crReferenceRGBFloatData[0]);
     naSetLabelText(
       con->color2Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[1]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color2Display,
       colors.crMetamerRGBFloatData[1],
       colors.crReferenceRGBFloatData[1]);
     naSetLabelText(
       con->color3Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[2]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color3Display,
       colors.crMetamerRGBFloatData[2],
       colors.crReferenceRGBFloatData[2]);
     naSetLabelText(
       con->color4Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[3]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color4Display,
       colors.crMetamerRGBFloatData[3],
       colors.crReferenceRGBFloatData[3]);
     naSetLabelText(
       con->color5Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[4]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color5Display,
       colors.crMetamerRGBFloatData[4],
       colors.crReferenceRGBFloatData[4]);
     naSetLabelText(
       con->color6Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[5]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color6Display,
       colors.crMetamerRGBFloatData[5],
       colors.crReferenceRGBFloatData[5]);
     naSetLabelText(
       con->color7Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[6]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color7Display,
       colors.crMetamerRGBFloatData[6],
       colors.crReferenceRGBFloatData[6]);
     naSetLabelText(
       con->color8Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[7]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color8Display,
       colors.crMetamerRGBFloatData[7],
       colors.crReferenceRGBFloatData[7]);
@@ -583,42 +583,42 @@ void cpUpdateColorRenderingIndexController(
     naSetLabelText(
       con->color9Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[8]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color9Display,
       colors.crMetamerRGBFloatData[8],
       colors.crReferenceRGBFloatData[8]);
     naSetLabelText(
       con->color10Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[9]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color10Display,
       colors.crMetamerRGBFloatData[9],
       colors.crReferenceRGBFloatData[9]);
     naSetLabelText(
       con->color11Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[10]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color11Display,
       colors.crMetamerRGBFloatData[10],
       colors.crReferenceRGBFloatData[10]);
     naSetLabelText(
       con->color12Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[11]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color12Display,
       colors.crMetamerRGBFloatData[11],
       colors.crReferenceRGBFloatData[11]);
     naSetLabelText(
       con->color13Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[12]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color13Display,
       colors.crMetamerRGBFloatData[12],
       colors.crReferenceRGBFloatData[12]);
     naSetLabelText(
       con->color14Label,
       naAllocSprintf(NA_TRUE, "%3.03f", colors.colorRenderingIndex[13]));
-    cmUpdateTwoColorController(
+    cpUpdateTwoColorController(
       con->color14Display,
       colors.crMetamerRGBFloatData[13],
       colors.crReferenceRGBFloatData[13]);
@@ -637,20 +637,20 @@ void cpUpdateColorRenderingIndexController(
     naSetLabelText(con->color12Label, "");
     naSetLabelText(con->color13Label, "");
     naSetLabelText(con->color14Label, "");
-    cmUpdateTwoColorController(con->color1Display,  greyColor, greyColor);
-    cmUpdateTwoColorController(con->color2Display,  greyColor, greyColor);
-    cmUpdateTwoColorController(con->color3Display,  greyColor, greyColor);
-    cmUpdateTwoColorController(con->color4Display,  greyColor, greyColor);
-    cmUpdateTwoColorController(con->color5Display,  greyColor, greyColor);
-    cmUpdateTwoColorController(con->color6Display,  greyColor, greyColor);
-    cmUpdateTwoColorController(con->color7Display,  greyColor, greyColor);
-    cmUpdateTwoColorController(con->color8Display,  greyColor, greyColor);
-    cmUpdateTwoColorController(con->color9Display,  greyColor, greyColor);
-    cmUpdateTwoColorController(con->color10Display, greyColor, greyColor);
-    cmUpdateTwoColorController(con->color11Display, greyColor, greyColor);
-    cmUpdateTwoColorController(con->color12Display, greyColor, greyColor);
-    cmUpdateTwoColorController(con->color13Display, greyColor, greyColor);
-    cmUpdateTwoColorController(con->color14Display, greyColor, greyColor);
+    cpUpdateTwoColorController(con->color1Display,  greyColor, greyColor);
+    cpUpdateTwoColorController(con->color2Display,  greyColor, greyColor);
+    cpUpdateTwoColorController(con->color3Display,  greyColor, greyColor);
+    cpUpdateTwoColorController(con->color4Display,  greyColor, greyColor);
+    cpUpdateTwoColorController(con->color5Display,  greyColor, greyColor);
+    cpUpdateTwoColorController(con->color6Display,  greyColor, greyColor);
+    cpUpdateTwoColorController(con->color7Display,  greyColor, greyColor);
+    cpUpdateTwoColorController(con->color8Display,  greyColor, greyColor);
+    cpUpdateTwoColorController(con->color9Display,  greyColor, greyColor);
+    cpUpdateTwoColorController(con->color10Display, greyColor, greyColor);
+    cpUpdateTwoColorController(con->color11Display, greyColor, greyColor);
+    cpUpdateTwoColorController(con->color12Display, greyColor, greyColor);
+    cpUpdateTwoColorController(con->color13Display, greyColor, greyColor);
+    cpUpdateTwoColorController(con->color14Display, greyColor, greyColor);
     naSetLabelText(con->colorLabel, "");
   }
 }

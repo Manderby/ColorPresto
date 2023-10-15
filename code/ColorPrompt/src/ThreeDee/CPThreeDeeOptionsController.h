@@ -10,15 +10,15 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPThreeDeeOptionsController CPThreeDeeOptionsController;
 
-CPThreeDeeOptionsController* cmAllocThreeDeeOptionsController(CPThreeDeeController* parent);
-void cmDeallocThreeDeeOptionsController(CPThreeDeeOptionsController* con);
+CPThreeDeeOptionsController* cpAllocThreeDeeOptionsController(CPThreeDeeController* parent);
+void cpDeallocThreeDeeOptionsController(CPThreeDeeOptionsController* con);
 
-NASpace* cmGetThreeDeeOptionsControllerUIElement(CPThreeDeeOptionsController* con);
+NASpace* cpGetThreeDeeOptionsControllerUIElement(CPThreeDeeOptionsController* con);
 
-float cmGetThreeDeeOptionsControllerAxisGray(CPThreeDeeOptionsController* con);
-float cmGetThreeDeeOptionsControllerBackgroundGray(CPThreeDeeOptionsController* con);
-float cmGetThreeDeeOptionsControllerFovy(CPThreeDeeOptionsController* con);
-NABool cmGetThreeDeeOptionsControllerShowAxis(CPThreeDeeOptionsController* con);
-NABool cmGetThreeDeeOptionsControllerShowSpectrum(CPThreeDeeOptionsController* con);
+float cpGetThreeDeeOptionsControllerAxisGray(CPThreeDeeOptionsController* con);
+float cpGetThreeDeeOptionsControllerBackgroundGray(CPThreeDeeOptionsController* con);
+float cpGetThreeDeeOptionsControllerFovy(CPThreeDeeOptionsController* con);
+NABool cpGetThreeDeeOptionsControllerShowAxis(CPThreeDeeOptionsController* con);
+NABool cpGetThreeDeeOptionsControllerShowSpectrum(CPThreeDeeOptionsController* con);
 
-void cmUpdateThreeDeeOptionsController(CPThreeDeeOptionsController* con);
+void cpUpdateThreeDeeOptionsController(CPThreeDeeOptionsController* con);

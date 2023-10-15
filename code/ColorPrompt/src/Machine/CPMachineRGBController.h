@@ -7,9 +7,9 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPMachineRGBController CPMachineRGBController;
 
-CPMachineRGBController* cmAllocMachineRGBController(void);
-void cmDeallocMachineRGBController(CPMachineRGBController* con);
+CPMachineRGBController* cpAllocMachineRGBController(void);
+void cpDeallocMachineRGBController(CPMachineRGBController* con);
 
-NASpace* cmGetMachineRGBControllerUIElement(CPMachineRGBController* con);
+NASpace* cpGetMachineRGBControllerUIElement(CPMachineRGBController* con);
 
 void cpUpdateMachineRGBController(CPMachineRGBController* con);

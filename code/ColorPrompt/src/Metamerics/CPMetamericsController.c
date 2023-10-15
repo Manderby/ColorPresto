@@ -43,19 +43,19 @@ struct CPMetamericsController{
 CPMetamericsController* cpAllocMetamericsController(void){
   CPMetamericsController* con = naAlloc(CPMetamericsController);
 
-  con->chromaticityErrorController = cmAllocChromaticityErrorController();
-  con->whitePointsController = cmAllocWhitePointsController();
-  con->colorRenderingIndexController = cmAllocColorRenderingIndexController();
-  con->visMetamericIndexController = cmAllocVisMetamericIndexController();
-  con->uvMetamericIndexController = cmAllocUVMetamericIndexController();
-  con->totalMetamericIndexController = cmAllocTotalMetamericIndexController();
+  con->chromaticityErrorController = cpAllocChromaticityErrorController();
+  con->whitePointsController = cpAllocWhitePointsController();
+  con->colorRenderingIndexController = cpAllocColorRenderingIndexController();
+  con->visMetamericIndexController = cpAllocVisMetamericIndexController();
+  con->uvMetamericIndexController = cpAllocUVMetamericIndexController();
+  con->totalMetamericIndexController = cpAllocTotalMetamericIndexController();
 
-  NASpace* whitePointsSpace = cmGetWhitePointsUIElement(con->whitePointsController);
-  NASpace* chromaticityErrorSpace = cmGetChromaticityErrorUIElement(con->chromaticityErrorController);
-  NASpace* colorRenderingIndexSpace = cmGetColorRenderingIndexUIElement(con->colorRenderingIndexController);
-  NASpace* visMetamericIndexSpace = cmGetVisMetamericIndexUIElement(con->visMetamericIndexController);
-  NASpace* uvMetamericIndexSpace = cmGetUVMetamericIndexUIElement(con->uvMetamericIndexController);
-  NASpace* totalMetamericIndexSpace = cmGetTotalMetamericIndexUIElement(con->totalMetamericIndexController);
+  NASpace* whitePointsSpace = cpGetWhitePointsUIElement(con->whitePointsController);
+  NASpace* chromaticityErrorSpace = cpGetChromaticityErrorUIElement(con->chromaticityErrorController);
+  NASpace* colorRenderingIndexSpace = cpGetColorRenderingIndexUIElement(con->colorRenderingIndexController);
+  NASpace* visMetamericIndexSpace = cpGetVisMetamericIndexUIElement(con->visMetamericIndexController);
+  NASpace* uvMetamericIndexSpace = cpGetUVMetamericIndexUIElement(con->uvMetamericIndexController);
+  NASpace* totalMetamericIndexSpace = cpGetTotalMetamericIndexUIElement(con->totalMetamericIndexController);
 
   con->window = naNewWindow(
     cpTranslate(CPWhitePointsAndMetamerics),
@@ -110,12 +110,12 @@ CPMetamericsController* cpAllocMetamericsController(void){
 
 
 void cpDeallocMetamericsController(CPMetamericsController* con){
-  cmDeallocChromaticityErrorController(con->chromaticityErrorController);
-  cmDeallocWhitePointsController(con->whitePointsController);
-  cmDeallocColorRenderingIndexController(con->colorRenderingIndexController);
-  cmDeallocVisMetamericIndexController(con->visMetamericIndexController);
-  cmDeallocUVMetamericIndexController(con->uvMetamericIndexController);
-  cmDeallocTotalMetamericIndexController(con->totalMetamericIndexController);
+  cpDeallocChromaticityErrorController(con->chromaticityErrorController);
+  cpDeallocWhitePointsController(con->whitePointsController);
+  cpDeallocColorRenderingIndexController(con->colorRenderingIndexController);
+  cpDeallocVisMetamericIndexController(con->visMetamericIndexController);
+  cpDeallocUVMetamericIndexController(con->uvMetamericIndexController);
+  cpDeallocTotalMetamericIndexController(con->totalMetamericIndexController);
 
   naFree(con);
 }
@@ -136,7 +136,7 @@ void cpUpdateMetamericsController(CPMetamericsController* con){
   CMLFunction* observer2Funcs[3];
   cmlCreateSpecDistFunctions(observer2Funcs, CML_DEFAULT_2DEG_OBSERVER);
   const CMLFunction* illuminationSpec = cmlGetIlluminationSpectrum(cm);
-  CPReferenceIlluminationType referenceIlluminationType = cmGetReferenceIlluminationType(con->whitePointsController);
+  CPReferenceIlluminationType referenceIlluminationType = cpGetReferenceIlluminationType(con->whitePointsController);
 
   const CMLFunction* ref;
   switch(referenceIlluminationType){
@@ -181,7 +181,7 @@ void cpUpdateMetamericsController(CPMetamericsController* con){
 
 
 
-  cmUpdateWhitePointsController(
+  cpUpdateWhitePointsController(
     con->whitePointsController,
     cmlGetIlluminationTypeString(cmlGetIlluminationType(cm)),
     &illWhitePoint10,
@@ -189,7 +189,7 @@ void cpUpdateMetamericsController(CPMetamericsController* con){
     &refWhitePoint10,
     &refWhitePoint2);
 
-  cmUpdateChromaticityErrorController(
+  cpUpdateChromaticityErrorController(
     con->chromaticityErrorController,
     &refWhitePoint10,
     &illWhitePoint10);
@@ -202,7 +202,7 @@ void cpUpdateMetamericsController(CPMetamericsController* con){
     ref,
     illuminationSpec != NA_NULL);
 
-  cmUpdateVisMetamericIndexController(
+  cpUpdateVisMetamericIndexController(
     con->visMetamericIndexController,
     observer10Funcs,
     &illWhitePoint10,
@@ -210,17 +210,17 @@ void cpUpdateMetamericsController(CPMetamericsController* con){
     referenceIlluminationType,
     illuminationSpec != NA_NULL);
 
-  cmUpdateUVMetamericIndexController(
+  cpUpdateUVMetamericIndexController(
     con->uvMetamericIndexController,
     observer10Funcs,
     &illWhitePoint10,
     referenceIlluminationType,
     illuminationSpec != NA_NULL);
 
-  cmUpdateTotalMetamericIndexController(
+  cpUpdateTotalMetamericIndexController(
     con->totalMetamericIndexController,
-    cmGetVisMetamericIndexAverage(con->visMetamericIndexController),
-    cmGetUVMetamericIndexAverage(con->uvMetamericIndexController),
+    cpGetVisMetamericIndexAverage(con->visMetamericIndexController),
+    cpGetUVMetamericIndexAverage(con->uvMetamericIndexController),
     illuminationSpec != NA_NULL);
 
 

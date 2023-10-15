@@ -41,7 +41,7 @@ typedef enum {
 
 
 
-NABool cmYuvYupvpSelectionChanged(NAReaction reaction){
+NABool cp_YuvYupvpSelectionChanged(NAReaction reaction){
   CPYuvYupvpColorController* con = (CPYuvYupvpColorController*)reaction.controller;
   
   YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naGetPreferencesEnum(cpPrefs[CPYuvYupvpSelect]);
@@ -60,7 +60,7 @@ NABool cmYuvYupvpSelectionChanged(NAReaction reaction){
   CMLColorConverter converter = cmlGetColorConverter(newColorType, oldColorType);
   converter(cm, con->color, con->color, 1);
 
-  cmSetColorControllerColorType(&(con->baseController), newColorType);
+  cpSetColorControllerColorType(&(con->baseController), newColorType);
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
   
@@ -69,7 +69,7 @@ NABool cmYuvYupvpSelectionChanged(NAReaction reaction){
 
 
 
-NABool cmYuvValueEdited(NAReaction reaction){
+NABool cp_YuvValueEdited(NAReaction reaction){
   CPYuvYupvpColorController* con = (CPYuvYupvpColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textField0){
@@ -88,31 +88,31 @@ NABool cmYuvValueEdited(NAReaction reaction){
 
 
 
-CPYuvYupvpColorController* cmAllocYuvColorController(void){
+CPYuvYupvpColorController* cpAllocYuvColorController(void){
   YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naInitPreferencesEnum(cpPrefs[CPYuvYupvpSelect], Yupvp);
   CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
 
   CPYuvYupvpColorController* con = naAlloc(CPYuvYupvpColorController);
   
-  cmInitColorController(&(con->baseController), colorType);
+  cpInitColorController(&(con->baseController), colorType);
   
-  con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 0);
+  con->colorWell2D = cpAllocColorWell2D(&(con->baseController), 0);
 
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
   con->radioYuv = naNewRadio(cpTranslate(CPColorSpaceYuv), radioSelectWidth);
   con->radioYupvp = naNewRadio(cpTranslate(CPColorSpaceYupvp), radioSelectWidth);
-  naAddUIReaction(con->radioYuv, NA_UI_COMMAND_PRESSED, cmYuvYupvpSelectionChanged, con);
-  naAddUIReaction(con->radioYupvp, NA_UI_COMMAND_PRESSED, cmYuvYupvpSelectionChanged, con);
+  naAddUIReaction(con->radioYuv, NA_UI_COMMAND_PRESSED, cp_YuvYupvpSelectionChanged, con);
+  naAddUIReaction(con->radioYupvp, NA_UI_COMMAND_PRESSED, cp_YuvYupvpSelectionChanged, con);
 
   con->label0 = cpNewColorComponentLabel(cpTranslate(CPYuvColorChannelY));
   con->label1 = cpNewColorComponentLabel(cpTranslate(CPYuvColorChannelup));
   con->label2 = cpNewColorComponentLabel(cpTranslate(CPYuvColorChannelvp));
-  con->textField0 = cpNewValueTextField(cmYuvValueEdited, con);
-  con->textField1 = cpNewValueTextField(cmYuvValueEdited, con);
-  con->textField2 = cpNewValueTextField(cmYuvValueEdited, con);
-  con->colorWell1D0 = cmAllocColorWell1D(&(con->baseController), con->color, 0);
-  con->colorWell1D1 = cmAllocColorWell1D(&(con->baseController), con->color, 1);
-  con->colorWell1D2 = cmAllocColorWell1D(&(con->baseController), con->color, 2);
+  con->textField0 = cpNewValueTextField(cp_YuvValueEdited, con);
+  con->textField1 = cpNewValueTextField(cp_YuvValueEdited, con);
+  con->textField2 = cpNewValueTextField(cp_YuvValueEdited, con);
+  con->colorWell1D0 = cpAllocColorWell1D(&(con->baseController), con->color, 0);
+  con->colorWell1D1 = cpAllocColorWell1D(&(con->baseController), con->color, 1);
+  con->colorWell1D2 = cpAllocColorWell1D(&(con->baseController), con->color, 2);
 
   naSetUIElementNextTabElement(con->textField0, con->textField1);
   naSetUIElementNextTabElement(con->textField1, con->textField2);
@@ -126,17 +126,17 @@ CPYuvYupvpColorController* cmAllocYuvColorController(void){
   
   cpAddUIRow(con->label0, colorValueCondensedRowHeight);
   cpAddUICol(con->textField0, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
   cpAddUIRow(con->label1, colorValueCondensedRowHeight);
   cpAddUICol(con->textField1, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
   cpAddUIRow(con->label2, colorValueCondensedRowHeight);
   cpAddUICol(con->textField2, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
   cpEndUILayout();
   
   cpBeginUILayout(con->baseController.space, colorWellBezel);
-  cpAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
+  cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
   cpAddUICol(con->channelSpace, colorWell2DRightMargin);
   cpEndUILayout();
 
@@ -145,30 +145,30 @@ CPYuvYupvpColorController* cmAllocYuvColorController(void){
 
 
 
-void cmDeallocYuvColorController(CPYuvYupvpColorController* con){
-  cmDeallocColorWell2D(con->colorWell2D);
-  cmDeallocColorWell1D(con->colorWell1D0);
-  cmDeallocColorWell1D(con->colorWell1D1);
-  cmDeallocColorWell1D(con->colorWell1D2);
-  cmClearColorController(&(con->baseController));
+void cpDeallocYuvColorController(CPYuvYupvpColorController* con){
+  cpDeallocColorWell2D(con->colorWell2D);
+  cpDeallocColorWell1D(con->colorWell1D0);
+  cpDeallocColorWell1D(con->colorWell1D1);
+  cpDeallocColorWell1D(con->colorWell1D2);
+  cpClearColorController(&(con->baseController));
   naFree(con);
 }
 
 
 
-const void* cmGetYuvColorControllerColorData(const CPYuvYupvpColorController* con){
+const void* cpGetYuvColorControllerColorData(const CPYuvYupvpColorController* con){
   return &(con->color);
 }
 
 
 
-void cmSetYuvColorControllerColorData(CPYuvYupvpColorController* con, const void* data){
+void cpSetYuvColorControllerColorData(CPYuvYupvpColorController* con, const void* data){
   cmlCpy3(con->color, data);
 }
 
 
 
-void cmUpdateYuvColorController(CPYuvYupvpColorController* con){
+void cpUpdateYuvColorController(CPYuvYupvpColorController* con){
   cpUpdateColorController(&(con->baseController));
 
   YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naGetPreferencesEnum(cpPrefs[CPYuvYupvpSelect]);

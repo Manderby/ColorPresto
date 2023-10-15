@@ -46,7 +46,7 @@ NABool cmRedrawTwoColorController(NAReaction reaction){
 
 
 
-CPTwoColorController* cmAllocTwoColorController(){
+CPTwoColorController* cpAllocTwoColorController(){
   CPTwoColorController* con = naAlloc(CPTwoColorController);
 
   con->space = naNewOpenGLSpace(naMakeSize(twoColorWidth, twoColorHeight), cmInitTwoColorDisplay, con);
@@ -57,19 +57,19 @@ CPTwoColorController* cmAllocTwoColorController(){
 
 
 
-void cmDeallocTwoColorController(CPTwoColorController* con){
+void cpDeallocTwoColorController(CPTwoColorController* con){
   naFree(con);
 }
 
 
 
-NAOpenGLSpace* cmGetTwoColorControllerUIElement(CPTwoColorController* con){
+NAOpenGLSpace* cpGetTwoColorControllerUIElement(CPTwoColorController* con){
   return con->space;
 }
 
 
 
-void cmUpdateTwoColorController(CPTwoColorController* con, const float* leftColor, const float* rightColor){
+void cpUpdateTwoColorController(CPTwoColorController* con, const float* leftColor, const float* rightColor){
   naCopyV3f(con->leftColor, leftColor);
   naCopyV3f(con->rightColor, rightColor);
 

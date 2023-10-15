@@ -72,14 +72,14 @@ NABool cmReshapeThreeDeeWindow(NAReaction reaction){
     controlHeight);
   naSetUIElementRect(con->controlSpace, controlRect);
 
-  cmSetThreeDeePerspectiveControllerZoom(con->perspectiveController, cmGetThreeDeePerspectiveControllerZoom(con->perspectiveController) / (openGLRect.size.height / oldOpenGLRect.size.height));
+  cpSetThreeDeePerspectiveControllerZoom(con->perspectiveController, cpGetThreeDeePerspectiveControllerZoom(con->perspectiveController) / (openGLRect.size.height / oldOpenGLRect.size.height));
 
   return NA_TRUE;
 }
 
 
 
-NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
+NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
   CPThreeDeeController* con = (CPThreeDeeController*)reaction.controller;
   
   CMLColorMachine* cm = cpGetCurrentColorMachine();
@@ -90,8 +90,8 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   double scale[3];
   const NAUTF8Char* labels[3] = {0};
   CMLNormedConverter normedOutputConverter;
-  CoordSysType coordSysType = cmGetThreeDeeCoordinateControllerCoordSysType(con->coordinateController);
-  CMLColorType colorType = cmGetThreeDeeCoordinateControllerColorSpaceType(con->coordinateController);
+  CoordSysType coordSysType = cpGetThreeDeeCoordinateControllerCoordSysType(con->coordinateController);
+  CMLColorType colorType = cpGetThreeDeeCoordinateControllerColorSpaceType(con->coordinateController);
 
   switch(coordSysType){
   case COORD_SYS_HSL:
@@ -247,12 +247,12 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 
   CMLVec3 backgroundRGB;
   CMLVec3 axisRGB;
-  float axisGray = (float)cmGetThreeDeeOptionsControllerAxisGray(con->optionsController);
-  float backgroundGray = (float)cmGetThreeDeeOptionsControllerBackgroundGray(con->optionsController);
-  NABool showAxis = cmGetThreeDeeOptionsControllerShowAxis(con->optionsController);
-  NABool showSpectrum = cmGetThreeDeeOptionsControllerShowSpectrum(con->optionsController);
-  double fovy = cmGetThreeDeeOptionsControllerFovy(con->optionsController);
-  double zoom = cmGetThreeDeePerspectiveControllerZoom(con->perspectiveController);
+  float axisGray = (float)cpGetThreeDeeOptionsControllerAxisGray(con->optionsController);
+  float backgroundGray = (float)cpGetThreeDeeOptionsControllerBackgroundGray(con->optionsController);
+  NABool showAxis = cpGetThreeDeeOptionsControllerShowAxis(con->optionsController);
+  NABool showSpectrum = cpGetThreeDeeOptionsControllerShowSpectrum(con->optionsController);
+  double fovy = cpGetThreeDeeOptionsControllerFovy(con->optionsController);
+  double zoom = cpGetThreeDeePerspectiveControllerZoom(con->perspectiveController);
   double curZoom;
   
   cmlSet3(backgroundRGB, backgroundGray, backgroundGray, backgroundGray);
@@ -273,18 +273,18 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 
   cmBeginThreeDeeDrawing(backgroundRGB);
 
-  cmSetupThreeDeeProjection(
+  cpSetupThreeDeeProjection(
     con->display,
     viewSize,
     fovy,
     curZoom);
-  cmSetupThreeDeeModelView(
+  cpSetupThreeDeeModelView(
     primeAxis,
     scale,
     curZoom,
-    cmGetThreeDeePerspectiveControllerRotationAnglePol(con->perspectiveController),
-    cmGetThreeDeePerspectiveControllerRotationAngleEqu(con->perspectiveController));
-  NAInt steps3D = cmGetThreeDeeCoordinateControllerSteps3D(con->coordinateController);
+    cpGetThreeDeePerspectiveControllerRotationAnglePol(con->perspectiveController),
+    cpGetThreeDeePerspectiveControllerRotationAngleEqu(con->perspectiveController));
+  NAInt steps3D = cpGetThreeDeeCoordinateControllerSteps3D(con->coordinateController);
 
   if(1){
     cmDrawThreeDeeSurfaces(
@@ -292,10 +292,10 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
       sm,
       backgroundRGB,
       axisRGB,
-      cmGetThreeDeeOpacityControllerBodySolid(con->opacityController),
-      cmGetThreeDeeOpacityControllerBodyAlpha(con->opacityController),
-      cmGetThreeDeeOpacityControllerGridAlpha(con->opacityController),
-      cmGetThreeDeeOpacityControllerGridTint(con->opacityController),
+      cpGetThreeDeeOpacityControllerBodySolid(con->opacityController),
+      cpGetThreeDeeOpacityControllerBodyAlpha(con->opacityController),
+      cpGetThreeDeeOpacityControllerGridAlpha(con->opacityController),
+      cpGetThreeDeeOpacityControllerGridTint(con->opacityController),
       colorType,
       steps3D,
       normedInputConverter,
@@ -305,7 +305,7 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
   }
   
   const NABool isGrayColorSpace = colorType == CML_COLOR_Gray;
-  float pointsOpacity = cmGetThreeDeeOpacityControllerPointsOpacity(con->opacityController);
+  float pointsOpacity = cpGetThreeDeeOpacityControllerPointsOpacity(con->opacityController);
   if(pointsOpacity > 0.f || isGrayColorSpace){
     cmDrawThreeDeePointCloud(
       cm,
@@ -347,10 +347,10 @@ NABool cmUpdateThreeDeeDisplay(NAReaction reaction){
 CPThreeDeeController* cpAllocThreeDeeController(void){
   CPThreeDeeController* con = naAlloc(CPThreeDeeController);
   
-  con->coordinateController = cmAllocThreeDeeCoordinateController(con);
-  con->perspectiveController = cmAllocThreeDeePerspectiveController(con);
-  con->opacityController = cmAllocThreeDeeOpacityController(con);
-  con->optionsController = cmAllocThreeDeeOptionsController(con);
+  con->coordinateController = cpAllocThreeDeeCoordinateController(con);
+  con->perspectiveController = cpAllocThreeDeePerspectiveController(con);
+  con->opacityController = cpAllocThreeDeeOpacityController(con);
+  con->optionsController = cpAllocThreeDeeOptionsController(con);
 
   // The window
   con->window = naNewWindow(
@@ -362,7 +362,7 @@ CPThreeDeeController* cpAllocThreeDeeController(void){
 
   // The 3D space
   con->display = naNewOpenGLSpace(naMakeSize(initial3DDisplayWidth, initial3DDisplayWidth), cmInitThreeDeeOpenGL, con);
-  naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cmUpdateThreeDeeDisplay, con);
+  naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cpUpdateThreeDeeDisplay, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cmMoveRotationMouse, con->perspectiveController);
   naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cmScrollRotation, con->perspectiveController);
   
@@ -371,10 +371,10 @@ CPThreeDeeController* cpAllocThreeDeeController(void){
     
   // layout
   cpBeginUILayout(con->controlSpace, naMakeBezel4Zero());
-  cpAddUIRow(cmGetThreeDeeCoordinateControllerUIElement(con->coordinateController), 0);
-  cpAddUIRow(cmGetThreeDeePerspectiveControllerUIElement(con->perspectiveController), 0);
-  cpAddUIRow(cmGetThreeDeeOpacityControllerUIElement(con->opacityController), 0);
-  cpAddUIRow(cmGetThreeDeeOptionsControllerUIElement(con->optionsController), 0);
+  cpAddUIRow(cpGetThreeDeeCoordinateControllerUIElement(con->coordinateController), 0);
+  cpAddUIRow(cpGetThreeDeePerspectiveControllerUIElement(con->perspectiveController), 0);
+  cpAddUIRow(cpGetThreeDeeOpacityControllerUIElement(con->opacityController), 0);
+  cpAddUIRow(cpGetThreeDeeOptionsControllerUIElement(con->optionsController), 0);
   cpEndUILayout();
 
   NASpace* content = naGetWindowContentSpace(con->window);
@@ -402,10 +402,10 @@ void cpShowThreeDeeController(CPThreeDeeController* con){
 
 
 void cpUpdateThreeDeeController(CPThreeDeeController* con){
-  cmUpdateThreeDeeCoordinateController(con->coordinateController);
-  cmUpdateThreeDeePerspectiveController(con->perspectiveController);
-  cmUpdateThreeDeeOpacityController(con->opacityController);
-  cmUpdateThreeDeeOptionsController(con->optionsController);
+  cpUpdateThreeDeeCoordinateController(con->coordinateController);
+  cpUpdateThreeDeePerspectiveController(con->perspectiveController);
+  cpUpdateThreeDeeOpacityController(con->opacityController);
+  cpUpdateThreeDeeOptionsController(con->optionsController);
 
   naRefreshUIElement(con->display, 0.);
 }

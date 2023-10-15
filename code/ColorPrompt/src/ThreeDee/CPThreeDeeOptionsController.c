@@ -64,7 +64,7 @@ NABool cmChangeOptionsSlider(NAReaction reaction){
 
 
 
-CPThreeDeeOptionsController* cmAllocThreeDeeOptionsController(CPThreeDeeController* parent){
+CPThreeDeeOptionsController* cpAllocThreeDeeOptionsController(CPThreeDeeController* parent){
   CPThreeDeeOptionsController* con = naAlloc(CPThreeDeeOptionsController);
 
   con->parent = parent;
@@ -118,39 +118,39 @@ CPThreeDeeOptionsController* cmAllocThreeDeeOptionsController(CPThreeDeeControll
 
 
 
-void cmDeallocThreeDeeOptionsController(CPThreeDeeOptionsController* con){
+void cpDeallocThreeDeeOptionsController(CPThreeDeeOptionsController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetThreeDeeOptionsControllerUIElement(CPThreeDeeOptionsController* con){
+NASpace* cpGetThreeDeeOptionsControllerUIElement(CPThreeDeeOptionsController* con){
   return con->space;
 }
 
 
 
-float cmGetThreeDeeOptionsControllerAxisGray(CPThreeDeeOptionsController* con){
+float cpGetThreeDeeOptionsControllerAxisGray(CPThreeDeeOptionsController* con){
   float axisGray = con->backgroundGray + .5f;
   if(axisGray > 1.f){axisGray -= 1.f;}
   return axisGray;
 }
-float cmGetThreeDeeOptionsControllerBackgroundGray(CPThreeDeeOptionsController* con){
+float cpGetThreeDeeOptionsControllerBackgroundGray(CPThreeDeeOptionsController* con){
   return con->backgroundGray;
 }
-float cmGetThreeDeeOptionsControllerFovy(CPThreeDeeOptionsController* con){
+float cpGetThreeDeeOptionsControllerFovy(CPThreeDeeOptionsController* con){
   return con->fovy;
 }
-NABool cmGetThreeDeeOptionsControllerShowAxis(CPThreeDeeOptionsController* con){
+NABool cpGetThreeDeeOptionsControllerShowAxis(CPThreeDeeOptionsController* con){
   return con->showAxis;
 }
-NABool cmGetThreeDeeOptionsControllerShowSpectrum(CPThreeDeeOptionsController* con){
+NABool cpGetThreeDeeOptionsControllerShowSpectrum(CPThreeDeeOptionsController* con){
   return con->showSpectrum;
 }
 
 
 
-void cmUpdateThreeDeeOptionsController(CPThreeDeeOptionsController* con)
+void cpUpdateThreeDeeOptionsController(CPThreeDeeOptionsController* con)
 {
   naSetCheckBoxState(con->spectrumCheckBox, con->showSpectrum);
   naSetCheckBoxState(con->axisCheckBox, con->showAxis);

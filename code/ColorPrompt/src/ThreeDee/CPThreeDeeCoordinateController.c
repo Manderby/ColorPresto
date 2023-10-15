@@ -30,7 +30,7 @@ struct CPThreeDeeCoordinateController{
 
 
 
-CMLColorType cmGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
+CMLColorType cpGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
   CMLColorType retValue = CML_COLOR_COUNT;
   switch(colorSpaceType){
   case COLOR_SPACE_GRAY:  retValue = CML_COLOR_Gray; break;
@@ -57,7 +57,7 @@ CMLColorType cmGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
 
 
 
-const NAUTF8Char* cmGetCoordSysName(CoordSysType coordSysType){
+const NAUTF8Char* cpGetCoordSysName(CoordSysType coordSysType){
   const NAUTF8Char* retValue = "";
   switch(coordSysType){
   case COORD_SYS_HSL: retValue = cpTranslate(CPColorSpaceHSL); break;
@@ -128,7 +128,7 @@ NABool cmChangeCoordinateSlider(NAReaction reaction){
 
 
 
-CPThreeDeeCoordinateController* cmAllocThreeDeeCoordinateController(CPThreeDeeController* threeDeeController){
+CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeController* threeDeeController){
   CPThreeDeeCoordinateController* con = naAlloc(CPThreeDeeCoordinateController);
 
   con->threeDeeController = threeDeeController;
@@ -140,7 +140,7 @@ CPThreeDeeCoordinateController* cmAllocThreeDeeCoordinateController(CPThreeDeeCo
   con->colorSpacePopupButton = naNewPopupButton(threeDeeControlWidth);
   for(size_t i = 0; i < COLOR_SPACE_COUNT; ++i){
     ColorSpaceType colorSpaceType = (ColorSpaceType)i;
-    NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString(cmGetCMLColorTypeFromColorSpaceType(colorSpaceType)));
+    NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString(cpGetCMLColorTypeFromColorSpaceType(colorSpaceType)));
     naAddPopupButtonMenuItem(con->colorSpacePopupButton, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectColorSpace, con);
   }
@@ -148,7 +148,7 @@ CPThreeDeeCoordinateController* cmAllocThreeDeeCoordinateController(CPThreeDeeCo
   con->coordSysLabel = naNewLabel(cpTranslate(CPCoordinates), threeDeeLabelWidth);
   con->coordSysPopupButton = naNewPopupButton(threeDeeControlWidth);
   for(size_t i = 0; i < COORD_SYS_COUNT; ++i){
-    NAMenuItem* item = naNewMenuItem(cmGetCoordSysName((CoordSysType)i));
+    NAMenuItem* item = naNewMenuItem(cpGetCoordSysName((CoordSysType)i));
     naAddPopupButtonMenuItem(con->coordSysPopupButton, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cmSelectCoordSys, con);
   }
@@ -182,29 +182,29 @@ CPThreeDeeCoordinateController* cmAllocThreeDeeCoordinateController(CPThreeDeeCo
 
 
 
-void cmDeallocThreeDeeCoordinateController(CPThreeDeeCoordinateController* con){
+void cpDeallocThreeDeeCoordinateController(CPThreeDeeCoordinateController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetThreeDeeCoordinateControllerUIElement(CPThreeDeeCoordinateController* con){
+NASpace* cpGetThreeDeeCoordinateControllerUIElement(CPThreeDeeCoordinateController* con){
   return con->space;
 }
 
 
-CoordSysType cmGetThreeDeeCoordinateControllerCoordSysType(CPThreeDeeCoordinateController* con){
+CoordSysType cpGetThreeDeeCoordinateControllerCoordSysType(CPThreeDeeCoordinateController* con){
   return con->coordSysType;
 }
-CMLColorType cmGetThreeDeeCoordinateControllerColorSpaceType(CPThreeDeeCoordinateController* con){
-  return cmGetCMLColorTypeFromColorSpaceType(con->colorSpaceType);
+CMLColorType cpGetThreeDeeCoordinateControllerColorSpaceType(CPThreeDeeCoordinateController* con){
+  return cpGetCMLColorTypeFromColorSpaceType(con->colorSpaceType);
 }
-NAInt cmGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con){
+NAInt cpGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con){
   return con->steps3D;
 }
 
 
-void cmUpdateThreeDeeCoordinateController(CPThreeDeeCoordinateController* con){
+void cpUpdateThreeDeeCoordinateController(CPThreeDeeCoordinateController* con){
   naSetPopupButtonIndexSelected(con->colorSpacePopupButton, con->colorSpaceType);
   naSetPopupButtonIndexSelected(con->coordSysPopupButton, con->coordSysType);
   naSetSliderValue(con->stepsSlider, (double)con->steps3D);

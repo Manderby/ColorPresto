@@ -69,7 +69,7 @@ NABool cmChangeThreeDeeOpacitySlider(NAReaction reaction){
 
 
 
-CPThreeDeeOpacityController* cmAllocThreeDeeOpacityController(CPThreeDeeController* parent){
+CPThreeDeeOpacityController* cpAllocThreeDeeOpacityController(CPThreeDeeController* parent){
   CPThreeDeeOpacityController* con = naAlloc(CPThreeDeeOpacityController);
 
   con->parent = parent;
@@ -135,35 +135,35 @@ CPThreeDeeOpacityController* cmAllocThreeDeeOpacityController(CPThreeDeeControll
 
 
 
-void cmDeallocThreeDeeOpacityController(CPThreeDeeOpacityController* con){
+void cpDeallocThreeDeeOpacityController(CPThreeDeeOpacityController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetThreeDeeOpacityControllerUIElement(CPThreeDeeOpacityController* con){
+NASpace* cpGetThreeDeeOpacityControllerUIElement(CPThreeDeeOpacityController* con){
   return con->space;
 }
 
 
-NABool cmGetThreeDeeOpacityControllerBodySolid(CPThreeDeeOpacityController* con){
+NABool cpGetThreeDeeOpacityControllerBodySolid(CPThreeDeeOpacityController* con){
   return con->bodySolid;
 }
-float cmGetThreeDeeOpacityControllerPointsOpacity(CPThreeDeeOpacityController* con){
+float cpGetThreeDeeOpacityControllerPointsOpacity(CPThreeDeeOpacityController* con){
   return con->pointsOpacity;
 }
-float cmGetThreeDeeOpacityControllerBodyAlpha(CPThreeDeeOpacityController* con){
+float cpGetThreeDeeOpacityControllerBodyAlpha(CPThreeDeeOpacityController* con){
   return con->bodyAlpha;
 }
-float cmGetThreeDeeOpacityControllerGridAlpha(CPThreeDeeOpacityController* con){
+float cpGetThreeDeeOpacityControllerGridAlpha(CPThreeDeeOpacityController* con){
   return con->gridAlpha;
 }
-float cmGetThreeDeeOpacityControllerGridTint(CPThreeDeeOpacityController* con){
+float cpGetThreeDeeOpacityControllerGridTint(CPThreeDeeOpacityController* con){
   return con->gridTint;
 }
 
 
-void cmUpdateThreeDeeOpacityController(CPThreeDeeOpacityController* con)
+void cpUpdateThreeDeeOpacityController(CPThreeDeeOpacityController* con)
 {
   naSetSliderValue(con->pointsOpacitySlider, con->pointsOpacity);
   naSetSliderValue(con->gridAlphaSlider, con->gridAlpha);

@@ -7,9 +7,9 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPMachineButtonsController CPMachineButtonsController;
 
-CPMachineButtonsController* cmAllocMachineButtonsController(void);
-void cmDeallocMachineButtonsController(CPMachineButtonsController* con);
+CPMachineButtonsController* cpAllocMachineButtonsController(void);
+void cpDeallocMachineButtonsController(CPMachineButtonsController* con);
 
-NASpace* cmGetMachineButtonsControllerUIElement(CPMachineButtonsController* con);
+NASpace* cpGetMachineButtonsControllerUIElement(CPMachineButtonsController* con);
 
 void cpUpdateMachineButtonsController(CPMachineButtonsController* con);

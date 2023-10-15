@@ -9,13 +9,13 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPWhitePointsController CPWhitePointsController;
 
-CPWhitePointsController* cmAllocWhitePointsController(void);
-void cmDeallocWhitePointsController(CPWhitePointsController* con);
+CPWhitePointsController* cpAllocWhitePointsController(void);
+void cpDeallocWhitePointsController(CPWhitePointsController* con);
 
-NASpace* cmGetWhitePointsUIElement(CPWhitePointsController* con);
-CPReferenceIlluminationType cmGetReferenceIlluminationType(CPWhitePointsController* con);
+NASpace* cpGetWhitePointsUIElement(CPWhitePointsController* con);
+CPReferenceIlluminationType cpGetReferenceIlluminationType(CPWhitePointsController* con);
 
-void cmUpdateWhitePointsController(
+void cpUpdateWhitePointsController(
   CPWhitePointsController* con,
   const NAUTF8Char* illuminationName,
   const CPWhitePoints* illWhitePoint10,

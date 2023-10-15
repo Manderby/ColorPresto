@@ -9,12 +9,12 @@ CP_PROTOTYPE(NAOpenGLSpace);
 
 typedef struct CPTwoColorController CPTwoColorController;
 
-CPTwoColorController* cmAllocTwoColorController(void);
-void cmDeallocTwoColorController(CPTwoColorController* con);
+CPTwoColorController* cpAllocTwoColorController(void);
+void cpDeallocTwoColorController(CPTwoColorController* con);
 
-NAOpenGLSpace* cmGetTwoColorControllerUIElement(CPTwoColorController* con);
+NAOpenGLSpace* cpGetTwoColorControllerUIElement(CPTwoColorController* con);
 
-void cmUpdateTwoColorController(
+void cpUpdateTwoColorController(
   CPTwoColorController* con,
   const float* leftColor,
   const float* rightColor);

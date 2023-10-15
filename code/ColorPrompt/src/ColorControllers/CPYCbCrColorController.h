@@ -7,11 +7,11 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPYCbCrColorController CPYCbCrColorController;
 
-CPYCbCrColorController* cmAllocYCbCrColorController(void);
-void cmDeallocYCbCrColorController(CPYCbCrColorController* con);
+CPYCbCrColorController* cpAllocYCbCrColorController(void);
+void cpDeallocYCbCrColorController(CPYCbCrColorController* con);
 
-const void* cmGetYCbCrColorControllerColorData(const CPYCbCrColorController* con);
-void cmSetYCbCrColorControllerColorData(CPYCbCrColorController* con, const void* data);
+const void* cpGetYCbCrColorControllerColorData(const CPYCbCrColorController* con);
+void cpSetYCbCrColorControllerColorData(CPYCbCrColorController* con, const void* data);
 
-void cmUpdateYCbCrColorController(CPYCbCrColorController* con);
+void cpUpdateYCbCrColorController(CPYCbCrColorController* con);
 

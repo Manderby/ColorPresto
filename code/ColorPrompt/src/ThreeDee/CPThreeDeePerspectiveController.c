@@ -114,7 +114,7 @@ NABool cmScrollRotation(NAReaction reaction){
 
 
 
-CPThreeDeePerspectiveController* cmAllocThreeDeePerspectiveController(CPThreeDeeController* parent){
+CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDeeController* parent){
   CPThreeDeePerspectiveController* con = naAlloc(CPThreeDeePerspectiveController);
 
   con->parent = parent;
@@ -152,37 +152,37 @@ CPThreeDeePerspectiveController* cmAllocThreeDeePerspectiveController(CPThreeDee
 
 
 
-void cmDeallocThreeDeePerspectiveController(CPThreeDeePerspectiveController* con){
+void cpDeallocThreeDeePerspectiveController(CPThreeDeePerspectiveController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetThreeDeePerspectiveControllerUIElement(CPThreeDeePerspectiveController* con){
+NASpace* cpGetThreeDeePerspectiveControllerUIElement(CPThreeDeePerspectiveController* con){
   return con->space;
 }
 
 
 
-double cmGetThreeDeePerspectiveControllerRotationStep(CPThreeDeePerspectiveController* con){
+double cpGetThreeDeePerspectiveControllerRotationStep(CPThreeDeePerspectiveController* con){
   return con->rotationStep;
 }
-double cmGetThreeDeePerspectiveControllerRotationAnglePol(CPThreeDeePerspectiveController* con){
+double cpGetThreeDeePerspectiveControllerRotationAnglePol(CPThreeDeePerspectiveController* con){
   return con->anglePol;
 }
-double cmGetThreeDeePerspectiveControllerRotationAngleEqu(CPThreeDeePerspectiveController* con){
+double cpGetThreeDeePerspectiveControllerRotationAngleEqu(CPThreeDeePerspectiveController* con){
   return con->angleEqu;
 }
-double cmGetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con){
+double cpGetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con){
   return con->zoom;
 }
-void cmSetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con, double zoom){
+void cpSetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con, double zoom){
   con->zoom = zoom;
 }
 
 
 
-void cmUpdateThreeDeePerspectiveController(CPThreeDeePerspectiveController* con)
+void cpUpdateThreeDeePerspectiveController(CPThreeDeePerspectiveController* con)
 {
   naSetSliderValue(con->rotationSlider, con->rotationStep);
 }

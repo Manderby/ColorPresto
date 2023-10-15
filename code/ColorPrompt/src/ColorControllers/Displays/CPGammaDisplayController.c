@@ -88,7 +88,7 @@ NABool cmDrawGammaDisplayController(NAReaction reaction){
 
 
 
-CPGammaDisplayController* cmAllocGammaDisplayController(){
+CPGammaDisplayController* cpAllocGammaDisplayController(){
   CPGammaDisplayController* con = naAlloc(CPGammaDisplayController);
   
   con->display = naNewOpenGLSpace(naMakeSize(gammaDisplaySize, gammaDisplaySize), cmInitGammaDisplayController, con);
@@ -99,17 +99,17 @@ CPGammaDisplayController* cmAllocGammaDisplayController(){
 
 
 
-void cmDeallocGammaDisplayController(CPGammaDisplayController* con){
+void cpDeallocGammaDisplayController(CPGammaDisplayController* con){
 }
 
 
 
-NAOpenGLSpace* cmGetGammaDisplayControllerUIElement(CPGammaDisplayController* con){
+NAOpenGLSpace* cpGetGammaDisplayControllerUIElement(CPGammaDisplayController* con){
   return con->display;
 }
 
 
 
-void cmUpdateGammaDisplayController(CPGammaDisplayController* con){
+void cpUpdateGammaDisplayController(CPGammaDisplayController* con){
   naRefreshUIElement(con->display, 0.);
 }

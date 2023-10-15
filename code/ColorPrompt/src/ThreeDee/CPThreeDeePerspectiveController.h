@@ -10,18 +10,18 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPThreeDeePerspectiveController CPThreeDeePerspectiveController;
 
-CPThreeDeePerspectiveController* cmAllocThreeDeePerspectiveController(CPThreeDeeController* parent);
-void cmDeallocThreeDeePerspectiveController(CPThreeDeePerspectiveController* con);
+CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDeeController* parent);
+void cpDeallocThreeDeePerspectiveController(CPThreeDeePerspectiveController* con);
 
 NABool cmMoveRotationMouse(NAReaction reaction);
 NABool cmScrollRotation(NAReaction reaction);
 
-NASpace* cmGetThreeDeePerspectiveControllerUIElement(CPThreeDeePerspectiveController* con);
+NASpace* cpGetThreeDeePerspectiveControllerUIElement(CPThreeDeePerspectiveController* con);
 
-double cmGetThreeDeePerspectiveControllerRotationStep(CPThreeDeePerspectiveController* con);
-double cmGetThreeDeePerspectiveControllerRotationAnglePol(CPThreeDeePerspectiveController* con);
-double cmGetThreeDeePerspectiveControllerRotationAngleEqu(CPThreeDeePerspectiveController* con);
-double cmGetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con);
-void cmSetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con, double zoom);
+double cpGetThreeDeePerspectiveControllerRotationStep(CPThreeDeePerspectiveController* con);
+double cpGetThreeDeePerspectiveControllerRotationAnglePol(CPThreeDeePerspectiveController* con);
+double cpGetThreeDeePerspectiveControllerRotationAngleEqu(CPThreeDeePerspectiveController* con);
+double cpGetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con);
+void cpSetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con, double zoom);
 
-void cmUpdateThreeDeePerspectiveController(CPThreeDeePerspectiveController* con);
+void cpUpdateThreeDeePerspectiveController(CPThreeDeePerspectiveController* con);

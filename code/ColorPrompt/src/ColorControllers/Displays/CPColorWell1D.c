@@ -80,7 +80,7 @@ NABool cmDragColorWell1D(NAReaction reaction){
     CMLVec3 convertedColorValues = {0.f, 0.f, 0.f};
     converter(cm, convertedColorValues, newColorValues, 1);
 
-    cmSetColorControllerColorData(well->colorController, convertedColorValues);
+    cpSetColorControllerColorData(well->colorController, convertedColorValues);
     cpSetCurrentColorController(well->colorController);
     cpUpdateColor();
     return NA_TRUE;
@@ -218,7 +218,7 @@ NABool cmDrawColorWell1D(NAReaction reaction){
 
 
 
-CPColorWell1D* cmAllocColorWell1D(CPColorController* colorController, const float* colorData, size_t variableIndex){
+CPColorWell1D* cpAllocColorWell1D(CPColorController* colorController, const float* colorData, size_t variableIndex){
   CPColorWell1D* well = naAlloc(CPColorWell1D);
   
   well->display = naNewOpenGLSpace(naMakeSize(colorWell1DSize, colorWell1DHeight), cmInitColorWell1D, well);
@@ -235,13 +235,13 @@ CPColorWell1D* cmAllocColorWell1D(CPColorController* colorController, const floa
 
 
 
-void cmDeallocColorWell1D(CPColorWell1D* well){
+void cpDeallocColorWell1D(CPColorWell1D* well){
   glDeleteTextures(1, &(well->wellTex));
 }
 
 
 
-NAOpenGLSpace* cmGetColorWell1DUIElement(CPColorWell1D* well){
+NAOpenGLSpace* cpGetColorWell1DUIElement(CPColorWell1D* well){
   return well->display;
 }
 

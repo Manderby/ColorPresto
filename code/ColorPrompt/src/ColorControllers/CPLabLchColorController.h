@@ -7,11 +7,11 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPLabLchColorController CPLabLchColorController;
 
-CPLabLchColorController* cmAllocLabLchColorController(void);
-void cmDeallocLabLchColorController(CPLabLchColorController* con);
+CPLabLchColorController* cpAllocLabLchColorController(void);
+void cpDeallocLabLchColorController(CPLabLchColorController* con);
 
-const void* cmGetLabLchColorControllerColorData(const CPLabLchColorController* con);
-void cmSetLabLchColorControllerColorData(CPLabLchColorController* con, const void* data);
+const void* cpGetLabLchColorControllerColorData(const CPLabLchColorController* con);
+void cpSetLabLchColorControllerColorData(CPLabLchColorController* con, const void* data);
 
-void cmUpdateLabLchColorController(CPLabLchColorController* con);
+void cpUpdateLabLchColorController(CPLabLchColorController* con);
 

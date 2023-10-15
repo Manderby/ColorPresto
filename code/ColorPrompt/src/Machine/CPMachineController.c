@@ -27,27 +27,27 @@ struct CPMachineController{
 
 
 
-CPMachineController* cmAllocMachineController(void){
+CPMachineController* cpAllocMachineController(void){
   CPMachineController* con = naAlloc(CPMachineController);
 
   con->space = naNewSpace(naMakeSize(500, 300));
 
-  con->observerController = cmAllocMachineObserverController();
-  con->illuminationController = cmAllocMachineIlluminationController();
-  con->rgbController = cmAllocMachineRGBController();
-  con->labController = cmAllocMachineLabController();
-  con->grayController = cmAllocMachineGrayController();
+  con->observerController = cpAllocMachineObserverController();
+  con->illuminationController = cpAllocMachineIlluminationController();
+  con->rgbController = cpAllocMachineRGBController();
+  con->labController = cpAllocMachineLabController();
+  con->grayController = cpAllocMachineGrayController();
 
-  con->buttonsController = cmAllocMachineButtonsController();
+  con->buttonsController = cpAllocMachineButtonsController();
 
   // layout
   cpBeginUILayout(con->space, naMakeBezel4Zero());
-  cpAddUIRow(cmGetMachineObserverControllerUIElement(con->observerController), 0);
-  cpAddUIRow(cmGetMachineIlluminationControllerUIElement(con->illuminationController), 0);
-  cpAddUIRow(cmGetMachineRGBControllerUIElement(con->rgbController), 0);
-  cpAddUIRow(cmGetMachineLabControllerUIElement(con->labController), 0);
-  cpAddUIRow(cmGetMachineGrayControllerUIElement(con->grayController), 0);
-  cpAddUIRow(cmGetMachineButtonsControllerUIElement(con->buttonsController), 0);
+  cpAddUIRow(cpGetMachineObserverControllerUIElement(con->observerController), 0);
+  cpAddUIRow(cpGetMachineIlluminationControllerUIElement(con->illuminationController), 0);
+  cpAddUIRow(cpGetMachineRGBControllerUIElement(con->rgbController), 0);
+  cpAddUIRow(cpGetMachineLabControllerUIElement(con->labController), 0);
+  cpAddUIRow(cpGetMachineGrayControllerUIElement(con->grayController), 0);
+  cpAddUIRow(cpGetMachineButtonsControllerUIElement(con->buttonsController), 0);
   cpEndUILayout();
 
   return con;
@@ -55,13 +55,13 @@ CPMachineController* cmAllocMachineController(void){
 
 
 
-void cmDeallocMachineController(CPMachineController* con){
+void cpDeallocMachineController(CPMachineController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetMachineUIElement(CPMachineController* con){
+NASpace* cpGetMachineUIElement(CPMachineController* con){
   return con->space;
 }
 

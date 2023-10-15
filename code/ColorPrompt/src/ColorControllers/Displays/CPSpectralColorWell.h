@@ -9,13 +9,13 @@ typedef struct CPSpectralColorWell CPSpectralColorWell;
 
 
 
-CPSpectralColorWell* cmAllocSpectralColorWell(
+CPSpectralColorWell* cpAllocSpectralColorWell(
   CPColorController* colorController);
   
-void cmDeallocSpectralColorWell(CPSpectralColorWell* well);
+void cpDeallocSpectralColorWell(CPSpectralColorWell* well);
 
-NAOpenGLSpace* cmGetSpectralColorWellUIElement(CPSpectralColorWell* well);
+NAOpenGLSpace* cpGetSpectralColorWellUIElement(CPSpectralColorWell* well);
 
-void cmUpdateSpectralColorWell(CPSpectralColorWell* well);
+void cpUpdateSpectralColorWell(CPSpectralColorWell* well);
 
 

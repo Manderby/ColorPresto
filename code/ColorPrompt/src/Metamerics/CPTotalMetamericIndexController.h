@@ -8,12 +8,12 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPTotalMetamericIndexController CPTotalMetamericIndexController;
 
-CPTotalMetamericIndexController* cmAllocTotalMetamericIndexController(void);
-void cmDeallocTotalMetamericIndexController(CPTotalMetamericIndexController* con);
+CPTotalMetamericIndexController* cpAllocTotalMetamericIndexController(void);
+void cpDeallocTotalMetamericIndexController(CPTotalMetamericIndexController* con);
 
-NASpace* cmGetTotalMetamericIndexUIElement(CPTotalMetamericIndexController* con);
+NASpace* cpGetTotalMetamericIndexUIElement(CPTotalMetamericIndexController* con);
 
-void cmUpdateTotalMetamericIndexController(
+void cpUpdateTotalMetamericIndexController(
   CPTotalMetamericIndexController* con,
   float avg5,
   float avg3,

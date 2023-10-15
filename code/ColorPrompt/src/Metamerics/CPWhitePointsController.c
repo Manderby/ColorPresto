@@ -89,7 +89,7 @@ NABool cmSelectRefSpectrum(NAReaction reaction){
 
 
 
-CPWhitePointsController* cmAllocWhitePointsController(void){
+CPWhitePointsController* cpAllocWhitePointsController(void){
   CPWhitePointsController* con = naAlloc(CPWhitePointsController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -222,23 +222,23 @@ CPWhitePointsController* cmAllocWhitePointsController(void){
 
 
 
-void cmDeallocWhitePointsController(CPWhitePointsController* con){
+void cpDeallocWhitePointsController(CPWhitePointsController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetWhitePointsUIElement(CPWhitePointsController* con){
+NASpace* cpGetWhitePointsUIElement(CPWhitePointsController* con){
   return con->space;
 }
 
-CPReferenceIlluminationType cmGetReferenceIlluminationType(CPWhitePointsController* con){
+CPReferenceIlluminationType cpGetReferenceIlluminationType(CPWhitePointsController* con){
   return con->referenceIlluminationType;
 }
 
 
 
-void cmUpdateWhitePointsController(
+void cpUpdateWhitePointsController(
   CPWhitePointsController* con,
   const NAUTF8Char* illuminationName,
   const CPWhitePoints* illWhitePoint10,

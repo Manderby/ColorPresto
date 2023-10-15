@@ -9,13 +9,13 @@ typedef struct CPGrayColorWell CPGrayColorWell;
 
 
 
-CPGrayColorWell* cmAllocGrayColorWell(
+CPGrayColorWell* cpAllocGrayColorWell(
   CPColorController* colorController);
   
-void cmDeallocGrayColorWell(CPGrayColorWell* well);
+void cpDeallocGrayColorWell(CPGrayColorWell* well);
 
-NAOpenGLSpace* cmGetGrayColorWellUIElement(CPGrayColorWell* well);
+NAOpenGLSpace* cpGetGrayColorWellUIElement(CPGrayColorWell* well);
 
-void cmUpdateGrayColorWell(CPGrayColorWell* well);
+void cpUpdateGrayColorWell(CPGrayColorWell* well);
 
 

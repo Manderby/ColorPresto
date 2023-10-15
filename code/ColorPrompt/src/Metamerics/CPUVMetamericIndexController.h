@@ -16,13 +16,13 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPUVMetamericIndexController CPUVMetamericIndexController;
 
-CPUVMetamericIndexController* cmAllocUVMetamericIndexController(void);
-void cmDeallocUVMetamericIndexController(CPUVMetamericIndexController* con);
+CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void);
+void cpDeallocUVMetamericIndexController(CPUVMetamericIndexController* con);
 
-NASpace* cmGetUVMetamericIndexUIElement(CPUVMetamericIndexController* con);
-float cmGetUVMetamericIndexAverage(CPUVMetamericIndexController* con);
+NASpace* cpGetUVMetamericIndexUIElement(CPUVMetamericIndexController* con);
+float cpGetUVMetamericIndexAverage(CPUVMetamericIndexController* con);
 
-void cmUpdateUVMetamericIndexController(
+void cpUpdateUVMetamericIndexController(
   CPUVMetamericIndexController* con,
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,

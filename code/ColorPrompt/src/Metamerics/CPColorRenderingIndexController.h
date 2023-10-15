@@ -12,10 +12,10 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPColorRenderingIndexController CPColorRenderingIndexController;
 
-CPColorRenderingIndexController* cmAllocColorRenderingIndexController(void);
-void cmDeallocColorRenderingIndexController(CPColorRenderingIndexController* con);
+CPColorRenderingIndexController* cpAllocColorRenderingIndexController(void);
+void cpDeallocColorRenderingIndexController(CPColorRenderingIndexController* con);
 
-NASpace* cmGetColorRenderingIndexUIElement(CPColorRenderingIndexController* con);
+NASpace* cpGetColorRenderingIndexUIElement(CPColorRenderingIndexController* con);
 
 void cpUpdateColorRenderingIndexController(
   CPColorRenderingIndexController* con,

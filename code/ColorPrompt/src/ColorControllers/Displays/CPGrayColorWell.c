@@ -125,7 +125,7 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
 
 
 
-CPGrayColorWell* cmAllocGrayColorWell(CPColorController* colorController){
+CPGrayColorWell* cpAllocGrayColorWell(CPColorController* colorController){
   CPGrayColorWell* well = naAlloc(CPGrayColorWell);
   
   well->display = naNewOpenGLSpace(naMakeSize(colorWell2DSize, colorWell2DSize), cmInitGrayColorWell, well);
@@ -138,18 +138,18 @@ CPGrayColorWell* cmAllocGrayColorWell(CPColorController* colorController){
 
 
 
-void cmDeallocGrayColorWell(CPGrayColorWell* well){
+void cpDeallocGrayColorWell(CPGrayColorWell* well){
   naShutdownPixelFont(well->fontId);
 }
 
 
 
-NAOpenGLSpace* cmGetGrayColorWellUIElement(CPGrayColorWell* well){
+NAOpenGLSpace* cpGetGrayColorWellUIElement(CPGrayColorWell* well){
   return well->display;
 }
 
 
 
-void cmUpdateGrayColorWell(CPGrayColorWell* well){
+void cpUpdateGrayColorWell(CPGrayColorWell* well){
   naRefreshUIElement(well->display, 0.);
 }

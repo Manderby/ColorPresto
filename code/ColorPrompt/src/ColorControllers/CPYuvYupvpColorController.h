@@ -7,10 +7,10 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPYuvYupvpColorController CPYuvYupvpColorController;
 
-CPYuvYupvpColorController* cmAllocYuvColorController(void);
-void cmDeallocYuvColorController(CPYuvYupvpColorController* con);
+CPYuvYupvpColorController* cpAllocYuvColorController(void);
+void cpDeallocYuvColorController(CPYuvYupvpColorController* con);
 
-const void* cmGetYuvColorControllerColorData(const CPYuvYupvpColorController* con);
-void cmSetYuvColorControllerColorData(CPYuvYupvpColorController* con, const void* data);
+const void* cpGetYuvColorControllerColorData(const CPYuvYupvpColorController* con);
+void cpSetYuvColorControllerColorData(CPYuvYupvpColorController* con, const void* data);
 
-void cmUpdateYuvColorController(CPYuvYupvpColorController* con);
+void cpUpdateYuvColorController(CPYuvYupvpColorController* con);

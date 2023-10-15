@@ -7,9 +7,9 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPMachineGrayController CPMachineGrayController;
 
-CPMachineGrayController* cmAllocMachineGrayController(void);
-void cmDeallocMachineGrayController(CPMachineGrayController* con);
+CPMachineGrayController* cpAllocMachineGrayController(void);
+void cpDeallocMachineGrayController(CPMachineGrayController* con);
 
-NASpace* cmGetMachineGrayControllerUIElement(CPMachineGrayController* con);
+NASpace* cpGetMachineGrayControllerUIElement(CPMachineGrayController* con);
 
 void cpUpdateMachineGrayController(CPMachineGrayController* con);

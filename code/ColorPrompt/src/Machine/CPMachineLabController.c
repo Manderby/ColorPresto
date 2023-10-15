@@ -41,7 +41,7 @@ NABool cmSelectLabColorSpace(NAReaction reaction){
 
 
 
-NABool cmSetLabValue(NAReaction reaction){
+NABool cpSetLabValue(NAReaction reaction){
   CPMachineLabController* con = (CPMachineLabController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -67,7 +67,7 @@ NABool cmSetLabValue(NAReaction reaction){
 
 
 
-CPMachineLabController* cmAllocMachineLabController(void){
+CPMachineLabController* cpAllocMachineLabController(void){
   CPMachineLabController* con = naAlloc(CPMachineLabController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -84,16 +84,16 @@ CPMachineLabController* cmAllocMachineLabController(void){
   }
 
   con->valueKTitleLabel = naNewLabel(cpTranslate(CPLabColorSpaceK), machineLabelWidth);
-  con->valueKTextField = cpNewValueTextField(cmSetLabValue, con);
+  con->valueKTextField = cpNewValueTextField(cpSetLabValue, con);
   con->valueKSlider = naNewSlider(60);
   naSetSliderRange(con->valueKSlider, 1., 2., 0);
-  naAddUIReaction(con->valueKSlider, NA_UI_COMMAND_EDITED, cmSetLabValue, con);
+  naAddUIReaction(con->valueKSlider, NA_UI_COMMAND_EDITED, cpSetLabValue, con);
   
   con->valuekeTitleLabel = naNewLabel(cpTranslate(CPLabColorSpaceke), machineLabelWidth);
-  con->valuekeTextField = cpNewValueTextField(cmSetLabValue, con);
+  con->valuekeTextField = cpNewValueTextField(cpSetLabValue, con);
   con->valuekeSlider = naNewSlider(60);
   naSetSliderRange(con->valuekeSlider, .1, 1., 0);
-  naAddUIReaction(con->valuekeSlider, NA_UI_COMMAND_EDITED, cmSetLabValue, con);
+  naAddUIReaction(con->valuekeSlider, NA_UI_COMMAND_EDITED, cpSetLabValue, con);
 
   // layout
   cpBeginUILayout(con->space, spaceBezel);
@@ -114,13 +114,13 @@ CPMachineLabController* cmAllocMachineLabController(void){
 
 
 
-void cmDeallocMachineLabController(CPMachineLabController* con){
+void cpDeallocMachineLabController(CPMachineLabController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetMachineLabControllerUIElement(CPMachineLabController* con){
+NASpace* cpGetMachineLabControllerUIElement(CPMachineLabController* con){
   return con->space;
 }
 

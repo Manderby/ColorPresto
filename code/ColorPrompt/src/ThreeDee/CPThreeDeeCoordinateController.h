@@ -9,13 +9,13 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPThreeDeeCoordinateController CPThreeDeeCoordinateController;
 
-CPThreeDeeCoordinateController* cmAllocThreeDeeCoordinateController(CPThreeDeeController* threeDeeController);
-void cmDeallocThreeDeeCoordinateController(CPThreeDeeCoordinateController* con);
+CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeController* threeDeeController);
+void cpDeallocThreeDeeCoordinateController(CPThreeDeeCoordinateController* con);
 
-NASpace* cmGetThreeDeeCoordinateControllerUIElement(CPThreeDeeCoordinateController* con);
+NASpace* cpGetThreeDeeCoordinateControllerUIElement(CPThreeDeeCoordinateController* con);
 
-CoordSysType cmGetThreeDeeCoordinateControllerCoordSysType(CPThreeDeeCoordinateController* con);
-CMLColorType cmGetThreeDeeCoordinateControllerColorSpaceType(CPThreeDeeCoordinateController* con);
-NAInt cmGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con);
+CoordSysType cpGetThreeDeeCoordinateControllerCoordSysType(CPThreeDeeCoordinateController* con);
+CMLColorType cpGetThreeDeeCoordinateControllerColorSpaceType(CPThreeDeeCoordinateController* con);
+NAInt cpGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con);
 
-void cmUpdateThreeDeeCoordinateController(CPThreeDeeCoordinateController* con);
+void cpUpdateThreeDeeCoordinateController(CPThreeDeeCoordinateController* con);

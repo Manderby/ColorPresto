@@ -12,19 +12,19 @@ struct CPColorController{
   CMLColorType colorType;
 };
 
-void cmInitColorController(
+void cpInitColorController(
   CPColorController* con,
   CMLColorType colorType);
-void cmClearColorController(CPColorController* con);
+void cpClearColorController(CPColorController* con);
 
-void cmSetColorControllerColorType(CPColorController* con, CMLColorType colorType);
+void cpSetColorControllerColorType(CPColorController* con, CMLColorType colorType);
 
-void cmSetColorControllerActive(CPColorController* con, NABool active);
+void cpSetColorControllerActive(CPColorController* con, NABool active);
 
 CMLColorType cpGetColorControllerColorType(const CPColorController* con);
 const void* cpGetColorControllerColorData(const CPColorController* con);
-void cmSetColorControllerColorData(CPColorController* con, const void* data);
+void cpSetColorControllerColorData(CPColorController* con, const void* data);
 
-NASpace* cmGetColorControllerUIElement(CPColorController* con);
+NASpace* cpGetColorControllerUIElement(CPColorController* con);
 void cpUpdateColorController(CPColorController* con);
 

@@ -7,9 +7,9 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPMachineController CPMachineController;
 
-CPMachineController* cmAllocMachineController(void);
-void cmDeallocMachineController(CPMachineController* con);
+CPMachineController* cpAllocMachineController(void);
+void cpDeallocMachineController(CPMachineController* con);
 
-NASpace* cmGetMachineUIElement(CPMachineController* con);
+NASpace* cpGetMachineUIElement(CPMachineController* con);
 
 void cpUpdateMachineController(CPMachineController* con);

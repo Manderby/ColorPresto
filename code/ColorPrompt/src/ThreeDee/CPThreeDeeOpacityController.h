@@ -11,15 +11,15 @@ CP_PROTOTYPE(NASpace);
 typedef struct CPThreeDeeOpacityController CPThreeDeeOpacityController;
 typedef struct CPThreeDeeOpacityController CPThreeDeeOpacityController;
 
-CPThreeDeeOpacityController* cmAllocThreeDeeOpacityController(CPThreeDeeController* parent);
-void cmDeallocThreeDeeOpacityController(CPThreeDeeOpacityController* con);
+CPThreeDeeOpacityController* cpAllocThreeDeeOpacityController(CPThreeDeeController* parent);
+void cpDeallocThreeDeeOpacityController(CPThreeDeeOpacityController* con);
 
-NASpace* cmGetThreeDeeOpacityControllerUIElement(CPThreeDeeOpacityController* con);
+NASpace* cpGetThreeDeeOpacityControllerUIElement(CPThreeDeeOpacityController* con);
 
-NABool cmGetThreeDeeOpacityControllerBodySolid(CPThreeDeeOpacityController* con);
-float cmGetThreeDeeOpacityControllerPointsOpacity(CPThreeDeeOpacityController* con);
-float cmGetThreeDeeOpacityControllerBodyAlpha(CPThreeDeeOpacityController* con);
-float cmGetThreeDeeOpacityControllerGridAlpha(CPThreeDeeOpacityController* con);
-float cmGetThreeDeeOpacityControllerGridTint(CPThreeDeeOpacityController* con);
+NABool cpGetThreeDeeOpacityControllerBodySolid(CPThreeDeeOpacityController* con);
+float cpGetThreeDeeOpacityControllerPointsOpacity(CPThreeDeeOpacityController* con);
+float cpGetThreeDeeOpacityControllerBodyAlpha(CPThreeDeeOpacityController* con);
+float cpGetThreeDeeOpacityControllerGridAlpha(CPThreeDeeOpacityController* con);
+float cpGetThreeDeeOpacityControllerGridTint(CPThreeDeeOpacityController* con);
 
-void cmUpdateThreeDeeOpacityController(CPThreeDeeOpacityController* con);
+void cpUpdateThreeDeeOpacityController(CPThreeDeeOpacityController* con);

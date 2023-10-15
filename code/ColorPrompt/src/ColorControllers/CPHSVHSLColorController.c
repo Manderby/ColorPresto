@@ -43,7 +43,7 @@ typedef enum {
 
 
 
-NABool cmHSVHSLSelectionChanged(NAReaction reaction){
+NABool cp_HSVHSLSelectionChanged(NAReaction reaction){
   CPHSVHSLColorController* con = (CPHSVHSLColorController*)reaction.controller;
   
   HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naGetPreferencesEnum(cpPrefs[CPHSVHSLSelect]);
@@ -62,7 +62,7 @@ NABool cmHSVHSLSelectionChanged(NAReaction reaction){
   CMLColorConverter converter = cmlGetColorConverter(newColorType, oldColorType);
   converter(cm, con->color, con->color, 1);
 
-  cmSetColorControllerColorType(&(con->baseController), newColorType);
+  cpSetColorControllerColorType(&(con->baseController), newColorType);
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
   
@@ -71,7 +71,7 @@ NABool cmHSVHSLSelectionChanged(NAReaction reaction){
 
 
 
-NABool cmChannelValueEdited(NAReaction reaction){
+NABool cp_HSVHSLValueEdited(NAReaction reaction){
   CPHSVHSLColorController* con = (CPHSVHSLColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textField0){
@@ -90,31 +90,31 @@ NABool cmChannelValueEdited(NAReaction reaction){
 
 
 
-CPHSVHSLColorController* cmAllocHSVHSLColorController(void){
+CPHSVHSLColorController* cpAllocHSVHSLColorController(void){
   HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naInitPreferencesEnum(cpPrefs[CPHSVHSLSelect], HSV);
   CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
 
   CPHSVHSLColorController* con = naAlloc(CPHSVHSLColorController);
   
-  cmInitColorController(&(con->baseController), colorType);
+  cpInitColorController(&(con->baseController), colorType);
   
-  con->colorWell2D = cmAllocColorWell2D(&(con->baseController), 2);
+  con->colorWell2D = cpAllocColorWell2D(&(con->baseController), 2);
 
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
   con->radioHSV = naNewRadio(cpTranslate(CPColorSpaceHSV), radioSelectWidth);
   con->radioHSL = naNewRadio(cpTranslate(CPColorSpaceHSL), radioSelectWidth);
-  naAddUIReaction(con->radioHSV, NA_UI_COMMAND_PRESSED, cmHSVHSLSelectionChanged, con);
-  naAddUIReaction(con->radioHSL, NA_UI_COMMAND_PRESSED, cmHSVHSLSelectionChanged, con);
+  naAddUIReaction(con->radioHSV, NA_UI_COMMAND_PRESSED, cp_HSVHSLSelectionChanged, con);
+  naAddUIReaction(con->radioHSL, NA_UI_COMMAND_PRESSED, cp_HSVHSLSelectionChanged, con);
   
   con->label0 = cpNewColorComponentLabel("");
   con->label1 = cpNewColorComponentLabel("");
   con->label2 = cpNewColorComponentLabel("");
-  con->textField0 = cpNewValueTextField(cmChannelValueEdited, con);
-  con->textField1 = cpNewValueTextField(cmChannelValueEdited, con);
-  con->textField2 = cpNewValueTextField(cmChannelValueEdited, con);
-  con->colorWell1D0 = cmAllocColorWell1D(&(con->baseController), con->color, 0);
-  con->colorWell1D1 = cmAllocColorWell1D(&(con->baseController), con->color, 1);
-  con->colorWell1D2 = cmAllocColorWell1D(&(con->baseController), con->color, 2);
+  con->textField0 = cpNewValueTextField(cp_HSVHSLValueEdited, con);
+  con->textField1 = cpNewValueTextField(cp_HSVHSLValueEdited, con);
+  con->textField2 = cpNewValueTextField(cp_HSVHSLValueEdited, con);
+  con->colorWell1D0 = cpAllocColorWell1D(&(con->baseController), con->color, 0);
+  con->colorWell1D1 = cpAllocColorWell1D(&(con->baseController), con->color, 1);
+  con->colorWell1D2 = cpAllocColorWell1D(&(con->baseController), con->color, 2);
 
   naSetUIElementNextTabElement(con->textField0, con->textField1);
   naSetUIElementNextTabElement(con->textField1, con->textField2);
@@ -128,17 +128,17 @@ CPHSVHSLColorController* cmAllocHSVHSLColorController(void){
   
   cpAddUIRow(con->label0, colorValueCondensedRowHeight);
   cpAddUICol(con->textField0, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
   cpAddUIRow(con->label1, colorValueCondensedRowHeight);
   cpAddUICol(con->textField1, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
   cpAddUIRow(con->label2, colorValueCondensedRowHeight);
   cpAddUICol(con->textField2, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
   cpEndUILayout();
   
   cpBeginUILayout(con->baseController.space, colorWellBezel);
-  cpAddUIRow(cmGetColorWell2DUIElement(con->colorWell2D), 0);
+  cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
   cpAddUICol(con->channelSpace, colorWell2DRightMargin);
   cpEndUILayout();
 
@@ -147,30 +147,30 @@ CPHSVHSLColorController* cmAllocHSVHSLColorController(void){
 
 
 
-void cmDeallocHSVHSLColorController(CPHSVHSLColorController* con){
-  cmDeallocColorWell2D(con->colorWell2D);
-  cmDeallocColorWell1D(con->colorWell1D0);
-  cmDeallocColorWell1D(con->colorWell1D1);
-  cmDeallocColorWell1D(con->colorWell1D2);
-  cmClearColorController(&(con->baseController));
+void cpDeallocHSVHSLColorController(CPHSVHSLColorController* con){
+  cpDeallocColorWell2D(con->colorWell2D);
+  cpDeallocColorWell1D(con->colorWell1D0);
+  cpDeallocColorWell1D(con->colorWell1D1);
+  cpDeallocColorWell1D(con->colorWell1D2);
+  cpClearColorController(&(con->baseController));
   naFree(con);
 }
 
 
 
-const void* cmGetHSVHSLColorControllerColorData(const CPHSVHSLColorController* con){
+const void* cpGetHSVHSLColorControllerColorData(const CPHSVHSLColorController* con){
   return &(con->color);
 }
 
 
 
-void cmSetHSVHSLColorControllerColorData(CPHSVHSLColorController* con, const void* data){
+void cpSetHSVHSLColorControllerColorData(CPHSVHSLColorController* con, const void* data){
   cmlCpy3(con->color, data);
 }
 
 
 
-void cmUpdateHSVHSLColorController(CPHSVHSLColorController* con){
+void cpUpdateHSVHSLColorController(CPHSVHSLColorController* con){
   cpUpdateColorController(&(con->baseController));
 
   HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naGetPreferencesEnum(cpPrefs[CPHSVHSLSelect]);

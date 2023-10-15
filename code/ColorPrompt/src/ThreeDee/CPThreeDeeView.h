@@ -14,13 +14,13 @@ void cmInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace);
 void cmBeginThreeDeeDrawing(const CMLVec3 axisRGB);
 void cmEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace);
 
-void cmSetupThreeDeeProjection(
+void cpSetupThreeDeeProjection(
   NAOpenGLSpace* openGLSpace,
   NASize viewSize,
   double fovy,
   double zoom);
 
-void cmSetupThreeDeeModelView(
+void cpSetupThreeDeeModelView(
   int primeAxis,
   const double* scale,
   double curZoom,

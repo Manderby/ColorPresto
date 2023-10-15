@@ -7,11 +7,11 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPRGBColorController CPRGBColorController;
 
-CPRGBColorController* cmAllocRGBColorController(void);
-void cmDeallocRGBColorController(CPRGBColorController* con);
+CPRGBColorController* cpAllocRGBColorController(void);
+void cpDeallocRGBColorController(CPRGBColorController* con);
 
-const void* cmGetRGBColorControllerColorData(const CPRGBColorController* con);
-void cmSetRGBColorControllerColorData(CPRGBColorController* con, const void* data);
+const void* cpGetRGBColorControllerColorData(const CPRGBColorController* con);
+void cpSetRGBColorControllerColorData(CPRGBColorController* con, const void* data);
 
-void cmUpdateRGBColorController(CPRGBColorController* con);
+void cpUpdateRGBColorController(CPRGBColorController* con);
 

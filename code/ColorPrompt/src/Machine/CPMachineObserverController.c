@@ -33,7 +33,7 @@ NABool cmSelectObserver(NAReaction reaction){
 
 
 
-CPMachineObserverController* cmAllocMachineObserverController(void){
+CPMachineObserverController* cpAllocMachineObserverController(void){
   CPMachineObserverController* con = naAlloc(CPMachineObserverController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -64,13 +64,13 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
 
 
-void cmDeallocMachineObserverController(CPMachineObserverController* con){
+void cpDeallocMachineObserverController(CPMachineObserverController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetMachineObserverControllerUIElement(CPMachineObserverController* con){
+NASpace* cpGetMachineObserverControllerUIElement(CPMachineObserverController* con){
   return con->space;
 }
 

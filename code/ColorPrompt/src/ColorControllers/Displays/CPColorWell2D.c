@@ -70,7 +70,7 @@ NABool cmDragColorWell2D(NAReaction reaction){
     inputConverter(newColorValues, normedColorValues, 1);
     clamper(newColorValues, 1);
     
-    cmSetColorControllerColorData(well->colorController, newColorValues);
+    cpSetColorControllerColorData(well->colorController, newColorValues);
     cpSetCurrentColorController(well->colorController);
     cpUpdateColor();
 
@@ -252,7 +252,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
 
 
 
-CPColorWell2D* cmAllocColorWell2D(CPColorController* colorController, size_t fixedIndex){
+CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fixedIndex){
   CPColorWell2D* well = naAlloc(CPColorWell2D);
   
   well->display = naNewOpenGLSpace(naMakeSize(colorWell2DSize, colorWell2DSize), cmInitColorWell2D, well);
@@ -268,19 +268,19 @@ CPColorWell2D* cmAllocColorWell2D(CPColorController* colorController, size_t fix
 
 
 
-void cmDeallocColorWell2D(CPColorWell2D* well){
+void cpDeallocColorWell2D(CPColorWell2D* well){
   glDeleteTextures(1, &(well->wellTex));
 }
 
 
 
-void cmSetColorWell2DFixedIndex(CPColorWell2D* well, size_t fixedIndex){
+void cpSetColorWell2DFixedIndex(CPColorWell2D* well, size_t fixedIndex){
   well->fixedIndex = fixedIndex;
 }
 
 
 
-NAOpenGLSpace* cmGetColorWell2DUIElement(CPColorWell2D* well){
+NAOpenGLSpace* cpGetColorWell2DUIElement(CPColorWell2D* well){
   return well->display;
 }
 

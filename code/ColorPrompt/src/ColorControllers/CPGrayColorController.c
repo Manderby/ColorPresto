@@ -25,7 +25,7 @@ struct CPGrayColorController{
 
 
 
-NABool cmGrayValueEdited(NAReaction reaction){
+NABool cp_GrayValueEdited(NAReaction reaction){
   CPGrayColorController* con = (CPGrayColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldGray){
@@ -40,28 +40,28 @@ NABool cmGrayValueEdited(NAReaction reaction){
 
 
 
-CPGrayColorController* cmAllocGrayColorController(void){
+CPGrayColorController* cpAllocGrayColorController(void){
   CPGrayColorController* con = naAlloc(CPGrayColorController);
   
-  cmInitColorController(&(con->baseController), CML_COLOR_Gray);
+  cpInitColorController(&(con->baseController), CML_COLOR_Gray);
   
-  con->display = cmAllocGrayColorWell(&(con->baseController));
+  con->display = cpAllocGrayColorWell(&(con->baseController));
   
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
   con->labelGray = cpNewColorComponentLabel(cpTranslate(CPGrayColorChannelGr));
-  con->textFieldGray = cpNewValueTextField(cmGrayValueEdited, con);
-  con->colorWell1DGray = cmAllocColorWell1D(&(con->baseController), &(con->grayColor), 0);
+  con->textFieldGray = cpNewValueTextField(cp_GrayValueEdited, con);
+  con->colorWell1DGray = cpAllocColorWell1D(&(con->baseController), &(con->grayColor), 0);
 
   cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
   cpAddUIPos(0, (int)((colorWell2DSize - (1 * 25.)) / 2.)); // center the channels
   cpAddUIRow(con->labelGray, colorValueCondensedRowHeight);
   cpAddUICol(con->textFieldGray, colorComponentMarginH);
-  cpAddUIColV(cmGetColorWell1DUIElement(con->colorWell1DGray), 10, colorWell1DOffset);
+  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1DGray), 10, colorWell1DOffset);
   cpAddUIPos(0, 2 * colorValueCondensedRowHeight);
   cpEndUILayout();
   
   cpBeginUILayout(con->baseController.space, colorWellBezel);
-  cpAddUIRow(cmGetGrayColorWellUIElement(con->display), 0);
+  cpAddUIRow(cpGetGrayColorWellUIElement(con->display), 0);
   cpAddUICol(con->channelSpace, colorWell2DRightMargin);
   cpEndUILayout();
 
@@ -72,28 +72,28 @@ CPGrayColorController* cmAllocGrayColorController(void){
 
 
 
-void cmDeallocGrayColorController(CPGrayColorController* con){
-  cmDeallocGrayColorWell(con->display);
-  cmDeallocColorWell1D(con->colorWell1DGray);
-  cmClearColorController(&(con->baseController));
+void cpDeallocGrayColorController(CPGrayColorController* con){
+  cpDeallocGrayColorWell(con->display);
+  cpDeallocColorWell1D(con->colorWell1DGray);
+  cpClearColorController(&(con->baseController));
   naFree(con);
 }
 
 
 
-const void* cmGetGrayColorControllerColorData(const CPGrayColorController* con){
+const void* cpGetGrayColorControllerColorData(const CPGrayColorController* con){
   return &(con->grayColor);
 }
 
 
 
-void cmSetGrayColorControllerColorData(CPGrayColorController* con, const void* data){
+void cpSetGrayColorControllerColorData(CPGrayColorController* con, const void* data){
   con->grayColor = *(const float*)data;
 }
 
 
 
-void cmUpdateGrayColorController(CPGrayColorController* con){
+void cpUpdateGrayColorController(CPGrayColorController* con){
   cpUpdateColorController(&(con->baseController));
 
   CMLColorMachine* cm = cpGetCurrentColorMachine();
@@ -106,6 +106,6 @@ void cmUpdateGrayColorController(CPGrayColorController* con){
     con->textFieldGray,
     naAllocSprintf(NA_TRUE, "%1.05f", con->grayColor));
 
-  cmUpdateGrayColorWell(con->display);
+  cpUpdateGrayColorWell(con->display);
   cpUpdateColorWell1D(con->colorWell1DGray);
 }

@@ -7,10 +7,10 @@ CP_PROTOTYPE(NASpace);
 
 typedef struct CPSpectralColorController CPSpectralColorController;
 
-CPSpectralColorController* cmAllocSpectralColorController(void);
-void cmDeallocSpectralColorController(CPSpectralColorController* con);
+CPSpectralColorController* cpAllocSpectralColorController(void);
+void cpDeallocSpectralColorController(CPSpectralColorController* con);
 
-const void* cmGetSpectralColorControllerColorData(const CPSpectralColorController* con);
-void cmSetSpectralColorControllerColorData(CPSpectralColorController* con, const void* data);
+const void* cpGetSpectralColorControllerColorData(const CPSpectralColorController* con);
+void cpSetSpectralColorControllerColorData(CPSpectralColorController* con, const void* data);
 
-void cmUpdateSpectralColorController(CPSpectralColorController* con);
+void cpUpdateSpectralColorController(CPSpectralColorController* con);

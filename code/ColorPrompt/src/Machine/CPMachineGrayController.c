@@ -33,7 +33,7 @@ NABool cmSelectGrayColorSpace(NAReaction reaction){
 
 
 
-CPMachineGrayController* cmAllocMachineGrayController(void){
+CPMachineGrayController* cpAllocMachineGrayController(void){
   CPMachineGrayController* con = naAlloc(CPMachineGrayController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -59,13 +59,13 @@ CPMachineGrayController* cmAllocMachineGrayController(void){
 
 
 
-void cmDeallocMachineGrayController(CPMachineGrayController* con){
+void cpDeallocMachineGrayController(CPMachineGrayController* con){
   naFree(con);
 }
 
 
 
-NASpace* cmGetMachineGrayControllerUIElement(CPMachineGrayController* con){
+NASpace* cpGetMachineGrayControllerUIElement(CPMachineGrayController* con){
   return con->space;
 }
 
