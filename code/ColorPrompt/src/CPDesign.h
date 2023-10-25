@@ -11,7 +11,7 @@
 #define spaceMarginLeft 15.
 #define spaceMarginRight 15.
 #define spaceMarginBottom 15.
-#define spaceMarginTop (spaceMarginBottom - 3.)
+#define spaceMarginTop 15.
 static const NABezel4 spaceBezel = {
   spaceMarginRight,
   spaceMarginTop,
@@ -53,7 +53,7 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 
 #define machineLabelWidth 120.
 
-#define setButtonWidth 50.
+#define setButtonWidth 40.
 #define colorValueCondensedRowHeight 25.
 #define gammaDisplaySize 50
 #define colorWell2DRightMargin 2.
