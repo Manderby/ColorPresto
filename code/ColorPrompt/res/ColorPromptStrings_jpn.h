@@ -5,7 +5,7 @@
 NA_LOC_LANG("jpn");
 
 NA_LOC(CPApplicationDescription, "Frontend for color conversions based on\nCML: Color Machine Library.\nDesign and Implementation: Tobias Stamm");
-NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colormachine/help/index_eng.php");
+NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorprompt/help/index_eng.php");
 
 // General things.
 NA_LOC(CPApplicationName, "Color Prompt");  // do not translate

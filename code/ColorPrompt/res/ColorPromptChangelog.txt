@@ -1,4 +1,9 @@
 
+Version 2.0.1
+-------------
+- Corrected help links
+- Set minimum os requirement to 10.13
+
 Version 2.0
 -----------
 - Application changes its name from Color Machine to Color Prompt
