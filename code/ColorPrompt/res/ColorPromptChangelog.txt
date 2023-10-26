@@ -3,6 +3,7 @@ Version 2.0.1
 -------------
 - Corrected help links
 - Set minimum os requirement to 10.13
+- Close application when main window closes.
 
 Version 2.0
 -----------

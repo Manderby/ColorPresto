@@ -19,3 +19,4 @@ Contribution is up for discussion. Just get in contact.
 
 License: Public Domain
 
+"Color Prompt" is a registered trademark

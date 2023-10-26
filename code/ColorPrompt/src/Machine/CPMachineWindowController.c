@@ -23,6 +23,12 @@
 #define CP_MACHINE_PROMPT_STORAGE_TAG 1
 
 
+NABool cpControllerWindowCloses(NAReaction reaction){
+  naStopApplication();
+  return NA_TRUE;
+}
+
+
 struct CPMachineWindowController{
   NAWindow* window;
   
@@ -55,6 +61,8 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
     naMakeRectS(200, 200, 500, 500),
     0,
     CP_MACHINE_PROMPT_STORAGE_TAG);
+  naAddUIReaction(con->window, NA_UI_COMMAND_CLOSES, cpControllerWindowCloses, con);
+    
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 
   con->machineController = cpAllocMachineController();
