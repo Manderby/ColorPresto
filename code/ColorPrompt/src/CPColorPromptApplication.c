@@ -1,6 +1,7 @@
 
 #include "CPColorPromptApplication.h"
 
+#include "CPAboutController.h"
 #include "CPColorsManager.h"
 #include "CPDesign.h"
 #include "Machine/CPMachineWindowController.h"
@@ -17,6 +18,7 @@ struct CPColorPromptApplication{
   CPMachineWindowController* machineWindowController;
   CPMetamericsController* metamericsController;
   CPThreeDeeController* threeDeeController;
+  CPAboutController* aboutController;
 };
 
 
@@ -37,6 +39,7 @@ void cpStartupColorPromptApplicationUI(){
   app->machineWindowController = cpAllocMachineWindowController();
   app->threeDeeController      = cpAllocThreeDeeController();
   app->metamericsController    = cpAllocMetamericsController();
+  app->aboutController         = cpAllocAboutController();
 
   cpSetCurrentColorController(cpGetInitialColorController(app->machineWindowController));
   cpShowMachineWindowController(app->machineWindowController);
@@ -48,6 +51,7 @@ void cpShutdownColorPromptApplication(){
   cpDeallocMetamericsController(app->metamericsController);
   cpDeallocThreeDeeController(app->threeDeeController);
   cpDeallocMachineWindowController(app->machineWindowController);
+  cpDeallocAboutController(app->aboutController);
 
   cpShutdownDesign();
 
@@ -85,6 +89,9 @@ void cpShowMetamerics(){
 }
 void cpShowThreeDee(){
   cpShowThreeDeeController(app->threeDeeController);
+}
+void cpShowAbout(){
+  cpShowAboutController(app->aboutController);
 }
 
 void cpUpdateColor(){

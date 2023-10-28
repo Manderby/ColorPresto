@@ -1,11 +1,11 @@
 
-#import "ColorPromptApplication.h"
+#include "ColorPromptApplication.h"
+#include "CPAboutController.h"
 #include "CPColorPromptApplication.h"
 #include "CPTranslations.h"
 
 #include "NAApp.h"
 #include "NAUICocoaLegacy.h"
-#include "ManderAppAbout.h"
 
 
 
@@ -35,7 +35,7 @@
 
 
 - (IBAction)showAbout:(id)sender{
-  mandShowAboutController();
+  cpShowAbout();
 }
 
 - (IBAction)showHelp:(NSMenuItem*)sender{

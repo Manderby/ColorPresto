@@ -4,9 +4,8 @@
 #include "NAUtility/NAMemory.h"
 #include "CPColorPromptApplication.h"
 #include "CPTranslations.h"
+#include "CPAboutController.h"
 #include "NAApp.h"
-#include "ManderAppTranslations.h"
-#include "ManderAppAbout.h"
 
 
 CPColorPromptApplication* app;
@@ -47,7 +46,6 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
 
 
 void preStartup(void* arg){
-  mandInitManderAppTranslations();
   initTranslations();
 
   cpStartupColorPromptApplication();
@@ -57,12 +55,6 @@ void preStartup(void* arg){
 
 void postStartup(void* arg){
   naLoadNib("ColorPrompt", NA_NULL);
-
-  // ManderApp
-  mandCreateAboutController();
-  mandSetAboutDescriptionAndHelpURL(
-    cpTranslate(CPApplicationDescription),
-    cpTranslate(CPApplicationHelpURL));
 
   // Color Prompt
   cpStartupColorPromptApplicationUI();

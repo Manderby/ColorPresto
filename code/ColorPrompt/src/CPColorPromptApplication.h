@@ -24,6 +24,7 @@ CPColorsManager* cpGetColorsManager(void);
 void cpUpdateMetamerics(void);
 void cpShowMetamerics(void);
 void cpShowThreeDee(void);
+void cpShowAbout(void);
 
 void cpUpdateColor(void);
 void cpUpdateMachine(void);

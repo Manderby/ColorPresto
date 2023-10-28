@@ -4,6 +4,10 @@
 //
 NA_LOC_LANG("deu");
 
+NA_LOC(CPAbout,          "Über %s");
+NA_LOC(CPDone,           "Fertig");
+NA_LOC(CPVersionBuild,   "Version %s (Build %s)");
+NA_LOC(CPOnlineHelp,     "Online Hilfe");
 NA_LOC(CPApplicationDescription, "Frontend für Farbumwandlungen basierend auf\nCML: Color Machine Library.\nDesign und Implementation: Tobias Stamm");
 NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorprompt/help/index.php");
 

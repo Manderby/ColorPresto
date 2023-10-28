@@ -4,6 +4,10 @@
 
 
 enum{
+  CPAbout,
+  CPDone,
+  CPVersionBuild,
+  CPOnlineHelp,
   CPApplicationDescription,
   CPApplicationHelpURL,
 

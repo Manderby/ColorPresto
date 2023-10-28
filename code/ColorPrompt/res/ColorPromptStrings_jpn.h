@@ -4,6 +4,10 @@
 //
 NA_LOC_LANG("jpn");
 
+NA_LOC(CPAbout,          "About %s");
+NA_LOC(CPDone,           "Done");
+NA_LOC(CPVersionBuild,   "Version %s (Build %s)");
+NA_LOC(CPOnlineHelp,     "Online Help");
 NA_LOC(CPApplicationDescription, "Frontend for color conversions based on\nCML: Color Machine Library.\nDesign and Implementation: Tobias Stamm");
 NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorprompt/help/index_eng.php");
 
