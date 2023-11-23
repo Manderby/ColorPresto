@@ -10,7 +10,7 @@
 
 #include "../mainC.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 

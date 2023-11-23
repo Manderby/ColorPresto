@@ -5,7 +5,7 @@
 #include "CPColorPromptApplication.h"
 #include "CPTranslations.h"
 #include "CPAboutController.h"
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 CPColorPromptApplication* app;
@@ -54,7 +54,9 @@ void preStartup(void* arg){
 
 
 void postStartup(void* arg){
-  naLoadNib("ColorPrompt", NA_NULL);
+  #if NA_OS == NA_OS_MAC_OS_X
+    naLoadNib("ColorPrompt", NA_NULL);
+  #endif
 
   // Color Prompt
   cpStartupColorPromptApplicationUI();
@@ -71,7 +73,7 @@ double cpGetUIScaleFactorForWindow(void* nativeWindowPtr){
 
 int main(){
   naStartRuntime();
-  naStartApplication(preStartup, postStartup, NA_NULL);
+  naStartApplication(preStartup, postStartup, NA_NULL, NA_NULL);
   return 0;
 }
 

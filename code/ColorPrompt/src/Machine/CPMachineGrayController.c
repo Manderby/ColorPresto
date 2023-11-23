@@ -6,7 +6,7 @@
 #include "../CPTranslations.h"
 #include "CPMachineObserverController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 struct CPMachineGrayController{

@@ -1,7 +1,7 @@
 
 #include "CPOpenGLHelper.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 void cpDrawBorder(){
   NABabyColor borderColor;

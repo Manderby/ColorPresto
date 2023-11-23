@@ -8,7 +8,7 @@
 #include "Displays/CPColorWell2D.h"
 #include "CPYxyColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 struct CPYxyColorController{
   CPColorController baseController;

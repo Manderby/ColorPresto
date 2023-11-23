@@ -1,8 +1,8 @@
 
 #include "CML.h"
-#include "NAApp.h"
-#include "NAMath.h"
-#include "NAVisual.h"
+#include "NAApp/NAApp.h"
+#include "NAMath/NAMath.h"
+#include "NAVisual/NAVisual.h"
 #include "CPThreeDeeView.h"
 #include "../CPDesign.h"
 

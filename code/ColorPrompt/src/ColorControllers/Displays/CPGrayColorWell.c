@@ -7,7 +7,7 @@
 #include "../../CPTranslations.h"
 #include "../CPColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 

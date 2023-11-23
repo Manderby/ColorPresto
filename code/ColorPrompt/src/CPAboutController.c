@@ -42,14 +42,14 @@ CPAboutController* cpAllocAboutController(void){
   
   NASpace* space = naGetWindowContentSpace(con->window);
 
-  NAString* iconPath = naNewApplicationIconPath();
-  NABabyImage* iconImage = naCreateBabyImageFromFilePath(naGetStringUTF8Pointer(iconPath));
-  NAUIImage* iconCUIImage = naCreateUIImage(iconImage, NA_UIIMAGE_RESOLUTION_SCREEN_2x, NA_BLEND_ZERO);
-  naReleaseBabyImage(iconImage);
-  naDelete(iconPath);
-  con->iconSpace = naNewImageSpace(iconCUIImage, naMakeSize(128, 128));
-  naAddSpaceChild(space, con->iconSpace, naMakePos(106., 200.));
-  naRelease(iconCUIImage);
+  //NAString* iconPath = naNewApplicationIconPath();
+  //NABabyImage* iconImage = naCreateBabyImageFromFilePath(naGetStringUTF8Pointer(iconPath));
+  //NAUIImage* iconCUIImage = naCreateUIImage(iconImage, NA_UIIMAGE_RESOLUTION_SCREEN_2x, NA_BLEND_ZERO);
+  //naReleaseBabyImage(iconImage);
+  //naDelete(iconPath);
+  //con->iconSpace = naNewImageSpace(iconCUIImage, naMakeSize(128, 128));
+  //naAddSpaceChild(space, con->iconSpace, naMakePos(106., 200.));
+  //naRelease(iconCUIImage);
 
   con->appNameLabel = naNewLabel(naGetStringUTF8Pointer(bundleApplicationName), 300);
   NAFont* titleFont = naCreateFontWithPreset(NA_FONT_KIND_TITLE, NA_FONT_SIZE_BIG);
@@ -59,16 +59,16 @@ CPAboutController* cpAllocAboutController(void){
   naRelease(titleFont);
   naAddSpaceChild(space, con->appNameLabel, naMakePos(20., 166.));
 
-  NAString* bundleVersionString = naNewApplicationVersionString();
-  NAString* bundleBuildString = naNewApplicationBuildString();
-  const NAUTF8Char* aboutVersionFormatString = cpTranslate(CPVersionBuild);
-  NAString* aboutVersionString = naNewStringWithFormat(aboutVersionFormatString, naGetStringUTF8Pointer(bundleVersionString), naGetStringUTF8Pointer(bundleBuildString));
-  con->appVersionLabel = naNewLabel(naGetStringUTF8Pointer(aboutVersionString), 300);
-  naDelete(aboutVersionString);
-  naDelete(bundleVersionString);
-  naDelete(bundleBuildString);
-  naSetLabelTextAlignment(con->appVersionLabel, NA_TEXT_ALIGNMENT_CENTER);
-  naAddSpaceChild(space, con->appVersionLabel, naMakePos(20., 140.));
+  //NAString* bundleVersionString = naNewApplicationVersionString();
+  //NAString* bundleBuildString = naNewApplicationBuildString();
+  //const NAUTF8Char* aboutVersionFormatString = cpTranslate(CPVersionBuild);
+  //NAString* aboutVersionString = naNewStringWithFormat(aboutVersionFormatString, naGetStringUTF8Pointer(bundleVersionString), naGetStringUTF8Pointer(bundleBuildString));
+  //con->appVersionLabel = naNewLabel(naGetStringUTF8Pointer(aboutVersionString), 300);
+  //naDelete(aboutVersionString);
+  //naDelete(bundleVersionString);
+  //naDelete(bundleBuildString);
+  //naSetLabelTextAlignment(con->appVersionLabel, NA_TEXT_ALIGNMENT_CENTER);
+  //naAddSpaceChild(space, con->appVersionLabel, naMakePos(20., 140.));
 
   con->appDescLabel = naNewLabel(cpTranslate(CPApplicationDescription), 300);
   naSetLabelHeight(con->appDescLabel, 56);

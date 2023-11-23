@@ -10,7 +10,7 @@
 #include "../ColorControllers/Displays/CPGammaDisplayController.h"
 #include "../CPDesign.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 struct CPMachineController{

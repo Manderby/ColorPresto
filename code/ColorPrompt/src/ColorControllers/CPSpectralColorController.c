@@ -7,7 +7,7 @@
 #include "Displays/CPSpectralColorWell.h"
 #include "CPSpectralColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 struct CPSpectralColorController{
   CPColorController baseController;

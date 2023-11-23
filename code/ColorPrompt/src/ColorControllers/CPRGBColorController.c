@@ -8,7 +8,7 @@
 #include "Displays/CPColorWell2D.h"
 #include "CPRGBColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 #if NA_OS == NA_OS_WINDOWS
   #define cpsscanf sscanf_s

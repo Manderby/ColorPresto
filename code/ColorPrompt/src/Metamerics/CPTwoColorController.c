@@ -2,7 +2,7 @@
 #include "CPTwoColorController.h"
 #include "../CPOpenGLHelper.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 #include "../CPDesign.h"
 

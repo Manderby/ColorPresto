@@ -7,7 +7,7 @@
 #include "../CPDesign.h"
 #include "../CPTranslations.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 struct CPMachineRGBController{

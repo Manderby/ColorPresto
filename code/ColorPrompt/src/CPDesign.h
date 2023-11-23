@@ -3,7 +3,7 @@
 #define CP_DESIGN_INCLUDED
 
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 #include "NAMath/NACoord.h"
 
 #define uiElemHeight 25.

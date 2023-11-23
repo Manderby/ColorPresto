@@ -8,7 +8,7 @@
 #include "Displays/CPColorWell1D.h"
 #include "Displays/CPGrayColorWell.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 struct CPGrayColorController{
   CPColorController baseController;

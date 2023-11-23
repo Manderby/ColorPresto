@@ -9,7 +9,7 @@
 #include "Displays/CPColorWell2D.h"
 #include "CPLabLchColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 struct CPLabLchColorController{
   CPColorController baseController;

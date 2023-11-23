@@ -9,7 +9,7 @@
 #include "Displays/CPColorWell2D.h"
 #include "CPHSVHSLColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 

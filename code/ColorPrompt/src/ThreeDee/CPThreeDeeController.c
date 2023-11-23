@@ -1,5 +1,5 @@
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 #include "NAMath/NAVectorAlgebra.h"
 #include "NAVisual/NA3DHelper.h"
 

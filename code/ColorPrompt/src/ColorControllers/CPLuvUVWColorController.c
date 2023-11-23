@@ -9,7 +9,7 @@
 #include "Displays/CPColorWell2D.h"
 #include "CPLuvUVWColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 struct CPLuvUVWColorController{
   CPColorController baseController;

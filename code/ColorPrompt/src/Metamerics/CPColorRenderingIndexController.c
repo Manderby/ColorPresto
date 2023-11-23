@@ -10,7 +10,7 @@
 
 #include "CML.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 

@@ -1,10 +1,13 @@
 
 #include "ColorPromptApplication.h"
+
+#if NA_OS == NA_OS_MAC_OS_X
+
 #include "CPAboutController.h"
 #include "CPColorPromptApplication.h"
 #include "CPTranslations.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 #include "NAUICocoaLegacy.h"
 
 
@@ -55,3 +58,4 @@ double cpGetUIScaleFactorForWindow(void* nativeWindowPtr){
 
 @end
 
+#endif // NA_OS == NA_OS_MAC_OS_X

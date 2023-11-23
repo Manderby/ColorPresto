@@ -1,6 +1,6 @@
 
 #include "../mainC.h"
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 #include "CPThreeDeeController.h"
 
 CP_PROTOTYPE(CPWhitePoints);

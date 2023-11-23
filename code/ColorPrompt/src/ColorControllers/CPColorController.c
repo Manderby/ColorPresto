@@ -10,7 +10,7 @@
 #include "CPYCbCrColorController.h"
 #include "CPYuvYupvpColorController.h"
 #include "CPYxyColorController.h"
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 
@@ -111,7 +111,7 @@ void cpUpdateColorController(CPColorController* con){
   if(con->active){
     NABabyColor highlightColor;
     naFillDefaultTextColorWithSkin(highlightColor, naGetSkinForCurrentAppearance());
-    highlightColor[3] = .2;
+    highlightColor[3] = .2f;
     naSetSpaceBackgroundColor(con->space, highlightColor);
   }else{
     naSetSpaceBackgroundColor(con->space, NA_NULL);

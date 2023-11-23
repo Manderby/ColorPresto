@@ -7,7 +7,7 @@
 #include "CPTwoColorController.h"
 #include "CPWhitePoints.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 

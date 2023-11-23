@@ -10,7 +10,7 @@ CP_PROTOTYPE(CPHSLColorController);
 
 
 #include "CML.h"
-#include "NABase.h"
+#include "NABase/NABase.h"
 
 
 

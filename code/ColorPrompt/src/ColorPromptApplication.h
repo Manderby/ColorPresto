@@ -1,5 +1,8 @@
 
 #include "mainC.h"
+
+#if NA_OS == NA_OS_MAC_OS_X
+
 #import <Cocoa/Cocoa.h>
 
 CP_PROTOTYPE(CPColorPromptApplication);
@@ -28,3 +31,5 @@ CP_PROTOTYPE(CPThreeDeeController);
 + (CGFloat) getUIScaleFactorForWindow:(NSWindow*)window;
 
 @end
+
+#endif // NA_OS == NA_OS_MAC_OS_X

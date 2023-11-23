@@ -17,7 +17,7 @@
 #include "../ColorControllers/CPYuvYupvpColorController.h"
 #include "../ColorControllers/CPYxyColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 
 #define CP_MACHINE_PROMPT_STORAGE_TAG 1

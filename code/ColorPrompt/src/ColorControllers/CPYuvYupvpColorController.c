@@ -9,7 +9,7 @@
 #include "Displays/CPColorWell2D.h"
 #include "CPYuvYupvpColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 
 struct CPYuvYupvpColorController{
   CPColorController baseController;

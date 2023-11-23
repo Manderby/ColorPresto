@@ -6,7 +6,7 @@
 #include "../../CPOpenGLHelper.h"
 #include "../CPColorController.h"
 
-#include "NAApp.h"
+#include "NAApp/NAApp.h"
 #include "NAMath/NAVectorAlgebra.h"
 
 
