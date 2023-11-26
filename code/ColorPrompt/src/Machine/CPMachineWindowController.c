@@ -20,7 +20,7 @@
 #include "NAApp/NAApp.h"
 
 
-#define CP_MACHINE_PROMPT_STORAGE_TAG 1
+#define CP_MACHINE_PROMPT_STORAGE_TAG 0
 
 
 NABool cpControllerWindowCloses(NAReaction reaction){
@@ -58,7 +58,7 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
 
   con->window = naNewWindow(
     cpTranslate(CPApplicationName),
-    naMakeRectS(200, 200, 500, 500),
+    naMakeRectS(200, 200, 700, 500),
     0,
     CP_MACHINE_PROMPT_STORAGE_TAG);
   naAddUIReaction(con->window, NA_UI_COMMAND_CLOSES, cpControllerWindowCloses, con);

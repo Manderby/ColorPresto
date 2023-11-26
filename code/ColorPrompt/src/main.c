@@ -71,7 +71,13 @@ double cpGetUIScaleFactorForWindow(void* nativeWindowPtr){
   return 1.;
 }
 
-int main(){
+int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd){
+  NA_UNUSED(hInstance);
+  NA_UNUSED(hPrevInstance);
+  NA_UNUSED(lpCmdLine);
+  NA_UNUSED(nShowCmd);
+  //naOpenConsoleWindow();
+
   naStartRuntime();
   naStartApplication(preStartup, postStartup, NA_NULL, NA_NULL);
   return 0;

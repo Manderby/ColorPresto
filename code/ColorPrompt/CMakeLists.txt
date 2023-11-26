@@ -2,7 +2,13 @@ cmake_minimum_required(VERSION 3.13)
 project(ColorPrompt)
 
 set(TARGET_NAME ColorPrompt)
-add_executable(${TARGET_NAME})
+
+if (MSVC)
+  add_executable(${TARGET_NAME} WIN32 src/main.c)
+else()
+  add_executable(${TARGET_NAME})
+endif()
+
 set_target_properties(${TARGET_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 set(CMAKE_CXX_STANDARD 99)
