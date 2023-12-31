@@ -41,9 +41,9 @@ CPMachineButtonsController* cpAllocMachineButtonsController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->resetMachineButton = naNewTextPushButton(cpTranslate(CPResetButton), 102);
-  con->metamericsButton = naNewTextPushButton(cpTranslate(CPMetamericsButton), 102);
-  con->threeDeeButton = naNewTextPushButton(cpTranslate(CPThreeDeeButton), 102);
+  con->resetMachineButton = naNewTextPushButton(cpTranslate(CPResetButton), 110);
+  con->metamericsButton = naNewTextPushButton(cpTranslate(CPMetamericsButton), 110);
+  con->threeDeeButton = naNewTextPushButton(cpTranslate(CPThreeDeeButton), 110);
   naAddUIReaction(con->resetMachineButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
   naAddUIReaction(con->metamericsButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
   naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);

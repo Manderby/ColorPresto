@@ -271,21 +271,21 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectRGBColorSpace, con);
   }
 
-  con->redPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceRed), machineLabelWidth - (setButtonWidth + 10) + marginH); // on macOS, add 10
+  con->redPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceRed), machineLabelWidth - setButtonWidth + marginH);
   con->setPrimaryRButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setPrimaryRButton, NA_UI_COMMAND_PRESSED, cpSetRGBYxy, con);
   con->redPointYTextField = cpNewValueTextField(cpSetRGBYxy, con);
   con->redPointxTextField = cpNewValueTextField(cpSetRGBYxy, con);
   con->redPointyTextField = cpNewValueTextField(cpSetRGBYxy, con);
   
-  con->greenPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceGreen), machineLabelWidth - (setButtonWidth + 10) + marginH); // on macOS, add 10
+  con->greenPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceGreen), machineLabelWidth - setButtonWidth + marginH);
   con->setPrimaryGButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setPrimaryGButton, NA_UI_COMMAND_PRESSED, cpSetRGBYxy, con);
   con->greenPointYTextField = cpNewValueTextField(cpSetRGBYxy, con);
   con->greenPointxTextField = cpNewValueTextField(cpSetRGBYxy, con);
   con->greenPointyTextField = cpNewValueTextField(cpSetRGBYxy, con);
   
-  con->bluePointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceBlue), machineLabelWidth - (setButtonWidth + 10) + marginH); // on macOS, add 10
+  con->bluePointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceBlue), machineLabelWidth - setButtonWidth + marginH);
   con->setPrimaryBButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setPrimaryBButton, NA_UI_COMMAND_PRESSED, cpSetRGBYxy, con);
   con->bluePointYTextField = cpNewValueTextField(cpSetRGBYxy, con);
