@@ -35,48 +35,48 @@ NA_LOC(CPGradeD, "D");
 NA_LOC(CPGradeE, "E");
 
 // Channel Strings. Do not translate.
-NA_LOC(CPGrayColorChannelGr, "Gr"),
-NA_LOC(CPHSLColorChannelH, "H"),
-NA_LOC(CPHSLColorChannelS, "S"),
-NA_LOC(CPHSLColorChannelL, "L"),
-NA_LOC(CPHSVColorChannelH, "H"),
-NA_LOC(CPHSVColorChannelS, "S"),
-NA_LOC(CPHSVColorChannelV, "V"),
-NA_LOC(CPLabColorChannelL, "L"),
-NA_LOC(CPLabColorChannela, "a"),
-NA_LOC(CPLabColorChannelb, "b"),
-NA_LOC(CPLchColorChannelc, "c"),
-NA_LOC(CPLchColorChannelh, "h"),
-NA_LOC(CPLabColorChannelLStar, "L*"),
-NA_LOC(CPLabColorChannelaStar, "a*"),
-NA_LOC(CPLabColorChannelbStar, "b*"),
-NA_LOC(CPLuvColorChannelL, "L*"),
-NA_LOC(CPLuvColorChannelu, "u*"),
-NA_LOC(CPLuvColorChannelv, "v*"),
-NA_LOC(CPRGBColorChannelR, "R"),
-NA_LOC(CPRGBColorChannelG, "G"),
-NA_LOC(CPRGBColorChannelB, "B"),
-NA_LOC(CPRGBColorChannelNum, "#"),
-NA_LOC(CPUVWColorChannelU, "U*"),
-NA_LOC(CPUVWColorChannelV, "V*"),
-NA_LOC(CPUVWColorChannelW, "W*"),
-NA_LOC(CPXYZColorChannelX, "X"),
-NA_LOC(CPXYZColorChannelY, "Y"),
-NA_LOC(CPXYZColorChannelZ, "Z"),
-NA_LOC(CPYCbCrColorChannelY, "Y'"),
-NA_LOC(CPYCbCrColorChannelCb, "Cb'"),
-NA_LOC(CPYCbCrColorChannelCr, "Cr'"),
-NA_LOC(CPYcdColorChannelY, "Y"),
-NA_LOC(CPYcdColorChannelc, "c"),
-NA_LOC(CPYcdColorChanneld, "d"),
-NA_LOC(CPYuvColorChannelY, "Y"),
-NA_LOC(CPYuvColorChannelup, "u'"),
-NA_LOC(CPYuvColorChannelvp, "v'"),
-NA_LOC(CPYuvColorChannelu, "u"),
-NA_LOC(CPYuvColorChannelv, "v"),
-NA_LOC(CPYxyColorChannelY, "Y"),
-NA_LOC(CPYxyColorChannelx, "x"),
-NA_LOC(CPYxyColorChannely, "y"),
+NA_LOC(CPGrayColorChannelGr, "Gr");
+NA_LOC(CPHSLColorChannelH, "H");
+NA_LOC(CPHSLColorChannelS, "S");
+NA_LOC(CPHSLColorChannelL, "L");
+NA_LOC(CPHSVColorChannelH, "H");
+NA_LOC(CPHSVColorChannelS, "S");
+NA_LOC(CPHSVColorChannelV, "V");
+NA_LOC(CPLabColorChannelL, "L");
+NA_LOC(CPLabColorChannela, "a");
+NA_LOC(CPLabColorChannelb, "b");
+NA_LOC(CPLchColorChannelc, "c");
+NA_LOC(CPLchColorChannelh, "h");
+NA_LOC(CPLabColorChannelLStar, "L*");
+NA_LOC(CPLabColorChannelaStar, "a*");
+NA_LOC(CPLabColorChannelbStar, "b*");
+NA_LOC(CPLuvColorChannelL, "L*");
+NA_LOC(CPLuvColorChannelu, "u*");
+NA_LOC(CPLuvColorChannelv, "v*");
+NA_LOC(CPRGBColorChannelR, "R");
+NA_LOC(CPRGBColorChannelG, "G");
+NA_LOC(CPRGBColorChannelB, "B");
+NA_LOC(CPRGBColorChannelNum, "#");
+NA_LOC(CPUVWColorChannelU, "U*");
+NA_LOC(CPUVWColorChannelV, "V*");
+NA_LOC(CPUVWColorChannelW, "W*");
+NA_LOC(CPXYZColorChannelX, "X");
+NA_LOC(CPXYZColorChannelY, "Y");
+NA_LOC(CPXYZColorChannelZ, "Z");
+NA_LOC(CPYCbCrColorChannelY, "Y'");
+NA_LOC(CPYCbCrColorChannelCb, "Cb'");
+NA_LOC(CPYCbCrColorChannelCr, "Cr'");
+NA_LOC(CPYcdColorChannelY, "Y");
+NA_LOC(CPYcdColorChannelc, "c");
+NA_LOC(CPYcdColorChanneld, "d");
+NA_LOC(CPYuvColorChannelY, "Y");
+NA_LOC(CPYuvColorChannelup, "u'");
+NA_LOC(CPYuvColorChannelvp, "v'");
+NA_LOC(CPYuvColorChannelu, "u");
+NA_LOC(CPYuvColorChannelv, "v");
+NA_LOC(CPYxyColorChannelY, "Y");
+NA_LOC(CPYxyColorChannelx, "x");
+NA_LOC(CPYxyColorChannely, "y");
 
 // Observer Strings
 NA_LOC(CPObserverTitle, "観察者");
@@ -96,12 +96,12 @@ NA_LOC(CPRGBColorSpaceTitle, "RGB カラースペース");
 NA_LOC(CPRGBColorSpaceRed, "Red");
 NA_LOC(CPRGBColorSpaceGreen, "Green");
 NA_LOC(CPRGBColorSpaceBlue, "Blue");
-NA_LOC(CPRGBColorResponse, "応答曲線"),
-NA_LOC(CPRGBColorChannelRGB, "R+G+B"), // do not translate
-NA_LOC(CPRGBColorChannelLinear, "Linear"),
-NA_LOC(CPRGBColorChannelSplit, "Split"),
-NA_LOC(CPRGBColorChannelGamma, "Gamma"),
-NA_LOC(CPRGBColorChannelOffset, "Offset"),
+NA_LOC(CPRGBColorResponse, "応答曲線");
+NA_LOC(CPRGBColorChannelRGB, "R+G+B"); // do not translate
+NA_LOC(CPRGBColorChannelLinear, "Linear");
+NA_LOC(CPRGBColorChannelSplit, "Split");
+NA_LOC(CPRGBColorChannelGamma, "Gamma");
+NA_LOC(CPRGBColorChannelOffset, "Offset");
 
 // Lab Colorspace Strings
 NA_LOC(CPLabColorSpaceTitle, "Lab Color Space");
@@ -168,4 +168,3 @@ NA_LOC(CPAxis, "車軸");
 NA_LOC(CPSpectrum, "スペクトラム");
 NA_LOC(CPBackground, "バックグラウンド");
 NA_LOC(CPFovy, "焦点距離");
-
