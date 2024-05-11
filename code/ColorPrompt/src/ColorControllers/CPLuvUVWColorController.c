@@ -36,7 +36,8 @@ struct CPLuvUVWColorController{
 
 typedef enum {
   Luv,
-  UVW
+  UVW,
+  LuvUVWSelectCount
 } LuvUVWSelect;
 
 
@@ -89,7 +90,7 @@ NABool cp_LuvValueEdited(NAReaction reaction){
 
 
 CPLuvUVWColorController* cpAllocLuvUVWColorController(void){
-  LuvUVWSelect luvuvwSelect = (LuvUVWSelect)naInitPreferencesEnum(cpPrefs[CPLuvUVWSelect], Luv);
+  LuvUVWSelect luvuvwSelect = (LuvUVWSelect)naInitPreferencesEnum(cpPrefs[CPLuvUVWSelect], Luv, LuvUVWSelectCount);
   CMLColorType colorType = (luvuvwSelect == Luv) ? CML_COLOR_Luv : CML_COLOR_UVW;
 
   CPLuvUVWColorController* con = naAlloc(CPLuvUVWColorController);

@@ -36,7 +36,8 @@ struct CPLabLchColorController{
 
 typedef enum {
   Lab,
-  Lch
+  Lch,
+  LabLchSelectCount
 } LabLchSelect;
 
 
@@ -89,7 +90,7 @@ NABool cp_LabValueEdited(NAReaction reaction){
 
 
 CPLabLchColorController* cpAllocLabLchColorController(void){
-  LabLchSelect lablchSelect = (LabLchSelect)naInitPreferencesEnum(cpPrefs[CPLabLchSelect], Lab);
+  LabLchSelect lablchSelect = (LabLchSelect)naInitPreferencesEnum(cpPrefs[CPLabLchSelect], Lab, LabLchSelectCount);
   CMLColorType colorType = (lablchSelect == Lab) ? CML_COLOR_Lab : CML_COLOR_Lch;
 
   CPLabLchColorController* con = naAlloc(CPLabLchColorController);

@@ -59,19 +59,19 @@ NALabel* cpNewThreeValueLabel(){
 
 
 
-NATextField* cpNewValueTextField(NAReactionHandler reactionHandler, void* con){
+NATextField* cpNewValueTextField(NAReactionCallback reactionCallback, void* con){
   NATextField* textField = naNewTextField(textFieldValueWidth);
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_TEXT_ALIGNMENT_RIGHT);
-  naAddUIReaction(textField, NA_UI_COMMAND_EDIT_FINISHED, reactionHandler, con);
+  naAddUIReaction(textField, NA_UI_COMMAND_EDIT_FINISHED, reactionCallback, con);
   return textField;
 }
 
-NATextField* cpNewBigValueTextField(NAReactionHandler reactionHandler, void* con){
+NATextField* cpNewBigValueTextField(NAReactionCallback reactionCallback, void* con){
   NATextField* textField = naNewTextField(colorWell1DSize);
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_TEXT_ALIGNMENT_RIGHT);
-  naAddUIReaction(textField, NA_UI_COMMAND_EDIT_FINISHED, reactionHandler, con);
+  naAddUIReaction(textField, NA_UI_COMMAND_EDIT_FINISHED, reactionCallback, con);
   return textField;
 }
 

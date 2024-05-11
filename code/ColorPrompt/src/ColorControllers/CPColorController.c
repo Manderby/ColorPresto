@@ -112,7 +112,7 @@ void cpUpdateColorController(CPColorController* con){
     NABabyColor highlightColor;
     naFillDefaultTextColorWithSkin(highlightColor, naGetSkinForCurrentAppearance());
     highlightColor[3] = .2f;
-    naSetSpaceBackgroundColor(con->space, highlightColor);
+    naSetSpaceBackgroundColor(con->space, &highlightColor);
   }else{
     naSetSpaceBackgroundColor(con->space, NA_NULL);
   }

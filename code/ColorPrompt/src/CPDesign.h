@@ -78,8 +78,8 @@ NALabel* cpNewTitleLabel(
 NALabel* cpNewValueLabel(void);
 NALabel* cpNewColorComponentLabel(const NAUTF8Char* string);
 NALabel* cpNewThreeValueLabel(void);
-NATextField* cpNewValueTextField(NAReactionHandler reactionHandler, void* con);
-NATextField* cpNewBigValueTextField(NAReactionHandler reactionHandler, void* con);
+NATextField* cpNewValueTextField(NAReactionCallback reactionCallback, void* con);
+NATextField* cpNewBigValueTextField(NAReactionCallback reactionCallback, void* con);
 
 // Before constructing a UI layout, you need to define within which NASpace you
 // want the layout to be in. Use cpBeginUILayout for that.

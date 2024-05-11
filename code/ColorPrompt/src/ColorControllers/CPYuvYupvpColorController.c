@@ -36,7 +36,8 @@ struct CPYuvYupvpColorController{
 
 typedef enum {
   Yuv,
-  Yupvp
+  Yupvp,
+  YuvYupvpSelectCount
 } YuvYupvpSelect;
 
 
@@ -89,7 +90,7 @@ NABool cp_YuvValueEdited(NAReaction reaction){
 
 
 CPYuvYupvpColorController* cpAllocYuvColorController(void){
-  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naInitPreferencesEnum(cpPrefs[CPYuvYupvpSelect], Yupvp);
+  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naInitPreferencesEnum(cpPrefs[CPYuvYupvpSelect], Yupvp, YuvYupvpSelectCount);
   CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
 
   CPYuvYupvpColorController* con = naAlloc(CPYuvYupvpColorController);

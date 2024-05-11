@@ -38,7 +38,8 @@ struct CPHSVHSLColorController{
 
 typedef enum {
   HSV,
-  HSL
+  HSL,
+  HSVHSLSelectCount
 } HSVHSLSelect;
 
 
@@ -91,7 +92,7 @@ NABool cp_HSVHSLValueEdited(NAReaction reaction){
 
 
 CPHSVHSLColorController* cpAllocHSVHSLColorController(void){
-  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naInitPreferencesEnum(cpPrefs[CPHSVHSLSelect], HSV);
+  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naInitPreferencesEnum(cpPrefs[CPHSVHSLSelect], HSV, HSVHSLSelectCount);
   CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
 
   CPHSVHSLColorController* con = naAlloc(CPHSVHSLColorController);
