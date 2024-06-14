@@ -12,7 +12,6 @@ struct CPAboutController{
   NAImageSpace* iconSpace;
   NALabel* appNameLabel;
   NALabel* appVersionLabel;
-  NALabel* appDescLabel;
   NAImageSpace* manderCSpace;
   NALabel* helpLinkLabel;
   NAButton* doneButton;
@@ -33,7 +32,7 @@ CPAboutController* cpAllocAboutController(void){
 
   NAString* bundleApplicationName = naNewApplicationName();
 
-  NARect windowrect = naMakeRectS(20, 300, 340, 348);
+  NARect windowrect = naMakeRectS(20, 300, 340, 318);
   const NAUTF8Char* aboutWindowTitleFormatString = cpTranslate(CPAbout);
   NAString* aboutWindowTitleString = naNewStringWithFormat(aboutWindowTitleFormatString, naGetStringUTF8Pointer(bundleApplicationName));
   // We have no storage tag as the about window is not really part of the application
@@ -48,7 +47,7 @@ CPAboutController* cpAllocAboutController(void){
   naReleaseImage(iconImage);
   naDelete(iconPath);
   con->iconSpace = naNewImageSpace(iconCUIImage, naMakeSize(128, 128));
-  naAddSpaceChild(space, con->iconSpace, naMakePos(106., 200.));
+  naAddSpaceChild(space, con->iconSpace, naMakePos(106., 170.));
   naRelease(iconCUIImage);
 
   con->appNameLabel = naNewLabel(naGetStringUTF8Pointer(bundleApplicationName), 300);
@@ -57,7 +56,7 @@ CPAboutController* cpAllocAboutController(void){
   naSetLabelTextAlignment(con->appNameLabel, NA_TEXT_ALIGNMENT_CENTER);
   naSetLabelHeight(con->appNameLabel, 24);
   naRelease(titleFont);
-  naAddSpaceChild(space, con->appNameLabel, naMakePos(20., 166.));
+  naAddSpaceChild(space, con->appNameLabel, naMakePos(20., 136.));
 
   NAString* bundleVersionString = naNewApplicationVersionString();
   NAString* bundleBuildString = naNewApplicationBuildString();
@@ -68,12 +67,7 @@ CPAboutController* cpAllocAboutController(void){
   naDelete(bundleVersionString);
   naDelete(bundleBuildString);
   naSetLabelTextAlignment(con->appVersionLabel, NA_TEXT_ALIGNMENT_CENTER);
-  naAddSpaceChild(space, con->appVersionLabel, naMakePos(20., 140.));
-
-  con->appDescLabel = naNewLabel(cpTranslate(CPApplicationDescription), 300);
-  naSetLabelHeight(con->appDescLabel, 56);
-  naSetLabelTextAlignment(con->appDescLabel, NA_TEXT_ALIGNMENT_CENTER);
-  naAddSpaceChild(space, con->appDescLabel, naMakePos(20., 76.));
+  naAddSpaceChild(space, con->appVersionLabel, naMakePos(20., 110.));
 
   con->helpLinkLabel = naNewLabel(cpTranslate(CPOnlineHelp), 300);
   naSetLabelTextAlignment(con->helpLinkLabel, NA_TEXT_ALIGNMENT_CENTER);

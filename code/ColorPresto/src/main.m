@@ -12,6 +12,7 @@ void preStartup(void* arg);
 void postStartup(void* arg);
 
 int main(int argc, char *argv[]){
+
   naStartRuntime();
   [ColorPrestoApplication sharedApplication];
   naStartApplication(preStartup, postStartup, NA_NULL, NA_NULL);

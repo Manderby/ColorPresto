@@ -8,7 +8,6 @@ NA_LOC(CPAbout,          "About %s");
 NA_LOC(CPDone,           "Done");
 NA_LOC(CPVersionBuild,   "Version %s (Build %s)");
 NA_LOC(CPOnlineHelp,     "Online Help");
-NA_LOC(CPApplicationDescription, "Frontend for color conversions based on\nCML: Color Machine Library.\nDesign and Implementation: Tobias Stamm");
 NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
 
 // General things. Do not translate

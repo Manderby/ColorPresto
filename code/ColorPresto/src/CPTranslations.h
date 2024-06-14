@@ -8,7 +8,6 @@ enum{
   CPDone,
   CPVersionBuild,
   CPOnlineHelp,
-  CPApplicationDescription,
   CPApplicationHelpURL,
 
   // General things
