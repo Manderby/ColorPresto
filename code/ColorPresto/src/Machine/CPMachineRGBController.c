@@ -263,6 +263,10 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
   con->rgbColorSpaceLabel = naNewLabel(cpTranslate(CPRGBColorSpaceTitle), machineLabelWidth);
+
+//  NAFont* klingonFont = naCreateFont("klingon font", 0, 13);
+//  naSetLabelFont(con->rgbColorSpaceLabel, klingonFont);
+  
   con->rgbColorSpaceSelect = naNewSelect(200);
   for(size_t i = 0; i < CML_RGB_COUNT; ++i){
     CMLRGBColorSpaceType rgbColorSpaceType = (CMLRGBColorSpaceType)i;

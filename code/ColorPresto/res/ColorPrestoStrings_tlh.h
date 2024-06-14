@@ -1,18 +1,18 @@
 
 // //////////////////////////////////
-// Japanese
+// English
 //
-NA_LOC_LANG("jpn");
+NA_LOC_LANG("tlh");
 
-NA_LOC(CPAbout, "バージョン情報 %s");
-NA_LOC(CPDone, "完了");
-NA_LOC(CPVersionBuild, "バージョン %s (ビルド %s)");
-NA_LOC(CPOnlineHelp, "オンラインヘルプ");
+NA_LOC(CPAbout, "Qap %s");
+NA_LOC(CPDone, "Qap");
+NA_LOC(CPVersionBuild, "lo'laH %s (ghIch %s)");
+NA_LOC(CPOnlineHelp, "tera' QaQ");
 NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
 
-// General things.
-NA_LOC(CPApplicationName, "Color Presto");  // do not translate
-NA_LOC(CPAverage, "Ø:");                     // do not translate
+// General things. Do not translate
+NA_LOC(CPApplicationName, "Color Presto");
+NA_LOC(CPAverage, "Ø:");
 NA_LOC(CPColorIndex1, "1:");
 NA_LOC(CPColorIndex2, "2:");
 NA_LOC(CPColorIndex3, "3:");
@@ -78,48 +78,48 @@ NA_LOC(CPYxyColorChannelx, "x");
 NA_LOC(CPYxyColorChannely, "y");
 
 // Observer Strings
-NA_LOC(CPObserverTitle, "観察者");
-NA_LOC(CPObserverSteps, "ステップ");
+NA_LOC(CPObserverTitle, "po'wI'");
+NA_LOC(CPObserverSteps, "ghom");
 NA_LOC(CPObserverNanoMeterSteps, "%d nm"); // Do not translate
 NA_LOC(CPObserverDegree2, "2°");           // Do not translate
 NA_LOC(CPObserverDegree10, "10°");         // Do not translate
 
 // Illumination Strings
-NA_LOC(CPIlluminationTitle, "照明");
-NA_LOC(CPIlluminationTemperature, "温度");
+NA_LOC(CPIlluminationTitle, "roj");
+NA_LOC(CPIlluminationTemperature, "Hotpu'");
 NA_LOC(CPIlluminationKelvin, "K");         // do not translate
-NA_LOC(CPIlluminationWhitePoint, "ホワイトポイント Yxy");
+NA_LOC(CPIlluminationWhitePoint, "ChIS yIv yxy");
 
 // RGB Colorspace Strings
-NA_LOC(CPRGBColorSpaceTitle, "RGB 色空間");
-NA_LOC(CPRGBColorSpaceRed, "Red (赤)");
-NA_LOC(CPRGBColorSpaceGreen, "Green (緑)");
-NA_LOC(CPRGBColorSpaceBlue, "Blue (青)");
-NA_LOC(CPRGBColorResponse, "応答曲線");
+NA_LOC(CPRGBColorSpaceTitle, "chIS RGB ngebmeH");
+NA_LOC(CPRGBColorSpaceRed, "Red(Doq)");
+NA_LOC(CPRGBColorSpaceGreen, "Green(Suq)");
+NA_LOC(CPRGBColorSpaceBlue, "Blue(Qu')");
+NA_LOC(CPRGBColorResponse, "ler");
 NA_LOC(CPRGBColorChannelRGB, "R+G+B"); // do not translate
-NA_LOC(CPRGBColorChannelLinear, "リニア");
-NA_LOC(CPRGBColorChannelSplit, "分割");
-NA_LOC(CPRGBColorChannelGamma, "ガンマ");
-NA_LOC(CPRGBColorChannelOffset, "オフセット");
+NA_LOC(CPRGBColorChannelLinear, "nID");
+NA_LOC(CPRGBColorChannelSplit, "ret");
+NA_LOC(CPRGBColorChannelGamma, "ghama");
+NA_LOC(CPRGBColorChannelOffset, "chaq");
 
 // Lab Colorspace Strings
-NA_LOC(CPLabColorSpaceTitle, "Lab 色空間");
+NA_LOC(CPLabColorSpaceTitle, "chIS Lab ngebmeH");
 NA_LOC(CPLabColorSpaceK, "K");    // do not translate
 NA_LOC(CPLabColorSpaceke, "ke");  // do not translate
 
 // Gray Colorspace Strings
-NA_LOC(CPGrayColorSpace, "グレー 色空間");
-NA_LOC(CPGrayDisplayColor, "カラー");
-NA_LOC(CPGrayDisplayGray, "グレー");
+NA_LOC(CPGrayColorSpace, "chIS SIbHa' ngebmeH");
+NA_LOC(CPGrayDisplayColor, "Color");
+NA_LOC(CPGrayDisplayGray, "Gray");
 
 // Buttons Strings
-NA_LOC(CPThreeDeeButton, "3D表示");
-NA_LOC(CPMetamericsButton, "メタメリズム");
-NA_LOC(CPResetButton, "リセット");
-NA_LOC(CPSetButton, "設定");
+NA_LOC(CPThreeDeeButton, "3D Dab");
+NA_LOC(CPMetamericsButton, "MetamerIch");
+NA_LOC(CPResetButton, "jegh");
+NA_LOC(CPSetButton, "QIj");
 
 // The different color spaces.
-NA_LOC(CPColorSpace, "色空間");  // DO translate
+NA_LOC(CPColorSpace, "ngebmeH chIS");
 NA_LOC(CPColorSpaceHSL,   "HSL");     // do not translate
 NA_LOC(CPColorSpaceHSV,   "HSV");     // do not translate
 NA_LOC(CPColorSpaceLab,   "Lab");     // do not translate
@@ -135,39 +135,37 @@ NA_LOC(CPColorSpaceYuv,   "Yuv");     // do not translate
 NA_LOC(CPColorSpaceYxy,   "Yxy");     // do not translate
 
 // Translations for the Whitepoint and Metamerics Window
-NA_LOC(CPWhitePointsAndMetamerics, "ホワイトポイントとメタメリズム");
+NA_LOC(CPWhitePointsAndMetamerics, "yIv wov'uD je MetamerIch");
 // %s is the name of the currently selected illumination.
-NA_LOC(CPCurrentIllumination, "現在: %s");
-NA_LOC(CPReferenceIllumination, "参照:");
-NA_LOC(CPChromaticityErrorTitle, "色度誤差:");
-NA_LOC(CPColorRenderingIndex, "演色評価指数:");
-NA_LOC(CPVisMetamericIndex, "可視範囲メタメリズム指数:");
-NA_LOC(CPUVMetamericIndex, "紫外線範囲メタメリズム指数:");
-NA_LOC(CPTotalMetamericIndex, "総メタメリズム指数 (1-8):");
+NA_LOC(CPCurrentIllumination, "DaH: %s");
+NA_LOC(CPReferenceIllumination, "yID:");
+NA_LOC(CPChromaticityErrorTitle, "nIq 'uQ:");
+NA_LOC(CPColorRenderingIndex, "ngebmeH qIvwIz:");
+NA_LOC(CPVisMetamericIndex, "QeD loppu'chugh MetamerIch poH:");
+NA_LOC(CPUVMetamericIndex, "be'Qong loppu'chugh MetamerIch poH:");
+NA_LOC(CPTotalMetamericIndex, "poH MetamerIch loppu'chugh (1-8):");
 
 // %s is a letter A-E denoting a grade.
-NA_LOC(CPGrade, "グレード %s");
+NA_LOC(CPGrade, "Dab %s");
 NA_LOC(CPD50, "D50");
 NA_LOC(CPD55, "D55");
 NA_LOC(CPD65, "D65");
 NA_LOC(CPD75, "D75");
 
 // Translations for the 3D Window
-NA_LOC(CP3DView, "3D表示");
-NA_LOC(CPCoordinates, "座標");
-NA_LOC(CPSteps, "ステップ");
-NA_LOC(CPRotation, "回転");
-NA_LOC(CPStop, "停止");
-NA_LOC(CPCartesian, "%s カーテシアン"); // %s is a colorspace name
-NA_LOC(CPPointsOpacity, "ポイントの透明度");
-NA_LOC(CPGridOpacity, "グリッドの透明度");
-NA_LOC(CPGridTint, "グリッドの色合い");
-NA_LOC(CPBodyTint, "ボディの色合い");
-NA_LOC(CPSolid, "固体ボディ");
-NA_LOC(CPAxis, "軸");
-NA_LOC(CPSpectrum, "スペクトル");
-NA_LOC(CPBackground, "背景");
-NA_LOC(CPFovy, "焦点距離");
-
-
+NA_LOC(CP3DView, "3D Dab");
+NA_LOC(CPCoordinates, "ngoy'wI'");
+NA_LOC(CPSteps, "ghom");
+NA_LOC(CPRotation, "juHDaq");
+NA_LOC(CPStop, "toD");
+NA_LOC(CPCartesian, "%s lop");
+NA_LOC(CPPointsOpacity, "qogh waQ");
+NA_LOC(CPGridOpacity, "qoQ waQ");
+NA_LOC(CPGridTint, "qoQ chatlh");
+NA_LOC(CPBodyTint, "chev chatlh");
+NA_LOC(CPSolid, "tebwI' chev");
+NA_LOC(CPAxis, "nIQ");
+NA_LOC(CPSpectrum, "lum");
+NA_LOC(CPBackground, "ngab");
+NA_LOC(CPFovy, "gho");
 

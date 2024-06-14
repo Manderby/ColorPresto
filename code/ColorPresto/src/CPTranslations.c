@@ -13,8 +13,10 @@ const NAUTF8Char* cpTranslate(NAInt id){
 
 void initTranslations(){
   translatorGroup = naRegisterTranslatorGroup();
-  #include "../res/ColorPrestoStrings_eng.h"
+  #include "../res/ColorPrestoStrings_zho.h"
   #include "../res/ColorPrestoStrings_deu.h"
-//  #include "../res/ColorPrestoStrings_jpn.h"
+  #include "../res/ColorPrestoStrings_eng.h"
+  #include "../res/ColorPrestoStrings_jpn.h"
+  #include "../res/ColorPrestoStrings_tlh.h"
 }
 
