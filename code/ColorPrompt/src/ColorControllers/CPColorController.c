@@ -109,9 +109,9 @@ NASpace* cpGetColorControllerUIElement(CPColorController* con){
 
 void cpUpdateColorController(CPColorController* con){
   if(con->active){
-    NABabyColor highlightColor;
-    naFillDefaultTextColorWithSkin(highlightColor, naGetSkinForCurrentAppearance());
-    highlightColor[3] = .2f;
+    NAColor highlightColor;
+    naFillDefaultTextColorWithSkin(&highlightColor, naGetSkinForCurrentAppearance());
+    highlightColor.alpha = .2f;
     naSetSpaceBackgroundColor(con->space, &highlightColor);
   }else{
     naSetSpaceBackgroundColor(con->space, NA_NULL);
