@@ -21,9 +21,12 @@ void cpResetColorMachine(void);
 CMLColorMachine* cpGetCurrentScreenMachine(void);
 CPColorsManager* cpGetColorsManager(void);
 
-void cpUpdateMetamerics(void);
 void cpShowMetamerics(void);
+void cpUpdateMetamerics(void);
+
 void cpShowThreeDee(void);
+void cpUpdateThreeDee(void);
+
 void cpShowAbout(void);
 
 void cpUpdateColor(void);

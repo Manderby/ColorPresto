@@ -57,6 +57,58 @@
 		9019C6FC2AED04BB003855CD /* CMLMath.h in Headers */ = {isa = PBXBuildFile; fileRef = 9019C6CC2AED04BB003855CD /* CMLMath.h */; };
 		904F315E2ADBD0DE00423098 /* libCMLStatic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90C6F9F2293AA4EC00671DE7 /* libCMLStatic.a */; };
 		904F31602ADBD0DE00423098 /* libNALib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90BF531F274ABD41001FDE2A /* libNALib.a */; };
+		905E654A2C1D87A400241440 /* CPAboutController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64DC2C1D87A400241440 /* CPAboutController.c */; };
+		905E654B2C1D87A400241440 /* CPColorWell1D.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64DF2C1D87A400241440 /* CPColorWell1D.c */; };
+		905E654C2C1D87A400241440 /* CPColorWell2D.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64E12C1D87A400241440 /* CPColorWell2D.c */; };
+		905E654D2C1D87A400241440 /* CPGammaDisplayController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64E32C1D87A400241440 /* CPGammaDisplayController.c */; };
+		905E654E2C1D87A400241440 /* CPGrayColorWell.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64E52C1D87A400241440 /* CPGrayColorWell.c */; };
+		905E654F2C1D87A400241440 /* CPSpectralColorWell.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64E72C1D87A400241440 /* CPSpectralColorWell.c */; };
+		905E65502C1D87A400241440 /* CPColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64EA2C1D87A400241440 /* CPColorController.c */; };
+		905E65512C1D87A400241440 /* CPGrayColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64EC2C1D87A400241440 /* CPGrayColorController.c */; };
+		905E65522C1D87A400241440 /* CPHSVHSLColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64EE2C1D87A400241440 /* CPHSVHSLColorController.c */; };
+		905E65532C1D87A400241440 /* CPLabLchColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64F02C1D87A400241440 /* CPLabLchColorController.c */; };
+		905E65542C1D87A400241440 /* CPLuvUVWColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64F22C1D87A400241440 /* CPLuvUVWColorController.c */; };
+		905E65552C1D87A400241440 /* CPRGBColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64F42C1D87A400241440 /* CPRGBColorController.c */; };
+		905E65562C1D87A400241440 /* CPSpectralColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64F62C1D87A400241440 /* CPSpectralColorController.c */; };
+		905E65572C1D87A400241440 /* CPXYZColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64F82C1D87A400241440 /* CPXYZColorController.c */; };
+		905E65582C1D87A400241440 /* CPYCbCrColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64FA2C1D87A400241440 /* CPYCbCrColorController.c */; };
+		905E65592C1D87A400241440 /* CPYuvYupvpColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64FC2C1D87A400241440 /* CPYuvYupvpColorController.c */; };
+		905E655A2C1D87A400241440 /* CPYxyColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E64FE2C1D87A400241440 /* CPYxyColorController.c */; };
+		905E655B2C1D87A400241440 /* CPMachineButtonsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65012C1D87A400241440 /* CPMachineButtonsController.c */; };
+		905E655C2C1D87A400241440 /* CPMachineController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65032C1D87A400241440 /* CPMachineController.c */; };
+		905E655D2C1D87A400241440 /* CPMachineGrayController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65052C1D87A400241440 /* CPMachineGrayController.c */; };
+		905E655E2C1D87A400241440 /* CPMachineIlluminationController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65072C1D87A400241440 /* CPMachineIlluminationController.c */; };
+		905E655F2C1D87A400241440 /* CPMachineLabController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65092C1D87A400241440 /* CPMachineLabController.c */; };
+		905E65602C1D87A400241440 /* CPMachineObserverController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E650B2C1D87A400241440 /* CPMachineObserverController.c */; };
+		905E65612C1D87A400241440 /* CPMachineRGBController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E650D2C1D87A400241440 /* CPMachineRGBController.c */; };
+		905E65622C1D87A400241440 /* CPMachineWindowController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E650F2C1D87A400241440 /* CPMachineWindowController.c */; };
+		905E65632C1D87A400241440 /* CPChromaticityErrorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65122C1D87A400241440 /* CPChromaticityErrorController.c */; };
+		905E65642C1D87A400241440 /* CPColorConversionsYcdUVW.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65142C1D87A400241440 /* CPColorConversionsYcdUVW.c */; };
+		905E65652C1D87A400241440 /* CPColorRenderingIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65162C1D87A400241440 /* CPColorRenderingIndexController.c */; };
+		905E65662C1D87A400241440 /* CPMetamericsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65182C1D87A400241440 /* CPMetamericsController.c */; };
+		905E65672C1D87A400241440 /* CPTotalMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E651A2C1D87A400241440 /* CPTotalMetamericIndexController.c */; };
+		905E65682C1D87A400241440 /* CPTwoColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E651C2C1D87A400241440 /* CPTwoColorController.c */; };
+		905E65692C1D87A400241440 /* CPUVMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E651E2C1D87A400241440 /* CPUVMetamericIndexController.c */; };
+		905E656A2C1D87A400241440 /* CPVisMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65202C1D87A400241440 /* CPVisMetamericIndexController.c */; };
+		905E656B2C1D87A400241440 /* CPWhitePoints.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65222C1D87A400241440 /* CPWhitePoints.c */; };
+		905E656C2C1D87A400241440 /* CPWhitePointsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65242C1D87A400241440 /* CPWhitePointsController.c */; };
+		905E656D2C1D87A400241440 /* CPPreferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65272C1D87A400241440 /* CPPreferences.c */; };
+		905E656E2C1D87A400241440 /* CPPreferencesController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65292C1D87A400241440 /* CPPreferencesController.c */; };
+		905E656F2C1D87A400241440 /* CPThreeDeeController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E652C2C1D87A400241440 /* CPThreeDeeController.c */; };
+		905E65702C1D87A400241440 /* CPThreeDeeCoordinateController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E652E2C1D87A400241440 /* CPThreeDeeCoordinateController.c */; };
+		905E65712C1D87A400241440 /* CPThreeDeeOpacityController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65302C1D87A400241440 /* CPThreeDeeOpacityController.c */; };
+		905E65722C1D87A400241440 /* CPThreeDeeOptionsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65322C1D87A400241440 /* CPThreeDeeOptionsController.c */; };
+		905E65732C1D87A400241440 /* CPThreeDeeOptionsController.nal in Resources */ = {isa = PBXBuildFile; fileRef = 905E65342C1D87A400241440 /* CPThreeDeeOptionsController.nal */; };
+		905E65742C1D87A400241440 /* CPThreeDeePerspectiveController.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65352C1D87A400241440 /* CPThreeDeePerspectiveController.c */; };
+		905E65752C1D87A400241440 /* CPThreeDeeView.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65372C1D87A400241440 /* CPThreeDeeView.c */; };
+		905E65762C1D87A400241440 /* ColorPrestoApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 905E653B2C1D87A400241440 /* ColorPrestoApplication.m */; };
+		905E65772C1D87A400241440 /* CPColorPrestoApplication.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E653C2C1D87A400241440 /* CPColorPrestoApplication.c */; };
+		905E65782C1D87A400241440 /* CPColorsManager.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E653E2C1D87A400241440 /* CPColorsManager.c */; };
+		905E65792C1D87A400241440 /* CPDesign.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65402C1D87A400241440 /* CPDesign.c */; };
+		905E657A2C1D87A400241440 /* CPOpenGLHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65422C1D87A400241440 /* CPOpenGLHelper.c */; };
+		905E657B2C1D87A400241440 /* CPTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65442C1D87A400241440 /* CPTranslations.c */; };
+		905E657C2C1D87A400241440 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65462C1D87A400241440 /* main.c */; };
+		905E657D2C1D87A400241440 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 905E65472C1D87A400241440 /* main.m */; };
 		90E3943F2C1CB03F00705076 /* NAApplication.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3930C2C1CB03F00705076 /* NAApplication.c */; };
 		90E394402C1CB03F00705076 /* NAButton.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3930D2C1CB03F00705076 /* NAButton.c */; };
 		90E394412C1CB03F00705076 /* NACheckBox.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3930E2C1CB03F00705076 /* NACheckBox.c */; };
@@ -324,56 +376,6 @@
 		90E395472C1CB03F00705076 /* NAPNG.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E394382C1CB03F00705076 /* NAPNG.h */; };
 		90E395482C1CB03F00705076 /* NAVisual.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E394392C1CB03F00705076 /* NAVisual.h */; };
 		90E395492C1CB03F00705076 /* NALib.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E3943B2C1CB03F00705076 /* NALib.h */; };
-		90E395C42C1CB5DA00705076 /* CPColorWell1D.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3955A2C1CB5DA00705076 /* CPColorWell1D.c */; };
-		90E395C52C1CB5DA00705076 /* CPColorWell2D.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3955C2C1CB5DA00705076 /* CPColorWell2D.c */; };
-		90E395C62C1CB5DA00705076 /* CPGammaDisplayController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3955E2C1CB5DA00705076 /* CPGammaDisplayController.c */; };
-		90E395C72C1CB5DA00705076 /* CPGrayColorWell.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395602C1CB5DA00705076 /* CPGrayColorWell.c */; };
-		90E395C82C1CB5DA00705076 /* CPSpectralColorWell.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395622C1CB5DA00705076 /* CPSpectralColorWell.c */; };
-		90E395C92C1CB5DA00705076 /* CPColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395652C1CB5DA00705076 /* CPColorController.c */; };
-		90E395CA2C1CB5DA00705076 /* CPGrayColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395672C1CB5DA00705076 /* CPGrayColorController.c */; };
-		90E395CB2C1CB5DA00705076 /* CPHSVHSLColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395692C1CB5DA00705076 /* CPHSVHSLColorController.c */; };
-		90E395CC2C1CB5DA00705076 /* CPLabLchColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3956B2C1CB5DA00705076 /* CPLabLchColorController.c */; };
-		90E395CD2C1CB5DA00705076 /* CPLuvUVWColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3956D2C1CB5DA00705076 /* CPLuvUVWColorController.c */; };
-		90E395CE2C1CB5DA00705076 /* CPRGBColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3956F2C1CB5DA00705076 /* CPRGBColorController.c */; };
-		90E395CF2C1CB5DA00705076 /* CPSpectralColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395712C1CB5DA00705076 /* CPSpectralColorController.c */; };
-		90E395D02C1CB5DA00705076 /* CPXYZColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395732C1CB5DA00705076 /* CPXYZColorController.c */; };
-		90E395D12C1CB5DA00705076 /* CPYCbCrColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395752C1CB5DA00705076 /* CPYCbCrColorController.c */; };
-		90E395D22C1CB5DA00705076 /* CPYuvYupvpColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395772C1CB5DA00705076 /* CPYuvYupvpColorController.c */; };
-		90E395D32C1CB5DA00705076 /* CPYxyColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395792C1CB5DA00705076 /* CPYxyColorController.c */; };
-		90E395D42C1CB5DA00705076 /* CPMachineButtonsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3957C2C1CB5DA00705076 /* CPMachineButtonsController.c */; };
-		90E395D52C1CB5DA00705076 /* CPMachineController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3957E2C1CB5DA00705076 /* CPMachineController.c */; };
-		90E395D62C1CB5DA00705076 /* CPMachineGrayController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395802C1CB5DA00705076 /* CPMachineGrayController.c */; };
-		90E395D72C1CB5DA00705076 /* CPMachineIlluminationController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395822C1CB5DA00705076 /* CPMachineIlluminationController.c */; };
-		90E395D82C1CB5DA00705076 /* CPMachineLabController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395842C1CB5DA00705076 /* CPMachineLabController.c */; };
-		90E395D92C1CB5DA00705076 /* CPMachineObserverController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395862C1CB5DA00705076 /* CPMachineObserverController.c */; };
-		90E395DA2C1CB5DA00705076 /* CPMachineRGBController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395882C1CB5DA00705076 /* CPMachineRGBController.c */; };
-		90E395DB2C1CB5DA00705076 /* CPMachineWindowController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3958A2C1CB5DA00705076 /* CPMachineWindowController.c */; };
-		90E395DC2C1CB5DA00705076 /* CPChromaticityErrorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3958D2C1CB5DA00705076 /* CPChromaticityErrorController.c */; };
-		90E395DD2C1CB5DA00705076 /* CPColorConversionsYcdUVW.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3958F2C1CB5DA00705076 /* CPColorConversionsYcdUVW.c */; };
-		90E395DE2C1CB5DA00705076 /* CPColorRenderingIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395912C1CB5DA00705076 /* CPColorRenderingIndexController.c */; };
-		90E395DF2C1CB5DA00705076 /* CPMetamericsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395932C1CB5DA00705076 /* CPMetamericsController.c */; };
-		90E395E02C1CB5DA00705076 /* CPTotalMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395952C1CB5DA00705076 /* CPTotalMetamericIndexController.c */; };
-		90E395E12C1CB5DA00705076 /* CPTwoColorController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395972C1CB5DA00705076 /* CPTwoColorController.c */; };
-		90E395E22C1CB5DA00705076 /* CPUVMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395992C1CB5DA00705076 /* CPUVMetamericIndexController.c */; };
-		90E395E32C1CB5DA00705076 /* CPVisMetamericIndexController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3959B2C1CB5DA00705076 /* CPVisMetamericIndexController.c */; };
-		90E395E42C1CB5DA00705076 /* CPWhitePoints.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3959D2C1CB5DA00705076 /* CPWhitePoints.c */; };
-		90E395E52C1CB5DA00705076 /* CPWhitePointsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3959F2C1CB5DA00705076 /* CPWhitePointsController.c */; };
-		90E395E62C1CB5DA00705076 /* CPThreeDeeController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395A22C1CB5DA00705076 /* CPThreeDeeController.c */; };
-		90E395E72C1CB5DA00705076 /* CPThreeDeeCoordinateController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395A42C1CB5DA00705076 /* CPThreeDeeCoordinateController.c */; };
-		90E395E82C1CB5DA00705076 /* CPThreeDeeOpacityController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395A62C1CB5DA00705076 /* CPThreeDeeOpacityController.c */; };
-		90E395E92C1CB5DA00705076 /* CPThreeDeeOptionsController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395A82C1CB5DA00705076 /* CPThreeDeeOptionsController.c */; };
-		90E395EB2C1CB5DA00705076 /* CPThreeDeePerspectiveController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395AB2C1CB5DA00705076 /* CPThreeDeePerspectiveController.c */; };
-		90E395EC2C1CB5DA00705076 /* CPThreeDeeView.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395AD2C1CB5DA00705076 /* CPThreeDeeView.c */; };
-		90E395ED2C1CB5DA00705076 /* ColorPrestoApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E395B12C1CB5DA00705076 /* ColorPrestoApplication.m */; };
-		90E395EE2C1CB5DA00705076 /* CPAboutController.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395B22C1CB5DA00705076 /* CPAboutController.c */; };
-		90E395EF2C1CB5DA00705076 /* CPColorPrestoApplication.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395B42C1CB5DA00705076 /* CPColorPrestoApplication.c */; };
-		90E395F02C1CB5DA00705076 /* CPColorsManager.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395B62C1CB5DA00705076 /* CPColorsManager.c */; };
-		90E395F12C1CB5DA00705076 /* CPDesign.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395B82C1CB5DA00705076 /* CPDesign.c */; };
-		90E395F22C1CB5DA00705076 /* CPOpenGLHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395BA2C1CB5DA00705076 /* CPOpenGLHelper.c */; };
-		90E395F32C1CB5DA00705076 /* CPPreferences.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395BC2C1CB5DA00705076 /* CPPreferences.c */; };
-		90E395F42C1CB5DA00705076 /* CPTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395BE2C1CB5DA00705076 /* CPTranslations.c */; };
-		90E395F52C1CB5DA00705076 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E395C02C1CB5DA00705076 /* main.c */; };
-		90E395F62C1CB5DA00705076 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90E395C12C1CB5DA00705076 /* main.m */; };
 		90E395F82C1CBBFE00705076 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E395F72C1CBBFE00705076 /* Cocoa.framework */; };
 		90E3964F2C1CDF3700705076 /* ColorPresto.icns in Resources */ = {isa = PBXBuildFile; fileRef = 90E3963D2C1CDF3700705076 /* ColorPresto.icns */; };
 		90E396502C1CDF3700705076 /* ColorPresto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90E3963E2C1CDF3700705076 /* ColorPresto.xib */; };
@@ -454,6 +456,108 @@
 		9019C6CB2AED04BB003855CD /* CMLColorMachine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLColorMachine.h; sourceTree = "<group>"; };
 		9019C6CC2AED04BB003855CD /* CMLMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CMLMath.h; sourceTree = "<group>"; };
 		904F309D2ADBCE4F00423098 /* Color Presto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Color Presto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		905E64DC2C1D87A400241440 /* CPAboutController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPAboutController.c; sourceTree = "<group>"; };
+		905E64DD2C1D87A400241440 /* CPAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAboutController.h; sourceTree = "<group>"; };
+		905E64DF2C1D87A400241440 /* CPColorWell1D.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorWell1D.c; sourceTree = "<group>"; };
+		905E64E02C1D87A400241440 /* CPColorWell1D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorWell1D.h; sourceTree = "<group>"; };
+		905E64E12C1D87A400241440 /* CPColorWell2D.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorWell2D.c; sourceTree = "<group>"; };
+		905E64E22C1D87A400241440 /* CPColorWell2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorWell2D.h; sourceTree = "<group>"; };
+		905E64E32C1D87A400241440 /* CPGammaDisplayController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPGammaDisplayController.c; sourceTree = "<group>"; };
+		905E64E42C1D87A400241440 /* CPGammaDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGammaDisplayController.h; sourceTree = "<group>"; };
+		905E64E52C1D87A400241440 /* CPGrayColorWell.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPGrayColorWell.c; sourceTree = "<group>"; };
+		905E64E62C1D87A400241440 /* CPGrayColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGrayColorWell.h; sourceTree = "<group>"; };
+		905E64E72C1D87A400241440 /* CPSpectralColorWell.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPSpectralColorWell.c; sourceTree = "<group>"; };
+		905E64E82C1D87A400241440 /* CPSpectralColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSpectralColorWell.h; sourceTree = "<group>"; };
+		905E64EA2C1D87A400241440 /* CPColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorController.c; sourceTree = "<group>"; };
+		905E64EB2C1D87A400241440 /* CPColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorController.h; sourceTree = "<group>"; };
+		905E64EC2C1D87A400241440 /* CPGrayColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPGrayColorController.c; sourceTree = "<group>"; };
+		905E64ED2C1D87A400241440 /* CPGrayColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGrayColorController.h; sourceTree = "<group>"; };
+		905E64EE2C1D87A400241440 /* CPHSVHSLColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPHSVHSLColorController.c; sourceTree = "<group>"; };
+		905E64EF2C1D87A400241440 /* CPHSVHSLColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHSVHSLColorController.h; sourceTree = "<group>"; };
+		905E64F02C1D87A400241440 /* CPLabLchColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPLabLchColorController.c; sourceTree = "<group>"; };
+		905E64F12C1D87A400241440 /* CPLabLchColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLabLchColorController.h; sourceTree = "<group>"; };
+		905E64F22C1D87A400241440 /* CPLuvUVWColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPLuvUVWColorController.c; sourceTree = "<group>"; };
+		905E64F32C1D87A400241440 /* CPLuvUVWColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLuvUVWColorController.h; sourceTree = "<group>"; };
+		905E64F42C1D87A400241440 /* CPRGBColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPRGBColorController.c; sourceTree = "<group>"; };
+		905E64F52C1D87A400241440 /* CPRGBColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRGBColorController.h; sourceTree = "<group>"; };
+		905E64F62C1D87A400241440 /* CPSpectralColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPSpectralColorController.c; sourceTree = "<group>"; };
+		905E64F72C1D87A400241440 /* CPSpectralColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSpectralColorController.h; sourceTree = "<group>"; };
+		905E64F82C1D87A400241440 /* CPXYZColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPXYZColorController.c; sourceTree = "<group>"; };
+		905E64F92C1D87A400241440 /* CPXYZColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXYZColorController.h; sourceTree = "<group>"; };
+		905E64FA2C1D87A400241440 /* CPYCbCrColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPYCbCrColorController.c; sourceTree = "<group>"; };
+		905E64FB2C1D87A400241440 /* CPYCbCrColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPYCbCrColorController.h; sourceTree = "<group>"; };
+		905E64FC2C1D87A400241440 /* CPYuvYupvpColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPYuvYupvpColorController.c; sourceTree = "<group>"; };
+		905E64FD2C1D87A400241440 /* CPYuvYupvpColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPYuvYupvpColorController.h; sourceTree = "<group>"; };
+		905E64FE2C1D87A400241440 /* CPYxyColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPYxyColorController.c; sourceTree = "<group>"; };
+		905E64FF2C1D87A400241440 /* CPYxyColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPYxyColorController.h; sourceTree = "<group>"; };
+		905E65012C1D87A400241440 /* CPMachineButtonsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineButtonsController.c; sourceTree = "<group>"; };
+		905E65022C1D87A400241440 /* CPMachineButtonsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineButtonsController.h; sourceTree = "<group>"; };
+		905E65032C1D87A400241440 /* CPMachineController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineController.c; sourceTree = "<group>"; };
+		905E65042C1D87A400241440 /* CPMachineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineController.h; sourceTree = "<group>"; };
+		905E65052C1D87A400241440 /* CPMachineGrayController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineGrayController.c; sourceTree = "<group>"; };
+		905E65062C1D87A400241440 /* CPMachineGrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineGrayController.h; sourceTree = "<group>"; };
+		905E65072C1D87A400241440 /* CPMachineIlluminationController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineIlluminationController.c; sourceTree = "<group>"; };
+		905E65082C1D87A400241440 /* CPMachineIlluminationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineIlluminationController.h; sourceTree = "<group>"; };
+		905E65092C1D87A400241440 /* CPMachineLabController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineLabController.c; sourceTree = "<group>"; };
+		905E650A2C1D87A400241440 /* CPMachineLabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineLabController.h; sourceTree = "<group>"; };
+		905E650B2C1D87A400241440 /* CPMachineObserverController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineObserverController.c; sourceTree = "<group>"; };
+		905E650C2C1D87A400241440 /* CPMachineObserverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineObserverController.h; sourceTree = "<group>"; };
+		905E650D2C1D87A400241440 /* CPMachineRGBController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineRGBController.c; sourceTree = "<group>"; };
+		905E650E2C1D87A400241440 /* CPMachineRGBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineRGBController.h; sourceTree = "<group>"; };
+		905E650F2C1D87A400241440 /* CPMachineWindowController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineWindowController.c; sourceTree = "<group>"; };
+		905E65102C1D87A400241440 /* CPMachineWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineWindowController.h; sourceTree = "<group>"; };
+		905E65122C1D87A400241440 /* CPChromaticityErrorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPChromaticityErrorController.c; sourceTree = "<group>"; };
+		905E65132C1D87A400241440 /* CPChromaticityErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChromaticityErrorController.h; sourceTree = "<group>"; };
+		905E65142C1D87A400241440 /* CPColorConversionsYcdUVW.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorConversionsYcdUVW.c; sourceTree = "<group>"; };
+		905E65152C1D87A400241440 /* CPColorConversionsYcdUVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorConversionsYcdUVW.h; sourceTree = "<group>"; };
+		905E65162C1D87A400241440 /* CPColorRenderingIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorRenderingIndexController.c; sourceTree = "<group>"; };
+		905E65172C1D87A400241440 /* CPColorRenderingIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorRenderingIndexController.h; sourceTree = "<group>"; };
+		905E65182C1D87A400241440 /* CPMetamericsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMetamericsController.c; sourceTree = "<group>"; };
+		905E65192C1D87A400241440 /* CPMetamericsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMetamericsController.h; sourceTree = "<group>"; };
+		905E651A2C1D87A400241440 /* CPTotalMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPTotalMetamericIndexController.c; sourceTree = "<group>"; };
+		905E651B2C1D87A400241440 /* CPTotalMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTotalMetamericIndexController.h; sourceTree = "<group>"; };
+		905E651C2C1D87A400241440 /* CPTwoColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPTwoColorController.c; sourceTree = "<group>"; };
+		905E651D2C1D87A400241440 /* CPTwoColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTwoColorController.h; sourceTree = "<group>"; };
+		905E651E2C1D87A400241440 /* CPUVMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPUVMetamericIndexController.c; sourceTree = "<group>"; };
+		905E651F2C1D87A400241440 /* CPUVMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPUVMetamericIndexController.h; sourceTree = "<group>"; };
+		905E65202C1D87A400241440 /* CPVisMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPVisMetamericIndexController.c; sourceTree = "<group>"; };
+		905E65212C1D87A400241440 /* CPVisMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVisMetamericIndexController.h; sourceTree = "<group>"; };
+		905E65222C1D87A400241440 /* CPWhitePoints.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPWhitePoints.c; sourceTree = "<group>"; };
+		905E65232C1D87A400241440 /* CPWhitePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPWhitePoints.h; sourceTree = "<group>"; };
+		905E65242C1D87A400241440 /* CPWhitePointsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPWhitePointsController.c; sourceTree = "<group>"; };
+		905E65252C1D87A400241440 /* CPWhitePointsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPWhitePointsController.h; sourceTree = "<group>"; };
+		905E65272C1D87A400241440 /* CPPreferences.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPPreferences.c; sourceTree = "<group>"; };
+		905E65282C1D87A400241440 /* CPPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreferences.h; sourceTree = "<group>"; };
+		905E65292C1D87A400241440 /* CPPreferencesController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPPreferencesController.c; sourceTree = "<group>"; };
+		905E652A2C1D87A400241440 /* CPPreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreferencesController.h; sourceTree = "<group>"; };
+		905E652C2C1D87A400241440 /* CPThreeDeeController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeController.c; sourceTree = "<group>"; };
+		905E652D2C1D87A400241440 /* CPThreeDeeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeController.h; sourceTree = "<group>"; };
+		905E652E2C1D87A400241440 /* CPThreeDeeCoordinateController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeCoordinateController.c; sourceTree = "<group>"; };
+		905E652F2C1D87A400241440 /* CPThreeDeeCoordinateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeCoordinateController.h; sourceTree = "<group>"; };
+		905E65302C1D87A400241440 /* CPThreeDeeOpacityController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeOpacityController.c; sourceTree = "<group>"; };
+		905E65312C1D87A400241440 /* CPThreeDeeOpacityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeOpacityController.h; sourceTree = "<group>"; };
+		905E65322C1D87A400241440 /* CPThreeDeeOptionsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeOptionsController.c; sourceTree = "<group>"; };
+		905E65332C1D87A400241440 /* CPThreeDeeOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeOptionsController.h; sourceTree = "<group>"; };
+		905E65342C1D87A400241440 /* CPThreeDeeOptionsController.nal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CPThreeDeeOptionsController.nal; sourceTree = "<group>"; };
+		905E65352C1D87A400241440 /* CPThreeDeePerspectiveController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeePerspectiveController.c; sourceTree = "<group>"; };
+		905E65362C1D87A400241440 /* CPThreeDeePerspectiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeePerspectiveController.h; sourceTree = "<group>"; };
+		905E65372C1D87A400241440 /* CPThreeDeeView.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeView.c; sourceTree = "<group>"; };
+		905E65382C1D87A400241440 /* CPThreeDeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeView.h; sourceTree = "<group>"; };
+		905E653A2C1D87A400241440 /* ColorPrestoApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoApplication.h; sourceTree = "<group>"; };
+		905E653B2C1D87A400241440 /* ColorPrestoApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPrestoApplication.m; sourceTree = "<group>"; };
+		905E653C2C1D87A400241440 /* CPColorPrestoApplication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorPrestoApplication.c; sourceTree = "<group>"; };
+		905E653D2C1D87A400241440 /* CPColorPrestoApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorPrestoApplication.h; sourceTree = "<group>"; };
+		905E653E2C1D87A400241440 /* CPColorsManager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorsManager.c; sourceTree = "<group>"; };
+		905E653F2C1D87A400241440 /* CPColorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorsManager.h; sourceTree = "<group>"; };
+		905E65402C1D87A400241440 /* CPDesign.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPDesign.c; sourceTree = "<group>"; };
+		905E65412C1D87A400241440 /* CPDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDesign.h; sourceTree = "<group>"; };
+		905E65422C1D87A400241440 /* CPOpenGLHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPOpenGLHelper.c; sourceTree = "<group>"; };
+		905E65432C1D87A400241440 /* CPOpenGLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOpenGLHelper.h; sourceTree = "<group>"; };
+		905E65442C1D87A400241440 /* CPTranslations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPTranslations.c; sourceTree = "<group>"; };
+		905E65452C1D87A400241440 /* CPTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTranslations.h; sourceTree = "<group>"; };
+		905E65462C1D87A400241440 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
+		905E65472C1D87A400241440 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		905E65482C1D87A400241440 /* mainC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainC.h; sourceTree = "<group>"; };
 		90BF531F274ABD41001FDE2A /* libNALib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNALib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C6F9F2293AA4EC00671DE7 /* libCMLStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCMLStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E3930C2C1CB03F00705076 /* NAApplication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NAApplication.c; sourceTree = "<group>"; };
@@ -730,106 +834,6 @@
 		90E394392C1CB03F00705076 /* NAVisual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAVisual.h; sourceTree = "<group>"; };
 		90E3943B2C1CB03F00705076 /* NALib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NALib.h; sourceTree = "<group>"; };
 		90E3943D2C1CB03F00705076 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
-		90E3955A2C1CB5DA00705076 /* CPColorWell1D.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorWell1D.c; sourceTree = "<group>"; };
-		90E3955B2C1CB5DA00705076 /* CPColorWell1D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorWell1D.h; sourceTree = "<group>"; };
-		90E3955C2C1CB5DA00705076 /* CPColorWell2D.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorWell2D.c; sourceTree = "<group>"; };
-		90E3955D2C1CB5DA00705076 /* CPColorWell2D.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorWell2D.h; sourceTree = "<group>"; };
-		90E3955E2C1CB5DA00705076 /* CPGammaDisplayController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPGammaDisplayController.c; sourceTree = "<group>"; };
-		90E3955F2C1CB5DA00705076 /* CPGammaDisplayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGammaDisplayController.h; sourceTree = "<group>"; };
-		90E395602C1CB5DA00705076 /* CPGrayColorWell.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPGrayColorWell.c; sourceTree = "<group>"; };
-		90E395612C1CB5DA00705076 /* CPGrayColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGrayColorWell.h; sourceTree = "<group>"; };
-		90E395622C1CB5DA00705076 /* CPSpectralColorWell.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPSpectralColorWell.c; sourceTree = "<group>"; };
-		90E395632C1CB5DA00705076 /* CPSpectralColorWell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSpectralColorWell.h; sourceTree = "<group>"; };
-		90E395652C1CB5DA00705076 /* CPColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorController.c; sourceTree = "<group>"; };
-		90E395662C1CB5DA00705076 /* CPColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorController.h; sourceTree = "<group>"; };
-		90E395672C1CB5DA00705076 /* CPGrayColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPGrayColorController.c; sourceTree = "<group>"; };
-		90E395682C1CB5DA00705076 /* CPGrayColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPGrayColorController.h; sourceTree = "<group>"; };
-		90E395692C1CB5DA00705076 /* CPHSVHSLColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPHSVHSLColorController.c; sourceTree = "<group>"; };
-		90E3956A2C1CB5DA00705076 /* CPHSVHSLColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPHSVHSLColorController.h; sourceTree = "<group>"; };
-		90E3956B2C1CB5DA00705076 /* CPLabLchColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPLabLchColorController.c; sourceTree = "<group>"; };
-		90E3956C2C1CB5DA00705076 /* CPLabLchColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLabLchColorController.h; sourceTree = "<group>"; };
-		90E3956D2C1CB5DA00705076 /* CPLuvUVWColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPLuvUVWColorController.c; sourceTree = "<group>"; };
-		90E3956E2C1CB5DA00705076 /* CPLuvUVWColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPLuvUVWColorController.h; sourceTree = "<group>"; };
-		90E3956F2C1CB5DA00705076 /* CPRGBColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPRGBColorController.c; sourceTree = "<group>"; };
-		90E395702C1CB5DA00705076 /* CPRGBColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPRGBColorController.h; sourceTree = "<group>"; };
-		90E395712C1CB5DA00705076 /* CPSpectralColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPSpectralColorController.c; sourceTree = "<group>"; };
-		90E395722C1CB5DA00705076 /* CPSpectralColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPSpectralColorController.h; sourceTree = "<group>"; };
-		90E395732C1CB5DA00705076 /* CPXYZColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPXYZColorController.c; sourceTree = "<group>"; };
-		90E395742C1CB5DA00705076 /* CPXYZColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPXYZColorController.h; sourceTree = "<group>"; };
-		90E395752C1CB5DA00705076 /* CPYCbCrColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPYCbCrColorController.c; sourceTree = "<group>"; };
-		90E395762C1CB5DA00705076 /* CPYCbCrColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPYCbCrColorController.h; sourceTree = "<group>"; };
-		90E395772C1CB5DA00705076 /* CPYuvYupvpColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPYuvYupvpColorController.c; sourceTree = "<group>"; };
-		90E395782C1CB5DA00705076 /* CPYuvYupvpColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPYuvYupvpColorController.h; sourceTree = "<group>"; };
-		90E395792C1CB5DA00705076 /* CPYxyColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPYxyColorController.c; sourceTree = "<group>"; };
-		90E3957A2C1CB5DA00705076 /* CPYxyColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPYxyColorController.h; sourceTree = "<group>"; };
-		90E3957C2C1CB5DA00705076 /* CPMachineButtonsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineButtonsController.c; sourceTree = "<group>"; };
-		90E3957D2C1CB5DA00705076 /* CPMachineButtonsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineButtonsController.h; sourceTree = "<group>"; };
-		90E3957E2C1CB5DA00705076 /* CPMachineController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineController.c; sourceTree = "<group>"; };
-		90E3957F2C1CB5DA00705076 /* CPMachineController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineController.h; sourceTree = "<group>"; };
-		90E395802C1CB5DA00705076 /* CPMachineGrayController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineGrayController.c; sourceTree = "<group>"; };
-		90E395812C1CB5DA00705076 /* CPMachineGrayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineGrayController.h; sourceTree = "<group>"; };
-		90E395822C1CB5DA00705076 /* CPMachineIlluminationController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineIlluminationController.c; sourceTree = "<group>"; };
-		90E395832C1CB5DA00705076 /* CPMachineIlluminationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineIlluminationController.h; sourceTree = "<group>"; };
-		90E395842C1CB5DA00705076 /* CPMachineLabController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineLabController.c; sourceTree = "<group>"; };
-		90E395852C1CB5DA00705076 /* CPMachineLabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineLabController.h; sourceTree = "<group>"; };
-		90E395862C1CB5DA00705076 /* CPMachineObserverController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineObserverController.c; sourceTree = "<group>"; };
-		90E395872C1CB5DA00705076 /* CPMachineObserverController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineObserverController.h; sourceTree = "<group>"; };
-		90E395882C1CB5DA00705076 /* CPMachineRGBController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineRGBController.c; sourceTree = "<group>"; };
-		90E395892C1CB5DA00705076 /* CPMachineRGBController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineRGBController.h; sourceTree = "<group>"; };
-		90E3958A2C1CB5DA00705076 /* CPMachineWindowController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMachineWindowController.c; sourceTree = "<group>"; };
-		90E3958B2C1CB5DA00705076 /* CPMachineWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMachineWindowController.h; sourceTree = "<group>"; };
-		90E3958D2C1CB5DA00705076 /* CPChromaticityErrorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPChromaticityErrorController.c; sourceTree = "<group>"; };
-		90E3958E2C1CB5DA00705076 /* CPChromaticityErrorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPChromaticityErrorController.h; sourceTree = "<group>"; };
-		90E3958F2C1CB5DA00705076 /* CPColorConversionsYcdUVW.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorConversionsYcdUVW.c; sourceTree = "<group>"; };
-		90E395902C1CB5DA00705076 /* CPColorConversionsYcdUVW.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorConversionsYcdUVW.h; sourceTree = "<group>"; };
-		90E395912C1CB5DA00705076 /* CPColorRenderingIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorRenderingIndexController.c; sourceTree = "<group>"; };
-		90E395922C1CB5DA00705076 /* CPColorRenderingIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorRenderingIndexController.h; sourceTree = "<group>"; };
-		90E395932C1CB5DA00705076 /* CPMetamericsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPMetamericsController.c; sourceTree = "<group>"; };
-		90E395942C1CB5DA00705076 /* CPMetamericsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPMetamericsController.h; sourceTree = "<group>"; };
-		90E395952C1CB5DA00705076 /* CPTotalMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPTotalMetamericIndexController.c; sourceTree = "<group>"; };
-		90E395962C1CB5DA00705076 /* CPTotalMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTotalMetamericIndexController.h; sourceTree = "<group>"; };
-		90E395972C1CB5DA00705076 /* CPTwoColorController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPTwoColorController.c; sourceTree = "<group>"; };
-		90E395982C1CB5DA00705076 /* CPTwoColorController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTwoColorController.h; sourceTree = "<group>"; };
-		90E395992C1CB5DA00705076 /* CPUVMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPUVMetamericIndexController.c; sourceTree = "<group>"; };
-		90E3959A2C1CB5DA00705076 /* CPUVMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPUVMetamericIndexController.h; sourceTree = "<group>"; };
-		90E3959B2C1CB5DA00705076 /* CPVisMetamericIndexController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPVisMetamericIndexController.c; sourceTree = "<group>"; };
-		90E3959C2C1CB5DA00705076 /* CPVisMetamericIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPVisMetamericIndexController.h; sourceTree = "<group>"; };
-		90E3959D2C1CB5DA00705076 /* CPWhitePoints.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPWhitePoints.c; sourceTree = "<group>"; };
-		90E3959E2C1CB5DA00705076 /* CPWhitePoints.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPWhitePoints.h; sourceTree = "<group>"; };
-		90E3959F2C1CB5DA00705076 /* CPWhitePointsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPWhitePointsController.c; sourceTree = "<group>"; };
-		90E395A02C1CB5DA00705076 /* CPWhitePointsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPWhitePointsController.h; sourceTree = "<group>"; };
-		90E395A22C1CB5DA00705076 /* CPThreeDeeController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeController.c; sourceTree = "<group>"; };
-		90E395A32C1CB5DA00705076 /* CPThreeDeeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeController.h; sourceTree = "<group>"; };
-		90E395A42C1CB5DA00705076 /* CPThreeDeeCoordinateController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeCoordinateController.c; sourceTree = "<group>"; };
-		90E395A52C1CB5DA00705076 /* CPThreeDeeCoordinateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeCoordinateController.h; sourceTree = "<group>"; };
-		90E395A62C1CB5DA00705076 /* CPThreeDeeOpacityController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeOpacityController.c; sourceTree = "<group>"; };
-		90E395A72C1CB5DA00705076 /* CPThreeDeeOpacityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeOpacityController.h; sourceTree = "<group>"; };
-		90E395A82C1CB5DA00705076 /* CPThreeDeeOptionsController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeOptionsController.c; sourceTree = "<group>"; };
-		90E395A92C1CB5DA00705076 /* CPThreeDeeOptionsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeOptionsController.h; sourceTree = "<group>"; };
-		90E395AA2C1CB5DA00705076 /* CPThreeDeeOptionsController.nal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CPThreeDeeOptionsController.nal; sourceTree = "<group>"; };
-		90E395AB2C1CB5DA00705076 /* CPThreeDeePerspectiveController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeePerspectiveController.c; sourceTree = "<group>"; };
-		90E395AC2C1CB5DA00705076 /* CPThreeDeePerspectiveController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeePerspectiveController.h; sourceTree = "<group>"; };
-		90E395AD2C1CB5DA00705076 /* CPThreeDeeView.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPThreeDeeView.c; sourceTree = "<group>"; };
-		90E395AE2C1CB5DA00705076 /* CPThreeDeeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPThreeDeeView.h; sourceTree = "<group>"; };
-		90E395B02C1CB5DA00705076 /* ColorPrestoApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoApplication.h; sourceTree = "<group>"; };
-		90E395B12C1CB5DA00705076 /* ColorPrestoApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorPrestoApplication.m; sourceTree = "<group>"; };
-		90E395B22C1CB5DA00705076 /* CPAboutController.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPAboutController.c; sourceTree = "<group>"; };
-		90E395B32C1CB5DA00705076 /* CPAboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPAboutController.h; sourceTree = "<group>"; };
-		90E395B42C1CB5DA00705076 /* CPColorPrestoApplication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorPrestoApplication.c; sourceTree = "<group>"; };
-		90E395B52C1CB5DA00705076 /* CPColorPrestoApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorPrestoApplication.h; sourceTree = "<group>"; };
-		90E395B62C1CB5DA00705076 /* CPColorsManager.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPColorsManager.c; sourceTree = "<group>"; };
-		90E395B72C1CB5DA00705076 /* CPColorsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPColorsManager.h; sourceTree = "<group>"; };
-		90E395B82C1CB5DA00705076 /* CPDesign.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPDesign.c; sourceTree = "<group>"; };
-		90E395B92C1CB5DA00705076 /* CPDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDesign.h; sourceTree = "<group>"; };
-		90E395BA2C1CB5DA00705076 /* CPOpenGLHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPOpenGLHelper.c; sourceTree = "<group>"; };
-		90E395BB2C1CB5DA00705076 /* CPOpenGLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPOpenGLHelper.h; sourceTree = "<group>"; };
-		90E395BC2C1CB5DA00705076 /* CPPreferences.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPPreferences.c; sourceTree = "<group>"; };
-		90E395BD2C1CB5DA00705076 /* CPPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPPreferences.h; sourceTree = "<group>"; };
-		90E395BE2C1CB5DA00705076 /* CPTranslations.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = CPTranslations.c; sourceTree = "<group>"; };
-		90E395BF2C1CB5DA00705076 /* CPTranslations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTranslations.h; sourceTree = "<group>"; };
-		90E395C02C1CB5DA00705076 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		90E395C12C1CB5DA00705076 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		90E395C22C1CB5DA00705076 /* mainC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainC.h; sourceTree = "<group>"; };
 		90E395F72C1CBBFE00705076 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		90E3963D2C1CDF3700705076 /* ColorPresto.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorPresto.icns; sourceTree = "<group>"; };
 		90E3963E2C1CDF3700705076 /* ColorPresto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPresto.xib; sourceTree = "<group>"; };
@@ -910,7 +914,7 @@
 				90E3943E2C1CB03F00705076 /* NALib */,
 				9019C6982AED04BB003855CD /* CML */,
 				90E3964E2C1CDF3700705076 /* res */,
-				90E395C32C1CB5DA00705076 /* src */,
+				905E65492C1D87A400241440 /* src */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -1006,6 +1010,172 @@
 				9019C6C52AED04BB003855CD /* CMLunused.h */,
 			);
 			path = Internal;
+			sourceTree = "<group>";
+		};
+		905E64DE2C1D87A400241440 /* About */ = {
+			isa = PBXGroup;
+			children = (
+				905E64DC2C1D87A400241440 /* CPAboutController.c */,
+				905E64DD2C1D87A400241440 /* CPAboutController.h */,
+			);
+			path = About;
+			sourceTree = "<group>";
+		};
+		905E64E92C1D87A400241440 /* Displays */ = {
+			isa = PBXGroup;
+			children = (
+				905E64DF2C1D87A400241440 /* CPColorWell1D.c */,
+				905E64E02C1D87A400241440 /* CPColorWell1D.h */,
+				905E64E12C1D87A400241440 /* CPColorWell2D.c */,
+				905E64E22C1D87A400241440 /* CPColorWell2D.h */,
+				905E64E32C1D87A400241440 /* CPGammaDisplayController.c */,
+				905E64E42C1D87A400241440 /* CPGammaDisplayController.h */,
+				905E64E52C1D87A400241440 /* CPGrayColorWell.c */,
+				905E64E62C1D87A400241440 /* CPGrayColorWell.h */,
+				905E64E72C1D87A400241440 /* CPSpectralColorWell.c */,
+				905E64E82C1D87A400241440 /* CPSpectralColorWell.h */,
+			);
+			path = Displays;
+			sourceTree = "<group>";
+		};
+		905E65002C1D87A400241440 /* ColorControllers */ = {
+			isa = PBXGroup;
+			children = (
+				905E64E92C1D87A400241440 /* Displays */,
+				905E64EA2C1D87A400241440 /* CPColorController.c */,
+				905E64EB2C1D87A400241440 /* CPColorController.h */,
+				905E64EC2C1D87A400241440 /* CPGrayColorController.c */,
+				905E64ED2C1D87A400241440 /* CPGrayColorController.h */,
+				905E64EE2C1D87A400241440 /* CPHSVHSLColorController.c */,
+				905E64EF2C1D87A400241440 /* CPHSVHSLColorController.h */,
+				905E64F02C1D87A400241440 /* CPLabLchColorController.c */,
+				905E64F12C1D87A400241440 /* CPLabLchColorController.h */,
+				905E64F22C1D87A400241440 /* CPLuvUVWColorController.c */,
+				905E64F32C1D87A400241440 /* CPLuvUVWColorController.h */,
+				905E64F42C1D87A400241440 /* CPRGBColorController.c */,
+				905E64F52C1D87A400241440 /* CPRGBColorController.h */,
+				905E64F62C1D87A400241440 /* CPSpectralColorController.c */,
+				905E64F72C1D87A400241440 /* CPSpectralColorController.h */,
+				905E64F82C1D87A400241440 /* CPXYZColorController.c */,
+				905E64F92C1D87A400241440 /* CPXYZColorController.h */,
+				905E64FA2C1D87A400241440 /* CPYCbCrColorController.c */,
+				905E64FB2C1D87A400241440 /* CPYCbCrColorController.h */,
+				905E64FC2C1D87A400241440 /* CPYuvYupvpColorController.c */,
+				905E64FD2C1D87A400241440 /* CPYuvYupvpColorController.h */,
+				905E64FE2C1D87A400241440 /* CPYxyColorController.c */,
+				905E64FF2C1D87A400241440 /* CPYxyColorController.h */,
+			);
+			path = ColorControllers;
+			sourceTree = "<group>";
+		};
+		905E65112C1D87A400241440 /* Machine */ = {
+			isa = PBXGroup;
+			children = (
+				905E65012C1D87A400241440 /* CPMachineButtonsController.c */,
+				905E65022C1D87A400241440 /* CPMachineButtonsController.h */,
+				905E65032C1D87A400241440 /* CPMachineController.c */,
+				905E65042C1D87A400241440 /* CPMachineController.h */,
+				905E65052C1D87A400241440 /* CPMachineGrayController.c */,
+				905E65062C1D87A400241440 /* CPMachineGrayController.h */,
+				905E65072C1D87A400241440 /* CPMachineIlluminationController.c */,
+				905E65082C1D87A400241440 /* CPMachineIlluminationController.h */,
+				905E65092C1D87A400241440 /* CPMachineLabController.c */,
+				905E650A2C1D87A400241440 /* CPMachineLabController.h */,
+				905E650B2C1D87A400241440 /* CPMachineObserverController.c */,
+				905E650C2C1D87A400241440 /* CPMachineObserverController.h */,
+				905E650D2C1D87A400241440 /* CPMachineRGBController.c */,
+				905E650E2C1D87A400241440 /* CPMachineRGBController.h */,
+				905E650F2C1D87A400241440 /* CPMachineWindowController.c */,
+				905E65102C1D87A400241440 /* CPMachineWindowController.h */,
+			);
+			path = Machine;
+			sourceTree = "<group>";
+		};
+		905E65262C1D87A400241440 /* Metamerics */ = {
+			isa = PBXGroup;
+			children = (
+				905E65122C1D87A400241440 /* CPChromaticityErrorController.c */,
+				905E65132C1D87A400241440 /* CPChromaticityErrorController.h */,
+				905E65142C1D87A400241440 /* CPColorConversionsYcdUVW.c */,
+				905E65152C1D87A400241440 /* CPColorConversionsYcdUVW.h */,
+				905E65162C1D87A400241440 /* CPColorRenderingIndexController.c */,
+				905E65172C1D87A400241440 /* CPColorRenderingIndexController.h */,
+				905E65182C1D87A400241440 /* CPMetamericsController.c */,
+				905E65192C1D87A400241440 /* CPMetamericsController.h */,
+				905E651A2C1D87A400241440 /* CPTotalMetamericIndexController.c */,
+				905E651B2C1D87A400241440 /* CPTotalMetamericIndexController.h */,
+				905E651C2C1D87A400241440 /* CPTwoColorController.c */,
+				905E651D2C1D87A400241440 /* CPTwoColorController.h */,
+				905E651E2C1D87A400241440 /* CPUVMetamericIndexController.c */,
+				905E651F2C1D87A400241440 /* CPUVMetamericIndexController.h */,
+				905E65202C1D87A400241440 /* CPVisMetamericIndexController.c */,
+				905E65212C1D87A400241440 /* CPVisMetamericIndexController.h */,
+				905E65222C1D87A400241440 /* CPWhitePoints.c */,
+				905E65232C1D87A400241440 /* CPWhitePoints.h */,
+				905E65242C1D87A400241440 /* CPWhitePointsController.c */,
+				905E65252C1D87A400241440 /* CPWhitePointsController.h */,
+			);
+			path = Metamerics;
+			sourceTree = "<group>";
+		};
+		905E652B2C1D87A400241440 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				905E65272C1D87A400241440 /* CPPreferences.c */,
+				905E65282C1D87A400241440 /* CPPreferences.h */,
+				905E65292C1D87A400241440 /* CPPreferencesController.c */,
+				905E652A2C1D87A400241440 /* CPPreferencesController.h */,
+			);
+			path = Preferences;
+			sourceTree = "<group>";
+		};
+		905E65392C1D87A400241440 /* ThreeDee */ = {
+			isa = PBXGroup;
+			children = (
+				905E652C2C1D87A400241440 /* CPThreeDeeController.c */,
+				905E652D2C1D87A400241440 /* CPThreeDeeController.h */,
+				905E652E2C1D87A400241440 /* CPThreeDeeCoordinateController.c */,
+				905E652F2C1D87A400241440 /* CPThreeDeeCoordinateController.h */,
+				905E65302C1D87A400241440 /* CPThreeDeeOpacityController.c */,
+				905E65312C1D87A400241440 /* CPThreeDeeOpacityController.h */,
+				905E65322C1D87A400241440 /* CPThreeDeeOptionsController.c */,
+				905E65332C1D87A400241440 /* CPThreeDeeOptionsController.h */,
+				905E65342C1D87A400241440 /* CPThreeDeeOptionsController.nal */,
+				905E65352C1D87A400241440 /* CPThreeDeePerspectiveController.c */,
+				905E65362C1D87A400241440 /* CPThreeDeePerspectiveController.h */,
+				905E65372C1D87A400241440 /* CPThreeDeeView.c */,
+				905E65382C1D87A400241440 /* CPThreeDeeView.h */,
+			);
+			path = ThreeDee;
+			sourceTree = "<group>";
+		};
+		905E65492C1D87A400241440 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				905E64DE2C1D87A400241440 /* About */,
+				905E65002C1D87A400241440 /* ColorControllers */,
+				905E65112C1D87A400241440 /* Machine */,
+				905E65262C1D87A400241440 /* Metamerics */,
+				905E652B2C1D87A400241440 /* Preferences */,
+				905E65392C1D87A400241440 /* ThreeDee */,
+				905E653A2C1D87A400241440 /* ColorPrestoApplication.h */,
+				905E653B2C1D87A400241440 /* ColorPrestoApplication.m */,
+				905E653C2C1D87A400241440 /* CPColorPrestoApplication.c */,
+				905E653D2C1D87A400241440 /* CPColorPrestoApplication.h */,
+				905E653E2C1D87A400241440 /* CPColorsManager.c */,
+				905E653F2C1D87A400241440 /* CPColorsManager.h */,
+				905E65402C1D87A400241440 /* CPDesign.c */,
+				905E65412C1D87A400241440 /* CPDesign.h */,
+				905E65422C1D87A400241440 /* CPOpenGLHelper.c */,
+				905E65432C1D87A400241440 /* CPOpenGLHelper.h */,
+				905E65442C1D87A400241440 /* CPTranslations.c */,
+				905E65452C1D87A400241440 /* CPTranslations.h */,
+				905E65462C1D87A400241440 /* main.c */,
+				905E65472C1D87A400241440 /* main.m */,
+				905E65482C1D87A400241440 /* mainC.h */,
+			);
+			name = src;
+			path = ../code/ColorPresto/src;
 			sourceTree = "<group>";
 		};
 		90E393212C1CB03F00705076 /* UI */ = {
@@ -1546,154 +1716,6 @@
 			path = ../lib/NALib/code/NALib;
 			sourceTree = "<group>";
 		};
-		90E395642C1CB5DA00705076 /* Displays */ = {
-			isa = PBXGroup;
-			children = (
-				90E3955A2C1CB5DA00705076 /* CPColorWell1D.c */,
-				90E3955B2C1CB5DA00705076 /* CPColorWell1D.h */,
-				90E3955C2C1CB5DA00705076 /* CPColorWell2D.c */,
-				90E3955D2C1CB5DA00705076 /* CPColorWell2D.h */,
-				90E3955E2C1CB5DA00705076 /* CPGammaDisplayController.c */,
-				90E3955F2C1CB5DA00705076 /* CPGammaDisplayController.h */,
-				90E395602C1CB5DA00705076 /* CPGrayColorWell.c */,
-				90E395612C1CB5DA00705076 /* CPGrayColorWell.h */,
-				90E395622C1CB5DA00705076 /* CPSpectralColorWell.c */,
-				90E395632C1CB5DA00705076 /* CPSpectralColorWell.h */,
-			);
-			path = Displays;
-			sourceTree = "<group>";
-		};
-		90E3957B2C1CB5DA00705076 /* ColorControllers */ = {
-			isa = PBXGroup;
-			children = (
-				90E395642C1CB5DA00705076 /* Displays */,
-				90E395652C1CB5DA00705076 /* CPColorController.c */,
-				90E395662C1CB5DA00705076 /* CPColorController.h */,
-				90E395672C1CB5DA00705076 /* CPGrayColorController.c */,
-				90E395682C1CB5DA00705076 /* CPGrayColorController.h */,
-				90E395692C1CB5DA00705076 /* CPHSVHSLColorController.c */,
-				90E3956A2C1CB5DA00705076 /* CPHSVHSLColorController.h */,
-				90E3956B2C1CB5DA00705076 /* CPLabLchColorController.c */,
-				90E3956C2C1CB5DA00705076 /* CPLabLchColorController.h */,
-				90E3956D2C1CB5DA00705076 /* CPLuvUVWColorController.c */,
-				90E3956E2C1CB5DA00705076 /* CPLuvUVWColorController.h */,
-				90E3956F2C1CB5DA00705076 /* CPRGBColorController.c */,
-				90E395702C1CB5DA00705076 /* CPRGBColorController.h */,
-				90E395712C1CB5DA00705076 /* CPSpectralColorController.c */,
-				90E395722C1CB5DA00705076 /* CPSpectralColorController.h */,
-				90E395732C1CB5DA00705076 /* CPXYZColorController.c */,
-				90E395742C1CB5DA00705076 /* CPXYZColorController.h */,
-				90E395752C1CB5DA00705076 /* CPYCbCrColorController.c */,
-				90E395762C1CB5DA00705076 /* CPYCbCrColorController.h */,
-				90E395772C1CB5DA00705076 /* CPYuvYupvpColorController.c */,
-				90E395782C1CB5DA00705076 /* CPYuvYupvpColorController.h */,
-				90E395792C1CB5DA00705076 /* CPYxyColorController.c */,
-				90E3957A2C1CB5DA00705076 /* CPYxyColorController.h */,
-			);
-			path = ColorControllers;
-			sourceTree = "<group>";
-		};
-		90E3958C2C1CB5DA00705076 /* Machine */ = {
-			isa = PBXGroup;
-			children = (
-				90E3957C2C1CB5DA00705076 /* CPMachineButtonsController.c */,
-				90E3957D2C1CB5DA00705076 /* CPMachineButtonsController.h */,
-				90E3957E2C1CB5DA00705076 /* CPMachineController.c */,
-				90E3957F2C1CB5DA00705076 /* CPMachineController.h */,
-				90E395802C1CB5DA00705076 /* CPMachineGrayController.c */,
-				90E395812C1CB5DA00705076 /* CPMachineGrayController.h */,
-				90E395822C1CB5DA00705076 /* CPMachineIlluminationController.c */,
-				90E395832C1CB5DA00705076 /* CPMachineIlluminationController.h */,
-				90E395842C1CB5DA00705076 /* CPMachineLabController.c */,
-				90E395852C1CB5DA00705076 /* CPMachineLabController.h */,
-				90E395862C1CB5DA00705076 /* CPMachineObserverController.c */,
-				90E395872C1CB5DA00705076 /* CPMachineObserverController.h */,
-				90E395882C1CB5DA00705076 /* CPMachineRGBController.c */,
-				90E395892C1CB5DA00705076 /* CPMachineRGBController.h */,
-				90E3958A2C1CB5DA00705076 /* CPMachineWindowController.c */,
-				90E3958B2C1CB5DA00705076 /* CPMachineWindowController.h */,
-			);
-			path = Machine;
-			sourceTree = "<group>";
-		};
-		90E395A12C1CB5DA00705076 /* Metamerics */ = {
-			isa = PBXGroup;
-			children = (
-				90E3958D2C1CB5DA00705076 /* CPChromaticityErrorController.c */,
-				90E3958E2C1CB5DA00705076 /* CPChromaticityErrorController.h */,
-				90E3958F2C1CB5DA00705076 /* CPColorConversionsYcdUVW.c */,
-				90E395902C1CB5DA00705076 /* CPColorConversionsYcdUVW.h */,
-				90E395912C1CB5DA00705076 /* CPColorRenderingIndexController.c */,
-				90E395922C1CB5DA00705076 /* CPColorRenderingIndexController.h */,
-				90E395932C1CB5DA00705076 /* CPMetamericsController.c */,
-				90E395942C1CB5DA00705076 /* CPMetamericsController.h */,
-				90E395952C1CB5DA00705076 /* CPTotalMetamericIndexController.c */,
-				90E395962C1CB5DA00705076 /* CPTotalMetamericIndexController.h */,
-				90E395972C1CB5DA00705076 /* CPTwoColorController.c */,
-				90E395982C1CB5DA00705076 /* CPTwoColorController.h */,
-				90E395992C1CB5DA00705076 /* CPUVMetamericIndexController.c */,
-				90E3959A2C1CB5DA00705076 /* CPUVMetamericIndexController.h */,
-				90E3959B2C1CB5DA00705076 /* CPVisMetamericIndexController.c */,
-				90E3959C2C1CB5DA00705076 /* CPVisMetamericIndexController.h */,
-				90E3959D2C1CB5DA00705076 /* CPWhitePoints.c */,
-				90E3959E2C1CB5DA00705076 /* CPWhitePoints.h */,
-				90E3959F2C1CB5DA00705076 /* CPWhitePointsController.c */,
-				90E395A02C1CB5DA00705076 /* CPWhitePointsController.h */,
-			);
-			path = Metamerics;
-			sourceTree = "<group>";
-		};
-		90E395AF2C1CB5DA00705076 /* ThreeDee */ = {
-			isa = PBXGroup;
-			children = (
-				90E395A22C1CB5DA00705076 /* CPThreeDeeController.c */,
-				90E395A32C1CB5DA00705076 /* CPThreeDeeController.h */,
-				90E395A42C1CB5DA00705076 /* CPThreeDeeCoordinateController.c */,
-				90E395A52C1CB5DA00705076 /* CPThreeDeeCoordinateController.h */,
-				90E395A62C1CB5DA00705076 /* CPThreeDeeOpacityController.c */,
-				90E395A72C1CB5DA00705076 /* CPThreeDeeOpacityController.h */,
-				90E395A82C1CB5DA00705076 /* CPThreeDeeOptionsController.c */,
-				90E395A92C1CB5DA00705076 /* CPThreeDeeOptionsController.h */,
-				90E395AA2C1CB5DA00705076 /* CPThreeDeeOptionsController.nal */,
-				90E395AB2C1CB5DA00705076 /* CPThreeDeePerspectiveController.c */,
-				90E395AC2C1CB5DA00705076 /* CPThreeDeePerspectiveController.h */,
-				90E395AD2C1CB5DA00705076 /* CPThreeDeeView.c */,
-				90E395AE2C1CB5DA00705076 /* CPThreeDeeView.h */,
-			);
-			path = ThreeDee;
-			sourceTree = "<group>";
-		};
-		90E395C32C1CB5DA00705076 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				90E3957B2C1CB5DA00705076 /* ColorControllers */,
-				90E3958C2C1CB5DA00705076 /* Machine */,
-				90E395A12C1CB5DA00705076 /* Metamerics */,
-				90E395AF2C1CB5DA00705076 /* ThreeDee */,
-				90E395B02C1CB5DA00705076 /* ColorPrestoApplication.h */,
-				90E395B12C1CB5DA00705076 /* ColorPrestoApplication.m */,
-				90E395B22C1CB5DA00705076 /* CPAboutController.c */,
-				90E395B32C1CB5DA00705076 /* CPAboutController.h */,
-				90E395B42C1CB5DA00705076 /* CPColorPrestoApplication.c */,
-				90E395B52C1CB5DA00705076 /* CPColorPrestoApplication.h */,
-				90E395B62C1CB5DA00705076 /* CPColorsManager.c */,
-				90E395B72C1CB5DA00705076 /* CPColorsManager.h */,
-				90E395B82C1CB5DA00705076 /* CPDesign.c */,
-				90E395B92C1CB5DA00705076 /* CPDesign.h */,
-				90E395BA2C1CB5DA00705076 /* CPOpenGLHelper.c */,
-				90E395BB2C1CB5DA00705076 /* CPOpenGLHelper.h */,
-				90E395BC2C1CB5DA00705076 /* CPPreferences.c */,
-				90E395BD2C1CB5DA00705076 /* CPPreferences.h */,
-				90E395BE2C1CB5DA00705076 /* CPTranslations.c */,
-				90E395BF2C1CB5DA00705076 /* CPTranslations.h */,
-				90E395C02C1CB5DA00705076 /* main.c */,
-				90E395C12C1CB5DA00705076 /* main.m */,
-				90E395C22C1CB5DA00705076 /* mainC.h */,
-			);
-			name = src;
-			path = ../code/ColorPresto/src;
-			sourceTree = "<group>";
-		};
 		90E3964E2C1CDF3700705076 /* res */ = {
 			isa = PBXGroup;
 			children = (
@@ -2017,7 +2039,6 @@
 				TargetAttributes = {
 					904F309C2ADBCE4F00423098 = {
 						CreatedOnToolsVersion = 14.1;
-						DevelopmentTeam = YH3QFD54JB;
 						ProvisioningStyle = Automatic;
 					};
 					90BF531E274ABD41001FDE2A = {
@@ -2063,6 +2084,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				90E396562C1CDF3700705076 /* InfoPlist.strings in Resources */,
+				905E65732C1D87A400241440 /* CPThreeDeeOptionsController.nal in Resources */,
 				90E396552C1CDF3700705076 /* InfoPlist.strings in Resources */,
 				90E396542C1CDF3700705076 /* InfoPlist.strings in Resources */,
 				90E396512C1CDF3700705076 /* ColorPrestoChangelog.txt in Resources */,
@@ -2079,56 +2101,57 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90E395CF2C1CB5DA00705076 /* CPSpectralColorController.c in Sources */,
-				90E395DE2C1CB5DA00705076 /* CPColorRenderingIndexController.c in Sources */,
-				90E395D72C1CB5DA00705076 /* CPMachineIlluminationController.c in Sources */,
-				90E395D92C1CB5DA00705076 /* CPMachineObserverController.c in Sources */,
-				90E395ED2C1CB5DA00705076 /* ColorPrestoApplication.m in Sources */,
-				90E395DA2C1CB5DA00705076 /* CPMachineRGBController.c in Sources */,
-				90E395EC2C1CB5DA00705076 /* CPThreeDeeView.c in Sources */,
-				90E395CB2C1CB5DA00705076 /* CPHSVHSLColorController.c in Sources */,
-				90E395DC2C1CB5DA00705076 /* CPChromaticityErrorController.c in Sources */,
-				90E395E52C1CB5DA00705076 /* CPWhitePointsController.c in Sources */,
-				90E395F02C1CB5DA00705076 /* CPColorsManager.c in Sources */,
-				90E395D52C1CB5DA00705076 /* CPMachineController.c in Sources */,
-				90E395E92C1CB5DA00705076 /* CPThreeDeeOptionsController.c in Sources */,
-				90E395E32C1CB5DA00705076 /* CPVisMetamericIndexController.c in Sources */,
-				90E395E62C1CB5DA00705076 /* CPThreeDeeController.c in Sources */,
-				90E395CD2C1CB5DA00705076 /* CPLuvUVWColorController.c in Sources */,
-				90E395C92C1CB5DA00705076 /* CPColorController.c in Sources */,
-				90E395E22C1CB5DA00705076 /* CPUVMetamericIndexController.c in Sources */,
-				90E395DF2C1CB5DA00705076 /* CPMetamericsController.c in Sources */,
-				90E395E02C1CB5DA00705076 /* CPTotalMetamericIndexController.c in Sources */,
-				90E395DB2C1CB5DA00705076 /* CPMachineWindowController.c in Sources */,
-				90E395CE2C1CB5DA00705076 /* CPRGBColorController.c in Sources */,
-				90E395D02C1CB5DA00705076 /* CPXYZColorController.c in Sources */,
-				90E395C52C1CB5DA00705076 /* CPColorWell2D.c in Sources */,
-				90E395D32C1CB5DA00705076 /* CPYxyColorController.c in Sources */,
-				90E395EB2C1CB5DA00705076 /* CPThreeDeePerspectiveController.c in Sources */,
-				90E395D62C1CB5DA00705076 /* CPMachineGrayController.c in Sources */,
-				90E395F22C1CB5DA00705076 /* CPOpenGLHelper.c in Sources */,
-				90E395C42C1CB5DA00705076 /* CPColorWell1D.c in Sources */,
-				90E395F12C1CB5DA00705076 /* CPDesign.c in Sources */,
-				90E395DD2C1CB5DA00705076 /* CPColorConversionsYcdUVW.c in Sources */,
-				90E395D82C1CB5DA00705076 /* CPMachineLabController.c in Sources */,
-				90E395CA2C1CB5DA00705076 /* CPGrayColorController.c in Sources */,
-				90E395EF2C1CB5DA00705076 /* CPColorPrestoApplication.c in Sources */,
-				90E395D42C1CB5DA00705076 /* CPMachineButtonsController.c in Sources */,
-				90E395E42C1CB5DA00705076 /* CPWhitePoints.c in Sources */,
-				90E395CC2C1CB5DA00705076 /* CPLabLchColorController.c in Sources */,
-				90E395C62C1CB5DA00705076 /* CPGammaDisplayController.c in Sources */,
-				90E395F42C1CB5DA00705076 /* CPTranslations.c in Sources */,
-				90E395F32C1CB5DA00705076 /* CPPreferences.c in Sources */,
-				90E395F62C1CB5DA00705076 /* main.m in Sources */,
-				90E395C82C1CB5DA00705076 /* CPSpectralColorWell.c in Sources */,
-				90E395F52C1CB5DA00705076 /* main.c in Sources */,
-				90E395D12C1CB5DA00705076 /* CPYCbCrColorController.c in Sources */,
-				90E395E72C1CB5DA00705076 /* CPThreeDeeCoordinateController.c in Sources */,
-				90E395C72C1CB5DA00705076 /* CPGrayColorWell.c in Sources */,
-				90E395EE2C1CB5DA00705076 /* CPAboutController.c in Sources */,
-				90E395D22C1CB5DA00705076 /* CPYuvYupvpColorController.c in Sources */,
-				90E395E82C1CB5DA00705076 /* CPThreeDeeOpacityController.c in Sources */,
-				90E395E12C1CB5DA00705076 /* CPTwoColorController.c in Sources */,
+				905E65692C1D87A400241440 /* CPUVMetamericIndexController.c in Sources */,
+				905E65672C1D87A400241440 /* CPTotalMetamericIndexController.c in Sources */,
+				905E65552C1D87A400241440 /* CPRGBColorController.c in Sources */,
+				905E654A2C1D87A400241440 /* CPAboutController.c in Sources */,
+				905E65512C1D87A400241440 /* CPGrayColorController.c in Sources */,
+				905E65632C1D87A400241440 /* CPChromaticityErrorController.c in Sources */,
+				905E65662C1D87A400241440 /* CPMetamericsController.c in Sources */,
+				905E65532C1D87A400241440 /* CPLabLchColorController.c in Sources */,
+				905E655B2C1D87A400241440 /* CPMachineButtonsController.c in Sources */,
+				905E657A2C1D87A400241440 /* CPOpenGLHelper.c in Sources */,
+				905E656A2C1D87A400241440 /* CPVisMetamericIndexController.c in Sources */,
+				905E65622C1D87A400241440 /* CPMachineWindowController.c in Sources */,
+				905E65762C1D87A400241440 /* ColorPrestoApplication.m in Sources */,
+				905E65782C1D87A400241440 /* CPColorsManager.c in Sources */,
+				905E65702C1D87A400241440 /* CPThreeDeeCoordinateController.c in Sources */,
+				905E65562C1D87A400241440 /* CPSpectralColorController.c in Sources */,
+				905E65742C1D87A400241440 /* CPThreeDeePerspectiveController.c in Sources */,
+				905E655A2C1D87A400241440 /* CPYxyColorController.c in Sources */,
+				905E656B2C1D87A400241440 /* CPWhitePoints.c in Sources */,
+				905E656F2C1D87A400241440 /* CPThreeDeeController.c in Sources */,
+				905E654C2C1D87A400241440 /* CPColorWell2D.c in Sources */,
+				905E65682C1D87A400241440 /* CPTwoColorController.c in Sources */,
+				905E65612C1D87A400241440 /* CPMachineRGBController.c in Sources */,
+				905E65522C1D87A400241440 /* CPHSVHSLColorController.c in Sources */,
+				905E655D2C1D87A400241440 /* CPMachineGrayController.c in Sources */,
+				905E65582C1D87A400241440 /* CPYCbCrColorController.c in Sources */,
+				905E65722C1D87A400241440 /* CPThreeDeeOptionsController.c in Sources */,
+				905E655C2C1D87A400241440 /* CPMachineController.c in Sources */,
+				905E655F2C1D87A400241440 /* CPMachineLabController.c in Sources */,
+				905E65642C1D87A400241440 /* CPColorConversionsYcdUVW.c in Sources */,
+				905E656C2C1D87A400241440 /* CPWhitePointsController.c in Sources */,
+				905E655E2C1D87A400241440 /* CPMachineIlluminationController.c in Sources */,
+				905E65502C1D87A400241440 /* CPColorController.c in Sources */,
+				905E654F2C1D87A400241440 /* CPSpectralColorWell.c in Sources */,
+				905E65592C1D87A400241440 /* CPYuvYupvpColorController.c in Sources */,
+				905E654B2C1D87A400241440 /* CPColorWell1D.c in Sources */,
+				905E65792C1D87A400241440 /* CPDesign.c in Sources */,
+				905E657B2C1D87A400241440 /* CPTranslations.c in Sources */,
+				905E656E2C1D87A400241440 /* CPPreferencesController.c in Sources */,
+				905E65652C1D87A400241440 /* CPColorRenderingIndexController.c in Sources */,
+				905E657C2C1D87A400241440 /* main.c in Sources */,
+				905E654D2C1D87A400241440 /* CPGammaDisplayController.c in Sources */,
+				905E65602C1D87A400241440 /* CPMachineObserverController.c in Sources */,
+				905E65542C1D87A400241440 /* CPLuvUVWColorController.c in Sources */,
+				905E65712C1D87A400241440 /* CPThreeDeeOpacityController.c in Sources */,
+				905E65772C1D87A400241440 /* CPColorPrestoApplication.c in Sources */,
+				905E657D2C1D87A400241440 /* main.m in Sources */,
+				905E656D2C1D87A400241440 /* CPPreferences.c in Sources */,
+				905E65572C1D87A400241440 /* CPXYZColorController.c in Sources */,
+				905E65752C1D87A400241440 /* CPThreeDeeView.c in Sources */,
+				905E654E2C1D87A400241440 /* CPGrayColorWell.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

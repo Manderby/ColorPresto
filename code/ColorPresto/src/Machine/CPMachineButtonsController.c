@@ -14,6 +14,9 @@ struct CPMachineButtonsController{
   NAButton* resetMachineButton;
   NAButton* metamericsButton;
   NAButton* threeDeeButton;
+
+  NAButton* aboutButton;
+  NAButton* preferencesButton;
 };
 
 
@@ -28,6 +31,8 @@ NABool cp_PressMachineButton(NAReaction reaction){
     cpShowMetamerics();
   }else if(reaction.uiElement == con->threeDeeButton){
     cpShowThreeDee();
+  }else if(reaction.uiElement == con->aboutButton){
+    cpShowAbout();
   }
 
   return NA_TRUE;
@@ -41,18 +46,26 @@ CPMachineButtonsController* cpAllocMachineButtonsController(void){
   con->space = naNewSpace(naMakeSize(1, 1));
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->resetMachineButton = naNewTextPushButton(cpTranslate(CPResetButton), 110);
-  con->metamericsButton = naNewTextPushButton(cpTranslate(CPMetamericsButton), 110);
-  con->threeDeeButton = naNewTextPushButton(cpTranslate(CPThreeDeeButton), 110);
+  con->resetMachineButton = naNewTextPushButton(cpTranslate(CPResetButton), 100);
+  con->metamericsButton = naNewTextPushButton(cpTranslate(CPMetamericsButton), 100);
+  con->threeDeeButton = naNewTextPushButton(cpTranslate(CPThreeDeeButton), 100);
   naAddUIReaction(con->resetMachineButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
   naAddUIReaction(con->metamericsButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
   naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
+
+  con->aboutButton = naNewTextPushButton(cpTranslate(CPAboutButton), 100);
+  con->preferencesButton = naNewTextPushButton(cpTranslate(CPPreferencesButton), 100);
+  naAddUIReaction(con->aboutButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
+  naAddUIReaction(con->preferencesButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
 
   // layout
   cpBeginUILayout(con->space, spaceBezel);
   cpAddUIRow(con->resetMachineButton, uiElemHeight);
   cpAddUICol(con->metamericsButton, 0);
   cpAddUICol(con->threeDeeButton, 0);
+
+  cpAddUIRow(con->aboutButton, 2 * uiElemHeight);
+  cpAddUICol(con->preferencesButton, 0);
   cpEndUILayout();
 
   return con;

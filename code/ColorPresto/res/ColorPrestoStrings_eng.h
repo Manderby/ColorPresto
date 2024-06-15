@@ -116,6 +116,8 @@ NA_LOC(CPGrayDisplayGray, "Gray");
 NA_LOC(CPThreeDeeButton, "3D View");
 NA_LOC(CPMetamericsButton, "Metamerics");
 NA_LOC(CPResetButton, "Reset");
+NA_LOC(CPAboutButton, "About");
+NA_LOC(CPPreferencesButton, "Preferences");
 NA_LOC(CPSetButton, "Set");
 
 // The different color spaces.

@@ -17,8 +17,6 @@
 #include "CML.h"
 
 
-#define CP_THREEDEE_WINDOW_STORAGE_TAG 3
-
 
 #define marginHMiddle (spaceMarginLeft3D + threeDeeLabelWidth + marginH)
 #define fullControlWidth (marginHMiddle + threeDeeControlWidth + spaceMarginRight)

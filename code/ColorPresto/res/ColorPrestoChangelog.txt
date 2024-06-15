@@ -1,6 +1,8 @@
 
 -------------
 - Application changes its name from Color Prompt to Color Presto
+- Adding more languages
+- Adding about and preferences buttons
 
 Version 2.0.1
 -------------

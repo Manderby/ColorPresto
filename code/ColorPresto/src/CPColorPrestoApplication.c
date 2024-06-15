@@ -37,9 +37,9 @@ void cpStartupColorPrestoApplicationUI(){
   cpStartupDesign();
 
   app->machineWindowController = cpAllocMachineWindowController();
-  app->threeDeeController      = cpAllocThreeDeeController();
-  app->metamericsController    = cpAllocMetamericsController();
-  app->aboutController         = cpAllocAboutController();
+  app->threeDeeController      = NA_NULL;
+  app->metamericsController    = NA_NULL;
+  app->aboutController         = NA_NULL;
 
   cpSetCurrentColorController(cpGetInitialColorController(app->machineWindowController));
   cpShowMachineWindowController(app->machineWindowController);
@@ -48,10 +48,16 @@ void cpStartupColorPrestoApplicationUI(){
 
 
 void cpShutdownColorPrestoApplication(){
-  cpDeallocMetamericsController(app->metamericsController);
-  cpDeallocThreeDeeController(app->threeDeeController);
+  if(app->metamericsController) {
+    cpDeallocMetamericsController(app->metamericsController);
+  }
+  if(app->threeDeeController) {
+    cpDeallocThreeDeeController(app->threeDeeController);
+  }
+  if(app->aboutController) {
+    cpDeallocAboutController(app->aboutController);
+  }
   cpDeallocMachineWindowController(app->machineWindowController);
-  cpDeallocAboutController(app->aboutController);
 
   cpShutdownDesign();
 
@@ -81,27 +87,63 @@ CPColorsManager* cpGetColorsManager(){
   return app->colorsManager;
 }
 
-void cpUpdateMetamerics(){
-  cpUpdateMetamericsController(app->metamericsController);
-}
+
+
 void cpShowMetamerics(){
+  NABool newlyCreated = NA_FALSE;
+  if(!app->metamericsController) {
+    app->metamericsController = cpAllocMetamericsController();
+    newlyCreated = NA_TRUE;
+  }
   cpShowMetamericsController(app->metamericsController);
+  if(newlyCreated) {
+    cpUpdateMetamericsController(app->metamericsController);
+  }
 }
+void cpUpdateMetamerics(){
+  if(app->metamericsController) {
+    cpUpdateMetamericsController(app->metamericsController);
+  }
+}
+
+
+
 void cpShowThreeDee(){
+  NABool newlyCreated = NA_FALSE;
+  if(!app->threeDeeController) {
+    app->threeDeeController = cpAllocThreeDeeController();
+    newlyCreated = NA_TRUE;
+  }
   cpShowThreeDeeController(app->threeDeeController);
+  if(newlyCreated) {
+    cpUpdateThreeDeeController(app->threeDeeController);
+  }
 }
+void cpUpdateThreeDee(){
+  if(app->threeDeeController) {
+    cpUpdateThreeDeeController(app->threeDeeController);
+  }
+}
+
+
+
 void cpShowAbout(){
+  if(!app->aboutController) {
+    app->aboutController = cpAllocAboutController();
+  }
   cpShowAboutController(app->aboutController);
 }
 
+
+
 void cpUpdateColor(){
   cpUpdateMetamerics();
-  cpUpdateThreeDeeController(app->threeDeeController);
+  cpUpdateThreeDee();
 }
 void cpUpdateMachine(){
   cpUpdateMachineWindowController(app->machineWindowController);
   cpUpdateMetamerics();
-  cpUpdateThreeDeeController(app->threeDeeController);
+  cpUpdateThreeDee();
 }
 
 

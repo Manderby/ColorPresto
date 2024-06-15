@@ -116,6 +116,8 @@ enum{
   CPThreeDeeButton,
   CPMetamericsButton,
   CPResetButton,
+  CPAboutButton,
+  CPPreferencesButton,
   CPSetButton,
 
   // Colorspaces

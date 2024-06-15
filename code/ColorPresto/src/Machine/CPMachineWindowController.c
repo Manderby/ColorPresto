@@ -20,8 +20,6 @@
 #include "NAApp/NAApp.h"
 
 
-#define CP_COLOR_PRESTO_STORAGE_TAG 0
-
 
 NABool cpControllerWindowCloses(NAReaction reaction){
   naStopApplication();

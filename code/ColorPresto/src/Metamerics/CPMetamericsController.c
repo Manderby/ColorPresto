@@ -20,8 +20,6 @@
 #include "NAApp/NAApp.h"
 
 
-#define CP_METAMERICS_WINDOW_STORAGE_TAG 2
-
 
 struct CPMetamericsController{
   NAWindow* window;

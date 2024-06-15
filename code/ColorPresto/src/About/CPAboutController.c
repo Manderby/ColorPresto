@@ -1,10 +1,7 @@
 
 #include "CPAboutController.h"
-//#include "CPApplication.h"
 #include "CPTranslations.h"
-
-
-#define CP_ABOUT_WINDOW_STORAGE_TAG 4
+#include "../mainC.h"
 
 
 struct CPAboutController{

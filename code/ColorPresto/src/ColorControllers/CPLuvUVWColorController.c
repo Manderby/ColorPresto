@@ -3,7 +3,7 @@
 
 #include "../CPColorPrestoApplication.h"
 #include "../CPDesign.h"
-#include "../CPPreferences.h"
+#include "../Preferences/CPPreferences.h"
 #include "../CPTranslations.h"
 #include "Displays/CPColorWell1D.h"
 #include "Displays/CPColorWell2D.h"
