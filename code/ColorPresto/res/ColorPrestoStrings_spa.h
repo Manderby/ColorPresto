@@ -2,11 +2,11 @@
 // //////////////////////////////////
 // English
 //
-NA_LOC_LANG("zho");
+NA_LOC_LANG("spa");
 
 // General things. Do not translate
 NA_LOC(CPApplicationName, "Color Presto");
-NA_LOC(CPDone,           "完成");
+NA_LOC(CPDone, "Hecho");
 NA_LOC(CPAverage, "Ø:");
 NA_LOC(CPColorIndex1, "1:");
 NA_LOC(CPColorIndex2, "2:");
@@ -73,50 +73,50 @@ NA_LOC(CPYxyColorChannelx, "x");
 NA_LOC(CPYxyColorChannely, "y");
 
 // Observer Strings
-
-NA_LOC(CPObserverTitle, "观察者");
-NA_LOC(CPObserverSteps, "步骤");
+NA_LOC(CPObserverTitle, "Observador");
+NA_LOC(CPObserverSteps, "Pasos");
 NA_LOC(CPObserverNanoMeterSteps, "%d nm"); // Do not translate
 NA_LOC(CPObserverDegree2, "2°");           // Do not translate
 NA_LOC(CPObserverDegree10, "10°");         // Do not translate
 
 // Illumination Strings
-NA_LOC(CPIlluminationTitle, "照明");
-NA_LOC(CPIlluminationTemperature, "色温");
+NA_LOC(CPIlluminationTitle, "Iluminación");
+NA_LOC(CPIlluminationTemperature, "Temperatura");
 NA_LOC(CPIlluminationKelvin, "K");         // do not translate
-NA_LOC(CPIlluminationWhitePoint, "白点 Yxy");
+NA_LOC(CPIlluminationWhitePoint, "Punto Blanco Yxy");
 
 // RGB Colorspace Strings
-NA_LOC(CPRGBColorSpaceTitle, "RGB 色彩空间");
-NA_LOC(CPRGBColorSpaceRed, "Red(红色)");
-NA_LOC(CPRGBColorSpaceGreen, "Green(绿色)");
-NA_LOC(CPRGBColorSpaceBlue, "Blue(蓝色)");
-NA_LOC(CPRGBColorResponse, "响应曲线");
+NA_LOC(CPRGBColorSpaceTitle, "Espacio de Color RGB");
+NA_LOC(CPRGBColorSpaceRed, "Rojo");
+NA_LOC(CPRGBColorSpaceGreen, "Verde");
+NA_LOC(CPRGBColorSpaceBlue, "Azul");
+NA_LOC(CPRGBColorResponse, "Curva de Respuesta");
 NA_LOC(CPRGBColorChannelRGB, "R+G+B"); // do not translate
-NA_LOC(CPRGBColorChannelLinear, "线性");
-NA_LOC(CPRGBColorChannelSplit, "分割");
-NA_LOC(CPRGBColorChannelGamma, "伽马");
-NA_LOC(CPRGBColorChannelOffset, "偏移");
+NA_LOC(CPRGBColorChannelLinear, "Lineal");
+NA_LOC(CPRGBColorChannelSplit, "Dividir");
+NA_LOC(CPRGBColorChannelGamma, "Gamma");
+NA_LOC(CPRGBColorChannelOffset, "Desplazamiento");
+
 // Lab Colorspace Strings
-NA_LOC(CPLabColorSpaceTitle, "Lab 色彩空间");
+NA_LOC(CPLabColorSpaceTitle, "Espacio de Color Lab");
 NA_LOC(CPLabColorSpaceK, "K");    // do not translate
 NA_LOC(CPLabColorSpaceke, "ke");  // do not translate
 
 // Gray Colorspace Strings
-NA_LOC(CPGrayColorSpace, "灰色色彩空间");
+NA_LOC(CPGrayColorSpace, "Espacio de Color Gris");
 NA_LOC(CPGrayDisplayColor, "Color");  // do not translate
 NA_LOC(CPGrayDisplayGray, "Gray");    // do not translate
 
 // Buttons Strings
-NA_LOC(CPThreeDeeButton, "3D 视图");
-NA_LOC(CPMetamericsButton, "元色观察");
-NA_LOC(CPResetButton, "重置");
-NA_LOC(CPAboutButton, "关于");
-NA_LOC(CPPreferencesButton, "首选项");
-NA_LOC(CPSetButton, "设置");
+NA_LOC(CPThreeDeeButton, "Vista 3D");
+NA_LOC(CPMetamericsButton, "Metamerismo");
+NA_LOC(CPResetButton, "Restablecer");
+NA_LOC(CPAboutButton, "Acerca de");
+NA_LOC(CPPreferencesButton, "Preferencias");
+NA_LOC(CPSetButton, "Establecer");
 
 // The different color spaces.
-NA_LOC(CPColorSpace, "颜色空间");
+NA_LOC(CPColorSpace, "Espacio de Color");
 NA_LOC(CPColorSpaceHSL,   "HSL");     // do not translate
 NA_LOC(CPColorSpaceHSV,   "HSV");     // do not translate
 NA_LOC(CPColorSpaceLab,   "Lab");     // do not translate
@@ -132,53 +132,53 @@ NA_LOC(CPColorSpaceYuv,   "Yuv");     // do not translate
 NA_LOC(CPColorSpaceYxy,   "Yxy");     // do not translate
 
 // Translations for the Whitepoint and Metamerics Window
-NA_LOC(CPWhitePointsAndMetamerics, "白点和元色观察");
+NA_LOC(CPWhitePointsAndMetamerics, "Puntos Blancos y Metamerismo");
 // %s is the name of the currently selected illumination.
-NA_LOC(CPCurrentIllumination, "当前: %s");
-NA_LOC(CPReferenceIllumination, "参考:");
-NA_LOC(CPChromaticityErrorTitle, "色度误差:");
-NA_LOC(CPColorRenderingIndex, "色彩再现指数:");
-NA_LOC(CPVisMetamericIndex, "可见光范围元色观察指数:");
-NA_LOC(CPUVMetamericIndex, "紫外线范围元色观察指数:");
-NA_LOC(CPTotalMetamericIndex, "总元色观察指数 (1-8):");
+NA_LOC(CPCurrentIllumination, "Actual: %s");
+NA_LOC(CPReferenceIllumination, "Referencia:");
+NA_LOC(CPChromaticityErrorTitle, "Error de Cromaticidad:");
+NA_LOC(CPColorRenderingIndex, "Índice de Reproducción Cromática:");
+NA_LOC(CPVisMetamericIndex, "Índice Metamérico Rango Visible:");
+NA_LOC(CPUVMetamericIndex, "Índice Metamérico Rango Ultravioleta:");
+NA_LOC(CPTotalMetamericIndex, "Índice Metamérico Total (1-8):");
 // %s is a letter A-E denoting a grade.
-NA_LOC(CPGrade, "等级 %s");
+NA_LOC(CPGrade, "Grado %s");
 NA_LOC(CPD50, "D50");
 NA_LOC(CPD55, "D55");
 NA_LOC(CPD65, "D65");
 NA_LOC(CPD75, "D75");
 
 // Translations for the 3D Window
-NA_LOC(CP3DView, "3D 视图");
-NA_LOC(CPCoordinates, "坐标");
-NA_LOC(CPSteps, "步骤");
-NA_LOC(CPRotation, "旋转");
-NA_LOC(CPStop, "停止");
-NA_LOC(CPCartesian, "%s 笛卡尔"); // %s is a colorspace name
-NA_LOC(CPPointsOpacity, "点的不透明度");
-NA_LOC(CPGridOpacity, "网格不透明度");
-NA_LOC(CPGridTint, "网格色调");
-NA_LOC(CPBodyTint, "物体色调");
-NA_LOC(CPSolid, "实体物体");
-NA_LOC(CPAxis, "轴");
-NA_LOC(CPSpectrum, "光谱");
-NA_LOC(CPBackground, "背景");
-NA_LOC(CPFovy, "焦距");
+NA_LOC(CP3DView, "Vista 3D");
+NA_LOC(CPCoordinates, "Coordenadas");
+NA_LOC(CPSteps, "Pasos");
+NA_LOC(CPRotation, "Rotación");
+NA_LOC(CPStop, "Detener");
+NA_LOC(CPCartesian, "%s Cartesian"); // %s is a colorspace name
+NA_LOC(CPPointsOpacity, "Opacidad de Puntos");
+NA_LOC(CPGridOpacity, "Opacidad de Rejilla");
+NA_LOC(CPGridTint, "Tinte de Rejilla");
+NA_LOC(CPBodyTint, "Tinte del Cuerpo");
+NA_LOC(CPSolid, "Cuerpo Sólido");
+NA_LOC(CPAxis, "Eje");
+NA_LOC(CPSpectrum, "Espectro");
+NA_LOC(CPBackground, "Fondo");
+NA_LOC(CPFovy, "Longitud Focal");
 
 // Translations for the About Window
-NA_LOC(CPAbout,          "关于 %s");
-NA_LOC(CPVersionBuild,   "版本 %s (构建 %s)");
-NA_LOC(CPOnlineHelp,     "在线帮助");
+NA_LOC(CPAbout, "Acerca de %s");
+NA_LOC(CPVersionBuild, "Versión %s (Compilación %s)");
+NA_LOC(CPOnlineHelp, "Ayuda en línea");
 NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
 
 // Translations for the Preferences Window
-NA_LOC(CPPreferences,          "首选项");
+NA_LOC(CPPreferences, "Preferencias");
 
-// Strings for language selection
-NA_LOC(CPPreferencesLanguage,               "语言 / 言語 / Language / Sprache");
-NA_LOC(CPPreferencesLanguageSameAsSystem,   "跟随系统");
-NA_LOC(CPPreferencesLanguageReport,         "报告翻译不当...");
-NA_LOC(CPPreferencesLanguageChangeAlertTitle, "更改语言");
-NA_LOC(CPPreferencesLanguageChangeAlertText, "语言已更改。请退出并重新打开应用程序以生效。");
-NA_LOC(CPPreferencesLanguageBadTranslationTitle, "报告翻译不当");
-NA_LOC(CPPreferencesLanguageBadTranslationText, "此应用程序的部分内容是由人工智能翻译的。通过发送电子邮件至 karograph@manderc.com（链接在关于窗口中）帮助改进翻译。请提供足够的信息，以便将您的建议正确地整合到适当的位置。\n\n非常感谢您的帮助！");
+// Translations for language selection
+NA_LOC(CPPreferencesLanguage,               "Idioma / Language / 言語 / Sprache");
+NA_LOC(CPPreferencesLanguageSameAsSystem,   "Mismo que el Sistema");
+NA_LOC(CPPreferencesLanguageReport,         "Reportar traducciones incorrectas...");
+NA_LOC(CPPreferencesLanguageChangeAlertTitle, "Cambio de Idioma");
+NA_LOC(CPPreferencesLanguageChangeAlertText, "El idioma ha sido cambiado. Por favor, salga y vuelva a abrir la aplicación para que tenga efecto.");
+NA_LOC(CPPreferencesLanguageBadTranslationTitle, "Reportar traducciones incorrectas");
+NA_LOC(CPPreferencesLanguageBadTranslationText, "Algunas partes de esta aplicación han sido traducidas por inteligencia artificial. Ayude a mejorar la traducción enviando un correo electrónico a karograph@manderc.com (el enlace está en la ventana 'Acerca de'). Por favor, proporcione suficiente información para incorporar su sugerencia en el lugar adecuado.\n\n¡Su ayuda es muy apreciada!");

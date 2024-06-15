@@ -104,8 +104,8 @@ NA_LOC(CPLabColorSpaceke, "ke");  // do not translate
 
 // Gray Colorspace Strings
 NA_LOC(CPGrayColorSpace, "Grau Farbraum");
-NA_LOC(CPGrayDisplayColor, "Farbe");
-NA_LOC(CPGrayDisplayGray, "Grau");
+NA_LOC(CPGrayDisplayColor, "Color");  // do not translate
+NA_LOC(CPGrayDisplayGray, "Gray");    // do not translate
 
 // Buttons Strings
 NA_LOC(CPThreeDeeButton, "3D Ansicht");
@@ -116,7 +116,7 @@ NA_LOC(CPPreferencesButton, "Einstellungen");
 NA_LOC(CPSetButton, "Set");
 
 // The different color spaces
-NA_LOC(CPColorSpace, "Farbraum");     // DO translate
+NA_LOC(CPColorSpace, "Farbraum");
 NA_LOC(CPColorSpaceHSL,   "HSL");     // do not translate
 NA_LOC(CPColorSpaceHSV,   "HSV");     // do not translate
 NA_LOC(CPColorSpaceLab,   "Lab");     // do not translate

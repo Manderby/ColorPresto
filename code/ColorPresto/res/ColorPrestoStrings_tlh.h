@@ -104,8 +104,8 @@ NA_LOC(CPLabColorSpaceke, "ke");  // do not translate
 
 // Gray Colorspace Strings
 NA_LOC(CPGrayColorSpace, "chIS SIbHa' ngebmeH");
-NA_LOC(CPGrayDisplayColor, "Color");
-NA_LOC(CPGrayDisplayGray, "Gray");
+NA_LOC(CPGrayDisplayColor, "Color");  // do not translate
+NA_LOC(CPGrayDisplayGray, "Gray");    // do not translate
 
 // Buttons Strings
 NA_LOC(CPThreeDeeButton, "3D Dab");
