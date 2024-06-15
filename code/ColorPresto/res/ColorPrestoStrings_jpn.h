@@ -4,14 +4,9 @@
 //
 NA_LOC_LANG("jpn");
 
-NA_LOC(CPAbout, "バージョン情報 %s");
-NA_LOC(CPDone, "完了");
-NA_LOC(CPVersionBuild, "バージョン %s (ビルド %s)");
-NA_LOC(CPOnlineHelp, "オンラインヘルプ");
-NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
-
 // General things.
 NA_LOC(CPApplicationName, "Color Presto");  // do not translate
+NA_LOC(CPDone, "完了");
 NA_LOC(CPAverage, "Ø:");                     // do not translate
 NA_LOC(CPColorIndex1, "1:");
 NA_LOC(CPColorIndex2, "2:");
@@ -116,6 +111,8 @@ NA_LOC(CPGrayDisplayGray, "グレー");
 NA_LOC(CPThreeDeeButton, "3D表示");
 NA_LOC(CPMetamericsButton, "メタメリズム");
 NA_LOC(CPResetButton, "リセット");
+NA_LOC(CPAboutButton, "について");
+NA_LOC(CPPreferencesButton, "環境設定");
 NA_LOC(CPSetButton, "設定");
 
 // The different color spaces.
@@ -144,7 +141,6 @@ NA_LOC(CPColorRenderingIndex, "演色評価指数:");
 NA_LOC(CPVisMetamericIndex, "可視範囲メタメリズム指数:");
 NA_LOC(CPUVMetamericIndex, "紫外線範囲メタメリズム指数:");
 NA_LOC(CPTotalMetamericIndex, "総メタメリズム指数 (1-8):");
-
 // %s is a letter A-E denoting a grade.
 NA_LOC(CPGrade, "グレード %s");
 NA_LOC(CPD50, "D50");
@@ -169,5 +165,21 @@ NA_LOC(CPSpectrum, "スペクトル");
 NA_LOC(CPBackground, "背景");
 NA_LOC(CPFovy, "焦点距離");
 
+// Translations for the About Window
+NA_LOC(CPAbout, "バージョン情報 %s");
+NA_LOC(CPVersionBuild, "バージョン %s (ビルド %s)");
+NA_LOC(CPOnlineHelp, "オンラインヘルプ");
+NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
 
+// Translations for the Preferences Window
+NA_LOC(CPPreferences,          "環境設定");
+
+// Strings for language selection
+NA_LOC(CPPreferencesLanguage,               "言語 / Language / Sprache / Idioma");
+NA_LOC(CPPreferencesLanguageSameAsSystem,   "システムと同じ");
+NA_LOC(CPPreferencesLanguageReport,         "翻訳ミスを報告する...");
+NA_LOC(CPPreferencesLanguageChangeAlertTitle, "言語の変更");
+NA_LOC(CPPreferencesLanguageChangeAlertText, "言語が変更されました。変更を有効にするには、アプリケーションを終了して再度開いてください。");
+NA_LOC(CPPreferencesLanguageBadTranslationTitle, "翻訳ミスを報告する");
+NA_LOC(CPPreferencesLanguageBadTranslationText, "このアプリケーションの一部は人工知能によって翻訳されています。翻訳を改善するために、karograph@manderc.com にメールを送信してください（リンクは情報ウィンドウにあります）。あなたの提案を適切な場所に組み込むための十分な情報を提供してください。\n\nあなたの助けは非常に感謝されます！");
 

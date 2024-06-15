@@ -34,26 +34,18 @@ struct CPLabLchColorController{
 
 
 
-typedef enum {
-  Lab,
-  Lch,
-  LabLchSelectCount
-} LabLchSelect;
-
-
-
 NABool cp_LabLchSelectionChanged(NAReaction reaction){
   CPLabLchColorController* con = (CPLabLchColorController*)reaction.controller;
   
-  LabLchSelect lablchSelect = (LabLchSelect)naGetPreferencesEnum(cpPrefs[CPLabLchSelect]);
+  LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
   CMLColorType oldColorType = (lablchSelect == Lab) ? CML_COLOR_Lab : CML_COLOR_Lch;
   CMLColorType newColorType = oldColorType;
 
   if(reaction.uiElement == con->radioLab){
-    naSetPreferencesEnum(cpPrefs[CPLabLchSelect], Lab);
+    cpSetPrefsLabLchSelect(Lab);
     newColorType = CML_COLOR_Lab;
   }else if(reaction.uiElement == con->radioLch){
-    naSetPreferencesEnum(cpPrefs[CPLabLchSelect], Lch);
+    cpSetPrefsLabLchSelect(Lch);
     newColorType = CML_COLOR_Lch;
   }
 
@@ -90,7 +82,7 @@ NABool cp_LabValueEdited(NAReaction reaction){
 
 
 CPLabLchColorController* cpAllocLabLchColorController(void){
-  LabLchSelect lablchSelect = (LabLchSelect)naInitPreferencesEnum(cpPrefs[CPLabLchSelect], Lab, LabLchSelectCount);
+  LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
   CMLColorType colorType = (lablchSelect == Lab) ? CML_COLOR_Lab : CML_COLOR_Lch;
 
   CPLabLchColorController* con = naAlloc(CPLabLchColorController);
@@ -173,7 +165,7 @@ void cpUpdateLabLchColorController(CPLabLchColorController* con){
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   cpUpdateColorController(&(con->baseController));
 
-  LabLchSelect lablchSelect = (LabLchSelect)naGetPreferencesEnum(cpPrefs[CPLabLchSelect]);
+  LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
   CMLColorType colorType = (lablchSelect == Lab) ? CML_COLOR_Lab : CML_COLOR_Lch;
   
   naSetRadioState(con->radioLab, lablchSelect == Lab);

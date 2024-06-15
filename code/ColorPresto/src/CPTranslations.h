@@ -4,14 +4,9 @@
 
 
 enum{
-  CPAbout,
-  CPDone,
-  CPVersionBuild,
-  CPOnlineHelp,
-  CPApplicationHelpURL,
-
   // General things
   CPApplicationName,
+  CPDone,
   CPAverage,
   CPColorIndex1,
   CPColorIndex2,
@@ -167,7 +162,33 @@ enum{
   CPAxis,
   CPSpectrum,
   CPBackground,
-  CPFovy
+  CPFovy,
+  
+  // Strings for the About Window
+  CPAbout,
+  CPVersionBuild,
+  CPOnlineHelp,
+  CPApplicationHelpURL,
+
+  // Strings for the Preferences Wincdow
+  CPPreferences,
+  
+  // Strings for Language preference
+  CPPreferencesLanguage,
+  CPPreferencesLanguageSameAsSystem,
+  CPPreferencesLanguageDeutsch,
+  CPPreferencesLanguageEnglish,
+  CPPreferencesLanguageEspanol,
+  CPPreferencesLanguageFrancais,
+  CPPreferencesLanguageKlingon,
+  CPPreferencesLanguageJapanese,
+  CPPreferencesLanguageChinese,
+  CPPreferencesLanguageReport,
+  CPPreferencesLanguageChangeAlertTitle,
+  CPPreferencesLanguageChangeAlertText,
+  CPPreferencesLanguageBadTranslationTitle,
+  CPPreferencesLanguageBadTranslationText,
+
 };
 
 const NAUTF8Char* cpTranslate(NAInt id);

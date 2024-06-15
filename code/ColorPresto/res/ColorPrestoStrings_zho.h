@@ -4,14 +4,9 @@
 //
 NA_LOC_LANG("zho");
 
-NA_LOC(CPAbout,          "关于 %s");
-NA_LOC(CPDone,           "完成");
-NA_LOC(CPVersionBuild,   "版本 %s (构建 %s)");
-NA_LOC(CPOnlineHelp,     "在线帮助");
-NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
-
 // General things. Do not translate
 NA_LOC(CPApplicationName, "Color Presto");
+NA_LOC(CPDone,           "完成");
 NA_LOC(CPAverage, "Ø:");
 NA_LOC(CPColorIndex1, "1:");
 NA_LOC(CPColorIndex2, "2:");
@@ -116,6 +111,8 @@ NA_LOC(CPGrayDisplayGray, "灰色");
 NA_LOC(CPThreeDeeButton, "3D 视图");
 NA_LOC(CPMetamericsButton, "元色观察");
 NA_LOC(CPResetButton, "重置");
+NA_LOC(CPAboutButton, "关于");
+NA_LOC(CPPreferencesButton, "首选项");
 NA_LOC(CPSetButton, "设置");
 
 // The different color spaces.
@@ -167,3 +164,21 @@ NA_LOC(CPAxis, "轴");
 NA_LOC(CPSpectrum, "光谱");
 NA_LOC(CPBackground, "背景");
 NA_LOC(CPFovy, "焦距");
+
+// Translations for the About Window
+NA_LOC(CPAbout,          "关于 %s");
+NA_LOC(CPVersionBuild,   "版本 %s (构建 %s)");
+NA_LOC(CPOnlineHelp,     "在线帮助");
+NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
+
+// Translations for the Preferences Window
+NA_LOC(CPPreferences,          "首选项");
+
+// Strings for language selection
+NA_LOC(CPPreferencesLanguage,               "语言 / 言語 / Language / Sprache");
+NA_LOC(CPPreferencesLanguageSameAsSystem,   "跟随系统");
+NA_LOC(CPPreferencesLanguageReport,         "报告翻译不当...");
+NA_LOC(CPPreferencesLanguageChangeAlertTitle, "更改语言");
+NA_LOC(CPPreferencesLanguageChangeAlertText, "语言已更改。请退出并重新打开应用程序以生效。");
+NA_LOC(CPPreferencesLanguageBadTranslationTitle, "报告翻译不当");
+NA_LOC(CPPreferencesLanguageBadTranslationText, "此应用程序的部分内容是由人工智能翻译的。通过发送电子邮件至 karograph@manderc.com（链接在关于窗口中）帮助改进翻译。请提供足够的信息，以便将您的建议正确地整合到适当的位置。\n\n非常感谢您的帮助！");

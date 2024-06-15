@@ -4,7 +4,8 @@
 #include "NAUtility/NAMemory.h"
 #include "CPColorPrestoApplication.h"
 #include "CPTranslations.h"
-#include "CPAboutController.h"
+#include "About/CPAboutController.h"
+#include "Preferences/CPPreferences.h"
 #include "NAApp/NAApp.h"
 
 
@@ -47,6 +48,7 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
 
 void preStartup(void* arg){
   initTranslations();
+  initPreferences();
 
   cpStartupColorPrestoApplication();
 }
@@ -57,6 +59,11 @@ void postStartup(void* arg){
   #if NA_OS == NA_OS_MAC_OS_X
     naLoadNib("ColorPresto", NA_NULL);
   #endif
+
+  NALanguageCode3 languageCode = cpGetPrefsPreferredLanguage();
+  if(languageCode != 0){
+    naSetTranslatorLanguagePreference(languageCode);
+  }
 
   // Color Presto
   cpStartupColorPrestoApplicationUI();

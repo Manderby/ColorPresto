@@ -1,11 +1,12 @@
 
 #include "CPColorPrestoApplication.h"
 
-#include "CPAboutController.h"
 #include "CPColorsManager.h"
 #include "CPDesign.h"
+#include "About/CPAboutController.h"
 #include "Machine/CPMachineWindowController.h"
 #include "Metamerics/CPMetamericsController.h"
+#include "Preferences/CPPreferencesController.h"
 #include "ThreeDee/CPThreeDeeController.h"
 
 #include "NAUtility/NAMemory.h"
@@ -19,6 +20,7 @@ struct CPColorPrestoApplication{
   CPMetamericsController* metamericsController;
   CPThreeDeeController* threeDeeController;
   CPAboutController* aboutController;
+  CPPreferencesController* preferencesController;
 };
 
 
@@ -36,10 +38,11 @@ void cpStartupColorPrestoApplication(){
 void cpStartupColorPrestoApplicationUI(){
   cpStartupDesign();
 
-  app->machineWindowController = cpAllocMachineWindowController();
-  app->threeDeeController      = NA_NULL;
-  app->metamericsController    = NA_NULL;
   app->aboutController         = NA_NULL;
+  app->machineWindowController = cpAllocMachineWindowController();
+  app->metamericsController    = NA_NULL;
+  app->preferencesController   = NA_NULL;
+  app->threeDeeController      = NA_NULL;
 
   cpSetCurrentColorController(cpGetInitialColorController(app->machineWindowController));
   cpShowMachineWindowController(app->machineWindowController);
@@ -48,16 +51,19 @@ void cpStartupColorPrestoApplicationUI(){
 
 
 void cpShutdownColorPrestoApplication(){
-  if(app->metamericsController) {
-    cpDeallocMetamericsController(app->metamericsController);
-  }
   if(app->threeDeeController) {
     cpDeallocThreeDeeController(app->threeDeeController);
   }
+  if(app->preferencesController) {
+    cpDeallocPreferencesController(app->preferencesController);
+  }
+  if(app->metamericsController) {
+    cpDeallocMetamericsController(app->metamericsController);
+  }
+  cpDeallocMachineWindowController(app->machineWindowController);
   if(app->aboutController) {
     cpDeallocAboutController(app->aboutController);
   }
-  cpDeallocMachineWindowController(app->machineWindowController);
 
   cpShutdownDesign();
 
@@ -132,6 +138,20 @@ void cpShowAbout(){
     app->aboutController = cpAllocAboutController();
   }
   cpShowAboutController(app->aboutController);
+}
+
+
+
+void cpShowPreferences(){
+  NABool newlyCreated = NA_FALSE;
+  if(!app->preferencesController) {
+    app->preferencesController = cpAllocPreferencesController();
+    newlyCreated = NA_TRUE;
+  }
+  cpShowPreferencesController(app->preferencesController);
+  if(newlyCreated) {
+    cpUpdatePreferencesController(app->preferencesController);
+  }
 }
 
 

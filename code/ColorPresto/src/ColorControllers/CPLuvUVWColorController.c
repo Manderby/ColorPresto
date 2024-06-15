@@ -34,26 +34,19 @@ struct CPLuvUVWColorController{
 
 
 
-typedef enum {
-  Luv,
-  UVW,
-  LuvUVWSelectCount
-} LuvUVWSelect;
-
-
 
 NABool cp_LuvUVWSelectionChanged(NAReaction reaction){
   CPLuvUVWColorController* con = (CPLuvUVWColorController*)reaction.controller;
   
-  LuvUVWSelect luvuvwSelect = (LuvUVWSelect)naGetPreferencesEnum(cpPrefs[CPLuvUVWSelect]);
+  LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
   CMLColorType oldColorType = (luvuvwSelect == Luv) ? CML_COLOR_Luv : CML_COLOR_UVW;
   CMLColorType newColorType = oldColorType;
 
   if(reaction.uiElement == con->radioLuv){
-    naSetPreferencesEnum(cpPrefs[CPLuvUVWSelect], Luv);
+    cpSetPrefsLuvUVWSelect(Luv);
     newColorType = CML_COLOR_Luv;
   }else if(reaction.uiElement == con->radioUVW){
-    naSetPreferencesEnum(cpPrefs[CPLuvUVWSelect], UVW);
+    cpSetPrefsLuvUVWSelect(UVW);
     newColorType = CML_COLOR_UVW;
   }
 
@@ -90,7 +83,7 @@ NABool cp_LuvValueEdited(NAReaction reaction){
 
 
 CPLuvUVWColorController* cpAllocLuvUVWColorController(void){
-  LuvUVWSelect luvuvwSelect = (LuvUVWSelect)naInitPreferencesEnum(cpPrefs[CPLuvUVWSelect], Luv, LuvUVWSelectCount);
+  LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
   CMLColorType colorType = (luvuvwSelect == Luv) ? CML_COLOR_Luv : CML_COLOR_UVW;
 
   CPLuvUVWColorController* con = naAlloc(CPLuvUVWColorController);
@@ -172,7 +165,7 @@ void cpSetLuvUVWColorControllerColorData(CPLuvUVWColorController* con, const voi
 void cpUpdateLuvUVWColorController(CPLuvUVWColorController* con){
   cpUpdateColorController(&(con->baseController));
 
-  LuvUVWSelect luvuvwSelect = (LuvUVWSelect)naGetPreferencesEnum(cpPrefs[CPLuvUVWSelect]);
+  LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
   CMLColorType colorType = (luvuvwSelect == Luv) ? CML_COLOR_Luv : CML_COLOR_UVW;
   
   naSetRadioState(con->radioLuv, luvuvwSelect == Luv);

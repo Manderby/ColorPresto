@@ -34,26 +34,19 @@ struct CPYuvYupvpColorController{
 
 
 
-typedef enum {
-  Yuv,
-  Yupvp,
-  YuvYupvpSelectCount
-} YuvYupvpSelect;
-
-
 
 NABool cp_YuvYupvpSelectionChanged(NAReaction reaction){
   CPYuvYupvpColorController* con = (CPYuvYupvpColorController*)reaction.controller;
   
-  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naGetPreferencesEnum(cpPrefs[CPYuvYupvpSelect]);
+  YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
   CMLColorType oldColorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
   CMLColorType newColorType = oldColorType;
 
   if(reaction.uiElement == con->radioYuv){
-    naSetPreferencesEnum(cpPrefs[CPYuvYupvpSelect], Yuv);
+    cpSetPrefsYuvYupvpSelect(Yuv);
     newColorType = CML_COLOR_Yuv;
   }else if(reaction.uiElement == con->radioYupvp){
-    naSetPreferencesEnum(cpPrefs[CPYuvYupvpSelect], Yupvp);
+    cpSetPrefsYuvYupvpSelect(Yupvp);
     newColorType = CML_COLOR_Yupvp;
   }
 
@@ -90,7 +83,7 @@ NABool cp_YuvValueEdited(NAReaction reaction){
 
 
 CPYuvYupvpColorController* cpAllocYuvColorController(void){
-  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naInitPreferencesEnum(cpPrefs[CPYuvYupvpSelect], Yupvp, YuvYupvpSelectCount);
+  YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
   CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
 
   CPYuvYupvpColorController* con = naAlloc(CPYuvYupvpColorController);
@@ -172,7 +165,7 @@ void cpSetYuvColorControllerColorData(CPYuvYupvpColorController* con, const void
 void cpUpdateYuvColorController(CPYuvYupvpColorController* con){
   cpUpdateColorController(&(con->baseController));
 
-  YuvYupvpSelect yuvyupvpSelect = (YuvYupvpSelect)naGetPreferencesEnum(cpPrefs[CPYuvYupvpSelect]);
+  YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
   CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
   
   naSetRadioState(con->radioYuv, yuvyupvpSelect == Yuv);

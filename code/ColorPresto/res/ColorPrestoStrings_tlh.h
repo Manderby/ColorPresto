@@ -4,14 +4,9 @@
 //
 NA_LOC_LANG("tlh");
 
-NA_LOC(CPAbout, "Qap %s");
-NA_LOC(CPDone, "Qap");
-NA_LOC(CPVersionBuild, "lo'laH %s (ghIch %s)");
-NA_LOC(CPOnlineHelp, "tera' QaQ");
-NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
-
 // General things. Do not translate
 NA_LOC(CPApplicationName, "Color Presto");
+NA_LOC(CPDone, "Qap");
 NA_LOC(CPAverage, "Ø:");
 NA_LOC(CPColorIndex1, "1:");
 NA_LOC(CPColorIndex2, "2:");
@@ -116,6 +111,8 @@ NA_LOC(CPGrayDisplayGray, "Gray");
 NA_LOC(CPThreeDeeButton, "3D Dab");
 NA_LOC(CPMetamericsButton, "MetamerIch");
 NA_LOC(CPResetButton, "jegh");
+NA_LOC(CPAboutButton, "Qap");
+NA_LOC(CPPreferencesButton, "wIvmeH");
 NA_LOC(CPSetButton, "QIj");
 
 // The different color spaces.
@@ -144,7 +141,6 @@ NA_LOC(CPColorRenderingIndex, "ngebmeH qIvwIz:");
 NA_LOC(CPVisMetamericIndex, "QeD loppu'chugh MetamerIch poH:");
 NA_LOC(CPUVMetamericIndex, "be'Qong loppu'chugh MetamerIch poH:");
 NA_LOC(CPTotalMetamericIndex, "poH MetamerIch loppu'chugh (1-8):");
-
 // %s is a letter A-E denoting a grade.
 NA_LOC(CPGrade, "Dab %s");
 NA_LOC(CPD50, "D50");
@@ -169,3 +165,20 @@ NA_LOC(CPSpectrum, "lum");
 NA_LOC(CPBackground, "ngab");
 NA_LOC(CPFovy, "gho");
 
+// Translations for the About Window
+NA_LOC(CPAbout, "Qap %s");
+NA_LOC(CPVersionBuild, "lo'laH %s (ghIch %s)");
+NA_LOC(CPOnlineHelp, "tera' QaQ");
+NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
+
+// Translations for the Preferences Window
+NA_LOC(CPPreferences,          "wIvmeH");
+
+// Translations for language selection
+NA_LOC(CPPreferencesLanguage, "Hol / Language / Idioma / 言語");
+NA_LOC(CPPreferencesLanguageSameAsSystem, "pat rap");
+NA_LOC(CPPreferencesLanguageReport, "mIgh mughwI' yIcha'...");
+NA_LOC(CPPreferencesLanguageChangeAlertTitle, "Hol choH");
+NA_LOC(CPPreferencesLanguageChangeAlertText, "Hol choHpu'. ghoSvetlh 'ej ngeHmeH nabDaq yIQey.");
+NA_LOC(CPPreferencesLanguageBadTranslationTitle, "mIgh mughwI' yIcha'");
+NA_LOC(CPPreferencesLanguageBadTranslationText, "ngongHomvam mIwmey mughpu' yIntaHghach ghom. mughwI' tIghqa' ghojmeH vay' yIghIQmeH choghajta' 'ej tItey qInDaq colorpresto@manderc.com (De' 'oH about jey). QaQ wIvDaj Dalo'pu'chugh DuHIvchugh. \n\ngho tlhutlh boghajtaHvIS!");

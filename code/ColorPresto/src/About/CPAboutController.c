@@ -32,7 +32,6 @@ CPAboutController* cpAllocAboutController(void){
   NARect windowrect = naMakeRectS(20, 300, 340, 318);
   const NAUTF8Char* aboutWindowTitleFormatString = cpTranslate(CPAbout);
   NAString* aboutWindowTitleString = naNewStringWithFormat(aboutWindowTitleFormatString, naGetStringUTF8Pointer(bundleApplicationName));
-  // We have no storage tag as the about window is not really part of the application
   con->window = naNewWindow(naGetStringUTF8Pointer(aboutWindowTitleString), windowrect, NA_FALSE, CP_ABOUT_WINDOW_STORAGE_TAG);
   naDelete(aboutWindowTitleString);
   

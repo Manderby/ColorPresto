@@ -4,14 +4,9 @@
 //
 NA_LOC_LANG("eng");
 
-NA_LOC(CPAbout,          "About %s");
-NA_LOC(CPDone,           "Done");
-NA_LOC(CPVersionBuild,   "Version %s (Build %s)");
-NA_LOC(CPOnlineHelp,     "Online Help");
-NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
-
 // General things. Do not translate
 NA_LOC(CPApplicationName, "Color Presto");
+NA_LOC(CPDone,           "Done");
 NA_LOC(CPAverage, "Ø:");
 NA_LOC(CPColorIndex1, "1:");
 NA_LOC(CPColorIndex2, "2:");
@@ -170,3 +165,27 @@ NA_LOC(CPSpectrum, "Spectrum");
 NA_LOC(CPBackground, "Background");
 NA_LOC(CPFovy, "Focal Length");
 
+// Translations for the About Window
+NA_LOC(CPAbout,          "About %s");
+NA_LOC(CPVersionBuild,   "Version %s (Build %s)");
+NA_LOC(CPOnlineHelp,     "Online Help");
+NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index_eng.php");
+
+// Translations for the Preferences Window
+NA_LOC(CPPreferences,          "Preferences");
+
+// Translations for language selection
+NA_LOC(CPPreferencesLanguage,               "Language / Idioma / 言語 / Sprache");
+NA_LOC(CPPreferencesLanguageSameAsSystem,   "Same as System");
+NA_LOC(CPPreferencesLanguageDeutsch,        "Deutsch");
+NA_LOC(CPPreferencesLanguageEnglish,        "English");
+NA_LOC(CPPreferencesLanguageEspanol,        "Español");
+NA_LOC(CPPreferencesLanguageFrancais,       "Français");
+NA_LOC(CPPreferencesLanguageKlingon,        "tlhIngan");
+NA_LOC(CPPreferencesLanguageJapanese,       "日本語");
+NA_LOC(CPPreferencesLanguageChinese,        "中文");
+NA_LOC(CPPreferencesLanguageReport,         "Report bad translations...");
+NA_LOC(CPPreferencesLanguageChangeAlertTitle, "Language Change");
+NA_LOC(CPPreferencesLanguageChangeAlertText, "The language has been changed. Please quit and reopen the application to take effect.");
+NA_LOC(CPPreferencesLanguageBadTranslationTitle, "Report bad translations");
+NA_LOC(CPPreferencesLanguageBadTranslationText, "Some parts of this application have been translated by artificial intelligence. Help improve the translation by sending an email to colorpresto@manderc.com (link is in the about window). Please provide sufficient information to incorporate your suggestion at the proper place.\n\nYour help is greatly appreciated!");

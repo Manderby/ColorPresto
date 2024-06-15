@@ -4,14 +4,9 @@
 //
 NA_LOC_LANG("deu");
 
-NA_LOC(CPAbout,          "Über %s");
-NA_LOC(CPDone,           "Fertig");
-NA_LOC(CPVersionBuild,   "Version %s (Build %s)");
-NA_LOC(CPOnlineHelp,     "Online Hilfe");
-NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index.php");
-
 // General things.
 NA_LOC(CPApplicationName, "Color Presto");  // do not translate
+NA_LOC(CPDone,           "Fertig");
 NA_LOC(CPAverage, "Ø:");                     // do not translate
 NA_LOC(CPColorIndex1, "1:");
 NA_LOC(CPColorIndex2, "2:");
@@ -116,6 +111,8 @@ NA_LOC(CPGrayDisplayGray, "Grau");
 NA_LOC(CPThreeDeeButton, "3D Ansicht");
 NA_LOC(CPMetamericsButton, "Metamerie");
 NA_LOC(CPResetButton, "Zurücksetzen");
+NA_LOC(CPAboutButton, "Über");
+NA_LOC(CPPreferencesButton, "Einstellungen");
 NA_LOC(CPSetButton, "Set");
 
 // The different color spaces
@@ -167,3 +164,21 @@ NA_LOC(CPAxis, "Achsen");
 NA_LOC(CPSpectrum, "Spektrum");
 NA_LOC(CPBackground, "Hintergrund");
 NA_LOC(CPFovy, "Brennweite");
+
+// Translations for the About Window
+NA_LOC(CPAbout,          "Über %s");
+NA_LOC(CPVersionBuild,   "Version %s (Build %s)");
+NA_LOC(CPOnlineHelp,     "Online Hilfe");
+NA_LOC(CPApplicationHelpURL, "https://manderc.com/apps/colorpresto/help/index.php");
+
+// Translations for the Preferences Window
+NA_LOC(CPPreferences,          "Einstellungen");
+
+// Translations for language selection
+NA_LOC(CPPreferencesLanguage,               "Sprache / Language / Idioma / 言語");
+NA_LOC(CPPreferencesLanguageSameAsSystem,   "Wie System");
+NA_LOC(CPPreferencesLanguageReport,         "Schlechte Übersetzungen melden...");
+NA_LOC(CPPreferencesLanguageChangeAlertTitle, "Sprachänderung");
+NA_LOC(CPPreferencesLanguageChangeAlertText, "Die Sprache wurde geändert. Bitte beenden Sie die Anwendung und öffnen Sie sie erneut, damit die Änderungen wirksam werden.");
+NA_LOC(CPPreferencesLanguageBadTranslationTitle, "Schlechte Übersetzungen melden");
+NA_LOC(CPPreferencesLanguageBadTranslationText, "Einige Teile dieser Anwendung wurden von künstlicher Intelligenz übersetzt. Helfen Sie, die Übersetzung zu verbessern, indem Sie eine E-Mail an karograph@manderc.com senden (der Link dazu findet sich im Info-Fenster). Bitte geben Sie ausreichend Informationen an, um Ihren Vorschlag an der richtigen Stelle zu integrieren.\n\nIhre Hilfe wird sehr geschätzt!");

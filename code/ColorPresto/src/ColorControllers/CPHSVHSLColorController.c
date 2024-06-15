@@ -36,26 +36,18 @@ struct CPHSVHSLColorController{
 
 
 
-typedef enum {
-  HSV,
-  HSL,
-  HSVHSLSelectCount
-} HSVHSLSelect;
-
-
-
 NABool cp_HSVHSLSelectionChanged(NAReaction reaction){
   CPHSVHSLColorController* con = (CPHSVHSLColorController*)reaction.controller;
   
-  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naGetPreferencesEnum(cpPrefs[CPHSVHSLSelect]);
+  HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
   CMLColorType oldColorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
   CMLColorType newColorType = oldColorType;
 
   if(reaction.uiElement == con->radioHSV){
-    naSetPreferencesEnum(cpPrefs[CPHSVHSLSelect], HSV);
+    cpSetPrefsHSVHSLSelect(HSV);
     newColorType = CML_COLOR_HSV;
   }else if(reaction.uiElement == con->radioHSL){
-    naSetPreferencesEnum(cpPrefs[CPHSVHSLSelect], HSL);
+    cpSetPrefsHSVHSLSelect(HSL);
     newColorType = CML_COLOR_HSL;
   }
 
@@ -92,7 +84,7 @@ NABool cp_HSVHSLValueEdited(NAReaction reaction){
 
 
 CPHSVHSLColorController* cpAllocHSVHSLColorController(void){
-  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naInitPreferencesEnum(cpPrefs[CPHSVHSLSelect], HSV, HSVHSLSelectCount);
+  HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
   CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
 
   CPHSVHSLColorController* con = naAlloc(CPHSVHSLColorController);
@@ -174,7 +166,7 @@ void cpSetHSVHSLColorControllerColorData(CPHSVHSLColorController* con, const voi
 void cpUpdateHSVHSLColorController(CPHSVHSLColorController* con){
   cpUpdateColorController(&(con->baseController));
 
-  HSVHSLSelect hsvhslSelect = (HSVHSLSelect)naGetPreferencesEnum(cpPrefs[CPHSVHSLSelect]);
+  HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
   CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
   
   naSetRadioState(con->radioHSV, hsvhslSelect == HSV);

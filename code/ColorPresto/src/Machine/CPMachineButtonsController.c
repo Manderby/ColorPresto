@@ -33,6 +33,8 @@ NABool cp_PressMachineButton(NAReaction reaction){
     cpShowThreeDee();
   }else if(reaction.uiElement == con->aboutButton){
     cpShowAbout();
+  }else if(reaction.uiElement == con->preferencesButton){
+    cpShowPreferences();
   }
 
   return NA_TRUE;

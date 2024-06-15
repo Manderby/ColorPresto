@@ -29,6 +29,8 @@ void cpUpdateThreeDee(void);
 
 void cpShowAbout(void);
 
+void cpShowPreferences(void);
+
 void cpUpdateColor(void);
 void cpUpdateMachine(void);
 
