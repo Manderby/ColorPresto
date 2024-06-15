@@ -558,6 +558,7 @@
 		905E65462C1D87A400241440 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		905E65472C1D87A400241440 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		905E65482C1D87A400241440 /* mainC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainC.h; sourceTree = "<group>"; };
+		909047562C1DB86200E64A47 /* ColorPrestoStrings_fra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_fra.h; sourceTree = "<group>"; };
 		90BF531F274ABD41001FDE2A /* libNALib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNALib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C6F9F2293AA4EC00671DE7 /* libCMLStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCMLStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E3930C2C1CB03F00705076 /* NAApplication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NAApplication.c; sourceTree = "<group>"; };
@@ -1725,6 +1726,7 @@
 				90E396402C1CDF3700705076 /* ColorPrestoStrings_zho.h */,
 				90E396412C1CDF3700705076 /* ColorPrestoStrings_deu.h */,
 				90E396422C1CDF3700705076 /* ColorPrestoStrings_eng.h */,
+				909047562C1DB86200E64A47 /* ColorPrestoStrings_fra.h */,
 				90E396432C1CDF3700705076 /* ColorPrestoStrings_jpn.h */,
 				90E396442C1CDF3700705076 /* ColorPrestoStrings_tlh.h */,
 				90E396452C1CDF3700705076 /* Info.plist */,

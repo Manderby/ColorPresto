@@ -20,6 +20,7 @@ static const NABezel4 spaceBezel = {
 #define spaceMarginV (spaceMarginTop + spaceMarginBottom)
 
 #define marginH 15.
+#define marginHSmall 5.
 
 #define initial3DDisplayWidth 500.
 
@@ -35,8 +36,7 @@ static const NABezel4 threeDeeBezel = {
   spaceMarginLeft3D,
   spaceMarginBottom};
 
-#define threeDeeRotationLabelWidth 55.
-#define threeDeeLabelWidth 110.
+#define threeDeeLabelWidth 130.
 #define threeDeeControlWidth 140.
 
 #define degreeWidth 35
@@ -51,9 +51,10 @@ static const NABezel4 threeDeeBezel = {
 
 static const float greyColor[3] = {.5f, .5f, .5f};
 
-#define machineLabelWidth 120.
+#define machineLabelWidth 160.
 
-#define setButtonWidth 40.
+#define setButtonWidth 60.
+#define setBigButtonWidth 110.
 #define colorValueCondensedRowHeight 25.
 #define gammaDisplaySize 50
 #define colorWell2DRightMargin 2.

@@ -275,21 +275,21 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectRGBColorSpace, con);
   }
 
-  con->redPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceRed), machineLabelWidth - setButtonWidth + marginH);
+  con->redPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceRed), machineLabelWidth - setButtonWidth + marginH - marginHSmall);
   con->setPrimaryRButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setPrimaryRButton, NA_UI_COMMAND_PRESSED, cpSetRGBYxy, con);
   con->redPointYTextField = cpNewValueTextField(cpSetRGBYxy, con);
   con->redPointxTextField = cpNewValueTextField(cpSetRGBYxy, con);
   con->redPointyTextField = cpNewValueTextField(cpSetRGBYxy, con);
   
-  con->greenPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceGreen), machineLabelWidth - setButtonWidth + marginH);
+  con->greenPointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceGreen), machineLabelWidth - setButtonWidth + marginH - marginHSmall);
   con->setPrimaryGButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setPrimaryGButton, NA_UI_COMMAND_PRESSED, cpSetRGBYxy, con);
   con->greenPointYTextField = cpNewValueTextField(cpSetRGBYxy, con);
   con->greenPointxTextField = cpNewValueTextField(cpSetRGBYxy, con);
   con->greenPointyTextField = cpNewValueTextField(cpSetRGBYxy, con);
   
-  con->bluePointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceBlue), machineLabelWidth - setButtonWidth + marginH);
+  con->bluePointTitleLabel = naNewLabel(cpTranslate(CPRGBColorSpaceBlue), machineLabelWidth - setButtonWidth + marginH - marginHSmall);
   con->setPrimaryBButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setPrimaryBButton, NA_UI_COMMAND_PRESSED, cpSetRGBYxy, con);
   con->bluePointYTextField = cpNewValueTextField(cpSetRGBYxy, con);
@@ -357,17 +357,17 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
 
   cpAddUIRow(con->redPointTitleLabel, uiElemHeight);
   cpAddUICol(con->setPrimaryRButton, 0);
-  cpAddUICol(con->redPointYTextField, 0);
+  cpAddUICol(con->redPointYTextField, marginHSmall);
   cpAddUICol(con->redPointxTextField, 0);
   cpAddUICol(con->redPointyTextField, 0);
   cpAddUIRow(con->greenPointTitleLabel, uiElemHeight);
   cpAddUICol(con->setPrimaryGButton, 0);
-  cpAddUICol(con->greenPointYTextField, 0);
+  cpAddUICol(con->greenPointYTextField, marginHSmall);
   cpAddUICol(con->greenPointxTextField, 0);
   cpAddUICol(con->greenPointyTextField, 0);
   cpAddUIRow(con->bluePointTitleLabel, uiElemHeight);
   cpAddUICol(con->setPrimaryBButton, 0);
-  cpAddUICol(con->bluePointYTextField, 0);
+  cpAddUICol(con->bluePointYTextField, marginHSmall);
   cpAddUICol(con->bluePointxTextField, 0);
   cpAddUICol(con->bluePointyTextField, 0);
 

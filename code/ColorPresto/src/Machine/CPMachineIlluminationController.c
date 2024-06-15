@@ -118,7 +118,7 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
   con->illuminationKelvinLabel = naNewLabel(cpTranslate(CPIlluminationKelvin), 20);
   con->illuminationTemperatureSlider = naNewSlider(100);
   naAddUIReaction(con->illuminationTemperatureSlider, NA_UI_COMMAND_EDITED, cpSetIlluminationTemperature, con);
-  con->whitePointTitleLabel = naNewLabel(cpTranslate(CPIlluminationWhitePoint), machineLabelWidth - setButtonWidth + marginH);
+  con->whitePointTitleLabel = naNewLabel(cpTranslate(CPIlluminationWhitePoint), machineLabelWidth - setButtonWidth + marginH - marginHSmall);
 
   con->setWhitePointButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
   naAddUIReaction(con->setWhitePointButton, NA_UI_COMMAND_PRESSED, cpSetWhitePoint, con);
@@ -136,7 +136,7 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
   cpAddUICol(con->illuminationTemperatureSlider, marginH);
   cpAddUIRow(con->whitePointTitleLabel, uiElemHeight);
   cpAddUICol(con->setWhitePointButton, 0);
-  cpAddUICol(con->whitePointYTextField, 0);
+  cpAddUICol(con->whitePointYTextField, marginHSmall);
   cpAddUICol(con->whitePointxTextField, 0);
   cpAddUICol(con->whitePointyTextField, 0);
   cpEndUILayout();
