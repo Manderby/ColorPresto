@@ -351,7 +351,7 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
   con->gammaDisplayController = cpAllocGammaDisplayController();
 
   // layout
-  cpBeginUILayout(con->space, spaceBezel);
+  cpBeginUILayout(con->space, spaceBorder);
   cpAddUIRow(con->rgbColorSpaceLabel, uiElemHeight);
   cpAddUICol(con->rgbColorSpaceSelect, marginH);
 

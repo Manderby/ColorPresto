@@ -127,7 +127,7 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
   con->whitePointyTextField = cpNewValueTextField(cpSetWhitePoint, con);
 
   // layout
-  cpBeginUILayout(con->space, spaceBezel);
+  cpBeginUILayout(con->space, spaceBorder);
   cpAddUIRow(con->illuminationTitleLabel, uiElemHeight);
   cpAddUICol(con->illuminationSelect, marginH);
   cpAddUIRow(con->illuminationTemperatureTitleLabel, uiElemHeight);

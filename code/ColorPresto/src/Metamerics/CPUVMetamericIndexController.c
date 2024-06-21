@@ -451,7 +451,7 @@ CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void){
 
   // Adding elements to the space
 
-  cpBeginUILayout(con->space, spaceBezel);
+  cpBeginUILayout(con->space, spaceBorder);
   cpAddUIRow(con->title, uiElemHeight);
 
   cpAddUIRow(con->metamerics6IndexLabel, uiElemHeight);

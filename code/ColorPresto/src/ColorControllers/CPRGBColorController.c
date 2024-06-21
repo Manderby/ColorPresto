@@ -105,7 +105,7 @@ CPRGBColorController* cpAllocRGBColorController(void){
   naSetUIElementNextTabElement(con->textFieldHex, con->textFieldDec);
   naSetUIElementNextTabElement(con->textFieldDec, con->textFieldHex);
 
-  cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cpBeginUILayout(con->channelSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + 10.)) / 2.)); // center the channels
   cpAddUIRow(con->labelR, colorValueCondensedRowHeight);
   cpAddUICol(con->textFieldR, colorComponentMarginH);
@@ -123,7 +123,7 @@ CPRGBColorController* cpAllocRGBColorController(void){
   cpAddUICol(con->textFieldDec, 10);
   cpEndUILayout();
 
-  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpBeginUILayout(con->baseController.space, colorWellBorder);
   cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
   cpAddUICol(con->channelSpace, colorWell2DRightMargin);
   cpEndUILayout();

@@ -30,7 +30,7 @@ CPChromaticityErrorController* cpAllocChromaticityErrorController(void){
 
   cpBeginUILayout(
     con->space,
-    naMakeBezel4(spaceMarginRight, spaceMarginTop, spaceMarginDegreeLeft, spaceMarginBottom));
+    naMakeBorder2D(spaceMarginDegreeLeft, spaceMarginRight, spaceMarginBottom, spaceMarginTop));
   cpAddUIRow(con->title, uiElemHeight);
   cpAddUICol(con->chromaticityErrorLabel, marginH);
   

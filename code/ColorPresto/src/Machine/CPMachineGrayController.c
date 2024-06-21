@@ -49,7 +49,7 @@ CPMachineGrayController* cpAllocMachineGrayController(void){
   }
 
   // layout
-  cpBeginUILayout(con->space, spaceBezel);
+  cpBeginUILayout(con->space, spaceBorder);
   cpAddUIRow(con->grayColorSpaceLabel, uiElemHeight);
   cpAddUICol(con->grayColorSpaceSelect, marginH);
   cpEndUILayout();

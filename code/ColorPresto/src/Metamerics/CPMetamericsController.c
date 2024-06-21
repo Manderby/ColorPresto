@@ -81,22 +81,22 @@ CPMetamericsController* cpAllocMetamericsController(void){
 
   // Placing elements in the window
 
-  cpBeginUILayout(con->column1Space, naMakeBezel4Zero());
+  cpBeginUILayout(con->column1Space, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(whitePointsSpace, 0);
   cpAddUIRow(chromaticityErrorSpace, 0);
   cpEndUILayout();
 
-  cpBeginUILayout(con->column2Space, naMakeBezel4Zero());
+  cpBeginUILayout(con->column2Space, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(colorRenderingIndexSpace, 0);
   cpEndUILayout();
 
-  cpBeginUILayout(con->column3Space, naMakeBezel4Zero());
+  cpBeginUILayout(con->column3Space, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(visMetamericIndexSpace, 0);
   cpAddUIRow(uvMetamericIndexSpace, 0);
   cpAddUIRow(totalMetamericIndexSpace, 0);
   cpEndUILayout();
 
-  cpBeginUILayout(contentSpace, naMakeBezel4Zero());
+  cpBeginUILayout(contentSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUICol(con->column1Space, 0);
   cpAddUICol(con->column2Space, 0);
   cpAddUICol(con->column3Space, 0);

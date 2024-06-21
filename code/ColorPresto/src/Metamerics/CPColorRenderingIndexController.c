@@ -412,7 +412,7 @@ CPColorRenderingIndexController* cpAllocColorRenderingIndexController(void){
 
   // place the elements in the space
 
-  cpBeginUILayout(con->space, spaceBezel);
+  cpBeginUILayout(con->space, spaceBorder);
   cpAddUIRow(con->title, uiElemHeight);
 
   cpAddUIRow(con->color1IndexLabel, uiElemHeight);

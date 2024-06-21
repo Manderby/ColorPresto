@@ -39,7 +39,7 @@ CPSpectralColorController* cpAllocSpectralColorController(void){
   
   con->display = cpAllocSpectralColorWell(&(con->baseController));
   
-  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpBeginUILayout(con->baseController.space, colorWellBorder);
   cpAddUIRow(cpGetSpectralColorWellUIElement(con->display), 0);
   cpEndUILayout();
 

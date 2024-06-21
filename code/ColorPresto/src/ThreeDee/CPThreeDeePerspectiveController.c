@@ -131,7 +131,7 @@ CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDee
 
   // layout
 
-  cpBeginUILayout(con->space, threeDeeBezel);
+  cpBeginUILayout(con->space, threeDeeBorder);
   
   cpAddUIRow(con->rotationLabel, uiElemHeight);
   cpAddUICol(con->rotationButton, 0.);

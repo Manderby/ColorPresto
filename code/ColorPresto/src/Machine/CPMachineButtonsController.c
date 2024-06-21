@@ -61,7 +61,7 @@ CPMachineButtonsController* cpAllocMachineButtonsController(void){
   naAddUIReaction(con->preferencesButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
 
   // layout
-  cpBeginUILayout(con->space, spaceBezel);
+  cpBeginUILayout(con->space, spaceBorder);
   cpAddUIRow(con->resetMachineButton, uiElemHeight);
   cpAddUICol(con->metamericsButton, marginH);
   cpAddUICol(con->threeDeeButton, marginH);

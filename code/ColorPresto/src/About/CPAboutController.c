@@ -1,6 +1,6 @@
 
 #include "CPAboutController.h"
-#include "CPTranslations.h"
+#include "../CPTranslations.h"
 #include "../mainC.h"
 
 

@@ -1,7 +1,7 @@
 
 #include "CPPreferencesController.h"
 
-#include "CPTranslations.h"
+#include "../CPTranslations.h"
 #include "CPPreferences.h"
 #include "../mainC.h"
 

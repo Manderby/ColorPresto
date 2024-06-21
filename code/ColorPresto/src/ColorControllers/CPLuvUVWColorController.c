@@ -112,7 +112,7 @@ CPLuvUVWColorController* cpAllocLuvUVWColorController(void){
   naSetUIElementNextTabElement(con->textField1, con->textField2);
   naSetUIElementNextTabElement(con->textField2, con->textField0);
 
-  cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cpBeginUILayout(con->channelSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + radioChannelCenteringOffset)) / 2.)); // center the channels
   cpAddUIRowH(con->radioLuv, colorValueCondensedRowHeight, colorComponentWidth + colorComponentMarginH);
   cpAddUICol(con->radioUVW, 10);
@@ -129,7 +129,7 @@ CPLuvUVWColorController* cpAllocLuvUVWColorController(void){
   cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
   cpEndUILayout();
   
-  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpBeginUILayout(con->baseController.space, colorWellBorder);
   cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
   cpAddUICol(con->channelSpace, colorWell2DRightMargin);
   cpEndUILayout();

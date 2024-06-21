@@ -34,7 +34,7 @@ CPTotalMetamericIndexController* cpAllocTotalMetamericIndexController(void){
 
   // Placing elements in the space
 
-  cpBeginUILayout(con->space, spaceBezel);
+  cpBeginUILayout(con->space, spaceBorder);
   cpAddUIRow(con->title, uiElemHeight);
 
   cpAddUIRow(con->metamericsAverageLabel, uiElemHeight);

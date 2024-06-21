@@ -82,7 +82,7 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
   con->ycbcrColorController = cpAllocYCbCrColorController();
   con->yxyColorController = cpAllocYxyColorController();
 
-  cpBeginUILayout(con->radiometricColorsSpace, naMakeBezel4Zero());
+  cpBeginUILayout(con->radiometricColorsSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->spectralColorController), 0);
   cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->xyzColorController), 0);
   cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->yxyColorController), 0);
@@ -90,7 +90,7 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
   cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->luvuvwColorController), 0);
   cpEndUILayout();
 
-  cpBeginUILayout(con->perceptiveColorsSpace, naMakeBezel4Zero());
+  cpBeginUILayout(con->perceptiveColorsSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->grayColorController), 0);
   cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->lablchColorController), 0);
   cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->rgbColorController), 0);
@@ -98,13 +98,13 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
   cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->ycbcrColorController), 0);
   cpEndUILayout();
 
-  cpBeginUILayout(con->rightSpace, naMakeBezel4Zero());
+  cpBeginUILayout(con->rightSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(con->radiometricColorsSpace, 0);
   cpAddUICol(con->perceptiveColorsSpace, 0);
   cpAddUICol(con->RGBColorsSpace, 0);
   cpEndUILayout();
 
-  cpBeginUILayout(contentSpace, naMakeBezel4Zero());
+  cpBeginUILayout(contentSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(cpGetMachineUIElement(con->machineController), 0);
   cpAddUICol(con->rightSpace, 0);
   cpEndUILayout();

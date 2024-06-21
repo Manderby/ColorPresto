@@ -96,7 +96,7 @@ CPMachineLabController* cpAllocMachineLabController(void){
   naAddUIReaction(con->valuekeSlider, NA_UI_COMMAND_EDITED, cpSetLabValue, con);
 
   // layout
-  cpBeginUILayout(con->space, spaceBezel);
+  cpBeginUILayout(con->space, spaceBorder);
   cpAddUIRow(con->labColorSpaceLabel, uiElemHeight);
   cpAddUICol(con->labColorSpaceSelect, marginH);
 

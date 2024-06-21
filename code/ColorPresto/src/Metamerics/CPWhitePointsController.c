@@ -164,7 +164,7 @@ CPWhitePointsController* cpAllocWhitePointsController(void){
 
   // Adding elements to the space
 
-  cpBeginUILayout(con->space, naMakeBezel4(spaceMarginRight, spaceMarginTop, spaceMarginDegreeLeft, spaceMarginBottom));
+  cpBeginUILayout(con->space, naMakeBorder2D(spaceMarginDegreeLeft, spaceMarginRight, spaceMarginBottom, spaceMarginTop));
   cpAddUIRow(con->illTitle, uiElemHeight);
   
   cpAddUIRow(con->illXYZTitle, uiElemHeight);

@@ -12,11 +12,11 @@
 #define spaceMarginRight 15.
 #define spaceMarginBottom 15.
 #define spaceMarginTop 15.
-static const NABezel4 spaceBezel = {
-  spaceMarginRight,
-  spaceMarginTop,
+static const NABorder2D spaceBorder = {
   spaceMarginLeft,
-  spaceMarginBottom};
+  spaceMarginRight,
+  spaceMarginBottom,
+  spaceMarginTop};
 #define spaceMarginV (spaceMarginTop + spaceMarginBottom)
 
 #define marginH 15.
@@ -30,11 +30,11 @@ static const NABezel4 spaceBezel = {
 #define threeValueHeight 55.
 #define threeValueHeightMargin 10.
 #define spaceMarginLeft3D 10.
-static const NABezel4 threeDeeBezel = {
-  spaceMarginRight,
-  spaceMarginTop,
+static const NABorder2D threeDeeBorder = {
   spaceMarginLeft3D,
-  spaceMarginBottom};
+  spaceMarginRight,
+  spaceMarginBottom,
+  spaceMarginTop};
 
 #define threeDeeLabelWidth 130.
 #define threeDeeControlWidth 140.
@@ -68,7 +68,7 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 #define colorComponentMarginH 3.
 #define radioChannelOffset 2.
 #define radioChannelCenteringOffset 15.
-static const NABezel4 colorWellBezel = {10, 10, 10, 10};
+static const NABorder2D colorWellBorder = {10, 10, 10, 10};
 
 void cpStartupDesign(void);
 void cpShutdownDesign(void);
@@ -127,7 +127,7 @@ NATextField* cpNewBigValueTextField(NAReactionCallback reactionCallback, void* c
 // need to place UIElements on more specialized places, you can always use
 // naAddSpaceChild and set the coordinates manually.
 
-void cpBeginUILayout(NASpace* space, NABezel4 margin);
+void cpBeginUILayout(NASpace* space, NABorder2D border);
 void cpAddUIPos(double x, double y);
 void cpAddUIRow(void* child, double rowHeight);
 void cpAddUIRowH(void* child, double rowHeight, double hOffset);

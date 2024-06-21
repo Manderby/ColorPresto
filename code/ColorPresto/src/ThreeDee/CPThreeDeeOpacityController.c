@@ -103,7 +103,7 @@ CPThreeDeeOpacityController* cpAllocThreeDeeOpacityController(CPThreeDeeControll
 
   // layout
 
-  cpBeginUILayout(con->space, threeDeeBezel);
+  cpBeginUILayout(con->space, threeDeeBorder);
   
   cpAddUIRow(con->pointsOpacityLabel, uiElemHeight);
   cpAddUICol(con->pointsOpacitySlider, marginH);

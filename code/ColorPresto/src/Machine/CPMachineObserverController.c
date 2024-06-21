@@ -52,7 +52,7 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
   con->observerStepsLabel = naNewLabel("", 100);
   
   // layout
-  cpBeginUILayout(con->space, spaceBezel);
+  cpBeginUILayout(con->space, spaceBorder);
   cpAddUIRow(con->observerTitleLabel, uiElemHeight);
   cpAddUICol(con->observerSelect, marginH);
   cpAddUIRow(con->observerStepsTitleLabel, uiElemHeight);

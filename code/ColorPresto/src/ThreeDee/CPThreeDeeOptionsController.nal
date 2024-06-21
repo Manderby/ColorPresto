@@ -91,7 +91,7 @@ changeOptionsSlider = bool (NAReaction reaction) {
   fovySlider.addUIReaction(NA_UI_COMMAND_EDITED, changeOptionsSlider, this);
 
   // layout
-  cpBeginUILayout(space, threeDeeBezel);
+  cpBeginUILayout(space, threeDeeBorder);
   
   cpAddUIRow(axisLabel, uiElemHeight);
   cpAddUICol(axisCheckBox, marginH);

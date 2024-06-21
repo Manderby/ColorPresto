@@ -159,7 +159,7 @@ CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeCo
   naAddUIReaction(con->stepsSlider, NA_UI_COMMAND_EDITED, cp_ChangeCoordinateSlider, con);
 
   // layout
-  cpBeginUILayout(con->space, threeDeeBezel);
+  cpBeginUILayout(con->space, threeDeeBorder);
   
   cpAddUIRow(con->colorSpaceLabel, uiElemHeight);
   cpAddUICol(con->colorSpaceSelect, marginH);

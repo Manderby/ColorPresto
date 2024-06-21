@@ -52,7 +52,7 @@ CPGrayColorController* cpAllocGrayColorController(void){
   con->textFieldGray = cpNewValueTextField(cp_GrayValueEdited, con);
   con->colorWell1DGray = cpAllocColorWell1D(&(con->baseController), &(con->grayColor), 0);
 
-  cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cpBeginUILayout(con->channelSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIPos(0, (int)((colorWell2DSize - (1 * 25.)) / 2.)); // center the channels
   cpAddUIRow(con->labelGray, colorValueCondensedRowHeight);
   cpAddUICol(con->textFieldGray, colorComponentMarginH);
@@ -60,7 +60,7 @@ CPGrayColorController* cpAllocGrayColorController(void){
   cpAddUIPos(0, 2 * colorValueCondensedRowHeight);
   cpEndUILayout();
   
-  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpBeginUILayout(con->baseController.space, colorWellBorder);
   cpAddUIRow(cpGetGrayColorWellUIElement(con->display), 0);
   cpAddUICol(con->channelSpace, colorWell2DRightMargin);
   cpEndUILayout();

@@ -41,7 +41,7 @@ CPMachineController* cpAllocMachineController(void){
   con->buttonsController = cpAllocMachineButtonsController();
 
   // layout
-  cpBeginUILayout(con->space, naMakeBezel4Zero());
+  cpBeginUILayout(con->space, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(cpGetMachineObserverControllerUIElement(con->observerController), 0);
   cpAddUIRow(cpGetMachineIlluminationControllerUIElement(con->illuminationController), 0);
   cpAddUIRow(cpGetMachineRGBControllerUIElement(con->rgbController), 0);

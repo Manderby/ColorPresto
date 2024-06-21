@@ -1,5 +1,5 @@
 
-#include "mainC.h"
+#include "../mainC.h"
 #include "NAApp/NAPreferences.h"
 #include "NAUtility/NATranslator.h"
 

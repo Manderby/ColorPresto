@@ -368,7 +368,7 @@ CPThreeDeeController* cpAllocThreeDeeController(void){
   con->controlSpace = naNewSpace(naMakeSize(fullControlWidth, 1));
     
   // layout
-  cpBeginUILayout(con->controlSpace, naMakeBezel4Zero());
+  cpBeginUILayout(con->controlSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(cpGetThreeDeeCoordinateControllerUIElement(con->coordinateController), 0);
   cpAddUIRow(cpGetThreeDeePerspectiveControllerUIElement(con->perspectiveController), 0);
   cpAddUIRow(cpGetThreeDeeOpacityControllerUIElement(con->opacityController), 0);
@@ -376,7 +376,7 @@ CPThreeDeeController* cpAllocThreeDeeController(void){
   cpEndUILayout();
 
   NASpace* content = naGetWindowContentSpace(con->window);
-  cpBeginUILayout(content, naMakeBezel4Zero());
+  cpBeginUILayout(content, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIRow(con->display, 0);
   cpAddUICol(con->controlSpace, 0);
   cpEndUILayout();

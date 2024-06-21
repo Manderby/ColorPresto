@@ -91,7 +91,7 @@ CPThreeDeeOptionsController* cpAllocThreeDeeOptionsController(CPThreeDeeControll
   naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cp_ChangeOptionsSlider, con);
 
   // layout
-  cpBeginUILayout(con->space, threeDeeBezel);
+  cpBeginUILayout(con->space, threeDeeBorder);
   
   cpAddUIRow(con->axisLabel, uiElemHeight);
   cpAddUICol(con->axisCheckBox, marginH);

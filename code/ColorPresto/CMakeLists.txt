@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)
-project(ColorPrompt)
+project(ColorPresto)
 
-set(TARGET_NAME ColorPrompt)
+set(TARGET_NAME ColorPresto)
 
 if (MSVC)
   add_executable(${TARGET_NAME} WIN32 src/main.c)
@@ -38,8 +38,8 @@ endif()
 # copying resources
 add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
-      ${CMAKE_CURRENT_SOURCE_DIR}/res/ColorPromptChangelog.txt
-      \"${OUTPUT_DIRECTORY}ColorPromptChangelog.txt\"
+      ${CMAKE_CURRENT_SOURCE_DIR}/res/ColorPrestoChangelog.txt
+      \"${OUTPUT_DIRECTORY}ColorPrestoChangelog.txt\"
 )
 
 
@@ -47,32 +47,33 @@ add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
 # ######### Sources ################
 
 set(resourceFiles
-  res/ColorPromptChangelog.txt
-  res/ColorPromptStrings_deu.h
-  res/ColorPromptStrings_eng.h
-  res/ColorPromptStrings_jpn.h
+  res/ColorPrestoChangelog.txt
+  res/ColorPrestoStrings_deu.h
+  res/ColorPrestoStrings_eng.h
+  res/ColorPrestoStrings_jpn.h
 )
 
 set(sourceFiles
-  src/ColorPromptApplication.h
-  src/ColorPromptApplication.m
-  src/CPAboutController.c
-  src/CPAboutController.h
-  src/CPColorPromptApplication.c
-  src/CPColorPromptApplication.h
+  src/ColorPrestoApplication.h
+  src/ColorPrestoApplication.m
+  src/CPColorPrestoApplication.c
+  src/CPColorPrestoApplication.h
   src/CPColorsManager.c
   src/CPColorsManager.h
   src/CPDesign.c
   src/CPDesign.h
   src/CPOpenGLHelper.c
   src/CPOpenGLHelper.h
-  src/CPPreferences.c
-  src/CPPreferences.h
   src/CPTranslations.c
   src/CPTranslations.h
   src/main.c
   src/main.m
   src/mainC.h
+)
+
+set(aboutFiles
+  src/About/CPAboutController.c
+  src/About/CPAboutController.h
 )
 
 set(colorControllersDisplaysSourceFiles
@@ -113,7 +114,7 @@ set(colorControllersSourceFiles
   src/ColorControllers/CPYxyColorController.h
 )
 
-set(MachineSourceFiles
+set(machineSourceFiles
   src/Machine/CPMachineButtonsController.c
   src/Machine/CPMachineButtonsController.h
   src/Machine/CPMachineController.c
@@ -132,7 +133,7 @@ set(MachineSourceFiles
   src/Machine/CPMachineWindowController.h
 )
 
-set(MetamericsSourceFiles
+set(metamericsSourceFiles
   src/Metamerics/CPChromaticityErrorController.c
   src/Metamerics/CPChromaticityErrorController.h
   src/Metamerics/CPColorConversionsYcdUVW.c
@@ -155,7 +156,14 @@ set(MetamericsSourceFiles
   src/Metamerics/CPWhitePointsController.h
 )
 
-set(ThreeDeeSourceFiles
+set(preferencesSourceFiles
+  src/Preferences/CPPreferences.c
+  src/Preferences/CPPreferences.h
+  src/Preferences/CPPreferencesController.c
+  src/Preferences/CPPreferencesController.h
+)
+
+set(threeDeeSourceFiles
   src/ThreeDee/CPThreeDeeController.c
   src/ThreeDee/CPThreeDeeController.h
   src/ThreeDee/CPThreeDeeCoordinateController.c
@@ -174,20 +182,26 @@ set(ThreeDeeSourceFiles
 source_group("res" FILES ${resourceFiles})
 target_sources(${TARGET_NAME} PRIVATE ${resourceFiles})
 
+source_group("src/About" FILES ${aboutFiles})
+target_sources(${TARGET_NAME} PRIVATE ${aboutFiles})
+
 source_group("src/ColorControllers/Displays" FILES ${colorControllersDisplaysSourceFiles})
 target_sources(${TARGET_NAME} PRIVATE ${colorControllersDisplaysSourceFiles})
 
 source_group("src/ColorControllers" FILES ${colorControllersSourceFiles})
 target_sources(${TARGET_NAME} PRIVATE ${colorControllersSourceFiles})
 
-source_group("src/Machine" FILES ${MachineSourceFiles})
-target_sources(${TARGET_NAME} PRIVATE ${MachineSourceFiles})
+source_group("src/Machine" FILES ${machineSourceFiles})
+target_sources(${TARGET_NAME} PRIVATE ${machineSourceFiles})
 
-source_group("src/Metamerics" FILES ${MetamericsSourceFiles})
-target_sources(${TARGET_NAME} PRIVATE ${MetamericsSourceFiles})
+source_group("src/Metamerics" FILES ${metamericsSourceFiles})
+target_sources(${TARGET_NAME} PRIVATE ${metamericsSourceFiles})
 
-source_group("src/ThreeDee" FILES ${ThreeDeeSourceFiles})
-target_sources(${TARGET_NAME} PRIVATE ${ThreeDeeSourceFiles})
+source_group("src/Preferences" FILES ${preferencesSourceFiles})
+target_sources(${TARGET_NAME} PRIVATE ${preferencesSourceFiles})
+
+source_group("src/ThreeDee" FILES ${threeDeeSourceFiles})
+target_sources(${TARGET_NAME} PRIVATE ${threeDeeSourceFiles})
 
 source_group("src" FILES ${sourceFiles})
 target_sources(${TARGET_NAME} PRIVATE ${sourceFiles})

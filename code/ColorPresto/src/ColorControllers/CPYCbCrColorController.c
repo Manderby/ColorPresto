@@ -72,7 +72,7 @@ CPYCbCrColorController* cpAllocYCbCrColorController(void){
   naSetUIElementNextTabElement(con->textFieldCb, con->textFieldCr);
   naSetUIElementNextTabElement(con->textFieldCr, con->textFieldY);
 
-  cpBeginUILayout(con->channelSpace, naMakeBezel4Zero());
+  cpBeginUILayout(con->channelSpace, naMakeBorder2D(0., 0., 0., 0.));
   cpAddUIPos(0, (int)((colorWell2DSize - (3 * 25.)) / 2.)); // center the channels
   cpAddUIRow(con->labelY, colorValueCondensedRowHeight);
   cpAddUICol(con->textFieldY, colorComponentMarginH);
@@ -86,7 +86,7 @@ CPYCbCrColorController* cpAllocYCbCrColorController(void){
   cpAddUIPos(0, colorValueCondensedRowHeight);
   cpEndUILayout();
   
-  cpBeginUILayout(con->baseController.space, colorWellBezel);
+  cpBeginUILayout(con->baseController.space, colorWellBorder);
   cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
   cpAddUICol(con->channelSpace, colorWell2DRightMargin);
   cpEndUILayout();

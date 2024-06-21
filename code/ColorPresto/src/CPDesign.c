@@ -78,18 +78,18 @@ NATextField* cpNewBigValueTextField(NAReactionCallback reactionCallback, void* c
 
 
 NASpace* curDesignSpace = NA_NULL;
-NABezel4 curDesignMargin;
+NABorder2D curDesignBorder;
 NAPos curDesignPos = {0., 0.};
 double maxDesignWidth = 0.;
 double curDesignRowHeight = 0.;
 NABool curDesignRowHeightFixed = NA_FALSE;
 
-void cpBeginUILayout(NASpace* space, NABezel4 margin){
+void cpBeginUILayout(NASpace* space, NABorder2D border){
   NASize size = naGetUIElementRect(space).size;
   curDesignSpace = space;
-  curDesignMargin = margin;
-  curDesignPos = naMakePos(margin.left, size.height - margin.top);
-  maxDesignWidth = margin.left;
+  curDesignBorder = border;
+  curDesignPos = naMakePos(border.left, size.height - border.top);
+  maxDesignWidth = border.left;
   curDesignRowHeight = 0.;
   curDesignRowHeightFixed = NA_FALSE;
 }
@@ -120,7 +120,7 @@ void cpAddUIRow(void* child, double rowHeight){
       naError("No space defined for design. Use cpBeginUILayout");
   #endif
   NASize size = naGetUIElementRect(child).size;
-  curDesignPos.x = curDesignMargin.left;
+  curDesignPos.x = curDesignBorder.left;
   curDesignPos.y -= curDesignRowHeight;
   if(rowHeight){
     curDesignRowHeightFixed = NA_TRUE;
@@ -139,7 +139,7 @@ void cpAddUIRowH(void* child, double rowHeight, double hOffset){
   #endif
   curDesignPos.x += hOffset;
   NASize size = naGetUIElementRect(child).size;
-  curDesignPos.x = hOffset + curDesignMargin.left;
+  curDesignPos.x = hOffset + curDesignBorder.left;
   curDesignPos.y -= curDesignRowHeight;
   if(rowHeight){
     curDesignRowHeightFixed = NA_TRUE;
@@ -174,8 +174,8 @@ void cpAddUIColV(void* child, double marginLeft, double vOffset){
 void cpEndUILayout(){
   NARect spaceRect = naGetUIElementRect(curDesignSpace);
   double prevHeight = spaceRect.size.height;
-  spaceRect.size.width = maxDesignWidth + curDesignMargin.right;
-  double newHeight = spaceRect.size.height - (curDesignPos.y - curDesignRowHeight) + curDesignMargin.bottom;
+  spaceRect.size.width = maxDesignWidth + curDesignBorder.right;
+  double newHeight = spaceRect.size.height - (curDesignPos.y - curDesignRowHeight) + curDesignBorder.bottom;
   spaceRect.size.height = newHeight;
   naSetUIElementRect(curDesignSpace, spaceRect);
 
