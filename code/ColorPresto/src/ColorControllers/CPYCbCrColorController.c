@@ -31,7 +31,7 @@ struct CPYCbCrColorController{
 
 
 
-NABool cp_YCbCrValueEdited(NAReaction reaction){
+void cp_YCbCrValueEdited(NAReaction reaction){
   CPYCbCrColorController* con = (CPYCbCrColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldY){
@@ -44,8 +44,6 @@ NABool cp_YCbCrValueEdited(NAReaction reaction){
   
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 

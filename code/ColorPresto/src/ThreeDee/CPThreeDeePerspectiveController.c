@@ -38,7 +38,7 @@ void cp_StepRotation(void* data){
 
 
 
-NABool cp_PressRotationButton(NAReaction reaction){
+void cp_PressRotationButton(NAReaction reaction){
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
   if(reaction.uiElement == con->rotationButton){
@@ -46,13 +46,11 @@ NABool cp_PressRotationButton(NAReaction reaction){
   }
 
   cpUpdateThreeDeeController(con->parent);
-
-  return TRUE;
 }
 
 
 
-NABool cp_ChangeRotationSlider(NAReaction reaction){
+void cp_ChangeRotationSlider(NAReaction reaction){
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
   if(reaction.uiElement == con->rotationSlider){
@@ -63,8 +61,6 @@ NABool cp_ChangeRotationSlider(NAReaction reaction){
   }
   
   cpUpdateThreeDeeController(con->parent);
-
-  return TRUE;
 }
 
 
@@ -80,7 +76,7 @@ void cp_FixThreeDeeViewParameters(CPThreeDeePerspectiveController* con){
 
 
 
-NABool cpMoveRotationMouse(NAReaction reaction){
+void cpMoveRotationMouse(NAReaction reaction){
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
   const NAMouseStatus* status = naGetMouseStatus();
@@ -95,12 +91,11 @@ NABool cpMoveRotationMouse(NAReaction reaction){
     cp_FixThreeDeeViewParameters(con);
     cpRefreshThreeDeeDisplay(con->parent);
   }
-  return NA_TRUE;
 }
 
 
 
-NABool cpScrollRotation(NAReaction reaction){
+void cpScrollRotation(NAReaction reaction){
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
   const NAMouseStatus* status = naGetMouseStatus();
@@ -108,8 +103,6 @@ NABool cpScrollRotation(NAReaction reaction){
   con->zoom *= 1.f + (float)(status->pos.y - status->prevPos.y) * .01f;
   cp_FixThreeDeeViewParameters(con);
   cpRefreshThreeDeeDisplay(con->parent);
-
-  return NA_TRUE;
 }
 
 

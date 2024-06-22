@@ -34,7 +34,7 @@ struct CPLabLchColorController{
 
 
 
-NABool cp_LabLchSelectionChanged(NAReaction reaction){
+void cp_LabLchSelectionChanged(NAReaction reaction){
   CPLabLchColorController* con = (CPLabLchColorController*)reaction.controller;
   
   LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
@@ -56,13 +56,11 @@ NABool cp_LabLchSelectionChanged(NAReaction reaction){
   cpSetColorControllerColorType(&(con->baseController), newColorType);
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 
 
-NABool cp_LabValueEdited(NAReaction reaction){
+void cp_LabValueEdited(NAReaction reaction){
   CPLabLchColorController* con = (CPLabLchColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textField0){
@@ -75,8 +73,6 @@ NABool cp_LabValueEdited(NAReaction reaction){
   
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 

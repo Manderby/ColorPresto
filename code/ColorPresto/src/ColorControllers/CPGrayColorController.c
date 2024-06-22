@@ -25,7 +25,7 @@ struct CPGrayColorController{
 
 
 
-NABool cp_GrayValueEdited(NAReaction reaction){
+void cp_GrayValueEdited(NAReaction reaction){
   CPGrayColorController* con = (CPGrayColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldGray){
@@ -34,8 +34,6 @@ NABool cp_GrayValueEdited(NAReaction reaction){
   
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 

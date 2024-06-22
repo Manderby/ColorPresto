@@ -31,7 +31,7 @@ struct CPThreeDeeOptionsController{
 
 
 
-NABool cp_PressOptionsButton(NAReaction reaction){
+void cp_PressOptionsButton(NAReaction reaction){
   CPThreeDeeOptionsController* con = (CPThreeDeeOptionsController*)reaction.controller;
 
   if(reaction.uiElement == con->spectrumCheckBox){
@@ -41,13 +41,11 @@ NABool cp_PressOptionsButton(NAReaction reaction){
   }
 
   cpUpdateThreeDeeController(con->parent);
-
-  return TRUE;
 }
 
 
 
-NABool cp_ChangeOptionsSlider(NAReaction reaction){
+void cp_ChangeOptionsSlider(NAReaction reaction){
   CPThreeDeeOptionsController* con = (CPThreeDeeOptionsController*)reaction.controller;
 
   if(reaction.uiElement == con->backgroundSlider){
@@ -58,8 +56,6 @@ NABool cp_ChangeOptionsSlider(NAReaction reaction){
   }
   
   cpUpdateThreeDeeController(con->parent);
-
-  return TRUE;
 }
 
 

@@ -24,7 +24,7 @@ void cmInitGammaDisplayController(void* data){
 
 
 
-NABool cmDrawGammaDisplayController(NAReaction reaction){
+void cmDrawGammaDisplayController(NAReaction reaction){
   CPGammaDisplayController* con = (CPGammaDisplayController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -82,8 +82,6 @@ NABool cmDrawGammaDisplayController(NAReaction reaction){
   glPopMatrix();
 
   naSwapOpenGLSpaceBuffer(con->display);
-
-  return NA_TRUE;
 }
 
 

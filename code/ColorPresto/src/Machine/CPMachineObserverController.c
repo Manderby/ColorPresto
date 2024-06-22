@@ -19,7 +19,7 @@ struct CPMachineObserverController{
 
 
 
-NABool cp_SelectObserver(NAReaction reaction){
+void cp_SelectObserver(NAReaction reaction){
   CPMachineObserverController* con = (CPMachineObserverController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -27,8 +27,6 @@ NABool cp_SelectObserver(NAReaction reaction){
   cmlSetObserverType(cm, (CMLObserverType)index);
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 

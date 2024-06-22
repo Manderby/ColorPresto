@@ -35,7 +35,7 @@ struct CPThreeDeeOpacityController{
 
 
 
-NABool cp_PressThreeDeeOpacityButton(NAReaction reaction){
+void cp_PressThreeDeeOpacityButton(NAReaction reaction){
   CPThreeDeeOpacityController* con = (CPThreeDeeOpacityController*)reaction.controller;
 
   if(reaction.uiElement == con->bodySolidCheckBox){
@@ -43,13 +43,11 @@ NABool cp_PressThreeDeeOpacityButton(NAReaction reaction){
   }
 
   cpUpdateThreeDeeController(con->parent);
-
-  return TRUE;
 }
 
 
 
-NABool cp_ChangeThreeDeeOpacitySlider(NAReaction reaction){
+void cp_ChangeThreeDeeOpacitySlider(NAReaction reaction){
   CPThreeDeeOpacityController* con = (CPThreeDeeOpacityController*)reaction.controller;
 
   if(reaction.uiElement == con->pointsOpacitySlider){
@@ -63,8 +61,6 @@ NABool cp_ChangeThreeDeeOpacitySlider(NAReaction reaction){
   }
   
   cpUpdateThreeDeeController(con->parent);
-
-  return TRUE;
 }
 
 

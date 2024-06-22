@@ -16,10 +16,9 @@ struct CPAboutController{
 
 
 
-NABool cp_pressAboutDone(NAReaction reaction){
+void cp_pressAboutDone(NAReaction reaction){
   CPAboutController* con = (CPAboutController*)reaction.controller;
   naCloseWindow(con->window);
-  return NA_TRUE;
 }
 
 

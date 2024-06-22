@@ -31,7 +31,7 @@ struct CPYxyColorController{
 
 
 
-NABool cp_YxyValueEdited(NAReaction reaction){
+void cp_YxyValueEdited(NAReaction reaction){
   CPYxyColorController* con = (CPYxyColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textFieldY){
@@ -44,8 +44,6 @@ NABool cp_YxyValueEdited(NAReaction reaction){
   
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 

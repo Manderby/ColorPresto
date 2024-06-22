@@ -38,7 +38,7 @@ void cmInitColorWell1D(void* data){
 
 
 
-NABool cmDragColorWell1D(NAReaction reaction){
+void cmDragColorWell1D(NAReaction reaction){
   CPColorWell1D* well = (CPColorWell1D*)reaction.controller;
  
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
@@ -83,15 +83,12 @@ NABool cmDragColorWell1D(NAReaction reaction){
     cpSetColorControllerColorData(well->colorController, convertedColorValues);
     cpSetCurrentColorController(well->colorController);
     cpUpdateColor();
-    return NA_TRUE;
   }
-
-  return NA_FALSE;
 }
 
 
 
-NABool cmDrawColorWell1D(NAReaction reaction){
+void cmDrawColorWell1D(NAReaction reaction){
   CPColorWell1D* well = (CPColorWell1D*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
@@ -212,8 +209,6 @@ NABool cmDrawColorWell1D(NAReaction reaction){
   cpDrawBorder();
 
   naSwapOpenGLSpaceBuffer(well->display);
-
-  return NA_TRUE;
 }
 
 

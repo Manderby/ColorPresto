@@ -37,7 +37,7 @@ void cmInitColorWell2D(void* data){
 
 
 
-NABool cmDragColorWell2D(NAReaction reaction){
+void cmDragColorWell2D(NAReaction reaction){
   CPColorWell2D* well = (CPColorWell2D*)reaction.controller;
  
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
@@ -73,16 +73,12 @@ NABool cmDragColorWell2D(NAReaction reaction){
     cpSetColorControllerColorData(well->colorController, newColorValues);
     cpSetCurrentColorController(well->colorController);
     cpUpdateColor();
-
-    return NA_TRUE;
   }
-  
-  return NA_FALSE;
 }
 
 
 
-NABool cmDrawColorWell2D(NAReaction reaction){
+void cmDrawColorWell2D(NAReaction reaction){
   CPColorWell2D* well = (CPColorWell2D*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
@@ -101,7 +97,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
   CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
 
-  float inputValues[colorWell2DSize * colorWell2DSize * 3] = {0};
+  float* inputValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
   float* inputPtr = inputValues;
   CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
   outputConverter(normedColorValues, cpGetColorControllerColorData(well->colorController), 1);
@@ -152,7 +148,7 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   }
 
   // Convert the given values to screen RGBs.
-  float rgbValues[colorWell2DSize * colorWell2DSize * 3];
+  float* rgbValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
   fillRGBFloatArrayWithArray(
     cm,
     sm,
@@ -163,6 +159,9 @@ NABool cmDrawColorWell2D(NAReaction reaction){
     colorWell2DSize * colorWell2DSize);
 
   glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, rgbValues);
+
+  naFree(inputValues);
+  naFree(rgbValues);
 
   glEnable(GL_TEXTURE_2D);
   glBegin(GL_TRIANGLE_STRIP);
@@ -246,8 +245,6 @@ NABool cmDrawColorWell2D(NAReaction reaction){
   cpDrawBorder();
 
   naSwapOpenGLSpaceBuffer(well->display);
-
-  return NA_TRUE;
 }
 
 

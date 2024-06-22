@@ -27,7 +27,7 @@ struct CPMachineIlluminationController{
 
 
 
-NABool cp_SelectIllumination(NAReaction reaction){
+void cp_SelectIllumination(NAReaction reaction){
   CPMachineIlluminationController* con = (CPMachineIlluminationController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -44,13 +44,11 @@ NABool cp_SelectIllumination(NAReaction reaction){
   }
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 
 
-NABool cpSetIlluminationTemperature(NAReaction reaction){
+void cpSetIlluminationTemperature(NAReaction reaction){
   CPMachineIlluminationController* con = (CPMachineIlluminationController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -66,13 +64,11 @@ NABool cpSetIlluminationTemperature(NAReaction reaction){
   cmlSetIlluminationTemperature(cm, temperature);
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 
 
-NABool cpSetWhitePoint(NAReaction reaction){
+void cpSetWhitePoint(NAReaction reaction){
   CPMachineIlluminationController* con = (CPMachineIlluminationController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -92,8 +88,6 @@ NABool cpSetWhitePoint(NAReaction reaction){
   cmlSetReferenceWhitePointYxy(cm, whitePointYxy);
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 

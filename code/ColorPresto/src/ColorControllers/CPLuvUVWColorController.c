@@ -35,7 +35,7 @@ struct CPLuvUVWColorController{
 
 
 
-NABool cp_LuvUVWSelectionChanged(NAReaction reaction){
+void cp_LuvUVWSelectionChanged(NAReaction reaction){
   CPLuvUVWColorController* con = (CPLuvUVWColorController*)reaction.controller;
   
   LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
@@ -57,13 +57,11 @@ NABool cp_LuvUVWSelectionChanged(NAReaction reaction){
   cpSetColorControllerColorType(&(con->baseController), newColorType);
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 
 
-NABool cp_LuvValueEdited(NAReaction reaction){
+void cp_LuvValueEdited(NAReaction reaction){
   CPLuvUVWColorController* con = (CPLuvUVWColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textField0){
@@ -76,8 +74,6 @@ NABool cp_LuvValueEdited(NAReaction reaction){
   
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 

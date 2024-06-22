@@ -36,7 +36,7 @@ struct CPHSVHSLColorController{
 
 
 
-NABool cp_HSVHSLSelectionChanged(NAReaction reaction){
+void cp_HSVHSLSelectionChanged(NAReaction reaction){
   CPHSVHSLColorController* con = (CPHSVHSLColorController*)reaction.controller;
   
   HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
@@ -58,13 +58,11 @@ NABool cp_HSVHSLSelectionChanged(NAReaction reaction){
   cpSetColorControllerColorType(&(con->baseController), newColorType);
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 
 
-NABool cp_HSVHSLValueEdited(NAReaction reaction){
+void cp_HSVHSLValueEdited(NAReaction reaction){
   CPHSVHSLColorController* con = (CPHSVHSLColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textField0){
@@ -77,8 +75,6 @@ NABool cp_HSVHSLValueEdited(NAReaction reaction){
   
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 

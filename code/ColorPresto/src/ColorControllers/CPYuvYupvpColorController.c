@@ -35,7 +35,7 @@ struct CPYuvYupvpColorController{
 
 
 
-NABool cp_YuvYupvpSelectionChanged(NAReaction reaction){
+void cp_YuvYupvpSelectionChanged(NAReaction reaction){
   CPYuvYupvpColorController* con = (CPYuvYupvpColorController*)reaction.controller;
   
   YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
@@ -57,13 +57,11 @@ NABool cp_YuvYupvpSelectionChanged(NAReaction reaction){
   cpSetColorControllerColorType(&(con->baseController), newColorType);
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 
 
-NABool cp_YuvValueEdited(NAReaction reaction){
+void cp_YuvValueEdited(NAReaction reaction){
   CPYuvYupvpColorController* con = (CPYuvYupvpColorController*)reaction.controller;
   
   if(reaction.uiElement == con->textField0){
@@ -76,8 +74,6 @@ NABool cp_YuvValueEdited(NAReaction reaction){
   
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 

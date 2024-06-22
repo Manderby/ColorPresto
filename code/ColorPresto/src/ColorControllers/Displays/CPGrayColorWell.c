@@ -29,7 +29,7 @@ void cmInitGrayColorWell(void* data){
 
 
 
-NABool cmDrawGrayColorWell(NAReaction reaction){
+void cmDrawGrayColorWell(NAReaction reaction){
   CPGrayColorWell* well = (CPGrayColorWell*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
@@ -119,8 +119,6 @@ NABool cmDrawGrayColorWell(NAReaction reaction){
   cpDrawBorder();
 
   naSwapOpenGLSpaceBuffer(well->display);
-
-  return NA_TRUE;
 }
 
 

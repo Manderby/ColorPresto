@@ -88,33 +88,29 @@ const NAUTF8Char* cpGetCoordSysName(CoordSysType coordSysType){
 
 
 
-NABool cp_SelectColorSpace(NAReaction reaction){
+void cp_SelectColorSpace(NAReaction reaction){
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
   size_t index = naGetSelectItemIndex(con->colorSpaceSelect, reaction.uiElement);
   con->colorSpaceType = (ColorSpaceType)index;
 
   cpUpdateThreeDeeController(con->threeDeeController);
-
-  return TRUE;
 }
 
 
 
-NABool cp_SelectCoordSys(NAReaction reaction){
+void cp_SelectCoordSys(NAReaction reaction){
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
   size_t index = naGetSelectItemIndex(con->coordSysSelect, reaction.uiElement);
   con->coordSysType = (CoordSysType)index;
   
   cpUpdateThreeDeeController(con->threeDeeController);
-
-  return TRUE;
 }
 
 
 
-NABool cp_ChangeCoordinateSlider(NAReaction reaction){
+void cp_ChangeCoordinateSlider(NAReaction reaction){
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
   if(reaction.uiElement == con->stepsSlider){
@@ -122,8 +118,6 @@ NABool cp_ChangeCoordinateSlider(NAReaction reaction){
   }
   
   cpUpdateThreeDeeController(con->threeDeeController);
-
-  return TRUE;
 }
 
 

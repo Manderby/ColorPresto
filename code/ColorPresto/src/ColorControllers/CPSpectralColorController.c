@@ -19,13 +19,11 @@ struct CPSpectralColorController{
 
 
 
-NABool cp_SpectralValueEdited(NAReaction reaction){
+void cp_SpectralValueEdited(NAReaction reaction){
   CPSpectralColorController* con = (CPSpectralColorController*)reaction.controller;
   
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 

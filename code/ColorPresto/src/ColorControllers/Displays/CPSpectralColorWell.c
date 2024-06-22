@@ -20,7 +20,7 @@ struct CPSpectralColorWell{
 
 
 
-NABool cmDragSpectralColorWell(NAReaction reaction){
+void cmDragSpectralColorWell(NAReaction reaction){
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
   if(mouseStatus->leftPressed){
     CPSpectralColorWell* well = (CPSpectralColorWell*)reaction.controller;
@@ -42,11 +42,7 @@ NABool cmDragSpectralColorWell(NAReaction reaction){
 
     cmlReleaseFunction(dirac);
     cmlReleaseFunction(illumDirac);
-
-    return NA_TRUE;
   }
-
-  return NA_FALSE;
 }
 
 
@@ -95,7 +91,7 @@ void cmInitSpectralColorWell(void* data){
 
 
 
-NABool cmDrawSpectralColorWell(NAReaction reaction){
+void cmDrawSpectralColorWell(NAReaction reaction){
   CPSpectralColorWell* well = (CPSpectralColorWell*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 //  CMLColorMachine* sm = cpGetCurrentScreenMachine();
@@ -241,8 +237,6 @@ NABool cmDrawSpectralColorWell(NAReaction reaction){
   glPopMatrix();
 
   naSwapOpenGLSpaceBuffer(well->openGLSpace);
-
-  return NA_TRUE;
 }
 
 

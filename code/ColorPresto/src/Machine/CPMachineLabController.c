@@ -25,7 +25,7 @@ struct CPMachineLabController{
 
 
 
-NABool cp_SelectLabColorSpace(NAReaction reaction){
+void cp_SelectLabColorSpace(NAReaction reaction){
   CPMachineLabController* con = (CPMachineLabController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -35,13 +35,11 @@ NABool cp_SelectLabColorSpace(NAReaction reaction){
   cmlSetLabColorSpace(cm, labColorSpaceType);
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 
 
-NABool cpSetLabValue(NAReaction reaction){
+void cpSetLabValue(NAReaction reaction){
   CPMachineLabController* con = (CPMachineLabController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -61,8 +59,6 @@ NABool cpSetLabValue(NAReaction reaction){
   cmlSetAdamsChromaticityValenceParameters(cm, K, ke);
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 

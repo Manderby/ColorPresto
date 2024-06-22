@@ -27,7 +27,7 @@ struct CPPreferencesController {
 
 
 
-NABool cp_ChangePreferencesLanguage(NAReaction reaction){
+void cp_ChangePreferencesLanguage(NAReaction reaction){
   CPPreferencesController* con = reaction.controller;
 
   if(reaction.uiElement == con->languageSystem){
@@ -52,21 +52,17 @@ NABool cp_ChangePreferencesLanguage(NAReaction reaction){
     NA_ALERT_BOX_INFO,
     cpTranslate(CPPreferencesLanguageChangeAlertTitle),
     cpTranslate(CPPreferencesLanguageChangeAlertText));
-
-  return NA_TRUE;
 }
 
 
 
-NABool cp_ReportBadTranslation(NAReaction reaction){
+void cp_ReportBadTranslation(NAReaction reaction){
   NA_UNUSED(reaction);
 
   naPresentAlertBox(
     NA_ALERT_BOX_INFO,
     cpTranslate(CPPreferencesLanguageBadTranslationTitle),
     cpTranslate(CPPreferencesLanguageBadTranslationText));
-
-  return NA_TRUE;
 }
 
 

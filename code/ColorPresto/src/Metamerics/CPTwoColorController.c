@@ -23,7 +23,7 @@ void cp_InitTwoColorDisplay(void* data){
 
 
 
-NABool cp_RedrawTwoColorController(NAReaction reaction){
+void cp_RedrawTwoColorController(NAReaction reaction){
   CPTwoColorController* con = (CPTwoColorController*)(reaction.controller);
 
   glBegin(GL_TRIANGLE_STRIP);
@@ -40,8 +40,6 @@ NABool cp_RedrawTwoColorController(NAReaction reaction){
   cpDrawBorder();
   
   naSwapOpenGLSpaceBuffer(con->space);
-  
-  return NA_TRUE;
 }
 
 

@@ -14,12 +14,9 @@
 
 
 
-NABool CPColorControllerMouseDown(NAReaction reaction){
+void CPColorControllerMouseDown(NAReaction reaction){
   CPColorController* con = reaction.controller;
-  
   cpSetCurrentColorController(con);
-  
-  return NA_TRUE;
 }
 
 

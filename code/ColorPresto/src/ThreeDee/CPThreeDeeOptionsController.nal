@@ -31,7 +31,7 @@ CPThreeDeeOptionsController = module : NASpace;
 
 
 
-pressOptionsButton = bool (NAReaction reaction) {
+pressOptionsButton = void (NAReaction reaction) {
   this = [reaction.controller];
 
   if(reaction.uiElement == spectrumCheckBox){
@@ -41,13 +41,11 @@ pressOptionsButton = bool (NAReaction reaction) {
   }
 
   parent.update();
-
-  return true;
 }
 
 
 
-changeOptionsSlider = bool (NAReaction reaction) {
+changeOptionsSlider = void (NAReaction reaction) {
   mutable this = [reaction.controller];
 
   if(reaction.uiElement == backgroundSlider){
@@ -58,8 +56,6 @@ changeOptionsSlider = bool (NAReaction reaction) {
   }
   
   parent.update();
-
-  return true;
 }
 
 

@@ -21,7 +21,7 @@ struct CPMachineButtonsController{
 
 
 
-NABool cp_PressMachineButton(NAReaction reaction){
+void cp_PressMachineButton(NAReaction reaction){
   CPMachineButtonsController* con = (CPMachineButtonsController*)reaction.controller;
   
   if(reaction.uiElement == con->resetMachineButton){
@@ -36,8 +36,6 @@ NABool cp_PressMachineButton(NAReaction reaction){
   }else if(reaction.uiElement == con->preferencesButton){
     cpShowPreferences();
   }
-
-  return NA_TRUE;
 }
 
 

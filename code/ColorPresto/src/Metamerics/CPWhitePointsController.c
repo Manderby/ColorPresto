@@ -70,7 +70,7 @@ static const double fourValuesWidth = 4 * labelValueWidth + 3 * marginH;
 
 
 
-NABool cp_SelectRefSpectrum(NAReaction reaction){
+void cp_SelectRefSpectrum(NAReaction reaction){
   CPWhitePointsController* con = (CPWhitePointsController*)reaction.controller;
   if(reaction.uiElement == con->refD50MenuItem){
     con->referenceIlluminationType = REFERENCE_ILLUMINATION_D50;
@@ -83,8 +83,6 @@ NABool cp_SelectRefSpectrum(NAReaction reaction){
   }
 
   cpUpdateMetamerics();
-
-  return NA_TRUE;
 }
 
 

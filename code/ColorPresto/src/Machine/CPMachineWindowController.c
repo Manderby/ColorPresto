@@ -21,9 +21,8 @@
 
 
 
-NABool cpControllerWindowCloses(NAReaction reaction){
+void cpControllerWindowCloses(NAReaction reaction){
   naStopApplication();
-  return NA_TRUE;
 }
 
 

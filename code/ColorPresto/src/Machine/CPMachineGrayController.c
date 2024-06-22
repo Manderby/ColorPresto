@@ -18,7 +18,7 @@ struct CPMachineGrayController{
 
 
 
-NABool cp_SelectGrayColorSpace(NAReaction reaction){
+void cp_SelectGrayColorSpace(NAReaction reaction){
   CPMachineGrayController* con = (CPMachineGrayController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -27,8 +27,6 @@ NABool cp_SelectGrayColorSpace(NAReaction reaction){
   cmlSetGrayComputationType(cm, grayComputationType);
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 

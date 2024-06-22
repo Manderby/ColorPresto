@@ -41,7 +41,7 @@ struct CPRGBColorController{
 
 
 
-NABool cp_RGBValueEdited(NAReaction reaction){
+void cp_RGBValueEdited(NAReaction reaction){
   CPRGBColorController* con = (CPRGBColorController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -72,8 +72,6 @@ NABool cp_RGBValueEdited(NAReaction reaction){
   
   cpSetCurrentColorController(&(con->baseController));
   cpUpdateColor();
-  
-  return NA_TRUE;
 }
 
 

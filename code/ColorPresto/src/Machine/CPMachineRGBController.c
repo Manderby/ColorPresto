@@ -56,7 +56,7 @@ struct CPMachineRGBController{
 
 
 
-NABool cp_SelectRGBColorSpace(NAReaction reaction){
+void cp_SelectRGBColorSpace(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -65,13 +65,11 @@ NABool cp_SelectRGBColorSpace(NAReaction reaction){
   cmlSetRGBColorSpaceType(cm, rgbColorSpaceType);
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 
 
-NABool cpSetRGBYxy(NAReaction reaction){
+void cpSetRGBYxy(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -103,13 +101,11 @@ NABool cpSetRGBYxy(NAReaction reaction){
   cmlSetRGBPrimariesYxy(cm, primaries);
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 
 
-NABool cp_SelectRGBChannel(NAReaction reaction){
+void cp_SelectRGBChannel(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -148,13 +144,11 @@ NABool cp_SelectRGBChannel(NAReaction reaction){
   con->lastSelectedChannel = newSelectedChannel;
     
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 
 
-NABool cp_SelectRGBResponse(NAReaction reaction){
+void cp_SelectRGBResponse(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -184,13 +178,11 @@ NABool cp_SelectRGBResponse(NAReaction reaction){
   free(newResponse);
   
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 
 
-NABool cpSetResponseValue(NAReaction reaction){
+void cpSetResponseValue(NAReaction reaction){
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -250,8 +242,6 @@ NABool cpSetResponseValue(NAReaction reaction){
   free(newResponseB);
 
   cpUpdateMachine();
-
-  return NA_TRUE;
 }
 
 
@@ -392,7 +382,7 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
   naAddSpaceChild(
     con->space,
     cpGetGammaDisplayControllerUIElement(con->gammaDisplayController),
-    naMakePos(300, 37));
+    naMakePos(340, 37));
 
   // Initialization
 

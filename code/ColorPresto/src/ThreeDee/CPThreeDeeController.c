@@ -48,7 +48,7 @@ void cpRefreshThreeDeeDisplay(CPThreeDeeController* con){
   naRefreshUIElement(con->display, 0.);
 }
 
-NABool cp_ReshapeThreeDeeWindow(NAReaction reaction){
+void cp_ReshapeThreeDeeWindow(NAReaction reaction){
   CPThreeDeeController* con = (CPThreeDeeController*)reaction.controller;
 
   NARect windowRect = naGetUIElementRect(con->window);
@@ -71,13 +71,11 @@ NABool cp_ReshapeThreeDeeWindow(NAReaction reaction){
   naSetUIElementRect(con->controlSpace, controlRect);
 
   cpSetThreeDeePerspectiveControllerZoom(con->perspectiveController, cpGetThreeDeePerspectiveControllerZoom(con->perspectiveController) / (openGLRect.size.height / oldOpenGLRect.size.height));
-
-  return NA_TRUE;
 }
 
 
 
-NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
+void cpUpdateThreeDeeDisplay(NAReaction reaction){
   CPThreeDeeController* con = (CPThreeDeeController*)reaction.controller;
   
   CMLColorMachine* cm = cpGetCurrentColorMachine();
@@ -228,7 +226,7 @@ NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
     normedOutputConverter = cmlGetNormedOutputConverter(CML_COLOR_Yxy);
     break;
   default:
-    return NA_FALSE;
+    return;
   }
 
 
@@ -336,8 +334,6 @@ NABool cpUpdateThreeDeeDisplay(NAReaction reaction){
   }
 
   cpEndThreeDeeDrawing(con->display);
-    
-  return NA_TRUE;
 }
 
 
