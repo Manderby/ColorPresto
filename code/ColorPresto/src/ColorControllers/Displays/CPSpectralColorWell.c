@@ -22,7 +22,7 @@ struct CPSpectralColorWell{
 
 void cmDragSpectralColorWell(NAReaction reaction){
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
-  if(mouseStatus->leftPressed){
+  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
     CPSpectralColorWell* well = (CPSpectralColorWell*)reaction.controller;
     CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -96,7 +96,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 //  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
-  double uiScale = naGetUIElementResolutionFactor(well->openGLSpace);
+  double uiScale = naGetUIElementResolutionScale(well->openGLSpace);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
   glViewport(
     0,

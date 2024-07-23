@@ -79,10 +79,10 @@ void cp_FixThreeDeeViewParameters(CPThreeDeePerspectiveController* con){
 void cpMoveRotationMouse(NAReaction reaction){
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
-  const NAMouseStatus* status = naGetMouseStatus();
-  if(status->leftPressed){
+  const NAMouseStatus* mouseStatus = naGetMouseStatus();
+  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
     
-    NAPos mouseDiff = naMakePos(status->pos.x - status->prevPos.x, status->pos.y - status->prevPos.y);
+    NAPos mouseDiff = naMakePos(mouseStatus->pos.x - mouseStatus->prevPos.x, mouseStatus->pos.y - mouseStatus->prevPos.y);
     double scaleFactor = cpGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
 
     con->angleEqu -= (float)(mouseDiff.x * .01 * scaleFactor);
