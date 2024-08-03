@@ -42,7 +42,7 @@ void cmDragColorWell1D(NAReaction reaction){
   CPColorWell1D* well = (CPColorWell1D*)reaction.controller;
  
   const NAMouseStatus* mouseStatus = naGetMouseStatus();
-  if(mouseStatus->leftPressed){
+  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
     CMLColorMachine* cm = cpGetCurrentColorMachine();
 
     CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
@@ -93,7 +93,7 @@ void cmDrawColorWell1D(NAReaction reaction){
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
-  double uiScale = naGetUIElementResolutionFactor(well->display);
+  double uiScale = naGetUIElementResolutionScale(well->display);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
   glViewport(
     0,

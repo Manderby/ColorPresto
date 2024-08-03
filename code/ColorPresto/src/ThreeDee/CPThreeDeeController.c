@@ -358,7 +358,7 @@ CPThreeDeeController* cpAllocThreeDeeController(void){
   con->display = naNewOpenGLSpace(naMakeSize(initial3DDisplayWidth, initial3DDisplayWidth), cp_InitThreeDeeOpenGL, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cpUpdateThreeDeeDisplay, con);
   naAddUIReaction(con->display, NA_UI_COMMAND_MOUSE_MOVED, cpMoveRotationMouse, con->perspectiveController);
-  naAddUIReaction(con->display, NA_UI_COMMAND_SCROLLED, cpScrollRotation, con->perspectiveController);
+  naAddUIReaction(con->display, NA_UI_COMMAND_TRANSFORMED, cpScrollRotation, con->perspectiveController);
   
   // The control space
   con->controlSpace = naNewSpace(naMakeSize(fullControlWidth, 1));

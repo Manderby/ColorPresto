@@ -38,7 +38,7 @@ CPAboutController* cpAllocAboutController(void){
 
   NAString* iconPath = naNewApplicationIconPath();
   NAImage* iconImage = naCreateImageFromFilePath(naGetStringUTF8Pointer(iconPath));
-  NAUIImage* iconCUIImage = naCreateUIImage(iconImage, NA_UIIMAGE_RESOLUTION_SCREEN_2x, NA_BLEND_ZERO);
+  NAUIImage* iconCUIImage = naCreateUIImage(iconImage, NA_UI_RESOLUTION_2x, NA_BLEND_ZERO);
   naReleaseImage(iconImage);
   naDelete(iconPath);
   con->iconSpace = naNewImageSpace(iconCUIImage, naMakeSize(128, 128));

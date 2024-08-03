@@ -191,6 +191,6 @@ enum{
 
 };
 
-const NAUTF8Char* cpTranslate(NAInt id);
+const NAUTF8Char* cpTranslate(uint32 id);
 void initTranslations(void);
 

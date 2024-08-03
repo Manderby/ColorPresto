@@ -1,11 +1,11 @@
 
 #include "CPTranslations.h"
 
-NAInt translatorGroup;
+uint32 translatorGroup;
 
 
 
-const NAUTF8Char* cpTranslate(NAInt id){
+const NAUTF8Char* cpTranslate(uint32 id){
   return naTranslate(translatorGroup, id);
 }
 
