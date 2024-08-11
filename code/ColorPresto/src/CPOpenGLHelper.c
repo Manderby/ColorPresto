@@ -2,6 +2,7 @@
 #include "CPOpenGLHelper.h"
 
 #include "NAApp/NAApp.h"
+#include "NAVisual/NAColor.h"
 
 void cpDrawBorder(){
   NAColor borderColor;

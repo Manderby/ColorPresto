@@ -11,6 +11,7 @@
 #include "CPYuvYupvpColorController.h"
 #include "CPYxyColorController.h"
 #include "NAApp/NAApp.h"
+#include "NAVisual/NAColor.h"
 
 
 
