@@ -3,40 +3,52 @@
 //typedef myType = f32;
 //typedef myFunctionType = bool (i32);
 
-CPThreeDeeOptionsController = module : NASpace;
-
-
-.parent           = share CPThreeDeeController;
-
-.axisLabel        = NALabel;
-.axisCheckBox     = NACheckBox;
-.spectrumLabel    = NALabel;
-.spectrumCheckBox = NACheckBox;
-.backgroundLabel  = NALabel;
-.backgroundSlider = NASlider;
-.fovyLabel        = NALabel;
-.fovySlider       = NASlider;
-
-.showSpectrum     = false;
-.showAxis         = true;
-.backgroundGray   = 0.3f;
-.fovy             = 50.f;
-
-
-
+//myPrivateVariable       = bool;
+//myPrivateVariable2      = 1234.;
+//.myPublicVariable       = "Hello";
+//
 //myNormalFunction        = bool (i32 myParameter) {return true;}
 //.myPublicStaticFunction = bool (i32 myParameter) {return true;}
 //myPrivateMethod         = bool (this, i32 myParameter) {return true;}
 //.myPublicMethod         = bool (this, i32 myParameter) {return true;}
 
+// Here is global module space
+// PrivateClass = module : DerivedClass;
+// Here is PrivateClass module space
+// .PublicClass = module : DerivedClass;
+// Here is PublicClass module space
+
+
+
+
+.CPThreeDeeOptionsController = module : NASpace;
+
+
+
+parent           = share CPThreeDeeController;
+
+axisLabel        = NALabel;
+axisCheckBox     = NACheckBox;
+spectrumLabel    = NALabel;
+spectrumCheckBox = NACheckBox;
+backgroundLabel  = NALabel;
+backgroundSlider = NASlider;
+fovyLabel        = NALabel;
+fovySlider       = NASlider;
+
+showSpectrum     = false;
+showAxis         = true;
+backgroundGray   = 0.3f;
+fovy             = 50.f;
+
 
 
 pressOptionsButton = void (NAReaction reaction) {
-  this = [reaction.controller];
+  this = reaction.controller;
 
-  if(reaction.uiElement == spectrumCheckBox){
+  iff (reaction.uiElement) (spectrumCheckBox){
     showSpectrum = spectrumCheckBox.getState();
-  }else if(reaction.uiElement == axisCheckBox){
+  } else (axisCheckBox){
     showAxis = axisCheckBox.getState();
   }
 
@@ -46,11 +58,11 @@ pressOptionsButton = void (NAReaction reaction) {
 
 
 changeOptionsSlider = void (NAReaction reaction) {
-  mutable this = [reaction.controller];
+  mutable this = reaction.controller;
 
-  if(reaction.uiElement == backgroundSlider){
+  iff (reaction.uiElement)(backgroundSlider){
     backgroundGray = backgroundSlider.getValue();
-  }else if(reaction.uiElement == fovySlider){
+  } else (fovySlider){
     fovy = fovySlider.getValue();
     if(fovy < 15.f){fovy = 0.f;}
   }
@@ -62,7 +74,7 @@ changeOptionsSlider = void (NAReaction reaction) {
 
 .constructor = (
   mutable this,
-  parent CPThreeDeeController)
+  CPThreeDeeController parent)
 {
   .parent = parent;
   space = new NASpace(naMakeSize(1, 1));
@@ -111,6 +123,8 @@ changeOptionsSlider = void (NAReaction reaction) {
   if(axisGray > 1.f){axisGray -= 1.f;}
   return axisGray;
 }
+
+
 
 .getBackgroundGray = f64 (this) {return backgroundGray;}
 .getFovy           = f64 (this) {return fovy;}
