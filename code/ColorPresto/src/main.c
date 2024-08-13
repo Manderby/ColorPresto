@@ -50,6 +50,11 @@ void preStartup(void* arg){
   initTranslations();
   initPreferences();
 
+  naSetApplicationName("Color Presto");
+  naSetApplicationVersionString("2.1");
+  naSetApplicationBuildString("2.1");
+  naSetApplicationIconPath("icon.png");
+
   cpStartupColorPrestoApplication();
 }
 
@@ -84,7 +89,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
   NA_UNUSED(lpCmdLine);
   NA_UNUSED(nShowCmd);
   
-  //naOpenConsoleWindow();
+  naOpenConsoleWindow();
 
   naStartRuntime();
   naStartApplication(preStartup, postStartup, NA_NULL, NA_NULL);
