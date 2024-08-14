@@ -48,14 +48,6 @@
 
 
 
-double cpGetUIScaleFactorForWindow(void* nativeWindowPtr){
-  return [ColorPrestoApplication getUIScaleFactorForWindow: (NA_COCOA_BRIDGE NSWindow*)nativeWindowPtr];
-}
-
-+ (CGFloat) getUIScaleFactorForWindow:(NSWindow*)window{
-  return naGetWindowBackingScaleFactor(window);
-}
-
 @end
 
 #endif // NA_OS == NA_OS_MAC_OS_X

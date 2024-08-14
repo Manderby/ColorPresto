@@ -56,8 +56,6 @@ const float* cpGetCurrentColorData(void);
 CMLColorType cpGetCurrentColorType(void);
 
 
-double cpGetUIScaleFactorForWindow(void* nativeWindowPtr);
-
 void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* texdata, const float* inputarray, CMLColorType inputColorType, CMLNormedConverter normedConverter, size_t count);
 
 

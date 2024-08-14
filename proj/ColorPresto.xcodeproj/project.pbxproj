@@ -109,6 +109,15 @@
 		905E657B2C1D87A400241440 /* CPTranslations.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65442C1D87A400241440 /* CPTranslations.c */; };
 		905E657C2C1D87A400241440 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 905E65462C1D87A400241440 /* main.c */; };
 		905E657D2C1D87A400241440 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 905E65472C1D87A400241440 /* main.m */; };
+		9099C1FE2C6CF4AC00BFAC5A /* ColorPresto.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9099C1E32C6CF4AC00BFAC5A /* ColorPresto.icns */; };
+		9099C1FF2C6CF4AC00BFAC5A /* ColorPresto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9099C1E42C6CF4AC00BFAC5A /* ColorPresto.xib */; };
+		9099C2012C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9099C1E72C6CF4AC00BFAC5A /* InfoPlist.strings */; };
+		9099C2022C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9099C1E92C6CF4AC00BFAC5A /* InfoPlist.strings */; };
+		9099C2032C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9099C1EB2C6CF4AC00BFAC5A /* InfoPlist.strings */; };
+		9099C2042C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9099C1ED2C6CF4AC00BFAC5A /* InfoPlist.strings */; };
+		9099C2052C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9099C1EF2C6CF4AC00BFAC5A /* InfoPlist.strings */; };
+		9099C2062C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9099C1F12C6CF4AC00BFAC5A /* InfoPlist.strings */; };
+		9099C2082C6CF4AC00BFAC5A /* ColorPrestoChangelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 9099C1F52C6CF4AC00BFAC5A /* ColorPrestoChangelog.txt */; };
 		90E3943F2C1CB03F00705076 /* NAApplication.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3930C2C1CB03F00705076 /* NAApplication.c */; };
 		90E394402C1CB03F00705076 /* NAButton.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3930D2C1CB03F00705076 /* NAButton.c */; };
 		90E394412C1CB03F00705076 /* NACheckBox.c in Sources */ = {isa = PBXBuildFile; fileRef = 90E3930E2C1CB03F00705076 /* NACheckBox.c */; };
@@ -377,13 +386,6 @@
 		90E395482C1CB03F00705076 /* NAVisual.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E394392C1CB03F00705076 /* NAVisual.h */; };
 		90E395492C1CB03F00705076 /* NALib.h in Headers */ = {isa = PBXBuildFile; fileRef = 90E3943B2C1CB03F00705076 /* NALib.h */; };
 		90E395F82C1CBBFE00705076 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E395F72C1CBBFE00705076 /* Cocoa.framework */; };
-		90E3964F2C1CDF3700705076 /* ColorPresto.icns in Resources */ = {isa = PBXBuildFile; fileRef = 90E3963D2C1CDF3700705076 /* ColorPresto.icns */; };
-		90E396502C1CDF3700705076 /* ColorPresto.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90E3963E2C1CDF3700705076 /* ColorPresto.xib */; };
-		90E396512C1CDF3700705076 /* ColorPrestoChangelog.txt in Resources */ = {isa = PBXBuildFile; fileRef = 90E3963F2C1CDF3700705076 /* ColorPrestoChangelog.txt */; };
-		90E396532C1CDF3700705076 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90E396472C1CDF3700705076 /* InfoPlist.strings */; };
-		90E396542C1CDF3700705076 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90E396492C1CDF3700705076 /* InfoPlist.strings */; };
-		90E396552C1CDF3700705076 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90E3964B2C1CDF3700705076 /* InfoPlist.strings */; };
-		90E396562C1CDF3700705076 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 90E3964D2C1CDF3700705076 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -558,8 +560,23 @@
 		905E65462C1D87A400241440 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		905E65472C1D87A400241440 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		905E65482C1D87A400241440 /* mainC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mainC.h; sourceTree = "<group>"; };
-		909047562C1DB86200E64A47 /* ColorPrestoStrings_fra.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_fra.h; sourceTree = "<group>"; };
-		909047572C1DBF0D00E64A47 /* ColorPrestoStrings_spa.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_spa.h; sourceTree = "<group>"; };
+		9099C1E32C6CF4AC00BFAC5A /* ColorPresto.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorPresto.icns; sourceTree = "<group>"; };
+		9099C1E42C6CF4AC00BFAC5A /* ColorPresto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPresto.xib; sourceTree = "<group>"; };
+		9099C1E52C6CF4AC00BFAC5A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9099C1E62C6CF4AC00BFAC5A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9099C1E82C6CF4AC00BFAC5A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9099C1EA2C6CF4AC00BFAC5A /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9099C1EC2C6CF4AC00BFAC5A /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9099C1EE2C6CF4AC00BFAC5A /* jp */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = jp; path = jp.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9099C1F02C6CF4AC00BFAC5A /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		9099C1F52C6CF4AC00BFAC5A /* ColorPrestoChangelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ColorPrestoChangelog.txt; sourceTree = "<group>"; };
+		9099C1F62C6CF4AC00BFAC5A /* ColorPrestoStrings_deu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_deu.h; sourceTree = "<group>"; };
+		9099C1F72C6CF4AC00BFAC5A /* ColorPrestoStrings_eng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_eng.h; sourceTree = "<group>"; };
+		9099C1F82C6CF4AC00BFAC5A /* ColorPrestoStrings_fra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_fra.h; sourceTree = "<group>"; };
+		9099C1F92C6CF4AC00BFAC5A /* ColorPrestoStrings_jpn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_jpn.h; sourceTree = "<group>"; };
+		9099C1FA2C6CF4AC00BFAC5A /* ColorPrestoStrings_spa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_spa.h; sourceTree = "<group>"; };
+		9099C1FB2C6CF4AC00BFAC5A /* ColorPrestoStrings_tlh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_tlh.h; sourceTree = "<group>"; };
+		9099C1FC2C6CF4AC00BFAC5A /* ColorPrestoStrings_zho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_zho.h; sourceTree = "<group>"; };
 		90BF531F274ABD41001FDE2A /* libNALib.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libNALib.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90C6F9F2293AA4EC00671DE7 /* libCMLStatic.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCMLStatic.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		90E3930C2C1CB03F00705076 /* NAApplication.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NAApplication.c; sourceTree = "<group>"; };
@@ -837,19 +854,6 @@
 		90E3943B2C1CB03F00705076 /* NALib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NALib.h; sourceTree = "<group>"; };
 		90E3943D2C1CB03F00705076 /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CMakeLists.txt; sourceTree = "<group>"; };
 		90E395F72C1CBBFE00705076 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
-		90E3963D2C1CDF3700705076 /* ColorPresto.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = ColorPresto.icns; sourceTree = "<group>"; };
-		90E3963E2C1CDF3700705076 /* ColorPresto.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ColorPresto.xib; sourceTree = "<group>"; };
-		90E3963F2C1CDF3700705076 /* ColorPrestoChangelog.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ColorPrestoChangelog.txt; sourceTree = "<group>"; };
-		90E396402C1CDF3700705076 /* ColorPrestoStrings_zho.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_zho.h; sourceTree = "<group>"; };
-		90E396412C1CDF3700705076 /* ColorPrestoStrings_deu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_deu.h; sourceTree = "<group>"; };
-		90E396422C1CDF3700705076 /* ColorPrestoStrings_eng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_eng.h; sourceTree = "<group>"; };
-		90E396432C1CDF3700705076 /* ColorPrestoStrings_jpn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_jpn.h; sourceTree = "<group>"; };
-		90E396442C1CDF3700705076 /* ColorPrestoStrings_tlh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorPrestoStrings_tlh.h; sourceTree = "<group>"; };
-		90E396452C1CDF3700705076 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		90E396462C1CDF3700705076 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		90E396482C1CDF3700705076 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		90E3964A2C1CDF3700705076 /* jp */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = jp; path = jp.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		90E3964C2C1CDF3700705076 /* zh */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh; path = zh.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B96AA9A11767414B00F041A3 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
 		B9917CB115C9AA9E00F0140B /* libcml.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libcml.dylib; path = /usr/local/lib/libcml.dylib; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -915,7 +919,7 @@
 			children = (
 				90E3943E2C1CB03F00705076 /* NALib */,
 				9019C6982AED04BB003855CD /* CML */,
-				90E3964E2C1CDF3700705076 /* res */,
+				9099C1FD2C6CF4AC00BFAC5A /* res */,
 				905E65492C1D87A400241440 /* src */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -1178,6 +1182,39 @@
 			);
 			name = src;
 			path = ../code/ColorPresto/src;
+			sourceTree = "<group>";
+		};
+		9099C1F22C6CF4AC00BFAC5A /* mac */ = {
+			isa = PBXGroup;
+			children = (
+				9099C1E32C6CF4AC00BFAC5A /* ColorPresto.icns */,
+				9099C1E42C6CF4AC00BFAC5A /* ColorPresto.xib */,
+				9099C1E52C6CF4AC00BFAC5A /* Info.plist */,
+				9099C1E72C6CF4AC00BFAC5A /* InfoPlist.strings */,
+				9099C1E92C6CF4AC00BFAC5A /* InfoPlist.strings */,
+				9099C1EB2C6CF4AC00BFAC5A /* InfoPlist.strings */,
+				9099C1ED2C6CF4AC00BFAC5A /* InfoPlist.strings */,
+				9099C1EF2C6CF4AC00BFAC5A /* InfoPlist.strings */,
+				9099C1F12C6CF4AC00BFAC5A /* InfoPlist.strings */,
+			);
+			path = mac;
+			sourceTree = "<group>";
+		};
+		9099C1FD2C6CF4AC00BFAC5A /* res */ = {
+			isa = PBXGroup;
+			children = (
+				9099C1F22C6CF4AC00BFAC5A /* mac */,
+				9099C1F52C6CF4AC00BFAC5A /* ColorPrestoChangelog.txt */,
+				9099C1F62C6CF4AC00BFAC5A /* ColorPrestoStrings_deu.h */,
+				9099C1F72C6CF4AC00BFAC5A /* ColorPrestoStrings_eng.h */,
+				9099C1F82C6CF4AC00BFAC5A /* ColorPrestoStrings_fra.h */,
+				9099C1F92C6CF4AC00BFAC5A /* ColorPrestoStrings_jpn.h */,
+				9099C1FA2C6CF4AC00BFAC5A /* ColorPrestoStrings_spa.h */,
+				9099C1FB2C6CF4AC00BFAC5A /* ColorPrestoStrings_tlh.h */,
+				9099C1FC2C6CF4AC00BFAC5A /* ColorPrestoStrings_zho.h */,
+			);
+			name = res;
+			path = ../code/ColorPresto/res;
 			sourceTree = "<group>";
 		};
 		90E393212C1CB03F00705076 /* UI */ = {
@@ -1718,29 +1755,6 @@
 			path = ../lib/NALib/code/NALib;
 			sourceTree = "<group>";
 		};
-		90E3964E2C1CDF3700705076 /* res */ = {
-			isa = PBXGroup;
-			children = (
-				90E3963D2C1CDF3700705076 /* ColorPresto.icns */,
-				90E3963E2C1CDF3700705076 /* ColorPresto.xib */,
-				90E3963F2C1CDF3700705076 /* ColorPrestoChangelog.txt */,
-				90E396402C1CDF3700705076 /* ColorPrestoStrings_zho.h */,
-				90E396412C1CDF3700705076 /* ColorPrestoStrings_deu.h */,
-				90E396422C1CDF3700705076 /* ColorPrestoStrings_eng.h */,
-				909047562C1DB86200E64A47 /* ColorPrestoStrings_fra.h */,
-				909047572C1DBF0D00E64A47 /* ColorPrestoStrings_spa.h */,
-				90E396432C1CDF3700705076 /* ColorPrestoStrings_jpn.h */,
-				90E396442C1CDF3700705076 /* ColorPrestoStrings_tlh.h */,
-				90E396452C1CDF3700705076 /* Info.plist */,
-				90E396472C1CDF3700705076 /* InfoPlist.strings */,
-				90E396492C1CDF3700705076 /* InfoPlist.strings */,
-				90E3964B2C1CDF3700705076 /* InfoPlist.strings */,
-				90E3964D2C1CDF3700705076 /* InfoPlist.strings */,
-			);
-			name = res;
-			path = ../code/ColorPresto/res;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -2038,7 +2052,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1540;
 				ORGANIZATIONNAME = "Manderim GmbH";
 				TargetAttributes = {
 					904F309C2ADBCE4F00423098 = {
@@ -2067,6 +2081,8 @@
 				de,
 				jp,
 				zh,
+				es,
+				fr,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* ColorMachine */;
 			projectDirPath = "";
@@ -2087,14 +2103,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				90E396562C1CDF3700705076 /* InfoPlist.strings in Resources */,
+				9099C2042C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */,
+				9099C2032C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */,
+				9099C2022C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */,
+				9099C1FF2C6CF4AC00BFAC5A /* ColorPresto.xib in Resources */,
 				905E65732C1D87A400241440 /* CPThreeDeeOptionsController.nal in Resources */,
-				90E396552C1CDF3700705076 /* InfoPlist.strings in Resources */,
-				90E396542C1CDF3700705076 /* InfoPlist.strings in Resources */,
-				90E396512C1CDF3700705076 /* ColorPrestoChangelog.txt in Resources */,
-				90E396502C1CDF3700705076 /* ColorPresto.xib in Resources */,
-				90E3964F2C1CDF3700705076 /* ColorPresto.icns in Resources */,
-				90E396532C1CDF3700705076 /* InfoPlist.strings in Resources */,
+				9099C2082C6CF4AC00BFAC5A /* ColorPrestoChangelog.txt in Resources */,
+				9099C1FE2C6CF4AC00BFAC5A /* ColorPresto.icns in Resources */,
+				9099C2052C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */,
+				9099C2012C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */,
+				9099C2062C6CF4AC00BFAC5A /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2287,34 +2305,50 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		90E396472C1CDF3700705076 /* InfoPlist.strings */ = {
+		9099C1E72C6CF4AC00BFAC5A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				90E396462C1CDF3700705076 /* de */,
+				9099C1E62C6CF4AC00BFAC5A /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		90E396492C1CDF3700705076 /* InfoPlist.strings */ = {
+		9099C1E92C6CF4AC00BFAC5A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				90E396482C1CDF3700705076 /* en */,
+				9099C1E82C6CF4AC00BFAC5A /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		90E3964B2C1CDF3700705076 /* InfoPlist.strings */ = {
+		9099C1EB2C6CF4AC00BFAC5A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				90E3964A2C1CDF3700705076 /* jp */,
+				9099C1EA2C6CF4AC00BFAC5A /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		90E3964D2C1CDF3700705076 /* InfoPlist.strings */ = {
+		9099C1ED2C6CF4AC00BFAC5A /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				90E3964C2C1CDF3700705076 /* zh */,
+				9099C1EC2C6CF4AC00BFAC5A /* fr */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9099C1EF2C6CF4AC00BFAC5A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9099C1EE2C6CF4AC00BFAC5A /* jp */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		9099C1F12C6CF4AC00BFAC5A /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9099C1F02C6CF4AC00BFAC5A /* zh */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -2366,7 +2400,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../lib/NALib/code/NALib/src/**";
-				INFOPLIST_FILE = "${PROJECT_DIR}/../code/ColorPresto/res/Info.plist";
+				INFOPLIST_FILE = "${PROJECT_DIR}/../code/ColorPresto/res/mac/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Manderim GmbH. All rights reserved.";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -2422,7 +2456,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../lib/NALib/code/NALib/src/**";
-				INFOPLIST_FILE = "${PROJECT_DIR}/../code/ColorPresto/res/Info.plist";
+				INFOPLIST_FILE = "${PROJECT_DIR}/../code/ColorPresto/res/mac/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Manderim GmbH. All rights reserved.";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -2478,7 +2512,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				HEADER_SEARCH_PATHS = "${PROJECT_DIR}/../lib/NALib/code/NALib/src/**";
-				INFOPLIST_FILE = "${PROJECT_DIR}/../code/ColorPresto/res/Info.plist";
+				INFOPLIST_FILE = "${PROJECT_DIR}/../code/ColorPresto/res/mac/Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 Manderim GmbH. All rights reserved.";
 				INFOPLIST_KEY_NSMainNibFile = MainMenu;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;

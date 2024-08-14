@@ -83,10 +83,10 @@ void cpMoveRotationMouse(NAReaction reaction){
   if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
     
     NAPos mouseDiff = naMakePos(mouseStatus->pos.x - mouseStatus->prevPos.x, mouseStatus->pos.y - mouseStatus->prevPos.y);
-    double scaleFactor = cpGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
+    double uiScale = naGetUIElementResolutionScale(con->space);
 
-    con->angleEqu -= (float)(mouseDiff.x * .01 * scaleFactor);
-    con->anglePol += (float)(mouseDiff.y * .01 * scaleFactor);
+    con->angleEqu -= (float)(mouseDiff.x * .01 * uiScale);
+    con->anglePol += (float)(mouseDiff.y * .01 * uiScale);
 
     cp_FixThreeDeeViewParameters(con);
     cpRefreshThreeDeeDisplay(con->parent);
@@ -133,12 +133,12 @@ CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDee
   cpEndUILayout();
 
   // initial values
-  float scaleFactor = (float)cpGetUIScaleFactorForWindow(naGetUIElementNativePtr(con->space));
+  double uiScale = naGetUIElementResolutionScale(con->space);
 
   con->rotationStep = 0.;
   con->anglePol = 1.3f;
   con->angleEqu = NA_PIf / 4.f;
-  con->zoom = 1.f / scaleFactor;
+  con->zoom = 1.f / (float)uiScale;
 
   return con;
 }

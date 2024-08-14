@@ -28,8 +28,6 @@ CP_PROTOTYPE(CPThreeDeeController);
 - (IBAction)showAbout:(id)sender;
 - (IBAction)showHelp:(NSMenuItem*)sender;
 
-+ (CGFloat) getUIScaleFactorForWindow:(NSWindow*)window;
-
 @end
 
 #endif // NA_OS == NA_OS_MAC_OS_X

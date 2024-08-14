@@ -50,10 +50,12 @@ void preStartup(void* arg){
   initTranslations();
   initPreferences();
 
-  naSetApplicationName("Color Presto");
-  naSetApplicationVersionString("2.1");
-  naSetApplicationBuildString("2.1");
-  naSetApplicationIconPath("icon.png");
+  #if NA_OS == NA_OS_WINDOWS
+    naSetApplicationName("Color Presto");
+    naSetApplicationVersionString("2.1");
+    naSetApplicationBuildString("2.1");
+    naSetApplicationIconPath("icon.png");
+  #endif
 
   cpStartupColorPrestoApplication();
 }
@@ -78,10 +80,6 @@ void postStartup(void* arg){
 
 
 #if NA_OS == NA_OS_WINDOWS
-
-double cpGetUIScaleFactorForWindow(void* nativeWindowPtr){
-  return 1.;
-}
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd){
   NA_UNUSED(hInstance);
