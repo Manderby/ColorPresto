@@ -40,7 +40,7 @@ void cmInitColorWell2D(void* data){
 void cmDragColorWell2D(NAReaction reaction){
   CPColorWell2D* well = (CPColorWell2D*)reaction.controller;
  
-  const NAMouseStatus* mouseStatus = naGetMouseStatus();
+  const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
   if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
     CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
     CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
@@ -51,18 +51,19 @@ void cmDragColorWell2D(NAReaction reaction){
     outputConverter(normedColorValues, cpGetColorControllerColorData(well->colorController), 1);
 
     NARect displayRect = naGetUIElementRectAbsolute(well->display);
+    NAPos mousePos = naGetMousePos(mouseStatus);
     switch(well->fixedIndex){
     case 0:
-      normedColorValues[1] = (float)((mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width);
-      normedColorValues[2] = (float)((mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height);
+      normedColorValues[1] = (float)((mousePos.x - displayRect.pos.x) / displayRect.size.width);
+      normedColorValues[2] = (float)((mousePos.y - displayRect.pos.y) / displayRect.size.height);
       break;
     case 1:
-      normedColorValues[0] = (float)((mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width);
-      normedColorValues[2] = (float)((mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height);
+      normedColorValues[0] = (float)((mousePos.x - displayRect.pos.x) / displayRect.size.width);
+      normedColorValues[2] = (float)((mousePos.y - displayRect.pos.y) / displayRect.size.height);
       break;
     case 2:
-      normedColorValues[0] = (float)((mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width);
-      normedColorValues[1] = (float)((mouseStatus->pos.y - displayRect.pos.y) / displayRect.size.height);
+      normedColorValues[0] = (float)((mousePos.x - displayRect.pos.x) / displayRect.size.width);
+      normedColorValues[1] = (float)((mousePos.y - displayRect.pos.y) / displayRect.size.height);
       break;
     }
 

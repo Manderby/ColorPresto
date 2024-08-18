@@ -79,10 +79,10 @@ void cp_FixThreeDeeViewParameters(CPThreeDeePerspectiveController* con){
 void cpMoveRotationMouse(NAReaction reaction){
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
-  const NAMouseStatus* mouseStatus = naGetMouseStatus();
+  const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
   if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
     
-    NAPos mouseDiff = naMakePos(mouseStatus->pos.x - mouseStatus->prevPos.x, mouseStatus->pos.y - mouseStatus->prevPos.y);
+    NAPos mouseDiff = naGetMouseDelta(mouseStatus);
     double uiScale = naGetUIElementResolutionScale(con->space);
 
     con->angleEqu -= (float)(mouseDiff.x * .01 * uiScale);
@@ -98,9 +98,10 @@ void cpMoveRotationMouse(NAReaction reaction){
 void cpScrollRotation(NAReaction reaction){
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
-  const NAMouseStatus* status = naGetMouseStatus();
-  
-  con->zoom *= 1.f + (float)(status->pos.y - status->prevPos.y) * .01f;
+  const NAMouseStatus* status = naGetCurrentMouseStatus();
+  NAPos mouseDiff = naGetMouseDelta(status);
+
+  con->zoom *= 1.f + (float)(mouseDiff.y) * .01f;
   cp_FixThreeDeeViewParameters(con);
   cpRefreshThreeDeeDisplay(con->parent);
 }

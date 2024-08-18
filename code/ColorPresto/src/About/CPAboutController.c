@@ -3,6 +3,8 @@
 #include "../CPTranslations.h"
 #include "../mainC.h"
 
+#include "NAVisual/NAImage.h"
+
 
 struct CPAboutController{
   NAWindow* window;

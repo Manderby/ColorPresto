@@ -41,7 +41,7 @@ void cmInitColorWell1D(void* data){
 void cmDragColorWell1D(NAReaction reaction){
   CPColorWell1D* well = (CPColorWell1D*)reaction.controller;
  
-  const NAMouseStatus* mouseStatus = naGetMouseStatus();
+  const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
   if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
     CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -54,7 +54,7 @@ void cmDragColorWell1D(NAReaction reaction){
     outputConverter(normedColorValues, well->colorData, 1);
 
     NARect displayRect = naGetUIElementRectAbsolute(well->display);
-    float mouseX = (float)((mouseStatus->pos.x - displayRect.pos.x) / displayRect.size.width);
+    float mouseX = (float)((naGetMousePos(mouseStatus).x - displayRect.pos.x) / displayRect.size.width);
     if(mouseX < 0.f){mouseX = 0.f;}
     if(mouseX > 1.f){mouseX = 1.f;}
 

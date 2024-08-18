@@ -6,7 +6,7 @@
 
 void cpDrawBorder(){
   NAColor borderColor;
-  naFillDefaultTextColorWithSkin(&borderColor, naGetSkinForCurrentAppearance());
+  naFillColorWithSkinTextColor(&borderColor, naGetCurrentSkin());
   borderColor.alpha = .1f;
   float glColor[4];
   naFillSRGBAWithColor(glColor, &borderColor);

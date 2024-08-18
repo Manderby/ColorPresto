@@ -21,13 +21,13 @@ struct CPSpectralColorWell{
 
 
 void cmDragSpectralColorWell(NAReaction reaction){
-  const NAMouseStatus* mouseStatus = naGetMouseStatus();
+  const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
   if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
     CPSpectralColorWell* well = (CPSpectralColorWell*)reaction.controller;
     CMLColorMachine* cm = cpGetCurrentColorMachine();
 
     NARect spaceRect = naGetUIElementRectAbsolute(well->openGLSpace);
-    double mouseX = (mouseStatus->pos.x - spaceRect.pos.x) / spaceRect.size.width;
+    double mouseX = (naGetMousePos(mouseStatus).x - spaceRect.pos.x) / spaceRect.size.width;
     if(mouseX < 0.f){mouseX = 0.f;}
     if(mouseX > 1.f){mouseX = 1.f;}
 
