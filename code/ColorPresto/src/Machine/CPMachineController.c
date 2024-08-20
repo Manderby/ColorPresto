@@ -11,6 +11,7 @@
 #include "../CPDesign.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAMemory.h"
 
 
 struct CPMachineController{

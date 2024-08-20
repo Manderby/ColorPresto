@@ -9,6 +9,7 @@
 #include "CPRGBColorController.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAString.h"
 
 #if NA_OS == NA_OS_WINDOWS
   #define cpsscanf sscanf_s

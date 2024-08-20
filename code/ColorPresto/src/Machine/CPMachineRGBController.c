@@ -8,6 +8,7 @@
 #include "../CPTranslations.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAString.h"
 
 
 struct CPMachineRGBController{

@@ -9,6 +9,7 @@
 #include "Displays/CPGrayColorWell.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAString.h"
 
 struct CPGrayColorController{
   CPColorController baseController;

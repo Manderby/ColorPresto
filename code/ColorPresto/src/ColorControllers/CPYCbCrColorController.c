@@ -9,6 +9,7 @@
 #include "CPYCbCrColorController.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAString.h"
 
 struct CPYCbCrColorController{
   CPColorController baseController;

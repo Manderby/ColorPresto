@@ -10,6 +10,7 @@
 #include "CPLuvUVWColorController.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAString.h"
 
 struct CPLuvUVWColorController{
   CPColorController baseController;

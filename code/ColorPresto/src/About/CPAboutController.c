@@ -4,6 +4,7 @@
 #include "../mainC.h"
 
 #include "NAVisual/NAImage.h"
+#include "NAUtility/NAString.h"
 
 
 struct CPAboutController{
@@ -40,12 +41,12 @@ CPAboutController* cpAllocAboutController(void){
 
   NAString* iconPath = naNewApplicationIconPath();
   NAImage* iconImage = naCreateImageWithFilePath(naGetStringUTF8Pointer(iconPath));
-  NAUIImage* iconCUIImage = naCreateUIImage(iconImage, NA_UI_RESOLUTION_2x, NA_BLEND_ZERO);
+  NAImageSet* iconImageSet = naCreateImageSet(iconImage, NA_UI_RESOLUTION_2x, NA_BLEND_ZERO);
   naRelease(iconImage);
   naDelete(iconPath);
-  con->iconSpace = naNewImageSpace(iconCUIImage, naMakeSize(128, 128));
+  con->iconSpace = naNewImageSpace(iconImageSet, naMakeSize(128, 128));
   naAddSpaceChild(space, con->iconSpace, naMakePos(106., 170.));
-  naRelease(iconCUIImage);
+  naRelease(iconImageSet);
 
   con->appNameLabel = naNewLabel(naGetStringUTF8Pointer(bundleApplicationName), 300);
   NAFont* titleFont = naCreateFontWithPreset(NA_FONT_KIND_TITLE, NA_FONT_SIZE_BIG);

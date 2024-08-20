@@ -7,6 +7,7 @@
 #include "CPMachineObserverController.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAMemory.h"
 
 
 struct CPMachineGrayController{

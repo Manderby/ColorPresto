@@ -1,5 +1,6 @@
 
 #include "CPDesign.h"
+#include "NAUtility/NAMemory.h"
 
 
 

@@ -18,6 +18,7 @@
 #include "../ColorControllers/CPYxyColorController.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAMemory.h"
 
 
 

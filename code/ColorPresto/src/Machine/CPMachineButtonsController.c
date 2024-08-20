@@ -6,6 +6,7 @@
 #include "../CPTranslations.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAMemory.h"
 
 
 struct CPMachineButtonsController{

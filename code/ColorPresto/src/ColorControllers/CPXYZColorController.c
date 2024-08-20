@@ -9,6 +9,7 @@
 #include "CPXYZColorController.h"
 
 #include "NAApp/NAApp.h"
+#include "NAUtility/NAString.h"
 
 struct CPXYZColorController{
   CPColorController baseController;
