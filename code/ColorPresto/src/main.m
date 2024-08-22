@@ -8,6 +8,8 @@
 
 #if NA_OS == NA_OS_MAC_OS_X
 
+#include "NAUtility/NAMemory.h"
+
 void preStartup(void* arg);
 void postStartup(void* arg);
 
