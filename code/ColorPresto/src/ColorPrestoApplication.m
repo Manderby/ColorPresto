@@ -9,7 +9,7 @@
 
 #include "NAApp/NAApp.h"
 #include "NAUtility/NAMemory.h"
-#include "NAUICocoaLegacy.h"
+#include "NACocoaLegacy.h"
 
 
 

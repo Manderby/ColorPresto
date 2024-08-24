@@ -5,7 +5,7 @@ Color Prompt is a desktop application to showcase the capabilities of the scieti
 color conversion library CML (Color Machine Library).
 
 clone including all submodules:
-git clone --recurse-submodules URL
+git clone --recurse-submodules https://github.com/Manderby/ColorPresto.git
 
 
 Email: colorprompt@manderc.com
