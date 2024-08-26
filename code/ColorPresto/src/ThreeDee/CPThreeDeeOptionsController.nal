@@ -3,47 +3,51 @@
 //typedef myType = f32;
 //typedef myFunctionType = bool (i32);
 
-//myPrivateVariable       = bool;
-//myPrivateVariable2      = 1234.;
-//.myPublicVariable       = "Hello";
+// Dot . means "local" or "private", restricted to only concerning this module, this file, this function
+
+//.myPrivateVariable       = bool;
+//.myPrivateVariable2      = 1234.;
+//myPublicVariable       = "Hello";
 //
-//myNormalFunction        = bool (i32 myParameter) {return true;}
-//.myPublicStaticFunction = bool (i32 myParameter) {return true;}
-//myPrivateMethod         = bool (this, i32 myParameter) {return true;}
-//.myPublicMethod         = bool (this, i32 myParameter) {return true;}
+// outside of module space
+//.myPrivateFunction        = bool (i32 myParameter) {return true;}
+//myPublicStaticFunction = bool (i32 myParameter) {return true;}
+// inside of module space
+//.myPrivateMethod         = bool (this, i32 myParameter) {return true;}
+//myPublicMethod         = bool (this, i32 myParameter) {return true;}
 
 // Here is global module space
-// PrivateClass = module : DerivedClass;
+// .PrivateClass = module : DerivedClass;
 // Here is PrivateClass module space
-// .PublicClass = module : DerivedClass;
+// PublicClass = module : DerivedClass;
 // Here is PublicClass module space
 
 
 
 
-.CPThreeDeeOptionsController = module : NASpace;
+CPThreeDeeOptionsController = module : NASpace;
 
 
 
-parent           = share CPThreeDeeController;
+.parent           = share CPThreeDeeController;
 
-axisLabel        = NALabel;
-axisCheckBox     = NACheckBox;
-spectrumLabel    = NALabel;
-spectrumCheckBox = NACheckBox;
-backgroundLabel  = NALabel;
-backgroundSlider = NASlider;
-fovyLabel        = NALabel;
-fovySlider       = NASlider;
+.axisLabel        = NALabel;
+.axisCheckBox     = NACheckBox;
+.spectrumLabel    = NALabel;
+.spectrumCheckBox = NACheckBox;
+.backgroundLabel  = NALabel;
+.backgroundSlider = NASlider;
+.fovyLabel        = NALabel;
+.fovySlider       = NASlider;
 
-showSpectrum     = false;
-showAxis         = true;
-backgroundGray   = 0.3f;
-fovy             = 50.f;
+.showSpectrum     = false;
+.showAxis         = true;
+.backgroundGray   = 0.3f;
+.fovy             = 50.f;
 
 
 
-pressOptionsButton = void (NAReaction reaction) {
+.pressOptionsButton = void (NAReaction reaction) {
   this = reaction.controller;
 
   iff (reaction.uiElement) (spectrumCheckBox){
@@ -57,7 +61,7 @@ pressOptionsButton = void (NAReaction reaction) {
 
 
 
-changeOptionsSlider = void (NAReaction reaction) {
+.changeOptionsSlider = void (NAReaction reaction) {
   mutable this = reaction.controller;
 
   iff (reaction.uiElement)(backgroundSlider){
@@ -72,7 +76,7 @@ changeOptionsSlider = void (NAReaction reaction) {
 
 
 
-.constructor = (
+constructor = (
   mutable this,
   CPThreeDeeController parent)
 {
@@ -118,7 +122,7 @@ changeOptionsSlider = void (NAReaction reaction) {
 
 
 
-.getAxisGray = f64 (this) {
+getAxisGray = f64 (this) {
   axisGray = backgroundGray + .5;
   if(axisGray > 1.f){axisGray -= 1.f;}
   return axisGray;
@@ -126,14 +130,14 @@ changeOptionsSlider = void (NAReaction reaction) {
 
 
 
-.getBackgroundGray = f64 (this) {return backgroundGray;}
-.getFovy           = f64 (this) {return fovy;}
-.getShowAxis       = f64 (this) {return showAxis;}
-.getShowSpectrum   = f64 (this) {return showSpectrum;}
+getBackgroundGray = f64 (this) {return backgroundGray;}
+getFovy           = f64 (this) {return fovy;}
+getShowAxis       = f64 (this) {return showAxis;}
+getShowSpectrum   = f64 (this) {return showSpectrum;}
 
 
 
-.update = (this) {
+update = (this) {
   spectrumCheckBox.setState(showSpectrum);
   axisCheckBox.setState(showAxis);
   backgroundSlider.setValue(backgroundGray);
