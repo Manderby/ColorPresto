@@ -9,6 +9,7 @@
 #include "NAUtility/NABinaryData.h"
 #include "NAUtility/NAMemory.h"
 #include "NAUtility/NAString.h"
+#include "NAMath/NAVectorAlgebra.h"
 
 struct CPThreeDeePerspectiveController{
   NASpace* space;
@@ -80,7 +81,7 @@ void cpMoveRotationMouse(NAReaction reaction){
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
   const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
-  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
+  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT) || naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_MIDDLE)){
     
     NAPos mouseDiff = naGetMouseDelta(mouseStatus);
     double uiScale = naGetUIElementResolutionScale(con->space);
@@ -98,10 +99,10 @@ void cpMoveRotationMouse(NAReaction reaction){
 void cpScrollRotation(NAReaction reaction){
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
-  const NAMouseStatus* status = naGetCurrentMouseStatus();
-  NAPos mouseDiff = naGetMouseDelta(status);
+  const double* transform = naGetOpenGLSpaceTransformation(reaction.uiElement);
+  NAPos translation = naGetMat33dTranslation(transform);
+  con->zoom *= naPow(2., -translation.y * .01f);
 
-  con->zoom *= 1.f + (float)(mouseDiff.y) * .01f;
   cp_FixThreeDeeViewParameters(con);
   cpRefreshThreeDeeDisplay(con->parent);
 }
