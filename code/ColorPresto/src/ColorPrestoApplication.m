@@ -3,13 +3,12 @@
 
 #if NA_OS == NA_OS_MAC_OS_X
 
-#include "CPAboutController.h"
+#include "About/CPAboutController.h"
 #include "CPColorPrestoApplication.h"
 #include "CPTranslations.h"
 
 #include "NAApp/NAApp.h"
 #include "NAUtility/NAMemory.h"
-#include "NACocoaLegacy.h"
 
 
 

@@ -64,7 +64,7 @@ void preStartup(void* arg){
 
 void postStartup(void* arg){
   #if NA_OS == NA_OS_MAC_OS_X
-    naLoadNib("ColorPresto", NA_NULL);
+    naLoadNib("MainMenu", NA_NULL);
   #endif
 
   NALanguageCode3 languageCode = cpGetPrefsPreferredLanguage();

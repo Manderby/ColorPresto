@@ -1,20 +1,35 @@
 cmake_minimum_required(VERSION 3.13)
 project(ColorPresto)
 
+
+
+# ######### define target ################
+
 set(TARGET_NAME ColorPresto)
 
-if (MSVC)
+set(VERSION_STRING 2.1.0)
+set(BUILD_NUMBER_STRING 2.1.0)
+
+if(MSVC)
   add_executable(${TARGET_NAME} WIN32 src/main.c)
-else()
+elseif(APPLE)
   add_executable(${TARGET_NAME})
 endif()
+
+
+
+# ######### compiler settings ################
 
 set_target_properties(${TARGET_NAME} PROPERTIES LINKER_LANGUAGE CXX)
 
 set(CMAKE_CXX_STANDARD 99)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-if (MSVC)
+
+
+# ######### Define package settings ################
+
+if(MSVC)
   add_definitions(-DNA_USE_WINDOWS_COMMON_CONTROLS_6=1)
   
   # multi processor compilation
@@ -27,25 +42,70 @@ if (MSVC)
 
   set(OUTPUT_DIRECTORY $(OutDir))
 
-else()
+elseif(APPLE)
 
-  set(OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/$CONFIGURATION/)
+  set(OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/$CONFIGURATION/${TARGET_NAME}.app/Contents/Resources/)
 
 endif()
 
 
 
-# copying resources
+# ######### Copying resources ################
+
 add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy
       ${CMAKE_CURRENT_SOURCE_DIR}/res/ColorPrestoChangelog.txt
       \"${OUTPUT_DIRECTORY}ColorPrestoChangelog.txt\"
 )
-add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
-  COMMAND ${CMAKE_COMMAND} -E copy
-      ${CMAKE_CURRENT_SOURCE_DIR}/res/win/icon.png
-      \"${OUTPUT_DIRECTORY}icon.png\"
-)
+
+if(MSVC)
+  add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/win/icon.png
+        \"${OUTPUT_DIRECTORY}icon.png\"
+  )
+
+elseif(APPLE)
+  add_custom_command(TARGET ${TARGET_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/ColorPresto.icns
+        \"${OUTPUT_DIRECTORY}ColorPresto.icns\"
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/de.lproj/InfoPlist.strings
+        \"${OUTPUT_DIRECTORY}de.lproj/InfoPlist.strings\"
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/en.lproj/InfoPlist.strings
+        \"${OUTPUT_DIRECTORY}en.lproj/InfoPlist.strings\"
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/es.lproj/InfoPlist.strings
+        \"${OUTPUT_DIRECTORY}es.lproj/InfoPlist.strings\"
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/fr.lproj/InfoPlist.strings
+        \"${OUTPUT_DIRECTORY}fr.lproj/InfoPlist.strings\"
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/jp.lproj/InfoPlist.strings
+        \"${OUTPUT_DIRECTORY}jp.lproj/InfoPlist.strings\"
+    COMMAND ${CMAKE_COMMAND} -E copy
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/zh.lproj/InfoPlist.strings
+        \"${OUTPUT_DIRECTORY}zh.lproj/InfoPlist.strings\"
+    COMMAND ibtool --compile
+        \"${OUTPUT_DIRECTORY}MainMenu.nib\"
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/ColorPresto.xib
+  )
+
+  set(BUNDLE_IDENTIFIER "ch.manderim.Color-Machine")
+
+  set_target_properties(${TARGET_NAME} PROPERTIES
+    MACOSX_BUNDLE YES
+    MACOSX_BUNDLE_BUNDLE_NAME $(PRODUCT_NAME)
+    XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER ${BUNDLE_IDENTIFIER}
+    MACOSX_BUNDLE_GUI_IDENTIFIER ${BUNDLE_IDENTIFIER}
+    MACOSX_BUNDLE_SHORT_VERSION_STRING ${VERSION_STRING}
+    MACOSX_BUNDLE_BUNDLE_VERSION ${BUILD_NUMBER_STRING}
+    MACOSX_BUNDLE_ICON_FILE "ColorPresto.icns"
+    XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ""
+  )
+endif()
 
 
 
@@ -55,7 +115,26 @@ set(resourceFiles
   res/ColorPrestoChangelog.txt
   res/ColorPrestoStrings_deu.h
   res/ColorPrestoStrings_eng.h
+  res/ColorPrestoStrings_fra.h
   res/ColorPrestoStrings_jpn.h
+  res/ColorPrestoStrings_spa.h
+  res/ColorPrestoStrings_tlh.h
+  res/ColorPrestoStrings_zho.h
+)
+
+set(macResourceFiles
+  #res/mac/de.lproj/InfoPlist.strings
+  #res/mac/en.lproj/InfoPlist.strings
+  #res/mac/es.lproj/InfoPlist.strings
+  #res/mac/fr.lproj/InfoPlist.strings
+  #res/mac/jp.lproj/InfoPlist.strings
+  #res/mac/zh.lproj/InfoPlist.strings
+  res/mac/ColorPresto.icns
+  res/mac/ColorPresto.xib
+)
+
+set(winResourceFiles
+  res/win/icon.png
 )
 
 set(sourceFiles
@@ -184,8 +263,18 @@ set(threeDeeSourceFiles
   src/ThreeDee/CPThreeDeeView.h
 )
 
+
+
+# ######### Group sources in project browser ################
+
 source_group("res" FILES ${resourceFiles})
 target_sources(${TARGET_NAME} PRIVATE ${resourceFiles})
+
+source_group("res/mac" FILES ${macResourceFiles})
+target_sources(${TARGET_NAME} PRIVATE ${macResourceFiles})
+
+source_group("res/win" FILES ${winResourceFiles})
+target_sources(${TARGET_NAME} PRIVATE ${winResourceFiles})
 
 source_group("src/About" FILES ${aboutFiles})
 target_sources(${TARGET_NAME} PRIVATE ${aboutFiles})
@@ -210,6 +299,13 @@ target_sources(${TARGET_NAME} PRIVATE ${threeDeeSourceFiles})
 
 source_group("src" FILES ${sourceFiles})
 target_sources(${TARGET_NAME} PRIVATE ${sourceFiles})
+
+
+
+# ######### Macro definitions ################
+
+add_definitions(-DCP_VERSION_STRING=\"${VERSION_STRING}\")
+add_definitions(-DCP_BUILD_NUMBER_STRING=\"${BUILD_NUMBER_STRING}\")
 
 
 
@@ -242,7 +338,7 @@ target_link_libraries(${TARGET_NAME} PRIVATE CML)
 find_package(OpenGL REQUIRED)
 target_link_libraries(${TARGET_NAME} PRIVATE ${OPENGL_gl_LIBRARY})
 
-if (MSVC)
+if(MSVC)
   target_link_libraries(${TARGET_NAME} PRIVATE ComCtl32.lib)
 else()
   FIND_LIBRARY(CARBON_FRAMEWORK Carbon)
@@ -253,3 +349,8 @@ else()
   target_link_libraries(${TARGET_NAME} PRIVATE ${UTYPE_FRAMEWORK})
   
 endif()
+
+
+
+# this hack removes the xxx-CMakeForceLinker.cxx dummy file
+set_target_properties(${TARGET_NAME} PROPERTIES LINKER_LANGUAGE C)
