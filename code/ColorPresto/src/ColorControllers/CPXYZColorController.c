@@ -127,6 +127,9 @@ void cpComputeXYZColorController(CPXYZColorController* con) {
   converter(cm, con->XYZColor, currentColorData, 1);
   
   cpComputeColorWell2D(con->colorWell2D);
+  cpComputeColorWell1D(con->colorWell1DX);
+  cpComputeColorWell1D(con->colorWell1DY);
+  cpComputeColorWell1D(con->colorWell1DZ);
 }
 
 

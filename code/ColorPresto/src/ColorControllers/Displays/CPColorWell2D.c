@@ -19,8 +19,8 @@ struct CPColorWell2D{
   CPColorController* colorController;
   size_t fixedIndex;
 
-  float* m_inputValues;
-  float* m_rgbValues;
+  float* inputValues;
+  float* rgbValues;
 };
 
 
@@ -121,7 +121,7 @@ void cmDrawColorWell2D(NAReaction reaction){
     break;
   }
 
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, well->m_rgbValues);
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, well->rgbValues);
 
   glEnable(GL_TEXTURE_2D);
   glBegin(GL_TRIANGLE_STRIP);
@@ -220,8 +220,8 @@ CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fix
   well->colorController = colorController;
   well->fixedIndex = fixedIndex;
 
-  well->m_inputValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
-  well->m_rgbValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
+  well->inputValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
+  well->rgbValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
 
   return well;
 }
@@ -229,8 +229,8 @@ CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fix
 
 
 void cpDeallocColorWell2D(CPColorWell2D* well){
-  naFree(well->m_inputValues);
-  naFree(well->m_rgbValues);
+  naFree(well->inputValues);
+  naFree(well->rgbValues);
   glDeleteTextures(1, &(well->wellTex));
 }
 
@@ -255,7 +255,7 @@ void cpComputeColorWell2D(CPColorWell2D* well) {
   CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
   CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
 
-  float* inputPtr = well->m_inputValues;
+  float* inputPtr = well->inputValues;
   CMLVec3 normedColorValues = { 0.f, 0.f, 0.f };
   outputConverter(normedColorValues, cpGetColorControllerColorData(well->colorController), 1);
 
@@ -299,8 +299,8 @@ void cpComputeColorWell2D(CPColorWell2D* well) {
   fillRGBFloatArrayWithArray(
     cm,
     sm,
-    well->m_rgbValues,
-    well->m_inputValues,
+    well->rgbValues,
+    well->inputValues,
     colorType,
     inputConverter,
     colorWell2DSize * colorWell2DSize);

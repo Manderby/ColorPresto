@@ -164,6 +164,9 @@ void cpComputeRGBColorController(CPRGBColorController* con) {
   converter(cm, con->rgbColor, currentColorData, 1);
 
   cpComputeColorWell2D(con->colorWell2D);
+  cpComputeColorWell1D(con->colorWell1DR);
+  cpComputeColorWell1D(con->colorWell1DG);
+  cpComputeColorWell1D(con->colorWell1DB);
 }
 
 

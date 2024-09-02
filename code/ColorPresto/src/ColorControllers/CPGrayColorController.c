@@ -99,6 +99,8 @@ void cpComputeGrayColorController(CPGrayColorController* con) {
   const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Gray, currentColorType);
   converter(cm, &(con->grayColor), currentColorData, 1);
+
+  cpComputeColorWell1D(con->colorWell1DGray);
 }
 
 

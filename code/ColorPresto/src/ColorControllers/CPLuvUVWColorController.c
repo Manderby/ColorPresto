@@ -170,6 +170,9 @@ void cpComputeLuvUVWColorController(CPLuvUVWColorController* con) {
   converter(cm, con->color, currentColorData, 1);
 
   cpComputeColorWell2D(con->colorWell2D);
+  cpComputeColorWell1D(con->colorWell1D0);
+  cpComputeColorWell1D(con->colorWell1D1);
+  cpComputeColorWell1D(con->colorWell1D2);
 }
 
 

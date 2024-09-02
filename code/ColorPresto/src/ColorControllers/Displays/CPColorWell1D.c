@@ -19,6 +19,9 @@ struct CPColorWell1D{
   CPColorController* colorController;
   const void* colorData;
   size_t variableIndex;
+
+  float* inputValues;
+  float* rgbValues;
 };
 
 
@@ -116,58 +119,33 @@ void cmDrawColorWell1D(NAReaction reaction){
   
   switch(cmlGetNumChannels(colorType)){
   case 1:
-      for(int x = 0; x < colorWell1DSize; ++x){
-        variableValue = normedColorValues[0];
-        float xValue = (float)x / (float)colorWell1DSize;
-        *inputPtr++ = xValue;
-      }
-    break;
+  for(int x = 0; x < colorWell1DSize; ++x){
+    variableValue = normedColorValues[0];
+  }
+  break;
 
   case 3:
-    switch(well->variableIndex){
-    case 0:
-      for(int x = 0; x < colorWell1DSize; ++x){
-        variableValue = normedColorValues[0];
-        float xValue = (float)x / (float)colorWell1DSize;
-        *inputPtr++ = xValue;
-        *inputPtr++ = normedColorValues[1];
-        *inputPtr++ = normedColorValues[2];
-      }
-      break;
-    case 1:
-      for(int x = 0; x < colorWell1DSize; ++x){
-        variableValue = normedColorValues[1];
-        float xValue = (float)x / (float)colorWell1DSize;
-        *inputPtr++ = normedColorValues[0];
-        *inputPtr++ = xValue;
-        *inputPtr++ = normedColorValues[2];
-      }
-      break;
-    case 2:
-      for(int x = 0; x < colorWell1DSize; ++x){
-        variableValue = normedColorValues[2];
-        float xValue = (float)x / (float)colorWell1DSize;
-        *inputPtr++ = normedColorValues[0];
-        *inputPtr++ = normedColorValues[1];
-        *inputPtr++ = xValue;
-      }
-      break;
+  switch(well->variableIndex){
+  case 0:
+    for(int x = 0; x < colorWell1DSize; ++x){
+      variableValue = normedColorValues[0];
     }
     break;
+    case 1:
+    for(int x = 0; x < colorWell1DSize; ++x){
+      variableValue = normedColorValues[1];
+    }
+    break;
+    case 2:
+    for(int x = 0; x < colorWell1DSize; ++x){
+      variableValue = normedColorValues[2];
+    }
+    break;
+    }
+  break;
   }
 
-  // Convert the given values to screen RGBs.
-  float rgbValues[colorWell1DSize * 3];
-  fillRGBFloatArrayWithArray(
-    cm,
-    sm,
-    rgbValues,
-    inputValues,
-    colorType,
-    inputConverter,
-    colorWell1DSize);
-
-  glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, colorWell1DSize, 0, GL_RGB, GL_FLOAT, rgbValues);
+  glTexImage1D(GL_TEXTURE_1D, 0, GL_RGBA, colorWell1DSize, 0, GL_RGB, GL_FLOAT, well->rgbValues);
 
   glEnable(GL_TEXTURE_1D);
   glBegin(GL_TRIANGLE_STRIP);
@@ -225,12 +203,17 @@ CPColorWell1D* cpAllocColorWell1D(CPColorController* colorController, const floa
   well->colorData = colorData;
   well->variableIndex = variableIndex;
   
+  well->inputValues = naMalloc(colorWell1DSize * 3 * sizeof(float));
+  well->rgbValues = naMalloc(colorWell2DSize * 3 * sizeof(float));
+
   return well;
 }
 
 
 
 void cpDeallocColorWell1D(CPColorWell1D* well){
+  naFree(well->inputValues);
+  naFree(well->rgbValues);
   glDeleteTextures(1, &(well->wellTex));
 }
 
@@ -238,6 +221,68 @@ void cpDeallocColorWell1D(CPColorWell1D* well){
 
 NAOpenGLSpace* cpGetColorWell1DUIElement(CPColorWell1D* well){
   return well->display;
+}
+
+
+
+void cpComputeColorWell1D(CPColorWell1D* well){
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorMachine* sm = cpGetCurrentScreenMachine();
+  CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
+  CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
+  CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
+
+  float* inputPtr = well->inputValues;
+  CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
+  outputConverter(normedColorValues, well->colorData, 1);
+
+  switch(cmlGetNumChannels(colorType)){
+  case 1:
+    for(int x = 0; x < colorWell1DSize; ++x){
+      float xValue = (float)x / (float)colorWell1DSize;
+      *inputPtr++ = xValue;
+    }
+    break;
+
+  case 3:
+    switch(well->variableIndex){
+    case 0:
+      for(int x = 0; x < colorWell1DSize; ++x){
+        float xValue = (float)x / (float)colorWell1DSize;
+        *inputPtr++ = xValue;
+        *inputPtr++ = normedColorValues[1];
+        *inputPtr++ = normedColorValues[2];
+      }
+      break;
+    case 1:
+      for(int x = 0; x < colorWell1DSize; ++x){
+        float xValue = (float)x / (float)colorWell1DSize;
+        *inputPtr++ = normedColorValues[0];
+        *inputPtr++ = xValue;
+        *inputPtr++ = normedColorValues[2];
+      }
+      break;
+    case 2:
+      for(int x = 0; x < colorWell1DSize; ++x){
+        float xValue = (float)x / (float)colorWell1DSize;
+        *inputPtr++ = normedColorValues[0];
+        *inputPtr++ = normedColorValues[1];
+        *inputPtr++ = xValue;
+      }
+      break;
+    }
+    break;
+  }
+
+  // Convert the given values to screen RGBs.
+  fillRGBFloatArrayWithArray(
+    cm,
+    sm,
+    well->rgbValues,
+    well->inputValues,
+    colorType,
+    inputConverter,
+    colorWell1DSize);
 }
 
 

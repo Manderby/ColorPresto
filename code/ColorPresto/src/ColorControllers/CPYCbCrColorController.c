@@ -127,6 +127,9 @@ void cpComputeYCbCrColorController(CPYCbCrColorController* con) {
   converter(cm, con->ycbcrColor, currentColorData, 1);
 
   cpComputeColorWell2D(con->colorWell2D);
+  cpComputeColorWell1D(con->colorWell1DY);
+  cpComputeColorWell1D(con->colorWell1DCb);
+  cpComputeColorWell1D(con->colorWell1DCr);
 }
 
 

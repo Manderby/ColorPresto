@@ -19,6 +19,7 @@ void cpSetColorWell2DFixedIndex(CPColorWell2D* well, size_t fixedIndex);
 
 NAOpenGLSpace* cpGetColorWell2DUIElement(CPColorWell2D* well);
 
+void cpComputeColorWell2D(CPColorWell2D* well);
 void cpUpdateColorWell2D(CPColorWell2D* well);
 
 
