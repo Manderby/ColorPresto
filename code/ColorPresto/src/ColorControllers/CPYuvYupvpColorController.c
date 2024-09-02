@@ -79,7 +79,7 @@ void cp_YuvValueEdited(NAReaction reaction){
 
 
 
-CPYuvYupvpColorController* cpAllocYuvColorController(void){
+CPYuvYupvpColorController* cpAllocYuvYupvpColorController(void){
   YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
   CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
 
@@ -136,7 +136,7 @@ CPYuvYupvpColorController* cpAllocYuvColorController(void){
 
 
 
-void cpDeallocYuvColorController(CPYuvYupvpColorController* con){
+void cpDeallocYuvYupvpColorController(CPYuvYupvpColorController* con){
   cpDeallocColorWell2D(con->colorWell2D);
   cpDeallocColorWell1D(con->colorWell1D0);
   cpDeallocColorWell1D(con->colorWell1D1);
@@ -147,23 +147,37 @@ void cpDeallocYuvColorController(CPYuvYupvpColorController* con){
 
 
 
-const void* cpGetYuvColorControllerColorData(const CPYuvYupvpColorController* con){
+const void* cpGetYuvYupvpColorControllerColorData(const CPYuvYupvpColorController* con){
   return &(con->color);
 }
 
 
 
-void cpSetYuvColorControllerColorData(CPYuvYupvpColorController* con, const void* data){
+void cpSetYuvYupvpColorControllerColorData(CPYuvYupvpColorController* con, const void* data){
   cmlCpy3(con->color, data);
 }
 
 
 
-void cpUpdateYuvColorController(CPYuvYupvpColorController* con){
+void cpComputeYuvYupvpColorController(CPYuvYupvpColorController* con) {
+  YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
+  CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+
+  CMLColorType currentColorType = cpGetCurrentColorType();
+  const float* currentColorData = cpGetCurrentColorData();
+  CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
+  converter(cm, con->color, currentColorData, 1);
+
+  cpComputeColorWell2D(con->colorWell2D);
+}
+ 
+ 
+
+void cpUpdateYuvYupvpColorController(CPYuvYupvpColorController* con){
   cpUpdateColorController(&(con->baseController));
 
   YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
-  CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
   
   naSetRadioState(con->radioYuv, yuvyupvpSelect == Yuv);
   naSetRadioState(con->radioYupvp, yuvyupvpSelect == Yupvp);
@@ -177,12 +191,6 @@ void cpUpdateYuvColorController(CPYuvYupvpColorController* con){
     naSetLabelText(con->label1, cpTranslate(CPYuvColorChannelup));
     naSetLabelText(con->label2, cpTranslate(CPYuvColorChannelvp));
   }
-
-  CMLColorMachine* cm = cpGetCurrentColorMachine();
-  CMLColorType currentColorType = cpGetCurrentColorType();
-  const float* currentColorData = cpGetCurrentColorData();
-  CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
-  converter(cm, con->color, currentColorData, 1);
 
   cpUpdateColorWell2D(con->colorWell2D);
 

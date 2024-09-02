@@ -13,5 +13,6 @@ void cpDeallocLuvUVWColorController(CPLuvUVWColorController* con);
 const void* cpGetLuvUVWColorControllerColorData(const CPLuvUVWColorController* con);
 void cpSetLuvUVWColorControllerColorData(CPLuvUVWColorController* con, const void* data);
 
+void cpComputeLuvUVWColorController(CPLuvUVWColorController* con);
 void cpUpdateLuvUVWColorController(CPLuvUVWColorController* con);
 

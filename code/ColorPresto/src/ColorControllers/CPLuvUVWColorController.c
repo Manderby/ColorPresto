@@ -159,11 +159,25 @@ void cpSetLuvUVWColorControllerColorData(CPLuvUVWColorController* con, const voi
 
 
 
+void cpComputeLuvUVWColorController(CPLuvUVWColorController* con) {
+  LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
+  CMLColorType colorType = (luvuvwSelect == Luv) ? CML_COLOR_Luv : CML_COLOR_UVW;
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+
+  CMLColorType currentColorType = cpGetCurrentColorType();
+  const float* currentColorData = cpGetCurrentColorData();
+  CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
+  converter(cm, con->color, currentColorData, 1);
+
+  cpComputeColorWell2D(con->colorWell2D);
+}
+
+
+
 void cpUpdateLuvUVWColorController(CPLuvUVWColorController* con){
   cpUpdateColorController(&(con->baseController));
 
   LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
-  CMLColorType colorType = (luvuvwSelect == Luv) ? CML_COLOR_Luv : CML_COLOR_UVW;
   
   naSetRadioState(con->radioLuv, luvuvwSelect == Luv);
   naSetRadioState(con->radioUVW, luvuvwSelect == UVW);
@@ -180,12 +194,6 @@ void cpUpdateLuvUVWColorController(CPLuvUVWColorController* con){
     cpSetColorWell2DFixedIndex(con->colorWell2D, 2);
   }
 
-  CMLColorMachine* cm = cpGetCurrentColorMachine();
-  CMLColorType currentColorType = cpGetCurrentColorType();
-  const float* currentColorData = cpGetCurrentColorData();
-  CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
-  converter(cm, con->color, currentColorData, 1);
-  
   cpUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(

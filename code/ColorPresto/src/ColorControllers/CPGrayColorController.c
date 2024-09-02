@@ -94,6 +94,7 @@ void cpSetGrayColorControllerColorData(CPGrayColorController* con, const void* d
 
 void cpComputeGrayColorController(CPGrayColorController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
+
   CMLColorType currentColorType = cpGetCurrentColorType();
   const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Gray, currentColorType);

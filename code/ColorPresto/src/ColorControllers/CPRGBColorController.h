@@ -13,5 +13,6 @@ void cpDeallocRGBColorController(CPRGBColorController* con);
 const void* cpGetRGBColorControllerColorData(const CPRGBColorController* con);
 void cpSetRGBColorControllerColorData(CPRGBColorController* con, const void* data);
 
+void cpComputeRGBColorController(CPRGBColorController* con);
 void cpUpdateRGBColorController(CPRGBColorController* con);
 

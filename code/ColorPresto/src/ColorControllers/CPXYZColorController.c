@@ -118,14 +118,21 @@ void cpSetXYZColorControllerColorData(CPXYZColorController* con, const void* dat
 
 
 
-void cpUpdateXYZColorController(CPXYZColorController* con){
-  cpUpdateColorController(&(con->baseController));
-
+void cpComputeXYZColorController(CPXYZColorController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
+  
   CMLColorType currentColorType = cpGetCurrentColorType();
   const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_XYZ, currentColorType);
   converter(cm, con->XYZColor, currentColorData, 1);
+  
+  cpComputeColorWell2D(con->colorWell2D);
+}
+
+
+
+void cpUpdateXYZColorController(CPXYZColorController* con){
+  cpUpdateColorController(&(con->baseController));
   
   cpUpdateColorWell2D(con->colorWell2D);
 

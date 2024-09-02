@@ -68,14 +68,18 @@ void cpSetSpectralColorControllerColorData(CPSpectralColorController* con, const
 
 
 
-void cpUpdateSpectralColorController(CPSpectralColorController* con){
-  cpUpdateColorController(&(con->baseController));
-
+void cpComputeSpectralColorController(CPSpectralColorController* con) {
   CMLColorType currentColorType = cpGetCurrentColorType();
-  if(currentColorType != CML_COLOR_SPECTRUM_ILLUMINATION){
+  if (currentColorType != CML_COLOR_SPECTRUM_ILLUMINATION) {
     cmlReleaseFunction(con->spectralColor);
     con->spectralColor = cmlCreateConstFilter(0.f);
   }
-  
+}
+
+
+
+void cpUpdateSpectralColorController(CPSpectralColorController* con){
+  cpUpdateColorController(&(con->baseController));
+    
   cpUpdateSpectralColorWell(con->display);
 }

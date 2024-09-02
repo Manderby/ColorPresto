@@ -13,5 +13,6 @@ void cpDeallocXYZColorController(CPXYZColorController* con);
 const void* cpGetXYZColorControllerColorData(const CPXYZColorController* con);
 void cpSetXYZColorControllerColorData(CPXYZColorController* con, const void* data);
 
+void cpComputeXYZColorController(CPXYZColorController* con);
 void cpUpdateXYZColorController(CPXYZColorController* con);
 

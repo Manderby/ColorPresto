@@ -158,13 +158,27 @@ void cpSetLabLchColorControllerColorData(CPLabLchColorController* con, const voi
 
 
 
-void cpUpdateLabLchColorController(CPLabLchColorController* con){
-  CMLColorMachine* cm = cpGetCurrentColorMachine();
-  cpUpdateColorController(&(con->baseController));
-
+void cpComputeLabLchColorController(CPLabLchColorController* con) {
   LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
   CMLColorType colorType = (lablchSelect == Lab) ? CML_COLOR_Lab : CML_COLOR_Lch;
-  
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+
+  CMLColorType currentColorType = cpGetCurrentColorType();
+  const float* currentColorData = cpGetCurrentColorData();
+  CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
+  converter(cm, con->color, currentColorData, 1);
+
+  cpComputeColorWell2D(con->colorWell2D);
+}
+
+
+
+void cpUpdateLabLchColorController(CPLabLchColorController* con){
+  cpUpdateColorController(&(con->baseController));
+ 
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
+
   naSetRadioState(con->radioLab, lablchSelect == Lab);
   naSetRadioState(con->radioLch, lablchSelect == Lch);
   
@@ -191,11 +205,6 @@ void cpUpdateLabLchColorController(CPLabLchColorController* con){
     naSetLabelText(con->label2, cpTranslate(CPLchColorChannelh));
   }
 
-  CMLColorType currentColorType = cpGetCurrentColorType();
-  const float* currentColorData = cpGetCurrentColorData();
-  CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
-  converter(cm, con->color, currentColorData, 1);
-  
   cpUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(

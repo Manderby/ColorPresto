@@ -118,15 +118,22 @@ void cpSetYxyColorControllerColorData(CPYxyColorController* con, const void* dat
 
 
 
-void cpUpdateYxyColorController(CPYxyColorController* con){
-  cpUpdateColorController(&(con->baseController));
-
+void cpComputeYxyColorController(CPYxyColorController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
+
   CMLColorType currentColorType = cpGetCurrentColorType();
   const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, currentColorType);
   converter(cm, con->yxyColor, currentColorData, 1);
-  
+
+  cpComputeColorWell2D(con->colorWell2D);
+}
+
+
+
+void cpUpdateYxyColorController(CPYxyColorController* con){
+  cpUpdateColorController(&(con->baseController));
+ 
   cpUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(

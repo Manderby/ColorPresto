@@ -155,14 +155,23 @@ void cpSetRGBColorControllerColorData(CPRGBColorController* con, const void* dat
 
 
 
-void cpUpdateRGBColorController(CPRGBColorController* con){
-  cpUpdateColorController(&(con->baseController));
-  
+void cpComputeRGBColorController(CPRGBColorController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
+
   CMLColorType currentColorType = cpGetCurrentColorType();
   const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_RGB, currentColorType);
   converter(cm, con->rgbColor, currentColorData, 1);
+
+  cpComputeColorWell2D(con->colorWell2D);
+}
+
+
+
+void cpUpdateRGBColorController(CPRGBColorController* con){
+  cpUpdateColorController(&(con->baseController));
+  
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
   
   cpUpdateColorWell2D(con->colorWell2D);
   

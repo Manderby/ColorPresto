@@ -79,7 +79,7 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
   con->rgbColorController = cpAllocRGBColorController();
   con->spectralColorController = cpAllocSpectralColorController();
   con->xyzColorController = cpAllocXYZColorController();
-  con->yuvyupvpColorController = cpAllocYuvColorController();
+  con->yuvyupvpColorController = cpAllocYuvYupvpColorController();
   con->ycbcrColorController = cpAllocYCbCrColorController();
   con->yxyColorController = cpAllocYxyColorController();
 
@@ -123,7 +123,7 @@ void cpDeallocMachineWindowController(CPMachineWindowController* con){
   cpDeallocRGBColorController(con->rgbColorController);
   cpDeallocSpectralColorController(con->spectralColorController);
   cpDeallocXYZColorController(con->xyzColorController);
-  cpDeallocYuvColorController(con->yuvyupvpColorController);
+  cpDeallocYuvYupvpColorController(con->yuvyupvpColorController);
   cpDeallocYCbCrColorController(con->ycbcrColorController);
   cpDeallocYxyColorController(con->yxyColorController);
   naFree(con);
@@ -144,15 +144,30 @@ CPColorController* cpGetInitialColorController(CPMachineWindowController* con){
 
 
 void cpUpdateMachineWindowController(CPMachineWindowController* con){
-  NAThread GrayThread = naMakeThread("Compute Gray", (NAMutator)cpComputeGrayColorController, con->grayColorController);
-  NAThread HSVHSLThread = naMakeThread("Compute HSV/HSL", (NAMutator)cpComputeHSVHSLColorController, con->hsvhslColorController);
+  // Compute the controller data with threads
+  NAThread GrayThread     = naMakeThread("Compute Gray",      (NAMutator)cpComputeGrayColorController,     con->grayColorController);
+  NAThread HSVHSLThread   = naMakeThread("Compute HSV/HSL",   (NAMutator)cpComputeHSVHSLColorController,   con->hsvhslColorController);
+  NAThread LabLchThread   = naMakeThread("Compute Lab/Lch",   (NAMutator)cpComputeLabLchColorController,   con->lablchColorController);
+  NAThread LuvUVWThread   = naMakeThread("Compute Luv/UVW",   (NAMutator)cpComputeLuvUVWColorController,   con->luvuvwColorController);
+  NAThread RGBThread      = naMakeThread("Compute RGB",       (NAMutator)cpComputeRGBColorController,      con->rgbColorController);
+  NAThread SpectralThread = naMakeThread("Compute Spectral",  (NAMutator)cpComputeSpectralColorController, con->spectralColorController);
+  NAThread XYZThread      = naMakeThread("Compute XYZ",       (NAMutator)cpComputeXYZColorController,      con->xyzColorController);
+  NAThread YCbCrThread    = naMakeThread("Compute YCbCr",     (NAMutator)cpComputeYCbCrColorController,    con->ycbcrColorController);
+  NAThread YuvYupvpThread = naMakeThread("Compute Yuv/Yupvp", (NAMutator)cpComputeYuvYupvpColorController, con->yuvyupvpColorController);
+  NAThread YyxThread      = naMakeThread("Compute Yxy",       (NAMutator)cpComputeYxyColorController,      con->yxyColorController);
 
   naRunThread(GrayThread);
   naRunThread(HSVHSLThread);
+  naRunThread(LabLchThread);
+  naRunThread(LuvUVWThread);
+  naRunThread(RGBThread);
+  naRunThread(SpectralThread);
+  naRunThread(XYZThread);
+  naRunThread(YCbCrThread);
+  naRunThread(YuvYupvpThread);
+  naRunThread(YyxThread);
 
-  naAwaitThread(GrayThread);
-  naAwaitThread(HSVHSLThread);
-
+  // In the meantime, update the machine
   cpUpdateMachineController(con->machineController);
   
   cpSetColorControllerActive((CPColorController*)con->grayColorController, cpGetCurrentColorController() == (CPColorController*)con->grayColorController);
@@ -166,6 +181,18 @@ void cpUpdateMachineWindowController(CPMachineWindowController* con){
   cpSetColorControllerActive((CPColorController*)con->yuvyupvpColorController, cpGetCurrentColorController() == (CPColorController*)con->yuvyupvpColorController);
   cpSetColorControllerActive((CPColorController*)con->yxyColorController, cpGetCurrentColorController() == (CPColorController*)con->yxyColorController);
 
+  // Await all threads before updating the UI
+  naAwaitThread(GrayThread);
+  naAwaitThread(HSVHSLThread);
+  naAwaitThread(LabLchThread);
+  naAwaitThread(LuvUVWThread);
+  naAwaitThread(RGBThread);
+  naAwaitThread(SpectralThread);
+  naAwaitThread(XYZThread);
+  naAwaitThread(YCbCrThread);
+  naAwaitThread(YuvYupvpThread);
+  naAwaitThread(YyxThread);
+
   cpUpdateGrayColorController(con->grayColorController);
   cpUpdateHSVHSLColorController(con->hsvhslColorController);
   cpUpdateLabLchColorController(con->lablchColorController);
@@ -174,6 +201,6 @@ void cpUpdateMachineWindowController(CPMachineWindowController* con){
   cpUpdateSpectralColorController(con->spectralColorController);
   cpUpdateXYZColorController(con->xyzColorController);
   cpUpdateYCbCrColorController(con->ycbcrColorController);
-  cpUpdateYuvColorController(con->yuvyupvpColorController);
+  cpUpdateYuvYupvpColorController(con->yuvyupvpColorController);
   cpUpdateYxyColorController(con->yxyColorController);
 }

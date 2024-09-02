@@ -68,8 +68,8 @@ const void* cpGetColorControllerColorData(const CPColorController* con){
   case CML_COLOR_UVW: return cpGetLuvUVWColorControllerColorData((const CPLuvUVWColorController*)con);
   case CML_COLOR_XYZ: return cpGetXYZColorControllerColorData((const CPXYZColorController*)con);
   case CML_COLOR_YCbCr: return cpGetYCbCrColorControllerColorData((const CPYCbCrColorController*)con);
-  case CML_COLOR_Yupvp: return cpGetYuvColorControllerColorData((const CPYuvYupvpColorController*)con);
-  case CML_COLOR_Yuv: return cpGetYuvColorControllerColorData((const CPYuvYupvpColorController*)con);
+  case CML_COLOR_Yupvp: return cpGetYuvYupvpColorControllerColorData((const CPYuvYupvpColorController*)con);
+  case CML_COLOR_Yuv: return cpGetYuvYupvpColorControllerColorData((const CPYuvYupvpColorController*)con);
   case CML_COLOR_Yxy: return cpGetYxyColorControllerColorData((const CPYxyColorController*)con);
   default: return NA_NULL;
   }
@@ -90,8 +90,8 @@ void cpSetColorControllerColorData(CPColorController* con, const void* data){
   case CML_COLOR_UVW: cpSetLuvUVWColorControllerColorData((CPLuvUVWColorController*)con, data); break;
   case CML_COLOR_XYZ: cpSetXYZColorControllerColorData((CPXYZColorController*)con, data); break;
   case CML_COLOR_YCbCr: cpSetYCbCrColorControllerColorData((CPYCbCrColorController*)con, data); break;
-  case CML_COLOR_Yupvp: cpSetYuvColorControllerColorData((CPYuvYupvpColorController*)con, data); break;
-  case CML_COLOR_Yuv: cpSetYuvColorControllerColorData((CPYuvYupvpColorController*)con, data); break;
+  case CML_COLOR_Yupvp: cpSetYuvYupvpColorControllerColorData((CPYuvYupvpColorController*)con, data); break;
+  case CML_COLOR_Yuv: cpSetYuvYupvpColorControllerColorData((CPYuvYupvpColorController*)con, data); break;
   case CML_COLOR_Yxy: cpSetYxyColorControllerColorData((CPYxyColorController*)con, data); break;
   default: break;
   }

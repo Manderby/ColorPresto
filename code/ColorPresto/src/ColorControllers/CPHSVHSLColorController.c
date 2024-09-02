@@ -164,6 +164,7 @@ void cpComputeHSVHSLColorController(CPHSVHSLColorController* con) {
   HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
   CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
+
   CMLColorType currentColorType = cpGetCurrentColorType();
   const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
