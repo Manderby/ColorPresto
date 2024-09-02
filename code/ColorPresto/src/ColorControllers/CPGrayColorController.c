@@ -92,15 +92,19 @@ void cpSetGrayColorControllerColorData(CPGrayColorController* con, const void* d
 
 
 
-void cpUpdateGrayColorController(CPGrayColorController* con){
-  cpUpdateColorController(&(con->baseController));
-
+void cpComputeGrayColorController(CPGrayColorController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorType currentColorType = cpGetCurrentColorType();
   const float* currentColorData = cpGetCurrentColorData();
   CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Gray, currentColorType);
   converter(cm, &(con->grayColor), currentColorData, 1);
-  
+}
+
+
+
+void cpUpdateGrayColorController(CPGrayColorController* con){
+  cpUpdateColorController(&(con->baseController));
+
   naSetTextFieldText(
     con->textFieldGray,
     naAllocSprintf(NA_TRUE, "%1.05f", con->grayColor));

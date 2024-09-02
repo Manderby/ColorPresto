@@ -160,11 +160,24 @@ void cpSetHSVHSLColorControllerColorData(CPHSVHSLColorController* con, const voi
 
 
 
+void cpComputeHSVHSLColorController(CPHSVHSLColorController* con) {
+  HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
+  CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorType currentColorType = cpGetCurrentColorType();
+  const float* currentColorData = cpGetCurrentColorData();
+  CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
+  converter(cm, con->color, currentColorData, 1);
+
+  cpComputeColorWell2D(con->colorWell2D);
+}
+
+
+
 void cpUpdateHSVHSLColorController(CPHSVHSLColorController* con){
   cpUpdateColorController(&(con->baseController));
 
   HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
-  CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
   
   naSetRadioState(con->radioHSV, hsvhslSelect == HSV);
   naSetRadioState(con->radioHSL, hsvhslSelect == HSL);
@@ -178,12 +191,6 @@ void cpUpdateHSVHSLColorController(CPHSVHSLColorController* con){
     naSetLabelText(con->label1, cpTranslate(CPHSLColorChannelS));
     naSetLabelText(con->label2, cpTranslate(CPHSLColorChannelL));
   }
-  
-  CMLColorMachine* cm = cpGetCurrentColorMachine();
-  CMLColorType currentColorType = cpGetCurrentColorType();
-  const float* currentColorData = cpGetCurrentColorData();
-  CMLColorConverter converter = cmlGetColorConverter(colorType, currentColorType);
-  converter(cm, con->color, currentColorData, 1);
   
   cpUpdateColorWell2D(con->colorWell2D);
 

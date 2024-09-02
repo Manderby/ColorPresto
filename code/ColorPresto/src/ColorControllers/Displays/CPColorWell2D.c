@@ -18,6 +18,9 @@ struct CPColorWell2D{
   
   CPColorController* colorController;
   size_t fixedIndex;
+
+  float* m_inputValues;
+  float* m_rgbValues;
 };
 
 
@@ -98,71 +101,84 @@ void cmDrawColorWell2D(NAReaction reaction){
   CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
   CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
 
-  float* inputValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
-  float* inputPtr = inputValues;
-  CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
-  outputConverter(normedColorValues, cpGetColorControllerColorData(well->colorController), 1);
-  
   float fixedValueA = 0.f;
   float fixedValueB = 0.f;
+  CMLVec3 normedColorValues = { 0.f, 0.f, 0.f };
+  outputConverter(normedColorValues, cpGetColorControllerColorData(well->colorController), 1);
 
-  switch(well->fixedIndex){
+  switch (well->fixedIndex) {
   case 0:
-    for(int y = 0; y < colorWell2DSize; ++y){
-      float yValue = (float)y / (float)colorWell2DSize;
-      for(int x = 0; x < colorWell2DSize; ++x){
-        fixedValueA = normedColorValues[1];
-        fixedValueB = normedColorValues[2];
-        float xValue = (float)x / (float)colorWell2DSize;
-        *inputPtr++ = normedColorValues[0];
-        *inputPtr++ = xValue;
-        *inputPtr++ = yValue;
-      }
-    }
+    fixedValueA = normedColorValues[1];
+    fixedValueB = normedColorValues[2];
     break;
   case 1:
-    for(int y = 0; y < colorWell2DSize; ++y){
-      float yValue = (float)y / (float)colorWell2DSize;
-      for(int x = 0; x < colorWell2DSize; ++x){
-        fixedValueA = normedColorValues[0];
-        fixedValueB = normedColorValues[2];
-        float xValue = (float)x / (float)colorWell2DSize;
-        *inputPtr++ = xValue;
-        *inputPtr++ = normedColorValues[1];
-        *inputPtr++ = yValue;
-      }
-    }
+    fixedValueA = normedColorValues[0];
+    fixedValueB = normedColorValues[2];
     break;
   case 2:
-    for(int y = 0; y < colorWell2DSize; ++y){
-      float yValue = (float)y / (float)colorWell2DSize;
-      for(int x = 0; x < colorWell2DSize; ++x){
-        fixedValueA = normedColorValues[0];
-        fixedValueB = normedColorValues[1];
-        float xValue = (float)x / (float)colorWell2DSize;
-        *inputPtr++ = xValue;
-        *inputPtr++ = yValue;
-        *inputPtr++ = normedColorValues[2];
-      }
-    }
+    fixedValueA = normedColorValues[0];
+    fixedValueB = normedColorValues[1];
     break;
   }
 
-  // Convert the given values to screen RGBs.
-  float* rgbValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
-  fillRGBFloatArrayWithArray(
-    cm,
-    sm,
-    rgbValues,
-    inputValues,
-    colorType,
-    inputConverter,
-    colorWell2DSize * colorWell2DSize);
+  if(well->m_inputValues == NA_NULL) {
+    float* inputValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
+    float* inputPtr = inputValues;
+  
+    switch(well->fixedIndex){
+    case 0:
+      for(int y = 0; y < colorWell2DSize; ++y){
+        float yValue = (float)y / (float)colorWell2DSize;
+        for(int x = 0; x < colorWell2DSize; ++x){
+          float xValue = (float)x / (float)colorWell2DSize;
+          *inputPtr++ = normedColorValues[0];
+          *inputPtr++ = xValue;
+          *inputPtr++ = yValue;
+        }
+      }
+      break;
+    case 1:
+      for(int y = 0; y < colorWell2DSize; ++y){
+        float yValue = (float)y / (float)colorWell2DSize;
+        for(int x = 0; x < colorWell2DSize; ++x){
+          float xValue = (float)x / (float)colorWell2DSize;
+          *inputPtr++ = xValue;
+          *inputPtr++ = normedColorValues[1];
+          *inputPtr++ = yValue;
+        }
+      }
+      break;
+    case 2:
+      for(int y = 0; y < colorWell2DSize; ++y){
+        float yValue = (float)y / (float)colorWell2DSize;
+        for(int x = 0; x < colorWell2DSize; ++x){
+          float xValue = (float)x / (float)colorWell2DSize;
+          *inputPtr++ = xValue;
+          *inputPtr++ = yValue;
+          *inputPtr++ = normedColorValues[2];
+        }
+      }
+      break;
+    }
 
-  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, rgbValues);
+    // Convert the given values to screen RGBs.
+    float* rgbValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
+    fillRGBFloatArrayWithArray(
+      cm,
+      sm,
+      rgbValues,
+      inputValues,
+      colorType,
+      inputConverter,
+      colorWell2DSize * colorWell2DSize);
 
-  naFree(inputValues);
-  naFree(rgbValues);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, rgbValues);
+
+    naFree(inputValues);
+    naFree(rgbValues);
+  }else{
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, well->m_rgbValues);
+  }
 
   glEnable(GL_TEXTURE_2D);
   glBegin(GL_TRIANGLE_STRIP);
@@ -260,13 +276,18 @@ CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fix
   
   well->colorController = colorController;
   well->fixedIndex = fixedIndex;
-  
+
+  well->m_inputValues = NA_NULL;
+  well->m_rgbValues = NA_NULL;
+
   return well;
 }
 
 
 
 void cpDeallocColorWell2D(CPColorWell2D* well){
+  if (well->m_inputValues) { naFree(well->m_inputValues); }
+  if (well->m_rgbValues) { naFree(well->m_rgbValues); }
   glDeleteTextures(1, &(well->wellTex));
 }
 
@@ -280,6 +301,71 @@ void cpSetColorWell2DFixedIndex(CPColorWell2D* well, size_t fixedIndex){
 
 NAOpenGLSpace* cpGetColorWell2DUIElement(CPColorWell2D* well){
   return well->display;
+}
+
+
+
+void cpComputeColorWell2D(CPColorWell2D* well) {
+  if(!well->m_inputValues) {
+    well->m_inputValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
+    well->m_rgbValues   = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
+  }
+
+  CMLColorMachine* cm = cpGetCurrentColorMachine();
+  CMLColorMachine* sm = cpGetCurrentScreenMachine();
+  CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
+  CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
+  CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
+
+  float* inputPtr = well->m_inputValues;
+  CMLVec3 normedColorValues = { 0.f, 0.f, 0.f };
+  outputConverter(normedColorValues, cpGetColorControllerColorData(well->colorController), 1);
+
+  switch (well->fixedIndex) {
+  case 0:
+    for (int y = 0; y < colorWell2DSize; ++y) {
+      float yValue = (float)y / (float)colorWell2DSize;
+      for (int x = 0; x < colorWell2DSize; ++x) {
+        float xValue = (float)x / (float)colorWell2DSize;
+        *inputPtr++ = normedColorValues[0];
+        *inputPtr++ = xValue;
+        *inputPtr++ = yValue;
+      }
+    }
+    break;
+  case 1:
+    for (int y = 0; y < colorWell2DSize; ++y) {
+      float yValue = (float)y / (float)colorWell2DSize;
+      for (int x = 0; x < colorWell2DSize; ++x) {
+        float xValue = (float)x / (float)colorWell2DSize;
+        *inputPtr++ = xValue;
+        *inputPtr++ = normedColorValues[1];
+        *inputPtr++ = yValue;
+      }
+    }
+    break;
+  case 2:
+    for (int y = 0; y < colorWell2DSize; ++y) {
+      float yValue = (float)y / (float)colorWell2DSize;
+      for (int x = 0; x < colorWell2DSize; ++x) {
+        float xValue = (float)x / (float)colorWell2DSize;
+        *inputPtr++ = xValue;
+        *inputPtr++ = yValue;
+        *inputPtr++ = normedColorValues[2];
+      }
+    }
+    break;
+  }
+
+  // Convert the given values to screen RGBs.
+  fillRGBFloatArrayWithArray(
+    cm,
+    sm,
+    well->m_rgbValues,
+    well->m_inputValues,
+    colorType,
+    inputConverter,
+    colorWell2DSize * colorWell2DSize);
 }
 
 

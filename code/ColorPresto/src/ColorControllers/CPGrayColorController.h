@@ -13,6 +13,7 @@ void cpDeallocGrayColorController(CPGrayColorController* con);
 const void* cpGetGrayColorControllerColorData(const CPGrayColorController* con);
 void cpSetGrayColorControllerColorData(CPGrayColorController* con, const void* data);
 
+void cpComputeGrayColorController(CPGrayColorController* con);
 void cpUpdateGrayColorController(CPGrayColorController* con);
 
 

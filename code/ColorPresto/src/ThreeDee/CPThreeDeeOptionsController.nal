@@ -1,13 +1,13 @@
 
-//define myPI = 3.14159;
-//typedef myType = f32;
-//typedef myFunctionType = bool (i32);
+//define MY_PI = 3.14159;
+//define MyType = f32;
+//define MyFunctionType = bool (i32);
 
 // Dot . means "local" or "private", restricted to only concerning this module, this file, this function
 
-//.myPrivateVariable       = bool;
-//.myPrivateVariable2      = 1234.;
-//myPublicVariable       = "Hello";
+//mutable .myPrivateVariable     = bool;
+//mutable .myPrivateVariable2    = 1234.;
+//mutable myPublicVariable       = "Hello";
 //
 // outside of module space
 //.myPrivateFunction        = bool (i32 myParameter) {return true;}
@@ -21,6 +21,67 @@
 // Here is PrivateClass module space
 // PublicClass = module : DerivedClass;
 // Here is PublicClass module space
+
+
+// Variables
+// in global scope: mutable by default. Requires define for constants
+// in module scope: mutable by default. Requires define for constants
+// In parameter scope: const by default. Requires mutable otherwise
+// In local scope: all mutable. Feel free to shoot yourself in the foot.
+
+
+// Dot
+
+// Dot in parameter or return type .MyRetType myFunction(.MyType x): Template type.
+// If missing: Normal type
+
+// Dot in parameter name myFunction(MyType .x): Template parameter. Must be last
+// If missing: normal parameter
+
+// Dot in global scope: .mySymbol: Only visible inside the given file
+// If missing: exported symbol
+
+// Dot in module scope: .mySymbol: Only visible inside the given module. private.
+// If missing: Accessible by referencing module. public
+
+// Dot in function/local scope: .mySymbol: Explicitely access member symbol
+// If missing: Normal local variable. Shadowing may occur. Warn if Verwechslungsgefahr Initialization and Assignment
+// Warn if unused local variable. Otherwise renaming of member might get unnoticed.
+// Todo: This is a conundrum. Either find a way to distinguish between Initialization and Assignment or
+// put alot of warnings, or define to always require the dot for member variables. Or disallow shadowing.
+
+
+// test = 1234;
+// function = (i32 test) {
+//     .test = test;
+// }
+// function2 = () {
+//     test = 1234;    // shadow warning. Might confuse assignment with initialization.
+// }
+// 
+// vectorAddition2 = .Type[2] (.Type[2] a, .Type[2] b) {
+//     .Type[2] ret;
+//     ret[0] = a[0] + b[0];
+//     ret[1] = a[1] + b[1];
+//     return ret;
+// }
+// vectorAddition = .Type[.N] (.Type[.N] a, .Type[.N] b, u32 .N) {
+//     .Type[.N] ret;
+//     for(i = [0 .. .N]) {
+//         ret[i] = a[i] + b[i];
+//     }
+//     return ret;
+// }
+
+
+// Module with template parameters:
+// Vector = module(u32 .N, .Type T);
+// myVector = Vector(3, f32).init(0.f);
+// V3 = Vector(3, f64);
+// myDoubleVector = V3.init(0.);
+
+
+
 
 
 
@@ -76,11 +137,11 @@ CPThreeDeeOptionsController = module : NASpace;
 
 
 
-constructor = (
+init = (
   mutable this,
-  CPThreeDeeController parent)
+  CPThreeDeeController .parent)
 {
-  .parent = parent;
+  parent = .parent;
   space = new NASpace(naMakeSize(1, 1));
   space.setAlternateBackground(false);
 

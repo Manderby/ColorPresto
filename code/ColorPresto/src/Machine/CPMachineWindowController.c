@@ -19,6 +19,7 @@
 
 #include "NAApp/NAApp.h"
 #include "NAUtility/NAMemory.h"
+#include "NAUtility/NAThreading.h"
 
 
 
@@ -143,6 +144,15 @@ CPColorController* cpGetInitialColorController(CPMachineWindowController* con){
 
 
 void cpUpdateMachineWindowController(CPMachineWindowController* con){
+  NAThread GrayThread = naMakeThread("Compute Gray", (NAMutator)cpComputeGrayColorController, con->grayColorController);
+  NAThread HSVHSLThread = naMakeThread("Compute HSV/HSL", (NAMutator)cpComputeHSVHSLColorController, con->hsvhslColorController);
+
+  naRunThread(GrayThread);
+  naRunThread(HSVHSLThread);
+
+  naAwaitThread(GrayThread);
+  naAwaitThread(HSVHSLThread);
+
   cpUpdateMachineController(con->machineController);
   
   cpSetColorControllerActive((CPColorController*)con->grayColorController, cpGetCurrentColorController() == (CPColorController*)con->grayColorController);
