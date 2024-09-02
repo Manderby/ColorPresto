@@ -121,64 +121,7 @@ void cmDrawColorWell2D(NAReaction reaction){
     break;
   }
 
-  if(well->m_inputValues == NA_NULL) {
-    float* inputValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
-    float* inputPtr = inputValues;
-  
-    switch(well->fixedIndex){
-    case 0:
-      for(int y = 0; y < colorWell2DSize; ++y){
-        float yValue = (float)y / (float)colorWell2DSize;
-        for(int x = 0; x < colorWell2DSize; ++x){
-          float xValue = (float)x / (float)colorWell2DSize;
-          *inputPtr++ = normedColorValues[0];
-          *inputPtr++ = xValue;
-          *inputPtr++ = yValue;
-        }
-      }
-      break;
-    case 1:
-      for(int y = 0; y < colorWell2DSize; ++y){
-        float yValue = (float)y / (float)colorWell2DSize;
-        for(int x = 0; x < colorWell2DSize; ++x){
-          float xValue = (float)x / (float)colorWell2DSize;
-          *inputPtr++ = xValue;
-          *inputPtr++ = normedColorValues[1];
-          *inputPtr++ = yValue;
-        }
-      }
-      break;
-    case 2:
-      for(int y = 0; y < colorWell2DSize; ++y){
-        float yValue = (float)y / (float)colorWell2DSize;
-        for(int x = 0; x < colorWell2DSize; ++x){
-          float xValue = (float)x / (float)colorWell2DSize;
-          *inputPtr++ = xValue;
-          *inputPtr++ = yValue;
-          *inputPtr++ = normedColorValues[2];
-        }
-      }
-      break;
-    }
-
-    // Convert the given values to screen RGBs.
-    float* rgbValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
-    fillRGBFloatArrayWithArray(
-      cm,
-      sm,
-      rgbValues,
-      inputValues,
-      colorType,
-      inputConverter,
-      colorWell2DSize * colorWell2DSize);
-
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, rgbValues);
-
-    naFree(inputValues);
-    naFree(rgbValues);
-  }else{
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, well->m_rgbValues);
-  }
+  glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, colorWell2DSize, colorWell2DSize, 0, GL_RGB, GL_FLOAT, well->m_rgbValues);
 
   glEnable(GL_TEXTURE_2D);
   glBegin(GL_TRIANGLE_STRIP);
@@ -277,8 +220,8 @@ CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fix
   well->colorController = colorController;
   well->fixedIndex = fixedIndex;
 
-  well->m_inputValues = NA_NULL;
-  well->m_rgbValues = NA_NULL;
+  well->m_inputValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
+  well->m_rgbValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
 
   return well;
 }
@@ -286,8 +229,8 @@ CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fix
 
 
 void cpDeallocColorWell2D(CPColorWell2D* well){
-  if (well->m_inputValues) { naFree(well->m_inputValues); }
-  if (well->m_rgbValues) { naFree(well->m_rgbValues); }
+  naFree(well->m_inputValues);
+  naFree(well->m_rgbValues);
   glDeleteTextures(1, &(well->wellTex));
 }
 
@@ -306,11 +249,6 @@ NAOpenGLSpace* cpGetColorWell2DUIElement(CPColorWell2D* well){
 
 
 void cpComputeColorWell2D(CPColorWell2D* well) {
-  if(!well->m_inputValues) {
-    well->m_inputValues = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
-    well->m_rgbValues   = naMalloc(colorWell2DSize * colorWell2DSize * 3 * sizeof(float));
-  }
-
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
   CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
