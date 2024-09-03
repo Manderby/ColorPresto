@@ -143,8 +143,6 @@ CPColorController* cpGetInitialColorController(CPMachineWindowController* con){
 
 
 
-#include "NAUtility/NADateTime.h"
-
 void cpUpdateMachineWindowController(CPMachineWindowController* con){
   // Compute the controller data with threads
   NAThread GrayThread     = naMakeThread("Compute Gray",      (NAMutator)cpComputeGrayColorController,     con->grayColorController);
@@ -169,8 +167,6 @@ void cpUpdateMachineWindowController(CPMachineWindowController* con){
   naRunThread(YCbCrThread);
   naRunThread(YuvYupvpThread);
   naRunThread(YyxThread);
-
-  NADateTime time1 = naMakeDateTimeNow();
 
   // In the meantime, update the machine
   cpUpdateMachineController(con->machineController);
@@ -198,9 +194,6 @@ void cpUpdateMachineWindowController(CPMachineWindowController* con){
   naAwaitThread(YuvYupvpThread);
   naAwaitThread(YyxThread);
 
-  NADateTime time2 = naMakeDateTimeNow();
-  double diff12 = naGetDateTimeDifference(&time2, &time1);
-
   cpUpdateGrayColorController(con->grayColorController);
   cpUpdateHSVHSLColorController(con->hsvhslColorController);
   cpUpdateLabLchColorController(con->lablchColorController);
@@ -211,8 +204,4 @@ void cpUpdateMachineWindowController(CPMachineWindowController* con){
   cpUpdateYCbCrColorController(con->ycbcrColorController);
   cpUpdateYuvYupvpColorController(con->yuvyupvpColorController);
   cpUpdateYxyColorController(con->yxyColorController);
-
-  NADateTime time3 = naMakeDateTimeNow();
-  double diff23 = naGetDateTimeDifference(&time3, &time2);
-  printf("%f + %f = %f\n", diff12, diff23, diff12+diff23);
 }
