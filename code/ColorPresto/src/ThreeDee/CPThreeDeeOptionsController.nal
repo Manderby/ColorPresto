@@ -30,7 +30,7 @@
 // In local scope: all mutable. Feel free to shoot yourself in the foot.
 
 
-// Dot
+// Templates
 
 // Dot in parameter or return type .MyRetType myFunction(.MyType x): Template type.
 // If missing: Normal type
@@ -38,34 +38,13 @@
 // Dot in parameter name myFunction(MyType .x): Template parameter. Must be last
 // If missing: normal parameter
 
-// Dot in global scope: .mySymbol: Only visible inside the given file
-// If missing: exported symbol
-
-// Dot in module scope: .mySymbol: Only visible inside the given module. private.
-// If missing: Accessible by referencing module. public
-
-// Dot in function/local scope: .mySymbol: Explicitely access member symbol
-// If missing: Normal local variable. Shadowing may occur. Warn if Verwechslungsgefahr Initialization and Assignment
-// Warn if unused local variable. Otherwise renaming of member might get unnoticed.
-// Todo: This is a conundrum. Either find a way to distinguish between Initialization and Assignment or
-// put alot of warnings, or define to always require the dot for member variables. Or disallow shadowing.
-
-
-// test = 1234;
-// function = (i32 test) {
-//     .test = test;
-// }
-// function2 = () {
-//     test = 1234;    // shadow warning. Might confuse assignment with initialization.
-// }
-// 
-// vectorAddition2 = .Type[2] (.Type[2] a, .Type[2] b) {
+// .Type[2] vectorAddition2(.Type[2] a, .Type[2] b) {
 //     .Type[2] ret;
 //     ret[0] = a[0] + b[0];
 //     ret[1] = a[1] + b[1];
 //     return ret;
 // }
-// vectorAddition = .Type[.N] (.Type[.N] a, .Type[.N] b, u32 .N) {
+// .Type[.N] vectorAddition(.Type[.N] a, .Type[.N] b, u32 .N) {
 //     .Type[.N] ret;
 //     for(i = [0 .. .N]) {
 //         ret[i] = a[i] + b[i];
@@ -73,45 +52,74 @@
 //     return ret;
 // }
 
-
 // Module with template parameters:
-// Vector = module(u32 .N, .Type T);
-// myVector = Vector(3, f32).init(0.f);
-// V3 = Vector(3, f64);
-// myDoubleVector = V3.init(0.);
+// module Vector<u32 .N, .Type T>;
+// myVector = Vector<3, f32>.init(0.f);
+// module Vector3f : Vector<3, f32>;
+// myFloatVector = Vector3f.init(0.);
 
 
 
+// Symbols in one region, meaning global, module, function and scope, are visible independent of the ordering.
+//
+// At start of file:
+// int  myVar1        // global and exported variable.
+// int .myVar2        // global variable, but only visible to current file. Internal linkeage
+//                    // Shadows any other global variable with the same name.
+// int  myFunc1()     // global and exported function.
+// int .myFunc2()     // global function, but only visible to current file. Internal linkeage
+//                    // Shadows any other global function with the same name.
+//
+// Module:
+// module  MyModule1; // public and exported module.
+//                    // After this line, all definitions belong to this module. 
+// module .MyModule2; // private module. Only visible to current file.
+//                    // After this line, all definitions belong to this module.
+//
+// After module declaration:
+// int  myVar1        // public member variable.
+// int .myVar2        // private member variable.
+// int  myFunc1()     // public static method.
+// int .myFunc2()     // private static method. (Same as global function with internal linkeage)
+// int  myFunc1(this) // public method.
+// int .myFunc2(this) // private method.
+
+// static variables?
+
+// Inside function / scope:
+// int  myVar1        // definition of local variable.
+// int .myVar2        // not allowed.
+// myVar1             // access of local variable or member variable if no local available.
+// .myVar2            // access of member variable. (explicit member access)
 
 
 
-
-CPThreeDeeOptionsController = module : NASpace;
-
-
-
-.parent           = share CPThreeDeeController;
-
-.axisLabel        = NALabel;
-.axisCheckBox     = NACheckBox;
-.spectrumLabel    = NALabel;
-.spectrumCheckBox = NACheckBox;
-.backgroundLabel  = NALabel;
-.backgroundSlider = NASlider;
-.fovyLabel        = NALabel;
-.fovySlider       = NASlider;
-
-.showSpectrum     = false;
-.showAxis         = true;
-.backgroundGray   = 0.3f;
-.fovy             = 50.f;
+module CPThreeDeeOptionsController : NASpace;
 
 
 
-.pressOptionsButton = void (NAReaction reaction) {
+share CPThreeDeeController .parent;
+
+NALabel    .axisLabel;
+NACheckBox .axisCheckBox;
+NALabel    .spectrumLabel;
+NACheckBox .spectrumCheckBox;
+NALabel    .backgroundLabel;
+NASlider   .backgroundSlider;
+NALabel    .fovyLabel;
+NASlider   .fovySlider;
+
+bool       .showSpectrum   = false;   // or { false } or bool(false)
+bool       .showAxis       = true;    // or { true }  or bool(true)
+f32        .backgroundGray = 0.3f;    // or { 0.3f }  or f32(0.3f)
+f32        .fovy           = 50.f;    // or { 50.f }  or f32(50.f)
+
+
+
+void .pressOptionsButton(NAReaction reaction) {
   this = reaction.controller;
 
-  iff (reaction.uiElement) (spectrumCheckBox){
+  iff (reaction.uiElement) (spectrumCheckBox) {
     showSpectrum = spectrumCheckBox.getState();
   } else (axisCheckBox){
     showAxis = axisCheckBox.getState();
@@ -122,10 +130,10 @@ CPThreeDeeOptionsController = module : NASpace;
 
 
 
-.changeOptionsSlider = void (NAReaction reaction) {
+void .changeOptionsSlider(NAReaction reaction) {
   mutable this = reaction.controller;
 
-  iff (reaction.uiElement)(backgroundSlider){
+  iff (reaction.uiElement)(backgroundSlider) {
     backgroundGray = backgroundSlider.getValue();
   } else (fovySlider){
     fovy = fovySlider.getValue();
@@ -137,10 +145,7 @@ CPThreeDeeOptionsController = module : NASpace;
 
 
 
-init = (
-  mutable this,
-  CPThreeDeeController .parent)
-{
+void init(mutable this, CPThreeDeeController .parent) {
   parent = .parent;
   space = new NASpace(naMakeSize(1, 1));
   space.setAlternateBackground(false);
@@ -183,7 +188,7 @@ init = (
 
 
 
-getAxisGray = f64 (this) {
+f64 getAxisGray(this) {
   axisGray = backgroundGray + .5;
   if(axisGray > 1.f){axisGray -= 1.f;}
   return axisGray;
@@ -191,14 +196,14 @@ getAxisGray = f64 (this) {
 
 
 
-getBackgroundGray = f64 (this) {return backgroundGray;}
-getFovy           = f64 (this) {return fovy;}
-getShowAxis       = f64 (this) {return showAxis;}
-getShowSpectrum   = f64 (this) {return showSpectrum;}
+f64 getBackgroundGray (this) {return backgroundGray;}
+f64 getFovy           (this) {return fovy;}
+f64 getShowAxis       (this) {return showAxis;}
+f64 getShowSpectrum   (this) {return showSpectrum;}
 
 
 
-update = (this) {
+void update(this) {
   spectrumCheckBox.setState(showSpectrum);
   axisCheckBox.setState(showAxis);
   backgroundSlider.setValue(backgroundGray);
