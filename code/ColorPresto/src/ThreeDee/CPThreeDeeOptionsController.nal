@@ -121,7 +121,7 @@ void .pressOptionsButton(NAReaction reaction) {
 
   iff (reaction.uiElement) (spectrumCheckBox) {
     showSpectrum = spectrumCheckBox.getState();
-  } else (axisCheckBox){
+  } else (axisCheckBox) {
     showAxis = axisCheckBox.getState();
   }
 
@@ -135,9 +135,9 @@ void .changeOptionsSlider(NAReaction reaction) {
 
   iff (reaction.uiElement)(backgroundSlider) {
     backgroundGray = backgroundSlider.getValue();
-  } else (fovySlider){
+  } else (fovySlider) {
     fovy = fovySlider.getValue();
-    if(fovy < 15.f){fovy = 0.f;}
+    if(fovy < 15.f) {fovy = 0.f;}
   }
   
   parent.update();
@@ -190,7 +190,7 @@ void init(mutable this, CPThreeDeeController .parent) {
 
 f64 getAxisGray(this) {
   axisGray = backgroundGray + .5;
-  if(axisGray > 1.f){axisGray -= 1.f;}
+  if(axisGray > 1.f) {axisGray -= 1.f;}
   return axisGray;
 }
 
