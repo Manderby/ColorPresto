@@ -100,6 +100,7 @@ module CPThreeDeeOptionsController : NASpace;
 
 share CPThreeDeeController .parent;
 
+NASpace    .space;
 NALabel    .axisLabel;
 NACheckBox .axisCheckBox;
 NALabel    .spectrumLabel;
@@ -147,29 +148,29 @@ void .changeOptionsSlider(NAReaction reaction) {
 
 void init(mutable this, CPThreeDeeController .parent) {
   parent = .parent;
-  space = new NASpace(naMakeSize(1, 1));
+  space.init(naMakeSize(1, 1));
   space.setAlternateBackground(false);
 
-  axisLabel = new NALabel(cpTranslate(CPAxis), threeDeeLabelWidth);
-  axisCheckBox = new NACheckBox("", 30);
+  axisLabel.init(cpTranslate(CPAxis), threeDeeLabelWidth);
+  axisCheckBox.init("", 30);
   axisCheckBox.addUIReaction(NA_UI_COMMAND_PRESSED, pressOptionsButton, this);
 
-  spectrumLabel = new NALabel(cpTranslate(CPSpectrum), threeDeeLabelWidth);
-  spectrumCheckBox = new NACheckBox("", 30);
+  spectrumLabel.init(cpTranslate(CPSpectrum), threeDeeLabelWidth);
+  spectrumCheckBox.init("", 30);
   spectrumCheckBox.addUIReaction(NA_UI_COMMAND_PRESSED, pressOptionsButton, this);
 
-  backgroundLabel = new NALabel(cpTranslate(CPBackground), threeDeeLabelWidth);
-  backgroundSlider = new NASlider(threeDeeControlWidth);
+  backgroundLabel.init(cpTranslate(CPBackground), threeDeeLabelWidth);
+  backgroundSlider.init(threeDeeControlWidth);
   backgroundSlider.setRange(0., 1., 0);
   backgroundSlider.addUIReaction(NA_UI_COMMAND_EDITED, changeOptionsSlider, this);
 
-  fovyLabel = new NALabel(cpTranslate(CPFovy), threeDeeLabelWidth);
-  fovySlider = new NASlider(threeDeeControlWidth);
+  fovyLabel.init(cpTranslate(CPFovy), threeDeeLabelWidth);
+  fovySlider.init(threeDeeControlWidth);
   fovySlider.setRange(90., 0., 0);
   fovySlider.addUIReaction(NA_UI_COMMAND_EDITED, changeOptionsSlider, this);
 
   // layout
-  cpBeginUILayout(space, threeDeeBorder);
+  cpBeginUILayout(own space, threeDeeBorder);
   
   cpAddUIRow(axisLabel, uiElemHeight);
   cpAddUICol(axisCheckBox, marginH);
