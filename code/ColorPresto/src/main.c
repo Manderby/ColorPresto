@@ -53,6 +53,7 @@ void preStartup(void* arg){
 
   NAString* appPath = naNewExecutablePath();
   naSetApplicationResourceBasePath(naGetStringUTF8Pointer(appPath));
+  //naPresentAlertBox(NA_ALERT_BOX_INFO, "Resource directory", naGetStringUTF8Pointer(appPath));
   naDelete(appPath);
 
   #if NA_OS == NA_OS_WINDOWS

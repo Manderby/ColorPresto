@@ -40,6 +40,9 @@ CPAboutController* cpAllocAboutController(void){
   NASpace* space = naGetWindowContentSpace(con->window);
 
   NAString* iconPath = naNewApplicationIconPath();
+
+  //naPresentAlertBox(NA_ALERT_BOX_INFO, "icon path", naGetStringUTF8Pointer(iconPath));
+
   NAImage* iconImage = naCreateImageWithFilePath(naGetStringUTF8Pointer(iconPath));
   NAImageSet* iconImageSet = naCreateImageSet(iconImage, NA_UI_RESOLUTION_2x, NA_BLEND_ZERO);
   naRelease(iconImage);
