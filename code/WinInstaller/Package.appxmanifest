@@ -7,12 +7,12 @@
   IgnorableNamespaces="uap rescap">
 
   <Identity
-    Name="985266b0-53f8-40a6-a562-cc81c227c72b"
-    Publisher="CN=Tobias Stamm"
+    Name="57837TobiasStamm.ColorPresto"
+    Publisher="CN=2CD9127F-1744-474C-A2F6-BF5825CC72FC"
     Version="1.2.1.0" />
 
   <Properties>
-    <DisplayName>WinInstaller</DisplayName>
+    <DisplayName>Color Presto</DisplayName>
     <PublisherDisplayName>Tobias Stamm</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
