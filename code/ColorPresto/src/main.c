@@ -2,6 +2,7 @@
 #include "mainC.h"
 
 #include "NAUtility/NAMemory.h"
+#include "NAUtility/NAString.h"
 #include "CPColorPrestoApplication.h"
 #include "CPTranslations.h"
 #include "About/CPAboutController.h"
@@ -50,10 +51,14 @@ void preStartup(void* arg){
   initTranslations();
   initPreferences();
 
+  NAString* appPath = naNewExecutablePath();
+  naSetApplicationResourceBasePath(naGetStringUTF8Pointer(appPath));
+  naDelete(appPath);
+
   #if NA_OS == NA_OS_WINDOWS
     naSetApplicationName("Color Presto");
-    naSetApplicationVersionString("2.1");
-    naSetApplicationBuildString("2.1");
+    naSetApplicationVersionString("2.1.1");
+    naSetApplicationBuildString("2.1.1");
     naSetApplicationIconPath("icon.png");
   #endif
 
@@ -87,7 +92,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
   NA_UNUSED(lpCmdLine);
   NA_UNUSED(nShowCmd);
   
-  naOpenConsoleWindow();
+  //naOpenConsoleWindow();
 
   naStartRuntime();
   naStartApplication(preStartup, postStartup, NA_NULL, NA_NULL);
