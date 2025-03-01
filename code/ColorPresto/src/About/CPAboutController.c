@@ -31,10 +31,10 @@ CPAboutController* cpAllocAboutController(void){
 
   NAString* bundleApplicationName = naNewApplicationName();
 
-  NARect windowrect = naMakeRectS(20, 300, 340, 318);
+  NARect windowRect = naMakeRectS(20, 300, 340, 318);
   const NAUTF8Char* aboutWindowTitleFormatString = cpTranslate(CPAbout);
   NAString* aboutWindowTitleString = naNewStringWithFormat(aboutWindowTitleFormatString, naGetStringUTF8Pointer(bundleApplicationName));
-  con->window = naNewWindow(naGetStringUTF8Pointer(aboutWindowTitleString), windowrect, NA_FALSE, CP_ABOUT_WINDOW_STORAGE_TAG);
+  con->window = naNewWindow(naGetStringUTF8Pointer(aboutWindowTitleString), windowRect, NA_FALSE, CP_ABOUT_WINDOW_STORAGE_TAG);
   naDelete(aboutWindowTitleString);
   
   NASpace* space = naGetWindowContentSpace(con->window);

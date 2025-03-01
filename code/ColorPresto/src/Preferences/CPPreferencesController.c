@@ -71,8 +71,8 @@ void cp_ReportBadTranslation(NAReaction reaction){
 CPPreferencesController* cpAllocPreferencesController(void) {
   CPPreferencesController* con = naAlloc(CPPreferencesController);
 
-  NARect windowrect = naMakeRectS(20, 300, 440, 65);
-  con->window = naNewWindow(cpTranslate(CPPreferences), windowrect, NA_FALSE, CP_PREFERENCES_WINDOW_STORAGE_TAG);
+  NARect windowRect = naMakeRectS(20, 300, 440, 65);
+  con->window = naNewWindow(cpTranslate(CPPreferences), windowRect, NA_FALSE, CP_PREFERENCES_WINDOW_STORAGE_TAG);
 
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 
