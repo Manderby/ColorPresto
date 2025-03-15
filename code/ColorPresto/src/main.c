@@ -54,7 +54,7 @@ void preStartup(void* arg){
   NAString* appPath = naNewExecutablePath();
   naSetApplicationResourceBasePath(naGetStringUTF8Pointer(appPath));
   //naPresentAlertBox(NA_ALERT_BOX_INFO, "Resource directory", naGetStringUTF8Pointer(appPath));
-  naDelete(appPath);windowrect
+  naDelete(appPath);
 
   naSetApplicationName("Color Presto");
   naSetApplicationVersionString("2.1");
@@ -93,7 +93,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
   NA_UNUSED(lpCmdLine);
   NA_UNUSED(nShowCmd);
   
-  //naOpenConsoleWindow();
+  naOpenConsoleWindow();
 
   naStartRuntime();
   naStartApplication(preStartup, postStartup, NA_NULL, NA_NULL);

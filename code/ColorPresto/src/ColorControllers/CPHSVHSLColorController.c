@@ -179,8 +179,6 @@ void cpComputeHSVHSLColorController(CPHSVHSLColorController* con) {
 
 
 void cpUpdateHSVHSLColorController(CPHSVHSLColorController* con){
-  cpUpdateColorController(&(con->baseController));
-
   HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
   
   naSetRadioState(con->radioHSV, hsvhslSelect == HSV);

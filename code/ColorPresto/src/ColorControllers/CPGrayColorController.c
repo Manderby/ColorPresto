@@ -106,8 +106,6 @@ void cpComputeGrayColorController(CPGrayColorController* con) {
 
 
 void cpUpdateGrayColorController(CPGrayColorController* con){
-  cpUpdateColorController(&(con->baseController));
-
   naSetTextFieldText(
     con->textFieldGray,
     naAllocSprintf(NA_TRUE, "%1.05f", con->grayColor));

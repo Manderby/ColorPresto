@@ -79,7 +79,5 @@ void cpComputeSpectralColorController(CPSpectralColorController* con) {
 
 
 void cpUpdateSpectralColorController(CPSpectralColorController* con){
-  cpUpdateColorController(&(con->baseController));
-    
   cpUpdateSpectralColorWell(con->display);
 }

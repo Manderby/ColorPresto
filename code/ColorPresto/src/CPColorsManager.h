@@ -17,7 +17,7 @@ const float* cpGetColorsManagerCurrentColorData(
 CMLColorType cpGetColorsManagerCurrentColorType(
   const CPColorsManager* colorsManager);
 
-void cpSetColorsManagerCurrentColorController(
+NABool cpSetColorsManagerCurrentColorController(
   CPColorsManager* colorsManager,
   const CPColorController* con);
 

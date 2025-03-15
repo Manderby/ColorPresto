@@ -13,6 +13,8 @@ void cpDeallocMachineWindowController(CPMachineWindowController* con);
 
 void cpShowMachineWindowController(CPMachineWindowController* con);
 CPColorController* cpGetInitialColorController(CPMachineWindowController* con);
+
+void cpUpdateColorWells(CPMachineWindowController* con);
 void cpUpdateMachineWindowController(CPMachineWindowController* con);
 
 

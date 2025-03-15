@@ -143,7 +143,7 @@ CPColorController* cpGetInitialColorController(CPMachineWindowController* con){
 
 
 
-void cpUpdateMachineWindowController(CPMachineWindowController* con){
+void cpUpdateColorWells(CPMachineWindowController* con) {
   // Compute the controller data with threads
   NAThread GrayThread     = naMakeThread("Compute Gray",      (NAMutator)cpComputeGrayColorController,     con->grayColorController);
   NAThread HSVHSLThread   = naMakeThread("Compute HSV/HSL",   (NAMutator)cpComputeHSVHSLColorController,   con->hsvhslColorController);
@@ -168,20 +168,6 @@ void cpUpdateMachineWindowController(CPMachineWindowController* con){
   naRunThread(YuvYupvpThread);
   naRunThread(YyxThread);
 
-  // In the meantime, update the machine
-  cpUpdateMachineController(con->machineController);
-
-  cpSetColorControllerActive((CPColorController*)con->grayColorController, cpGetCurrentColorController() == (CPColorController*)con->grayColorController);
-  cpSetColorControllerActive((CPColorController*)con->hsvhslColorController, cpGetCurrentColorController() == (CPColorController*)con->hsvhslColorController);
-  cpSetColorControllerActive((CPColorController*)con->lablchColorController, cpGetCurrentColorController() == (CPColorController*)con->lablchColorController);
-  cpSetColorControllerActive((CPColorController*)con->luvuvwColorController, cpGetCurrentColorController() == (CPColorController*)con->luvuvwColorController);
-  cpSetColorControllerActive((CPColorController*)con->rgbColorController, cpGetCurrentColorController() == (CPColorController*)con->rgbColorController);
-  cpSetColorControllerActive((CPColorController*)con->spectralColorController, cpGetCurrentColorController() == (CPColorController*)con->spectralColorController);
-  cpSetColorControllerActive((CPColorController*)con->xyzColorController, cpGetCurrentColorController() == (CPColorController*)con->xyzColorController);
-  cpSetColorControllerActive((CPColorController*)con->ycbcrColorController, cpGetCurrentColorController() == (CPColorController*)con->ycbcrColorController);
-  cpSetColorControllerActive((CPColorController*)con->yuvyupvpColorController, cpGetCurrentColorController() == (CPColorController*)con->yuvyupvpColorController);
-  cpSetColorControllerActive((CPColorController*)con->yxyColorController, cpGetCurrentColorController() == (CPColorController*)con->yxyColorController);
-
   // Await all threads before updating the color controller UIs
   naAwaitThread(GrayThread);
   naAwaitThread(HSVHSLThread);
@@ -204,4 +190,19 @@ void cpUpdateMachineWindowController(CPMachineWindowController* con){
   cpUpdateYCbCrColorController(con->ycbcrColorController);
   cpUpdateYuvYupvpColorController(con->yuvyupvpColorController);
   cpUpdateYxyColorController(con->yxyColorController);
+}
+
+void cpUpdateMachineWindowController(CPMachineWindowController* con){
+  cpUpdateMachineController(con->machineController);
+
+  cpSetColorControllerActive((CPColorController*)con->grayColorController, cpGetCurrentColorController() == (CPColorController*)con->grayColorController);
+  cpSetColorControllerActive((CPColorController*)con->hsvhslColorController, cpGetCurrentColorController() == (CPColorController*)con->hsvhslColorController);
+  cpSetColorControllerActive((CPColorController*)con->lablchColorController, cpGetCurrentColorController() == (CPColorController*)con->lablchColorController);
+  cpSetColorControllerActive((CPColorController*)con->luvuvwColorController, cpGetCurrentColorController() == (CPColorController*)con->luvuvwColorController);
+  cpSetColorControllerActive((CPColorController*)con->rgbColorController, cpGetCurrentColorController() == (CPColorController*)con->rgbColorController);
+  cpSetColorControllerActive((CPColorController*)con->spectralColorController, cpGetCurrentColorController() == (CPColorController*)con->spectralColorController);
+  cpSetColorControllerActive((CPColorController*)con->xyzColorController, cpGetCurrentColorController() == (CPColorController*)con->xyzColorController);
+  cpSetColorControllerActive((CPColorController*)con->ycbcrColorController, cpGetCurrentColorController() == (CPColorController*)con->ycbcrColorController);
+  cpSetColorControllerActive((CPColorController*)con->yuvyupvpColorController, cpGetCurrentColorController() == (CPColorController*)con->yuvyupvpColorController);
+  cpSetColorControllerActive((CPColorController*)con->yxyColorController, cpGetCurrentColorController() == (CPColorController*)con->yxyColorController);
 }

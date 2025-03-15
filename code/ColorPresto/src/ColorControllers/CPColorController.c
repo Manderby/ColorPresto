@@ -44,7 +44,19 @@ void cpSetColorControllerColorType(CPColorController* con, CMLColorType colorTyp
 
 
 void cpSetColorControllerActive(CPColorController* con, NABool active){
+  NABool isDifferent = con->active != active;
   con->active = active;
+  
+  if(isDifferent) {
+    if(con->active){
+      NAColor highlightColor;
+      naFillColorWithSkinTextColor(&highlightColor, naGetCurrentSkin());
+      highlightColor.alpha = .2f;
+      naSetSpaceBackgroundColor(con->space, &highlightColor);
+    }else{
+      naSetSpaceBackgroundColor(con->space, NA_NULL);
+    }
+  }
 }
 
 
@@ -103,15 +115,3 @@ NASpace* cpGetColorControllerUIElement(CPColorController* con){
   return con->space;
 }
 
-
-
-void cpUpdateColorController(CPColorController* con){
-  if(con->active){
-    NAColor highlightColor;
-    naFillColorWithSkinTextColor(&highlightColor, naGetCurrentSkin());
-    highlightColor.alpha = .2f;
-    naSetSpaceBackgroundColor(con->space, &highlightColor);
-  }else{
-    naSetSpaceBackgroundColor(con->space, NA_NULL);
-  }
-}

@@ -26,5 +26,4 @@ const void* cpGetColorControllerColorData(const CPColorController* con);
 void cpSetColorControllerColorData(CPColorController* con, const void* data);
 
 NASpace* cpGetColorControllerUIElement(CPColorController* con);
-void cpUpdateColorController(CPColorController* con);
 
