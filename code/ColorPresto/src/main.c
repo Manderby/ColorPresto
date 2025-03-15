@@ -93,7 +93,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
   NA_UNUSED(lpCmdLine);
   NA_UNUSED(nShowCmd);
   
-  naOpenConsoleWindow();
+  //naOpenConsoleWindow();
 
   naStartRuntime();
   naStartApplication(preStartup, postStartup, NA_NULL, NA_NULL);
@@ -101,3 +101,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 }
 
 #endif // NA_OS == NA_OS_WINDOWS
+
+
+
