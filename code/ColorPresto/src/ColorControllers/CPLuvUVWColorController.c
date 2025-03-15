@@ -46,9 +46,11 @@ void cp_LuvUVWSelectionChanged(NAReaction reaction){
   if(reaction.uiElement == con->radioLuv){
     cpSetPrefsLuvUVWSelect(Luv);
     newColorType = CML_COLOR_Luv;
+    cpSetColorWell2DFixedIndex(con->colorWell2D, 0);
   }else if(reaction.uiElement == con->radioUVW){
     cpSetPrefsLuvUVWSelect(UVW);
     newColorType = CML_COLOR_UVW;
+    cpSetColorWell2DFixedIndex(con->colorWell2D, 2);
   }
 
   CMLColorMachine* cm = cpGetCurrentColorMachine();
@@ -187,12 +189,10 @@ void cpUpdateLuvUVWColorController(CPLuvUVWColorController* con){
     naSetLabelText(con->label0, cpTranslate(CPLuvColorChannelL));
     naSetLabelText(con->label1, cpTranslate(CPLuvColorChannelu));
     naSetLabelText(con->label2, cpTranslate(CPLuvColorChannelv));
-    cpSetColorWell2DFixedIndex(con->colorWell2D, 0);
   }else if(luvuvwSelect == UVW){
     naSetLabelText(con->label0, cpTranslate(CPUVWColorChannelU));
     naSetLabelText(con->label1, cpTranslate(CPUVWColorChannelV));
     naSetLabelText(con->label2, cpTranslate(CPUVWColorChannelW));
-    cpSetColorWell2DFixedIndex(con->colorWell2D, 2);
   }
 
   cpUpdateColorWell2D(con->colorWell2D);

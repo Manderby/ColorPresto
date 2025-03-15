@@ -77,13 +77,7 @@ void cmDragColorWell1D(NAReaction reaction){
     inputConverter(newColorValues, normedColorValues, 1);
     clamper(newColorValues, 1);
     
-    CMLColorConverter converter = cmlGetColorConverter(
-      cpGetColorControllerColorType(well->colorController),
-      colorType);
-    CMLVec3 convertedColorValues = {0.f, 0.f, 0.f};
-    converter(cm, convertedColorValues, newColorValues, 1);
-
-    cpSetColorControllerColorData(well->colorController, convertedColorValues);
+    cpSetColorControllerColorData(well->colorController, newColorValues);
     cpSetCurrentColorController(well->colorController);
     cpUpdateColor();
   }
