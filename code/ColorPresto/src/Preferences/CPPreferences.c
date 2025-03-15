@@ -24,11 +24,11 @@ const char* cpPrefs[CPPrefCount] = {
 
 
 void initPreferences(){
-  naInitPreferencesInt(
+  naInitPreferencesi64(
     cpPrefs[CPPreferredLanguage],
     0,
     0,
-    NA_MAX_i32);
+    NA_MAX_i64);
 
   naInitPreferencesEnum(
     cpPrefs[CPHSVHSLSelection],
@@ -51,10 +51,10 @@ void initPreferences(){
 
 
 NALanguageCode3 cpGetPrefsPreferredLanguage(){
-  return (NALanguageCode3)naGetPreferencesInt(cpPrefs[CPPreferredLanguage]);
+  return (NALanguageCode3)naGetPreferencesi64(cpPrefs[CPPreferredLanguage]);
 }
 void cpSetPrefsPreferredLanguage(NALanguageCode3 languageCode){
-  naSetPreferencesInt(cpPrefs[CPPreferredLanguage], (NAInt)languageCode);
+  naSetPreferencesi64(cpPrefs[CPPreferredLanguage], (NAInt)languageCode);
   naSetTranslatorLanguagePreference(languageCode);
 }
 
