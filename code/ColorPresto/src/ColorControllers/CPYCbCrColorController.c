@@ -135,8 +135,6 @@ void cpComputeYCbCrColorController(CPYCbCrColorController* con) {
 
 
 void cpUpdateYCbCrColorController(CPYCbCrColorController* con){
-  cpUpdateColorController(&(con->baseController));
- 
   cpUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(

@@ -177,8 +177,6 @@ void cpComputeLabLchColorController(CPLabLchColorController* con) {
 
 
 void cpUpdateLabLchColorController(CPLabLchColorController* con){
-  cpUpdateColorController(&(con->baseController));
- 
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
 

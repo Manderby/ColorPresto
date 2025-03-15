@@ -178,8 +178,6 @@ void cpComputeLuvUVWColorController(CPLuvUVWColorController* con) {
 
 
 void cpUpdateLuvUVWColorController(CPLuvUVWColorController* con){
-  cpUpdateColorController(&(con->baseController));
-
   LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
   
   naSetRadioState(con->radioLuv, luvuvwSelect == Luv);

@@ -178,8 +178,6 @@ void cpComputeYuvYupvpColorController(CPYuvYupvpColorController* con) {
  
 
 void cpUpdateYuvYupvpColorController(CPYuvYupvpColorController* con){
-  cpUpdateColorController(&(con->baseController));
-
   YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
   
   naSetRadioState(con->radioYuv, yuvyupvpSelect == Yuv);

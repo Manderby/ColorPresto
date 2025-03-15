@@ -135,8 +135,6 @@ void cpComputeXYZColorController(CPXYZColorController* con) {
 
 
 void cpUpdateXYZColorController(CPXYZColorController* con){
-  cpUpdateColorController(&(con->baseController));
-  
   cpUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(

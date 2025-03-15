@@ -34,15 +34,19 @@ CMLColorType cpGetColorsManagerCurrentColorType(const CPColorsManager* colorsMan
   return colorsManager->currentType;
 }
 
-void cpSetColorsManagerCurrentColorController(CPColorsManager* colorsManager, const CPColorController* con){
-  colorsManager->currentController = con;
-  colorsManager->currentColor = cpGetColorControllerColorData(con);
-  if(colorsManager->currentController == NA_NULL || colorsManager->currentColor == NA_NULL){
-    colorsManager->currentColor = &(colorsManager->fallbackColor);
-    colorsManager->currentType = CML_COLOR_Gray;
-  }else{
-    colorsManager->currentType = cpGetColorControllerColorType(con);
+NABool cpSetColorsManagerCurrentColorController(CPColorsManager* colorsManager, const CPColorController* con){
+  if(colorsManager->currentController != con) {
+    colorsManager->currentController = con;
+    colorsManager->currentColor = cpGetColorControllerColorData(con);
+    if(colorsManager->currentController == NA_NULL || colorsManager->currentColor == NA_NULL){
+      colorsManager->currentColor = &(colorsManager->fallbackColor);
+      colorsManager->currentType = CML_COLOR_Gray;
+    }else{
+      colorsManager->currentType = cpGetColorControllerColorType(con);
+    }
+    return NA_TRUE;
   }
+  return NA_FALSE;
 }
 
 const CPColorController* cpGetColorsManagerCurrentColorController(CPColorsManager* colorsManager){

@@ -172,8 +172,6 @@ void cpComputeRGBColorController(CPRGBColorController* con) {
 
 
 void cpUpdateRGBColorController(CPRGBColorController* con){
-  cpUpdateColorController(&(con->baseController));
-  
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   
   cpUpdateColorWell2D(con->colorWell2D);

@@ -157,20 +157,21 @@ void cpShowPreferences(){
 
 
 void cpUpdateColor(){
+  cpUpdateColorWells(app->machineWindowController);
   cpUpdateMetamerics();
   cpUpdateThreeDee();
 }
 void cpUpdateMachine(){
   cpUpdateMachineWindowController(app->machineWindowController);
-  cpUpdateMetamerics();
-  cpUpdateThreeDee();
+  cpUpdateColor();
 }
 
 
 
 void cpSetCurrentColorController(const CPColorController* con){
-  cpSetColorsManagerCurrentColorController(cpGetColorsManager(), con);
-  cpUpdateMachine();
+  if(cpSetColorsManagerCurrentColorController(cpGetColorsManager(), con)) {
+    cpUpdateMachine();
+  }
 }
 
 const CPColorController* cpGetCurrentColorController(){
