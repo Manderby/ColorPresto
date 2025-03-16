@@ -84,12 +84,13 @@ void cp_LuvValueEdited(NAReaction reaction){
 CPLuvUVWColorController* cpAllocLuvUVWColorController(void){
   LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
   CMLColorType colorType = (luvuvwSelect == Luv) ? CML_COLOR_Luv : CML_COLOR_UVW;
+  size_t fixedIndex = colorType == CML_COLOR_Luv ? 0 : 2;
 
   CPLuvUVWColorController* con = naAlloc(CPLuvUVWColorController);
 
   cpInitColorController(&(con->baseController), colorType);
   
-  con->colorWell2D = cpAllocColorWell2D(&(con->baseController), 0);
+  con->colorWell2D = cpAllocColorWell2D(&(con->baseController), fixedIndex);
 
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
   con->radioLuv = naNewRadio(cpTranslate(CPColorSpaceLuv), radioSelectWidth);
