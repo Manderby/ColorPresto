@@ -31,7 +31,7 @@ struct CPThreeDeeController{
   CPThreeDeeOptionsController* optionsController;
   CPThreeDeePerspectiveController* perspectiveController;
     
-  NAInt fontId;
+  int64 fontId;
   
 };
 
@@ -260,7 +260,7 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
     curZoom = (viewSize.width / initial3DDisplayWidth) * zoom / (2. * (viewSize.width / viewSize.height) * naTan(.5 * naDegToRad(fovy)));
   }
 
-  NAInt hueIndex = -1;
+  int64 hueIndex = -1;
   if((coordSysType == COORD_SYS_HSV_CARTESIAN) || (coordSysType == COORD_SYS_HSL_CARTESIAN)){
     hueIndex = 0;
   }else if(coordSysType == COORD_SYS_Lch_CARTESIAN){
@@ -280,7 +280,7 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
     curZoom,
     cpGetThreeDeePerspectiveControllerRotationAnglePol(con->perspectiveController),
     cpGetThreeDeePerspectiveControllerRotationAngleEqu(con->perspectiveController));
-  NAInt steps3D = cpGetThreeDeeCoordinateControllerSteps3D(con->coordinateController);
+  int64 steps3D = cpGetThreeDeeCoordinateControllerSteps3D(con->coordinateController);
 
   if(1){
     cpDrawThreeDeeSurfaces(

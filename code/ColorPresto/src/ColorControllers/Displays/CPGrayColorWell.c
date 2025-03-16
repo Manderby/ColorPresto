@@ -14,7 +14,7 @@
 
 struct CPGrayColorWell{
   NAOpenGLSpace* display;
-  NAInt fontId;
+  int64 fontId;
 
   CPColorController* colorController;
 };

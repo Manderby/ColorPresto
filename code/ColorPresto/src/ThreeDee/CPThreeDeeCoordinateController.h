@@ -16,6 +16,6 @@ NASpace* cpGetThreeDeeCoordinateControllerUIElement(CPThreeDeeCoordinateControll
 
 CoordSysType cpGetThreeDeeCoordinateControllerCoordSysType(CPThreeDeeCoordinateController* con);
 CMLColorType cpGetThreeDeeCoordinateControllerColorSpaceType(CPThreeDeeCoordinateController* con);
-NAInt cpGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con);
+int64 cpGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con);
 
 void cpUpdateThreeDeeCoordinateController(CPThreeDeeCoordinateController* con);

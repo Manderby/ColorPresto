@@ -12,7 +12,7 @@
 
 struct CPSpectralColorWell{
   NAOpenGLSpace* openGLSpace;
-  NAInt fontId;
+  int64 fontId;
 
   GLuint wellTex;
 

@@ -32,7 +32,7 @@ void cpDrawThreeDeePointCloud(
   const CMLColorMachine* sm,
   double pointsAlpha,
   CMLColorType space3D,
-  NAInt steps3D,
+  int64 steps3D,
   CMLNormedConverter normedInputConverter,
   CMLColorConverter coordConverter,
   CMLNormedConverter normedCoordConverter,
@@ -48,17 +48,17 @@ void cpDrawThreeDeeSurfaces(
   double gridAlpha,
   double gridTint,
   CMLColorType space3D,
-  NAInt steps3D,
+  int64 steps3D,
   CMLNormedConverter normedInputConverter,
   CMLColorConverter coordConverter,
   CMLNormedConverter normedCoordConverter,
-  NAInt hueIndex);
+  int64 hueIndex);
 
 void cpDrawThreeDeeSpectrum(
   const CMLColorMachine* cm, 
   CMLNormedConverter normedCoordConverter,
   CMLColorType coordSpace,
-  NAInt hueIndex);
+  int64 hueIndex);
 
 void cpDrawThreeDeeAxis(
   CMLNormedConverter normedCoordConverter,
@@ -66,5 +66,5 @@ void cpDrawThreeDeeAxis(
   const float* max,
   const char** labels,
   const CMLVec3 axisRGB,
-  NAInt fontId);
+  int64 fontId);
 

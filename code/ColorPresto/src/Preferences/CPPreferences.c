@@ -54,7 +54,7 @@ NALanguageCode3 cpGetPrefsPreferredLanguage(){
   return (NALanguageCode3)naGetPreferencesi64(cpPrefs[CPPreferredLanguage]);
 }
 void cpSetPrefsPreferredLanguage(NALanguageCode3 languageCode){
-  naSetPreferencesi64(cpPrefs[CPPreferredLanguage], (NAInt)languageCode);
+  naSetPreferencesi64(cpPrefs[CPPreferredLanguage], (int64)languageCode);
   naSetTranslatorLanguagePreference(languageCode);
 }
 

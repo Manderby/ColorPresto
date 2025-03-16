@@ -119,7 +119,7 @@ void cpSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom
 
 
 
-void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* sm, double pointsAlpha, CMLColorType space3D, NAInt steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, double zoom){
+void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* sm, double pointsAlpha, CMLColorType space3D, int64 steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, double zoom){
   size_t numChannels = cmlGetNumChannels(space3D);
 
   CMLVec4UInt steps;
@@ -188,7 +188,7 @@ void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
 
 
 
-void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm, const CMLVec3 backgroundRGB, const CMLVec3 axisRGB, NABool bodySolid, double bodyAlpha, double gridAlpha, double gridTint, CMLColorType space3D, NAInt steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, NAInt hueIndex){
+void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm, const CMLVec3 backgroundRGB, const CMLVec3 axisRGB, NABool bodySolid, double bodyAlpha, double gridAlpha, double gridTint, CMLColorType space3D, int64 steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, int64 hueIndex){
   if(!bodySolid){
 //    glClear(GL_DEPTH_BUFFER_BIT);
   }
@@ -641,16 +641,16 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
 
 
 
-void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normedCoordConverter, CMLColorType coordSpace, NAInt hueIndex){
+void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normedCoordConverter, CMLColorType coordSpace, int64 hueIndex){
   float iMin = CML_DEFAULT_INTEGRATION_MIN;
   float iMax = CML_DEFAULT_INTEGRATION_MAX;
-  NAInt intervals = (int32)((iMax - iMin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
+  int64 intervals = (int32)((iMax - iMin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
   
   CMLColorConverter xyzConverter = cmlGetColorConverter(coordSpace, CML_COLOR_XYZ);
 
   glBegin(GL_LINE_STRIP);
     float prevNormedHue = -CML_INFINITY;
-    for(NAInt iStep = 0; iStep <= intervals; ++iStep){
+    for(int64 iStep = 0; iStep <= intervals; ++iStep){
       float l = iMin + (((iMax - iMin) * iStep) / intervals);
       CMLVec3 curXYZ;
       cmlGetSpectralXYZColor(cm, curXYZ, l);
@@ -686,7 +686,7 @@ void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normed
 
 
 
-void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* min, const float* max, const char** labels, const CMLVec3 axisRGB, NAInt fontId){
+void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* min, const float* max, const char** labels, const CMLVec3 axisRGB, int64 fontId){
   glClear(GL_DEPTH_BUFFER_BIT);
   glColor3fv(axisRGB);
 

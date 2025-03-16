@@ -25,7 +25,7 @@ struct CPThreeDeeCoordinateController{
 
   ColorSpaceType colorSpaceType;
   CoordSysType coordSysType;
-  NAInt steps3D;
+  int64 steps3D;
 };
 
 
@@ -114,7 +114,7 @@ void cp_ChangeCoordinateSlider(NAReaction reaction){
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
   if(reaction.uiElement == con->stepsSlider){
-    con->steps3D = (NAInt)naGetSliderValue(con->stepsSlider);
+    con->steps3D = (int64)naGetSliderValue(con->stepsSlider);
   }
   
   cpUpdateThreeDeeController(con->threeDeeController);
@@ -193,7 +193,7 @@ CoordSysType cpGetThreeDeeCoordinateControllerCoordSysType(CPThreeDeeCoordinateC
 CMLColorType cpGetThreeDeeCoordinateControllerColorSpaceType(CPThreeDeeCoordinateController* con){
   return cpGetCMLColorTypeFromColorSpaceType(con->colorSpaceType);
 }
-NAInt cpGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con){
+int64 cpGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con){
   return con->steps3D;
 }
 
