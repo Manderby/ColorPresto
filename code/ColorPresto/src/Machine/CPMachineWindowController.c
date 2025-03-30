@@ -62,6 +62,8 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
     CP_COLOR_PRESTO_STORAGE_TAG);
   naAddUIReaction(con->window, NA_UI_COMMAND_CLOSES, cpControllerWindowCloses, con);
     
+  naDebugUIElement(con->window);
+
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 
   con->machineController = cpAllocMachineController();

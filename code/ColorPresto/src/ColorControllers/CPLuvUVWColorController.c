@@ -93,6 +93,7 @@ CPLuvUVWColorController* cpAllocLuvUVWColorController(void){
   con->colorWell2D = cpAllocColorWell2D(&(con->baseController), fixedIndex);
 
   con->channelSpace = naNewSpace(naMakeSize(1, 1));
+
   con->radioLuv = naNewRadio(cpTranslate(CPColorSpaceLuv), radioSelectWidth);
   con->radioUVW = naNewRadio(cpTranslate(CPColorSpaceUVW), radioSelectWidth);
   naAddUIReaction(con->radioLuv, NA_UI_COMMAND_PRESSED, cp_LuvUVWSelectionChanged, con);
