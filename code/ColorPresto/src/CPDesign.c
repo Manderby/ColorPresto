@@ -182,7 +182,7 @@ void cpEndUILayout(){
 
   naShiftSpaceChilds(curDesignSpace, naMakePos(0, spaceRect.size.height - prevHeight));
 
-  NAWindow* window = naGetUIElementWindow(curDesignSpace);
+  NAWindow* window = naGetUIElementWindowMutable(curDesignSpace);
   if(window){
     NASpace* contentSpace = naGetWindowContentSpace(window);
     if(contentSpace == curDesignSpace){
