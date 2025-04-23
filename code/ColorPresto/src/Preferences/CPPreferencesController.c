@@ -53,17 +53,21 @@ void cp_ChangePreferencesLanguage(NAReaction reaction){
     NA_ALERT_BOX_INFO,
     cpTranslate(CPPreferencesLanguageChangeAlertTitle),
     cpTranslate(CPPreferencesLanguageChangeAlertText));
+
+  cpUpdatePreferencesController(con);
 }
 
 
 
 void cp_ReportBadTranslation(NAReaction reaction){
-  NA_UNUSED(reaction);
+  CPPreferencesController* con = reaction.controller;
 
   naPresentAlertBox(
     NA_ALERT_BOX_INFO,
     cpTranslate(CPPreferencesLanguageBadTranslationTitle),
     cpTranslate(CPPreferencesLanguageBadTranslationText));
+
+  cpUpdatePreferencesController(con);
 }
 
 

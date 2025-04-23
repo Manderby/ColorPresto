@@ -57,8 +57,8 @@ void preStartup(void* arg){
   naDelete(appPath);
 
   naSetApplicationName("Color Presto");
-  naSetApplicationVersionString("2.1");
-  naSetApplicationBuildString("2.1.1");
+  naSetApplicationVersionString(CP_VERSION_STRING);
+  naSetApplicationBuildString(CP_BUILD_NUMBER_STRING);
   #if NA_OS == NA_OS_WINDOWS
     naSetApplicationIconPath("icon.png");
   #endif

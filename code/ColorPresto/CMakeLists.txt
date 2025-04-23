@@ -7,8 +7,9 @@ project(ColorPresto)
 
 set(TARGET_NAME ColorPresto)
 
-set(VERSION_STRING 2.1.0)
-set(BUILD_NUMBER_STRING 2.1.0)
+set(BUNDLE_IDENTIFIER_PREFIX "ch.manderim.")
+set(VERSION_STRING 2.1)
+set(BUILD_NUMBER_STRING 2.1.2)
 
 if(MSVC)
   add_executable(${TARGET_NAME} WIN32 src/main.c)
@@ -93,7 +94,7 @@ elseif(APPLE)
         ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/ColorPresto.xib
   )
 
-  set(BUNDLE_IDENTIFIER "ch.manderim.Color-Machine")
+  set(BUNDLE_IDENTIFIER "${BUNDLE_IDENTIFIER_PREFIX}$(PRODUCT_NAME:rfc1034identifier)")
 
   set_target_properties(${TARGET_NAME} PROPERTIES
     MACOSX_BUNDLE YES
