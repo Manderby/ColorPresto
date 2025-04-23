@@ -8,7 +8,9 @@ project(ColorPresto)
 set(TARGET_NAME ColorPresto)
 
 set(BUNDLE_IDENTIFIER_PREFIX "ch.manderim.")
-set(VERSION_STRING 2.1)
+set(BUNDLE_IDENTIFIER_MAC "Color-Machine")
+
+set(VERSION_STRING 2.1.2)
 set(BUILD_NUMBER_STRING 2.1.2)
 
 if(MSVC)
@@ -94,7 +96,8 @@ elseif(APPLE)
         ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/ColorPresto.xib
   )
 
-  set(BUNDLE_IDENTIFIER "${BUNDLE_IDENTIFIER_PREFIX}$(PRODUCT_NAME:rfc1034identifier)")
+  # Color Presto has an old id used in the app store
+  set(BUNDLE_IDENTIFIER "${BUNDLE_IDENTIFIER_PREFIX}${BUNDLE_IDENTIFIER_MAC}")
 
   set_target_properties(${TARGET_NAME} PROPERTIES
     MACOSX_BUNDLE YES
@@ -105,7 +108,18 @@ elseif(APPLE)
     MACOSX_BUNDLE_BUNDLE_VERSION ${BUILD_NUMBER_STRING}
     MACOSX_BUNDLE_ICON_FILE "ColorPresto.icns"
     XCODE_ATTRIBUTE_CODE_SIGN_IDENTITY ""
+    XCODE_ATTRIBUTE_INSTALL_PATH "$(LOCAL_APPS_DIR)"
+    XCODE_ATTRIBUTE_DEBUG_INFORMATION_FORMAT "dwarf-with-dsym"
+    XCODE_ATTRIBUTE_GCC_GENERATE_DEBUGGING_SYMBOLS "YES"
+    XCODE_ATTRIBUTE_DEPLOYMENT_POSTPROCESSING "YES"
+    XCODE_ATTRIBUTE_SKIP_INSTALL "NO"
+    
+    # Uncomment the following line when you are planning to archive and upload.
+    # Beware: The debug build will not have the proper resource folder copied
+    # but the archive will contain it.
+    XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "$(inherited)"
   )
+  
 endif()
 
 
