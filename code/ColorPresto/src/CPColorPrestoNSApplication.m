@@ -1,5 +1,5 @@
 
-#include "ColorPrestoApplication.h"
+#include "CPColorPrestoNSApplication.h"
 
 #if NA_OS == NA_OS_MAC_OS_X
 
@@ -12,7 +12,7 @@
 
 
 
-@implementation ColorPrestoApplication
+@implementation CPColorPrestoNSApplication
 
 - (id)init{
   self = [super init];

@@ -2,6 +2,8 @@
 Version 2.1.2
 -------------
 - Internal improvements
+- Fixing small bug when selecting language.
+- Provide new multi-lingual descriptions in the app stores.
 
 Version 2.1.1
 -------------

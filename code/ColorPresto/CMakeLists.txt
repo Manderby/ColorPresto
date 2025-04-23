@@ -139,8 +139,8 @@ set(winResourceFiles
 )
 
 set(sourceFiles
-  src/ColorPrestoApplication.h
-  src/ColorPrestoApplication.m
+  src/CPColorPrestoNSApplication.h
+  src/CPColorPrestoNSApplication.m
   src/CPColorPrestoApplication.c
   src/CPColorPrestoApplication.h
   src/CPColorsManager.c

@@ -1,5 +1,5 @@
 
-#include "ColorPrestoApplication.h"
+#include "CPColorPrestoNSApplication.h"
 #include "NAApp/NAApp.h"
 
 // This file exists only to run sharedApplication in objective c.
@@ -16,7 +16,7 @@ void postStartup(void* arg);
 int main(int argc, char *argv[]){
 
   naStartRuntime();
-  [ColorPrestoApplication sharedApplication];
+  [CPColorPrestoNSApplication sharedApplication];
   naStartApplication(preStartup, postStartup, NA_NULL, NA_NULL);
   return 0;
 }

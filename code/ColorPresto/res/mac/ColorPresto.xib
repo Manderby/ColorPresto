@@ -6,7 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application" customClass="ColorPrestoApplication"/>
+        <customObject id="-3" userLabel="Application" customClass="CPColorPrestoNSApplication"/>
         <menu title="AMainMenu" systemMenu="main" id="29" userLabel="MainMenu">
             <items>
                 <menuItem title="Color Presto" id="56">

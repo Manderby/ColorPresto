@@ -15,7 +15,7 @@ CP_PROTOTYPE(CPThreeDeeController);
 
 
 
-@interface ColorPrestoApplication : NSApplication <NSApplicationDelegate>{
+@interface CPColorPrestoNSApplication : NSApplication <NSApplicationDelegate>{
   CPColorsManager* colorsManager;
 }
 
