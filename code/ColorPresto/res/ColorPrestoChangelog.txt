@@ -1,4 +1,12 @@
 
+Version 2.1.2
+-------------
+- Internal improvements
+
+Version 2.1.1
+-------------
+- First Windows version
+
 Version 2.1
 -----------
 - Application changes its name from Color Prompt to Color Presto

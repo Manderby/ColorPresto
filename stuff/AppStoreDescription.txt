@@ -1,3 +1,0 @@
-Convert and explore many standard colorspaces based on a highly verified color library created for the printing and color community. Color Prompt allows you to visualize many of the standard colorspaces like XYZ, Yxy, YUV, Lab, RGB, HSV and more in 2D or 3D.
-
-Many default settings are available but all adjustments can be set manually. No matter whether it is a custom RGB space, a specific illumination or whitepoint, chromatic adaptation, different norm valence spectra, a custom Lab space, ... Color Prompt will immediately convert any color into any other.
