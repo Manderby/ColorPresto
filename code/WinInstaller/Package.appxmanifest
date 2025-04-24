@@ -8,8 +8,8 @@
 
   <Identity
     Name="57837TobiasStamm.ColorPresto"
-    Publisher="CN=Tobias Stamm"
-    Version="2.1.1.0" />
+    Publisher="CN=2CD9127F-1744-474C-A2F6-BF5825CC72FC"
+    Version="2.1.2.0" />
 
   <Properties>
     <DisplayName>Color Presto</DisplayName>
