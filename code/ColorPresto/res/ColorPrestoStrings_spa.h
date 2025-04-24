@@ -181,4 +181,4 @@ NA_LOC(CPPreferencesLanguageReport,         "Reportar traducciones incorrectas..
 NA_LOC(CPPreferencesLanguageChangeAlertTitle, "Cambio de Idioma");
 NA_LOC(CPPreferencesLanguageChangeAlertText, "El idioma ha sido cambiado. Por favor, salga y vuelva a abrir la aplicación para que tenga efecto.");
 NA_LOC(CPPreferencesLanguageBadTranslationTitle, "Reportar traducciones incorrectas");
-NA_LOC(CPPreferencesLanguageBadTranslationText, "Algunas partes de esta aplicación han sido traducidas por inteligencia artificial. Ayude a mejorar la traducción enviando un correo electrónico a karograph@manderc.com (el enlace está en la ventana 'Acerca de'). Por favor, proporcione suficiente información para incorporar su sugerencia en el lugar adecuado.\n\n¡Su ayuda es muy apreciada!");
+NA_LOC(CPPreferencesLanguageBadTranslationText, "Algunas partes de esta aplicación han sido traducidas por inteligencia artificial. Ayude a mejorar la traducción enviando un correo electrónico a colorpresto@manderc.com (el enlace está en la ventana 'Acerca de'). Por favor, proporcione suficiente información para incorporar su sugerencia en el lugar adecuado.\n\n¡Su ayuda es muy apreciada!");
