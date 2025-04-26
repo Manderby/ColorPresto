@@ -11,8 +11,6 @@ NAFont* monoFont;
 
 void cpStartupDesign(){
   boldFont = naCreateFontWithPreset(NA_FONT_KIND_TITLE, NA_FONT_SIZE_DEFAULT);
-//  monoFont = naCreateFontWithPreset(NA_FONT_KIND_MONOSPACE, NA_FONT_SIZE_DEFAULT);
-//  monoFont = naCreateFont("Helvetica", 0, 13);
   monoFont = naCreateFontWithPreset(NA_FONT_KIND_SYSTEM, NA_FONT_SIZE_DEFAULT);
 }
 

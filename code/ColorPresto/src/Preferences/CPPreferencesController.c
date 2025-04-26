@@ -3,7 +3,7 @@
 
 #include "../CPTranslations.h"
 #include "CPPreferences.h"
-#include "../mainC.h"
+#include "../main.h"
 
 #include "NAApp/NAApp.h"
 #include "NAUtility/NAMemory.h"

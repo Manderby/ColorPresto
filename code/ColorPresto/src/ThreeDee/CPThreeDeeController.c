@@ -4,7 +4,7 @@
 #include "NAVisual/NA3DHelper.h"
 
 #include "../CPColorPrestoApplication.h"
-#include "../mainC.h"
+#include "../main.h"
 #include "../CPDesign.h"
 #include "../CPTranslations.h"
 #include "CPThreeDeeCoordinateController.h"

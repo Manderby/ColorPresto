@@ -1,4 +1,4 @@
 
-#include "mainC.h"
+#include "main.h"
 
 void cpDrawBorder(void);

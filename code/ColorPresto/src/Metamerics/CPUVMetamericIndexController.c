@@ -8,7 +8,7 @@
 #include "../CPTranslations.h"
 #include "CPWhitePoints.h"
 
-#include "../mainC.h"
+#include "../main.h"
 
 #include "NAApp/NAApp.h"
 

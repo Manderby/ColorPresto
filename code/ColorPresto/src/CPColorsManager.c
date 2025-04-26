@@ -1,7 +1,7 @@
 
 #include "ColorControllers/CPColorController.h"
 #include "CPColorsManager.h"
-#include "mainC.h"
+#include "main.h"
 #include "NAUtility/NAMemory.h"
 
 struct CPColorsManager{

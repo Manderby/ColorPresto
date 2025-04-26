@@ -1,7 +1,7 @@
 
 #include "CPColorConversionsYcdUVW.h"
 #include "../CPTranslations.h"
-#include "../mainC.h"
+#include "../main.h"
 
 
 // todo: add conversions to main window or even CML.

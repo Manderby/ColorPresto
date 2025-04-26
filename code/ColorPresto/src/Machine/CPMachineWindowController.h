@@ -1,7 +1,7 @@
 #ifndef CP_MACHINE_WINDOW_CONTROLLER_INCLUDED
 #define CP_MACHINE_WINDOW_CONTROLLER_INCLUDED
 
-#include "../mainC.h"
+#include "../main.h"
 CP_PROTOTYPE(CPColorController);
 
 

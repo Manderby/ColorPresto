@@ -1,5 +1,5 @@
 
-#include "../mainC.h"
+#include "../main.h"
 #include "NAApp/NAApp.h"
 #include "CPThreeDeeController.h"
 

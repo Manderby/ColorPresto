@@ -3,7 +3,7 @@
 
 #include "../CPColorPrestoApplication.h"
 #include "../CPTranslations.h"
-#include "../mainC.h"
+#include "../main.h"
 #include "../CPDesign.h"
 
 #include "CPChromaticityErrorController.h"

@@ -25,15 +25,14 @@
   cpUpdateMachine();
 }
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification{  
-}
-
-- (void)applicationWillTerminate:(NSApplication *)sender{
-  cpShutdownColorPrestoApplication();
-  naDelete(naGetApplication());
-  naStopApplication();
-  naStopRuntime();
-}
+//- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
+//  int sdf = 1234;
+//  return NSTerminateNow;
+//}
+//
+//- (void)applicationWillTerminate:(NSApplication *)sender {
+//  int sdf = 1234;
+//}
 
 
 
@@ -44,6 +43,12 @@
 - (IBAction)showHelp:(NSMenuItem*)sender{
   NA_UNUSED(sender);
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:cpTranslate(CPApplicationHelpURL)]]];
+}
+
+- (void)terminate:(id)sender{
+  NA_UNUSED(sender);
+  //naStopApplication();
+  [super terminate:sender];
 }
 
 

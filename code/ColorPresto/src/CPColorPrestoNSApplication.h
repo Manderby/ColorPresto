@@ -1,5 +1,5 @@
 
-#include "mainC.h"
+#include "main.h"
 
 #if NA_OS == NA_OS_MAC_OS_X
 
@@ -21,12 +21,12 @@ CP_PROTOTYPE(CPThreeDeeController);
 
 - (id)init;
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification;
-
 - (void)applicationDidChangeScreenParameters:(NSNotification *)aNotification;
 
 - (IBAction)showAbout:(id)sender;
 - (IBAction)showHelp:(NSMenuItem*)sender;
+
+- (void)terminate:(id)sender;
 
 @end
 

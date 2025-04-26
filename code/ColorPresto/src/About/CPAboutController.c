@@ -1,7 +1,7 @@
 
 #include "CPAboutController.h"
 #include "../CPTranslations.h"
-#include "../mainC.h"
+#include "../main.h"
 
 #include "NAVisual/NAImage.h"
 #include "NAUtility/NAString.h"

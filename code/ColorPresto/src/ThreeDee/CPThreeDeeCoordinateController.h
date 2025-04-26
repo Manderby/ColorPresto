@@ -1,5 +1,5 @@
 
-#include "../mainC.h"
+#include "../main.h"
 #include "CPThreeDeeController.h"
 
 CP_PROTOTYPE(CPWhitePoints);

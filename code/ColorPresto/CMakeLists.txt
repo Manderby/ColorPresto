@@ -117,7 +117,7 @@ elseif(APPLE)
     # Uncomment the following line when you are planning to archive and upload.
     # Beware: The debug build will not have the proper resource folder copied
     # but the archive will contain it.
-    XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "$(inherited)"
+    # XCODE_ATTRIBUTE_CONFIGURATION_BUILD_DIR "$(inherited)"
   )
   
 endif()
@@ -166,8 +166,7 @@ set(sourceFiles
   src/CPTranslations.c
   src/CPTranslations.h
   src/main.c
-  src/main.m
-  src/mainC.h
+  src/main.h
 )
 
 set(aboutFiles

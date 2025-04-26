@@ -1,5 +1,5 @@
 
-#include "../../mainC.h"
+#include "../../main.h"
 
 CP_PROTOTYPE(NAOpenGLSpace);
 

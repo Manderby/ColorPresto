@@ -2,19 +2,16 @@
 #ifndef CP_COLOR_PRESTO_APPLICATION_DEFINED
 #define CP_COLOR_PRESTO_APPLICATION_DEFINED
 
-#include "mainC.h"
+#include "main.h"
 
-typedef struct CPColorPrestoApplication CPColorPrestoApplication;
-
-extern CPColorPrestoApplication* app;
 
 CP_PROTOTYPE(CPColorsManager);
 
 
 
-void cpStartupColorPrestoApplication(void);
-void cpStartupColorPrestoApplicationUI(void);
-void cpShutdownColorPrestoApplication(void);
+void cpPreStartupColorPrestoApplication(void* arg);
+void cpPostStartupColorPrestoApplication(void* arg);
+void cpShutdownColorPrestoApplication(void* arg);
 
 CMLColorMachine* cpGetCurrentColorMachine(void);
 void cpResetColorMachine(void);

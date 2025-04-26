@@ -1,6 +1,6 @@
 
 #include "CML.h"
-#include "mainC.h"
+#include "main.h"
 
 
 CP_PROTOTYPE(CPColorController);
