@@ -26,12 +26,12 @@
 }
 
 //- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-//  int sdf = 1234;
-//  return NSTerminateNow;
+//  naStopApplication();
+//  return NSTerminateCancel;
 //}
-//
+
 //- (void)applicationWillTerminate:(NSApplication *)sender {
-//  int sdf = 1234;
+//  naStopApplication();
 //}
 
 

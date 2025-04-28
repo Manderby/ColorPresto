@@ -46,8 +46,6 @@ int main(int argc, char *argv[]){
   NA_UNUSED(argc);
   NA_UNUSED(argv);
 
-  naStartRuntime();
-  
   id nsStringClass = (id)objc_getClass("CPColorPrestoNSApplication");
   SEL sel = sel_registerName("sharedApplication");
   ((id (*)(id, SEL))objc_msgSend)(nsStringClass, sel);
@@ -57,8 +55,6 @@ int main(int argc, char *argv[]){
     cpPostStartupColorPrestoApplication,
     cpShutdownColorPrestoApplication,
     NA_NULL);
-
-  naStopRuntime();
 
   return 0;
 }
