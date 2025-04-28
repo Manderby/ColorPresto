@@ -33,7 +33,7 @@ CPColorPrestoApplication* app = NA_NULL;
 
 
 
-void cpPreStartupColorPrestoApplication(void* arg){
+void cpPreStartupApplication(void* arg){
   NA_UNUSED(arg);
 
   //NAString* appPath = naNewExecutablePath();
@@ -65,7 +65,7 @@ void cpPreStartupColorPrestoApplication(void* arg){
 
 
 
-void cpPostStartupColorPrestoApplication(void* arg){
+void cpPostStartupApplication(void* arg){
   NA_UNUSED(arg);
 
   #if NA_OS == NA_OS_MAC_OS_X
@@ -91,7 +91,7 @@ void cpPostStartupColorPrestoApplication(void* arg){
 
 
 
-void cpShutdownColorPrestoApplication(void* arg){
+void cpShutdownApplication(void* arg){
   NA_UNUSED(arg);
   
   if(app->threeDeeController) {

@@ -86,8 +86,8 @@ elseif(APPLE)
         ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/fr.lproj/InfoPlist.strings
         \"${OUTPUT_DIRECTORY}fr.lproj/InfoPlist.strings\"
     COMMAND ${CMAKE_COMMAND} -E copy
-        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/jp.lproj/InfoPlist.strings
-        \"${OUTPUT_DIRECTORY}jp.lproj/InfoPlist.strings\"
+        ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/ja.lproj/InfoPlist.strings
+        \"${OUTPUT_DIRECTORY}ja.lproj/InfoPlist.strings\"
     COMMAND ${CMAKE_COMMAND} -E copy
         ${CMAKE_CURRENT_SOURCE_DIR}/res/mac/zh.lproj/InfoPlist.strings
         \"${OUTPUT_DIRECTORY}zh.lproj/InfoPlist.strings\"
@@ -142,7 +142,7 @@ set(macResourceFiles
   #res/mac/en.lproj/InfoPlist.strings
   #res/mac/es.lproj/InfoPlist.strings
   #res/mac/fr.lproj/InfoPlist.strings
-  #res/mac/jp.lproj/InfoPlist.strings
+  #res/mac/ja.lproj/InfoPlist.strings
   #res/mac/zh.lproj/InfoPlist.strings
   res/mac/ColorPresto.icns
   res/mac/ColorPresto.xib

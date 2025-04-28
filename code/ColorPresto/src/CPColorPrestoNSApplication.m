@@ -25,13 +25,19 @@
   cpUpdateMachine();
 }
 
-- (IBAction)showAbout:(id)sender{
+- (IBAction)openAbout:(id)sender{
+  NA_UNUSED(sender);
   cpShowAbout();
 }
 
-- (IBAction)showHelp:(NSMenuItem*)sender{
+- (IBAction)openHelp:(NSMenuItem*)sender{
   NA_UNUSED(sender);
   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[NSString stringWithUTF8String:cpTranslate(CPApplicationHelpURL)]]];
+}
+
+- (IBAction)openPreferences:(id)sender{
+  NA_UNUSED(sender);
+  cpShowPreferences();
 }
 
 - (void)terminate:(id)sender{

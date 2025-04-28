@@ -23,8 +23,9 @@ CP_PROTOTYPE(CPThreeDeeController);
 
 - (void)applicationDidChangeScreenParameters:(NSNotification *)aNotification;
 
-- (IBAction)showAbout:(id)sender;
-- (IBAction)showHelp:(NSMenuItem*)sender;
+- (IBAction)openAbout:(id)sender;
+- (IBAction)openHelp:(NSMenuItem*)sender;
+- (IBAction)openPreferences:(id)sender;
 
 - (void)terminate:(id)sender;
 

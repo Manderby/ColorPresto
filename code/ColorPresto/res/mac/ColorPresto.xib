@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22690"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication"/>
@@ -15,10 +15,18 @@
                             <menuItem title="About Color Presto" id="58">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
-                                    <action selector="showAbout:" target="-3" id="2641"/>
+                                    <action selector="openAbout:" target="-3" id="2641"/>
                                 </connections>
                             </menuItem>
                             <menuItem isSeparatorItem="YES" id="236">
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </menuItem>
+                            <menuItem title="Preferences..." keyEquivalent="," id="ctA-mE-dwp">
+                                <connections>
+                                    <action selector="openPreferences:" target="-3" id="uTv-hP-Zzf"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="I0S-gU-f03">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Services" id="131">
@@ -115,7 +123,7 @@
                         <items>
                             <menuItem title="Online Help" keyEquivalent="?" id="111">
                                 <connections>
-                                    <action selector="showHelp:" target="-1" id="360"/>
+                                    <action selector="openHelp:" target="-1" id="360"/>
                                 </connections>
                             </menuItem>
                         </items>

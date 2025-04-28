@@ -6,6 +6,9 @@
 
 void initPreferences(void);
 
+NALanguageCode3 cpGetPrefsPreferredLanguage(void);
+void cpSetPrefsPreferredLanguage(NALanguageCode3 languageCode);
+
 HSVHSLSelect cpGetPrefsHSVHSLSelect(void);
 void cpSetPrefsHSVHSLSelect(HSVHSLSelect selection);
 
@@ -17,8 +20,5 @@ void cpSetPrefsLabLchSelect(LabLchSelect selection);
 
 YuvYupvpSelect cpGetPrefsYuvYupvpSelect(void);
 void cpSetPrefsYuvYupvpSelect(YuvYupvpSelect selection);
-
-NALanguageCode3 cpGetPrefsPreferredLanguage(void);
-void cpSetPrefsPreferredLanguage(NALanguageCode3 languageCode);
 
 

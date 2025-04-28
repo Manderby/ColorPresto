@@ -1,9 +1,5 @@
 
-#include "main.h"
-
-#include "NAUtility/NAMemory.h"
 #include "CPColorPrestoApplication.h"
-#include "NAApp/NAApp.h"
 
 
 
@@ -11,7 +7,12 @@
 
 
 
-int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nShowCmd){
+int WINAPI WinMain(
+  _In_ HINSTANCE hInstance,
+  _In_opt_ HINSTANCE hPrevInstance,
+  _In_ LPSTR lpCmdLine,
+  _In_ int nShowCmd)
+{
   NA_UNUSED(hInstance);
   NA_UNUSED(hPrevInstance);
   NA_UNUSED(lpCmdLine);
@@ -20,9 +21,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
   //naOpenConsoleWindow();
 
   naStartApplication(
-    cpPreStartupColorPrestoApplication,
-    cpPostStartupColorPrestoApplication,
-    cpShutdownColorPrestoApplication,
+    cpPreStartupApplication,
+    cpPostStartupApplication,
+    cpShutdownApplication,
     NA_NULL);
 
   return 0;
@@ -41,9 +42,9 @@ int main(int argc, char *argv[]){
   naInstanciateNSApplication(CPColorPrestoNSApplication);
 
   naStartApplication(
-    cpPreStartupColorPrestoApplication,
-    cpPostStartupColorPrestoApplication,
-    cpShutdownColorPrestoApplication,
+    cpPreStartupApplication,
+    cpPostStartupApplication,
+    cpShutdownApplication,
     NA_NULL);
 
   return 0;

@@ -4,14 +4,13 @@
 
 #include "main.h"
 
-
 CP_PROTOTYPE(CPColorsManager);
 
 
 
-void cpPreStartupColorPrestoApplication(void* arg);
-void cpPostStartupColorPrestoApplication(void* arg);
-void cpShutdownColorPrestoApplication(void* arg);
+void cpPreStartupApplication(void* arg);
+void cpPostStartupApplication(void* arg);
+void cpShutdownApplication(void* arg);
 
 CMLColorMachine* cpGetCurrentColorMachine(void);
 void cpResetColorMachine(void);

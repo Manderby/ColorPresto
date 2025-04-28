@@ -1,4 +1,8 @@
 
+- Internal improvements
+- Fixing memory leaks when terminating the application
+- Linking the preferences menu item.
+
 Version 2.1.2
 -------------
 - Internal improvements

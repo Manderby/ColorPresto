@@ -14,6 +14,7 @@ CP_PROTOTYPE(CPHSLColorController);
 
 #include "CML.h"
 #include "NABase/NABase.h"
+#include "NAApp/NAApp.h"
 
 
 #define CP_COLOR_PRESTO_STORAGE_TAG       1
