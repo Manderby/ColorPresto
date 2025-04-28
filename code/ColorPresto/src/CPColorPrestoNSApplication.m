@@ -25,17 +25,6 @@
   cpUpdateMachine();
 }
 
-//- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-//  naStopApplication();
-//  return NSTerminateCancel;
-//}
-
-//- (void)applicationWillTerminate:(NSApplication *)sender {
-//  naStopApplication();
-//}
-
-
-
 - (IBAction)showAbout:(id)sender{
   cpShowAbout();
 }

@@ -19,15 +19,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
   
   //naOpenConsoleWindow();
 
-  naStartRuntime();
-  
   naStartApplication(
     cpPreStartupColorPrestoApplication,
     cpPostStartupColorPrestoApplication,
     cpShutdownColorPrestoApplication,
     NA_NULL);
-  
-  naStopRuntime();
 
   return 0;
 }
@@ -38,17 +34,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 
 
-#include <objc/objc.h>
-#include <objc/runtime.h>
-#include <objc/message.h>
-
 int main(int argc, char *argv[]){
   NA_UNUSED(argc);
   NA_UNUSED(argv);
 
-  id nsStringClass = (id)objc_getClass("CPColorPrestoNSApplication");
-  SEL sel = sel_registerName("sharedApplication");
-  ((id (*)(id, SEL))objc_msgSend)(nsStringClass, sel);
+  naInstanciateNSApplication(CPColorPrestoNSApplication);
 
   naStartApplication(
     cpPreStartupColorPrestoApplication,
