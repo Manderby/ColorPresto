@@ -10,8 +10,8 @@ set(TARGET_NAME ColorPresto)
 set(BUNDLE_IDENTIFIER_PREFIX "ch.manderim.")
 set(BUNDLE_IDENTIFIER_MAC "Color-Machine")
 
-set(VERSION_STRING 2.1.2)
-set(BUILD_NUMBER_STRING 2.1.2)
+set(VERSION_STRING 2.1.3)
+set(BUILD_NUMBER_STRING 2.1.3)
 
 if(MSVC)
   add_executable(${TARGET_NAME} WIN32 src/main.c)

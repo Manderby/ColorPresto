@@ -1,7 +1,10 @@
 
+Version 2.1.3
+-------------
 - Internal improvements
 - Fixing memory leaks when terminating the application
 - Linking the preferences menu item.
+- Fixing japanese language detection
 
 Version 2.1.2
 -------------
