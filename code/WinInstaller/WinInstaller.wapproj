@@ -106,6 +106,12 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.1742" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Strings\en-US\Resources.resw" />
+    <Content Include="Strings\de-DE\Resources.resw" />
+    <Content Include="Strings\es-ES\Resources.resw" />
+    <Content Include="Strings\fr-FR\Resources.resw" />
+    <Content Include="Strings\ja-JP\Resources.resw" />
+    <Content Include="Strings\zh-CN\Resources.resw" />
     <Content Include="ColorPresto\icon.png" />
     <Content Include="Images\LargeTile.scale-100.png" />
     <Content Include="Images\LargeTile.scale-125.png" />
