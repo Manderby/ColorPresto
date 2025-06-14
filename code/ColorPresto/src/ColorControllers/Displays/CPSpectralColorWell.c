@@ -130,6 +130,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
   float lineCount = (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) / 10.f;
 
   glDisable(GL_TEXTURE_1D);
+  glLineWidth(uiScale);
   glBegin(GL_LINES);
     for(int i = 0; i <= (int)lineCount; ++i){
       if(!((lineOffset + i) % 10)){

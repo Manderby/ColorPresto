@@ -58,8 +58,8 @@ CPMetamericsController* cpAllocMetamericsController(void){
   con->window = naNewWindow(
     cpTranslate(CPWhitePointsAndMetamerics),
     naMakeRectS(400, 500, 1, 1),
-    0,
-    CP_METAMERICS_WINDOW_STORAGE_TAG);
+    0);
+  naSetWindowStorageTag(con->window, CP_METAMERICS_WINDOW_STORAGE_TAG);
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 //  NABabyColor babyBackground = {
 //    naLinearizeColorValue(.25),

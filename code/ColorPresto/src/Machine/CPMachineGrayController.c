@@ -42,7 +42,7 @@ CPMachineGrayController* cpAllocMachineGrayController(void){
   con->grayColorSpaceSelect = naNewSelect(200);
   for(size_t i = 0; i < CML_GRAY_COUNT; ++i){
     CMLGrayComputationType grayComputationType = (CMLGrayComputationType)i;
-    NAMenuItem* item = naNewMenuItem(cmlGetGrayComputationTypeString(grayComputationType));
+    NAMenuItem* item = naNewMenuItem(cmlGetGrayComputationTypeString(grayComputationType), NA_NULL);
     naAddSelectMenuItem(con->grayColorSpaceSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectGrayColorSpace, con);
   }

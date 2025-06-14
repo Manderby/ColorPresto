@@ -686,7 +686,7 @@ void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normed
 
 
 
-void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* min, const float* max, const char** labels, const CMLVec3 axisRGB, int64 fontId){
+void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* min, const float* max, const char** labels, const CMLVec3 axisRGB, int64 fontId, double uiScale){
   glClear(GL_DEPTH_BUFFER_BIT);
   glColor3fv(axisRGB);
 
@@ -725,18 +725,18 @@ void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* mi
   // Draw label X
   pos[0] = max[0] * 1.03f;
   normedCoordConverter(normedPos, pos, 1);
-  naDrawASCIICharacters(fontId, labels[0], normedPos[0], normedPos[1], normedPos[2]);
+  naDrawASCIICharacters(fontId, labels[0], normedPos[0], normedPos[1], normedPos[2], uiScale);
   pos[0] = 0.f;
   
   // Draw label Y
   pos[1] = max[1] * 1.03f;
   normedCoordConverter(normedPos, pos, 1);
-  naDrawASCIICharacters(fontId, labels[1], normedPos[0], normedPos[1], normedPos[2]);
+  naDrawASCIICharacters(fontId, labels[1], normedPos[0], normedPos[1], normedPos[2], uiScale);
   pos[1] = 0.f;
   
   // Draw label Z
   pos[2] = max[2] * 1.03f;
   normedCoordConverter(normedPos, pos, 1);
-  naDrawASCIICharacters(fontId, labels[2], normedPos[0], normedPos[1], normedPos[2]);
+  naDrawASCIICharacters(fontId, labels[2], normedPos[0], normedPos[1], normedPos[2], uiScale);
   pos[2] = 0.f;
 }

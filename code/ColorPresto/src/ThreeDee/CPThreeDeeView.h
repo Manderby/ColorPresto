@@ -66,5 +66,6 @@ void cpDrawThreeDeeAxis(
   const float* max,
   const char** labels,
   const CMLVec3 axisRGB,
-  int64 fontId);
+  int64 fontId,
+  double uiScale);
 

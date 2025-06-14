@@ -58,8 +58,8 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
   con->window = naNewWindow(
     cpTranslate(CPApplicationName),
     naMakeRectS(200, 200, 700, 500),
-    0,
-    CP_COLOR_PRESTO_STORAGE_TAG);
+    0);
+  naSetWindowStorageTag(con->window, CP_COLOR_PRESTO_STORAGE_TAG);
   naAddUIReaction(con->window, NA_UI_COMMAND_CLOSES, cpControllerWindowCloses, con);
     
   //naDebugUIElement(con->window);

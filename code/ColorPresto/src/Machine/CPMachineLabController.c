@@ -76,7 +76,7 @@ CPMachineLabController* cpAllocMachineLabController(void){
   for(size_t i = 0; i < CML_LAB_COUNT; ++i){
     CMLLabColorSpaceType labColorSpaceType = (CMLLabColorSpaceType)i;
     if(labColorSpaceType == CML_LAB_CUSTOM_L){continue;}
-    NAMenuItem* item = naNewMenuItem(cmlGetLabColorSpaceTypeString(labColorSpaceType));
+    NAMenuItem* item = naNewMenuItem(cmlGetLabColorSpaceTypeString(labColorSpaceType), NA_NULL);
     naAddSelectMenuItem(con->labColorSpaceSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectLabColorSpace, con);
   }

@@ -43,7 +43,7 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
   for(size_t i = 0; i < CML_OBSERVER_COUNT; ++i){
     CMLObserverType observerType = (CMLObserverType)i;
     if(observerType == CML_OBSERVER_CUSTOM) {continue;}
-    NAMenuItem* item = naNewMenuItem(cmlGetObserverTypeString(observerType));
+    NAMenuItem* item = naNewMenuItem(cmlGetObserverTypeString(observerType), NA_NULL);
     naAddSelectMenuItem(con->observerSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectObserver, con);
   }

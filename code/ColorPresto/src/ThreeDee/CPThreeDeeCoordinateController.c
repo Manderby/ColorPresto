@@ -134,7 +134,7 @@ CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeCo
   con->colorSpaceSelect = naNewSelect(threeDeeControlWidth);
   for(size_t i = 0; i < COLOR_SPACE_COUNT; ++i){
     ColorSpaceType colorSpaceType = (ColorSpaceType)i;
-    NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString(cpGetCMLColorTypeFromColorSpaceType(colorSpaceType)));
+    NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString(cpGetCMLColorTypeFromColorSpaceType(colorSpaceType)), NA_NULL);
     naAddSelectMenuItem(con->colorSpaceSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectColorSpace, con);
   }
@@ -142,7 +142,7 @@ CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeCo
   con->coordSysLabel = naNewLabel(cpTranslate(CPCoordinates), threeDeeLabelWidth);
   con->coordSysSelect = naNewSelect(threeDeeControlWidth);
   for(size_t i = 0; i < COORD_SYS_COUNT; ++i){
-    NAMenuItem* item = naNewMenuItem(cpGetCoordSysName((CoordSysType)i));
+    NAMenuItem* item = naNewMenuItem(cpGetCoordSysName((CoordSysType)i), NA_NULL);
     naAddSelectMenuItem(con->coordSysSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectCoordSys, con);
   }

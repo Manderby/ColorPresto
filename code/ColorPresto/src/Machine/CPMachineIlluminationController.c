@@ -104,7 +104,7 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
   for(size_t i = 0; i < CML_ILLUMINATION_COUNT; ++i){
     CMLIlluminationType illuminationType = (CMLIlluminationType)i;
     if(illuminationType == CML_ILLUMINATION_CUSTOM_SPECTRUM) {continue;}
-    NAMenuItem* item = naNewMenuItem(cmlGetIlluminationTypeString(illuminationType));
+    NAMenuItem* item = naNewMenuItem(cmlGetIlluminationTypeString(illuminationType), NA_NULL);
     naAddSelectMenuItem(con->illuminationSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectIllumination, con);
   }

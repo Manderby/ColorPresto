@@ -108,11 +108,11 @@ void cmDrawGrayColorWell(NAReaction reaction){
   double leftPos = (int)(((colorWell2DSize / 2.) - strlen(colorString) * pixelwidth) / 2.);
   double rightPos = (int)((colorWell2DSize / 2.) + ((colorWell2DSize / 2.) - strlen(grayString) * pixelwidth) / 2.);
   glColor3f(0., 0., 0.);
-  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayColor), leftPos, colorWell2DSize - 15, 0);
-  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayGray), rightPos, colorWell2DSize - 15, 0);
+  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayColor), leftPos, colorWell2DSize - 15, 0, uiScale);
+  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayGray), rightPos, colorWell2DSize - 15, 0, uiScale);
   glColor3f(1., 1., 1.);
-  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayColor), leftPos - 1, colorWell2DSize - 14, 0);
-  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayGray), rightPos - 1, colorWell2DSize - 14, 0);
+  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayColor), leftPos - 1, colorWell2DSize - 14, 0, uiScale);
+  naDrawASCIICharacters(well->fontId, cpTranslate(CPGrayDisplayGray), rightPos - 1, colorWell2DSize - 14, 0, uiScale);
 
   glMatrixMode(GL_PROJECTION);
   glPopMatrix();

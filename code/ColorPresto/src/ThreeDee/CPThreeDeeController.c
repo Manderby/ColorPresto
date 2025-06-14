@@ -77,7 +77,9 @@ void cp_ReshapeThreeDeeWindow(NAReaction reaction){
 
 void cpUpdateThreeDeeDisplay(NAReaction reaction){
   CPThreeDeeController* con = (CPThreeDeeController*)reaction.controller;
-  
+
+  double uiScale = naGetUIElementResolutionScale(con->window);
+
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
   
@@ -330,7 +332,8 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
       max,
       labels,
       axisRGB,
-      con->fontId);
+      con->fontId,
+      uiScale);
   }
 
   cpEndThreeDeeDrawing(con->display);
@@ -350,8 +353,8 @@ CPThreeDeeController* cpAllocThreeDeeController(void){
   con->window = naNewWindow(
     cpTranslate(CP3DView),
     naMakeRectS(40, 30, 1, 1),
-    NA_WINDOW_RESIZEABLE,
-    CP_THREEDEE_WINDOW_STORAGE_TAG);
+    NA_WINDOW_RESIZEABLE);
+  naSetWindowStorageTag(con->window, CP_THREEDEE_WINDOW_STORAGE_TAG);
   naAddUIReaction(con->window, NA_UI_COMMAND_RESHAPE, cp_ReshapeThreeDeeWindow, con);
 
   // The 3D space

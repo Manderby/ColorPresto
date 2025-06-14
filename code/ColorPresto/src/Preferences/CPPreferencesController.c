@@ -76,21 +76,22 @@ CPPreferencesController* cpAllocPreferencesController(void) {
   CPPreferencesController* con = naAlloc(CPPreferencesController);
 
   NARect windowRect = naMakeRectS(20, 300, 440, 65);
-  con->window = naNewWindow(cpTranslate(CPPreferences), windowRect, NA_FALSE, CP_PREFERENCES_WINDOW_STORAGE_TAG);
+  con->window = naNewWindow(cpTranslate(CPPreferences), windowRect, NA_FALSE);
+  naSetWindowStorageTag(con->window, CP_PREFERENCES_WINDOW_STORAGE_TAG);
 
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 
   con->languageLabel = naNewLabel(cpTranslate(CPPreferencesLanguage), 250);
   con->languageSelect = naNewSelect(150);
-  con->languageSystem = naNewMenuItem(cpTranslate(CPPreferencesLanguageSameAsSystem));
-  con->languageDeutsch = naNewMenuItem(cpTranslate(CPPreferencesLanguageDeutsch));
-  con->languageEnglish = naNewMenuItem(cpTranslate(CPPreferencesLanguageEnglish));
-  con->languageEspanol = naNewMenuItem(cpTranslate(CPPreferencesLanguageEspanol));
-  con->languageFrancais = naNewMenuItem(cpTranslate(CPPreferencesLanguageFrancais));
-  con->languageKlingon = naNewMenuItem(cpTranslate(CPPreferencesLanguageKlingon));
-  con->languageJapanese = naNewMenuItem(cpTranslate(CPPreferencesLanguageJapanese));
-  con->languageChinese = naNewMenuItem(cpTranslate(CPPreferencesLanguageChinese));
-  con->languageReport = naNewMenuItem(cpTranslate(CPPreferencesLanguageReport));
+  con->languageSystem = naNewMenuItem(cpTranslate(CPPreferencesLanguageSameAsSystem), NA_NULL);
+  con->languageDeutsch = naNewMenuItem(cpTranslate(CPPreferencesLanguageDeutsch), NA_NULL);
+  con->languageEnglish = naNewMenuItem(cpTranslate(CPPreferencesLanguageEnglish), NA_NULL);
+  con->languageEspanol = naNewMenuItem(cpTranslate(CPPreferencesLanguageEspanol), NA_NULL);
+  con->languageFrancais = naNewMenuItem(cpTranslate(CPPreferencesLanguageFrancais), NA_NULL);
+  con->languageKlingon = naNewMenuItem(cpTranslate(CPPreferencesLanguageKlingon), NA_NULL);
+  con->languageJapanese = naNewMenuItem(cpTranslate(CPPreferencesLanguageJapanese), NA_NULL);
+  con->languageChinese = naNewMenuItem(cpTranslate(CPPreferencesLanguageChinese), NA_NULL);
+  con->languageReport = naNewMenuItem(cpTranslate(CPPreferencesLanguageReport), NA_NULL);
   naAddSelectMenuItem(con->languageSelect, con->languageSystem, NA_NULL);
   naAddSelectMenuItem(con->languageSelect, naNewMenuSeparator(), NA_NULL);
   naAddSelectMenuItem(con->languageSelect, con->languageDeutsch, NA_NULL);

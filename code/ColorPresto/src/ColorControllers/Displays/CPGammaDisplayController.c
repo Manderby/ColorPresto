@@ -51,6 +51,7 @@ void cmDrawGammaDisplayController(NAReaction reaction){
   responses[1] = cmlGetResponseCurveFunc(cmlGetResponseG(cm));
   responses[2] = cmlGetResponseCurveFunc(cmlGetResponseB(cm));
 
+  glLineWidth(uiScale);
   glBegin(GL_LINE_STRIP);
     glColor3f(1.f, .5f, .5f);
     for(uint32 x = 0; x < viewSize.width; ++x){

@@ -135,10 +135,10 @@ CPWhitePointsController* cpAllocWhitePointsController(void){
   con->refTitle = cpNewTitleLabel(cpTranslate(CPReferenceIllumination), 80);
 
   con->refSelect = naNewSelect(70);
-  con->refD50MenuItem = naNewMenuItem(cpTranslate(CPD50));
-  con->refD55MenuItem = naNewMenuItem(cpTranslate(CPD55));
-  con->refD65MenuItem = naNewMenuItem(cpTranslate(CPD65));
-  con->refD75MenuItem = naNewMenuItem(cpTranslate(CPD75));
+  con->refD50MenuItem = naNewMenuItem(cpTranslate(CPD50), NA_NULL);
+  con->refD55MenuItem = naNewMenuItem(cpTranslate(CPD55), NA_NULL);
+  con->refD65MenuItem = naNewMenuItem(cpTranslate(CPD65), NA_NULL);
+  con->refD75MenuItem = naNewMenuItem(cpTranslate(CPD75), NA_NULL);
   naAddSelectMenuItem(con->refSelect, con->refD50MenuItem, NA_NULL);
   naAddSelectMenuItem(con->refSelect, con->refD55MenuItem, NA_NULL);
   naAddSelectMenuItem(con->refSelect, con->refD65MenuItem, NA_NULL);

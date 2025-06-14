@@ -261,7 +261,7 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
   con->rgbColorSpaceSelect = naNewSelect(200);
   for(size_t i = 0; i < CML_RGB_COUNT; ++i){
     CMLRGBColorSpaceType rgbColorSpaceType = (CMLRGBColorSpaceType)i;
-    NAMenuItem* item = naNewMenuItem(cmlGetRGBColorSpaceTypeString(rgbColorSpaceType));
+    NAMenuItem* item = naNewMenuItem(cmlGetRGBColorSpaceTypeString(rgbColorSpaceType), NA_NULL);
     naAddSelectMenuItem(con->rgbColorSpaceSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectRGBColorSpace, con);
   }
@@ -293,16 +293,16 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
 
   con->rgbResponseTitleLabel = naNewLabel(cpTranslate(CPRGBColorResponse), machineLabelWidth);
   con->rgbResponseChannelsSelect = naNewSelect(80);
-  NAMenuItem* rgbMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelRGB));
+  NAMenuItem* rgbMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelRGB), NA_NULL);
   naAddSelectMenuItem(con->rgbResponseChannelsSelect, rgbMenuItem, NA_NULL);
   naAddUIReaction(rgbMenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRGBChannel, con);
-  NAMenuItem* rMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelR));
+  NAMenuItem* rMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelR), NA_NULL);
   naAddSelectMenuItem(con->rgbResponseChannelsSelect, rMenuItem, NA_NULL);
   naAddUIReaction(rMenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRGBChannel, con);
-  NAMenuItem* gMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelG));
+  NAMenuItem* gMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelG), NA_NULL);
   naAddSelectMenuItem(con->rgbResponseChannelsSelect, gMenuItem, NA_NULL);
   naAddUIReaction(gMenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRGBChannel, con);
-  NAMenuItem* bMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelB));
+  NAMenuItem* bMenuItem = naNewMenuItem(cpTranslate(CPRGBColorChannelB), NA_NULL);
   naAddSelectMenuItem(con->rgbResponseChannelsSelect, bMenuItem, NA_NULL);
   naAddUIReaction(bMenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRGBChannel, con);
 
@@ -310,7 +310,7 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
   for(size_t i = 0; i < CML_RESPONSE_COUNT; ++i){
     CMLResponseCurveType responseCurveType = (CMLResponseCurveType)i;
     if(responseCurveType == CML_RESPONSE_UNDEFINED){continue;}
-    NAMenuItem* item = naNewMenuItem(cmlGetRGBResponseTypeString(responseCurveType));
+    NAMenuItem* item = naNewMenuItem(cmlGetRGBResponseTypeString(responseCurveType), NA_NULL);
     naAddSelectMenuItem(con->rgbResponseSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectRGBResponse, con);
   }
