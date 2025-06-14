@@ -61,6 +61,7 @@ void cmDrawGammaDisplayController(NAReaction reaction){
       glVertex3f(curX, y, z);
     }
   glEnd();
+  glLineWidth(uiScale);
   glBegin(GL_LINE_STRIP);
     glColor3f(.5f, 1.f, .5f);
     for(uint32 x = 0; x < viewSize.width; ++x){
@@ -70,6 +71,7 @@ void cmDrawGammaDisplayController(NAReaction reaction){
       glVertex3f(curX, y, z);
     }
   glEnd();
+  glLineWidth(uiScale);
   glBegin(GL_LINE_STRIP);
     glColor3f(.5f, .5f, 1.f);
     for(uint32 x = 0; x < viewSize.width; ++x){

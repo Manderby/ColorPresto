@@ -1,4 +1,4 @@
 
 #include "main.h"
 
-void cpDrawBorder(void);
+void cpDrawBorder(double uiScale);

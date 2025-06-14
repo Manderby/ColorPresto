@@ -117,7 +117,7 @@ void cmDrawGrayColorWell(NAReaction reaction){
   glMatrixMode(GL_PROJECTION);
   glPopMatrix();
 
-  cpDrawBorder();
+  cpDrawBorder(uiScale);
 
   naSwapOpenGLSpaceBuffer(well->display);
 }

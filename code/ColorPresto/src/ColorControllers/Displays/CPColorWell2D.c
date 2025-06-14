@@ -152,6 +152,7 @@ void cmDrawColorWell2D(NAReaction reaction){
     CMLColorConverter coordConverter = cmlGetColorConverter(colorType, CML_COLOR_XYZ);
     CMLNormedConverter normedConverter = cmlGetNormedOutputConverter(colorType);
 
+    glLineWidth(uiScale);
     glBegin(GL_LINE_STRIP);
     for(int32 iStep = 0; iStep <= intervals; iStep++){
       float l = imin + (((imax - imin) * iStep) / intervals);
@@ -186,7 +187,7 @@ void cmDrawColorWell2D(NAReaction reaction){
     glEnd();
   }
 
-  glLineWidth(1);
+  glLineWidth(uiScale);
   glBegin(GL_LINE_LOOP);
     glColor4f(1., 1., 1., 1.);
     for(int i = 0; i < subdivisions; ++i){
@@ -194,6 +195,7 @@ void cmDrawColorWell2D(NAReaction reaction){
       glVertex2d(fixedValueA * 2. - 1. + whiteR * naCos(ang), fixedValueB * 2. - 1. + whiteR * naSin(ang));
     }
   glEnd();
+  glLineWidth(uiScale);
   glBegin(GL_LINE_LOOP);
     glColor4f(0., 0., 0., 1.);
     for(int i = 0; i < subdivisions; ++i){
@@ -202,7 +204,7 @@ void cmDrawColorWell2D(NAReaction reaction){
     }
   glEnd();
 
-  cpDrawBorder();
+  cpDrawBorder(uiScale);
 
   naSwapOpenGLSpaceBuffer(well->display);
 }

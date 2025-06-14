@@ -314,7 +314,8 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
       normedInputConverter,
       coordConverter,
       normedOutputConverter,
-      curZoom);
+      curZoom,
+      uiScale);
   }
 
   if(showSpectrum){
@@ -322,7 +323,8 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
       cm,
       normedOutputConverter,
       coordSpace,
-      hueIndex);
+      hueIndex,
+      uiScale);
   }
   
   if(showAxis){

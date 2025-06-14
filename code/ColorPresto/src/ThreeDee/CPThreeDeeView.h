@@ -36,7 +36,8 @@ void cpDrawThreeDeePointCloud(
   CMLNormedConverter normedInputConverter,
   CMLColorConverter coordConverter,
   CMLNormedConverter normedCoordConverter,
-  double zoom);
+  double zoom,
+  double uiScale);
 
 void cpDrawThreeDeeSurfaces(
   const CMLColorMachine* cm,
@@ -58,7 +59,8 @@ void cpDrawThreeDeeSpectrum(
   const CMLColorMachine* cm, 
   CMLNormedConverter normedCoordConverter,
   CMLColorType coordSpace,
-  int64 hueIndex);
+  int64 hueIndex,
+  double uiScale);
 
 void cpDrawThreeDeeAxis(
   CMLNormedConverter normedCoordConverter,

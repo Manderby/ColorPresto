@@ -119,7 +119,7 @@ void cpSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom
 
 
 
-void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* sm, double pointsAlpha, CMLColorType space3D, int64 steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, double zoom){
+void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* sm, double pointsAlpha, CMLColorType space3D, int64 steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, double zoom, double uiScale){
   size_t numChannels = cmlGetNumChannels(space3D);
 
   CMLVec4UInt steps;
@@ -163,7 +163,7 @@ void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
 
   glDisable(GL_DEPTH_TEST);
   
-  glPointSize((2.f / numChannels) / (float)zoom);
+  glPointSize(((2.f * uiScale) / numChannels) / (float)zoom);
   glBegin(GL_POINTS);
   for(size_t i = 0; i < totalCloudCount; ++i){
     glColor4f(cloudRGBFloatValues[i * 3 + 0], cloudRGBFloatValues[i * 3 + 1], cloudRGBFloatValues[i * 3 + 2], (float)pointsAlpha);
@@ -589,6 +589,7 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
                 continue;
               }
             }
+            glLineWidth(1.);
             glBegin(GL_LINE_STRIP);
             glColor4f( rgbFloatValues[s][index0 + 0] * (float)gridTint + axisRGB[0] * (1.f - (float)gridTint),
                         rgbFloatValues[s][index0 + 1] * (float)gridTint + axisRGB[1] * (1.f - (float)gridTint),
@@ -641,13 +642,14 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
 
 
 
-void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normedCoordConverter, CMLColorType coordSpace, int64 hueIndex){
+void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normedCoordConverter, CMLColorType coordSpace, int64 hueIndex, double uiScale){
   float iMin = CML_DEFAULT_INTEGRATION_MIN;
   float iMax = CML_DEFAULT_INTEGRATION_MAX;
   int64 intervals = (int32)((iMax - iMin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
   
   CMLColorConverter xyzConverter = cmlGetColorConverter(coordSpace, CML_COLOR_XYZ);
 
+  glLineWidth(uiScale);
   glBegin(GL_LINE_STRIP);
     float prevNormedHue = -CML_INFINITY;
     for(int64 iStep = 0; iStep <= intervals; ++iStep){
@@ -693,6 +695,7 @@ void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* mi
   float pos[3] = {0.f, 0.f, 0.f};
   float normedPos[3] = {0.f, 0.f, 0.f};
   
+  glLineWidth(uiScale);
   glBegin(GL_LINES);
     // draw a line from -x to +x
     pos[0] = min[0];

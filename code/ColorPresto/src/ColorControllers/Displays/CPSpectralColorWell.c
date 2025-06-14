@@ -130,7 +130,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
   float lineCount = (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) / 10.f;
 
   glDisable(GL_TEXTURE_1D);
-  glLineWidth(uiScale);
+  glLineWidth(1);
   glBegin(GL_LINES);
     for(int i = 0; i <= (int)lineCount; ++i){
       if(!((lineOffset + i) % 10)){
@@ -164,6 +164,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
   };
 
   glColor4f(1.f, .5f, .5f, 1.f);
+  glLineWidth(uiScale);
   glBegin(GL_LINE_STRIP);
     for(int32 iStep = 0; iStep <= intervals; iStep++){
       float lambda = CML_DEFAULT_INTEGRATION_MIN + (((CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * iStep) / intervals);
@@ -217,6 +218,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
       if(colorDefRange.stepSize == 0.f){colorDefRange.stepSize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
       size_t sampleCount = cmlGetSampleCount(colorDefRange.minSampleCoord, colorDefRange.maxSampleCoord, colorDefRange.stepSize);
       if(sampleCount == 1){
+        glLineWidth(uiScale);
         glBegin(GL_LINES);
           float lambda = colorDefRange.minSampleCoord;
           float y = cmlEval(colorSpectrum, lambda);
@@ -224,6 +226,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
           glVertex2f(lambda, viewOffset + (y / colorMax) * viewRange);
         glEnd();
       }else{
+        glLineWidth(uiScale);
         glBegin(GL_LINE_STRIP);
           for(int32 iStep = 0; iStep <= intervals; iStep++){
             float lambda = CML_DEFAULT_INTEGRATION_MIN + (((CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * iStep) / intervals);

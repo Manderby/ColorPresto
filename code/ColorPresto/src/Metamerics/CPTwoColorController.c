@@ -37,7 +37,8 @@ void cp_RedrawTwoColorController(NAReaction reaction){
   glVertex2d(+1., +1.);
   glEnd();
 
-  cpDrawBorder();
+  double uiScale = naGetUIElementResolutionScale(con->space);
+  cpDrawBorder(uiScale);
   
   naSwapOpenGLSpaceBuffer(con->space);
 }
