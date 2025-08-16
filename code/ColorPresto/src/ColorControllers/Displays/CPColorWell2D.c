@@ -85,9 +85,8 @@ void cmDragColorWell2D(NAReaction reaction){
 void cmDrawColorWell2D(NAReaction reaction){
   CPColorWell2D* well = (CPColorWell2D*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
-  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
-  double uiScale = naGetUIElementResolutionScale(well->display);
+  double uiScale = naGetUIElementUIScale(well->display);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
   glViewport(
     0,
@@ -99,7 +98,6 @@ void cmDrawColorWell2D(NAReaction reaction){
 
   CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
   CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
-  CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
 
   float fixedValueA = 0.f;
   float fixedValueB = 0.f;

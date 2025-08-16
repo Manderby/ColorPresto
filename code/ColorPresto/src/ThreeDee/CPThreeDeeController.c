@@ -78,7 +78,7 @@ void cp_ReshapeThreeDeeWindow(NAReaction reaction){
 void cpUpdateThreeDeeDisplay(NAReaction reaction){
   CPThreeDeeController* con = (CPThreeDeeController*)reaction.controller;
 
-  double uiScale = naGetUIElementResolutionScale(con->window);
+  double uiScale = naGetUIElementUIScale(con->window);
 
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();

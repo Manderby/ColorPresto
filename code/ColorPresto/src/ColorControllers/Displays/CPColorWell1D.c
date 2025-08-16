@@ -46,8 +46,6 @@ void cmDragColorWell1D(NAReaction reaction){
  
   const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
   if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
-    CMLColorMachine* cm = cpGetCurrentColorMachine();
-
     CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
     CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
     CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
@@ -87,10 +85,8 @@ void cmDragColorWell1D(NAReaction reaction){
 
 void cmDrawColorWell1D(NAReaction reaction){
   CPColorWell1D* well = (CPColorWell1D*)reaction.controller;
-  CMLColorMachine* cm = cpGetCurrentColorMachine();
-  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
-  double uiScale = naGetUIElementResolutionScale(well->display);
+  double uiScale = naGetUIElementUIScale(well->display);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
   glViewport(
     0,
@@ -102,10 +98,7 @@ void cmDrawColorWell1D(NAReaction reaction){
 
   CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
   CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
-  CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
 
-  float inputValues[colorWell1DSize * 3] = {0};
-  float* inputPtr = inputValues;
   CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
   outputConverter(normedColorValues, well->colorData, 1);
   

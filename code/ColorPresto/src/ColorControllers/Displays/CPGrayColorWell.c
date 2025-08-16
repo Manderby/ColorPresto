@@ -35,7 +35,7 @@ void cmDrawGrayColorWell(NAReaction reaction){
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
-  double uiScale = naGetUIElementResolutionScale(well->display);
+  double uiScale = naGetUIElementUIScale(well->display);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
   glViewport(
     0,

@@ -84,7 +84,7 @@ void cpMoveRotationMouse(NAReaction reaction){
   if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT) || naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_MIDDLE)){
     
     NAPos mouseDiff = naGetMouseDelta(mouseStatus);
-    double uiScale = naGetUIElementResolutionScale(con->space);
+    double uiScale = naGetUIElementUIScale(con->space);
 
     con->angleEqu -= (float)(mouseDiff.x * .01 * uiScale);
     con->anglePol += (float)(mouseDiff.y * .01 * uiScale);
@@ -135,7 +135,7 @@ CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDee
   cpEndUILayout();
 
   // initial values
-  double uiScale = naGetUIElementResolutionScale(con->space);
+  double uiScale = naGetUIElementUIScale(con->space);
 
   con->rotationStep = 0.;
   con->anglePol = 1.3f;

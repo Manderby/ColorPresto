@@ -97,7 +97,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 //  CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
-  double uiScale = naGetUIElementResolutionScale(well->openGLSpace);
+  double uiScale = naGetUIElementUIScale(well->openGLSpace);
   NASize viewSize = naGetUIElementRect(reaction.uiElement).size;
   glViewport(
     0,
