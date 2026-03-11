@@ -163,7 +163,7 @@ void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
 
   glDisable(GL_DEPTH_TEST);
   
-  glPointSize(((2.f * uiScale) / numChannels) / (float)zoom);
+  glPointSize((GLfloat)((2. * uiScale) / numChannels) / (GLfloat)zoom);
   glBegin(GL_POINTS);
   for(size_t i = 0; i < totalCloudCount; ++i){
     glColor4f(cloudRGBFloatValues[i * 3 + 0], cloudRGBFloatValues[i * 3 + 1], cloudRGBFloatValues[i * 3 + 2], (float)pointsAlpha);
@@ -649,7 +649,7 @@ void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normed
   
   CMLColorConverter xyzConverter = cmlGetColorConverter(coordSpace, CML_COLOR_XYZ);
 
-  glLineWidth(uiScale);
+  glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_STRIP);
     float prevNormedHue = -CML_INFINITY;
     for(int64 iStep = 0; iStep <= intervals; ++iStep){
@@ -695,7 +695,7 @@ void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* mi
   float pos[3] = {0.f, 0.f, 0.f};
   float normedPos[3] = {0.f, 0.f, 0.f};
   
-  glLineWidth(uiScale);
+  glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINES);
     // draw a line from -x to +x
     pos[0] = min[0];

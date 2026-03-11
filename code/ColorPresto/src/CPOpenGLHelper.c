@@ -11,7 +11,7 @@ void cpDrawBorder(double uiScale){
   float glColor[4];
   naFillSRGBAWithColor(glColor, &borderColor);
 
-  glLineWidth(2 * uiScale);
+  glLineWidth((GLfloat)(2. * uiScale));
   glBegin(GL_LINE_STRIP);
   glColor4fv(glColor);
   glVertex2d(-1., -1.);

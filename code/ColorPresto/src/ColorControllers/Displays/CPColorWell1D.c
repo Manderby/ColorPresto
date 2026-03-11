@@ -156,7 +156,7 @@ void cmDrawColorWell1D(NAReaction reaction){
 
   glLineWidth(1);
   glColor4f(1., 1., 1., 1.);
-  glLineWidth(uiScale);
+  glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_LOOP);
     for(int i = 0; i < subdivisions; ++i){
       float ang = NA_PI2f * (float)i / (float)subdivisions;
@@ -165,7 +165,7 @@ void cmDrawColorWell1D(NAReaction reaction){
   glEnd();
 
   glColor4f(0., 0., 0., 1.);
-  glLineWidth(uiScale);
+  glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_LOOP);
     for(int i = 0; i < subdivisions; ++i){
       float ang = NA_PI2f * (float)i / (float)subdivisions;
