@@ -36,9 +36,9 @@ CPColorPrestoApplication* app = NA_NULL;
 void cpPreStartupApplication(void* arg){
   NA_UNUSED(arg);
 
-  //NAString* appPath = naNewExecutablePath();
-  //naPresentAlertBox(NA_ALERT_BOX_INFO, "Working directory", naGetStringUTF8Pointer(appPath));
-  //naDelete(appPath);
+  //NAString* appUrl = naNewExecutableUrl();
+  //naPresentAlertBox(NA_ALERT_BOX_INFO, "Working directory", naGetStringUTF8Pointer(appUrl));
+  //naDelete(appUrl);
 
   app = naAlloc(CPColorPrestoApplication);
 
@@ -46,13 +46,13 @@ void cpPreStartupApplication(void* arg){
   naSetApplicationVersionString(CP_VERSION_STRING);
   naSetApplicationBuildString(CP_BUILD_NUMBER_STRING);
 
-  NAString* appPath = naNewExecutablePath();
-  naSetApplicationResourceBasePath(naGetStringUTF8Pointer(appPath));
-  //naPresentAlertBox(NA_ALERT_BOX_INFO, "Resource directory", naGetStringUTF8Pointer(appPath));
-  naDelete(appPath);
+  NAString* appUrl = naNewExecutableUrl();
+  naSetApplicationResourceBaseUrl(naGetStringUTF8Pointer(appUrl));
+  //naPresentAlertBox(NA_ALERT_BOX_INFO, "Resource directory", naGetStringUTF8Pointer(appUrl));
+  naDelete(appUrl);
 
   #if NA_OS == NA_OS_WINDOWS
-    naSetApplicationIconPath("icon.png");
+    naSetApplicationIconUrl("icon.png");
   #endif
     
   initTranslations();
