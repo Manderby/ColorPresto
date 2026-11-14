@@ -106,10 +106,10 @@ CPWhitePointsController* cpAllocWhitePointsController(void){
   con->illYuvTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYuv), labelValueWidth);
 //  con->illYcdTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYcd), labelValueWidth);
 //  con->illUVWTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceUVW), labelValueWidth);
-  naSetLabelTextAlignment(con->illXYZTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelTextAlignment(con->illYxyTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelTextAlignment(con->illYupvpTitle, NA_TEXT_ALIGNMENT_CENTER);
-  naSetLabelTextAlignment(con->illYuvTitle, NA_TEXT_ALIGNMENT_CENTER);
+  naSetLabelTextAlignment(con->illXYZTitle, NA_ALIGNMENT_CENTER);
+  naSetLabelTextAlignment(con->illYxyTitle, NA_ALIGNMENT_CENTER);
+  naSetLabelTextAlignment(con->illYupvpTitle, NA_ALIGNMENT_CENTER);
+  naSetLabelTextAlignment(con->illYuvTitle, NA_ALIGNMENT_CENTER);
 //  naSetLabelTextAlignment(con->illYcdTitle, NA_TEXT_ALIGNMENT_CENTER);
 //  naSetLabelTextAlignment(con->illUVWTitle, NA_TEXT_ALIGNMENT_CENTER);
 

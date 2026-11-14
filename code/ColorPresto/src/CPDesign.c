@@ -33,7 +33,7 @@ NALabel* cpNewTitleLabel(const NAUTF8Char* text, double width){
 
 NALabel* cpNewValueLabel(){
   NALabel* label = naNewLabel("", labelValueWidth);
-  naSetLabelTextAlignment(label, NA_TEXT_ALIGNMENT_RIGHT);
+  naSetLabelTextAlignment(label, NA_ALIGNMENT_END);
   naSetLabelFont(label, monoFont);
   return label;
 }
@@ -42,7 +42,7 @@ NALabel* cpNewValueLabel(){
 
 NALabel* cpNewColorComponentLabel(const NAUTF8Char* string){
   NALabel* label = naNewLabel(string, colorComponentWidth);
-  naSetLabelTextAlignment(label, NA_TEXT_ALIGNMENT_RIGHT);
+  naSetLabelTextAlignment(label, NA_ALIGNMENT_END);
   return label;
 }
 
@@ -52,7 +52,7 @@ NALabel* cpNewThreeValueLabel(){
   NALabel* label = naNewLabel("", labelValueWidth);
   naSetLabelHeight(label, threeValueHeight);
   naSetLabelFont(label, monoFont);
-  naSetLabelTextAlignment(label, NA_TEXT_ALIGNMENT_RIGHT);
+  naSetLabelTextAlignment(label, NA_ALIGNMENT_END);
   return label;
 }
 
@@ -61,7 +61,7 @@ NALabel* cpNewThreeValueLabel(){
 NATextField* cpNewValueTextField(NAReactionCallback reactionCallback, void* con){
   NATextField* textField = naNewTextField(textFieldValueWidth);
   naSetTextFieldFont(textField, monoFont);
-  naSetTextFieldTextAlignment(textField, NA_TEXT_ALIGNMENT_RIGHT);
+  naSetTextFieldTextAlignment(textField, NA_ALIGNMENT_END);
   naAddUIReaction(textField, NA_UI_COMMAND_EDIT_FINISHED, reactionCallback, con);
   return textField;
 }
@@ -69,7 +69,7 @@ NATextField* cpNewValueTextField(NAReactionCallback reactionCallback, void* con)
 NATextField* cpNewBigValueTextField(NAReactionCallback reactionCallback, void* con){
   NATextField* textField = naNewTextField(colorWell1DSize);
   naSetTextFieldFont(textField, monoFont);
-  naSetTextFieldTextAlignment(textField, NA_TEXT_ALIGNMENT_RIGHT);
+  naSetTextFieldTextAlignment(textField, NA_ALIGNMENT_END);
   naAddUIReaction(textField, NA_UI_COMMAND_EDIT_FINISHED, reactionCallback, con);
   return textField;
 }
@@ -87,8 +87,8 @@ void cpBeginUILayout(NASpace* space, NABorder2D border){
   NASize size = naGetUIElementRect(space).size;
   curDesignSpace = space;
   curDesignBorder = border;
-  curDesignPos = naMakePos(border.left, size.height - border.top);
-  maxDesignWidth = border.left;
+  curDesignPos = naMakePos(border.begin1, size.height - border.end2);
+  maxDesignWidth = border.begin1;
   curDesignRowHeight = 0.;
   curDesignRowHeightFixed = NA_FALSE;
 }
@@ -119,7 +119,7 @@ void cpAddUIRow(void* child, double rowHeight){
       naError("No space defined for design. Use cpBeginUILayout");
   #endif
   NASize size = naGetUIElementRect(child).size;
-  curDesignPos.x = curDesignBorder.left;
+  curDesignPos.x = curDesignBorder.begin1;
   curDesignPos.y -= curDesignRowHeight;
   if(rowHeight){
     curDesignRowHeightFixed = NA_TRUE;
@@ -138,7 +138,7 @@ void cpAddUIRowH(void* child, double rowHeight, double hOffset){
   #endif
   curDesignPos.x += hOffset;
   NASize size = naGetUIElementRect(child).size;
-  curDesignPos.x = hOffset + curDesignBorder.left;
+  curDesignPos.x = hOffset + curDesignBorder.begin1;
   curDesignPos.y -= curDesignRowHeight;
   if(rowHeight){
     curDesignRowHeightFixed = NA_TRUE;
@@ -173,8 +173,8 @@ void cpAddUIColV(void* child, double marginLeft, double vOffset){
 void cpEndUILayout(){
   NARect spaceRect = naGetUIElementRect(curDesignSpace);
   double prevHeight = spaceRect.size.height;
-  spaceRect.size.width = maxDesignWidth + curDesignBorder.right;
-  double newHeight = spaceRect.size.height - (curDesignPos.y - curDesignRowHeight) + curDesignBorder.bottom;
+  spaceRect.size.width = maxDesignWidth + curDesignBorder.end1;
+  double newHeight = spaceRect.size.height - (curDesignPos.y - curDesignRowHeight) + curDesignBorder.begin2;
   spaceRect.size.height = newHeight;
   naSetUIElementRect(curDesignSpace, spaceRect);
 

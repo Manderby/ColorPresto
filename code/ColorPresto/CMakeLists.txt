@@ -168,7 +168,7 @@ set(winResourceStringJaFiles
   res/win/Strings/ja-JP/Resources.resw
 )
 set(winResourceStringZhFiles
-  res/win/Strings/zh-cn/Resources.resw
+  res/win/Strings/zh-CN/Resources.resw
 )
 
 set(sourceFiles
