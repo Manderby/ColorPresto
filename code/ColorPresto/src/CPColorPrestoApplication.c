@@ -52,7 +52,7 @@ void cpPreStartupApplication(void* arg){
   naDelete(appUrl);
 
   #if NA_OS == NA_OS_WINDOWS
-    naSetApplicationIconPath("icon.png");
+    naSetApplicationIconUrl("icon.png");
   #endif
     
   initTranslations();
