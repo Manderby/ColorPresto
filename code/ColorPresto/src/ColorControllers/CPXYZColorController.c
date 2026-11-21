@@ -32,14 +32,14 @@ struct CPXYZColorController{
 
 
 
-void cp_XYZValueEdited(NAReaction reaction){
+void cp_XYZValueEdited(NAReaction reaction) {
   CPXYZColorController* con = (CPXYZColorController*)reaction.controller;
   
-  if(reaction.uiElement == con->textFieldX){
+  if(reaction.uiElement == con->textFieldX) {
     con->XYZColor[0] = (float)naGetTextFieldDouble(con->textFieldX);
-  }else if(reaction.uiElement == con->textFieldY){
+  }else if(reaction.uiElement == con->textFieldY) {
     con->XYZColor[1] = (float)naGetTextFieldDouble(con->textFieldY);
-  }else if(reaction.uiElement == con->textFieldZ){
+  }else if(reaction.uiElement == con->textFieldZ) {
     con->XYZColor[2] = (float)naGetTextFieldDouble(con->textFieldZ);
   }
   
@@ -49,7 +49,7 @@ void cp_XYZValueEdited(NAReaction reaction){
 
 
 
-CPXYZColorController* cpAllocXYZColorController(void){
+CPXYZColorController* cpAllocXYZColorController(void) {
   CPXYZColorController* con = naAlloc(CPXYZColorController);
   
   cpInitColorController(&(con->baseController), CML_COLOR_XYZ);
@@ -95,7 +95,7 @@ CPXYZColorController* cpAllocXYZColorController(void){
 
 
 
-void cpDeallocXYZColorController(CPXYZColorController* con){
+void cpDeallocXYZColorController(CPXYZColorController* con) {
   cpDeallocColorWell2D(con->colorWell2D);
   cpDeallocColorWell1D(con->colorWell1DX);
   cpDeallocColorWell1D(con->colorWell1DY);
@@ -106,13 +106,13 @@ void cpDeallocXYZColorController(CPXYZColorController* con){
 
 
 
-const void* cpGetXYZColorControllerColorData(const CPXYZColorController* con){
+const void* cpGetXYZColorControllerColorData(const CPXYZColorController* con) {
   return &(con->XYZColor);
 }
 
 
 
-void cpSetXYZColorControllerColorData(CPXYZColorController* con, const void* data){
+void cpSetXYZColorControllerColorData(CPXYZColorController* con, const void* data) {
   cmlCpy3(con->XYZColor, data);
 }
 
@@ -134,7 +134,7 @@ void cpComputeXYZColorController(CPXYZColorController* con) {
 
 
 
-void cpUpdateXYZColorController(CPXYZColorController* con){
+void cpUpdateXYZColorController(CPXYZColorController* con) {
   cpUpdateColorWell2D(con->colorWell2D);
 
   naSetTextFieldText(

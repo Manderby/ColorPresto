@@ -28,7 +28,7 @@ struct CPMachineController{
 
 
 
-CPMachineController* cpAllocMachineController(void){
+CPMachineController* cpAllocMachineController(void) {
   CPMachineController* con = naAlloc(CPMachineController);
 
   con->space = naNewSpace(naMakeSize(500, 300));
@@ -56,19 +56,19 @@ CPMachineController* cpAllocMachineController(void){
 
 
 
-void cpDeallocMachineController(CPMachineController* con){
+void cpDeallocMachineController(CPMachineController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetMachineUIElement(CPMachineController* con){
+NASpace* cpGetMachineUIElement(CPMachineController* con) {
   return con->space;
 }
 
 
 
-void cpUpdateMachineController(CPMachineController* con){
+void cpUpdateMachineController(CPMachineController* con) {
   cpUpdateMachineObserverController(con->observerController);
   cpUpdateMachineIlluminationController(con->illuminationController);
   cpUpdateMachineRGBController(con->rgbController);

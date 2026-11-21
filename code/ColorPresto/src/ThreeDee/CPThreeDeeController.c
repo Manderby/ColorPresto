@@ -37,18 +37,18 @@ struct CPThreeDeeController{
 
 
 
-void cp_InitThreeDeeOpenGL(void* data){
+void cp_InitThreeDeeOpenGL(void* data) {
   CPThreeDeeController* con = (CPThreeDeeController*)data;
   con->fontId = naStartupPixelFont();
   cpInitThreeDeeDisplay(con->display);
 }
 
 
-void cpRefreshThreeDeeDisplay(CPThreeDeeController* con){
+void cpRefreshThreeDeeDisplay(CPThreeDeeController* con) {
   naRefreshUIElement(con->display, 0.);
 }
 
-void cp_ReshapeThreeDeeWindow(NAReaction reaction){
+void cp_ReshapeThreeDeeWindow(NAReaction reaction) {
   CPThreeDeeController* con = (CPThreeDeeController*)reaction.controller;
 
   NARect windowRect = naGetUIElementRect(con->window);
@@ -75,7 +75,7 @@ void cp_ReshapeThreeDeeWindow(NAReaction reaction){
 
 
 
-void cpUpdateThreeDeeDisplay(NAReaction reaction){
+void cpUpdateThreeDeeDisplay(NAReaction reaction) {
   CPThreeDeeController* con = (CPThreeDeeController*)reaction.controller;
 
   double uiScale = naGetUIElementUIScale(con->window);
@@ -91,7 +91,7 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
   CoordSysType coordSysType = cpGetThreeDeeCoordinateControllerCoordSysType(con->coordinateController);
   CMLColorType colorType = cpGetThreeDeeCoordinateControllerColorSpaceType(con->coordinateController);
 
-  switch(coordSysType){
+  switch(coordSysType) {
   case COORD_SYS_HSL:
     coordSpace = CML_COLOR_HSL;
     primeAxis = 2;
@@ -256,16 +256,16 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
   cmlSet3(backgroundRGB, backgroundGray, backgroundGray, backgroundGray);
   cmlSet3(axisRGB, axisGray, axisGray, axisGray);
 
-  if(fovy == 0){
+  if(fovy == 0) {
     curZoom = zoom;
   }else{
     curZoom = (viewSize.width / initial3DDisplayWidth) * zoom / (2. * (viewSize.width / viewSize.height) * naTan(.5 * naDegToRad(fovy)));
   }
 
   int64 hueIndex = -1;
-  if((coordSysType == COORD_SYS_HSV_CARTESIAN) || (coordSysType == COORD_SYS_HSL_CARTESIAN)){
+  if((coordSysType == COORD_SYS_HSV_CARTESIAN) || (coordSysType == COORD_SYS_HSL_CARTESIAN)) {
     hueIndex = 0;
-  }else if(coordSysType == COORD_SYS_Lch_CARTESIAN){
+  }else if(coordSysType == COORD_SYS_Lch_CARTESIAN) {
     hueIndex = 2;
   }
 
@@ -284,7 +284,7 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
     cpGetThreeDeePerspectiveControllerRotationAngleEqu(con->perspectiveController));
   int64 steps3D = cpGetThreeDeeCoordinateControllerSteps3D(con->coordinateController);
 
-  if(1){
+  if(1) {
     cpDrawThreeDeeSurfaces(
       cm,
       sm,
@@ -304,7 +304,7 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
   
   const NABool isGrayColorSpace = colorType == CML_COLOR_Gray;
   float pointsOpacity = cpGetThreeDeeOpacityControllerPointsOpacity(con->opacityController);
-  if(pointsOpacity > 0.f || isGrayColorSpace){
+  if(pointsOpacity > 0.f || isGrayColorSpace) {
     cpDrawThreeDeePointCloud(
       cm,
       sm,
@@ -318,7 +318,7 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
       uiScale);
   }
 
-  if(showSpectrum){
+  if(showSpectrum) {
     cpDrawThreeDeeSpectrum(
       cm,
       normedOutputConverter,
@@ -327,7 +327,7 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
       uiScale);
   }
   
-  if(showAxis){
+  if(showAxis) {
     cpDrawThreeDeeAxis(
       normedOutputConverter,
       min,
@@ -343,7 +343,7 @@ void cpUpdateThreeDeeDisplay(NAReaction reaction){
 
 
 
-CPThreeDeeController* cpAllocThreeDeeController(void){
+CPThreeDeeController* cpAllocThreeDeeController(void) {
   CPThreeDeeController* con = naAlloc(CPThreeDeeController);
   
   con->coordinateController = cpAllocThreeDeeCoordinateController(con);
@@ -387,20 +387,20 @@ CPThreeDeeController* cpAllocThreeDeeController(void){
 
 
 
-void cpDeallocThreeDeeController(CPThreeDeeController* con){
+void cpDeallocThreeDeeController(CPThreeDeeController* con) {
   naShutdownPixelFont(con->fontId);
   naFree(con);
 }
 
 
 
-void cpShowThreeDeeController(CPThreeDeeController* con){
+void cpShowThreeDeeController(CPThreeDeeController* con) {
   naShowWindow(con->window);
 }
 
 
 
-void cpUpdateThreeDeeController(CPThreeDeeController* con){
+void cpUpdateThreeDeeController(CPThreeDeeController* con) {
   cpUpdateThreeDeeCoordinateController(con->coordinateController);
   cpUpdateThreeDeePerspectiveController(con->perspectiveController);
   cpUpdateThreeDeeOpacityController(con->opacityController);

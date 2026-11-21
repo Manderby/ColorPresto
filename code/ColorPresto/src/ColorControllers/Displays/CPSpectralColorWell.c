@@ -21,16 +21,16 @@ struct CPSpectralColorWell{
 
 
 
-void cmDragSpectralColorWell(NAReaction reaction){
+void cmDragSpectralColorWell(NAReaction reaction) {
   const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
-  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
+  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)) {
     CPSpectralColorWell* well = (CPSpectralColorWell*)reaction.controller;
     CMLColorMachine* cm = cpGetCurrentColorMachine();
 
     NARect spaceRect = naGetUIElementRectAbsolute(well->openGLSpace);
     double mouseX = (naGetMousePos(mouseStatus).x - spaceRect.pos.x) / spaceRect.size.width;
-    if(mouseX < 0.f){mouseX = 0.f;}
-    if(mouseX > 1.f){mouseX = 1.f;}
+    if(mouseX < 0.f) {mouseX = 0.f;}
+    if(mouseX > 1.f) {mouseX = 1.f;}
 
     float lambda = CML_DEFAULT_INTEGRATION_MIN + (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * (float)mouseX;
 
@@ -48,7 +48,7 @@ void cmDragSpectralColorWell(NAReaction reaction){
 
 
 
-void cmInitSpectralColorWell(void* data){
+void cmInitSpectralColorWell(void* data) {
   CPSpectralColorWell* well = (CPSpectralColorWell*)data;
   glEnable(GL_LINE_SMOOTH);
   glEnable(GL_BLEND);
@@ -65,7 +65,7 @@ void cmInitSpectralColorWell(void* data){
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
 
   float rgbInputValues[spectralWellSize * 3] = {0};
-  for(size_t x = 0; x < spectralWellSize; ++x){
+  for(size_t x = 0; x < spectralWellSize; ++x) {
     float lambda = CML_DEFAULT_INTEGRATION_MIN + ((float)x / spectralWellSize) * (CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN);
     CMLVec3 xyz;
     cmlGetSpectralXYZColor(sm, xyz, lambda);
@@ -92,7 +92,7 @@ void cmInitSpectralColorWell(void* data){
 
 
 
-void cmDrawSpectralColorWell(NAReaction reaction){
+void cmDrawSpectralColorWell(NAReaction reaction) {
   CPSpectralColorWell* well = (CPSpectralColorWell*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 //  CMLColorMachine* sm = cpGetCurrentScreenMachine();
@@ -132,10 +132,10 @@ void cmDrawSpectralColorWell(NAReaction reaction){
   glDisable(GL_TEXTURE_1D);
   glLineWidth(1);
   glBegin(GL_LINES);
-    for(int i = 0; i <= (int)lineCount; ++i){
-      if(!((lineOffset + i) % 10)){
+    for(int i = 0; i <= (int)lineCount; ++i) {
+      if(!((lineOffset + i) % 10)) {
         glColor4f(1.f, 1.f, 1.f, .45f);
-      }else if(!((lineOffset+i) % 5)){
+      }else if(!((lineOffset+i) % 5)) {
         glColor4f(1.f, 1.f, 1.f, .175f);
       }else{
         glColor4f(1.f, 1.f, 1.f, .075f);
@@ -166,7 +166,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
   glColor4f(1.f, .5f, .5f, 1.f);
   glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_STRIP);
-    for(int32 iStep = 0; iStep <= intervals; iStep++){
+    for(int32 iStep = 0; iStep <= intervals; iStep++) {
       float lambda = CML_DEFAULT_INTEGRATION_MIN + (((CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * iStep) / intervals);
       float y = cmlEval(specDistFuncs[0], lambda);
       glVertex2f(lambda, viewOffset + y * viewRange);
@@ -175,7 +175,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
 
   glColor4f(.5f, 1.f, .5f, 1.f);
   glBegin(GL_LINE_STRIP);
-    for(int32 iStep = 0; iStep <= intervals; iStep++){
+    for(int32 iStep = 0; iStep <= intervals; iStep++) {
       float lambda = CML_DEFAULT_INTEGRATION_MIN + (((CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * iStep) / intervals);
       float y = cmlEval(specDistFuncs[1], lambda);
       glVertex2f(lambda, viewOffset + y * viewRange);
@@ -184,7 +184,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
 
   glColor4f(.5f, .5f, 1.f, 1.f);
   glBegin(GL_LINE_STRIP);
-    for(int32 iStep = 0; iStep <= intervals; iStep++){
+    for(int32 iStep = 0; iStep <= intervals; iStep++) {
       float lambda = CML_DEFAULT_INTEGRATION_MIN + (((CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * iStep) / intervals);
       float y = cmlEval(specDistFuncs[2], lambda);
       glVertex2f(lambda, viewOffset + y * viewRange);
@@ -194,11 +194,11 @@ void cmDrawSpectralColorWell(NAReaction reaction){
   // Draw the illumination
   CMLIntegration integration = cmlMakeDefaultIntegration();
   const CMLFunction* illuminationSpectrum = cmlGetIlluminationSpectrum(cm);
-  if(illuminationSpectrum){
+  if(illuminationSpectrum) {
     float illuminationMax = cmlGetFunctionMaxValue(illuminationSpectrum, &integration);
     glColor4f(1.f, 1.f, 1.f, 1.f);
     glBegin(GL_LINE_STRIP);
-      for(int32 iStep = 0; iStep <= intervals; iStep++){
+      for(int32 iStep = 0; iStep <= intervals; iStep++) {
         float lambda = CML_DEFAULT_INTEGRATION_MIN + (((CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * iStep) / intervals);
         float y = cmlEval(illuminationSpectrum, lambda);
         glVertex2f(lambda, viewOffset + y / illuminationMax * viewRange);
@@ -207,17 +207,17 @@ void cmDrawSpectralColorWell(NAReaction reaction){
   }
 
   // Draw the color
-  if(cpGetColorControllerColorType(well->colorController) == CML_COLOR_SPECTRUM_ILLUMINATION){
+  if(cpGetColorControllerColorType(well->colorController) == CML_COLOR_SPECTRUM_ILLUMINATION) {
     const CMLFunction* colorSpectrum = (const CMLFunction*)cpGetColorControllerColorData(well->colorController);
-    if(colorSpectrum){
+    if(colorSpectrum) {
       float colorMax = cmlGetFunctionMaxValue(colorSpectrum, &integration);
       glColor4f(1.f, 1.f, .5f, 1.f);
       CMLDefinitionRange colorDefRange;
       cmlGetFunctionDefinitionRange(colorSpectrum, &colorDefRange);
       // In case this is a continuous function, set the stepSize to the default.
-      if(colorDefRange.stepSize == 0.f){colorDefRange.stepSize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
+      if(colorDefRange.stepSize == 0.f) {colorDefRange.stepSize = CML_DEFAULT_INTEGRATION_STEPSIZE;}
       size_t sampleCount = cmlGetSampleCount(colorDefRange.minSampleCoord, colorDefRange.maxSampleCoord, colorDefRange.stepSize);
-      if(sampleCount == 1){
+      if(sampleCount == 1) {
         glLineWidth((GLfloat)uiScale);
         glBegin(GL_LINES);
           float lambda = colorDefRange.minSampleCoord;
@@ -228,7 +228,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
       }else{
         glLineWidth((GLfloat)uiScale);
         glBegin(GL_LINE_STRIP);
-          for(int32 iStep = 0; iStep <= intervals; iStep++){
+          for(int32 iStep = 0; iStep <= intervals; iStep++) {
             float lambda = CML_DEFAULT_INTEGRATION_MIN + (((CML_DEFAULT_INTEGRATION_MAX - CML_DEFAULT_INTEGRATION_MIN) * iStep) / intervals);
             float y = cmlEval(colorSpectrum, lambda);
             glVertex2f(lambda, viewOffset + y / colorMax * viewRange);
@@ -246,7 +246,7 @@ void cmDrawSpectralColorWell(NAReaction reaction){
 
 
 
-CPSpectralColorWell* cpAllocSpectralColorWell(CPColorController* colorController){
+CPSpectralColorWell* cpAllocSpectralColorWell(CPColorController* colorController) {
   CPSpectralColorWell* well = naAlloc(CPSpectralColorWell);
   
   well->openGLSpace = naNewOpenGLSpace(naMakeSize(spectralWellSize, colorWell2DSize), cmInitSpectralColorWell, well);
@@ -261,18 +261,18 @@ CPSpectralColorWell* cpAllocSpectralColorWell(CPColorController* colorController
 
 
 
-void cpDeallocSpectralColorWell(CPSpectralColorWell* well){
+void cpDeallocSpectralColorWell(CPSpectralColorWell* well) {
   glDeleteTextures(1, &(well->wellTex));
 }
 
 
 
-NAOpenGLSpace* cpGetSpectralColorWellUIElement(CPSpectralColorWell* well){
+NAOpenGLSpace* cpGetSpectralColorWellUIElement(CPSpectralColorWell* well) {
   return well->openGLSpace;
 }
 
 
 
-void cpUpdateSpectralColorWell(CPSpectralColorWell* well){
+void cpUpdateSpectralColorWell(CPSpectralColorWell* well) {
   naRefreshUIElement(well->openGLSpace, 0.);
 }

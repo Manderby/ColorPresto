@@ -4,7 +4,7 @@
 #include "NAApp/NAApp.h"
 #include "NAVisual/NAColor.h"
 
-void cpDrawBorder(double uiScale){
+void cpDrawBorder(double uiScale) {
   NAColor borderColor;
   naFillColorWithSkinTextColor(&borderColor, naGetCurrentSkin());
   borderColor.alpha = .1f;

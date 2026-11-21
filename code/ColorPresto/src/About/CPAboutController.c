@@ -19,14 +19,14 @@ struct CPAboutController{
 
 
 
-void cp_pressAboutDone(NAReaction reaction){
+void cp_pressAboutDone(NAReaction reaction) {
   CPAboutController* con = (CPAboutController*)reaction.controller;
   naCloseWindow(con->window);
 }
 
 
 
-CPAboutController* cpAllocAboutController(void){
+CPAboutController* cpAllocAboutController(void) {
   CPAboutController* con = naAlloc(CPAboutController);
 
   NAString* bundleApplicationName = naNewApplicationName();
@@ -51,8 +51,12 @@ CPAboutController* cpAllocAboutController(void){
   NAImageSet* iconImageSet = naCreateImageSet(iconImage, iconSize, NA_BLEND_ZERO);
   naRelease(iconImage);
   naDelete(iconUrl);
-  con->iconSpace = naNewImageSpace(iconImageSet, naMakeSize(128, 128));
-  naAddSpaceChild(space, con->iconSpace, naMakePos(106., 170.));
+  con->iconSpace = naNewImageSpace(iconImageSet, naMakeSize(1, 1));
+  naAddSpaceChildWithSize(
+    space,
+    con->iconSpace,
+    naMakePos(106., 170.),
+    naMakeSize(128, 128));
   naRelease(iconImageSet);
 
   con->appNameLabel = naNewLabel(naGetStringUTF8Pointer(bundleApplicationName), 300);
@@ -61,7 +65,11 @@ CPAboutController* cpAllocAboutController(void){
   naSetLabelTextAlignment(con->appNameLabel, NA_ALIGNMENT_CENTER);
   naSetLabelHeight(con->appNameLabel, 24);
   naRelease(titleFont);
-  naAddSpaceChild(space, con->appNameLabel, naMakePos(20., 136.));
+  naAddSpaceChildWithSize(
+    space,
+    con->appNameLabel,
+    naMakePos(20., 136.),
+    naMakeInlineSize(300.));
 
   NAString* bundleVersionString = naNewApplicationVersionString();
   NAString* bundleBuildString = naNewApplicationBuildString();
@@ -72,16 +80,28 @@ CPAboutController* cpAllocAboutController(void){
   naDelete(bundleVersionString);
   naDelete(bundleBuildString);
   naSetLabelTextAlignment(con->appVersionLabel, NA_ALIGNMENT_CENTER);
-  naAddSpaceChild(space, con->appVersionLabel, naMakePos(20., 110.));
+  naAddSpaceChildWithSize(
+    space,
+    con->appVersionLabel,
+    naMakePos(20., 110.),
+    naMakeInlineSize(300.));
 
   con->helpLinkLabel = naNewLabel(cpTranslate(CPOnlineHelp), 300);
   naSetLabelTextAlignment(con->helpLinkLabel, NA_ALIGNMENT_CENTER);
   naSetLabelLink(con->helpLinkLabel, cpTranslate(CPApplicationHelpURL));
-  naAddSpaceChild(space, con->helpLinkLabel, naMakePos(20., 54.));
+  naAddSpaceChildWithSize(
+    space,
+    con->helpLinkLabel,
+    naMakePos(20., 54.),
+    naMakeInlineSize(300.));
 
   con->doneButton = naNewTextPushButton(cpTranslate(CPDone), 80);
   naAddUIReaction(con->doneButton, NA_UI_COMMAND_PRESSED, cp_pressAboutDone, con);
-  naAddSpaceChild(space, con->doneButton, naMakePos(130., 20.));
+  naAddSpaceChildWithSize(
+    space,
+    con->doneButton,
+    naMakePos(130., 20.),
+    naMakeInlineSize(80.));
 
   naSetButtonSubmit(con->doneButton, cp_pressAboutDone, con);
   naSetButtonAbort(con->doneButton, cp_pressAboutDone, con);
@@ -93,13 +113,13 @@ CPAboutController* cpAllocAboutController(void){
 
 
 
-void cpDeallocAboutController(CPAboutController* con){
+void cpDeallocAboutController(CPAboutController* con) {
   naFree(con);
 }
 
 
 
-void cpShowAboutController(CPAboutController* con){
+void cpShowAboutController(CPAboutController* con) {
   naShowWindow(con->window);
 }
 

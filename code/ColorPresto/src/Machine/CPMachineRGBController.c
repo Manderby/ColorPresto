@@ -57,7 +57,7 @@ struct CPMachineRGBController{
 
 
 
-void cp_SelectRGBColorSpace(NAReaction reaction){
+void cp_SelectRGBColorSpace(NAReaction reaction) {
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -70,33 +70,33 @@ void cp_SelectRGBColorSpace(NAReaction reaction){
 
 
 
-void cpSetRGBYxy(NAReaction reaction){
+void cpSetRGBYxy(NAReaction reaction) {
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLVec3 primaries[3];
   cmlGetRGBPrimariesYxy(cm, primaries);
 
-  if(reaction.uiElement == con->setPrimaryRButton){
+  if(reaction.uiElement == con->setPrimaryRButton) {
     CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cpGetCurrentColorType());
     converter(cm, primaries[0], cpGetCurrentColorData(), 1);
-  }else if(reaction.uiElement == con->redPointxTextField){
+  }else if(reaction.uiElement == con->redPointxTextField) {
     primaries[0][1] = (float)naGetTextFieldDouble(con->redPointxTextField);
-  }else if(reaction.uiElement == con->redPointyTextField){
+  }else if(reaction.uiElement == con->redPointyTextField) {
     primaries[0][2] = (float)naGetTextFieldDouble(con->redPointyTextField);
-  }else if(reaction.uiElement == con->setPrimaryGButton){
+  }else if(reaction.uiElement == con->setPrimaryGButton) {
     CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cpGetCurrentColorType());
     converter(cm, primaries[1], cpGetCurrentColorData(), 1);
-  }else if(reaction.uiElement == con->greenPointxTextField){
+  }else if(reaction.uiElement == con->greenPointxTextField) {
     primaries[1][1] = (float)naGetTextFieldDouble(con->greenPointxTextField);
-  }else if(reaction.uiElement == con->greenPointyTextField){
+  }else if(reaction.uiElement == con->greenPointyTextField) {
     primaries[1][2] = (float)naGetTextFieldDouble(con->greenPointyTextField);
-  }else if(reaction.uiElement == con->setPrimaryBButton){
+  }else if(reaction.uiElement == con->setPrimaryBButton) {
     CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cpGetCurrentColorType());
     converter(cm, primaries[2], cpGetCurrentColorData(), 1);
-  }else if(reaction.uiElement == con->bluePointxTextField){
+  }else if(reaction.uiElement == con->bluePointxTextField) {
     primaries[2][1] = (float)naGetTextFieldDouble(con->bluePointxTextField);
-  }else if(reaction.uiElement == con->bluePointyTextField){
+  }else if(reaction.uiElement == con->bluePointyTextField) {
     primaries[2][2] = (float)naGetTextFieldDouble(con->bluePointyTextField);
   }
   cmlSetRGBPrimariesYxy(cm, primaries);
@@ -106,19 +106,19 @@ void cpSetRGBYxy(NAReaction reaction){
 
 
 
-void cp_SelectRGBChannel(NAReaction reaction){
+void cp_SelectRGBChannel(NAReaction reaction) {
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t newSelectedChannel = naGetSelectItemIndex(con->rgbResponseChannelsSelect, reaction.uiElement);
 
-  if(con->lastSelectedChannel > 0 && newSelectedChannel == 0){
+  if(con->lastSelectedChannel > 0 && newSelectedChannel == 0) {
     GammaLinearInputParameters params[3];
     cmlGetCustomGammaLinearParametersRGB(cm, params);
     size_t prevIndex = 0;
     
     CMLResponseCurve* newResponse = cmlAllocResponseCurve();
-    switch(con->lastSelectedChannel){
+    switch(con->lastSelectedChannel) {
     case 0:
       cmlInitResponseCurveWithCopy(newResponse, cmlGetResponseR(cm));
       prevIndex = 0;
@@ -149,7 +149,7 @@ void cp_SelectRGBChannel(NAReaction reaction){
 
 
 
-void cp_SelectRGBResponse(NAReaction reaction){
+void cp_SelectRGBResponse(NAReaction reaction) {
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -158,17 +158,17 @@ void cp_SelectRGBResponse(NAReaction reaction){
   CMLResponseCurveType rgbResponse = (CMLResponseCurveType)(index + 1);
 
   CMLResponseCurve* newResponse = cmlAllocResponseCurve();
-  if(rgbResponse == CML_RESPONSE_CUSTOM_GAMMA){
+  if(rgbResponse == CML_RESPONSE_CUSTOM_GAMMA) {
     const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
     cmlInitResponseCurveWithCustomGamma(newResponse, inputParams->gamma);
-  }else if(rgbResponse == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+  }else if(rgbResponse == CML_RESPONSE_CUSTOM_GAMMA_LINEAR) {
     const GammaLinearInputParameters* inputParams = cmlGetCustomGammaLinearParametersR(cm);
     cmlInitResponseCurveWithCustomGammaLinear(newResponse, inputParams->gamma, inputParams->offset, inputParams->linScale, inputParams->split);
   }else{
     cmlInitResponseCurveWithType(newResponse, rgbResponse);
   }
 
-  switch(con->lastSelectedChannel){
+  switch(con->lastSelectedChannel) {
   case 0: cmlSetResponseRGB(cm, newResponse); break;
   case 1: cmlSetResponseR(cm, newResponse); break;
   case 2: cmlSetResponseG(cm, newResponse); break;
@@ -183,37 +183,37 @@ void cp_SelectRGBResponse(NAReaction reaction){
 
 
 
-void cpSetResponseValue(NAReaction reaction){
+void cpSetResponseValue(NAReaction reaction) {
   CPMachineRGBController* con = (CPMachineRGBController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t colorIndex = con->lastSelectedChannel;
-  if(colorIndex > 0){ colorIndex--; }
+  if(colorIndex > 0) { colorIndex--; }
 
   CMLResponseCurveType rgbResponseTypes[3];
   cmlGetRGBResponseTypes(cm, rgbResponseTypes);
 
   GammaLinearInputParameters params[3];
   cmlGetCustomGammaLinearParametersRGB(cm, params);
-  if(reaction.uiElement == con->responseLinearTextField){
+  if(reaction.uiElement == con->responseLinearTextField) {
     params[colorIndex].linScale = (float)naGetTextFieldDouble(con->responseLinearTextField);
-  }else if(reaction.uiElement == con->responseLinearSlider){
+  }else if(reaction.uiElement == con->responseLinearSlider) {
     params[colorIndex].linScale = (float)naGetSliderValue(con->responseLinearSlider);
-  }else if(reaction.uiElement == con->responseSplitTextField){
+  }else if(reaction.uiElement == con->responseSplitTextField) {
     params[colorIndex].split = (float)naGetTextFieldDouble(con->responseSplitTextField);
-  }else if(reaction.uiElement == con->responseSplitSlider){
+  }else if(reaction.uiElement == con->responseSplitSlider) {
     params[colorIndex].split = (float)naGetSliderValue(con->responseSplitSlider);
-  }else if(reaction.uiElement == con->responseGammaTextField){
+  }else if(reaction.uiElement == con->responseGammaTextField) {
     params[colorIndex].gamma = (float)naGetTextFieldDouble(con->responseGammaTextField);
-  }else if(reaction.uiElement == con->responseGammaSlider){
+  }else if(reaction.uiElement == con->responseGammaSlider) {
     params[colorIndex].gamma = (float)naGetSliderValue(con->responseGammaSlider);
-  }else if(reaction.uiElement == con->responseOffsetTextField){
+  }else if(reaction.uiElement == con->responseOffsetTextField) {
     params[colorIndex].offset = (float)naGetTextFieldDouble(con->responseOffsetTextField);
-  }else if(reaction.uiElement == con->responseOffsetSlider){
+  }else if(reaction.uiElement == con->responseOffsetSlider) {
     params[colorIndex].offset = (float)naGetSliderValue(con->responseOffsetSlider);
   }
 
-  if(con->lastSelectedChannel == 0){
+  if(con->lastSelectedChannel == 0) {
     params[1] = params[0];
     params[2] = params[0];
   }
@@ -223,7 +223,7 @@ void cpSetResponseValue(NAReaction reaction){
   CMLResponseCurve* newResponseR = cmlAllocResponseCurve();
   CMLResponseCurve* newResponseG = cmlAllocResponseCurve();
   CMLResponseCurve* newResponseB = cmlAllocResponseCurve();
-  if(rgbResponseTypes[0] == CML_RESPONSE_CUSTOM_GAMMA_LINEAR){
+  if(rgbResponseTypes[0] == CML_RESPONSE_CUSTOM_GAMMA_LINEAR) {
     cmlInitResponseCurveWithCustomGammaLinear(newResponseR, params[0].gamma, params[0].offset, params[0].linScale, params[0].split);
     cmlInitResponseCurveWithCustomGammaLinear(newResponseG, params[1].gamma, params[1].offset, params[1].linScale, params[1].split);
     cmlInitResponseCurveWithCustomGammaLinear(newResponseB, params[2].gamma, params[2].offset, params[2].linScale, params[2].split);
@@ -247,7 +247,7 @@ void cpSetResponseValue(NAReaction reaction){
 
 
 
-CPMachineRGBController* cpAllocMachineRGBController(void){
+CPMachineRGBController* cpAllocMachineRGBController(void) {
   CPMachineRGBController* con = naAlloc(CPMachineRGBController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -259,7 +259,7 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
 //  naSetLabelFont(con->rgbColorSpaceLabel, klingonFont);
   
   con->rgbColorSpaceSelect = naNewSelect(200);
-  for(size_t i = 0; i < CML_RGB_COUNT; ++i){
+  for(size_t i = 0; i < CML_RGB_COUNT; ++i) {
     CMLRGBColorSpaceType rgbColorSpaceType = (CMLRGBColorSpaceType)i;
     NAMenuItem* item = naNewMenuItem(cmlGetRGBColorSpaceTypeString(rgbColorSpaceType), NA_NULL);
     naAddSelectMenuItem(con->rgbColorSpaceSelect, item, NA_NULL);
@@ -307,9 +307,9 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
   naAddUIReaction(bMenuItem, NA_UI_COMMAND_PRESSED, cp_SelectRGBChannel, con);
 
   con->rgbResponseSelect = naNewSelect(100);
-  for(size_t i = 0; i < CML_RESPONSE_COUNT; ++i){
+  for(size_t i = 0; i < CML_RESPONSE_COUNT; ++i) {
     CMLResponseCurveType responseCurveType = (CMLResponseCurveType)i;
-    if(responseCurveType == CML_RESPONSE_UNDEFINED){continue;}
+    if(responseCurveType == CML_RESPONSE_UNDEFINED) {continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetRGBResponseTypeString(responseCurveType), NA_NULL);
     naAddSelectMenuItem(con->rgbResponseSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectRGBResponse, con);
@@ -380,10 +380,11 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
   cpAddUICol(con->responseOffsetSlider, marginH);
   cpEndUILayout();
 
-  naAddSpaceChild(
+  naAddSpaceChildWithSize(
     con->space,
     cpGetGammaDisplayControllerUIElement(con->gammaDisplayController),
-    naMakePos(340, 37));
+    naMakePos(340, 37),
+    naMakeUnchangedSize());
 
   // Initialization
 
@@ -394,20 +395,20 @@ CPMachineRGBController* cpAllocMachineRGBController(void){
 
 
 
-void cpDeallocMachineRGBController(CPMachineRGBController* con){
+void cpDeallocMachineRGBController(CPMachineRGBController* con) {
   cpDeallocGammaDisplayController(con->gammaDisplayController);
   naFree(con);
 }
 
 
 
-NASpace* cpGetMachineRGBControllerUIElement(CPMachineRGBController* con){
+NASpace* cpGetMachineRGBControllerUIElement(CPMachineRGBController* con) {
   return con->space;
 }
 
 
 
-void cpUpdateMachineRGBController(CPMachineRGBController* con){
+void cpUpdateMachineRGBController(CPMachineRGBController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   
   CMLRGBColorSpaceType rgbColorSpaceType = cmlGetRGBColorSpaceType(cm);
@@ -456,7 +457,7 @@ void cpUpdateMachineRGBController(CPMachineRGBController* con){
   naSetSelectEnabled(con->rgbResponseChannelsSelect, isCustomRGB);
   
   size_t colorIndex = con->lastSelectedChannel;
-  if(colorIndex > 0){ colorIndex--; }
+  if(colorIndex > 0) { colorIndex--; }
 
   CMLResponseCurveType rgbResponseTypes[3];
   cmlGetRGBResponseTypes(cm, rgbResponseTypes);
@@ -474,7 +475,7 @@ void cpUpdateMachineRGBController(CPMachineRGBController* con){
   float linScale = -1.;
   float split = -1.;
 
-  switch(rgbResponseTypes[colorIndex]){
+  switch(rgbResponseTypes[colorIndex]) {
   case CML_RESPONSE_LINEAR:
     gamma = 1.0f;
     break;

@@ -26,10 +26,10 @@ struct CPGrayColorController{
 
 
 
-void cp_GrayValueEdited(NAReaction reaction){
+void cp_GrayValueEdited(NAReaction reaction) {
   CPGrayColorController* con = (CPGrayColorController*)reaction.controller;
   
-  if(reaction.uiElement == con->textFieldGray){
+  if(reaction.uiElement == con->textFieldGray) {
     con->grayColor = (float)naGetTextFieldDouble(con->textFieldGray);
   }
   
@@ -39,7 +39,7 @@ void cp_GrayValueEdited(NAReaction reaction){
 
 
 
-CPGrayColorController* cpAllocGrayColorController(void){
+CPGrayColorController* cpAllocGrayColorController(void) {
   CPGrayColorController* con = naAlloc(CPGrayColorController);
   
   cpInitColorController(&(con->baseController), CML_COLOR_Gray);
@@ -71,7 +71,7 @@ CPGrayColorController* cpAllocGrayColorController(void){
 
 
 
-void cpDeallocGrayColorController(CPGrayColorController* con){
+void cpDeallocGrayColorController(CPGrayColorController* con) {
   cpDeallocGrayColorWell(con->display);
   cpDeallocColorWell1D(con->colorWell1DGray);
   cpClearColorController(&(con->baseController));
@@ -80,13 +80,13 @@ void cpDeallocGrayColorController(CPGrayColorController* con){
 
 
 
-const void* cpGetGrayColorControllerColorData(const CPGrayColorController* con){
+const void* cpGetGrayColorControllerColorData(const CPGrayColorController* con) {
   return &(con->grayColor);
 }
 
 
 
-void cpSetGrayColorControllerColorData(CPGrayColorController* con, const void* data){
+void cpSetGrayColorControllerColorData(CPGrayColorController* con, const void* data) {
   con->grayColor = *(const float*)data;
 }
 
@@ -105,7 +105,7 @@ void cpComputeGrayColorController(CPGrayColorController* con) {
 
 
 
-void cpUpdateGrayColorController(CPGrayColorController* con){
+void cpUpdateGrayColorController(CPGrayColorController* con) {
   naSetTextFieldText(
     con->textFieldGray,
     naAllocSprintf(NA_TRUE, "%1.05f", con->grayColor));

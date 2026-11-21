@@ -252,7 +252,7 @@ CPUVMetamericColors cp_ComputeUVMetamericColors(
   const float* UVExcitationData[3] = {UVExcitation1Data, UVExcitation2Data, UVExcitation3Data};
 
   const float* UVMetamerData[3];
-  switch(referenceIlluminationType){
+  switch(referenceIlluminationType) {
   case REFERENCE_ILLUMINATION_D50:
     UVMetamerData[0] = UVMetamer1D50Data;
     UVMetamerData[1] = UVMetamer2D50Data;
@@ -283,7 +283,7 @@ CPUVMetamericColors cp_ComputeUVMetamericColors(
   float uvStandardXYZ[3 * 3];
   float uvMetamerXYZ[3 * 3];
 
-  for(int i = 0; i < 3; ++i){
+  for(int i = 0; i < 3; ++i) {
     CMLArrayFunctionInput inputUVStandard = {
       UVStandardData[i],
       NA_FALSE,
@@ -321,7 +321,7 @@ CPUVMetamericColors cp_ComputeUVMetamericColors(
     CMLVec3 UVStandardLab;
     CMLVec3 UVMetamerLab;
 
-    if(illuminationSpec){
+    if(illuminationSpec) {
       // To correspond with the ISO standard, the excitationN factor must be
       // displayed with (100.f * excitationN * 5.f / illXYZunnorm10[1])
       // The strange factor 5 needs to be here because in the ISO norm, the
@@ -421,7 +421,7 @@ CPUVMetamericColors cp_ComputeUVMetamericColors(
 
 
 
-CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void){
+CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void) {
   CPUVMetamericIndexController* con = naAlloc(CPUVMetamericIndexController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -477,19 +477,19 @@ CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void){
 
 
 
-void cpDeallocUVMetamericIndexController(CPUVMetamericIndexController* con){
+void cpDeallocUVMetamericIndexController(CPUVMetamericIndexController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetUVMetamericIndexUIElement(CPUVMetamericIndexController* con){
+NASpace* cpGetUVMetamericIndexUIElement(CPUVMetamericIndexController* con) {
   return con->space;
 }
 
 
 
-float cpGetUVMetamericIndexAverage(CPUVMetamericIndexController* con){
+float cpGetUVMetamericIndexAverage(CPUVMetamericIndexController* con) {
   return con->uvMetamericColors.avg3;
 }
 
@@ -502,7 +502,7 @@ void cpUpdateUVMetamericIndexController(
   CPReferenceIlluminationType referenceIlluminationType,
   NABool valid)
 {
-  if(valid){
+  if(valid) {
     con->uvMetamericColors = cp_ComputeUVMetamericColors(
       observer10Funcs,
       illWhitePoint10,

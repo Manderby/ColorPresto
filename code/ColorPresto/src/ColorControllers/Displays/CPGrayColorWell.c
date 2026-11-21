@@ -21,7 +21,7 @@ struct CPGrayColorWell{
 
 
 
-void cmInitGrayColorWell(void* data){
+void cmInitGrayColorWell(void* data) {
   CPGrayColorWell* well = (CPGrayColorWell*)data;
   well->fontId = naStartupPixelFont();
   glEnable(GL_BLEND);
@@ -30,7 +30,7 @@ void cmInitGrayColorWell(void* data){
 
 
 
-void cmDrawGrayColorWell(NAReaction reaction){
+void cmDrawGrayColorWell(NAReaction reaction) {
   CPGrayColorWell* well = (CPGrayColorWell*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
@@ -124,7 +124,7 @@ void cmDrawGrayColorWell(NAReaction reaction){
 
 
 
-CPGrayColorWell* cpAllocGrayColorWell(CPColorController* colorController){
+CPGrayColorWell* cpAllocGrayColorWell(CPColorController* colorController) {
   CPGrayColorWell* well = naAlloc(CPGrayColorWell);
   
   well->display = naNewOpenGLSpace(naMakeSize(colorWell2DSize, colorWell2DSize), cmInitGrayColorWell, well);
@@ -137,18 +137,18 @@ CPGrayColorWell* cpAllocGrayColorWell(CPColorController* colorController){
 
 
 
-void cpDeallocGrayColorWell(CPGrayColorWell* well){
+void cpDeallocGrayColorWell(CPGrayColorWell* well) {
   naShutdownPixelFont(well->fontId);
 }
 
 
 
-NAOpenGLSpace* cpGetGrayColorWellUIElement(CPGrayColorWell* well){
+NAOpenGLSpace* cpGetGrayColorWellUIElement(CPGrayColorWell* well) {
   return well->display;
 }
 
 
 
-void cpUpdateGrayColorWell(CPGrayColorWell* well){
+void cpUpdateGrayColorWell(CPGrayColorWell* well) {
   naRefreshUIElement(well->display, 0.);
 }

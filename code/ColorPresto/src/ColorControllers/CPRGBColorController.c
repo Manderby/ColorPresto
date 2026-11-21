@@ -42,28 +42,28 @@ struct CPRGBColorController{
 
 
 
-void cp_RGBValueEdited(NAReaction reaction){
+void cp_RGBValueEdited(NAReaction reaction) {
   CPRGBColorController* con = (CPRGBColorController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
-  if(reaction.uiElement == con->textFieldR){
+  if(reaction.uiElement == con->textFieldR) {
     con->rgbColor[0] = (float)naGetTextFieldDouble(con->textFieldR);
-  }else if(reaction.uiElement == con->textFieldG){
+  }else if(reaction.uiElement == con->textFieldG) {
     con->rgbColor[1] = (float)naGetTextFieldDouble(con->textFieldG);
-  }else if(reaction.uiElement == con->textFieldB){
+  }else if(reaction.uiElement == con->textFieldB) {
     con->rgbColor[2] = (float)naGetTextFieldDouble(con->textFieldB);
-  }else if(reaction.uiElement == con->textFieldHex){
+  }else if(reaction.uiElement == con->textFieldHex) {
     NAString* string = naNewStringWithTextFieldText(con->textFieldHex);
     int rgbbuf[3] = {0, 0, 0};
     cpsscanf(naGetStringUTF8Pointer(string), "%02x%02x%02x", &(rgbbuf[0]), &(rgbbuf[1]), &(rgbbuf[2]));
     uint8 rgbbuf2[3] = {rgbbuf[0], rgbbuf[1], rgbbuf[2]};
     cmlData8ToRGB(cm, con->rgbColor, rgbbuf2, 1);
     naDelete(string);
-  }else if(reaction.uiElement == con->textFieldDec){
+  }else if(reaction.uiElement == con->textFieldDec) {
     NAString* string = naNewStringWithTextFieldText(con->textFieldDec);
     int rgbbuf[3] = {0, 0, 0};
     int assigned = cpsscanf(naGetStringUTF8Pointer(string), "%d, %d, %d", &(rgbbuf[0]), &(rgbbuf[1]), &(rgbbuf[2]));
-    if(assigned < 3){
+    if(assigned < 3) {
       cpsscanf(naGetStringUTF8Pointer(string), "%d %d %d", &(rgbbuf[0]), &(rgbbuf[1]), &(rgbbuf[2]));
     }
     uint8 rgbbuf2[3] = {rgbbuf[0], rgbbuf[1], rgbbuf[2]};
@@ -76,7 +76,7 @@ void cp_RGBValueEdited(NAReaction reaction){
 }
 
 
-CPRGBColorController* cpAllocRGBColorController(void){
+CPRGBColorController* cpAllocRGBColorController(void) {
   CPRGBColorController* con = naAlloc(CPRGBColorController);
   
   cpInitColorController(&(con->baseController), CML_COLOR_RGB);
@@ -132,7 +132,7 @@ CPRGBColorController* cpAllocRGBColorController(void){
 
 
 
-void cpDeallocRGBColorController(CPRGBColorController* con){
+void cpDeallocRGBColorController(CPRGBColorController* con) {
   cpDeallocColorWell2D(con->colorWell2D);
   cpDeallocColorWell1D(con->colorWell1DR);
   cpDeallocColorWell1D(con->colorWell1DG);
@@ -143,13 +143,13 @@ void cpDeallocRGBColorController(CPRGBColorController* con){
 
 
 
-const void* cpGetRGBColorControllerColorData(const CPRGBColorController* con){
+const void* cpGetRGBColorControllerColorData(const CPRGBColorController* con) {
   return &(con->rgbColor);
 }
 
 
 
-void cpSetRGBColorControllerColorData(CPRGBColorController* con, const void* data){
+void cpSetRGBColorControllerColorData(CPRGBColorController* con, const void* data) {
   cmlCpy3(con->rgbColor, data);
 }
 
@@ -171,7 +171,7 @@ void cpComputeRGBColorController(CPRGBColorController* con) {
 
 
 
-void cpUpdateRGBColorController(CPRGBColorController* con){
+void cpUpdateRGBColorController(CPRGBColorController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   
   cpUpdateColorWell2D(con->colorWell2D);

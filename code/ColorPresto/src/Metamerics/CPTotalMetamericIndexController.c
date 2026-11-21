@@ -19,7 +19,7 @@ struct CPTotalMetamericIndexController{
 
 
 
-CPTotalMetamericIndexController* cpAllocTotalMetamericIndexController(void){
+CPTotalMetamericIndexController* cpAllocTotalMetamericIndexController(void) {
   CPTotalMetamericIndexController* con = naAlloc(CPTotalMetamericIndexController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -48,13 +48,13 @@ CPTotalMetamericIndexController* cpAllocTotalMetamericIndexController(void){
 
 
 
-void cpDeallocTotalMetamericIndexController(CPTotalMetamericIndexController* con){
+void cpDeallocTotalMetamericIndexController(CPTotalMetamericIndexController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetTotalMetamericIndexUIElement(CPTotalMetamericIndexController* con){
+NASpace* cpGetTotalMetamericIndexUIElement(CPTotalMetamericIndexController* con) {
   return con->space;
 }
 
@@ -66,7 +66,7 @@ void cpUpdateTotalMetamericIndexController(
   float avg3,
   NABool valid)
 {
-  if(valid){
+  if(valid) {
     float avg53 = (avg5 * 5.f + avg3 * 3.f) / 8.f;
     naSetLabelText(con->metamericsLabel, naAllocSprintf(NA_TRUE, "%1.04f", avg53));
     naSetLabelText(con->metamericsGradeLabel, naAllocSprintf(NA_TRUE, cpTranslate(CPGrade), getGrade(avg53)));

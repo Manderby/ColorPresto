@@ -14,7 +14,7 @@ struct CPTwoColorController{
 
 
 
-void cp_InitTwoColorDisplay(void* data){
+void cp_InitTwoColorDisplay(void* data) {
   NA_UNUSED(data);
   glShadeModel(GL_FLAT);
   glEnable(GL_BLEND);
@@ -23,7 +23,7 @@ void cp_InitTwoColorDisplay(void* data){
 
 
 
-void cp_RedrawTwoColorController(NAReaction reaction){
+void cp_RedrawTwoColorController(NAReaction reaction) {
   CPTwoColorController* con = (CPTwoColorController*)(reaction.controller);
 
   glBegin(GL_TRIANGLE_STRIP);
@@ -45,7 +45,7 @@ void cp_RedrawTwoColorController(NAReaction reaction){
 
 
 
-CPTwoColorController* cpAllocTwoColorController(){
+CPTwoColorController* cpAllocTwoColorController() {
   CPTwoColorController* con = naAlloc(CPTwoColorController);
 
   con->space = naNewOpenGLSpace(naMakeSize(twoColorWidth, twoColorHeight), cp_InitTwoColorDisplay, con);
@@ -56,19 +56,19 @@ CPTwoColorController* cpAllocTwoColorController(){
 
 
 
-void cpDeallocTwoColorController(CPTwoColorController* con){
+void cpDeallocTwoColorController(CPTwoColorController* con) {
   naFree(con);
 }
 
 
 
-NAOpenGLSpace* cpGetTwoColorControllerUIElement(CPTwoColorController* con){
+NAOpenGLSpace* cpGetTwoColorControllerUIElement(CPTwoColorController* con) {
   return con->space;
 }
 
 
 
-void cpUpdateTwoColorController(CPTwoColorController* con, const float* leftColor, const float* rightColor){
+void cpUpdateTwoColorController(CPTwoColorController* con, const float* leftColor, const float* rightColor) {
   naFillV3fWithCopy(con->leftColor, leftColor);
   naFillV3fWithCopy(con->rightColor, rightColor);
 

@@ -36,18 +36,18 @@ struct CPLuvUVWColorController{
 
 
 
-void cp_LuvUVWSelectionChanged(NAReaction reaction){
+void cp_LuvUVWSelectionChanged(NAReaction reaction) {
   CPLuvUVWColorController* con = (CPLuvUVWColorController*)reaction.controller;
   
   LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
   CMLColorType oldColorType = (luvuvwSelect == Luv) ? CML_COLOR_Luv : CML_COLOR_UVW;
   CMLColorType newColorType = oldColorType;
 
-  if(reaction.uiElement == con->radioLuv){
+  if(reaction.uiElement == con->radioLuv) {
     cpSetPrefsLuvUVWSelect(Luv);
     newColorType = CML_COLOR_Luv;
     cpSetColorWell2DFixedIndex(con->colorWell2D, 0);
-  }else if(reaction.uiElement == con->radioUVW){
+  }else if(reaction.uiElement == con->radioUVW) {
     cpSetPrefsLuvUVWSelect(UVW);
     newColorType = CML_COLOR_UVW;
     cpSetColorWell2DFixedIndex(con->colorWell2D, 2);
@@ -64,14 +64,14 @@ void cp_LuvUVWSelectionChanged(NAReaction reaction){
 
 
 
-void cp_LuvValueEdited(NAReaction reaction){
+void cp_LuvValueEdited(NAReaction reaction) {
   CPLuvUVWColorController* con = (CPLuvUVWColorController*)reaction.controller;
   
-  if(reaction.uiElement == con->textField0){
+  if(reaction.uiElement == con->textField0) {
     con->color[0] = (float)naGetTextFieldDouble(con->textField0);
-  }else if(reaction.uiElement == con->textField1){
+  }else if(reaction.uiElement == con->textField1) {
     con->color[1] = (float)naGetTextFieldDouble(con->textField1);
-  }else if(reaction.uiElement == con->textField2){
+  }else if(reaction.uiElement == con->textField2) {
     con->color[2] = (float)naGetTextFieldDouble(con->textField2);
   }
   
@@ -81,7 +81,7 @@ void cp_LuvValueEdited(NAReaction reaction){
 
 
 
-CPLuvUVWColorController* cpAllocLuvUVWColorController(void){
+CPLuvUVWColorController* cpAllocLuvUVWColorController(void) {
   LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
   CMLColorType colorType = (luvuvwSelect == Luv) ? CML_COLOR_Luv : CML_COLOR_UVW;
   size_t fixedIndex = colorType == CML_COLOR_Luv ? 0 : 2;
@@ -140,7 +140,7 @@ CPLuvUVWColorController* cpAllocLuvUVWColorController(void){
 
 
 
-void cpDeallocLuvUVWColorController(CPLuvUVWColorController* con){
+void cpDeallocLuvUVWColorController(CPLuvUVWColorController* con) {
   cpDeallocColorWell2D(con->colorWell2D);
   cpDeallocColorWell1D(con->colorWell1D0);
   cpDeallocColorWell1D(con->colorWell1D1);
@@ -151,13 +151,13 @@ void cpDeallocLuvUVWColorController(CPLuvUVWColorController* con){
 
 
 
-const void* cpGetLuvUVWColorControllerColorData(const CPLuvUVWColorController* con){
+const void* cpGetLuvUVWColorControllerColorData(const CPLuvUVWColorController* con) {
   return &(con->color);
 }
 
 
 
-void cpSetLuvUVWColorControllerColorData(CPLuvUVWColorController* con, const void* data){
+void cpSetLuvUVWColorControllerColorData(CPLuvUVWColorController* con, const void* data) {
   cmlCpy3(con->color, data);
 }
 
@@ -181,17 +181,17 @@ void cpComputeLuvUVWColorController(CPLuvUVWColorController* con) {
 
 
 
-void cpUpdateLuvUVWColorController(CPLuvUVWColorController* con){
+void cpUpdateLuvUVWColorController(CPLuvUVWColorController* con) {
   LuvUVWSelect luvuvwSelect = cpGetPrefsLuvUVWSelect();
   
   naSetRadioState(con->radioLuv, luvuvwSelect == Luv);
   naSetRadioState(con->radioUVW, luvuvwSelect == UVW);
   
-  if(luvuvwSelect == Luv){
+  if(luvuvwSelect == Luv) {
     naSetLabelText(con->label0, cpTranslate(CPLuvColorChannelL));
     naSetLabelText(con->label1, cpTranslate(CPLuvColorChannelu));
     naSetLabelText(con->label2, cpTranslate(CPLuvColorChannelv));
-  }else if(luvuvwSelect == UVW){
+  }else if(luvuvwSelect == UVW) {
     naSetLabelText(con->label0, cpTranslate(CPUVWColorChannelU));
     naSetLabelText(con->label1, cpTranslate(CPUVWColorChannelV));
     naSetLabelText(con->label2, cpTranslate(CPUVWColorChannelW));

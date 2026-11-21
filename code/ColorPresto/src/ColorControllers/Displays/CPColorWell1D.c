@@ -26,7 +26,7 @@ struct CPColorWell1D{
 
 
 
-void cmInitColorWell1D(void* data){
+void cmInitColorWell1D(void* data) {
   CPColorWell1D* well = (CPColorWell1D*)data;
   glEnable(GL_LINE_SMOOTH);
   glEnable(GL_BLEND);
@@ -41,11 +41,11 @@ void cmInitColorWell1D(void* data){
 
 
 
-void cmDragColorWell1D(NAReaction reaction){
+void cmDragColorWell1D(NAReaction reaction) {
   CPColorWell1D* well = (CPColorWell1D*)reaction.controller;
  
   const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
-  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
+  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)) {
     CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
     CMLNormedConverter outputConverter = cmlGetNormedOutputConverter(colorType);
     CMLNormedConverter inputConverter = cmlGetNormedInputConverter(colorType);
@@ -56,10 +56,10 @@ void cmDragColorWell1D(NAReaction reaction){
 
     NARect displayRect = naGetUIElementRectAbsolute(well->display);
     float mouseX = (float)((naGetMousePos(mouseStatus).x - displayRect.pos.x) / displayRect.size.width);
-    if(mouseX < 0.f){mouseX = 0.f;}
-    if(mouseX > 1.f){mouseX = 1.f;}
+    if(mouseX < 0.f) {mouseX = 0.f;}
+    if(mouseX > 1.f) {mouseX = 1.f;}
 
-    switch(well->variableIndex){
+    switch(well->variableIndex) {
     case 0:
       normedColorValues[0] = mouseX;
       break;
@@ -83,7 +83,7 @@ void cmDragColorWell1D(NAReaction reaction){
 
 
 
-void cmDrawColorWell1D(NAReaction reaction){
+void cmDrawColorWell1D(NAReaction reaction) {
   CPColorWell1D* well = (CPColorWell1D*)reaction.controller;
 
   double uiScale = naGetUIElementUIScale(well->display);
@@ -104,27 +104,27 @@ void cmDrawColorWell1D(NAReaction reaction){
   
   float variableValue = 0.f;
   
-  switch(cmlGetNumChannels(colorType)){
+  switch(cmlGetNumChannels(colorType)) {
   case 1:
-  for(int x = 0; x < colorWell1DSize; ++x){
+  for(int x = 0; x < colorWell1DSize; ++x) {
     variableValue = normedColorValues[0];
   }
   break;
 
   case 3:
-  switch(well->variableIndex){
+  switch(well->variableIndex) {
   case 0:
-    for(int x = 0; x < colorWell1DSize; ++x){
+    for(int x = 0; x < colorWell1DSize; ++x) {
       variableValue = normedColorValues[0];
     }
     break;
     case 1:
-    for(int x = 0; x < colorWell1DSize; ++x){
+    for(int x = 0; x < colorWell1DSize; ++x) {
       variableValue = normedColorValues[1];
     }
     break;
     case 2:
-    for(int x = 0; x < colorWell1DSize; ++x){
+    for(int x = 0; x < colorWell1DSize; ++x) {
       variableValue = normedColorValues[2];
     }
     break;
@@ -158,7 +158,7 @@ void cmDrawColorWell1D(NAReaction reaction){
   glColor4f(1., 1., 1., 1.);
   glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_LOOP);
-    for(int i = 0; i < subdivisions; ++i){
+    for(int i = 0; i < subdivisions; ++i) {
       float ang = NA_PI2f * (float)i / (float)subdivisions;
       glVertex2d(variableValue * 2. - 1. + whiteR * naCos(ang), whiteR * naSin(ang) * yDivisor);
     }
@@ -167,7 +167,7 @@ void cmDrawColorWell1D(NAReaction reaction){
   glColor4f(0., 0., 0., 1.);
   glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_LOOP);
-    for(int i = 0; i < subdivisions; ++i){
+    for(int i = 0; i < subdivisions; ++i) {
       float ang = NA_PI2f * (float)i / (float)subdivisions;
       glVertex2d(variableValue * 2. - 1. + blackR * naCos(ang), blackR * naSin(ang) * yDivisor);
     }
@@ -180,7 +180,7 @@ void cmDrawColorWell1D(NAReaction reaction){
 
 
 
-CPColorWell1D* cpAllocColorWell1D(CPColorController* colorController, const float* colorData, size_t variableIndex){
+CPColorWell1D* cpAllocColorWell1D(CPColorController* colorController, const float* colorData, size_t variableIndex) {
   CPColorWell1D* well = naAlloc(CPColorWell1D);
   
   well->display = naNewOpenGLSpace(naMakeSize(colorWell1DSize, colorWell1DHeight), cmInitColorWell1D, well);
@@ -200,7 +200,7 @@ CPColorWell1D* cpAllocColorWell1D(CPColorController* colorController, const floa
 
 
 
-void cpDeallocColorWell1D(CPColorWell1D* well){
+void cpDeallocColorWell1D(CPColorWell1D* well) {
   naFree(well->inputValues);
   naFree(well->rgbValues);
   glDeleteTextures(1, &(well->wellTex));
@@ -208,13 +208,13 @@ void cpDeallocColorWell1D(CPColorWell1D* well){
 
 
 
-NAOpenGLSpace* cpGetColorWell1DUIElement(CPColorWell1D* well){
+NAOpenGLSpace* cpGetColorWell1DUIElement(CPColorWell1D* well) {
   return well->display;
 }
 
 
 
-void cpComputeColorWell1D(CPColorWell1D* well){
+void cpComputeColorWell1D(CPColorWell1D* well) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   CMLColorMachine* sm = cpGetCurrentScreenMachine();
   CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
@@ -225,18 +225,18 @@ void cpComputeColorWell1D(CPColorWell1D* well){
   CMLVec3 normedColorValues = {0.f, 0.f, 0.f};
   outputConverter(normedColorValues, well->colorData, 1);
 
-  switch(cmlGetNumChannels(colorType)){
+  switch(cmlGetNumChannels(colorType)) {
   case 1:
-    for(int x = 0; x < colorWell1DSize; ++x){
+    for(int x = 0; x < colorWell1DSize; ++x) {
       float xValue = (float)x / (float)colorWell1DSize;
       *inputPtr++ = xValue;
     }
     break;
 
   case 3:
-    switch(well->variableIndex){
+    switch(well->variableIndex) {
     case 0:
-      for(int x = 0; x < colorWell1DSize; ++x){
+      for(int x = 0; x < colorWell1DSize; ++x) {
         float xValue = (float)x / (float)colorWell1DSize;
         *inputPtr++ = xValue;
         *inputPtr++ = normedColorValues[1];
@@ -244,7 +244,7 @@ void cpComputeColorWell1D(CPColorWell1D* well){
       }
       break;
     case 1:
-      for(int x = 0; x < colorWell1DSize; ++x){
+      for(int x = 0; x < colorWell1DSize; ++x) {
         float xValue = (float)x / (float)colorWell1DSize;
         *inputPtr++ = normedColorValues[0];
         *inputPtr++ = xValue;
@@ -252,7 +252,7 @@ void cpComputeColorWell1D(CPColorWell1D* well){
       }
       break;
     case 2:
-      for(int x = 0; x < colorWell1DSize; ++x){
+      for(int x = 0; x < colorWell1DSize; ++x) {
         float xValue = (float)x / (float)colorWell1DSize;
         *inputPtr++ = normedColorValues[0];
         *inputPtr++ = normedColorValues[1];
@@ -276,6 +276,6 @@ void cpComputeColorWell1D(CPColorWell1D* well){
 
 
 
-void cpUpdateColorWell1D(CPColorWell1D* well){
+void cpUpdateColorWell1D(CPColorWell1D* well) {
   naRefreshUIElement(well->display, 0.);
 }

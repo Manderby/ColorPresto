@@ -16,7 +16,7 @@ struct CPGammaDisplayController{
 
 
 
-void cmInitGammaDisplayController(void* data){
+void cmInitGammaDisplayController(void* data) {
   glEnable(GL_LINE_SMOOTH);
   glEnable(GL_BLEND);
   glEnable(GL_DEPTH_TEST);
@@ -25,7 +25,7 @@ void cmInitGammaDisplayController(void* data){
 
 
 
-void cmDrawGammaDisplayController(NAReaction reaction){
+void cmDrawGammaDisplayController(NAReaction reaction) {
   CPGammaDisplayController* con = (CPGammaDisplayController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -54,7 +54,7 @@ void cmDrawGammaDisplayController(NAReaction reaction){
   glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_STRIP);
     glColor3f(1.f, .5f, .5f);
-    for(uint32 x = 0; x < viewSize.width; ++x){
+    for(uint32 x = 0; x < viewSize.width; ++x) {
       float curX = (float)x / (float)viewSize.width;
       float y = cmlEval(responses[0], curX);
       float z = sinf(stripes * (curX * NA_PI2f + (0.f/3.f) * NA_PI2f));
@@ -64,7 +64,7 @@ void cmDrawGammaDisplayController(NAReaction reaction){
   glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_STRIP);
     glColor3f(.5f, 1.f, .5f);
-    for(uint32 x = 0; x < viewSize.width; ++x){
+    for(uint32 x = 0; x < viewSize.width; ++x) {
       float curX = (float)x / (float)viewSize.width;
       float y = cmlEval(responses[1], curX);
       float z = sinf(stripes * (curX * NA_PI2f + (1.f/3.f) * NA_PI2f));
@@ -74,7 +74,7 @@ void cmDrawGammaDisplayController(NAReaction reaction){
   glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_STRIP);
     glColor3f(.5f, .5f, 1.f);
-    for(uint32 x = 0; x < viewSize.width; ++x){
+    for(uint32 x = 0; x < viewSize.width; ++x) {
       float curX = (float)x / (float)viewSize.width;
       float y = cmlEval(responses[2], curX);
       float z = sinf(stripes * (curX * NA_PI2f + (2.f/3.f) * NA_PI2f));
@@ -90,7 +90,7 @@ void cmDrawGammaDisplayController(NAReaction reaction){
 
 
 
-CPGammaDisplayController* cpAllocGammaDisplayController(){
+CPGammaDisplayController* cpAllocGammaDisplayController() {
   CPGammaDisplayController* con = naAlloc(CPGammaDisplayController);
   
   con->display = naNewOpenGLSpace(naMakeSize(gammaDisplaySize, gammaDisplaySize), cmInitGammaDisplayController, con);
@@ -101,17 +101,17 @@ CPGammaDisplayController* cpAllocGammaDisplayController(){
 
 
 
-void cpDeallocGammaDisplayController(CPGammaDisplayController* con){
+void cpDeallocGammaDisplayController(CPGammaDisplayController* con) {
 }
 
 
 
-NAOpenGLSpace* cpGetGammaDisplayControllerUIElement(CPGammaDisplayController* con){
+NAOpenGLSpace* cpGetGammaDisplayControllerUIElement(CPGammaDisplayController* con) {
   return con->display;
 }
 
 
 
-void cpUpdateGammaDisplayController(CPGammaDisplayController* con){
+void cpUpdateGammaDisplayController(CPGammaDisplayController* con) {
   naRefreshUIElement(con->display, 0.);
 }

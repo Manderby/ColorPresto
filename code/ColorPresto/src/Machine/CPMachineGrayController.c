@@ -19,7 +19,7 @@ struct CPMachineGrayController{
 
 
 
-void cp_SelectGrayColorSpace(NAReaction reaction){
+void cp_SelectGrayColorSpace(NAReaction reaction) {
   CPMachineGrayController* con = (CPMachineGrayController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -32,7 +32,7 @@ void cp_SelectGrayColorSpace(NAReaction reaction){
 
 
 
-CPMachineGrayController* cpAllocMachineGrayController(void){
+CPMachineGrayController* cpAllocMachineGrayController(void) {
   CPMachineGrayController* con = naAlloc(CPMachineGrayController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -40,7 +40,7 @@ CPMachineGrayController* cpAllocMachineGrayController(void){
 
   con->grayColorSpaceLabel = naNewLabel(cpTranslate(CPGrayColorSpace), machineLabelWidth);
   con->grayColorSpaceSelect = naNewSelect(200);
-  for(size_t i = 0; i < CML_GRAY_COUNT; ++i){
+  for(size_t i = 0; i < CML_GRAY_COUNT; ++i) {
     CMLGrayComputationType grayComputationType = (CMLGrayComputationType)i;
     NAMenuItem* item = naNewMenuItem(cmlGetGrayComputationTypeString(grayComputationType), NA_NULL);
     naAddSelectMenuItem(con->grayColorSpaceSelect, item, NA_NULL);
@@ -58,19 +58,19 @@ CPMachineGrayController* cpAllocMachineGrayController(void){
 
 
 
-void cpDeallocMachineGrayController(CPMachineGrayController* con){
+void cpDeallocMachineGrayController(CPMachineGrayController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetMachineGrayControllerUIElement(CPMachineGrayController* con){
+NASpace* cpGetMachineGrayControllerUIElement(CPMachineGrayController* con) {
   return con->space;
 }
 
 
 
-void cpUpdateMachineGrayController(CPMachineGrayController* con){
+void cpUpdateMachineGrayController(CPMachineGrayController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLGrayComputationType grayComputationType = cmlGetGrayComputationType(cm);

@@ -70,15 +70,15 @@ static const double fourValuesWidth = 4 * labelValueWidth + 3 * marginH;
 
 
 
-void cp_SelectRefSpectrum(NAReaction reaction){
+void cp_SelectRefSpectrum(NAReaction reaction) {
   CPWhitePointsController* con = (CPWhitePointsController*)reaction.controller;
-  if(reaction.uiElement == con->refD50MenuItem){
+  if(reaction.uiElement == con->refD50MenuItem) {
     con->referenceIlluminationType = REFERENCE_ILLUMINATION_D50;
-  }else if(reaction.uiElement == con->refD55MenuItem){
+  }else if(reaction.uiElement == con->refD55MenuItem) {
     con->referenceIlluminationType = REFERENCE_ILLUMINATION_D55;
-  }else if(reaction.uiElement == con->refD65MenuItem){
+  }else if(reaction.uiElement == con->refD65MenuItem) {
     con->referenceIlluminationType = REFERENCE_ILLUMINATION_D65;
-  }else if(reaction.uiElement == con->refD75MenuItem){
+  }else if(reaction.uiElement == con->refD75MenuItem) {
     con->referenceIlluminationType = REFERENCE_ILLUMINATION_D75;
   }
 
@@ -87,7 +87,7 @@ void cp_SelectRefSpectrum(NAReaction reaction){
 
 
 
-CPWhitePointsController* cpAllocWhitePointsController(void){
+CPWhitePointsController* cpAllocWhitePointsController(void) {
   CPWhitePointsController* con = naAlloc(CPWhitePointsController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -207,11 +207,27 @@ CPWhitePointsController* cpAllocWhitePointsController(void){
 
   cpEndUILayout();
 
-  naAddSpaceChild(con->space, con->ill10DegLabel, naMakePos(spaceMarginLeft, 286));
-  naAddSpaceChild(con->space, con->ill2DegLabel, naMakePos(spaceMarginLeft, 221));
+  naAddSpaceChildWithSize(
+    con->space,
+    con->ill10DegLabel,
+    naMakePos(spaceMarginLeft, 286),
+    naMakeInlineSize(degreeWidth));
+  naAddSpaceChildWithSize(
+    con->space,
+    con->ill2DegLabel,
+    naMakePos(spaceMarginLeft, 221),
+    naMakeInlineSize(degreeWidth));
 
-  naAddSpaceChild(con->space, con->ref10DegLabel, naMakePos(spaceMarginLeft, 103));
-  naAddSpaceChild(con->space, con->ref2DegLabel, naMakePos(spaceMarginLeft, 38));
+  naAddSpaceChildWithSize(
+    con->space,
+    con->ref10DegLabel,
+    naMakePos(spaceMarginLeft, 103),
+    naMakeInlineSize(degreeWidth));
+  naAddSpaceChildWithSize(
+    con->space,
+    con->ref2DegLabel,
+    naMakePos(spaceMarginLeft, 38),
+    naMakeInlineSize(degreeWidth));
 
   con->referenceIlluminationType = REFERENCE_ILLUMINATION_D50;
 
@@ -220,17 +236,17 @@ CPWhitePointsController* cpAllocWhitePointsController(void){
 
 
 
-void cpDeallocWhitePointsController(CPWhitePointsController* con){
+void cpDeallocWhitePointsController(CPWhitePointsController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetWhitePointsUIElement(CPWhitePointsController* con){
+NASpace* cpGetWhitePointsUIElement(CPWhitePointsController* con) {
   return con->space;
 }
 
-CPReferenceIlluminationType cpGetReferenceIlluminationType(CPWhitePointsController* con){
+CPReferenceIlluminationType cpGetReferenceIlluminationType(CPWhitePointsController* con) {
   return con->referenceIlluminationType;
 }
 

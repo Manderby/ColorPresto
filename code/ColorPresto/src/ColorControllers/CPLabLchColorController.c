@@ -35,17 +35,17 @@ struct CPLabLchColorController{
 
 
 
-void cp_LabLchSelectionChanged(NAReaction reaction){
+void cp_LabLchSelectionChanged(NAReaction reaction) {
   CPLabLchColorController* con = (CPLabLchColorController*)reaction.controller;
   
   LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
   CMLColorType oldColorType = (lablchSelect == Lab) ? CML_COLOR_Lab : CML_COLOR_Lch;
   CMLColorType newColorType = oldColorType;
 
-  if(reaction.uiElement == con->radioLab){
+  if(reaction.uiElement == con->radioLab) {
     cpSetPrefsLabLchSelect(Lab);
     newColorType = CML_COLOR_Lab;
-  }else if(reaction.uiElement == con->radioLch){
+  }else if(reaction.uiElement == con->radioLch) {
     cpSetPrefsLabLchSelect(Lch);
     newColorType = CML_COLOR_Lch;
   }
@@ -61,14 +61,14 @@ void cp_LabLchSelectionChanged(NAReaction reaction){
 
 
 
-void cp_LabValueEdited(NAReaction reaction){
+void cp_LabValueEdited(NAReaction reaction) {
   CPLabLchColorController* con = (CPLabLchColorController*)reaction.controller;
   
-  if(reaction.uiElement == con->textField0){
+  if(reaction.uiElement == con->textField0) {
     con->color[0] = (float)naGetTextFieldDouble(con->textField0);
-  }else if(reaction.uiElement == con->textField1){
+  }else if(reaction.uiElement == con->textField1) {
     con->color[1] = (float)naGetTextFieldDouble(con->textField1);
-  }else if(reaction.uiElement == con->textField2){
+  }else if(reaction.uiElement == con->textField2) {
     con->color[2] = (float)naGetTextFieldDouble(con->textField2);
   }
   
@@ -78,7 +78,7 @@ void cp_LabValueEdited(NAReaction reaction){
 
 
 
-CPLabLchColorController* cpAllocLabLchColorController(void){
+CPLabLchColorController* cpAllocLabLchColorController(void) {
   LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
   CMLColorType colorType = (lablchSelect == Lab) ? CML_COLOR_Lab : CML_COLOR_Lch;
 
@@ -135,7 +135,7 @@ CPLabLchColorController* cpAllocLabLchColorController(void){
 
 
 
-void cpDeallocLabLchColorController(CPLabLchColorController* con){
+void cpDeallocLabLchColorController(CPLabLchColorController* con) {
   cpDeallocColorWell2D(con->colorWell2D);
   cpDeallocColorWell1D(con->colorWell1D0);
   cpDeallocColorWell1D(con->colorWell1D1);
@@ -146,13 +146,13 @@ void cpDeallocLabLchColorController(CPLabLchColorController* con){
 
 
 
-const void* cpGetLabLchColorControllerColorData(const CPLabLchColorController* con){
+const void* cpGetLabLchColorControllerColorData(const CPLabLchColorController* con) {
   return &(con->color);
 }
 
 
 
-void cpSetLabLchColorControllerColorData(CPLabLchColorController* con, const void* data){
+void cpSetLabLchColorControllerColorData(CPLabLchColorController* con, const void* data) {
   cmlCpy3(con->color, data);
 }
 
@@ -176,14 +176,14 @@ void cpComputeLabLchColorController(CPLabLchColorController* con) {
 
 
 
-void cpUpdateLabLchColorController(CPLabLchColorController* con){
+void cpUpdateLabLchColorController(CPLabLchColorController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
   LabLchSelect lablchSelect = cpGetPrefsLabLchSelect();
 
   naSetRadioState(con->radioLab, lablchSelect == Lab);
   naSetRadioState(con->radioLch, lablchSelect == Lch);
   
-  switch(cmlGetLabColorSpace(cm)){
+  switch(cmlGetLabColorSpace(cm)) {
   case CML_LAB_CIELAB:
     naSetLabelText(con->label0, cpTranslate(CPLabColorChannelLStar));
     break;
@@ -191,8 +191,8 @@ void cpUpdateLabLchColorController(CPLabLchColorController* con){
     naSetLabelText(con->label0, cpTranslate(CPLabColorChannelL));
   }
 
-  if(lablchSelect == Lab){
-    switch(cmlGetLabColorSpace(cm)){
+  if(lablchSelect == Lab) {
+    switch(cmlGetLabColorSpace(cm)) {
     case CML_LAB_CIELAB:
       naSetLabelText(con->label1, cpTranslate(CPLabColorChannelaStar));
       naSetLabelText(con->label2, cpTranslate(CPLabColorChannelbStar));

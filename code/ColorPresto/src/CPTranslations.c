@@ -5,13 +5,13 @@ uint32 translatorGroup;
 
 
 
-const NAUTF8Char* cpTranslate(uint32 id){
+const NAUTF8Char* cpTranslate(uint32 id) {
   return naTranslate(translatorGroup, id);
 }
 
 
 
-void initTranslations(){
+void initTranslations() {
   translatorGroup = naRegisterTranslatorGroup();
   #include "../res/ColorPrestoStrings_deu.h"
   #include "../res/ColorPrestoStrings_eng.h"

@@ -27,7 +27,7 @@ CPWhitePoints cpGetWhitePoints(const CMLFunction* spec, const float* wpYxy, CMLF
   CMLIntegration integration = cmlMakeDefaultIntegration();
   CPWhitePoints wp = {0};
   
-  if(spec){
+  if(spec) {
     cmlSet3(
       wp.XYZunnorm,
       cmlFilterFunction(spec, observerFuncs[0], &integration),
@@ -36,7 +36,7 @@ CPWhitePoints cpGetWhitePoints(const CMLFunction* spec, const float* wpYxy, CMLF
     cmlCpy3(wp.XYZ, wp.XYZunnorm);
     cmlDiv3(wp.XYZ, wp.XYZunnorm[1]);
     cmlConvertXYZToYxy(wp.Yxy, wp.XYZ, CML_NULL);
-  }else if(wpYxy){
+  }else if(wpYxy) {
     cmlCpy3(wp.Yxy, wpYxy);
     wp.Yxy[0] = 1.f;
     cmlConvertYxyToXYZ(wp.XYZ, wp.Yxy, CML_NULL);

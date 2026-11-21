@@ -20,7 +20,7 @@ struct CPChromaticityErrorController{
 
 
 
-CPChromaticityErrorController* cpAllocChromaticityErrorController(void){
+CPChromaticityErrorController* cpAllocChromaticityErrorController(void) {
   CPChromaticityErrorController* con = naAlloc(CPChromaticityErrorController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -41,13 +41,13 @@ CPChromaticityErrorController* cpAllocChromaticityErrorController(void){
 
 
 
-void cpDeallocChromaticityErrorController(CPChromaticityErrorController* con){
+void cpDeallocChromaticityErrorController(CPChromaticityErrorController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetChromaticityErrorUIElement(CPChromaticityErrorController* con){
+NASpace* cpGetChromaticityErrorUIElement(CPChromaticityErrorController* con) {
   return con->space;
 }
 

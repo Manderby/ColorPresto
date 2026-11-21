@@ -10,7 +10,7 @@
 
 typedef size_t CMLVec4UInt[CML_MAX_NUMBER_OF_CHANNELS];
 
-inline static void cmlSet4UInt(CMLVec4UInt d, size_t a0, size_t a1, size_t a2, size_t a3){
+inline static void cmlSet4UInt(CMLVec4UInt d, size_t a0, size_t a1, size_t a2, size_t a3) {
   d[0] = a0;
   d[1] = a1;
   d[2] = a2;
@@ -19,7 +19,7 @@ inline static void cmlSet4UInt(CMLVec4UInt d, size_t a0, size_t a1, size_t a2, s
 
 
 
-void cpInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace){
+void cpInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace) {
   NA_UNUSED(openGLSpace);
   glEnable(GL_POINT_SMOOTH);
   glEnable(GL_LINE_SMOOTH);
@@ -29,20 +29,20 @@ void cpInitThreeDeeDisplay(NAOpenGLSpace* openGLSpace){
 
 
 
-void cpBeginThreeDeeDrawing(const CMLVec3 backgroundRGB){
+void cpBeginThreeDeeDrawing(const CMLVec3 backgroundRGB) {
   glClearColor(backgroundRGB[0], backgroundRGB[1], backgroundRGB[2], 1.);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
 
 
-void cpEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace){
+void cpEndThreeDeeDrawing(NAOpenGLSpace* openGLSpace) {
   naSwapOpenGLSpaceBuffer(openGLSpace);
 }
 
 
 
-void cpSetupThreeDeeProjection(NAOpenGLSpace* openGLSpace, NASize viewSize, double fovy, double zoom){
+void cpSetupThreeDeeProjection(NAOpenGLSpace* openGLSpace, NASize viewSize, double fovy, double zoom) {
   double uiScale = naGetUIElementUIScale(openGLSpace);
   glViewport(
     0,
@@ -57,7 +57,7 @@ void cpSetupThreeDeeProjection(NAOpenGLSpace* openGLSpace, NASize viewSize, doub
 
   double aspect = viewSize.width / viewSize.height;
   NAMat44d projectionMatrix;
-  if(fovy == 0){
+  if(fovy == 0) {
     naFillMatrixOrtho(
       projectionMatrix,
       -viewSize.width / initial3DDisplayWidth * zoom * 1.5,
@@ -79,14 +79,14 @@ void cpSetupThreeDeeProjection(NAOpenGLSpace* openGLSpace, NASize viewSize, doub
 
 
 
-void cpSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom, double viewPol, double viewEqu){
+void cpSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom, double viewPol, double viewEqu) {
   float vShift = .2f;
   NAMat44d matrix;
 
   glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-  switch(primeAxis){
+  switch(primeAxis) {
   case 0:
     naFillMatrixLookAt(matrix,
       vShift * scale[0] + curZoom * 3 * naCos(viewPol),
@@ -119,11 +119,11 @@ void cpSetupThreeDeeModelView(int primeAxis, const double* scale, double curZoom
 
 
 
-void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* sm, double pointsAlpha, CMLColorType space3D, int64 steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, double zoom, double uiScale){
+void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* sm, double pointsAlpha, CMLColorType space3D, int64 steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, double zoom, double uiScale) {
   size_t numChannels = cmlGetNumChannels(space3D);
 
   CMLVec4UInt steps;
-  switch(space3D){
+  switch(space3D) {
   case CML_COLOR_Gray:  cmlSet4UInt(steps, 2 * steps3D, 1, 1, 1); break;
   case CML_COLOR_HSL:   cmlSet4UInt(steps, 3 * steps3D + 1, steps3D, steps3D, 1); break;
   case CML_COLOR_HSV:   cmlSet4UInt(steps, 3 * steps3D + 1, steps3D, steps3D, 1); break;
@@ -165,7 +165,7 @@ void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
   
   glPointSize((GLfloat)((2. * uiScale) / numChannels) / (GLfloat)zoom);
   glBegin(GL_POINTS);
-  for(size_t i = 0; i < totalCloudCount; ++i){
+  for(size_t i = 0; i < totalCloudCount; ++i) {
     glColor4f(cloudRGBFloatValues[i * 3 + 0], cloudRGBFloatValues[i * 3 + 1], cloudRGBFloatValues[i * 3 + 2], (float)pointsAlpha);
     glVertex3fv(&(cloudNormedSystemCoords[i * 3]));
   }
@@ -188,8 +188,8 @@ void cpDrawThreeDeePointCloud(const CMLColorMachine* cm, const CMLColorMachine* 
 
 
 
-void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm, const CMLVec3 backgroundRGB, const CMLVec3 axisRGB, NABool bodySolid, double bodyAlpha, double gridAlpha, double gridTint, CMLColorType space3D, int64 steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, int64 hueIndex){
-  if(!bodySolid){
+void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm, const CMLVec3 backgroundRGB, const CMLVec3 axisRGB, NABool bodySolid, double bodyAlpha, double gridAlpha, double gridTint, CMLColorType space3D, int64 steps3D, CMLNormedConverter normedInputConverter, CMLColorConverter coordConverter, CMLNormedConverter normedCoordConverter, int64 hueIndex) {
+  if(!bodySolid) {
 //    glClear(GL_DEPTH_BUFFER_BIT);
   }
   glEnable(GL_DEPTH_TEST);
@@ -200,7 +200,7 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
   CMLVec4* origins = NULL;
   CMLVec4* axis1s = NULL;
   CMLVec4* axis2s = NULL;
-  switch(space3D){
+  switch(space3D) {
   case CML_COLOR_Gray:  surfaceCount = 0; break;
   case CML_COLOR_HSL:   surfaceCount = 3; break;
   case CML_COLOR_HSV:   surfaceCount = 2; break;
@@ -218,7 +218,7 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
   default: break;
   }
 
-  if(surfaceCount){
+  if(surfaceCount) {
     surfaceSteps = naMalloc(surfaceCount * sizeof(CMLVec4UInt));
     origins = naMalloc(surfaceCount * sizeof(CMLVec4));
     axis1s = naMalloc(surfaceCount * sizeof(CMLVec4));
@@ -229,7 +229,7 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
     float** systemCoords = naMalloc(surfaceCount * sizeof(float*));
     float** normedSystemCoords = naMalloc(surfaceCount * sizeof(float*));
     
-    switch(space3D){
+    switch(space3D) {
     case CML_COLOR_Gray: break;
     case CML_COLOR_HSL:
       cmlSet4UInt(surfaceSteps[0], steps3D * 3 + 1, steps3D, 1, 1);
@@ -500,7 +500,7 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
     default: break;
     }
 
-    for(size_t s = 0; s < surfaceCount; ++s){
+    for(size_t s = 0; s < surfaceCount; ++s) {
       size_t totalCount = surfaceSteps[s][0] * surfaceSteps[s][1] * surfaceSteps[s][2] * surfaceSteps[s][3];
       normedColorCoords[s] = (float*)cmlCreateNormedGamutSlice(space3D, surfaceSteps[s], origins[s], axis1s[s], axis2s[s], NULL, NULL);
       rgbFloatValues[s] = naMalloc(totalCount * 3 * sizeof(float));
@@ -527,13 +527,13 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
     // Draw the quads
     // ////////////////////
 
-    for(size_t s = 0; s < surfaceCount; ++s){
+    for(size_t s = 0; s < surfaceCount; ++s) {
       glEnable(GL_POLYGON_OFFSET_FILL);
       glPolygonOffset(1.f, 1.f);
       glShadeModel(GL_FLAT);
       glBegin(GL_QUADS);
-      for(size_t ax1 = 0; ax1 < surfaceSteps[s][1] - 1; ax1++){
-        for(size_t ax2 = 0; ax2 < surfaceSteps[s][0] - 1; ax2++){
+      for(size_t ax1 = 0; ax1 < surfaceSteps[s][1] - 1; ax1++) {
+        for(size_t ax2 = 0; ax2 < surfaceSteps[s][0] - 1; ax2++) {
           size_t index0 = (ax1 + 0) * surfaceSteps[s][0] * 3 + (ax2 + 0) * 3;
           size_t index1 = (ax1 + 0) * surfaceSteps[s][0] * 3 + (ax2 + 1) * 3;
           size_t index2 = (ax1 + 1) * surfaceSteps[s][0] * 3 + (ax2 + 1) * 3;
@@ -545,10 +545,10 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
             rgbFloatValues[s][index3 + 2] * (float)bodyAlpha + backgroundRGB[2] * (1.f - (float)bodyAlpha),
             1.f);
 
-          if(hueIndex >= 0){
+          if(hueIndex >= 0) {
             if(    (fabsf(normedSystemCoords[s][index0 + hueIndex] - normedSystemCoords[s][index1 + hueIndex]) > .5f)
                 || (fabsf(normedSystemCoords[s][index0 + hueIndex] - normedSystemCoords[s][index2 + hueIndex]) > .5f)
-                || (fabsf(normedSystemCoords[s][index0 + hueIndex] - normedSystemCoords[s][index3 + hueIndex]) > .5f)){
+                || (fabsf(normedSystemCoords[s][index0 + hueIndex] - normedSystemCoords[s][index3 + hueIndex]) > .5f)) {
               continue;
             }
           }
@@ -564,7 +564,7 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
       glDisable(GL_POLYGON_OFFSET_FILL);
     }
 
-    if(!bodySolid){
+    if(!bodySolid) {
       glClear(GL_DEPTH_BUFFER_BIT);
     }
 
@@ -572,20 +572,20 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
     // Draw the lines
     // ////////////////////
 
-    for(size_t s = 0; s < surfaceCount; ++s){
-      if(gridAlpha > 0.f){
+    for(size_t s = 0; s < surfaceCount; ++s) {
+      if(gridAlpha > 0.f) {
         glShadeModel(GL_SMOOTH);
         glDepthFunc(GL_LEQUAL);
-        for(size_t ax1 = 0; ax1 < surfaceSteps[s][1] - 1; ax1++){
-          for(size_t ax2 = 0; ax2 < surfaceSteps[s][0] - 1; ax2++){
+        for(size_t ax1 = 0; ax1 < surfaceSteps[s][1] - 1; ax1++) {
+          for(size_t ax2 = 0; ax2 < surfaceSteps[s][0] - 1; ax2++) {
             size_t index0 = (ax1 + 0) * surfaceSteps[s][0] * 3 + (ax2 + 0) * 3;
             size_t index1 = (ax1 + 0) * surfaceSteps[s][0] * 3 + (ax2 + 1) * 3;
             size_t index2 = (ax1 + 1) * surfaceSteps[s][0] * 3 + (ax2 + 1) * 3;
             size_t index3 = (ax1 + 1) * surfaceSteps[s][0] * 3 + (ax2 + 0) * 3;
-            if(hueIndex >= 0){
+            if(hueIndex >= 0) {
               if(    (fabsf(normedSystemCoords[s][index0 + hueIndex] - normedSystemCoords[s][index1 + hueIndex]) > .5f)
                   || (fabsf(normedSystemCoords[s][index0 + hueIndex] - normedSystemCoords[s][index2 + hueIndex]) > .5f)
-                  || (fabsf(normedSystemCoords[s][index0 + hueIndex] - normedSystemCoords[s][index3 + hueIndex]) > .5f)){
+                  || (fabsf(normedSystemCoords[s][index0 + hueIndex] - normedSystemCoords[s][index3 + hueIndex]) > .5f)) {
                 continue;
               }
             }
@@ -620,7 +620,7 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
 
     }
 
-    for(size_t s = 0; s < surfaceCount; ++s){
+    for(size_t s = 0; s < surfaceCount; ++s) {
       naFree(normedSystemCoords[s]);
       naFree(systemCoords[s]);
       naFree(colorCoords[s]);
@@ -642,7 +642,7 @@ void cpDrawThreeDeeSurfaces(const CMLColorMachine* cm, const CMLColorMachine* sm
 
 
 
-void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normedCoordConverter, CMLColorType coordSpace, int64 hueIndex, double uiScale){
+void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normedCoordConverter, CMLColorType coordSpace, int64 hueIndex, double uiScale) {
   float iMin = CML_DEFAULT_INTEGRATION_MIN;
   float iMax = CML_DEFAULT_INTEGRATION_MAX;
   int64 intervals = (int32)((iMax - iMin) / CML_DEFAULT_INTEGRATION_STEPSIZE) + 1;
@@ -652,20 +652,20 @@ void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normed
   glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_STRIP);
     float prevNormedHue = -CML_INFINITY;
-    for(int64 iStep = 0; iStep <= intervals; ++iStep){
+    for(int64 iStep = 0; iStep <= intervals; ++iStep) {
       float l = iMin + (((iMax - iMin) * iStep) / intervals);
       CMLVec3 curXYZ;
       cmlGetSpectralXYZColor(cm, curXYZ, l);
       
-      if(curXYZ[1] > 0.f){
+      if(curXYZ[1] > 0.f) {
         CMLVec3 curRGB = {0.f, 0.f, 0.f};
         CMLVec3 curCoords = {0.f, 0.f, 0.f};
         CMLVec3 curNormedCoords = {0.f, 0.f, 0.f};
         xyzConverter(cm, curCoords, curXYZ, 1);
         normedCoordConverter(curNormedCoords, curCoords, 1);
         
-        if(hueIndex >= 0){
-          if((prevNormedHue != -CML_INFINITY) && (fabsf(prevNormedHue - curNormedCoords[hueIndex]) > .5f)){
+        if(hueIndex >= 0) {
+          if((prevNormedHue != -CML_INFINITY) && (fabsf(prevNormedHue - curNormedCoords[hueIndex]) > .5f)) {
             glEnd();
             glBegin(GL_LINE_STRIP);      
             prevNormedHue = -CML_INFINITY;
@@ -688,7 +688,7 @@ void cpDrawThreeDeeSpectrum(const CMLColorMachine* cm, CMLNormedConverter normed
 
 
 
-void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* min, const float* max, const char** labels, const CMLVec3 axisRGB, int64 fontId, double uiScale){
+void cpDrawThreeDeeAxis(CMLNormedConverter normedCoordConverter, const float* min, const float* max, const char** labels, const CMLVec3 axisRGB, int64 fontId, double uiScale) {
   glClear(GL_DEPTH_BUFFER_BIT);
   glColor3fv(axisRGB);
 

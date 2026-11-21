@@ -27,13 +27,13 @@ struct CPMachineLabController{
 
 
 
-void cp_SelectLabColorSpace(NAReaction reaction){
+void cp_SelectLabColorSpace(NAReaction reaction) {
   CPMachineLabController* con = (CPMachineLabController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t index = naGetSelectItemIndex(con->labColorSpaceSelect, reaction.uiElement);
   CMLLabColorSpaceType labColorSpaceType = (CMLLabColorSpaceType)index;
-  if(labColorSpaceType >= CML_LAB_CUSTOM_L){++labColorSpaceType;}
+  if(labColorSpaceType >= CML_LAB_CUSTOM_L) {++labColorSpaceType;}
   cmlSetLabColorSpace(cm, labColorSpaceType);
   
   cpUpdateMachine();
@@ -41,7 +41,7 @@ void cp_SelectLabColorSpace(NAReaction reaction){
 
 
 
-void cpSetLabValue(NAReaction reaction){
+void cpSetLabValue(NAReaction reaction) {
   CPMachineLabController* con = (CPMachineLabController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -49,13 +49,13 @@ void cpSetLabValue(NAReaction reaction){
   float ke;
   cmlGetAdamsChromaticityValenceParameters(cm, &K, &ke);
 
-  if(reaction.uiElement == con->valueKTextField){
+  if(reaction.uiElement == con->valueKTextField) {
     K = (float)naGetTextFieldDouble(con->valueKTextField);
-  }else if(reaction.uiElement == con->valueKSlider){
+  }else if(reaction.uiElement == con->valueKSlider) {
     K = (float)naGetSliderValue(con->valueKSlider);
-  }else if(reaction.uiElement == con->valuekeTextField){
+  }else if(reaction.uiElement == con->valuekeTextField) {
     ke = (float)naGetTextFieldDouble(con->valuekeTextField);
-  }else if(reaction.uiElement == con->valuekeSlider){
+  }else if(reaction.uiElement == con->valuekeSlider) {
     ke = (float)naGetSliderValue(con->valuekeSlider);
   }
   cmlSetAdamsChromaticityValenceParameters(cm, K, ke);
@@ -65,7 +65,7 @@ void cpSetLabValue(NAReaction reaction){
 
 
 
-CPMachineLabController* cpAllocMachineLabController(void){
+CPMachineLabController* cpAllocMachineLabController(void) {
   CPMachineLabController* con = naAlloc(CPMachineLabController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -73,9 +73,9 @@ CPMachineLabController* cpAllocMachineLabController(void){
 
   con->labColorSpaceLabel = naNewLabel(cpTranslate(CPLabColorSpaceTitle), machineLabelWidth);
   con->labColorSpaceSelect = naNewSelect(200);
-  for(size_t i = 0; i < CML_LAB_COUNT; ++i){
+  for(size_t i = 0; i < CML_LAB_COUNT; ++i) {
     CMLLabColorSpaceType labColorSpaceType = (CMLLabColorSpaceType)i;
-    if(labColorSpaceType == CML_LAB_CUSTOM_L){continue;}
+    if(labColorSpaceType == CML_LAB_CUSTOM_L) {continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetLabColorSpaceTypeString(labColorSpaceType), NA_NULL);
     naAddSelectMenuItem(con->labColorSpaceSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectLabColorSpace, con);
@@ -112,19 +112,19 @@ CPMachineLabController* cpAllocMachineLabController(void){
 
 
 
-void cpDeallocMachineLabController(CPMachineLabController* con){
+void cpDeallocMachineLabController(CPMachineLabController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetMachineLabControllerUIElement(CPMachineLabController* con){
+NASpace* cpGetMachineLabControllerUIElement(CPMachineLabController* con) {
   return con->space;
 }
 
 
 
-void cpUpdateMachineLabController(CPMachineLabController* con){
+void cpUpdateMachineLabController(CPMachineLabController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLLabColorSpaceType labColorSpace = cmlGetLabColorSpace(cm);

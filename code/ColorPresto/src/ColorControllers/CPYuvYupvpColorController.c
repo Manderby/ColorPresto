@@ -36,17 +36,17 @@ struct CPYuvYupvpColorController{
 
 
 
-void cp_YuvYupvpSelectionChanged(NAReaction reaction){
+void cp_YuvYupvpSelectionChanged(NAReaction reaction) {
   CPYuvYupvpColorController* con = (CPYuvYupvpColorController*)reaction.controller;
   
   YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
   CMLColorType oldColorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
   CMLColorType newColorType = oldColorType;
 
-  if(reaction.uiElement == con->radioYuv){
+  if(reaction.uiElement == con->radioYuv) {
     cpSetPrefsYuvYupvpSelect(Yuv);
     newColorType = CML_COLOR_Yuv;
-  }else if(reaction.uiElement == con->radioYupvp){
+  }else if(reaction.uiElement == con->radioYupvp) {
     cpSetPrefsYuvYupvpSelect(Yupvp);
     newColorType = CML_COLOR_Yupvp;
   }
@@ -62,14 +62,14 @@ void cp_YuvYupvpSelectionChanged(NAReaction reaction){
 
 
 
-void cp_YuvValueEdited(NAReaction reaction){
+void cp_YuvValueEdited(NAReaction reaction) {
   CPYuvYupvpColorController* con = (CPYuvYupvpColorController*)reaction.controller;
   
-  if(reaction.uiElement == con->textField0){
+  if(reaction.uiElement == con->textField0) {
     con->color[0] = (float)naGetTextFieldDouble(con->textField0);
-  }else if(reaction.uiElement == con->textField1){
+  }else if(reaction.uiElement == con->textField1) {
     con->color[1] = (float)naGetTextFieldDouble(con->textField1);
-  }else if(reaction.uiElement == con->textField2){
+  }else if(reaction.uiElement == con->textField2) {
     con->color[2] = (float)naGetTextFieldDouble(con->textField2);
   }
   
@@ -79,7 +79,7 @@ void cp_YuvValueEdited(NAReaction reaction){
 
 
 
-CPYuvYupvpColorController* cpAllocYuvYupvpColorController(void){
+CPYuvYupvpColorController* cpAllocYuvYupvpColorController(void) {
   YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
   CMLColorType colorType = (yuvyupvpSelect == Yuv) ? CML_COLOR_Yuv : CML_COLOR_Yupvp;
 
@@ -136,7 +136,7 @@ CPYuvYupvpColorController* cpAllocYuvYupvpColorController(void){
 
 
 
-void cpDeallocYuvYupvpColorController(CPYuvYupvpColorController* con){
+void cpDeallocYuvYupvpColorController(CPYuvYupvpColorController* con) {
   cpDeallocColorWell2D(con->colorWell2D);
   cpDeallocColorWell1D(con->colorWell1D0);
   cpDeallocColorWell1D(con->colorWell1D1);
@@ -147,13 +147,13 @@ void cpDeallocYuvYupvpColorController(CPYuvYupvpColorController* con){
 
 
 
-const void* cpGetYuvYupvpColorControllerColorData(const CPYuvYupvpColorController* con){
+const void* cpGetYuvYupvpColorControllerColorData(const CPYuvYupvpColorController* con) {
   return &(con->color);
 }
 
 
 
-void cpSetYuvYupvpColorControllerColorData(CPYuvYupvpColorController* con, const void* data){
+void cpSetYuvYupvpColorControllerColorData(CPYuvYupvpColorController* con, const void* data) {
   cmlCpy3(con->color, data);
 }
 
@@ -177,13 +177,13 @@ void cpComputeYuvYupvpColorController(CPYuvYupvpColorController* con) {
  
  
 
-void cpUpdateYuvYupvpColorController(CPYuvYupvpColorController* con){
+void cpUpdateYuvYupvpColorController(CPYuvYupvpColorController* con) {
   YuvYupvpSelect yuvyupvpSelect = cpGetPrefsYuvYupvpSelect();
   
   naSetRadioState(con->radioYuv, yuvyupvpSelect == Yuv);
   naSetRadioState(con->radioYupvp, yuvyupvpSelect == Yupvp);
   
-  if(yuvyupvpSelect == Yuv){
+  if(yuvyupvpSelect == Yuv) {
     naSetLabelText(con->label0, cpTranslate(CPYuvColorChannelY));
     naSetLabelText(con->label1, cpTranslate(CPYuvColorChannelu));
     naSetLabelText(con->label2, cpTranslate(CPYuvColorChannelv));

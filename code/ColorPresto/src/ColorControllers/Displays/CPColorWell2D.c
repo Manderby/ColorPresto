@@ -25,7 +25,7 @@ struct CPColorWell2D{
 
 
 
-void cmInitColorWell2D(void* data){
+void cmInitColorWell2D(void* data) {
   CPColorWell2D* well = (CPColorWell2D*)data;
   glEnable(GL_LINE_SMOOTH);
   glEnable(GL_BLEND);
@@ -40,11 +40,11 @@ void cmInitColorWell2D(void* data){
 
 
 
-void cmDragColorWell2D(NAReaction reaction){
+void cmDragColorWell2D(NAReaction reaction) {
   CPColorWell2D* well = (CPColorWell2D*)reaction.controller;
  
   const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
-  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)){
+  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT)) {
     CMLColorType colorType = cpGetColorControllerColorType(well->colorController);
     CMLNormedConverter outputConverter = cmlGetNormedCartesianOutputConverter(colorType);
     CMLNormedConverter inputConverter = cmlGetNormedCartesianInputConverter(colorType);
@@ -55,7 +55,7 @@ void cmDragColorWell2D(NAReaction reaction){
 
     NARect displayRect = naGetUIElementRectAbsolute(well->display);
     NAPos mousePos = naGetMousePos(mouseStatus);
-    switch(well->fixedIndex){
+    switch(well->fixedIndex) {
     case 0:
       normedColorValues[1] = (float)((mousePos.x - displayRect.pos.x) / displayRect.size.width);
       normedColorValues[2] = (float)((mousePos.y - displayRect.pos.y) / displayRect.size.height);
@@ -82,7 +82,7 @@ void cmDragColorWell2D(NAReaction reaction){
 
 
 
-void cmDrawColorWell2D(NAReaction reaction){
+void cmDrawColorWell2D(NAReaction reaction) {
   CPColorWell2D* well = (CPColorWell2D*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -141,7 +141,7 @@ void cmDrawColorWell2D(NAReaction reaction){
   glDisable(GL_DEPTH);
 
   // Draw the spectrum
-  if((colorType == CML_COLOR_Yupvp) || (colorType == CML_COLOR_Yxy)){
+  if((colorType == CML_COLOR_Yupvp) || (colorType == CML_COLOR_Yxy)) {
     glLineWidth(1);
     float imin = CML_DEFAULT_INTEGRATION_MIN;
     float imax = CML_DEFAULT_INTEGRATION_MAX;
@@ -152,11 +152,11 @@ void cmDrawColorWell2D(NAReaction reaction){
 
     glLineWidth((GLfloat)uiScale);
     glBegin(GL_LINE_STRIP);
-    for(int32 iStep = 0; iStep <= intervals; iStep++){
+    for(int32 iStep = 0; iStep <= intervals; iStep++) {
       float l = imin + (((imax - imin) * iStep) / intervals);
       CMLVec3 curXYZ;
       cmlGetSpectralXYZColor(cm, curXYZ, l);
-      if(curXYZ[1] > 0.f){
+      if(curXYZ[1] > 0.f) {
 
         CMLVec3 curRGB = {0.f, 0.f, 0.f};
         CMLVec3 curcoords = {0.f, 0.f, 0.f};
@@ -169,7 +169,7 @@ void cmDrawColorWell2D(NAReaction reaction){
         cmlMul3(curRGB, .75f);
         glColor3fv(curRGB);
 
-        switch(well->fixedIndex){
+        switch(well->fixedIndex) {
         case 0:
           glVertex2d(curNormedCoords[1] * 2. - 1., curNormedCoords[2] * 2. - 1.);
           break;
@@ -188,7 +188,7 @@ void cmDrawColorWell2D(NAReaction reaction){
   glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_LOOP);
     glColor4f(1., 1., 1., 1.);
-    for(int i = 0; i < subdivisions; ++i){
+    for(int i = 0; i < subdivisions; ++i) {
       float ang = NA_PI2f * (float)i / (float)subdivisions;
       glVertex2d(fixedValueA * 2. - 1. + whiteR * naCos(ang), fixedValueB * 2. - 1. + whiteR * naSin(ang));
     }
@@ -196,7 +196,7 @@ void cmDrawColorWell2D(NAReaction reaction){
   glLineWidth((GLfloat)uiScale);
   glBegin(GL_LINE_LOOP);
     glColor4f(0., 0., 0., 1.);
-    for(int i = 0; i < subdivisions; ++i){
+    for(int i = 0; i < subdivisions; ++i) {
       float ang = NA_PI2f * (float)i / (float)subdivisions;
       glVertex2d(fixedValueA * 2. - 1. + blackR * naCos(ang), fixedValueB * 2. - 1. + blackR * naSin(ang));
     }
@@ -209,7 +209,7 @@ void cmDrawColorWell2D(NAReaction reaction){
 
 
 
-CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fixedIndex){
+CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fixedIndex) {
   CPColorWell2D* well = naAlloc(CPColorWell2D);
   
   well->display = naNewOpenGLSpace(naMakeSize(colorWell2DSize, colorWell2DSize), cmInitColorWell2D, well);
@@ -228,7 +228,7 @@ CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fix
 
 
 
-void cpDeallocColorWell2D(CPColorWell2D* well){
+void cpDeallocColorWell2D(CPColorWell2D* well) {
   naFree(well->inputValues);
   naFree(well->rgbValues);
   glDeleteTextures(1, &(well->wellTex));
@@ -236,13 +236,13 @@ void cpDeallocColorWell2D(CPColorWell2D* well){
 
 
 
-void cpSetColorWell2DFixedIndex(CPColorWell2D* well, size_t fixedIndex){
+void cpSetColorWell2DFixedIndex(CPColorWell2D* well, size_t fixedIndex) {
   well->fixedIndex = fixedIndex;
 }
 
 
 
-NAOpenGLSpace* cpGetColorWell2DUIElement(CPColorWell2D* well){
+NAOpenGLSpace* cpGetColorWell2DUIElement(CPColorWell2D* well) {
   return well->display;
 }
 
@@ -308,6 +308,6 @@ void cpComputeColorWell2D(CPColorWell2D* well) {
 
 
 
-void cpUpdateColorWell2D(CPColorWell2D* well){
+void cpUpdateColorWell2D(CPColorWell2D* well) {
   naRefreshUIElement(well->display, 0.);
 }

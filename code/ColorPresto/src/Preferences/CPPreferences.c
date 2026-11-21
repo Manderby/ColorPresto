@@ -23,7 +23,7 @@ const char* cpPrefs[CPPrefCount] = {
 
 
 
-void initPreferences(){
+void initPreferences() {
   naInitPreferencesi64(
     cpPrefs[CPPreferredLanguage],
     0,
@@ -50,47 +50,47 @@ void initPreferences(){
 
 
 
-NALanguageCode3 cpGetPrefsPreferredLanguage(){
+NALanguageCode3 cpGetPrefsPreferredLanguage() {
   return (NALanguageCode3)naGetPreferencesi64(cpPrefs[CPPreferredLanguage]);
 }
-void cpSetPrefsPreferredLanguage(NALanguageCode3 languageCode){
+void cpSetPrefsPreferredLanguage(NALanguageCode3 languageCode) {
   naSetPreferencesi64(cpPrefs[CPPreferredLanguage], (int64)languageCode);
   naSetTranslatorLanguagePreference(languageCode);
 }
 
 
 
-HSVHSLSelect cpGetPrefsHSVHSLSelect(){
+HSVHSLSelect cpGetPrefsHSVHSLSelect() {
   return (HSVHSLSelect)naGetPreferencesEnum(cpPrefs[CPHSVHSLSelection]);
 }
-void cpSetPrefsHSVHSLSelect(HSVHSLSelect selection){
+void cpSetPrefsHSVHSLSelect(HSVHSLSelect selection) {
   naSetPreferencesEnum(cpPrefs[CPHSVHSLSelection], selection);
 }
 
 
 
-LuvUVWSelect cpGetPrefsLuvUVWSelect(){
+LuvUVWSelect cpGetPrefsLuvUVWSelect() {
   return (LuvUVWSelect)naGetPreferencesEnum(cpPrefs[CPLuvUVWSelection]);
 }
-void cpSetPrefsLuvUVWSelect(LuvUVWSelect selection){
+void cpSetPrefsLuvUVWSelect(LuvUVWSelect selection) {
   naSetPreferencesEnum(cpPrefs[CPLuvUVWSelection], selection);
 }
 
 
 
-LabLchSelect cpGetPrefsLabLchSelect(){
+LabLchSelect cpGetPrefsLabLchSelect() {
   return (LabLchSelect)naGetPreferencesEnum(cpPrefs[CPLabLchSelection]);
 }
-void cpSetPrefsLabLchSelect(LabLchSelect selection){
+void cpSetPrefsLabLchSelect(LabLchSelect selection) {
   naSetPreferencesEnum(cpPrefs[CPLabLchSelection], selection);
 }
 
 
 
-YuvYupvpSelect cpGetPrefsYuvYupvpSelect(){
+YuvYupvpSelect cpGetPrefsYuvYupvpSelect() {
   return (YuvYupvpSelect)naGetPreferencesEnum(cpPrefs[CPYuvYupvpSelection]);
 }
-void cpSetPrefsYuvYupvpSelect(YuvYupvpSelect selection){
+void cpSetPrefsYuvYupvpSelect(YuvYupvpSelect selection) {
   naSetPreferencesEnum(cpPrefs[CPYuvYupvpSelection], selection);
 }
 

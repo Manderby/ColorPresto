@@ -35,10 +35,10 @@ struct CPThreeDeeOpacityController{
 
 
 
-void cp_PressThreeDeeOpacityButton(NAReaction reaction){
+void cp_PressThreeDeeOpacityButton(NAReaction reaction) {
   CPThreeDeeOpacityController* con = (CPThreeDeeOpacityController*)reaction.controller;
 
-  if(reaction.uiElement == con->bodySolidCheckBox){
+  if(reaction.uiElement == con->bodySolidCheckBox) {
     con->bodySolid = naGetCheckBoxState(con->bodySolidCheckBox);
   }
 
@@ -47,16 +47,16 @@ void cp_PressThreeDeeOpacityButton(NAReaction reaction){
 
 
 
-void cp_ChangeThreeDeeOpacitySlider(NAReaction reaction){
+void cp_ChangeThreeDeeOpacitySlider(NAReaction reaction) {
   CPThreeDeeOpacityController* con = (CPThreeDeeOpacityController*)reaction.controller;
 
-  if(reaction.uiElement == con->pointsOpacitySlider){
+  if(reaction.uiElement == con->pointsOpacitySlider) {
     con->pointsOpacity = (float)naGetSliderValue(con->pointsOpacitySlider);
-  }else if(reaction.uiElement == con->gridAlphaSlider){
+  }else if(reaction.uiElement == con->gridAlphaSlider) {
     con->gridAlpha = (float)naGetSliderValue(con->gridAlphaSlider);
-  }else if(reaction.uiElement == con->gridTintSlider){
+  }else if(reaction.uiElement == con->gridTintSlider) {
     con->gridTint = (float)naGetSliderValue(con->gridTintSlider);
-  }else if(reaction.uiElement == con->bodyAlphaSlider){
+  }else if(reaction.uiElement == con->bodyAlphaSlider) {
     con->bodyAlpha = (float)naGetSliderValue(con->bodyAlphaSlider);
   }
   
@@ -65,7 +65,7 @@ void cp_ChangeThreeDeeOpacitySlider(NAReaction reaction){
 
 
 
-CPThreeDeeOpacityController* cpAllocThreeDeeOpacityController(CPThreeDeeController* parent){
+CPThreeDeeOpacityController* cpAllocThreeDeeOpacityController(CPThreeDeeController* parent) {
   CPThreeDeeOpacityController* con = naAlloc(CPThreeDeeOpacityController);
 
   con->parent = parent;
@@ -131,30 +131,30 @@ CPThreeDeeOpacityController* cpAllocThreeDeeOpacityController(CPThreeDeeControll
 
 
 
-void cpDeallocThreeDeeOpacityController(CPThreeDeeOpacityController* con){
+void cpDeallocThreeDeeOpacityController(CPThreeDeeOpacityController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetThreeDeeOpacityControllerUIElement(CPThreeDeeOpacityController* con){
+NASpace* cpGetThreeDeeOpacityControllerUIElement(CPThreeDeeOpacityController* con) {
   return con->space;
 }
 
 
-NABool cpGetThreeDeeOpacityControllerBodySolid(CPThreeDeeOpacityController* con){
+NABool cpGetThreeDeeOpacityControllerBodySolid(CPThreeDeeOpacityController* con) {
   return con->bodySolid;
 }
-float cpGetThreeDeeOpacityControllerPointsOpacity(CPThreeDeeOpacityController* con){
+float cpGetThreeDeeOpacityControllerPointsOpacity(CPThreeDeeOpacityController* con) {
   return con->pointsOpacity;
 }
-float cpGetThreeDeeOpacityControllerBodyAlpha(CPThreeDeeOpacityController* con){
+float cpGetThreeDeeOpacityControllerBodyAlpha(CPThreeDeeOpacityController* con) {
   return con->bodyAlpha;
 }
-float cpGetThreeDeeOpacityControllerGridAlpha(CPThreeDeeOpacityController* con){
+float cpGetThreeDeeOpacityControllerGridAlpha(CPThreeDeeOpacityController* con) {
   return con->gridAlpha;
 }
-float cpGetThreeDeeOpacityControllerGridTint(CPThreeDeeOpacityController* con){
+float cpGetThreeDeeOpacityControllerGridTint(CPThreeDeeOpacityController* con) {
   return con->gridTint;
 }
 

@@ -37,17 +37,17 @@ struct CPHSVHSLColorController{
 
 
 
-void cp_HSVHSLSelectionChanged(NAReaction reaction){
+void cp_HSVHSLSelectionChanged(NAReaction reaction) {
   CPHSVHSLColorController* con = (CPHSVHSLColorController*)reaction.controller;
   
   HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
   CMLColorType oldColorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
   CMLColorType newColorType = oldColorType;
 
-  if(reaction.uiElement == con->radioHSV){
+  if(reaction.uiElement == con->radioHSV) {
     cpSetPrefsHSVHSLSelect(HSV);
     newColorType = CML_COLOR_HSV;
-  }else if(reaction.uiElement == con->radioHSL){
+  }else if(reaction.uiElement == con->radioHSL) {
     cpSetPrefsHSVHSLSelect(HSL);
     newColorType = CML_COLOR_HSL;
   }
@@ -63,14 +63,14 @@ void cp_HSVHSLSelectionChanged(NAReaction reaction){
 
 
 
-void cp_HSVHSLValueEdited(NAReaction reaction){
+void cp_HSVHSLValueEdited(NAReaction reaction) {
   CPHSVHSLColorController* con = (CPHSVHSLColorController*)reaction.controller;
   
-  if(reaction.uiElement == con->textField0){
+  if(reaction.uiElement == con->textField0) {
     con->color[0] = (float)naGetTextFieldDouble(con->textField0);
-  }else if(reaction.uiElement == con->textField1){
+  }else if(reaction.uiElement == con->textField1) {
     con->color[1] = (float)naGetTextFieldDouble(con->textField1);
-  }else if(reaction.uiElement == con->textField2){
+  }else if(reaction.uiElement == con->textField2) {
     con->color[2] = (float)naGetTextFieldDouble(con->textField2);
   }
   
@@ -80,7 +80,7 @@ void cp_HSVHSLValueEdited(NAReaction reaction){
 
 
 
-CPHSVHSLColorController* cpAllocHSVHSLColorController(void){
+CPHSVHSLColorController* cpAllocHSVHSLColorController(void) {
   HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
   CMLColorType colorType = (hsvhslSelect == HSV) ? CML_COLOR_HSV : CML_COLOR_HSL;
 
@@ -146,7 +146,7 @@ CPHSVHSLColorController* cpAllocHSVHSLColorController(void){
 
 
 
-void cpDeallocHSVHSLColorController(CPHSVHSLColorController* con){
+void cpDeallocHSVHSLColorController(CPHSVHSLColorController* con) {
   cpDeallocColorWell2D(con->colorWell2D);
   cpDeallocColorWell1D(con->colorWell1D0);
   cpDeallocColorWell1D(con->colorWell1D1);
@@ -157,13 +157,13 @@ void cpDeallocHSVHSLColorController(CPHSVHSLColorController* con){
 
 
 
-const void* cpGetHSVHSLColorControllerColorData(const CPHSVHSLColorController* con){
+const void* cpGetHSVHSLColorControllerColorData(const CPHSVHSLColorController* con) {
   return &(con->color);
 }
 
 
 
-void cpSetHSVHSLColorControllerColorData(CPHSVHSLColorController* con, const void* data){
+void cpSetHSVHSLColorControllerColorData(CPHSVHSLColorController* con, const void* data) {
   cmlCpy3(con->color, data);
 }
 
@@ -187,13 +187,13 @@ void cpComputeHSVHSLColorController(CPHSVHSLColorController* con) {
 
 
 
-void cpUpdateHSVHSLColorController(CPHSVHSLColorController* con){
+void cpUpdateHSVHSLColorController(CPHSVHSLColorController* con) {
   HSVHSLSelect hsvhslSelect = cpGetPrefsHSVHSLSelect();
   
   naSetRadioState(con->radioHSV, hsvhslSelect == HSV);
   naSetRadioState(con->radioHSL, hsvhslSelect == HSL);
   
-  if(hsvhslSelect == HSV){
+  if(hsvhslSelect == HSV) {
     naSetLabelText(con->label0, cpTranslate(CPHSVColorChannelH));
     naSetLabelText(con->label1, cpTranslate(CPHSVColorChannelS));
     naSetLabelText(con->label2, cpTranslate(CPHSVColorChannelV));

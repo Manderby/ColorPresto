@@ -35,7 +35,7 @@ int WINAPI WinMain(
 
 
 
-int main(int argc, char *argv[]){
+int main(int argc, char *argv[]) {
   NA_UNUSED(argc);
   NA_UNUSED(argv);
 

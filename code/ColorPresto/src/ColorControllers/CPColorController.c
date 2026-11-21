@@ -15,14 +15,14 @@
 
 
 
-void CPColorControllerMouseDown(NAReaction reaction){
+void CPColorControllerMouseDown(NAReaction reaction) {
   CPColorController* con = reaction.controller;
   cpSetCurrentColorController(con);
 }
 
 
 
-void cpInitColorController(CPColorController* con, CMLColorType colorType){
+void cpInitColorController(CPColorController* con, CMLColorType colorType) {
   con->space = naNewSpace(naMakeSize(10, 10));
   naAddUIReaction(con->space, NA_UI_COMMAND_MOUSE_DOWN, CPColorControllerMouseDown, con);
   
@@ -32,23 +32,23 @@ void cpInitColorController(CPColorController* con, CMLColorType colorType){
 
 
 
-void cpClearColorController(CPColorController* con){
+void cpClearColorController(CPColorController* con) {
 }
 
 
 
-void cpSetColorControllerColorType(CPColorController* con, CMLColorType colorType){
+void cpSetColorControllerColorType(CPColorController* con, CMLColorType colorType) {
   con->colorType = colorType;
 }
 
 
 
-void cpSetColorControllerActive(CPColorController* con, NABool active){
+void cpSetColorControllerActive(CPColorController* con, NABool active) {
   NABool isDifferent = con->active != active;
   con->active = active;
   
   if(isDifferent) {
-    if(con->active){
+    if(con->active) {
       NAColor highlightColor;
       naFillColorWithSkinTextColor(&highlightColor, naGetCurrentSkin());
       highlightColor.alpha = .2f;
@@ -61,14 +61,14 @@ void cpSetColorControllerActive(CPColorController* con, NABool active){
 
 
 
-CMLColorType cpGetColorControllerColorType(const CPColorController* con){
+CMLColorType cpGetColorControllerColorType(const CPColorController* con) {
   return con->colorType;
 }
 
 
 
-const void* cpGetColorControllerColorData(const CPColorController* con){
-  switch(con->colorType){
+const void* cpGetColorControllerColorData(const CPColorController* con) {
+  switch(con->colorType) {
   case CML_COLOR_Gray: return cpGetGrayColorControllerColorData((const CPGrayColorController*)con); 
   case CML_COLOR_HSL: return cpGetHSVHSLColorControllerColorData((const CPHSVHSLColorController*)con); 
   case CML_COLOR_HSV: return cpGetHSVHSLColorControllerColorData((const CPHSVHSLColorController*)con);
@@ -89,8 +89,8 @@ const void* cpGetColorControllerColorData(const CPColorController* con){
 
 
 
-void cpSetColorControllerColorData(CPColorController* con, const void* data){
-  switch(con->colorType){
+void cpSetColorControllerColorData(CPColorController* con, const void* data) {
+  switch(con->colorType) {
   case CML_COLOR_Gray: cpSetGrayColorControllerColorData((CPGrayColorController*)con, data); break; 
   case CML_COLOR_HSL: cpSetHSVHSLColorControllerColorData((CPHSVHSLColorController*)con, data); break; 
   case CML_COLOR_HSV: cpSetHSVHSLColorControllerColorData((CPHSVHSLColorController*)con, data); break;
@@ -111,7 +111,7 @@ void cpSetColorControllerColorData(CPColorController* con, const void* data){
 
 
 
-NASpace* cpGetColorControllerUIElement(CPColorController* con){
+NASpace* cpGetColorControllerUIElement(CPColorController* con) {
   return con->space;
 }
 

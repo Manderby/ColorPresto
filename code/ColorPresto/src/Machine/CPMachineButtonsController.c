@@ -22,26 +22,26 @@ struct CPMachineButtonsController{
 
 
 
-void cp_PressMachineButton(NAReaction reaction){
+void cp_PressMachineButton(NAReaction reaction) {
   CPMachineButtonsController* con = (CPMachineButtonsController*)reaction.controller;
   
-  if(reaction.uiElement == con->resetMachineButton){
+  if(reaction.uiElement == con->resetMachineButton) {
     cpResetColorMachine();
     cpUpdateMachine();
-  }else if(reaction.uiElement == con->metamericsButton){
+  }else if(reaction.uiElement == con->metamericsButton) {
     cpShowMetamerics();
-  }else if(reaction.uiElement == con->threeDeeButton){
+  }else if(reaction.uiElement == con->threeDeeButton) {
     cpShowThreeDee();
-  }else if(reaction.uiElement == con->aboutButton){
+  }else if(reaction.uiElement == con->aboutButton) {
     cpShowAbout();
-  }else if(reaction.uiElement == con->preferencesButton){
+  }else if(reaction.uiElement == con->preferencesButton) {
     cpShowPreferences();
   }
 }
 
 
 
-CPMachineButtonsController* cpAllocMachineButtonsController(void){
+CPMachineButtonsController* cpAllocMachineButtonsController(void) {
   CPMachineButtonsController* con = naAlloc(CPMachineButtonsController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -74,17 +74,17 @@ CPMachineButtonsController* cpAllocMachineButtonsController(void){
 
 
 
-void cpDeallocMachineButtonsController(CPMachineButtonsController* con){
+void cpDeallocMachineButtonsController(CPMachineButtonsController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetMachineButtonsControllerUIElement(CPMachineButtonsController* con){
+NASpace* cpGetMachineButtonsControllerUIElement(CPMachineButtonsController* con) {
   return con->space;
 }
 
 
 
-void cpUpdateMachineButtonsController(CPMachineButtonsController* con){
+void cpUpdateMachineButtonsController(CPMachineButtonsController* con) {
 }

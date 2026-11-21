@@ -239,7 +239,7 @@ struct CPColorRenderingColors{
 
 
 
-CPColorRenderingColors cp_ComputeColorRenderingColors(CMLFunction* observer2Funcs[3], const CPWhitePoints* refWhitePoint2, const CPWhitePoints* illWhitePoint2, const CMLFunction* refSpec){
+CPColorRenderingColors cp_ComputeColorRenderingColors(CMLFunction* observer2Funcs[3], const CPWhitePoints* refWhitePoint2, const CPWhitePoints* illWhitePoint2, const CMLFunction* refSpec) {
 
   CPColorRenderingColors colors;
   
@@ -256,7 +256,7 @@ CPColorRenderingColors cp_ComputeColorRenderingColors(CMLFunction* observer2Func
   float metamerRefXYZ[14 * 3];
   float metamerIllXYZ[14 * 3];
 
-  for(int i = 0; i < 14; ++i){
+  for(int i = 0; i < 14; ++i) {
     CMLArrayFunctionInput input = {
       metamerdata[i],
       NA_FALSE,
@@ -272,7 +272,7 @@ CPColorRenderingColors cp_ComputeColorRenderingColors(CMLFunction* observer2Func
     float* metamerIllXYZptr = &(metamerIllXYZ[i * 3]);
 
     CMLVec3 metamerRefUVW;
-    if(refSpec){
+    if(refSpec) {
       CMLFunction* metamerRefRemission = cmlCreateFunctionMulFunction(metamerfunction, refSpec);
       cmlSet3(
         metamerRefXYZptr,
@@ -298,7 +298,7 @@ CPColorRenderingColors cp_ComputeColorRenderingColors(CMLFunction* observer2Func
     }
 
     CMLVec3 metamerIllUVW;
-    if(illuminationSpec){
+    if(illuminationSpec) {
       CMLFunction* metamerIllRemission = cmlCreateFunctionMulFunction(metamerfunction, illuminationSpec);
       cmlSet3(
         metamerIllXYZptr,
@@ -353,7 +353,7 @@ CPColorRenderingColors cp_ComputeColorRenderingColors(CMLFunction* observer2Func
 
 
 
-CPColorRenderingIndexController* cpAllocColorRenderingIndexController(void){
+CPColorRenderingIndexController* cpAllocColorRenderingIndexController(void) {
   CPColorRenderingIndexController* con = naAlloc(CPColorRenderingIndexController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -483,13 +483,13 @@ CPColorRenderingIndexController* cpAllocColorRenderingIndexController(void){
 
 
 
-void cpDeallocColorRenderingIndexController(CPColorRenderingIndexController* con){
+void cpDeallocColorRenderingIndexController(CPColorRenderingIndexController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetColorRenderingIndexUIElement(CPColorRenderingIndexController* con){
+NASpace* cpGetColorRenderingIndexUIElement(CPColorRenderingIndexController* con) {
   return con->space;
 }
 
@@ -503,7 +503,7 @@ void cpUpdateColorRenderingIndexController(
   const CMLFunction* refSpec,
   NABool valid)
 {
-  if(valid){
+  if(valid) {
     CPColorRenderingColors colors = cp_ComputeColorRenderingColors(
       observer2Funcs,
       refWhitePoint2,

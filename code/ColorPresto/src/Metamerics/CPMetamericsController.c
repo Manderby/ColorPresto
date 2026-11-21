@@ -38,7 +38,7 @@ struct CPMetamericsController{
 
 
 
-CPMetamericsController* cpAllocMetamericsController(void){
+CPMetamericsController* cpAllocMetamericsController(void) {
   CPMetamericsController* con = naAlloc(CPMetamericsController);
 
   con->chromaticityErrorController = cpAllocChromaticityErrorController();
@@ -107,7 +107,7 @@ CPMetamericsController* cpAllocMetamericsController(void){
 
 
 
-void cpDeallocMetamericsController(CPMetamericsController* con){
+void cpDeallocMetamericsController(CPMetamericsController* con) {
   cpDeallocChromaticityErrorController(con->chromaticityErrorController);
   cpDeallocWhitePointsController(con->whitePointsController);
   cpDeallocColorRenderingIndexController(con->colorRenderingIndexController);
@@ -120,13 +120,13 @@ void cpDeallocMetamericsController(CPMetamericsController* con){
 
 
 
-void cpShowMetamericsController(CPMetamericsController* con){
+void cpShowMetamericsController(CPMetamericsController* con) {
   naShowWindow(con->window);
 }
 
 
 
-void cpUpdateMetamericsController(CPMetamericsController* con){
+void cpUpdateMetamericsController(CPMetamericsController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLFunction* observer10Funcs[3];
@@ -137,7 +137,7 @@ void cpUpdateMetamericsController(CPMetamericsController* con){
   CPReferenceIlluminationType referenceIlluminationType = cpGetReferenceIlluminationType(con->whitePointsController);
 
   const CMLFunction* ref;
-  switch(referenceIlluminationType){
+  switch(referenceIlluminationType) {
   case REFERENCE_ILLUMINATION_D50:
     ref = cmlCreateIlluminationSpectrum(CML_ILLUMINATION_D50, 0.f);
     break;

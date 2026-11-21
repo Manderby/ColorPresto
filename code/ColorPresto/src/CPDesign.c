@@ -9,21 +9,21 @@ NAFont* monoFont;
 
 
 
-void cpStartupDesign(){
+void cpStartupDesign() {
   boldFont = naCreateFontWithPreset(NA_FONT_KIND_TITLE, NA_FONT_SIZE_DEFAULT);
   monoFont = naCreateFontWithPreset(NA_FONT_KIND_SYSTEM, NA_FONT_SIZE_DEFAULT);
 }
 
 
 
-void cpShutdownDesign(){
+void cpShutdownDesign() {
   naRelease(boldFont);
   naRelease(monoFont);
 }
 
 
 
-NALabel* cpNewTitleLabel(const NAUTF8Char* text, double width){
+NALabel* cpNewTitleLabel(const NAUTF8Char* text, double width) {
   NALabel* label = naNewLabel(text, width);
   naSetLabelFont(label, boldFont);
   return label;
@@ -31,7 +31,7 @@ NALabel* cpNewTitleLabel(const NAUTF8Char* text, double width){
 
 
 
-NALabel* cpNewValueLabel(){
+NALabel* cpNewValueLabel() {
   NALabel* label = naNewLabel("", labelValueWidth);
   naSetLabelTextAlignment(label, NA_ALIGNMENT_END);
   naSetLabelFont(label, monoFont);
@@ -40,7 +40,7 @@ NALabel* cpNewValueLabel(){
 
 
 
-NALabel* cpNewColorComponentLabel(const NAUTF8Char* string){
+NALabel* cpNewColorComponentLabel(const NAUTF8Char* string) {
   NALabel* label = naNewLabel(string, colorComponentWidth);
   naSetLabelTextAlignment(label, NA_ALIGNMENT_END);
   return label;
@@ -48,7 +48,7 @@ NALabel* cpNewColorComponentLabel(const NAUTF8Char* string){
 
 
 
-NALabel* cpNewThreeValueLabel(){
+NALabel* cpNewThreeValueLabel() {
   NALabel* label = naNewLabel("", labelValueWidth);
   naSetLabelHeight(label, threeValueHeight);
   naSetLabelFont(label, monoFont);
@@ -58,7 +58,7 @@ NALabel* cpNewThreeValueLabel(){
 
 
 
-NATextField* cpNewValueTextField(NAReactionCallback reactionCallback, void* con){
+NATextField* cpNewValueTextField(NAReactionCallback reactionCallback, void* con) {
   NATextField* textField = naNewTextField(textFieldValueWidth);
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_ALIGNMENT_END);
@@ -66,7 +66,7 @@ NATextField* cpNewValueTextField(NAReactionCallback reactionCallback, void* con)
   return textField;
 }
 
-NATextField* cpNewBigValueTextField(NAReactionCallback reactionCallback, void* con){
+NATextField* cpNewBigValueTextField(NAReactionCallback reactionCallback, void* con) {
   NATextField* textField = naNewTextField(colorWell1DSize);
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_ALIGNMENT_END);
@@ -83,7 +83,7 @@ double maxDesignWidth = 0.;
 double curDesignRowHeight = 0.;
 NABool curDesignRowHeightFixed = NA_FALSE;
 
-void cpBeginUILayout(NASpace* space, NABorder2D border){
+void cpBeginUILayout(NASpace* space, NABorder2D border) {
   NASize size = naGetUIElementRect(space).size;
   curDesignSpace = space;
   curDesignBorder = border;
@@ -93,7 +93,7 @@ void cpBeginUILayout(NASpace* space, NABorder2D border){
   curDesignRowHeightFixed = NA_FALSE;
 }
 
-void cpAddUIPos(double x, double y){
+void cpAddUIPos(double x, double y) {
   #if NA_DEBUG
     if(!curDesignSpace)
       naError("No space defined for design. Use cpBeginUILayout");
@@ -102,8 +102,8 @@ void cpAddUIPos(double x, double y){
   curDesignPos.y -= y;
 }
 
-void cp_AddLayoutRowPlain(void* child, NASize size, double vOffset){
-  if(curDesignRowHeightFixed){
+void cp_AddLayoutRowPlain(void* child, NASize size, double vOffset) {
+  if(curDesignRowHeightFixed) {
     naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - curDesignRowHeight + vOffset));
   }else{
     naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - size.height));
@@ -113,7 +113,7 @@ void cp_AddLayoutRowPlain(void* child, NASize size, double vOffset){
   maxDesignWidth = naMax(maxDesignWidth, curDesignPos.x);
 }
 
-void cpAddUIRow(void* child, double rowHeight){
+void cpAddUIRow(void* child, double rowHeight) {
   #if NA_DEBUG
     if(!curDesignSpace)
       naError("No space defined for design. Use cpBeginUILayout");
@@ -121,7 +121,7 @@ void cpAddUIRow(void* child, double rowHeight){
   NASize size = naGetUIElementRect(child).size;
   curDesignPos.x = curDesignBorder.begin1;
   curDesignPos.y -= curDesignRowHeight;
-  if(rowHeight){
+  if(rowHeight) {
     curDesignRowHeightFixed = NA_TRUE;
     curDesignRowHeight = rowHeight;
   }else{
@@ -131,7 +131,7 @@ void cpAddUIRow(void* child, double rowHeight){
   cp_AddLayoutRowPlain(child, size, 0.);
 }
 
-void cpAddUIRowH(void* child, double rowHeight, double hOffset){
+void cpAddUIRowH(void* child, double rowHeight, double hOffset) {
   #if NA_DEBUG
     if(!curDesignSpace)
       naError("No space defined for design. Use cpBeginUILayout");
@@ -140,7 +140,7 @@ void cpAddUIRowH(void* child, double rowHeight, double hOffset){
   NASize size = naGetUIElementRect(child).size;
   curDesignPos.x = hOffset + curDesignBorder.begin1;
   curDesignPos.y -= curDesignRowHeight;
-  if(rowHeight){
+  if(rowHeight) {
     curDesignRowHeightFixed = NA_TRUE;
     curDesignRowHeight = rowHeight;
   }else{
@@ -150,7 +150,7 @@ void cpAddUIRowH(void* child, double rowHeight, double hOffset){
   cp_AddLayoutRowPlain(child, size, 0.);
 }
 
-void cpAddUICol(void* child, double marginLeft){
+void cpAddUICol(void* child, double marginLeft) {
   #if NA_DEBUG
     if(!curDesignSpace)
       naError("No space defined for design. Use cpBeginUILayout");
@@ -160,7 +160,7 @@ void cpAddUICol(void* child, double marginLeft){
   cp_AddLayoutRowPlain(child, size, 0.);
 }
 
-void cpAddUIColV(void* child, double marginLeft, double vOffset){
+void cpAddUIColV(void* child, double marginLeft, double vOffset) {
   #if NA_DEBUG
     if(!curDesignSpace)
       naError("No space defined for design. Use cpBeginUILayout");
@@ -170,7 +170,7 @@ void cpAddUIColV(void* child, double marginLeft, double vOffset){
   cp_AddLayoutRowPlain(child, size, vOffset);
 }
 
-void cpEndUILayout(){
+void cpEndUILayout() {
   NARect spaceRect = naGetUIElementRect(curDesignSpace);
   double prevHeight = spaceRect.size.height;
   spaceRect.size.width = maxDesignWidth + curDesignBorder.end1;
@@ -181,9 +181,9 @@ void cpEndUILayout(){
   naShiftSpaceChilds(curDesignSpace, naMakePos(0, spaceRect.size.height - prevHeight));
 
   NAWindow* window = naGetUIElementWindowMutable(curDesignSpace);
-  if(window){
+  if(window) {
     NASpace* contentSpace = naGetWindowContentSpace(window);
-    if(contentSpace == curDesignSpace){
+    if(contentSpace == curDesignSpace) {
       NARect windowRect = naGetUIElementRect(window);
       windowRect.size = spaceRect.size;
       naSetUIElementRect(window, windowRect);

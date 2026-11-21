@@ -20,7 +20,7 @@ struct CPSpectralColorController{
 
 
 
-void cp_SpectralValueEdited(NAReaction reaction){
+void cp_SpectralValueEdited(NAReaction reaction) {
   CPSpectralColorController* con = (CPSpectralColorController*)reaction.controller;
   
   cpSetCurrentColorController(&(con->baseController));
@@ -29,7 +29,7 @@ void cp_SpectralValueEdited(NAReaction reaction){
 
 
 
-CPSpectralColorController* cpAllocSpectralColorController(void){
+CPSpectralColorController* cpAllocSpectralColorController(void) {
   CPSpectralColorController* con = naAlloc(CPSpectralColorController);
   
   cpInitColorController(&(con->baseController), CML_COLOR_SPECTRUM_ILLUMINATION);
@@ -47,7 +47,7 @@ CPSpectralColorController* cpAllocSpectralColorController(void){
 
 
 
-void cpDeallocSpectralColorController(CPSpectralColorController* con){
+void cpDeallocSpectralColorController(CPSpectralColorController* con) {
   cpDeallocSpectralColorWell(con->display);
   cpClearColorController(&(con->baseController));
   naFree(con);
@@ -55,13 +55,13 @@ void cpDeallocSpectralColorController(CPSpectralColorController* con){
 
 
 
-const void* cpGetSpectralColorControllerColorData(const CPSpectralColorController* con){
+const void* cpGetSpectralColorControllerColorData(const CPSpectralColorController* con) {
   return con->spectralColor;
 }
 
 
 
-void cpSetSpectralColorControllerColorData(CPSpectralColorController* con, const void* data){
+void cpSetSpectralColorControllerColorData(CPSpectralColorController* con, const void* data) {
   cmlReleaseFunction(con->spectralColor);
   con->spectralColor = cmlDuplicateFunction((CMLFunction*)data);
 }
@@ -78,6 +78,6 @@ void cpComputeSpectralColorController(CPSpectralColorController* con) {
 
 
 
-void cpUpdateSpectralColorController(CPSpectralColorController* con){
+void cpUpdateSpectralColorController(CPSpectralColorController* con) {
   cpUpdateSpectralColorWell(con->display);
 }

@@ -28,14 +28,14 @@ struct CPMachineIlluminationController{
 
 
 
-void cp_SelectIllumination(NAReaction reaction){
+void cp_SelectIllumination(NAReaction reaction) {
   CPMachineIlluminationController* con = (CPMachineIlluminationController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   size_t index = naGetSelectItemIndex(con->illuminationSelect, reaction.uiElement);
   CMLIlluminationType illuminationType = (CMLIlluminationType)index;
   
-  if(illuminationType == CML_ILLUMINATION_CUSTOM_WHITEPOINT){
+  if(illuminationType == CML_ILLUMINATION_CUSTOM_WHITEPOINT) {
     CMLVec3 wpyxy;
     cmlCpy3(wpyxy, cmlGetWhitePointYxy(cm));
     wpyxy[0] = 1.f;
@@ -49,14 +49,14 @@ void cp_SelectIllumination(NAReaction reaction){
 
 
 
-void cpSetIlluminationTemperature(NAReaction reaction){
+void cpSetIlluminationTemperature(NAReaction reaction) {
   CPMachineIlluminationController* con = (CPMachineIlluminationController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   float temperature = 0.f;
-  if(reaction.uiElement == con->illuminationTemperatureTextField){
+  if(reaction.uiElement == con->illuminationTemperatureTextField) {
     temperature = (float)naGetTextFieldDouble(con->illuminationTemperatureTextField);
-  }else if(reaction.uiElement == con->illuminationTemperatureSlider){
+  }else if(reaction.uiElement == con->illuminationTemperatureSlider) {
     double sliderValue = naGetSliderValue(con->illuminationTemperatureSlider);
     temperature = (sliderValue == 1.f)
       ? CML_INFINITY
@@ -69,21 +69,21 @@ void cpSetIlluminationTemperature(NAReaction reaction){
 
 
 
-void cpSetWhitePoint(NAReaction reaction){
+void cpSetWhitePoint(NAReaction reaction) {
   CPMachineIlluminationController* con = (CPMachineIlluminationController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLVec3 whitePointYxy;
   cmlCpy3(whitePointYxy, cmlGetWhitePointYxy(cm));
   
-  if(reaction.uiElement == con->setWhitePointButton){
+  if(reaction.uiElement == con->setWhitePointButton) {
     CMLColorConverter converter = cmlGetColorConverter(CML_COLOR_Yxy, cpGetCurrentColorType());
     converter(cm, whitePointYxy, cpGetCurrentColorData(), 1);
-  }else if(reaction.uiElement == con->whitePointYTextField){
+  }else if(reaction.uiElement == con->whitePointYTextField) {
     whitePointYxy[0] = (float)naGetTextFieldDouble(con->whitePointYTextField);
-  }else if(reaction.uiElement == con->whitePointxTextField){
+  }else if(reaction.uiElement == con->whitePointxTextField) {
     whitePointYxy[1] = (float)naGetTextFieldDouble(con->whitePointxTextField);
-  }else if(reaction.uiElement == con->whitePointyTextField){
+  }else if(reaction.uiElement == con->whitePointyTextField) {
     whitePointYxy[2] = (float)naGetTextFieldDouble(con->whitePointyTextField);
   }
   cmlSetReferenceWhitePointYxy(cm, whitePointYxy);
@@ -93,7 +93,7 @@ void cpSetWhitePoint(NAReaction reaction){
 
 
 
-CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
+CPMachineIlluminationController* cpAllocMachineIlluminationController(void) {
   CPMachineIlluminationController* con = naAlloc(CPMachineIlluminationController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -101,7 +101,7 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
 
   con->illuminationTitleLabel = naNewLabel(cpTranslate(CPIlluminationTitle), machineLabelWidth);
   con->illuminationSelect = naNewSelect(200);
-  for(size_t i = 0; i < CML_ILLUMINATION_COUNT; ++i){
+  for(size_t i = 0; i < CML_ILLUMINATION_COUNT; ++i) {
     CMLIlluminationType illuminationType = (CMLIlluminationType)i;
     if(illuminationType == CML_ILLUMINATION_CUSTOM_SPECTRUM) {continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetIlluminationTypeString(illuminationType), NA_NULL);
@@ -141,24 +141,24 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void){
 
 
 
-void cpDeallocMachineIlluminationController(CPMachineIlluminationController* con){
+void cpDeallocMachineIlluminationController(CPMachineIlluminationController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetMachineIlluminationControllerUIElement(CPMachineIlluminationController* con){
+NASpace* cpGetMachineIlluminationControllerUIElement(CPMachineIlluminationController* con) {
   return con->space;
 }
 
 
 
-void cpUpdateMachineIlluminationController(CPMachineIlluminationController* con){
+void cpUpdateMachineIlluminationController(CPMachineIlluminationController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLIlluminationType illuminationType = cmlGetIlluminationType(cm);
   double temperature = cmlGetIlluminationTemperature(cm);
-  if(temperature == 0.f){
+  if(temperature == 0.f) {
     CMLVec3 whitePointYuv = {0.f, 0.f, 0.f};
     cmlYupvpToYuv(cm, whitePointYuv, cmlGetWhitePointYupvp(cm), 1);
     temperature = cmlGetCorrelatedColorTemperature(whitePointYuv);

@@ -23,7 +23,7 @@
 
 
 
-void cpControllerWindowCloses(NAReaction reaction){
+void cpControllerWindowCloses(NAReaction reaction) {
   naStopApplication();
 }
 
@@ -52,7 +52,7 @@ struct CPMachineWindowController{
 
 
 
-CPMachineWindowController* cpAllocMachineWindowController(void){
+CPMachineWindowController* cpAllocMachineWindowController(void) {
   CPMachineWindowController* con = naAlloc(CPMachineWindowController);
 
   con->window = naNewWindow(
@@ -145,7 +145,7 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
 
 
 
-void cpDeallocMachineWindowController(CPMachineWindowController* con){
+void cpDeallocMachineWindowController(CPMachineWindowController* con) {
   cpDeallocGrayColorController(con->grayColorController);
   cpDeallocHSVHSLColorController(con->hsvhslColorController);
   cpDeallocLabLchColorController(con->lablchColorController);
@@ -161,13 +161,13 @@ void cpDeallocMachineWindowController(CPMachineWindowController* con){
 
 
 
-void cpShowMachineWindowController(CPMachineWindowController* con){
+void cpShowMachineWindowController(CPMachineWindowController* con) {
   naShowWindow(con->window);
 }
 
 
 
-CPColorController* cpGetInitialColorController(CPMachineWindowController* con){
+CPColorController* cpGetInitialColorController(CPMachineWindowController* con) {
   return (CPColorController*)con->grayColorController;
 }
 
@@ -222,7 +222,7 @@ void cpUpdateColorWells(CPMachineWindowController* con) {
   cpUpdateYxyColorController(con->yxyColorController);
 }
 
-void cpUpdateMachineWindowController(CPMachineWindowController* con){
+void cpUpdateMachineWindowController(CPMachineWindowController* con) {
   cpUpdateMachineController(con->machineController);
 
   cpSetColorControllerActive((CPColorController*)con->grayColorController, cpGetCurrentColorController() == (CPColorController*)con->grayColorController);

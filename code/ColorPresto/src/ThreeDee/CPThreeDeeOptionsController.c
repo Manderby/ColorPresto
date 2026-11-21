@@ -31,12 +31,12 @@ struct CPThreeDeeOptionsController{
 
 
 
-void cp_PressOptionsButton(NAReaction reaction){
+void cp_PressOptionsButton(NAReaction reaction) {
   CPThreeDeeOptionsController* con = (CPThreeDeeOptionsController*)reaction.controller;
 
-  if(reaction.uiElement == con->spectrumCheckBox){
+  if(reaction.uiElement == con->spectrumCheckBox) {
     con->showSpectrum = naGetCheckBoxState(con->spectrumCheckBox);
-  }else if(reaction.uiElement == con->axisCheckBox){
+  }else if(reaction.uiElement == con->axisCheckBox) {
     con->showAxis = naGetCheckBoxState(con->axisCheckBox);
   }
 
@@ -45,14 +45,14 @@ void cp_PressOptionsButton(NAReaction reaction){
 
 
 
-void cp_ChangeOptionsSlider(NAReaction reaction){
+void cp_ChangeOptionsSlider(NAReaction reaction) {
   CPThreeDeeOptionsController* con = (CPThreeDeeOptionsController*)reaction.controller;
 
-  if(reaction.uiElement == con->backgroundSlider){
+  if(reaction.uiElement == con->backgroundSlider) {
     con->backgroundGray = (float)naGetSliderValue(con->backgroundSlider);
-  }else if(reaction.uiElement == con->fovySlider){
+  }else if(reaction.uiElement == con->fovySlider) {
     con->fovy = (float)naGetSliderValue(con->fovySlider);
-    if(con->fovy < 15.f){con->fovy = 0.f;}
+    if(con->fovy < 15.f) {con->fovy = 0.f;}
   }
   
   cpUpdateThreeDeeController(con->parent);
@@ -60,7 +60,7 @@ void cp_ChangeOptionsSlider(NAReaction reaction){
 
 
 
-CPThreeDeeOptionsController* cpAllocThreeDeeOptionsController(CPThreeDeeController* parent){
+CPThreeDeeOptionsController* cpAllocThreeDeeOptionsController(CPThreeDeeController* parent) {
   CPThreeDeeOptionsController* con = naAlloc(CPThreeDeeOptionsController);
 
   con->parent = parent;
@@ -114,33 +114,33 @@ CPThreeDeeOptionsController* cpAllocThreeDeeOptionsController(CPThreeDeeControll
 
 
 
-void cpDeallocThreeDeeOptionsController(CPThreeDeeOptionsController* con){
+void cpDeallocThreeDeeOptionsController(CPThreeDeeOptionsController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetThreeDeeOptionsControllerUIElement(CPThreeDeeOptionsController* con){
+NASpace* cpGetThreeDeeOptionsControllerUIElement(CPThreeDeeOptionsController* con) {
   return con->space;
 }
 
 
 
-float cpGetThreeDeeOptionsControllerAxisGray(CPThreeDeeOptionsController* con){
+float cpGetThreeDeeOptionsControllerAxisGray(CPThreeDeeOptionsController* con) {
   float axisGray = con->backgroundGray + .5f;
-  if(axisGray > 1.f){axisGray -= 1.f;}
+  if(axisGray > 1.f) {axisGray -= 1.f;}
   return axisGray;
 }
-float cpGetThreeDeeOptionsControllerBackgroundGray(CPThreeDeeOptionsController* con){
+float cpGetThreeDeeOptionsControllerBackgroundGray(CPThreeDeeOptionsController* con) {
   return con->backgroundGray;
 }
-float cpGetThreeDeeOptionsControllerFovy(CPThreeDeeOptionsController* con){
+float cpGetThreeDeeOptionsControllerFovy(CPThreeDeeOptionsController* con) {
   return con->fovy;
 }
-NABool cpGetThreeDeeOptionsControllerShowAxis(CPThreeDeeOptionsController* con){
+NABool cpGetThreeDeeOptionsControllerShowAxis(CPThreeDeeOptionsController* con) {
   return con->showAxis;
 }
-NABool cpGetThreeDeeOptionsControllerShowSpectrum(CPThreeDeeOptionsController* con){
+NABool cpGetThreeDeeOptionsControllerShowSpectrum(CPThreeDeeOptionsController* con) {
   return con->showSpectrum;
 }
 

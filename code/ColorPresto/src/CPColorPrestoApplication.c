@@ -33,7 +33,7 @@ CPColorPrestoApplication* app = NA_NULL;
 
 
 
-void cpPreStartupApplication(void* arg){
+void cpPreStartupApplication(void* arg) {
   NA_UNUSED(arg);
 
   //NAString* appUrl = naNewExecutableUrl();
@@ -65,7 +65,7 @@ void cpPreStartupApplication(void* arg){
 
 
 
-void cpPostStartupApplication(void* arg){
+void cpPostStartupApplication(void* arg) {
   NA_UNUSED(arg);
 
   #if NA_OS == NA_OS_MAC_OS_X
@@ -73,7 +73,7 @@ void cpPostStartupApplication(void* arg){
   #endif
 
   NALanguageCode3 languageCode = cpGetPrefsPreferredLanguage();
-  if(languageCode != 0){
+  if(languageCode != 0) {
     naSetTranslatorLanguagePreference(languageCode);
   }
 
@@ -91,7 +91,7 @@ void cpPostStartupApplication(void* arg){
 
 
 
-void cpShutdownApplication(void* arg){
+void cpShutdownApplication(void* arg) {
   NA_UNUSED(arg);
   
   if(app->threeDeeController) {
@@ -119,26 +119,26 @@ void cpShutdownApplication(void* arg){
 
 
 
-CMLColorMachine* cpGetCurrentColorMachine(){
+CMLColorMachine* cpGetCurrentColorMachine() {
   return app->cm;
 }
 
-void cpResetColorMachine(){
+void cpResetColorMachine() {
   cmlReleaseColorMachine(app->cm);
   app->cm = cmlCreateColorMachine();
 }
 
-CMLColorMachine* cpGetCurrentScreenMachine(){
+CMLColorMachine* cpGetCurrentScreenMachine() {
   return app->sm;
 }
 
-CPColorsManager* cpGetColorsManager(){
+CPColorsManager* cpGetColorsManager() {
   return app->colorsManager;
 }
 
 
 
-void cpShowMetamerics(){
+void cpShowMetamerics() {
   NABool newlyCreated = NA_FALSE;
   if(!app->metamericsController) {
     app->metamericsController = cpAllocMetamericsController();
@@ -149,7 +149,7 @@ void cpShowMetamerics(){
     cpUpdateMetamericsController(app->metamericsController);
   }
 }
-void cpUpdateMetamerics(){
+void cpUpdateMetamerics() {
   if(app->metamericsController) {
     cpUpdateMetamericsController(app->metamericsController);
   }
@@ -157,7 +157,7 @@ void cpUpdateMetamerics(){
 
 
 
-void cpShowThreeDee(){
+void cpShowThreeDee() {
   NABool newlyCreated = NA_FALSE;
   if(!app->threeDeeController) {
     app->threeDeeController = cpAllocThreeDeeController();
@@ -168,7 +168,7 @@ void cpShowThreeDee(){
     cpUpdateThreeDeeController(app->threeDeeController);
   }
 }
-void cpUpdateThreeDee(){
+void cpUpdateThreeDee() {
   if(app->threeDeeController) {
     cpUpdateThreeDeeController(app->threeDeeController);
   }
@@ -176,7 +176,7 @@ void cpUpdateThreeDee(){
 
 
 
-void cpShowAbout(){
+void cpShowAbout() {
   if(!app->aboutController) {
     app->aboutController = cpAllocAboutController();
   }
@@ -185,7 +185,7 @@ void cpShowAbout(){
 
 
 
-void cpShowPreferences(){
+void cpShowPreferences() {
   NABool newlyCreated = NA_FALSE;
   if(!app->preferencesController) {
     app->preferencesController = cpAllocPreferencesController();
@@ -199,39 +199,39 @@ void cpShowPreferences(){
 
 
 
-void cpUpdateColor(){
+void cpUpdateColor() {
   cpUpdateColorWells(app->machineWindowController);
   cpUpdateMetamerics();
   cpUpdateThreeDee();
 }
-void cpUpdateMachine(){
+void cpUpdateMachine() {
   cpUpdateMachineWindowController(app->machineWindowController);
   cpUpdateColor();
 }
 
 
 
-void cpSetCurrentColorController(const CPColorController* con){
+void cpSetCurrentColorController(const CPColorController* con) {
   if(cpSetColorsManagerCurrentColorController(cpGetColorsManager(), con)) {
     cpUpdateMachine();
   }
 }
 
-const CPColorController* cpGetCurrentColorController(){
+const CPColorController* cpGetCurrentColorController() {
   return cpGetColorsManagerCurrentColorController(cpGetColorsManager());
 }
 
-const float* cpGetCurrentColorData(){
+const float* cpGetCurrentColorData() {
   return cpGetColorsManagerCurrentColorData(cpGetColorsManager());
 }
 
-CMLColorType cpGetCurrentColorType(){
+CMLColorType cpGetCurrentColorType() {
   return cpGetColorsManagerCurrentColorType(cpGetColorsManager());
 }
 
 
 
-void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* outData, const float* inputData, CMLColorType inputColorType, CMLNormedConverter normedConverter, size_t count){
+void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine* sm, float* outData, const float* inputData, CMLColorType inputColorType, CMLNormedConverter normedConverter, size_t count) {
   
   size_t numColorChannels = cmlGetNumChannels(inputColorType);
   CMLVec3 cmWhitePointYxy;
@@ -250,7 +250,7 @@ void fillRGBFloatArrayWithArray(const CMLColorMachine* cm, const CMLColorMachine
   float* aXYZbuffer = naMalloc(3 * count * sizeof(float));
   CMLMat33 amatrix;
   cmlFillChromaticAdaptationMatrix(amatrix, CML_CHROMATIC_ADAPTATION_NONE, smWhitePointYxy, cmWhitePointYxy);
-  for(size_t i=0; i<count; ++i){
+  for(size_t i=0; i<count; ++i) {
     cmlConvertXYZToChromaticAdaptedXYZ(&(aXYZbuffer[i*3]), &(XYZbuffer[i*3]), amatrix);
   }
   cmlXYZToRGB(sm, outData, aXYZbuffer, count);

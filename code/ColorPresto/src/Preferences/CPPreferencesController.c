@@ -28,24 +28,24 @@ struct CPPreferencesController {
 
 
 
-void cp_ChangePreferencesLanguage(NAReaction reaction){
+void cp_ChangePreferencesLanguage(NAReaction reaction) {
   CPPreferencesController* con = reaction.controller;
 
-  if(reaction.uiElement == con->languageSystem){
+  if(reaction.uiElement == con->languageSystem) {
     cpSetPrefsPreferredLanguage((NALanguageCode3)0);
-  }else if(reaction.uiElement == con->languageDeutsch){
+  }else if(reaction.uiElement == con->languageDeutsch) {
     cpSetPrefsPreferredLanguage(NA_LANG_DEU);
-  }else if(reaction.uiElement == con->languageEnglish){
+  }else if(reaction.uiElement == con->languageEnglish) {
     cpSetPrefsPreferredLanguage(NA_LANG_ENG);
-  }else if(reaction.uiElement == con->languageEspanol){
+  }else if(reaction.uiElement == con->languageEspanol) {
     cpSetPrefsPreferredLanguage(NA_LANG_SPA);
-  }else if(reaction.uiElement == con->languageFrancais){
+  }else if(reaction.uiElement == con->languageFrancais) {
     cpSetPrefsPreferredLanguage(NA_LANG_FRA);
-  }else if(reaction.uiElement == con->languageKlingon){
+  }else if(reaction.uiElement == con->languageKlingon) {
     cpSetPrefsPreferredLanguage(NA_LANG_TLH);
-  }else if(reaction.uiElement == con->languageJapanese){
+  }else if(reaction.uiElement == con->languageJapanese) {
     cpSetPrefsPreferredLanguage(NA_LANG_JPN);
-  }else if(reaction.uiElement == con->languageChinese){
+  }else if(reaction.uiElement == con->languageChinese) {
     cpSetPrefsPreferredLanguage(NA_LANG_ZHO);
   }
 
@@ -59,7 +59,7 @@ void cp_ChangePreferencesLanguage(NAReaction reaction){
 
 
 
-void cp_ReportBadTranslation(NAReaction reaction){
+void cp_ReportBadTranslation(NAReaction reaction) {
   CPPreferencesController* con = reaction.controller;
 
   naPresentAlertBox(
@@ -104,8 +104,16 @@ CPPreferencesController* cpAllocPreferencesController(void) {
   naAddSelectMenuItem(con->languageSelect, naNewMenuSeparator(), NA_NULL);
   naAddSelectMenuItem(con->languageSelect, con->languageReport, NA_NULL);
 
-  naAddSpaceChild(contentSpace, con->languageLabel, naMakePos(20, 20));
-  naAddSpaceChild(contentSpace, con->languageSelect, naMakePos(270, 20));
+  naAddSpaceChildWithSize(
+    contentSpace,
+    con->languageLabel,
+    naMakePos(20, 20),
+    naMakeInlineSize(250.));
+  naAddSpaceChildWithSize(
+    contentSpace,
+    con->languageSelect,
+    naMakePos(270, 20),
+    naMakeInlineSize(150.));
 
   naAddUIReaction(con->languageSystem, NA_UI_COMMAND_PRESSED, cp_ChangePreferencesLanguage, con);
   naAddUIReaction(con->languageDeutsch, NA_UI_COMMAND_PRESSED, cp_ChangePreferencesLanguage, con);
@@ -138,7 +146,7 @@ void cpShowPreferencesController(CPPreferencesController* con) {
 void cpUpdatePreferencesController(CPPreferencesController* con) {
   NALanguageCode3 languageCode = cpGetPrefsPreferredLanguage();
 
-  switch(languageCode){
+  switch(languageCode) {
   case NA_LANG_DEU: naSetSelectItemSelected(con->languageSelect, con->languageDeutsch); break;
   case NA_LANG_ENG: naSetSelectItemSelected(con->languageSelect, con->languageEnglish); break;
   case NA_LANG_SPA: naSetSelectItemSelected(con->languageSelect, con->languageEspanol); break;

@@ -27,10 +27,10 @@ struct CPThreeDeePerspectiveController{
 
 
 
-void cp_StepRotation(void* data){
+void cp_StepRotation(void* data) {
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)data;
   
-  if(con->rotationStep != 0.){
+  if(con->rotationStep != 0.) {
     con->angleEqu -= con->rotationStep * .015f;
     naCallApplicationFunctionInSeconds(cp_StepRotation, data, 1./60.);
     cpUpdateThreeDeeController(con->parent);
@@ -39,10 +39,10 @@ void cp_StepRotation(void* data){
 
 
 
-void cp_PressRotationButton(NAReaction reaction){
+void cp_PressRotationButton(NAReaction reaction) {
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
-  if(reaction.uiElement == con->rotationButton){
+  if(reaction.uiElement == con->rotationButton) {
     con->rotationStep = 0.;
   }
 
@@ -51,14 +51,14 @@ void cp_PressRotationButton(NAReaction reaction){
 
 
 
-void cp_ChangeRotationSlider(NAReaction reaction){
+void cp_ChangeRotationSlider(NAReaction reaction) {
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
-  if(reaction.uiElement == con->rotationSlider){
+  if(reaction.uiElement == con->rotationSlider) {
     NABool needsRotationStart = (con->rotationStep == 0.);
     con->rotationStep = (float)naGetSliderValue(con->rotationSlider);
-    if(con->rotationStep < .1 && con->rotationStep > -.1){con->rotationStep = 0.;}
-    if(needsRotationStart){cp_StepRotation(con);}
+    if(con->rotationStep < .1 && con->rotationStep > -.1) {con->rotationStep = 0.;}
+    if(needsRotationStart) {cp_StepRotation(con);}
   }
   
   cpUpdateThreeDeeController(con->parent);
@@ -66,22 +66,22 @@ void cp_ChangeRotationSlider(NAReaction reaction){
 
 
 
-void cp_FixThreeDeeViewParameters(CPThreeDeePerspectiveController* con){
-  if(con->zoom <= .025f){con->zoom = .025f;}
-  if(con->zoom >= 2.f){con->zoom = 2.f;}
-  if(con->angleEqu < -NA_PIf){con->angleEqu += NA_PI2f;}
-  if(con->angleEqu > NA_PIf){con->angleEqu -= NA_PI2f;}
-  if(con->anglePol <= NA_SINGULARITYf){con->anglePol = NA_SINGULARITYf;}
-  if(con->anglePol >= NA_PIf - NA_SINGULARITYf){con->anglePol = NA_PIf - NA_SINGULARITYf;}
+void cp_FixThreeDeeViewParameters(CPThreeDeePerspectiveController* con) {
+  if(con->zoom <= .025f) {con->zoom = .025f;}
+  if(con->zoom >= 2.f) {con->zoom = 2.f;}
+  if(con->angleEqu < -NA_PIf) {con->angleEqu += NA_PI2f;}
+  if(con->angleEqu > NA_PIf) {con->angleEqu -= NA_PI2f;}
+  if(con->anglePol <= NA_SINGULARITYf) {con->anglePol = NA_SINGULARITYf;}
+  if(con->anglePol >= NA_PIf - NA_SINGULARITYf) {con->anglePol = NA_PIf - NA_SINGULARITYf;}
 }
 
 
 
-void cpMoveRotationMouse(NAReaction reaction){
+void cpMoveRotationMouse(NAReaction reaction) {
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
   const NAMouseStatus* mouseStatus = naGetCurrentMouseStatus();
-  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT) || naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_MIDDLE)){
+  if(naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_LEFT) || naGetMouseButtonPressed(mouseStatus, NA_MOUSE_BUTTON_MIDDLE)) {
     
     NAPos mouseDiff = naGetMouseDelta(mouseStatus);
     double uiScale = naGetUIElementUIScale(con->space);
@@ -96,7 +96,7 @@ void cpMoveRotationMouse(NAReaction reaction){
 
 
 
-void cpScrollRotation(NAReaction reaction){
+void cpScrollRotation(NAReaction reaction) {
   CPThreeDeePerspectiveController* con = (CPThreeDeePerspectiveController*)reaction.controller;
 
   const double* transform = naGetOpenGLSpaceTransformation(reaction.uiElement);
@@ -109,7 +109,7 @@ void cpScrollRotation(NAReaction reaction){
 
 
 
-CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDeeController* parent){
+CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDeeController* parent) {
   CPThreeDeePerspectiveController* con = naAlloc(CPThreeDeePerspectiveController);
 
   con->parent = parent;
@@ -147,31 +147,31 @@ CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDee
 
 
 
-void cpDeallocThreeDeePerspectiveController(CPThreeDeePerspectiveController* con){
+void cpDeallocThreeDeePerspectiveController(CPThreeDeePerspectiveController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetThreeDeePerspectiveControllerUIElement(CPThreeDeePerspectiveController* con){
+NASpace* cpGetThreeDeePerspectiveControllerUIElement(CPThreeDeePerspectiveController* con) {
   return con->space;
 }
 
 
 
-double cpGetThreeDeePerspectiveControllerRotationStep(CPThreeDeePerspectiveController* con){
+double cpGetThreeDeePerspectiveControllerRotationStep(CPThreeDeePerspectiveController* con) {
   return con->rotationStep;
 }
-double cpGetThreeDeePerspectiveControllerRotationAnglePol(CPThreeDeePerspectiveController* con){
+double cpGetThreeDeePerspectiveControllerRotationAnglePol(CPThreeDeePerspectiveController* con) {
   return con->anglePol;
 }
-double cpGetThreeDeePerspectiveControllerRotationAngleEqu(CPThreeDeePerspectiveController* con){
+double cpGetThreeDeePerspectiveControllerRotationAngleEqu(CPThreeDeePerspectiveController* con) {
   return con->angleEqu;
 }
-double cpGetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con){
+double cpGetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con) {
   return con->zoom;
 }
-void cpSetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con, double zoom){
+void cpSetThreeDeePerspectiveControllerZoom(CPThreeDeePerspectiveController* con, double zoom) {
   con->zoom = zoom;
 }
 

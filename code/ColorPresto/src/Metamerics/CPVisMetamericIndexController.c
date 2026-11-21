@@ -315,7 +315,7 @@ CPVisMetamericColors cp_ComputeVisMetamericColors(
   CMLFunction* observer10Funcs[3],
   const CPWhitePoints* illWhitePoint10,
   const CMLMat33 adaptationMatrix,
-  CPReferenceIlluminationType referenceIlluminationType){
+  CPReferenceIlluminationType referenceIlluminationType) {
   
   CPVisMetamericColors metamericColors;
   
@@ -326,7 +326,7 @@ CPVisMetamericColors cp_ComputeVisMetamericColors(
 
   const float* standardData[5] = {standard1Data, standard2Data, standard3Data, standard4Data, standard5Data};
   const float* specimenData[5];
-  switch(referenceIlluminationType){
+  switch(referenceIlluminationType) {
   case REFERENCE_ILLUMINATION_D50:
     specimenData[0] = specimen1D50Data;
     specimenData[1] = specimen2D50Data;
@@ -367,7 +367,7 @@ CPVisMetamericColors cp_ComputeVisMetamericColors(
   float standardXYZ[5 * 3];
   float specimenXYZ[5 * 3];
 
-  for(int i = 0; i < 5; ++i){
+  for(int i = 0; i < 5; ++i) {
     CMLArrayFunctionInput inputStandard = {
       standardData[i],
       NA_FALSE,
@@ -395,7 +395,7 @@ CPVisMetamericColors cp_ComputeVisMetamericColors(
     CMLVec3 standardLab;
     CMLVec3 specimenLab;
 
-    if(illuminationSpec){
+    if(illuminationSpec) {
       CMLFunction* standardremission = cmlCreateFunctionMulFunction(standardfunction, illuminationSpec);
       cmlSet3(
         standardXYZptr,
@@ -468,7 +468,7 @@ CPVisMetamericColors cp_ComputeVisMetamericColors(
 
 
 
-CPVisMetamericIndexController* cpAllocVisMetamericIndexController(void){
+CPVisMetamericIndexController* cpAllocVisMetamericIndexController(void) {
   CPVisMetamericIndexController* con = naAlloc(CPVisMetamericIndexController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -538,19 +538,19 @@ CPVisMetamericIndexController* cpAllocVisMetamericIndexController(void){
 
 
 
-void cpDeallocVisMetamericIndexController(CPVisMetamericIndexController* con){
+void cpDeallocVisMetamericIndexController(CPVisMetamericIndexController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetVisMetamericIndexUIElement(CPVisMetamericIndexController* con){
+NASpace* cpGetVisMetamericIndexUIElement(CPVisMetamericIndexController* con) {
   return con->space;
 }
 
 
 
-float cpGetVisMetamericIndexAverage(CPVisMetamericIndexController* con){
+float cpGetVisMetamericIndexAverage(CPVisMetamericIndexController* con) {
   return con->visMetamericColors.avg5;
 }
 
@@ -564,7 +564,7 @@ void cpUpdateVisMetamericIndexController(
   CPReferenceIlluminationType referenceIlluminationType,
   NABool valid)
 {
-  if(valid){
+  if(valid) {
     con->visMetamericColors = cp_ComputeVisMetamericColors(
       observer10Funcs,
       illWhitePoint10,

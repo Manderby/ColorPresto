@@ -30,9 +30,9 @@ struct CPThreeDeeCoordinateController{
 
 
 
-CMLColorType cpGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
+CMLColorType cpGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType) {
   CMLColorType retValue = CML_COLOR_COUNT;
-  switch(colorSpaceType){
+  switch(colorSpaceType) {
   case COLOR_SPACE_GRAY:  retValue = CML_COLOR_Gray; break;
   case COLOR_SPACE_HSL:   retValue = CML_COLOR_HSL; break;
   case COLOR_SPACE_HSV:   retValue = CML_COLOR_HSV; break;
@@ -57,9 +57,9 @@ CMLColorType cpGetCMLColorTypeFromColorSpaceType(ColorSpaceType colorSpaceType){
 
 
 
-const NAUTF8Char* cpGetCoordSysName(CoordSysType coordSysType){
+const NAUTF8Char* cpGetCoordSysName(CoordSysType coordSysType) {
   const NAUTF8Char* retValue = "";
-  switch(coordSysType){
+  switch(coordSysType) {
   case COORD_SYS_HSL: retValue = cpTranslate(CPColorSpaceHSL); break;
   case COORD_SYS_HSL_CARTESIAN: retValue = cpTranslate(CPColorSpaceHSL); break;
   case COORD_SYS_HSV: retValue = cpTranslate(CPColorSpaceHSV); break;
@@ -88,7 +88,7 @@ const NAUTF8Char* cpGetCoordSysName(CoordSysType coordSysType){
 
 
 
-void cp_SelectColorSpace(NAReaction reaction){
+void cp_SelectColorSpace(NAReaction reaction) {
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
   size_t index = naGetSelectItemIndex(con->colorSpaceSelect, reaction.uiElement);
@@ -99,7 +99,7 @@ void cp_SelectColorSpace(NAReaction reaction){
 
 
 
-void cp_SelectCoordSys(NAReaction reaction){
+void cp_SelectCoordSys(NAReaction reaction) {
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
   size_t index = naGetSelectItemIndex(con->coordSysSelect, reaction.uiElement);
@@ -110,10 +110,10 @@ void cp_SelectCoordSys(NAReaction reaction){
 
 
 
-void cp_ChangeCoordinateSlider(NAReaction reaction){
+void cp_ChangeCoordinateSlider(NAReaction reaction) {
   CPThreeDeeCoordinateController* con = (CPThreeDeeCoordinateController*)reaction.controller;
 
-  if(reaction.uiElement == con->stepsSlider){
+  if(reaction.uiElement == con->stepsSlider) {
     con->steps3D = (int64)naGetSliderValue(con->stepsSlider);
   }
   
@@ -122,7 +122,7 @@ void cp_ChangeCoordinateSlider(NAReaction reaction){
 
 
 
-CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeController* threeDeeController){
+CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeController* threeDeeController) {
   CPThreeDeeCoordinateController* con = naAlloc(CPThreeDeeCoordinateController);
 
   con->threeDeeController = threeDeeController;
@@ -132,7 +132,7 @@ CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeCo
 
   con->colorSpaceLabel = naNewLabel(cpTranslate(CPColorSpace), threeDeeLabelWidth);
   con->colorSpaceSelect = naNewSelect(threeDeeControlWidth);
-  for(size_t i = 0; i < COLOR_SPACE_COUNT; ++i){
+  for(size_t i = 0; i < COLOR_SPACE_COUNT; ++i) {
     ColorSpaceType colorSpaceType = (ColorSpaceType)i;
     NAMenuItem* item = naNewMenuItem(cmlGetColorTypeString(cpGetCMLColorTypeFromColorSpaceType(colorSpaceType)), NA_NULL);
     naAddSelectMenuItem(con->colorSpaceSelect, item, NA_NULL);
@@ -141,7 +141,7 @@ CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeCo
 
   con->coordSysLabel = naNewLabel(cpTranslate(CPCoordinates), threeDeeLabelWidth);
   con->coordSysSelect = naNewSelect(threeDeeControlWidth);
-  for(size_t i = 0; i < COORD_SYS_COUNT; ++i){
+  for(size_t i = 0; i < COORD_SYS_COUNT; ++i) {
     NAMenuItem* item = naNewMenuItem(cpGetCoordSysName((CoordSysType)i), NA_NULL);
     naAddSelectMenuItem(con->coordSysSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectCoordSys, con);
@@ -176,29 +176,29 @@ CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeCo
 
 
 
-void cpDeallocThreeDeeCoordinateController(CPThreeDeeCoordinateController* con){
+void cpDeallocThreeDeeCoordinateController(CPThreeDeeCoordinateController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetThreeDeeCoordinateControllerUIElement(CPThreeDeeCoordinateController* con){
+NASpace* cpGetThreeDeeCoordinateControllerUIElement(CPThreeDeeCoordinateController* con) {
   return con->space;
 }
 
 
-CoordSysType cpGetThreeDeeCoordinateControllerCoordSysType(CPThreeDeeCoordinateController* con){
+CoordSysType cpGetThreeDeeCoordinateControllerCoordSysType(CPThreeDeeCoordinateController* con) {
   return con->coordSysType;
 }
-CMLColorType cpGetThreeDeeCoordinateControllerColorSpaceType(CPThreeDeeCoordinateController* con){
+CMLColorType cpGetThreeDeeCoordinateControllerColorSpaceType(CPThreeDeeCoordinateController* con) {
   return cpGetCMLColorTypeFromColorSpaceType(con->colorSpaceType);
 }
-int64 cpGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con){
+int64 cpGetThreeDeeCoordinateControllerSteps3D(CPThreeDeeCoordinateController* con) {
   return con->steps3D;
 }
 
 
-void cpUpdateThreeDeeCoordinateController(CPThreeDeeCoordinateController* con){
+void cpUpdateThreeDeeCoordinateController(CPThreeDeeCoordinateController* con) {
   naSetSelectIndexSelected(con->colorSpaceSelect, con->colorSpaceType);
   naSetSelectIndexSelected(con->coordSysSelect, con->coordSysType);
   naSetSliderValue(con->stepsSlider, (double)con->steps3D);

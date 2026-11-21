@@ -20,7 +20,7 @@ struct CPMachineObserverController{
 
 
 
-void cp_SelectObserver(NAReaction reaction){
+void cp_SelectObserver(NAReaction reaction) {
   CPMachineObserverController* con = (CPMachineObserverController*)reaction.controller;
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
@@ -32,7 +32,7 @@ void cp_SelectObserver(NAReaction reaction){
 
 
 
-CPMachineObserverController* cpAllocMachineObserverController(void){
+CPMachineObserverController* cpAllocMachineObserverController(void) {
   CPMachineObserverController* con = naAlloc(CPMachineObserverController);
 
   con->space = naNewSpace(naMakeSize(1, 1));
@@ -40,7 +40,7 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
   con->observerTitleLabel = naNewLabel(cpTranslate(CPObserverTitle), machineLabelWidth);
   con->observerSelect = naNewSelect(200);
-  for(size_t i = 0; i < CML_OBSERVER_COUNT; ++i){
+  for(size_t i = 0; i < CML_OBSERVER_COUNT; ++i) {
     CMLObserverType observerType = (CMLObserverType)i;
     if(observerType == CML_OBSERVER_CUSTOM) {continue;}
     NAMenuItem* item = naNewMenuItem(cmlGetObserverTypeString(observerType), NA_NULL);
@@ -63,19 +63,19 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
 
 
-void cpDeallocMachineObserverController(CPMachineObserverController* con){
+void cpDeallocMachineObserverController(CPMachineObserverController* con) {
   naFree(con);
 }
 
 
 
-NASpace* cpGetMachineObserverControllerUIElement(CPMachineObserverController* con){
+NASpace* cpGetMachineObserverControllerUIElement(CPMachineObserverController* con) {
   return con->space;
 }
 
 
 
-void cpUpdateMachineObserverController(CPMachineObserverController* con){
+void cpUpdateMachineObserverController(CPMachineObserverController* con) {
   CMLColorMachine* cm = cpGetCurrentColorMachine();
 
   CMLObserverType observerType = cmlGetObserverType(cm);
