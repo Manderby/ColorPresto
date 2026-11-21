@@ -38,9 +38,12 @@ CPSpectralColorController* cpAllocSpectralColorController(void) {
   
   con->display = cpAllocSpectralColorWell(&(con->baseController));
   
-  cpBeginUILayout(con->baseController.space, colorWellBorder);
-  cpAddUIRow(cpGetSpectralColorWellUIElement(con->display), 0);
-  cpEndUILayout();
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+
+  naBeginLayout(con->baseController.space, colorWellBorder);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetSpectralColorWellUIElement(con->display), 0, NA_LAYOUT_MIN);
+  naEndLayout();
 
   return con;
 }

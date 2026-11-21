@@ -64,7 +64,7 @@ static const float greyColor[3] = {.5f, .5f, .5f};
 #define colorWell1DMarginLeft 210
 #define colorWell1DHeight 15.
 #define colorWell1DOffset 5.
-#define colorComponentWidth 25.
+#define colorComponentWidth 28.
 #define colorComponentMarginH 3.
 #define radioChannelOffset 2.
 #define radioChannelCenteringOffset 15.

@@ -104,29 +104,36 @@ CPRGBColorController* cpAllocRGBColorController(void) {
   naSetUIElementNextTabElement(con->textFieldHex, con->textFieldDec);
   naSetUIElementNextTabElement(con->textFieldDec, con->textFieldHex);
 
-  cpBeginUILayout(con->channelSpace, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + 10.)) / 2.)); // center the channels
-  cpAddUIRow(con->labelR, colorValueCondensedRowHeight);
-  cpAddUICol(con->textFieldR, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1DR), 10, colorWell1DOffset);
-  cpAddUIRow(con->labelG, colorValueCondensedRowHeight);
-  cpAddUICol(con->textFieldG, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1DG), 10, colorWell1DOffset);
-  cpAddUIRow(con->labelB, colorValueCondensedRowHeight);
-  cpAddUICol(con->textFieldB, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1DB), 10, colorWell1DOffset);
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+  NABorder2D hexPadding = naMakeBorder2D(0., 0., 10., 0.);
 
-  cpAddUIPos(0, 10);
-  cpAddUIRow(con->labelNum, colorValueCondensedRowHeight);
-  cpAddUICol(con->textFieldHex, colorComponentMarginH);
-  cpAddUICol(con->textFieldDec, 10);
-  cpEndUILayout();
+  naBeginLayout(con->baseController.space, colorWellBorder);
+    
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetColorWell2DUIElement(con->colorWell2D), 0, NA_LAYOUT_MIN);
+    
+      naBeginSubLayout(con->channelSpace, zeroPadding, 0, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->labelR, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textFieldR, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DR), 10, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->labelG, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textFieldG, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DG), 10, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->labelB, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textFieldB, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DB), 10, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, hexPadding);
+          naAddLayoutElement(con->labelNum, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textFieldHex, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textFieldDec, 10, NA_LAYOUT_MIN);
+      naEndLayout();
+      naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
 
-  cpBeginUILayout(con->baseController.space, colorWellBorder);
-  cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
-  cpAddUICol(con->channelSpace, colorWell2DRightMargin);
-  cpEndUILayout();
-  
+  naEndLayout();
+
   return con;
 }
 

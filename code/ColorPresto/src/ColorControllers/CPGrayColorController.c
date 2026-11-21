@@ -51,18 +51,22 @@ CPGrayColorController* cpAllocGrayColorController(void) {
   con->textFieldGray = cpNewValueTextField(cp_GrayValueEdited, con);
   con->colorWell1DGray = cpAllocColorWell1D(&(con->baseController), &(con->grayColor), 0);
 
-  cpBeginUILayout(con->channelSpace, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIPos(0, (int)((colorWell2DSize - (1 * 25.)) / 2.)); // center the channels
-  cpAddUIRow(con->labelGray, colorValueCondensedRowHeight);
-  cpAddUICol(con->textFieldGray, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1DGray), 10, colorWell1DOffset);
-  cpAddUIPos(0, 2 * colorValueCondensedRowHeight);
-  cpEndUILayout();
-  
-  cpBeginUILayout(con->baseController.space, colorWellBorder);
-  cpAddUIRow(cpGetGrayColorWellUIElement(con->display), 0);
-  cpAddUICol(con->channelSpace, colorWell2DRightMargin);
-  cpEndUILayout();
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+
+  naBeginLayout(con->baseController.space, colorWellBorder);
+    
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetGrayColorWellUIElement(con->display), 0, NA_LAYOUT_MIN);
+    
+      naBeginSubLayout(con->channelSpace, zeroPadding, 0, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->labelGray, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textFieldGray, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DGray), 10, NA_LAYOUT_MIN);
+      naEndLayout();
+      naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
+
+  naEndLayout();
 
   con->grayColor = .5;
 

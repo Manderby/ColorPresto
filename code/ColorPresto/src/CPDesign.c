@@ -104,9 +104,9 @@ void cpAddUIPos(double x, double y) {
 
 void cp_AddLayoutRowPlain(void* child, NASize size, double vOffset) {
   if(curDesignRowHeightFixed) {
-    naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - curDesignRowHeight + vOffset));
+    naAddSpaceChildWithSize(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - curDesignRowHeight + vOffset), naMakeUnchangedSize());
   }else{
-    naAddSpaceChild(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - size.height));
+    naAddSpaceChildWithSize(curDesignSpace, child, naMakePos(curDesignPos.x, curDesignPos.y - size.height), naMakeUnchangedSize());
     curDesignRowHeight = naMax(curDesignRowHeight, size.height);
   }
   curDesignPos.x += size.width;

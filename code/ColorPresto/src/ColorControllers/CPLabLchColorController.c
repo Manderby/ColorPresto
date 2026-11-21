@@ -108,27 +108,33 @@ CPLabLchColorController* cpAllocLabLchColorController(void) {
   naSetUIElementNextTabElement(con->textField1, con->textField2);
   naSetUIElementNextTabElement(con->textField2, con->textField0);
 
-  cpBeginUILayout(con->channelSpace, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIPos(0, (int)((colorWell2DSize - (4 * 25. + radioChannelCenteringOffset)) / 2.)); // center the channels
-  cpAddUIRowH(con->radioLab, colorValueCondensedRowHeight, colorComponentWidth + colorComponentMarginH);
-  cpAddUICol(con->radioLch, 10);
-  cpAddUIPos(0, radioChannelOffset);
-  
-  cpAddUIRow(con->label0, colorValueCondensedRowHeight);
-  cpAddUICol(con->textField0, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D0), 10, colorWell1DOffset);
-  cpAddUIRow(con->label1, colorValueCondensedRowHeight);
-  cpAddUICol(con->textField1, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D1), 10, colorWell1DOffset);
-  cpAddUIRow(con->label2, colorValueCondensedRowHeight);
-  cpAddUICol(con->textField2, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1D2), 10, colorWell1DOffset);
-  cpEndUILayout();
-  
-  cpBeginUILayout(con->baseController.space, colorWellBorder);
-  cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
-  cpAddUICol(con->channelSpace, colorWell2DRightMargin);
-  cpEndUILayout();
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+
+  naBeginLayout(con->baseController.space, colorWellBorder);
+    
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetColorWell2DUIElement(con->colorWell2D), 0, NA_LAYOUT_MIN);
+    
+      naBeginSubLayout(con->channelSpace, zeroPadding, 0, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->radioLab, colorComponentWidth + colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->radioLch, 10, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->label0, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textField0, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1D0), 10, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->label1, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textField1, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1D1), 10, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->label2, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textField2, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1D2), 10, NA_LAYOUT_MIN);
+      naEndLayout();
+      naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
+
+  naEndLayout();
 
   return con;
 }

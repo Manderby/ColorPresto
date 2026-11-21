@@ -71,24 +71,30 @@ CPYxyColorController* cpAllocYxyColorController(void) {
   naSetUIElementNextTabElement(con->textFieldx, con->textFieldy);
   naSetUIElementNextTabElement(con->textFieldy, con->textFieldY);
 
-  cpBeginUILayout(con->channelSpace, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIPos(0, (int)((colorWell2DSize - (3 * 25.)) / 2.)); // center the channels
-  cpAddUIRow(con->labelY, colorValueCondensedRowHeight);
-  cpAddUICol(con->textFieldY, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1DY), 10, colorWell1DOffset);
-  cpAddUIRow(con->labelx, colorValueCondensedRowHeight);
-  cpAddUICol(con->textFieldx, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1Dx), 10, colorWell1DOffset);
-  cpAddUIRow(con->labely, colorValueCondensedRowHeight);
-  cpAddUICol(con->textFieldy, colorComponentMarginH);
-  cpAddUIColV(cpGetColorWell1DUIElement(con->colorWell1Dy), 10, colorWell1DOffset);
-  cpAddUIPos(0, colorValueCondensedRowHeight);
-  cpEndUILayout();
-  
-  cpBeginUILayout(con->baseController.space, colorWellBorder);
-  cpAddUIRow(cpGetColorWell2DUIElement(con->colorWell2D), 0);
-  cpAddUICol(con->channelSpace, colorWell2DRightMargin);
-  cpEndUILayout();
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+
+  naBeginLayout(con->baseController.space, colorWellBorder);
+    
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetColorWell2DUIElement(con->colorWell2D), 0, NA_LAYOUT_MIN);
+    
+      naBeginSubLayout(con->channelSpace, zeroPadding, 0, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->labelY, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textFieldY, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DY), 10, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->labelx, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textFieldx, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1Dx), 10, NA_LAYOUT_MIN);
+        naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
+          naAddLayoutElement(con->labely, 0, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->textFieldy, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1Dy), 10, NA_LAYOUT_MIN);
+      naEndLayout();
+      naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
+
+  naEndLayout();
 
   return con;
 }
