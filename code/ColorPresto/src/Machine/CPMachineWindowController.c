@@ -93,24 +93,52 @@ CPMachineWindowController* cpAllocMachineWindowController(void){
   cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->luvuvwColorController), 0);
   cpEndUILayout();
 
-  cpBeginUILayout(con->perceptiveColorsSpace, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->grayColorController), 0);
-  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->lablchColorController), 0);
-  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->rgbColorController), 0);
-  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->hsvhslColorController), 0);
-  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->ycbcrColorController), 0);
-  cpEndUILayout();
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
-  cpBeginUILayout(con->rightSpace, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIRow(con->radiometricColorsSpace, 0);
-  cpAddUICol(con->perceptiveColorsSpace, 0);
-  cpAddUICol(con->RGBColorsSpace, 0);
-  cpEndUILayout();
+  naBeginLayout(con->perceptiveColorsSpace, zeroPadding);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetColorControllerUIElement((CPColorController*)con->grayColorController), 0, NA_LAYOUT_MIN);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetColorControllerUIElement((CPColorController*)con->lablchColorController), 0, NA_LAYOUT_MIN);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetColorControllerUIElement((CPColorController*)con->rgbColorController), 0, NA_LAYOUT_MIN);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetColorControllerUIElement((CPColorController*)con->hsvhslColorController), 0, NA_LAYOUT_MIN);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetColorControllerUIElement((CPColorController*)con->ycbcrColorController), 0, NA_LAYOUT_MIN);
+  naEndLayout();
 
-  cpBeginUILayout(contentSpace, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIRow(cpGetMachineUIElement(con->machineController), 0);
-  cpAddUICol(con->rightSpace, 0);
-  cpEndUILayout();
+//  cpBeginUILayout(con->perceptiveColorsSpace, naMakeBorder2D(0., 0., 0., 0.));
+//  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->grayColorController), 0);
+//  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->lablchColorController), 0);
+//  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->rgbColorController), 0);
+//  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->hsvhslColorController), 0);
+//  cpAddUIRow(cpGetColorControllerUIElement((CPColorController*)con->ycbcrColorController), 0);
+//  cpEndUILayout();
+
+  naBeginLayout(con->rightSpace, zeroPadding);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(con->radiometricColorsSpace, 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(con->perceptiveColorsSpace, 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(con->RGBColorsSpace, 0, NA_LAYOUT_MIN);
+  naEndLayout();
+
+//  cpBeginUILayout(con->rightSpace, naMakeBorder2D(0., 0., 0., 0.));
+//  cpAddUIRow(con->radiometricColorsSpace, 0);
+//  cpAddUICol(con->perceptiveColorsSpace, 0);
+//  cpAddUICol(con->RGBColorsSpace, 0);
+//  cpEndUILayout();
+
+  naBeginLayout(contentSpace, zeroPadding);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetMachineUIElement(con->machineController), 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(con->rightSpace, 0, NA_LAYOUT_MIN);
+  naEndLayout();
+
+//  cpBeginUILayout(contentSpace, naMakeBorder2D(0., 0., 0., 0.));
+//  cpAddUIRow(cpGetMachineUIElement(con->machineController), 0);
+//  cpAddUICol(con->rightSpace, 0);
+//  cpEndUILayout();
 
   return con;
 }
