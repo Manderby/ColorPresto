@@ -451,26 +451,34 @@ CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void) {
 
   // Adding elements to the space
 
-  cpBeginUILayout(con->space, spaceBorder);
-  cpAddUIRow(con->title, uiElemHeight);
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
-  cpAddUIRow(con->metamerics6IndexLabel, uiElemHeight);
-  cpAddUICol(con->metamerics6Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->metamerics6Display), valueMargin);
-
-  cpAddUIRow(con->metamerics7IndexLabel, uiElemHeight);
-  cpAddUICol(con->metamerics7Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->metamerics7Display), valueMargin);
-
-  cpAddUIRow(con->metamerics8IndexLabel, uiElemHeight);
-  cpAddUICol(con->metamerics8Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->metamerics8Display), valueMargin);
-
-  cpAddUIRow(con->metamericsAverageLabel, uiElemHeight);
-  cpAddUICol(con->metamericsLabel, indexMargin);
-  cpAddUICol(con->metamericsGradeLabel, valueMargin);
+  naBeginLayout(con->space, spaceBorder);
   
-  cpEndUILayout();
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->title, 0, NA_LAYOUT_GROW);
+
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->metamerics6IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->metamerics6Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->metamerics6Display), valueMargin, NA_LAYOUT_MIN);
+
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->metamerics7IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->metamerics7Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->metamerics7Display), valueMargin, NA_LAYOUT_MIN);
+
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->metamerics8IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->metamerics8Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->metamerics8Display), valueMargin, NA_LAYOUT_MIN);
+
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->metamericsAverageLabel, 0, indexWidth);
+      naAddLayoutElement(con->metamericsLabel, indexMargin, labelValueWidth);
+      naAddLayoutElement(con->metamericsGradeLabel, valueMargin, NA_LAYOUT_GROW);
+      
+  naEndLayout();
   
   return con;
 }

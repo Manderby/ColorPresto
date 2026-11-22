@@ -34,14 +34,19 @@ CPTotalMetamericIndexController* cpAllocTotalMetamericIndexController(void) {
 
   // Placing elements in the space
 
-  cpBeginUILayout(con->space, spaceBorder);
-  cpAddUIRow(con->title, uiElemHeight);
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
-  cpAddUIRow(con->metamericsAverageLabel, uiElemHeight);
-  cpAddUICol(con->metamericsLabel, indexMargin);
-  cpAddUICol(con->metamericsGradeLabel, valueMargin);
+  naBeginLayout(con->space, spaceBorder);
+  
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->title, 0, NA_LAYOUT_GROW);
 
-  cpEndUILayout();
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->metamericsAverageLabel, 0, indexWidth);
+      naAddLayoutElement(con->metamericsLabel, indexMargin, labelValueWidth);
+      naAddLayoutElement(con->metamericsGradeLabel, valueMargin, NA_LAYOUT_GROW);
+      
+  naEndLayout();
 
   return con;
 }

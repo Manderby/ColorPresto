@@ -6,12 +6,14 @@
 #include "NAApp/NAApp.h"
 #include "NAMath/NACoord.h"
 
-#define uiElemHeight 25.
+#define uiElemHeight 24.
 
-#define spaceMarginLeft 15.
-#define spaceMarginRight 15.
-#define spaceMarginBottom 15.
-#define spaceMarginTop 15.
+#define spaceMarginLeft 16.
+#define spaceMarginRight 16.
+#define spaceMarginBottom 16.
+#define spaceMarginTop 16.
+#define spaceInterMargin 8.
+
 static const NABorder2D spaceBorder = {
   spaceMarginLeft,
   spaceMarginRight,

@@ -81,26 +81,27 @@ CPMetamericsController* cpAllocMetamericsController(void) {
 
   // Placing elements in the window
 
-  cpBeginUILayout(con->column1Space, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIRow(whitePointsSpace, 0);
-  cpAddUIRow(chromaticityErrorSpace, 0);
-  cpEndUILayout();
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+  
+  naSetSpaceLayoutDirections(contentSpace, NA_LAYOUT_DIRECTIONS_TBLR);
 
-  cpBeginUILayout(con->column2Space, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIRow(colorRenderingIndexSpace, 0);
-  cpEndUILayout();
+  naBeginLayout(contentSpace, zeroPadding);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naSetLayoutSectionSpace(con->column1Space);
+      naAddLayoutElement(whitePointsSpace, 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(chromaticityErrorSpace, 0, NA_LAYOUT_MIN);
+    
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naSetLayoutSectionSpace(con->column2Space);
+      naAddLayoutElement(colorRenderingIndexSpace, 0, NA_LAYOUT_MIN);
 
-  cpBeginUILayout(con->column3Space, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIRow(visMetamericIndexSpace, 0);
-  cpAddUIRow(uvMetamericIndexSpace, 0);
-  cpAddUIRow(totalMetamericIndexSpace, 0);
-  cpEndUILayout();
-
-  cpBeginUILayout(contentSpace, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUICol(con->column1Space, 0);
-  cpAddUICol(con->column2Space, 0);
-  cpAddUICol(con->column3Space, 0);
-  cpEndUILayout();
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naSetLayoutSectionSpace(con->column3Space);
+      naAddLayoutElement(visMetamericIndexSpace, 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(uvMetamericIndexSpace, 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(totalMetamericIndexSpace, 0, NA_LAYOUT_MIN);
+    
+  naEndLayout();
 
   return con;
 }

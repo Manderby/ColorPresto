@@ -28,14 +28,16 @@ CPChromaticityErrorController* cpAllocChromaticityErrorController(void) {
   con->title = cpNewTitleLabel(cpTranslate(CPChromaticityErrorTitle), 160.);
   con->chromaticityErrorLabel = cpNewValueLabel();
 
-  cpBeginUILayout(
-    con->space,
-    naMakeBorder2D(spaceMarginDegreeLeft, spaceMarginRight, spaceMarginBottom, spaceMarginTop));
-  cpAddUIRow(con->title, uiElemHeight);
-  cpAddUICol(con->chromaticityErrorLabel, marginH);
-  
-  cpEndUILayout();
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
+//  naDebugUIElementLayout(con->space);
+
+  naBeginLayout(con->space, naMakeBorder2D(spaceMarginLeft, spaceMarginRight, spaceInterMargin, spaceMarginBottom));
+    naAddLayoutSection(NA_LAYOUT_GROW, zeroPadding);
+      naAddLayoutElement(con->title, degreeWidth, 160.);
+      naAddLayoutElement(con->chromaticityErrorLabel, marginH, labelValueWidth);
+  naEndLayout();
+  
   return con;
 }
 

@@ -412,71 +412,88 @@ CPColorRenderingIndexController* cpAllocColorRenderingIndexController(void) {
 
   // place the elements in the space
 
-  cpBeginUILayout(con->space, spaceBorder);
-  cpAddUIRow(con->title, uiElemHeight);
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
-  cpAddUIRow(con->color1IndexLabel, uiElemHeight);
-  cpAddUICol(con->color1Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color1Display), valueMargin);
+  naBeginLayout(con->space, spaceBorder);
+  
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->title, 0, NA_LAYOUT_GROW);
 
-  cpAddUIRow(con->color2IndexLabel, uiElemHeight);
-  cpAddUICol(con->color2Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color2Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color1IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color1Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color1Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color3IndexLabel, uiElemHeight);
-  cpAddUICol(con->color3Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color3Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color2IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color2Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color2Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color4IndexLabel, uiElemHeight);
-  cpAddUICol(con->color4Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color4Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color3IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color3Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color3Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color5IndexLabel, uiElemHeight);
-  cpAddUICol(con->color5Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color5Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color4IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color4Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color4Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color6IndexLabel, uiElemHeight);
-  cpAddUICol(con->color6Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color6Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color5IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color5Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color5Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color7IndexLabel, uiElemHeight);
-  cpAddUICol(con->color7Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color7Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color6IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color6Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color6Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color8IndexLabel, uiElemHeight);
-  cpAddUICol(con->color8Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color8Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color7IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color7Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color7Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->colorAverageLabel, uiElemHeight);
-  cpAddUICol(con->colorLabel, indexMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color8IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color8Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color8Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIPos(0, spaceMarginV);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., spaceMarginV));
+      naAddLayoutElement(con->colorAverageLabel, 0, indexWidth);
+      naAddLayoutElement(con->colorLabel, indexMargin, labelValueWidth);
+      
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color9IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color9Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color9Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color9IndexLabel, uiElemHeight);
-  cpAddUICol(con->color9Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color9Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color10IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color10Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color10Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color10IndexLabel, uiElemHeight);
-  cpAddUICol(con->color10Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color10Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color11IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color11Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color11Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color11IndexLabel, uiElemHeight);
-  cpAddUICol(con->color11Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color11Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color12IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color12Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color12Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color12IndexLabel, uiElemHeight);
-  cpAddUICol(con->color12Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color12Display), valueMargin);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color13IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color13Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color13Display), valueMargin, NA_LAYOUT_MIN);
 
-  cpAddUIRow(con->color13IndexLabel, uiElemHeight);
-  cpAddUICol(con->color13Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color13Display), valueMargin);
-
-  cpAddUIRow(con->color14IndexLabel, uiElemHeight);
-  cpAddUICol(con->color14Label, indexMargin);
-  cpAddUICol(cpGetTwoColorControllerUIElement(con->color14Display), valueMargin);
-
-  cpEndUILayout();
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->color14IndexLabel, 0, indexWidth);
+      naAddLayoutElement(con->color14Label, indexMargin, labelValueWidth);
+      naAddLayoutElement(cpGetTwoColorControllerUIElement(con->color14Display), valueMargin, NA_LAYOUT_MIN);
+      
+  naEndLayout();
 
   return con;
 }
