@@ -68,11 +68,11 @@ void cpSetLabValue(NAReaction reaction) {
 CPMachineLabController* cpAllocMachineLabController(void) {
   CPMachineLabController* con = naAlloc(CPMachineLabController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->labColorSpaceLabel = naNewLabel(cpTranslate(CPLabColorSpaceTitle), machineLabelWidth);
-  con->labColorSpaceSelect = naNewSelect(200);
+  con->labColorSpaceLabel = naNewLabel(cpTranslate(CPLabColorSpaceTitle));
+  con->labColorSpaceSelect = naNewSelect();
   for(size_t i = 0; i < CML_LAB_COUNT; ++i) {
     CMLLabColorSpaceType labColorSpaceType = (CMLLabColorSpaceType)i;
     if(labColorSpaceType == CML_LAB_CUSTOM_L) {continue;}
@@ -81,15 +81,15 @@ CPMachineLabController* cpAllocMachineLabController(void) {
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectLabColorSpace, con);
   }
 
-  con->valueKTitleLabel = naNewLabel(cpTranslate(CPLabColorSpaceK), machineLabelWidth);
+  con->valueKTitleLabel = naNewLabel(cpTranslate(CPLabColorSpaceK));
   con->valueKTextField = cpNewValueTextField(cpSetLabValue, con);
-  con->valueKSlider = naNewSlider(60);
+  con->valueKSlider = naNewSlider();
   naSetSliderRange(con->valueKSlider, 1., 2., 0);
   naAddUIReaction(con->valueKSlider, NA_UI_COMMAND_EDITED, cpSetLabValue, con);
   
-  con->valuekeTitleLabel = naNewLabel(cpTranslate(CPLabColorSpaceke), machineLabelWidth);
+  con->valuekeTitleLabel = naNewLabel(cpTranslate(CPLabColorSpaceke));
   con->valuekeTextField = cpNewValueTextField(cpSetLabValue, con);
-  con->valuekeSlider = naNewSlider(60);
+  con->valuekeSlider = naNewSlider();
   naSetSliderRange(con->valuekeSlider, .1, 1., 0);
   naAddUIReaction(con->valuekeSlider, NA_UI_COMMAND_EDITED, cpSetLabValue, con);
 

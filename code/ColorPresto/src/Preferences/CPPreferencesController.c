@@ -81,8 +81,8 @@ CPPreferencesController* cpAllocPreferencesController(void) {
 
   NASpace* contentSpace = naGetWindowContentSpace(con->window);
 
-  con->languageLabel = naNewLabel(cpTranslate(CPPreferencesLanguage), 250);
-  con->languageSelect = naNewSelect(150);
+  con->languageLabel = naNewLabel(cpTranslate(CPPreferencesLanguage));
+  con->languageSelect = naNewSelect();
   con->languageSystem = naNewMenuItem(cpTranslate(CPPreferencesLanguageSameAsSystem), NA_NULL);
   con->languageDeutsch = naNewMenuItem(cpTranslate(CPPreferencesLanguageDeutsch), NA_NULL);
   con->languageEnglish = naNewMenuItem(cpTranslate(CPPreferencesLanguageEnglish), NA_NULL);
@@ -104,12 +104,12 @@ CPPreferencesController* cpAllocPreferencesController(void) {
   naAddSelectMenuItem(con->languageSelect, naNewMenuSeparator(), NA_NULL);
   naAddSelectMenuItem(con->languageSelect, con->languageReport, NA_NULL);
 
-  naAddSpaceChildWithSize(
+  naAddSpaceChild(
     contentSpace,
     con->languageLabel,
     naMakePos(20, 20),
     naMakeInlineSize(250.));
-  naAddSpaceChildWithSize(
+  naAddSpaceChild(
     contentSpace,
     con->languageSelect,
     naMakePos(270, 20),

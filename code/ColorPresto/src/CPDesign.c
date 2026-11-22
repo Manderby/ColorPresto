@@ -23,8 +23,8 @@ void cpShutdownDesign() {
 
 
 
-NALabel* cpNewTitleLabel(const NAUTF8Char* text, double width) {
-  NALabel* label = naNewLabel(text, width);
+NALabel* cpNewTitleLabel(const NAUTF8Char* text) {
+  NALabel* label = naNewLabel(text);
   naSetLabelFont(label, boldFont);
   return label;
 }
@@ -32,7 +32,7 @@ NALabel* cpNewTitleLabel(const NAUTF8Char* text, double width) {
 
 
 NALabel* cpNewValueLabel() {
-  NALabel* label = naNewLabel("", labelValueWidth);
+  NALabel* label = naNewLabel(NA_NULL);
   naSetLabelTextAlignment(label, NA_ALIGNMENT_END);
   naSetLabelFont(label, monoFont);
   return label;
@@ -41,7 +41,7 @@ NALabel* cpNewValueLabel() {
 
 
 NALabel* cpNewColorComponentLabel(const NAUTF8Char* string) {
-  NALabel* label = naNewLabel(string, colorComponentWidth);
+  NALabel* label = naNewLabel(string);
   naSetLabelTextAlignment(label, NA_ALIGNMENT_END);
   return label;
 }
@@ -49,7 +49,7 @@ NALabel* cpNewColorComponentLabel(const NAUTF8Char* string) {
 
 
 NALabel* cpNewThreeValueLabel() {
-  NALabel* label = naNewLabel("", labelValueWidth);
+  NALabel* label = naNewLabel(NA_NULL);
   naSetLabelHeight(label, threeValueHeight);
   naSetLabelFont(label, monoFont);
   naSetLabelTextAlignment(label, NA_ALIGNMENT_END);
@@ -59,7 +59,7 @@ NALabel* cpNewThreeValueLabel() {
 
 
 NATextField* cpNewValueTextField(NAReactionCallback reactionCallback, void* con) {
-  NATextField* textField = naNewTextField(textFieldValueWidth);
+  NATextField* textField = naNewTextField();
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_ALIGNMENT_END);
   naAddUIReaction(textField, NA_UI_COMMAND_EDIT_FINISHED, reactionCallback, con);
@@ -67,7 +67,7 @@ NATextField* cpNewValueTextField(NAReactionCallback reactionCallback, void* con)
 }
 
 NATextField* cpNewBigValueTextField(NAReactionCallback reactionCallback, void* con) {
-  NATextField* textField = naNewTextField(colorWell1DSize);
+  NATextField* textField = naNewTextField();
   naSetTextFieldFont(textField, monoFont);
   naSetTextFieldTextAlignment(textField, NA_ALIGNMENT_END);
   naAddUIReaction(textField, NA_UI_COMMAND_EDIT_FINISHED, reactionCallback, con);

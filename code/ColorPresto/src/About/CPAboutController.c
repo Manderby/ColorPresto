@@ -51,21 +51,21 @@ CPAboutController* cpAllocAboutController(void) {
   NAImageSet* iconImageSet = naCreateImageSet(iconImage, iconSize, NA_BLEND_ZERO);
   naRelease(iconImage);
   naDelete(iconUrl);
-  con->iconSpace = naNewImageSpace(iconImageSet, naMakeSize(1, 1));
-  naAddSpaceChildWithSize(
+  con->iconSpace = naNewImageSpace(iconImageSet);
+  naAddSpaceChild(
     space,
     con->iconSpace,
     naMakePos(106., 170.),
     naMakeSize(128, 128));
   naRelease(iconImageSet);
 
-  con->appNameLabel = naNewLabel(naGetStringUTF8Pointer(bundleApplicationName), 300);
+  con->appNameLabel = naNewLabel(naGetStringUTF8Pointer(bundleApplicationName));
   NAFont* titleFont = naCreateFontWithPreset(NA_FONT_KIND_TITLE, NA_FONT_SIZE_BIG);
   naSetLabelFont(con->appNameLabel, titleFont);
   naSetLabelTextAlignment(con->appNameLabel, NA_ALIGNMENT_CENTER);
   naSetLabelHeight(con->appNameLabel, 24);
   naRelease(titleFont);
-  naAddSpaceChildWithSize(
+  naAddSpaceChild(
     space,
     con->appNameLabel,
     naMakePos(20., 136.),
@@ -75,29 +75,29 @@ CPAboutController* cpAllocAboutController(void) {
   NAString* bundleBuildString = naNewApplicationBuildString();
   const NAUTF8Char* aboutVersionFormatString = cpTranslate(CPVersionBuild);
   NAString* aboutVersionString = naNewStringWithFormat(aboutVersionFormatString, naGetStringUTF8Pointer(bundleVersionString), naGetStringUTF8Pointer(bundleBuildString));
-  con->appVersionLabel = naNewLabel(naGetStringUTF8Pointer(aboutVersionString), 300);
+  con->appVersionLabel = naNewLabel(naGetStringUTF8Pointer(aboutVersionString));
   naDelete(aboutVersionString);
   naDelete(bundleVersionString);
   naDelete(bundleBuildString);
   naSetLabelTextAlignment(con->appVersionLabel, NA_ALIGNMENT_CENTER);
-  naAddSpaceChildWithSize(
+  naAddSpaceChild(
     space,
     con->appVersionLabel,
     naMakePos(20., 110.),
     naMakeInlineSize(300.));
 
-  con->helpLinkLabel = naNewLabel(cpTranslate(CPOnlineHelp), 300);
+  con->helpLinkLabel = naNewLabel(cpTranslate(CPOnlineHelp));
   naSetLabelTextAlignment(con->helpLinkLabel, NA_ALIGNMENT_CENTER);
   naSetLabelLink(con->helpLinkLabel, cpTranslate(CPApplicationHelpURL));
-  naAddSpaceChildWithSize(
+  naAddSpaceChild(
     space,
     con->helpLinkLabel,
     naMakePos(20., 54.),
     naMakeInlineSize(300.));
 
-  con->doneButton = naNewTextPushButton(cpTranslate(CPDone), 80);
+  con->doneButton = naNewTextPushButton(cpTranslate(CPDone));
   naAddUIReaction(con->doneButton, NA_UI_COMMAND_PRESSED, cp_pressAboutDone, con);
-  naAddSpaceChildWithSize(
+  naAddSpaceChild(
     space,
     con->doneButton,
     naMakePos(130., 20.),

@@ -96,11 +96,11 @@ void cpSetWhitePoint(NAReaction reaction) {
 CPMachineIlluminationController* cpAllocMachineIlluminationController(void) {
   CPMachineIlluminationController* con = naAlloc(CPMachineIlluminationController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->illuminationTitleLabel = naNewLabel(cpTranslate(CPIlluminationTitle), machineLabelWidth);
-  con->illuminationSelect = naNewSelect(200);
+  con->illuminationTitleLabel = naNewLabel(cpTranslate(CPIlluminationTitle));
+  con->illuminationSelect = naNewSelect();
   for(size_t i = 0; i < CML_ILLUMINATION_COUNT; ++i) {
     CMLIlluminationType illuminationType = (CMLIlluminationType)i;
     if(illuminationType == CML_ILLUMINATION_CUSTOM_SPECTRUM) {continue;}
@@ -108,14 +108,14 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void) {
     naAddSelectMenuItem(con->illuminationSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectIllumination, con);
   }
-  con->illuminationTemperatureTitleLabel = naNewLabel(cpTranslate(CPIlluminationTemperature), machineLabelWidth);
+  con->illuminationTemperatureTitleLabel = naNewLabel(cpTranslate(CPIlluminationTemperature));
   con->illuminationTemperatureTextField = cpNewValueTextField(cpSetIlluminationTemperature, con);
-  con->illuminationKelvinLabel = naNewLabel(cpTranslate(CPIlluminationKelvin), 20);
-  con->illuminationTemperatureSlider = naNewSlider(100);
+  con->illuminationKelvinLabel = naNewLabel(cpTranslate(CPIlluminationKelvin));
+  con->illuminationTemperatureSlider = naNewSlider();
   naAddUIReaction(con->illuminationTemperatureSlider, NA_UI_COMMAND_EDITED, cpSetIlluminationTemperature, con);
-  con->whitePointTitleLabel = naNewLabel(cpTranslate(CPIlluminationWhitePoint), machineLabelWidth - setButtonWidth + marginH - marginHSmall);
+  con->whitePointTitleLabel = naNewLabel(cpTranslate(CPIlluminationWhitePoint));
 
-  con->setWhitePointButton = naNewTextPushButton(cpTranslate(CPSetButton), setButtonWidth);
+  con->setWhitePointButton = naNewTextPushButton(cpTranslate(CPSetButton));
   naAddUIReaction(con->setWhitePointButton, NA_UI_COMMAND_PRESSED, cpSetWhitePoint, con);
   con->whitePointYTextField = cpNewValueTextField(cpSetWhitePoint, con);
   con->whitePointxTextField = cpNewValueTextField(cpSetWhitePoint, con);

@@ -56,7 +56,7 @@ CPYCbCrColorController* cpAllocYCbCrColorController(void) {
   
   con->colorWell2D = cpAllocColorWell2D(&(con->baseController), 0);
 
-  con->channelSpace = naNewSpace(naMakeSize(1, 1));
+  con->channelSpace = naNewSpace();
   con->labelY = cpNewColorComponentLabel(cpTranslate(CPYCbCrColorChannelY));
   con->labelCb = cpNewColorComponentLabel(cpTranslate(CPYCbCrColorChannelCb));
   con->labelCr = cpNewColorComponentLabel(cpTranslate(CPYCbCrColorChannelCr));
@@ -80,16 +80,16 @@ CPYCbCrColorController* cpAllocYCbCrColorController(void) {
     
       naBeginSubLayout(con->channelSpace, zeroPadding, 0, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->labelY, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textFieldY, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->labelY, 0, colorComponentWidth);
+          naAddLayoutElement(con->textFieldY, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DY), 10, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->labelCb, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textFieldCb, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->labelCb, 0, colorComponentWidth);
+          naAddLayoutElement(con->textFieldCb, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DCb), 10, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->labelCr, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textFieldCr, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->labelCr, 0, colorComponentWidth);
+          naAddLayoutElement(con->textFieldCr, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DCr), 10, NA_LAYOUT_MIN);
       naEndLayout();
       naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);

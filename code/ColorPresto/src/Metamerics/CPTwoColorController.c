@@ -48,7 +48,9 @@ void cp_RedrawTwoColorController(NAReaction reaction) {
 CPTwoColorController* cpAllocTwoColorController() {
   CPTwoColorController* con = naAlloc(CPTwoColorController);
 
-  con->space = naNewOpenGLSpace(naMakeSize(twoColorWidth, twoColorHeight), cp_InitTwoColorDisplay, con);
+  con->space = naNewOpenGLSpace(cp_InitTwoColorDisplay, con);
+  naSetUIElementRect(con->space, naMakeRectS(0., 0., twoColorWidth, twoColorHeight));
+  
   naAddUIReaction(con->space, NA_UI_COMMAND_REDRAW, cp_RedrawTwoColorController, con);
   
   return con;

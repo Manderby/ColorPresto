@@ -356,55 +356,55 @@ CPColorRenderingColors cp_ComputeColorRenderingColors(CMLFunction* observer2Func
 CPColorRenderingIndexController* cpAllocColorRenderingIndexController(void) {
   CPColorRenderingIndexController* con = naAlloc(CPColorRenderingIndexController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->title = cpNewTitleLabel(cpTranslate(CPColorRenderingIndex), 200);
+  con->title = cpNewTitleLabel(cpTranslate(CPColorRenderingIndex));
 
-  con->color1IndexLabel = naNewLabel(cpTranslate(CPColorIndex1), indexWidth);
+  con->color1IndexLabel = naNewLabel(cpTranslate(CPColorIndex1));
   con->color1Label = cpNewValueLabel();
   con->color1Display = cpAllocTwoColorController();
-  con->color2IndexLabel = naNewLabel(cpTranslate(CPColorIndex2), indexWidth);
+  con->color2IndexLabel = naNewLabel(cpTranslate(CPColorIndex2));
   con->color2Label = cpNewValueLabel();
   con->color2Display = cpAllocTwoColorController();
-  con->color3IndexLabel = naNewLabel(cpTranslate(CPColorIndex3), indexWidth);
+  con->color3IndexLabel = naNewLabel(cpTranslate(CPColorIndex3));
   con->color3Label = cpNewValueLabel();
   con->color3Display = cpAllocTwoColorController();
-  con->color4IndexLabel = naNewLabel(cpTranslate(CPColorIndex4), indexWidth);
+  con->color4IndexLabel = naNewLabel(cpTranslate(CPColorIndex4));
   con->color4Label = cpNewValueLabel();
   con->color4Display = cpAllocTwoColorController();
-  con->color5IndexLabel = naNewLabel(cpTranslate(CPColorIndex5), indexWidth);
+  con->color5IndexLabel = naNewLabel(cpTranslate(CPColorIndex5));
   con->color5Label = cpNewValueLabel();
   con->color5Display = cpAllocTwoColorController();
-  con->color6IndexLabel = naNewLabel(cpTranslate(CPColorIndex6), indexWidth);
+  con->color6IndexLabel = naNewLabel(cpTranslate(CPColorIndex6));
   con->color6Label = cpNewValueLabel();
   con->color6Display = cpAllocTwoColorController();
-  con->color7IndexLabel = naNewLabel(cpTranslate(CPColorIndex7), indexWidth);
+  con->color7IndexLabel = naNewLabel(cpTranslate(CPColorIndex7));
   con->color7Label = cpNewValueLabel();
   con->color7Display = cpAllocTwoColorController();
-  con->color8IndexLabel = naNewLabel(cpTranslate(CPColorIndex8), indexWidth);
+  con->color8IndexLabel = naNewLabel(cpTranslate(CPColorIndex8));
   con->color8Label = cpNewValueLabel();
   con->color8Display = cpAllocTwoColorController();
 
-  con->colorAverageLabel = naNewLabel(cpTranslate(CPAverage), indexWidth);
+  con->colorAverageLabel = naNewLabel(cpTranslate(CPAverage));
   con->colorLabel = cpNewValueLabel();
 
-  con->color9IndexLabel = naNewLabel(cpTranslate(CPColorIndex9), indexWidth);
+  con->color9IndexLabel = naNewLabel(cpTranslate(CPColorIndex9));
   con->color9Label = cpNewValueLabel();
   con->color9Display = cpAllocTwoColorController();
-  con->color10IndexLabel = naNewLabel(cpTranslate(CPColorIndex10), indexWidth);
+  con->color10IndexLabel = naNewLabel(cpTranslate(CPColorIndex10));
   con->color10Label = cpNewValueLabel();
   con->color10Display = cpAllocTwoColorController();
-  con->color11IndexLabel = naNewLabel(cpTranslate(CPColorIndex11), indexWidth);
+  con->color11IndexLabel = naNewLabel(cpTranslate(CPColorIndex11));
   con->color11Label = cpNewValueLabel();
   con->color11Display = cpAllocTwoColorController();
-  con->color12IndexLabel = naNewLabel(cpTranslate(CPColorIndex12), indexWidth);
+  con->color12IndexLabel = naNewLabel(cpTranslate(CPColorIndex12));
   con->color12Label = cpNewValueLabel();
   con->color12Display = cpAllocTwoColorController();
-  con->color13IndexLabel = naNewLabel(cpTranslate(CPColorIndex13), indexWidth);
+  con->color13IndexLabel = naNewLabel(cpTranslate(CPColorIndex13));
   con->color13Label = cpNewValueLabel();
   con->color13Display = cpAllocTwoColorController();
-  con->color14IndexLabel = naNewLabel(cpTranslate(CPColorIndex14), indexWidth);
+  con->color14IndexLabel = naNewLabel(cpTranslate(CPColorIndex14));
   con->color14Label = cpNewValueLabel();
   con->color14Display = cpAllocTwoColorController();
 
@@ -417,7 +417,7 @@ CPColorRenderingIndexController* cpAllocColorRenderingIndexController(void) {
   naBeginLayout(con->space, spaceBorder);
   
     naAddLayoutSection(uiElemHeight, zeroPadding);
-      naAddLayoutElement(con->title, 0, NA_LAYOUT_GROW);
+      naAddLayoutElement(con->title, 0, 200.);
 
     naAddLayoutSection(uiElemHeight, zeroPadding);
       naAddLayoutElement(con->color1IndexLabel, 0, indexWidth);

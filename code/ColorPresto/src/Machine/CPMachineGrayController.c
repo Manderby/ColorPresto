@@ -35,11 +35,11 @@ void cp_SelectGrayColorSpace(NAReaction reaction) {
 CPMachineGrayController* cpAllocMachineGrayController(void) {
   CPMachineGrayController* con = naAlloc(CPMachineGrayController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->grayColorSpaceLabel = naNewLabel(cpTranslate(CPGrayColorSpace), machineLabelWidth);
-  con->grayColorSpaceSelect = naNewSelect(200);
+  con->grayColorSpaceLabel = naNewLabel(cpTranslate(CPGrayColorSpace));
+  con->grayColorSpaceSelect = naNewSelect();
   for(size_t i = 0; i < CML_GRAY_COUNT; ++i) {
     CMLGrayComputationType grayComputationType = (CMLGrayComputationType)i;
     NAMenuItem* item = naNewMenuItem(cmlGetGrayComputationTypeString(grayComputationType), NA_NULL);
@@ -53,7 +53,7 @@ CPMachineGrayController* cpAllocMachineGrayController(void) {
   naBeginLayout(con->space, spaceBorder);
     naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
       naAddLayoutElement(con->grayColorSpaceLabel, 0, machineLabelWidth);
-      naAddLayoutElement(con->grayColorSpaceSelect, marginH, 200);
+      naAddLayoutElement(con->grayColorSpaceSelect, marginH, 200.);
   naEndLayout();
 
   return con;

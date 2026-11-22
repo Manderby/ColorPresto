@@ -35,11 +35,11 @@ void cp_SelectObserver(NAReaction reaction) {
 CPMachineObserverController* cpAllocMachineObserverController(void) {
   CPMachineObserverController* con = naAlloc(CPMachineObserverController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
 naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->observerTitleLabel = naNewLabel(cpTranslate(CPObserverTitle), machineLabelWidth);
-  con->observerSelect = naNewSelect(200);
+  con->observerTitleLabel = naNewLabel(cpTranslate(CPObserverTitle));
+  con->observerSelect = naNewSelect();
   for(size_t i = 0; i < CML_OBSERVER_COUNT; ++i) {
     CMLObserverType observerType = (CMLObserverType)i;
     if(observerType == CML_OBSERVER_CUSTOM) {continue;}
@@ -47,8 +47,8 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
     naAddSelectMenuItem(con->observerSelect, item, NA_NULL);
     naAddUIReaction(item, NA_UI_COMMAND_PRESSED, cp_SelectObserver, con);
   }
-  con->observerStepsTitleLabel = naNewLabel(cpTranslate(CPObserverSteps), machineLabelWidth);
-  con->observerStepsLabel = naNewLabel("", 100);
+  con->observerStepsTitleLabel = naNewLabel(cpTranslate(CPObserverSteps));
+  con->observerStepsLabel = naNewLabel(NA_NULL);
   
   // layout
   naBeginLayout(con->space, spaceBorder);

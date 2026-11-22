@@ -44,18 +44,18 @@ void cp_PressMachineButton(NAReaction reaction) {
 CPMachineButtonsController* cpAllocMachineButtonsController(void) {
   CPMachineButtonsController* con = naAlloc(CPMachineButtonsController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->resetMachineButton = naNewTextPushButton(cpTranslate(CPResetButton), setBigButtonWidth);
-  con->metamericsButton = naNewTextPushButton(cpTranslate(CPMetamericsButton), setBigButtonWidth);
-  con->threeDeeButton = naNewTextPushButton(cpTranslate(CPThreeDeeButton), setBigButtonWidth);
+  con->resetMachineButton = naNewTextPushButton(cpTranslate(CPResetButton));
+  con->metamericsButton = naNewTextPushButton(cpTranslate(CPMetamericsButton));
+  con->threeDeeButton = naNewTextPushButton(cpTranslate(CPThreeDeeButton));
   naAddUIReaction(con->resetMachineButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
   naAddUIReaction(con->metamericsButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
   naAddUIReaction(con->threeDeeButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
 
-  con->aboutButton = naNewTextPushButton(cpTranslate(CPAboutButton), setBigButtonWidth);
-  con->preferencesButton = naNewTextPushButton(cpTranslate(CPPreferencesButton), setBigButtonWidth);
+  con->aboutButton = naNewTextPushButton(cpTranslate(CPAboutButton));
+  con->preferencesButton = naNewTextPushButton(cpTranslate(CPPreferencesButton));
   naAddUIReaction(con->aboutButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
   naAddUIReaction(con->preferencesButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
 

@@ -83,7 +83,7 @@ CPRGBColorController* cpAllocRGBColorController(void) {
   
   con->colorWell2D = cpAllocColorWell2D(&(con->baseController), 1);
   
-  con->channelSpace = naNewSpace(naMakeSize(1, 1));
+  con->channelSpace = naNewSpace();
   con->labelR = cpNewColorComponentLabel(cpTranslate(CPRGBColorChannelR));
   con->labelG = cpNewColorComponentLabel(cpTranslate(CPRGBColorChannelG));
   con->labelB = cpNewColorComponentLabel(cpTranslate(CPRGBColorChannelB));
@@ -114,21 +114,21 @@ CPRGBColorController* cpAllocRGBColorController(void) {
     
       naBeginSubLayout(con->channelSpace, zeroPadding, 0, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->labelR, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textFieldR, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->labelR, 0, colorComponentWidth);
+          naAddLayoutElement(con->textFieldR, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DR), 10, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->labelG, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textFieldG, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->labelG, 0, colorComponentWidth);
+          naAddLayoutElement(con->textFieldG, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DG), 10, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->labelB, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textFieldB, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->labelB, 0, colorComponentWidth);
+          naAddLayoutElement(con->textFieldB, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DB), 10, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, hexPadding);
-          naAddLayoutElement(con->labelNum, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textFieldHex, colorComponentMarginH, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textFieldDec, 10, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->labelNum, 0, colorComponentWidth);
+          naAddLayoutElement(con->textFieldHex, colorComponentMarginH, textFieldValueWidth);
+          naAddLayoutElement(con->textFieldDec, 10, colorWell1DSize);
       naEndLayout();
       naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
 

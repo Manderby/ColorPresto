@@ -114,12 +114,12 @@ CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDee
 
   con->parent = parent;
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->rotationLabel = naNewLabel(cpTranslate(CPRotation), threeDeeLabelWidth - setButtonWidth + marginH - marginHSmall);
-  con->rotationSlider = naNewSlider(threeDeeControlWidth);
-  con->rotationButton = naNewTextPushButton(cpTranslate(CPStop), setButtonWidth);
+  con->rotationLabel = naNewLabel(cpTranslate(CPRotation));
+  con->rotationSlider = naNewSlider();
+  con->rotationButton = naNewTextPushButton(cpTranslate(CPStop));
   naSetSliderRange(con->rotationSlider, -1., +1., 0);
   naAddUIReaction(con->rotationButton, NA_UI_COMMAND_PRESSED, cp_PressRotationButton, con);
   naAddUIReaction(con->rotationSlider, NA_UI_COMMAND_EDITED, cp_ChangeRotationSlider, con);

@@ -70,31 +70,31 @@ CPThreeDeeOpacityController* cpAllocThreeDeeOpacityController(CPThreeDeeControll
 
   con->parent = parent;
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
   naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->pointsOpacityLabel = naNewLabel(cpTranslate(CPPointsOpacity), threeDeeLabelWidth);
-  con->pointsOpacitySlider = naNewSlider(threeDeeControlWidth);
+  con->pointsOpacityLabel = naNewLabel(cpTranslate(CPPointsOpacity));
+  con->pointsOpacitySlider = naNewSlider();
   naSetSliderRange(con->pointsOpacitySlider, 0., 1., 0);
   naAddUIReaction(con->pointsOpacitySlider, NA_UI_COMMAND_EDITED, cp_ChangeThreeDeeOpacitySlider, con);
 
-  con->gridAlphaLabel = naNewLabel(cpTranslate(CPGridOpacity), threeDeeLabelWidth);
-  con->gridAlphaSlider = naNewSlider(threeDeeControlWidth);
+  con->gridAlphaLabel = naNewLabel(cpTranslate(CPGridOpacity));
+  con->gridAlphaSlider = naNewSlider();
   naSetSliderRange(con->gridAlphaSlider, 0., 1., 0);
   naAddUIReaction(con->gridAlphaSlider, NA_UI_COMMAND_EDITED, cp_ChangeThreeDeeOpacitySlider, con);
 
-  con->gridTintLabel = naNewLabel(cpTranslate(CPGridTint), threeDeeLabelWidth);
-  con->gridTintSlider = naNewSlider(threeDeeControlWidth);
+  con->gridTintLabel = naNewLabel(cpTranslate(CPGridTint));
+  con->gridTintSlider = naNewSlider();
   naSetSliderRange(con->gridTintSlider, 0., 1., 0);
   naAddUIReaction(con->gridTintSlider, NA_UI_COMMAND_EDITED, cp_ChangeThreeDeeOpacitySlider, con);
 
-  con->bodyAlphaLabel = naNewLabel(cpTranslate(CPBodyTint), threeDeeLabelWidth);
-  con->bodyAlphaSlider = naNewSlider(threeDeeControlWidth);
+  con->bodyAlphaLabel = naNewLabel(cpTranslate(CPBodyTint));
+  con->bodyAlphaSlider = naNewSlider();
   naSetSliderRange(con->bodyAlphaSlider, 0., 1., 0);
   naAddUIReaction(con->bodyAlphaSlider, NA_UI_COMMAND_EDITED, cp_ChangeThreeDeeOpacitySlider, con);
 
-  con->bodySolidLabel = naNewLabel(cpTranslate(CPSolid), threeDeeLabelWidth);
-  con->bodySolidCheckBox = naNewCheckBox("", 30);
+  con->bodySolidLabel = naNewLabel(cpTranslate(CPSolid));
+  con->bodySolidCheckBox = naNewCheckBox("");
   naAddUIReaction(con->bodySolidCheckBox, NA_UI_COMMAND_PRESSED, cp_PressThreeDeeOpacityButton, con);
 
   // layout

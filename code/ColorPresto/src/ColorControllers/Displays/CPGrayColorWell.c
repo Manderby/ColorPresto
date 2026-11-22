@@ -127,7 +127,9 @@ void cmDrawGrayColorWell(NAReaction reaction) {
 CPGrayColorWell* cpAllocGrayColorWell(CPColorController* colorController) {
   CPGrayColorWell* well = naAlloc(CPGrayColorWell);
   
-  well->display = naNewOpenGLSpace(naMakeSize(colorWell2DSize, colorWell2DSize), cmInitGrayColorWell, well);
+  well->display = naNewOpenGLSpace(cmInitGrayColorWell, well);
+  naSetUIElementRect(well->display, naMakeRectS(0., 0., colorWell2DSize, colorWell2DSize));
+
   naAddUIReaction(well->display, NA_UI_COMMAND_REDRAW, cmDrawGrayColorWell, well);
   
   well->colorController = colorController;

@@ -23,7 +23,7 @@ void CPColorControllerMouseDown(NAReaction reaction) {
 
 
 void cpInitColorController(CPColorController* con, CMLColorType colorType) {
-  con->space = naNewSpace(naMakeSize(10, 10));
+  con->space = naNewSpace();
   naAddUIReaction(con->space, NA_UI_COMMAND_MOUSE_DOWN, CPColorControllerMouseDown, con);
   
   con->active = NA_FALSE;

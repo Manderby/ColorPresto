@@ -46,7 +46,7 @@ CPGrayColorController* cpAllocGrayColorController(void) {
   
   con->display = cpAllocGrayColorWell(&(con->baseController));
   
-  con->channelSpace = naNewSpace(naMakeSize(1, 1));
+  con->channelSpace = naNewSpace();
   con->labelGray = cpNewColorComponentLabel(cpTranslate(CPGrayColorChannelGr));
   con->textFieldGray = cpNewValueTextField(cp_GrayValueEdited, con);
   con->colorWell1DGray = cpAllocColorWell1D(&(con->baseController), &(con->grayColor), 0);
@@ -60,8 +60,8 @@ CPGrayColorController* cpAllocGrayColorController(void) {
     
       naBeginSubLayout(con->channelSpace, zeroPadding, 0, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->labelGray, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textFieldGray, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->labelGray, 0, colorComponentWidth);
+          naAddLayoutElement(con->textFieldGray, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DGray), 10, NA_LAYOUT_MIN);
       naEndLayout();
       naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);

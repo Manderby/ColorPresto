@@ -84,20 +84,20 @@ void cp_SelectRefSpectrum(NAReaction reaction) {
 CPWhitePointsController* cpAllocWhitePointsController(void) {
   CPWhitePointsController* con = naAlloc(CPWhitePointsController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
 
   // Illumination whitepoint
   
-  con->ill10DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree10), degreeWidth);
-  con->ill2DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree2), degreeWidth);
+  con->ill10DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree10));
+  con->ill2DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree2));
 
-  con->illTitle = cpNewTitleLabel("", fourValuesWidth);
+  con->illTitle = cpNewTitleLabel(NA_NULL);
 //  naSetLabelTextAlignment(con->illTitle, NA_TEXT_ALIGNMENT_CENTER);
 
-  con->illXYZTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceXYZ), labelValueWidth);
-  con->illYxyTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYxy), labelValueWidth);
-  con->illYupvpTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYupvp), labelValueWidth);
-  con->illYuvTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYuv), labelValueWidth);
+  con->illXYZTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceXYZ));
+  con->illYxyTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYxy));
+  con->illYupvpTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYupvp));
+  con->illYuvTitle = cpNewTitleLabel(cpTranslate(CPColorSpaceYuv));
   naSetLabelTextAlignment(con->illXYZTitle, NA_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYxyTitle, NA_ALIGNMENT_CENTER);
   naSetLabelTextAlignment(con->illYupvpTitle, NA_ALIGNMENT_CENTER);
@@ -115,12 +115,12 @@ CPWhitePointsController* cpAllocWhitePointsController(void) {
 
   // Reference whitepoint
 
-  con->ref10DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree10), degreeWidth);
-  con->ref2DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree2), degreeWidth);
+  con->ref10DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree10));
+  con->ref2DegLabel = cpNewTitleLabel(cpTranslate(CPObserverDegree2));
 
-  con->refTitle = cpNewTitleLabel(cpTranslate(CPReferenceIllumination), 80);
+  con->refTitle = cpNewTitleLabel(cpTranslate(CPReferenceIllumination));
 
-  con->refSelect = naNewSelect(70);
+  con->refSelect = naNewSelect();
   con->refD50MenuItem = naNewMenuItem(cpTranslate(CPD50), NA_NULL);
   con->refD55MenuItem = naNewMenuItem(cpTranslate(CPD55), NA_NULL);
   con->refD65MenuItem = naNewMenuItem(cpTranslate(CPD65), NA_NULL);

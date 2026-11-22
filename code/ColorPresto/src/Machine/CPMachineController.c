@@ -31,7 +31,7 @@ struct CPMachineController{
 CPMachineController* cpAllocMachineController(void) {
   CPMachineController* con = naAlloc(CPMachineController);
 
-  con->space = naNewSpace(naMakeSize(300, 100));
+  con->space = naNewSpace();
 
   con->observerController = cpAllocMachineObserverController();
   con->illuminationController = cpAllocMachineIlluminationController();
@@ -46,8 +46,6 @@ CPMachineController* cpAllocMachineController(void) {
   
   NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
   
-//  naDebugUIElementLayout(con->space);
-
   naBeginLayout(con->space, zeroPadding);
     naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
       naAddLayoutElement(cpGetMachineObserverControllerUIElement(con->observerController), 0, NA_LAYOUT_MIN);

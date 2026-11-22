@@ -471,34 +471,34 @@ CPVisMetamericColors cp_ComputeVisMetamericColors(
 CPVisMetamericIndexController* cpAllocVisMetamericIndexController(void) {
   CPVisMetamericIndexController* con = naAlloc(CPVisMetamericIndexController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->title = cpNewTitleLabel(cpTranslate(CPVisMetamericIndex), 250);
+  con->title = cpNewTitleLabel(cpTranslate(CPVisMetamericIndex));
   
-  con->metamerics1IndexLabel = naNewLabel(cpTranslate(CPColorIndex1), indexWidth);
+  con->metamerics1IndexLabel = naNewLabel(cpTranslate(CPColorIndex1));
   con->metamerics1Label = cpNewValueLabel();
   con->metamerics1Display = cpAllocTwoColorController();
 
-  con->metamerics2IndexLabel = naNewLabel(cpTranslate(CPColorIndex2), indexWidth);
+  con->metamerics2IndexLabel = naNewLabel(cpTranslate(CPColorIndex2));
   con->metamerics2Label = cpNewValueLabel();
   con->metamerics2Display = cpAllocTwoColorController();
 
-  con->metamerics3IndexLabel = naNewLabel(cpTranslate(CPColorIndex3), indexWidth);
+  con->metamerics3IndexLabel = naNewLabel(cpTranslate(CPColorIndex3));
   con->metamerics3Label = cpNewValueLabel();
   con->metamerics3Display = cpAllocTwoColorController();
 
-  con->metamerics4IndexLabel = naNewLabel(cpTranslate(CPColorIndex4), indexWidth);
+  con->metamerics4IndexLabel = naNewLabel(cpTranslate(CPColorIndex4));
   con->metamerics4Label = cpNewValueLabel();
   con->metamerics4Display = cpAllocTwoColorController();
 
-  con->metamerics5IndexLabel = naNewLabel(cpTranslate(CPColorIndex5), indexWidth);
+  con->metamerics5IndexLabel = naNewLabel(cpTranslate(CPColorIndex5));
   con->metamerics5Label = cpNewValueLabel();
   con->metamerics5Display = cpAllocTwoColorController();
 
-  con->metamericsAverageLabel = naNewLabel(cpTranslate(CPAverage), indexWidth);
+  con->metamericsAverageLabel = naNewLabel(cpTranslate(CPAverage));
   con->metamericsLabel = cpNewValueLabel();
-  con->metamericsGradeLabel = naNewLabel("", 120);
+  con->metamericsGradeLabel = naNewLabel(NA_NULL);
 
 
 
@@ -509,7 +509,7 @@ CPVisMetamericIndexController* cpAllocVisMetamericIndexController(void) {
   naBeginLayout(con->space, spaceBorder);
   
     naAddLayoutSection(uiElemHeight, zeroPadding);
-      naAddLayoutElement(con->title, 0, NA_LAYOUT_GROW);
+      naAddLayoutElement(con->title, 0, 250.);
 
     naAddLayoutSection(uiElemHeight, zeroPadding);
       naAddLayoutElement(con->metamerics1IndexLabel, 0, indexWidth);
@@ -539,7 +539,7 @@ CPVisMetamericIndexController* cpAllocVisMetamericIndexController(void) {
     naAddLayoutSection(uiElemHeight, zeroPadding);
       naAddLayoutElement(con->metamericsAverageLabel, 0, indexWidth);
       naAddLayoutElement(con->metamericsLabel, indexMargin, labelValueWidth);
-      naAddLayoutElement(con->metamericsGradeLabel, valueMargin, NA_LAYOUT_GROW);
+      naAddLayoutElement(con->metamericsGradeLabel, valueMargin, 120.);
       
   naEndLayout();
 

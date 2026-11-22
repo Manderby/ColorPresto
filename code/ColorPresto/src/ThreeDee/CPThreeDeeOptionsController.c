@@ -65,24 +65,24 @@ CPThreeDeeOptionsController* cpAllocThreeDeeOptionsController(CPThreeDeeControll
 
   con->parent = parent;
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
   naSetSpaceAlternateBackground(con->space, NA_FALSE);
 
-  con->axisLabel = naNewLabel(cpTranslate(CPAxis), threeDeeLabelWidth);
-  con->axisCheckBox = naNewCheckBox("", 30);
+  con->axisLabel = naNewLabel(cpTranslate(CPAxis));
+  con->axisCheckBox = naNewCheckBox("");
   naAddUIReaction(con->axisCheckBox, NA_UI_COMMAND_PRESSED, cp_PressOptionsButton, con);
 
-  con->spectrumLabel = naNewLabel(cpTranslate(CPSpectrum), threeDeeLabelWidth);
-  con->spectrumCheckBox = naNewCheckBox("", 30);
+  con->spectrumLabel = naNewLabel(cpTranslate(CPSpectrum));
+  con->spectrumCheckBox = naNewCheckBox("");
   naAddUIReaction(con->spectrumCheckBox, NA_UI_COMMAND_PRESSED, cp_PressOptionsButton, con);
 
-  con->backgroundLabel = naNewLabel(cpTranslate(CPBackground), threeDeeLabelWidth);
-  con->backgroundSlider = naNewSlider(threeDeeControlWidth);
+  con->backgroundLabel = naNewLabel(cpTranslate(CPBackground));
+  con->backgroundSlider = naNewSlider();
   naSetSliderRange(con->backgroundSlider, 0., 1., 0);
   naAddUIReaction(con->backgroundSlider, NA_UI_COMMAND_EDITED, cp_ChangeOptionsSlider, con);
 
-  con->fovyLabel = naNewLabel(cpTranslate(CPFovy), threeDeeLabelWidth);
-  con->fovySlider = naNewSlider(threeDeeControlWidth);
+  con->fovyLabel = naNewLabel(cpTranslate(CPFovy));
+  con->fovySlider = naNewSlider();
   naSetSliderRange(con->fovySlider, 90., 0., 0);
   naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cp_ChangeOptionsSlider, con);
 

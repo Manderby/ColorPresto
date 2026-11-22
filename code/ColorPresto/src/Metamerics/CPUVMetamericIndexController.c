@@ -424,28 +424,28 @@ CPUVMetamericColors cp_ComputeUVMetamericColors(
 CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void) {
   CPUVMetamericIndexController* con = naAlloc(CPUVMetamericIndexController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
 
 
-  con->title = cpNewTitleLabel(cpTranslate(CPUVMetamericIndex), 250);
+  con->title = cpNewTitleLabel(cpTranslate(CPUVMetamericIndex));
 
-  con->metamerics6IndexLabel = naNewLabel(cpTranslate(CPColorIndex6), indexWidth);
+  con->metamerics6IndexLabel = naNewLabel(cpTranslate(CPColorIndex6));
   con->metamerics6Label = cpNewValueLabel();
   con->metamerics6Display = cpAllocTwoColorController();
 
-  con->metamerics7IndexLabel = naNewLabel(cpTranslate(CPColorIndex7), indexWidth);
+  con->metamerics7IndexLabel = naNewLabel(cpTranslate(CPColorIndex7));
   con->metamerics7Label = cpNewValueLabel();
   con->metamerics7Display = cpAllocTwoColorController();
 
-  con->metamerics8IndexLabel = naNewLabel(cpTranslate(CPColorIndex8), indexWidth);
+  con->metamerics8IndexLabel = naNewLabel(cpTranslate(CPColorIndex8));
   con->metamerics8Label = cpNewValueLabel();
   con->metamerics8Display = cpAllocTwoColorController();
 
-  con->metamericsAverageLabel = naNewLabel(cpTranslate(CPAverage), indexWidth);
+  con->metamericsAverageLabel = naNewLabel(cpTranslate(CPAverage));
   con->metamericsLabel = cpNewValueLabel();
-  con->metamericsGradeLabel = naNewLabel("", 120);
+  con->metamericsGradeLabel = naNewLabel(NA_NULL);
 
 
 
@@ -456,7 +456,7 @@ CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void) {
   naBeginLayout(con->space, spaceBorder);
   
     naAddLayoutSection(uiElemHeight, zeroPadding);
-      naAddLayoutElement(con->title, 0, NA_LAYOUT_GROW);
+      naAddLayoutElement(con->title, 0, 250.);
 
     naAddLayoutSection(uiElemHeight, zeroPadding);
       naAddLayoutElement(con->metamerics6IndexLabel, 0, indexWidth);
@@ -476,7 +476,7 @@ CPUVMetamericIndexController* cpAllocUVMetamericIndexController(void) {
     naAddLayoutSection(uiElemHeight, zeroPadding);
       naAddLayoutElement(con->metamericsAverageLabel, 0, indexWidth);
       naAddLayoutElement(con->metamericsLabel, indexMargin, labelValueWidth);
-      naAddLayoutElement(con->metamericsGradeLabel, valueMargin, NA_LAYOUT_GROW);
+      naAddLayoutElement(con->metamericsGradeLabel, valueMargin, 120.);
       
   naEndLayout();
   

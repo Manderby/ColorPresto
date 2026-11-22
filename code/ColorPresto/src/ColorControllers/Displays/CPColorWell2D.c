@@ -212,7 +212,9 @@ void cmDrawColorWell2D(NAReaction reaction) {
 CPColorWell2D* cpAllocColorWell2D(CPColorController* colorController, size_t fixedIndex) {
   CPColorWell2D* well = naAlloc(CPColorWell2D);
   
-  well->display = naNewOpenGLSpace(naMakeSize(colorWell2DSize, colorWell2DSize), cmInitColorWell2D, well);
+  well->display = naNewOpenGLSpace(cmInitColorWell2D, well);
+  naSetUIElementRect(well->display, naMakeRectS(0., 0., colorWell2DSize, colorWell2DSize));
+
   naAddUIReaction(well->display, NA_UI_COMMAND_REDRAW, cmDrawColorWell2D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_DOWN, cmDragColorWell2D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_MOVED, cmDragColorWell2D, well);

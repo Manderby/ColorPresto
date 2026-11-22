@@ -93,7 +93,9 @@ void cmDrawGammaDisplayController(NAReaction reaction) {
 CPGammaDisplayController* cpAllocGammaDisplayController() {
   CPGammaDisplayController* con = naAlloc(CPGammaDisplayController);
   
-  con->display = naNewOpenGLSpace(naMakeSize(gammaDisplaySize, gammaDisplaySize), cmInitGammaDisplayController, con);
+  con->display = naNewOpenGLSpace(cmInitGammaDisplayController, con);
+  naSetUIElementRect(con->display, naMakeRectS(0., 0., gammaDisplaySize, gammaDisplaySize));
+
   naAddUIReaction(con->display, NA_UI_COMMAND_REDRAW, cmDrawGammaDisplayController, con);
   
   return con;

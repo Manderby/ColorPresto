@@ -183,7 +183,9 @@ void cmDrawColorWell1D(NAReaction reaction) {
 CPColorWell1D* cpAllocColorWell1D(CPColorController* colorController, const float* colorData, size_t variableIndex) {
   CPColorWell1D* well = naAlloc(CPColorWell1D);
   
-  well->display = naNewOpenGLSpace(naMakeSize(colorWell1DSize, colorWell1DHeight), cmInitColorWell1D, well);
+  well->display = naNewOpenGLSpace(cmInitColorWell1D, well);
+  naSetUIElementRect(well->display, naMakeRectS(0., 0., colorWell1DSize, colorWell1DHeight));
+  
   naAddUIReaction(well->display, NA_UI_COMMAND_REDRAW, cmDrawColorWell1D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_DOWN, cmDragColorWell1D, well);
   naAddUIReaction(well->display, NA_UI_COMMAND_MOUSE_MOVED, cmDragColorWell1D, well);

@@ -23,9 +23,9 @@ struct CPChromaticityErrorController{
 CPChromaticityErrorController* cpAllocChromaticityErrorController(void) {
   CPChromaticityErrorController* con = naAlloc(CPChromaticityErrorController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
 
-  con->title = cpNewTitleLabel(cpTranslate(CPChromaticityErrorTitle), 160.);
+  con->title = cpNewTitleLabel(cpTranslate(CPChromaticityErrorTitle));
   con->chromaticityErrorLabel = cpNewValueLabel();
 
   NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);

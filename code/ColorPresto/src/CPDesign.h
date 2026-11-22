@@ -75,9 +75,7 @@ static const NABorder2D colorWellBorder = {10, 10, 10, 10};
 void cpStartupDesign(void);
 void cpShutdownDesign(void);
 
-NALabel* cpNewTitleLabel(
-  const NAUTF8Char* text,
-  double width);
+NALabel* cpNewTitleLabel(const NAUTF8Char* text);
 NALabel* cpNewValueLabel(void);
 NALabel* cpNewColorComponentLabel(const NAUTF8Char* string);
 NALabel* cpNewThreeValueLabel(void);

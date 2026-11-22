@@ -68,11 +68,11 @@ CPMachineWindowController* cpAllocMachineWindowController(void) {
 
   con->machineController = cpAllocMachineController();
 
-  con->rightSpace = naNewSpace(naMakeSize(1, 1));
+  con->rightSpace = naNewSpace();
 
-  con->radiometricColorsSpace = naNewSpace(naMakeSize(1, 1));
-  con->perceptiveColorsSpace = naNewSpace(naMakeSize(1, 1));
-  con->RGBColorsSpace = naNewSpace(naMakeSize(1, 1));
+  con->radiometricColorsSpace = naNewSpace();
+  con->perceptiveColorsSpace = naNewSpace();
+  con->RGBColorsSpace = naNewSpace();
 
   con->grayColorController = cpAllocGrayColorController();
   con->hsvhslColorController = cpAllocHSVHSLColorController();

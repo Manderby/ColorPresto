@@ -72,10 +72,10 @@ CPMetamericsController* cpAllocMetamericsController(void) {
 //  con->column2Space = naNewSpace(naMakeSize(column2Width, column2Height));
 //  naSetSpaceAlternateBackground(con->column2Space, NA_TRUE);
 //  con->column3Space = naNewSpace(naMakeSize(column3Width, column3Height));
-  con->column1Space = naNewSpace(naMakeSize(1, 1));
-  con->column2Space = naNewSpace(naMakeSize(1, 1));
+  con->column1Space = naNewSpace();
+  con->column2Space = naNewSpace();
   naSetSpaceAlternateBackground(con->column2Space, NA_TRUE);
-  con->column3Space = naNewSpace(naMakeSize(1, 1));
+  con->column3Space = naNewSpace();
 
 
 

@@ -92,16 +92,16 @@ CPLuvUVWColorController* cpAllocLuvUVWColorController(void) {
   
   con->colorWell2D = cpAllocColorWell2D(&(con->baseController), fixedIndex);
 
-  con->channelSpace = naNewSpace(naMakeSize(1, 1));
+  con->channelSpace = naNewSpace();
 
-  con->radioLuv = naNewRadio(cpTranslate(CPColorSpaceLuv), radioSelectWidth);
-  con->radioUVW = naNewRadio(cpTranslate(CPColorSpaceUVW), radioSelectWidth);
+  con->radioLuv = naNewRadio(cpTranslate(CPColorSpaceLuv));
+  con->radioUVW = naNewRadio(cpTranslate(CPColorSpaceUVW));
   naAddUIReaction(con->radioLuv, NA_UI_COMMAND_PRESSED, cp_LuvUVWSelectionChanged, con);
   naAddUIReaction(con->radioUVW, NA_UI_COMMAND_PRESSED, cp_LuvUVWSelectionChanged, con);
 
-  con->label0 = cpNewColorComponentLabel("");
-  con->label1 = cpNewColorComponentLabel("");
-  con->label2 = cpNewColorComponentLabel("");
+  con->label0 = cpNewColorComponentLabel(NA_NULL);
+  con->label1 = cpNewColorComponentLabel(NA_NULL);
+  con->label2 = cpNewColorComponentLabel(NA_NULL);
   con->textField0 = cpNewValueTextField(cp_LuvValueEdited, con);
   con->textField1 = cpNewValueTextField(cp_LuvValueEdited, con);
   con->textField2 = cpNewValueTextField(cp_LuvValueEdited, con);
@@ -122,19 +122,19 @@ CPLuvUVWColorController* cpAllocLuvUVWColorController(void) {
     
       naBeginSubLayout(con->channelSpace, zeroPadding, 0, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->radioLuv, colorComponentWidth + colorComponentMarginH, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->radioUVW, 10, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->radioLuv, colorComponentWidth + colorComponentMarginH, radioSelectWidth);
+          naAddLayoutElement(con->radioUVW, 10, radioSelectWidth);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->label0, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textField0, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->label0, 0, colorComponentWidth);
+          naAddLayoutElement(con->textField0, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1D0), 10, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->label1, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textField1, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->label1, 0, colorComponentWidth);
+          naAddLayoutElement(con->textField1, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1D1), 10, NA_LAYOUT_MIN);
         naAddLayoutSection(colorValueCondensedRowHeight, zeroPadding);
-          naAddLayoutElement(con->label2, 0, NA_LAYOUT_MIN);
-          naAddLayoutElement(con->textField2, colorComponentMarginH, NA_LAYOUT_MIN);
+          naAddLayoutElement(con->label2, 0, colorComponentWidth);
+          naAddLayoutElement(con->textField2, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1D2), 10, NA_LAYOUT_MIN);
       naEndLayout();
       naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);

@@ -249,7 +249,9 @@ void cmDrawSpectralColorWell(NAReaction reaction) {
 CPSpectralColorWell* cpAllocSpectralColorWell(CPColorController* colorController) {
   CPSpectralColorWell* well = naAlloc(CPSpectralColorWell);
   
-  well->openGLSpace = naNewOpenGLSpace(naMakeSize(spectralWellSize, colorWell2DSize), cmInitSpectralColorWell, well);
+  well->openGLSpace = naNewOpenGLSpace(cmInitSpectralColorWell, well);
+  naSetUIElementRect(well->openGLSpace, naMakeRectS(0., 0., spectralWellSize, colorWell2DSize));
+
   naAddUIReaction(well->openGLSpace, NA_UI_COMMAND_REDRAW, cmDrawSpectralColorWell, well);
   naAddUIReaction(well->openGLSpace, NA_UI_COMMAND_MOUSE_DOWN, cmDragSpectralColorWell, well);
   naAddUIReaction(well->openGLSpace, NA_UI_COMMAND_MOUSE_MOVED, cmDragSpectralColorWell, well);

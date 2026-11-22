@@ -22,13 +22,13 @@ struct CPTotalMetamericIndexController{
 CPTotalMetamericIndexController* cpAllocTotalMetamericIndexController(void) {
   CPTotalMetamericIndexController* con = naAlloc(CPTotalMetamericIndexController);
 
-  con->space = naNewSpace(naMakeSize(1, 1));
+  con->space = naNewSpace();
 //  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
-  con->title = cpNewTitleLabel(cpTranslate(CPTotalMetamericIndex), 250);
-  con->metamericsAverageLabel = naNewLabel(cpTranslate(CPAverage), indexWidth);
+  con->title = cpNewTitleLabel(cpTranslate(CPTotalMetamericIndex));
+  con->metamericsAverageLabel = naNewLabel(cpTranslate(CPAverage));
   con->metamericsLabel = cpNewValueLabel();
-  con->metamericsGradeLabel = naNewLabel("", 120);
+  con->metamericsGradeLabel = naNewLabel(NA_NULL);
 
 
 
@@ -39,12 +39,12 @@ CPTotalMetamericIndexController* cpAllocTotalMetamericIndexController(void) {
   naBeginLayout(con->space, spaceBorder);
   
     naAddLayoutSection(uiElemHeight, zeroPadding);
-      naAddLayoutElement(con->title, 0, NA_LAYOUT_GROW);
+      naAddLayoutElement(con->title, 0, 250.);
 
     naAddLayoutSection(uiElemHeight, zeroPadding);
       naAddLayoutElement(con->metamericsAverageLabel, 0, indexWidth);
       naAddLayoutElement(con->metamericsLabel, indexMargin, labelValueWidth);
-      naAddLayoutElement(con->metamericsGradeLabel, valueMargin, NA_LAYOUT_GROW);
+      naAddLayoutElement(con->metamericsGradeLabel, valueMargin, 120);
       
   naEndLayout();
 
