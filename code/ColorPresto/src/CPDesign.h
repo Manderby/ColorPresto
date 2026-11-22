@@ -6,7 +6,7 @@
 #include "NAApp/NAApp.h"
 #include "NAMath/NACoord.h"
 
-#define uiElemHeight 24.
+#define uiElemHeight 25.
 
 #define spaceMarginLeft 16.
 #define spaceMarginRight 16.

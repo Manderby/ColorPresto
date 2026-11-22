@@ -153,18 +153,24 @@ CPThreeDeeCoordinateController* cpAllocThreeDeeCoordinateController(CPThreeDeeCo
   naAddUIReaction(con->stepsSlider, NA_UI_COMMAND_EDITED, cp_ChangeCoordinateSlider, con);
 
   // layout
-  cpBeginUILayout(con->space, threeDeeBorder);
   
-  cpAddUIRow(con->colorSpaceLabel, uiElemHeight);
-  cpAddUICol(con->colorSpaceSelect, marginH);
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
-  cpAddUIRow(con->coordSysLabel, uiElemHeight);
-  cpAddUICol(con->coordSysSelect, marginH);
+  naBeginLayout(con->space, threeDeeBorder);
+  
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->colorSpaceLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->colorSpaceSelect, marginH, threeDeeControlWidth);
 
-  cpAddUIRow(con->stepsLabel, uiElemHeight);
-  cpAddUICol(con->stepsSlider, marginH);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->coordSysLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->coordSysSelect, marginH, threeDeeControlWidth);
 
-  cpEndUILayout();
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->stepsLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->stepsSlider, marginH, threeDeeControlWidth);
+
+  naEndLayout();
 
   // initial values
   con->colorSpaceType = COLOR_SPACE_RGB;

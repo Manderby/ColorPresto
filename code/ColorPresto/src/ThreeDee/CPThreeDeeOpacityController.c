@@ -99,24 +99,31 @@ CPThreeDeeOpacityController* cpAllocThreeDeeOpacityController(CPThreeDeeControll
 
   // layout
 
-  cpBeginUILayout(con->space, threeDeeBorder);
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+
+  naBeginLayout(con->space, threeDeeBorder);
   
-  cpAddUIRow(con->pointsOpacityLabel, uiElemHeight);
-  cpAddUICol(con->pointsOpacitySlider, marginH);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->pointsOpacityLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->pointsOpacitySlider, marginH, threeDeeControlWidth);
 
-  cpAddUIRow(con->gridAlphaLabel, uiElemHeight);
-  cpAddUICol(con->gridAlphaSlider, marginH);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->gridAlphaLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->gridAlphaSlider, marginH, threeDeeControlWidth);
 
-  cpAddUIRow(con->gridTintLabel, uiElemHeight);
-  cpAddUICol(con->gridTintSlider, marginH);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->gridTintLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->gridTintSlider, marginH, threeDeeControlWidth);
 
-  cpAddUIRow(con->bodyAlphaLabel, uiElemHeight);
-  cpAddUICol(con->bodyAlphaSlider, marginH);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->bodyAlphaLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->bodyAlphaSlider, marginH, threeDeeControlWidth);
 
-  cpAddUIRow(con->bodySolidLabel, uiElemHeight);
-  cpAddUICol(con->bodySolidCheckBox, marginH);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->bodySolidLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->bodySolidCheckBox, marginH, 30);
 
-  cpEndUILayout();
+  naEndLayout();
 
   // initial values
 

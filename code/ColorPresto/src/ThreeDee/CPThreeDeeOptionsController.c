@@ -87,22 +87,28 @@ CPThreeDeeOptionsController* cpAllocThreeDeeOptionsController(CPThreeDeeControll
   naAddUIReaction(con->fovySlider, NA_UI_COMMAND_EDITED, cp_ChangeOptionsSlider, con);
 
   // layout
-  cpBeginUILayout(con->space, threeDeeBorder);
   
-  cpAddUIRow(con->axisLabel, uiElemHeight);
-  cpAddUICol(con->axisCheckBox, marginH);
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
-  cpAddUIRow(con->spectrumLabel, uiElemHeight);
-  cpAddUICol(con->spectrumCheckBox, marginH);
+  naBeginLayout(con->space, threeDeeBorder);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->axisLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->axisCheckBox, marginH, 30);
 
-  cpAddUIRow(con->backgroundLabel, uiElemHeight);
-  cpAddUICol(con->backgroundSlider, marginH);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->spectrumLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->spectrumCheckBox, marginH, 30);
 
-  cpAddUIRow(con->fovyLabel, uiElemHeight);
-  cpAddUICol(con->fovySlider, marginH);
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->backgroundLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->backgroundSlider, marginH, threeDeeControlWidth);
 
-  cpEndUILayout();
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->fovyLabel, 0, threeDeeLabelWidth);
+      naAddLayoutElement(con->fovySlider, marginH, threeDeeControlWidth);
 
+  naEndLayout();
+  
   // initial values
   con->showSpectrum = NA_FALSE;
   con->showAxis = NA_TRUE;

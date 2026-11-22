@@ -126,13 +126,16 @@ CPThreeDeePerspectiveController* cpAllocThreeDeePerspectiveController(CPThreeDee
 
   // layout
 
-  cpBeginUILayout(con->space, threeDeeBorder);
-  
-  cpAddUIRow(con->rotationLabel, uiElemHeight);
-  cpAddUICol(con->rotationButton, 0.);
-  cpAddUICol(con->rotationSlider, marginHSmall);
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
-  cpEndUILayout();
+  naBeginLayout(con->space, threeDeeBorder);
+  
+    naAddLayoutSection(uiElemHeight, zeroPadding);
+      naAddLayoutElement(con->rotationLabel, 0, threeDeeLabelWidth - setButtonWidth + marginH - marginHSmall);
+      naAddLayoutElement(con->rotationButton, 0, setButtonWidth);
+      naAddLayoutElement(con->rotationSlider, marginHSmall, threeDeeControlWidth);
+
+  naEndLayout();
 
   // initial values
   double uiScale = naGetUIElementUIScale(con->space);
