@@ -31,7 +31,7 @@ struct CPMachineController{
 CPMachineController* cpAllocMachineController(void) {
   CPMachineController* con = naAlloc(CPMachineController);
 
-  con->space = naNewSpace(naMakeSize(500, 300));
+  con->space = naNewSpace(naMakeSize(300, 100));
 
   con->observerController = cpAllocMachineObserverController();
   con->illuminationController = cpAllocMachineIlluminationController();
@@ -42,14 +42,21 @@ CPMachineController* cpAllocMachineController(void) {
   con->buttonsController = cpAllocMachineButtonsController();
 
   // layout
-  cpBeginUILayout(con->space, naMakeBorder2D(0., 0., 0., 0.));
-  cpAddUIRow(cpGetMachineObserverControllerUIElement(con->observerController), 0);
-  cpAddUIRow(cpGetMachineIlluminationControllerUIElement(con->illuminationController), 0);
-  cpAddUIRow(cpGetMachineRGBControllerUIElement(con->rgbController), 0);
-  cpAddUIRow(cpGetMachineLabControllerUIElement(con->labController), 0);
-  cpAddUIRow(cpGetMachineGrayControllerUIElement(con->grayController), 0);
-  cpAddUIRow(cpGetMachineButtonsControllerUIElement(con->buttonsController), 0);
-  cpEndUILayout();
+  naSetSpaceLayoutDirections(con->space, NA_LAYOUT_DIRECTIONS_TBLR);
+  
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+  
+//  naDebugUIElementLayout(con->space);
+
+  naBeginLayout(con->space, zeroPadding);
+    naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
+      naAddLayoutElement(cpGetMachineObserverControllerUIElement(con->observerController), 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(cpGetMachineIlluminationControllerUIElement(con->illuminationController), 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(cpGetMachineRGBControllerUIElement(con->rgbController), 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(cpGetMachineLabControllerUIElement(con->labController), 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(cpGetMachineGrayControllerUIElement(con->grayController), 0, NA_LAYOUT_MIN);
+      naAddLayoutElement(cpGetMachineButtonsControllerUIElement(con->buttonsController), 0, NA_LAYOUT_MIN);
+  naEndLayout();
 
   return con;
 }

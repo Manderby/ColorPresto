@@ -48,10 +48,13 @@ CPMachineGrayController* cpAllocMachineGrayController(void) {
   }
 
   // layout
-  cpBeginUILayout(con->space, spaceBorder);
-  cpAddUIRow(con->grayColorSpaceLabel, uiElemHeight);
-  cpAddUICol(con->grayColorSpaceSelect, marginH);
-  cpEndUILayout();
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+
+  naBeginLayout(con->space, spaceBorder);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->grayColorSpaceLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->grayColorSpaceSelect, marginH, 200);
+  naEndLayout();
 
   return con;
 }

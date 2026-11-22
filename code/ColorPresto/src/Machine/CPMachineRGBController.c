@@ -342,43 +342,54 @@ CPMachineRGBController* cpAllocMachineRGBController(void) {
   con->gammaDisplayController = cpAllocGammaDisplayController();
 
   // layout
-  cpBeginUILayout(con->space, spaceBorder);
-  cpAddUIRow(con->rgbColorSpaceLabel, uiElemHeight);
-  cpAddUICol(con->rgbColorSpaceSelect, marginH);
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
-  cpAddUIRow(con->redPointTitleLabel, uiElemHeight);
-  cpAddUICol(con->setPrimaryRButton, 0);
-  cpAddUICol(con->redPointYTextField, marginHSmall);
-  cpAddUICol(con->redPointxTextField, 0);
-  cpAddUICol(con->redPointyTextField, 0);
-  cpAddUIRow(con->greenPointTitleLabel, uiElemHeight);
-  cpAddUICol(con->setPrimaryGButton, 0);
-  cpAddUICol(con->greenPointYTextField, marginHSmall);
-  cpAddUICol(con->greenPointxTextField, 0);
-  cpAddUICol(con->greenPointyTextField, 0);
-  cpAddUIRow(con->bluePointTitleLabel, uiElemHeight);
-  cpAddUICol(con->setPrimaryBButton, 0);
-  cpAddUICol(con->bluePointYTextField, marginHSmall);
-  cpAddUICol(con->bluePointxTextField, 0);
-  cpAddUICol(con->bluePointyTextField, 0);
+  naBeginLayout(con->space, spaceBorder);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->rgbColorSpaceLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->rgbColorSpaceSelect, marginH, 200);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->redPointTitleLabel, 0, machineLabelWidth - setButtonWidth + marginH - marginHSmall);
+      naAddLayoutElement(con->setPrimaryRButton, 0, setButtonWidth);
+      naAddLayoutElement(con->redPointYTextField, marginHSmall, textFieldValueWidth);
+      naAddLayoutElement(con->redPointxTextField, 0, textFieldValueWidth);
+      naAddLayoutElement(con->redPointyTextField, 0, textFieldValueWidth);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->greenPointTitleLabel, 0, machineLabelWidth - setButtonWidth + marginH - marginHSmall);
+      naAddLayoutElement(con->setPrimaryGButton, 0, setButtonWidth);
+      naAddLayoutElement(con->greenPointYTextField, marginHSmall, textFieldValueWidth);
+      naAddLayoutElement(con->greenPointxTextField, 0, textFieldValueWidth);
+      naAddLayoutElement(con->greenPointyTextField, 0, textFieldValueWidth);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->bluePointTitleLabel, 0, machineLabelWidth - setButtonWidth + marginH - marginHSmall);
+      naAddLayoutElement(con->setPrimaryBButton, 0, setButtonWidth);
+      naAddLayoutElement(con->bluePointYTextField, marginHSmall, textFieldValueWidth);
+      naAddLayoutElement(con->bluePointxTextField, 0, textFieldValueWidth);
+      naAddLayoutElement(con->bluePointyTextField, 0, textFieldValueWidth);
 
-  cpAddUIRow(con->rgbResponseTitleLabel, uiElemHeight);
-  cpAddUICol(con->rgbResponseChannelsSelect, marginH);
-  cpAddUICol(con->rgbResponseSelect, marginH);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->rgbResponseTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->rgbResponseChannelsSelect, marginH, 80);
+      naAddLayoutElement(con->rgbResponseSelect, marginH, 100);
 
-  cpAddUIRow(con->responseLinearTitleLabel, uiElemHeight);
-  cpAddUICol(con->responseLinearTextField, marginH);
-  cpAddUICol(con->responseLinearSlider, marginH);
-  cpAddUIRow(con->responseSplitTitleLabel, uiElemHeight);
-  cpAddUICol(con->responseSplitTextField, marginH);
-  cpAddUICol(con->responseSplitSlider, marginH);
-  cpAddUIRow(con->responseGammaTitleLabel, uiElemHeight);
-  cpAddUICol(con->responseGammaTextField, marginH);
-  cpAddUICol(con->responseGammaSlider, marginH);
-  cpAddUIRow(con->responseOffsetTitleLabel, uiElemHeight);
-  cpAddUICol(con->responseOffsetTextField, marginH);
-  cpAddUICol(con->responseOffsetSlider, marginH);
-  cpEndUILayout();
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->responseLinearTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->responseLinearTextField, marginH, textFieldValueWidth);
+      naAddLayoutElement(con->responseLinearSlider, marginH, 60);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->responseSplitTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->responseSplitTextField, marginH, textFieldValueWidth);
+      naAddLayoutElement(con->responseSplitSlider, marginH, 60);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->responseGammaTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->responseGammaTextField, marginH, textFieldValueWidth);
+      naAddLayoutElement(con->responseGammaSlider, marginH, 60);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->responseOffsetTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->responseOffsetTextField, marginH, textFieldValueWidth);
+      naAddLayoutElement(con->responseOffsetSlider, marginH, 60);
+
+  naEndLayout();
 
   naAddSpaceChildWithSize(
     con->space,

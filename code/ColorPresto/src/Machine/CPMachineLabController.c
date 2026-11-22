@@ -94,18 +94,20 @@ CPMachineLabController* cpAllocMachineLabController(void) {
   naAddUIReaction(con->valuekeSlider, NA_UI_COMMAND_EDITED, cpSetLabValue, con);
 
   // layout
-  cpBeginUILayout(con->space, spaceBorder);
-  cpAddUIRow(con->labColorSpaceLabel, uiElemHeight);
-  cpAddUICol(con->labColorSpaceSelect, marginH);
-
-  cpAddUIRow(con->valueKTitleLabel, uiElemHeight);
-  cpAddUICol(con->valueKTextField, marginH);
-  cpAddUICol(con->valueKSlider, marginH);
-
-  cpAddUIRow(con->valuekeTitleLabel, uiElemHeight);
-  cpAddUICol(con->valuekeTextField, marginH);
-  cpAddUICol(con->valuekeSlider, marginH);
-  cpEndUILayout();
+  
+  naBeginLayout(con->space, spaceBorder);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->labColorSpaceLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->labColorSpaceSelect, marginH, 200);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->valueKTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->valueKTextField, marginH, textFieldValueWidth);
+      naAddLayoutElement(con->valueKSlider, marginH, 60);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->valuekeTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->valuekeTextField, marginH, textFieldValueWidth);
+      naAddLayoutElement(con->valuekeSlider, marginH, 60);
+  naEndLayout();
 
   return con;
 }

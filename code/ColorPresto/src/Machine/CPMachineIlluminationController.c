@@ -122,19 +122,24 @@ CPMachineIlluminationController* cpAllocMachineIlluminationController(void) {
   con->whitePointyTextField = cpNewValueTextField(cpSetWhitePoint, con);
 
   // layout
-  cpBeginUILayout(con->space, spaceBorder);
-  cpAddUIRow(con->illuminationTitleLabel, uiElemHeight);
-  cpAddUICol(con->illuminationSelect, marginH);
-  cpAddUIRow(con->illuminationTemperatureTitleLabel, uiElemHeight);
-  cpAddUICol(con->illuminationTemperatureTextField, marginH);
-  cpAddUICol(con->illuminationKelvinLabel, 0);
-  cpAddUICol(con->illuminationTemperatureSlider, marginH);
-  cpAddUIRow(con->whitePointTitleLabel, uiElemHeight);
-  cpAddUICol(con->setWhitePointButton, 0);
-  cpAddUICol(con->whitePointYTextField, marginHSmall);
-  cpAddUICol(con->whitePointxTextField, 0);
-  cpAddUICol(con->whitePointyTextField, 0);
-  cpEndUILayout();
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
+
+  naBeginLayout(con->space, spaceBorder);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->illuminationTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->illuminationSelect, marginH, 200);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->illuminationTemperatureTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->illuminationTemperatureTextField, marginH, textFieldValueWidth);
+      naAddLayoutElement(con->illuminationKelvinLabel, marginH, 20);
+      naAddLayoutElement(con->illuminationTemperatureSlider, 0., 100);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->whitePointTitleLabel, 0, machineLabelWidth - setButtonWidth + marginH - marginHSmall);
+      naAddLayoutElement(con->setWhitePointButton, 0, setButtonWidth);
+      naAddLayoutElement(con->whitePointYTextField, marginHSmall, textFieldValueWidth);
+      naAddLayoutElement(con->whitePointxTextField, 0, textFieldValueWidth);
+      naAddLayoutElement(con->whitePointyTextField, 0, textFieldValueWidth);
+  naEndLayout();
 
   return con;
 }

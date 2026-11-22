@@ -51,12 +51,14 @@ naSetSpaceAlternateBackground(con->space, NA_FALSE);
   con->observerStepsLabel = naNewLabel("", 100);
   
   // layout
-  cpBeginUILayout(con->space, spaceBorder);
-  cpAddUIRow(con->observerTitleLabel, uiElemHeight);
-  cpAddUICol(con->observerSelect, marginH);
-  cpAddUIRow(con->observerStepsTitleLabel, uiElemHeight);
-  cpAddUICol(con->observerStepsLabel, marginH);
-  cpEndUILayout();
+  naBeginLayout(con->space, spaceBorder);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->observerTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->observerSelect, marginH, 200);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->observerStepsTitleLabel, 0, machineLabelWidth);
+      naAddLayoutElement(con->observerStepsLabel, marginH, 100);
+  naEndLayout();
 
   return con;
 }

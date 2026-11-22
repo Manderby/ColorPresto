@@ -60,15 +60,19 @@ CPMachineButtonsController* cpAllocMachineButtonsController(void) {
   naAddUIReaction(con->preferencesButton, NA_UI_COMMAND_PRESSED, cp_PressMachineButton, con);
 
   // layout
-  cpBeginUILayout(con->space, spaceBorder);
-  cpAddUIRow(con->resetMachineButton, uiElemHeight);
-  cpAddUICol(con->metamericsButton, marginH);
-  cpAddUICol(con->threeDeeButton, marginH);
+  
+  NABorder2D zeroPadding = naMakeBorder2D(0., 0., 0., 0.);
 
-  cpAddUIRow(con->aboutButton, 2 * uiElemHeight);
-  cpAddUICol(con->preferencesButton, marginH);
-  cpEndUILayout();
-
+  naBeginLayout(con->space, spaceBorder);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., 0., 0.));
+      naAddLayoutElement(con->resetMachineButton, 0, setBigButtonWidth);
+      naAddLayoutElement(con->metamericsButton, marginH, setBigButtonWidth);
+      naAddLayoutElement(con->threeDeeButton, marginH, setBigButtonWidth);
+    naAddLayoutSection(uiElemHeight, naMakeBorder2D(0., 0., spaceMarginTop, 0.));
+      naAddLayoutElement(con->aboutButton, 0, setBigButtonWidth);
+      naAddLayoutElement(con->preferencesButton, marginH, setBigButtonWidth);
+  naEndLayout();
+  
   return con;
 }
 
