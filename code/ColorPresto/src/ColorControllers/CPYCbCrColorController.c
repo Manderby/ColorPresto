@@ -92,7 +92,6 @@ CPYCbCrColorController* cpAllocYCbCrColorController(void) {
           naAddLayoutElement(con->textFieldCr, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1DCr), 10, NA_LAYOUT_MIN);
       naEndLayout();
-      naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
 
   naEndLayout();
 

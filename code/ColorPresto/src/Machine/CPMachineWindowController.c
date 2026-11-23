@@ -36,7 +36,6 @@ struct CPMachineWindowController{
   NASpace* rightSpace;
   NASpace* radiometricColorsSpace;
   NASpace* perceptiveColorsSpace;
-  NASpace* RGBColorsSpace;
   
   CPGrayColorController* grayColorController;
   CPHSVHSLColorController* hsvhslColorController;
@@ -72,7 +71,6 @@ CPMachineWindowController* cpAllocMachineWindowController(void) {
 
   con->radiometricColorsSpace = naNewSpace();
   con->perceptiveColorsSpace = naNewSpace();
-  con->RGBColorsSpace = naNewSpace();
 
   con->grayColorController = cpAllocGrayColorController();
   con->hsvhslColorController = cpAllocHSVHSLColorController();
@@ -117,13 +115,11 @@ CPMachineWindowController* cpAllocMachineWindowController(void) {
     naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
       naAddLayoutElement(con->radiometricColorsSpace, 0, NA_LAYOUT_MIN);
       naAddLayoutElement(con->perceptiveColorsSpace, 0, NA_LAYOUT_MIN);
-      naAddLayoutElement(con->RGBColorsSpace, 0, NA_LAYOUT_MIN);
   naEndLayout();
 
   naBeginLayout(contentSpace, zeroPadding);
     naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
       naAddLayoutElement(cpGetMachineUIElement(con->machineController), 0, NA_LAYOUT_MIN);
-      naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
       naSetLayoutElementSecondaryAlignment(NA_ALIGNMENT_BEGIN);
       naAddLayoutElement(con->rightSpace, 0, NA_LAYOUT_MIN);
   naEndLayout();

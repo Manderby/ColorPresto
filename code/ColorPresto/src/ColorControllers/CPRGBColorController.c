@@ -130,7 +130,6 @@ CPRGBColorController* cpAllocRGBColorController(void) {
           naAddLayoutElement(con->textFieldHex, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(con->textFieldDec, 10, colorWell1DSize);
       naEndLayout();
-      naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
 
   naEndLayout();
 

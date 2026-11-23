@@ -134,7 +134,6 @@ CPHSVHSLColorController* cpAllocHSVHSLColorController(void) {
           naAddLayoutElement(con->textField2, colorComponentMarginH, textFieldValueWidth);
           naAddLayoutElement(cpGetColorWell1DUIElement(con->colorWell1D2), 10, NA_LAYOUT_MIN);
       naEndLayout();
-      naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
 
   naEndLayout();
   

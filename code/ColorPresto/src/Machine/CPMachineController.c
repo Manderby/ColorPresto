@@ -32,6 +32,7 @@ CPMachineController* cpAllocMachineController(void) {
   CPMachineController* con = naAlloc(CPMachineController);
 
   con->space = naNewSpace();
+  naSetSpaceAlternateBackground(con->space, NA_TRUE);
 
   con->observerController = cpAllocMachineObserverController();
   con->illuminationController = cpAllocMachineIlluminationController();
