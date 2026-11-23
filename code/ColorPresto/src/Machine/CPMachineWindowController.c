@@ -124,7 +124,7 @@ CPMachineWindowController* cpAllocMachineWindowController(void) {
     naAddLayoutSection(NA_LAYOUT_MIN, zeroPadding);
       naAddLayoutElement(cpGetMachineUIElement(con->machineController), 0, NA_LAYOUT_MIN);
       naSetLayoutElementContentSize(NA_LAYOUT_MIN, NA_LAYOUT_MIN);
-      naSetLayoutElementSecondaryAlign(NA_ALIGNMENT_BEGIN);
+      naSetLayoutElementSecondaryAlignment(NA_ALIGNMENT_BEGIN);
       naAddLayoutElement(con->rightSpace, 0, NA_LAYOUT_MIN);
   naEndLayout();
 
